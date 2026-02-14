@@ -1,0 +1,371 @@
+{
+  "id": "lab_012",
+  "age_range": "5-6",
+  "difficulty": "medium",
+  "theme": "garden",
+  "title": "Bunny's Garden Adventure",
+  "story_setup": "Little Bunny is very hungry and wants to find the carrot patch. The garden paths are twisty and she needs your help to find her way.",
+  "instruction": "Help Bunny hop through the garden maze to reach the orange carrots.",
+  "tts_instruction": "Can you help little Bunny hop through the garden maze to find the yummy orange carrots? Trace the path with your finger.",
+  "character_start": {
+    "type": "bunny",
+    "description": "A small, fluffy white bunny with pink ears",
+    "position": "bottom_left"
+  },
+  "character_end": {
+    "type": "carrot patch",
+    "description": "A group of bright orange carrots growing in the soil",
+    "position": "top_right"
+  },
+  "educational_question": "What other vegetables might grow in a garden like this one?",
+  "fun_fact": "Carrots grow underground and only their green leafy tops show above the soil.",
+  "completion_message": "You helped Bunny find the carrots - now she can have a healthy snack!",
+  "path_data": {
+    "svg_path": "M 21 33 L 83 33 M 21 95 L 83 95 M 21 33 L 21 95 M 83 33 L 145 33 M 145 33 L 145 95 M 145 33 L 207 33 M 145 33 L 145 95 M 207 33 L 269 33 M 207 95 L 269 95 M 269 33 L 331 33 M 269 95 L 331 95 M 331 33 L 393 33 M 331 95 L 393 95 M 393 33 L 455 33 M 455 33 L 455 95 M 455 33 L 517 33 M 455 33 L 455 95 M 517 33 L 579 33 M 579 33 L 579 95 M 21 95 L 83 95 M 83 95 L 83 157 M 21 95 L 21 157 M 145 95 L 145 157 M 83 95 L 83 157 M 145 95 L 145 157 M 207 95 L 269 95 M 207 157 L 269 157 M 269 95 L 331 95 M 331 95 L 331 157 M 331 95 L 393 95 M 393 95 L 393 157 M 331 95 L 331 157 M 393 157 L 455 157 M 393 95 L 393 157 M 517 95 L 517 157 M 455 157 L 517 157 M 579 95 L 579 157 M 517 95 L 517 157 M 21 157 L 21 219 M 145 157 L 145 219 M 83 219 L 145 219 M 207 157 L 207 219 M 145 157 L 145 219 M 207 157 L 269 157 M 269 157 L 269 219 M 207 157 L 207 219 M 331 157 L 331 219 M 269 157 L 269 219 M 331 157 L 331 219 M 393 157 L 455 157 M 393 219 L 455 219 M 455 157 L 517 157 M 517 157 L 517 219 M 579 157 L 579 219 M 517 157 L 517 219 M 21 281 L 83 281 M 21 219 L 21 281 M 83 219 L 145 219 M 145 219 L 145 281 M 145 281 L 207 281 M 145 219 L 145 281 M 269 219 L 269 281 M 207 281 L 269 281 M 331 219 L 331 281 M 269 219 L 269 281 M 393 219 L 393 281 M 331 281 L 393 281 M 331 219 L 331 281 M 393 219 L 455 219 M 393 219 L 393 281 M 517 219 L 517 281 M 455 281 L 517 281 M 579 219 L 579 281 M 517 219 L 517 281 M 21 281 L 83 281 M 83 281 L 83 343 M 21 281 L 21 343 M 83 343 L 145 343 M 83 281 L 83 343 M 145 281 L 207 281 M 145 343 L 207 343 M 207 281 L 269 281 M 207 343 L 269 343 M 331 281 L 331 343 M 269 343 L 331 343 M 331 281 L 393 281 M 331 281 L 331 343 M 455 281 L 455 343 M 393 343 L 455 343 M 455 281 L 517 281 M 455 281 L 455 343 M 579 281 L 579 343 M 517 343 L 579 343 M 83 343 L 83 405 M 21 343 L 21 405 M 83 343 L 145 343 M 83 343 L 83 405 M 145 343 L 207 343 M 145 405 L 207 405 M 207 343 L 269 343 M 207 405 L 269 405 M 269 343 L 331 343 M 269 405 L 331 405 M 331 405 L 393 405 M 393 343 L 455 343 M 455 343 L 455 405 M 517 343 L 517 405 M 455 343 L 455 405 M 517 343 L 579 343 M 579 343 L 579 405 M 517 343 L 517 405 M 21 467 L 83 467 M 21 405 L 21 467 M 83 467 L 145 467 M 145 405 L 207 405 M 145 467 L 207 467 M 207 405 L 269 405 M 207 467 L 269 467 M 269 405 L 331 405 M 269 467 L 331 467 M 331 405 L 393 405 M 393 405 L 393 467 M 331 467 L 393 467 M 393 467 L 455 467 M 393 405 L 393 467 M 455 467 L 517 467 M 579 405 L 579 467 M 517 467 L 579 467",
+    "solution_path": "M 52 64 L 114 64 L 114 126 L 114 188 L 52 188 L 52 250 L 114 250 L 114 312 L 176 312 L 238 312 L 300 312 L 300 250 L 300 188 L 300 126 L 238 126 L 176 126 L 176 64 L 238 64 L 300 64 L 362 64 L 424 64 L 424 126 L 486 126 L 486 64 L 548 64 L 548 126 L 548 188 L 548 250 L 548 312 L 486 312 L 486 374 L 486 436 L 548 436",
+    "width": 25,
+    "complexity": "medium",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 52,
+      "y": 64
+    },
+    "end_point": {
+      "x": 548,
+      "y": 436
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 52,
+          "y": 64
+        },
+        "end": {
+          "x": 114,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 64
+        },
+        "end": {
+          "x": 114,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 126
+        },
+        "end": {
+          "x": 114,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 188
+        },
+        "end": {
+          "x": 52,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 188
+        },
+        "end": {
+          "x": 52,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 250
+        },
+        "end": {
+          "x": 114,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 250
+        },
+        "end": {
+          "x": 114,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 312
+        },
+        "end": {
+          "x": 176,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 312
+        },
+        "end": {
+          "x": 238,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 312
+        },
+        "end": {
+          "x": 300,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 312
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 188
+        },
+        "end": {
+          "x": 300,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 126
+        },
+        "end": {
+          "x": 238,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 126
+        },
+        "end": {
+          "x": 176,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 126
+        },
+        "end": {
+          "x": 176,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 64
+        },
+        "end": {
+          "x": 238,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 64
+        },
+        "end": {
+          "x": 300,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 64
+        },
+        "end": {
+          "x": 362,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 64
+        },
+        "end": {
+          "x": 424,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 424,
+          "y": 64
+        },
+        "end": {
+          "x": 424,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 424,
+          "y": 126
+        },
+        "end": {
+          "x": 486,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 126
+        },
+        "end": {
+          "x": 486,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 64
+        },
+        "end": {
+          "x": 548,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 548,
+          "y": 64
+        },
+        "end": {
+          "x": 548,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 548,
+          "y": 126
+        },
+        "end": {
+          "x": 548,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 548,
+          "y": 188
+        },
+        "end": {
+          "x": 548,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 548,
+          "y": 250
+        },
+        "end": {
+          "x": 548,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 548,
+          "y": 312
+        },
+        "end": {
+          "x": 486,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 312
+        },
+        "end": {
+          "x": 486,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 374
+        },
+        "end": {
+          "x": 486,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 436
+        },
+        "end": {
+          "x": 548,
+          "y": 436
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#66BB6A",
+    "decorative_elements": [
+      "flowers",
+      "butterflies",
+      "ladybug"
+    ]
+  }
+}

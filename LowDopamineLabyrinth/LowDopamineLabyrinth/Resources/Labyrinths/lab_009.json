@@ -1,0 +1,126 @@
+{
+  "id": "lab_009",
+  "age_range": "3-4",
+  "difficulty": "easy",
+  "theme": "seasons",
+  "title": "Bear's Season Walk",
+  "story_setup": "Little Bear wants to visit all four seasons in one special day. He needs your help to find his way through the season path.",
+  "instruction": "Help Bear walk through spring, summer, fall, and winter to reach his cozy home.",
+  "tts_instruction": "Can you help Bear walk through all the seasons? Trace the path with your finger to guide him home.",
+  "character_start": {
+    "type": "friendly bear",
+    "description": "A small, brown bear with a gentle smile",
+    "position": "bottom_left"
+  },
+  "character_end": {
+    "type": "cozy house",
+    "description": "A warm, little house with a red roof and yellow windows",
+    "position": "top_right"
+  },
+  "educational_question": "What do you like to do in each season - spring, summer, fall, and winter?",
+  "fun_fact": "Bears grow thick, fluffy fur in winter to keep warm and shed some of it in spring.",
+  "completion_message": "Great job helping Bear visit all the seasons and find his way home!",
+  "path_data": {
+    "svg_path": "M 60.0 440.0 Q 115.4 334.5 144.7 328.0 Q 174.1 321.6 259.5 253.8 Q 344.9 186.1 379.0 178.7 Q 413.1 171.4 476.6 115.7 L 540.0 60.0",
+    "solution_path": "",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "organic",
+    "start_point": {
+      "x": 60,
+      "y": 440
+    },
+    "end_point": {
+      "x": 540,
+      "y": 60
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 60,
+          "y": 440
+        },
+        "end": {
+          "x": 115.4,
+          "y": 334.5
+        }
+      },
+      {
+        "start": {
+          "x": 115.4,
+          "y": 334.5
+        },
+        "end": {
+          "x": 174.1,
+          "y": 321.6
+        }
+      },
+      {
+        "start": {
+          "x": 174.1,
+          "y": 321.6
+        },
+        "end": {
+          "x": 344.9,
+          "y": 186.1
+        }
+      },
+      {
+        "start": {
+          "x": 344.9,
+          "y": 186.1
+        },
+        "end": {
+          "x": 413.1,
+          "y": 171.4
+        }
+      },
+      {
+        "start": {
+          "x": 413.1,
+          "y": 171.4
+        },
+        "end": {
+          "x": 540,
+          "y": 60
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [
+      {
+        "x": 60,
+        "y": 440
+      },
+      {
+        "x": 115.4,
+        "y": 334.5
+      },
+      {
+        "x": 174.1,
+        "y": 321.6
+      },
+      {
+        "x": 344.9,
+        "y": 186.1
+      },
+      {
+        "x": 413.1,
+        "y": 171.4
+      },
+      {
+        "x": 540,
+        "y": 60
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#81D4FA",
+    "decorative_elements": [
+      "snowflake",
+      "leaf",
+      "flower"
+    ]
+  }
+}

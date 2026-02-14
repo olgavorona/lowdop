@@ -1,0 +1,145 @@
+age_groups:
+  young:
+    ages: [3, 4]
+    path_width: 35
+    maze_types: ["organic"]
+    shapes: ["rect"]
+    difficulties: ["easy"]
+    grid_sizes:
+      easy: [4, 5]
+    themes:
+      - animals
+      - nature
+      - home
+      - family
+      - garden
+      - pets
+      - farm
+      - colors
+      - seasons
+      - food
+
+  middle:
+    ages: [4, 5]
+    path_width: 30
+    maze_types: ["grid"]
+    shapes: ["rect", "triangle", "tree"]
+    difficulties: ["easy", "medium"]
+    grid_sizes:
+      easy: [5, 7]
+      medium: [6, 8]
+    themes:
+      - adventures
+      - garden
+      - seasons
+      - weather
+      - playground
+      - fairy_tales
+      - helping_others
+      - music
+      - bugs
+      - birds
+
+  older:
+    ages: [5, 6]
+    path_width: 25
+    maze_types: ["grid", "shaped"]
+    shapes: ["rect", "triangle", "tree", "mountain", "diamond", "circle"]
+    difficulties: ["medium", "hard"]
+    grid_sizes:
+      medium: [7, 9]
+      hard: [9, 12]
+    themes:
+      - space
+      - ocean
+      - community
+      - dinosaurs
+      - weather
+      - transportation
+      - recycling
+      - world_cultures
+      - inventions
+      - sports
+
+visual_themes:
+  animals:
+    background_color: "#8BC34A"
+    decorative_elements: ["trees", "flowers", "grass"]
+  nature:
+    background_color: "#4CAF50"
+    decorative_elements: ["trees", "clouds", "sun"]
+  home:
+    background_color: "#FFC107"
+    decorative_elements: ["house", "fence", "flowers"]
+  family:
+    background_color: "#FF9800"
+    decorative_elements: ["house", "yard", "swing"]
+  garden:
+    background_color: "#66BB6A"
+    decorative_elements: ["flowers", "butterflies", "ladybug"]
+  pets:
+    background_color: "#FFAB40"
+    decorative_elements: ["doghouse", "ball", "bone"]
+  farm:
+    background_color: "#A5D6A7"
+    decorative_elements: ["barn", "tractor", "hay"]
+  colors:
+    background_color: "#E1BEE7"
+    decorative_elements: ["rainbow", "paintbrush", "stars"]
+  seasons:
+    background_color: "#81D4FA"
+    decorative_elements: ["snowflake", "leaf", "flower"]
+  food:
+    background_color: "#FFCC02"
+    decorative_elements: ["apple", "carrot", "basket"]
+  adventures:
+    background_color: "#42A5F5"
+    decorative_elements: ["compass", "map", "backpack"]
+  weather:
+    background_color: "#78909C"
+    decorative_elements: ["clouds", "raindrops", "sun"]
+  playground:
+    background_color: "#FF7043"
+    decorative_elements: ["slide", "swing", "sandbox"]
+  fairy_tales:
+    background_color: "#AB47BC"
+    decorative_elements: ["castle", "crown", "wand"]
+  helping_others:
+    background_color: "#EF5350"
+    decorative_elements: ["heart", "hands", "house"]
+  music:
+    background_color: "#5C6BC0"
+    decorative_elements: ["notes", "guitar", "drum"]
+  bugs:
+    background_color: "#66BB6A"
+    decorative_elements: ["ladybug", "butterfly", "caterpillar"]
+  birds:
+    background_color: "#29B6F6"
+    decorative_elements: ["nest", "feather", "birdhouse"]
+  space:
+    background_color: "#1A237E"
+    decorative_elements: ["stars", "planets", "rocket"]
+  ocean:
+    background_color: "#0277BD"
+    decorative_elements: ["fish", "coral", "bubbles"]
+  community:
+    background_color: "#43A047"
+    decorative_elements: ["buildings", "park", "people"]
+  dinosaurs:
+    background_color: "#6D4C41"
+    decorative_elements: ["volcano", "bones", "plants"]
+  transportation:
+    background_color: "#546E7A"
+    decorative_elements: ["car", "train", "airplane"]
+  recycling:
+    background_color: "#2E7D32"
+    decorative_elements: ["bins", "bottles", "trees"]
+  world_cultures:
+    background_color: "#F57C00"
+    decorative_elements: ["globe", "flags", "instruments"]
+  inventions:
+    background_color: "#6A1B9A"
+    decorative_elements: ["lightbulb", "gears", "tools"]
+  sports:
+    background_color: "#1565C0"
+    decorative_elements: ["ball", "trophy", "shoes"]

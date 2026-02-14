@@ -1,0 +1,112 @@
+{
+  "id": "lab_002",
+  "age_range": "3-4",
+  "difficulty": "easy",
+  "theme": "nature",
+  "title": "Bunny Finds Her Garden",
+  "story_setup": "Little Bunny wants to eat fresh carrots from the vegetable garden. She needs help finding the way through the forest path.",
+  "instruction": "Help Bunny find the path to the carrot garden.",
+  "tts_instruction": "Can you help little Bunny find her way to the carrot garden? Just trace the path with your finger.",
+  "character_start": {
+    "type": "bunny",
+    "description": "A small, fluffy white bunny with pink ears",
+    "position": "bottom_left"
+  },
+  "character_end": {
+    "type": "garden",
+    "description": "A small patch with orange carrots growing in brown soil",
+    "position": "top_right"
+  },
+  "educational_question": "What other vegetables do you think might grow in Bunny's garden?",
+  "fun_fact": "Carrots grow underground and only their green leaves show above the dirt.",
+  "completion_message": "You helped Bunny find her carrots - now she can have a yummy snack!",
+  "path_data": {
+    "svg_path": "M 60.0 440.0 Q 185.8 326.6 231.7 301.2 Q 277.6 275.8 347.5 233.7 Q 417.3 191.6 478.7 125.8 L 540.0 60.0",
+    "solution_path": "",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "organic",
+    "start_point": {
+      "x": 60,
+      "y": 440
+    },
+    "end_point": {
+      "x": 540,
+      "y": 60
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 60,
+          "y": 440
+        },
+        "end": {
+          "x": 185.8,
+          "y": 326.6
+        }
+      },
+      {
+        "start": {
+          "x": 185.8,
+          "y": 326.6
+        },
+        "end": {
+          "x": 277.6,
+          "y": 275.8
+        }
+      },
+      {
+        "start": {
+          "x": 277.6,
+          "y": 275.8
+        },
+        "end": {
+          "x": 417.3,
+          "y": 191.6
+        }
+      },
+      {
+        "start": {
+          "x": 417.3,
+          "y": 191.6
+        },
+        "end": {
+          "x": 540,
+          "y": 60
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [
+      {
+        "x": 60,
+        "y": 440
+      },
+      {
+        "x": 185.8,
+        "y": 326.6
+      },
+      {
+        "x": 277.6,
+        "y": 275.8
+      },
+      {
+        "x": 417.3,
+        "y": 191.6
+      },
+      {
+        "x": 540,
+        "y": 60
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#4CAF50",
+    "decorative_elements": [
+      "trees",
+      "clouds",
+      "sun"
+    ]
+  }
+}

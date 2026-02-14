@@ -1,0 +1,140 @@
+{
+  "id": "lab_001",
+  "age_range": "3-4",
+  "difficulty": "easy",
+  "theme": "animals",
+  "title": "Help Bunny Find Mama",
+  "story_setup": "Little Bunny is looking for Mama Bunny in the garden. Can you help Little Bunny find the safe path home?",
+  "instruction": "Draw a line to help Little Bunny reach Mama Bunny.",
+  "tts_instruction": "Use your finger to draw a line and help Little Bunny find Mama Bunny. Take your time and follow the path.",
+  "character_start": {
+    "type": "baby bunny",
+    "description": "A small, fluffy white bunny with pink ears",
+    "position": "bottom_left"
+  },
+  "character_end": {
+    "type": "mama bunny",
+    "description": "A gentle, larger bunny with soft brown fur and kind eyes",
+    "position": "top_right"
+  },
+  "educational_question": "What sound do you think bunnies make when they talk to each other?",
+  "fun_fact": "Baby bunnies stay close to their mama for the first few weeks of their life.",
+  "completion_message": "You did it! Little Bunny found Mama and they're together again.",
+  "path_data": {
+    "svg_path": "M 60.0 440.0 Q 194.1 373.1 206.9 330.8 Q 219.7 288.5 270.6 282.5 Q 321.5 276.5 351.9 217.6 Q 382.3 158.8 442.6 123.5 Q 502.9 88.1 521.4 74.1 L 540.0 60.0",
+    "solution_path": "",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "organic",
+    "start_point": {
+      "x": 60,
+      "y": 440
+    },
+    "end_point": {
+      "x": 540,
+      "y": 60
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 60,
+          "y": 440
+        },
+        "end": {
+          "x": 194.1,
+          "y": 373.1
+        }
+      },
+      {
+        "start": {
+          "x": 194.1,
+          "y": 373.1
+        },
+        "end": {
+          "x": 219.7,
+          "y": 288.5
+        }
+      },
+      {
+        "start": {
+          "x": 219.7,
+          "y": 288.5
+        },
+        "end": {
+          "x": 321.5,
+          "y": 276.5
+        }
+      },
+      {
+        "start": {
+          "x": 321.5,
+          "y": 276.5
+        },
+        "end": {
+          "x": 382.3,
+          "y": 158.8
+        }
+      },
+      {
+        "start": {
+          "x": 382.3,
+          "y": 158.8
+        },
+        "end": {
+          "x": 502.9,
+          "y": 88.1
+        }
+      },
+      {
+        "start": {
+          "x": 502.9,
+          "y": 88.1
+        },
+        "end": {
+          "x": 540,
+          "y": 60
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [
+      {
+        "x": 60,
+        "y": 440
+      },
+      {
+        "x": 194.1,
+        "y": 373.1
+      },
+      {
+        "x": 219.7,
+        "y": 288.5
+      },
+      {
+        "x": 321.5,
+        "y": 276.5
+      },
+      {
+        "x": 382.3,
+        "y": 158.8
+      },
+      {
+        "x": 502.9,
+        "y": 88.1
+      },
+      {
+        "x": 540,
+        "y": 60
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#8BC34A",
+    "decorative_elements": [
+      "trees",
+      "flowers",
+      "grass"
+    ]
+  }
+}

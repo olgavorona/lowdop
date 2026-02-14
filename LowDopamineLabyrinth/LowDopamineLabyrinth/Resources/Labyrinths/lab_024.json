@@ -1,0 +1,351 @@
+{
+  "id": "lab_024",
+  "age_range": "5-6",
+  "difficulty": "hard",
+  "theme": "dinosaurs",
+  "title": "Baby Dinosaur Finds Family",
+  "story_setup": "A little baby dinosaur got separated from its family while playing in the forest. The family is waiting by their favorite tree, hoping their little one will find the way back home.",
+  "instruction": "Help the baby dinosaur find its way through the maze to reach its family.",
+  "tts_instruction": "Can you help this sweet little baby dinosaur find its way through the maze back to its loving family?",
+  "character_start": {
+    "type": "baby dinosaur",
+    "description": "A small, friendly green dinosaur with big curious eyes",
+    "position": "bottom_left"
+  },
+  "character_end": {
+    "type": "dinosaur family",
+    "description": "A group of gentle dinosaurs standing together by a large tree",
+    "position": "top_right"
+  },
+  "educational_question": "What do you think baby dinosaurs might have eaten when they lived long ago?",
+  "fun_fact": "Some dinosaurs were as small as chickens while others were as big as school buses.",
+  "completion_message": "Wonderful! The baby dinosaur is safely back with its family and they're all together again.",
+  "path_data": {
+    "svg_path": "M 208 43 L 254 43 M 208 89 L 254 89 M 208 43 L 208 89 M 254 43 L 300 43 M 300 43 L 300 89 M 300 43 L 346 43 M 346 43 L 346 89 M 300 43 L 300 89 M 208 89 L 254 89 M 254 89 L 254 135 M 208 89 L 208 135 M 254 135 L 300 135 M 254 89 L 254 135 M 300 135 L 346 135 M 346 89 L 392 89 M 392 89 L 392 135 M 162 135 L 208 135 M 162 135 L 162 181 M 208 181 L 254 181 M 254 135 L 300 135 M 254 181 L 300 181 M 300 135 L 346 135 M 346 135 L 346 181 M 300 181 L 346 181 M 392 135 L 392 181 M 346 135 L 346 181 M 392 135 L 438 135 M 438 135 L 438 181 M 392 135 L 392 181 M 116 181 L 162 181 M 116 181 L 116 227 M 208 181 L 208 227 M 208 181 L 254 181 M 208 181 L 208 227 M 254 181 L 300 181 M 254 227 L 300 227 M 300 181 L 346 181 M 346 181 L 346 227 M 392 181 L 392 227 M 346 181 L 346 227 M 438 181 L 438 227 M 392 181 L 392 227 M 70 227 L 116 227 M 70 227 L 70 273 M 162 227 L 162 273 M 116 273 L 162 273 M 208 227 L 208 273 M 162 273 L 208 273 M 162 227 L 162 273 M 254 227 L 254 273 M 208 227 L 208 273 M 254 227 L 300 227 M 300 227 L 300 273 M 254 227 L 254 273 M 346 227 L 346 273 M 300 227 L 300 273 M 346 273 L 392 273 M 346 227 L 346 273 M 438 227 L 438 273 M 438 227 L 484 227 M 484 227 L 484 273 M 438 227 L 438 273 M 70 273 L 70 319 M 116 273 L 162 273 M 116 319 L 162 319 M 162 273 L 208 273 M 162 319 L 208 319 M 254 273 L 254 319 M 208 319 L 254 319 M 300 273 L 300 319 M 254 273 L 254 319 M 300 273 L 300 319 M 346 273 L 392 273 M 392 273 L 392 319 M 346 319 L 392 319 M 438 273 L 438 319 M 392 273 L 392 319 M 438 273 L 438 319 M 484 273 L 530 273 M 530 273 L 530 319 M 24 319 L 70 319 M 24 365 L 70 365 M 24 319 L 24 365 M 70 365 L 116 365 M 116 319 L 162 319 M 116 365 L 162 365 M 162 319 L 208 319 M 162 365 L 208 365 M 208 319 L 254 319 M 208 365 L 254 365 M 300 319 L 300 365 M 300 365 L 346 365 M 300 319 L 300 365 M 346 319 L 392 319 M 346 365 L 392 365 M 392 365 L 438 365 M 484 319 L 484 365 M 438 365 L 484 365 M 530 319 L 530 365 M 484 365 L 530 365 M 484 319 L 484 365 M 300 365 L 300 411 M 254 365 L 254 411 M 300 365 L 346 365 M 346 365 L 346 411 M 300 365 L 300 411 M 254 457 L 300 457 M 254 411 L 254 457 M 346 411 L 346 457 M 300 457 L 346 457",
+    "solution_path": "M 231 66 L 277 66 L 277 112 L 323 112 L 369 112 L 369 158 L 369 204 L 369 250 L 415 250 L 415 296 L 415 342 L 369 342 L 323 342 L 323 296 L 323 250 L 323 204 L 277 204 L 231 204 L 231 250 L 231 296 L 185 296 L 139 296 L 93 296 L 93 342 L 139 342 L 185 342 L 231 342 L 277 342 L 277 388 L 277 434 L 323 434",
+    "width": 25,
+    "complexity": "hard",
+    "maze_type": "shaped_tree",
+    "start_point": {
+      "x": 231,
+      "y": 66
+    },
+    "end_point": {
+      "x": 323,
+      "y": 434
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 231,
+          "y": 66
+        },
+        "end": {
+          "x": 277,
+          "y": 66
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 66
+        },
+        "end": {
+          "x": 277,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 112
+        },
+        "end": {
+          "x": 323,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 112
+        },
+        "end": {
+          "x": 369,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 112
+        },
+        "end": {
+          "x": 369,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 158
+        },
+        "end": {
+          "x": 369,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 204
+        },
+        "end": {
+          "x": 369,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 250
+        },
+        "end": {
+          "x": 415,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 250
+        },
+        "end": {
+          "x": 415,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 296
+        },
+        "end": {
+          "x": 415,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 342
+        },
+        "end": {
+          "x": 369,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 342
+        },
+        "end": {
+          "x": 323,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 342
+        },
+        "end": {
+          "x": 323,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 296
+        },
+        "end": {
+          "x": 323,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 250
+        },
+        "end": {
+          "x": 323,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 204
+        },
+        "end": {
+          "x": 277,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 204
+        },
+        "end": {
+          "x": 231,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 204
+        },
+        "end": {
+          "x": 231,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 250
+        },
+        "end": {
+          "x": 231,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 296
+        },
+        "end": {
+          "x": 185,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 296
+        },
+        "end": {
+          "x": 139,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 296
+        },
+        "end": {
+          "x": 93,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 296
+        },
+        "end": {
+          "x": 93,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 342
+        },
+        "end": {
+          "x": 139,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 342
+        },
+        "end": {
+          "x": 185,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 342
+        },
+        "end": {
+          "x": 231,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 342
+        },
+        "end": {
+          "x": 277,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 342
+        },
+        "end": {
+          "x": 277,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 388
+        },
+        "end": {
+          "x": 277,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 434
+        },
+        "end": {
+          "x": 323,
+          "y": 434
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#6D4C41",
+    "decorative_elements": [
+      "volcano",
+      "bones",
+      "plants"
+    ]
+  }
+}
