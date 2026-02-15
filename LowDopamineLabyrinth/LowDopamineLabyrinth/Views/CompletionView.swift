@@ -11,11 +11,19 @@ struct CompletionView: View {
         VStack(spacing: 20) {
             Spacer()
 
-            // Gentle celebration
-            StarShape(points: 5, innerRatio: 0.45)
-                .fill(Color(hex: "#F1C40F") ?? .yellow)
-                .frame(width: 60, height: 60)
-                .shadow(color: Color(hex: "#F1C40F")?.opacity(0.4) ?? .yellow.opacity(0.4), radius: 12)
+            // Character celebration
+            VStack(spacing: 8) {
+                CharacterMarkerView(
+                    character: labyrinth.characterEnd,
+                    scale: 2.5,
+                    isStart: false
+                )
+                if let name = labyrinth.characterEnd.name {
+                    Text(name)
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                }
+            }
 
             Text(labyrinth.completionMessage)
                 .font(.system(size: 22, weight: .bold, design: .rounded))
@@ -77,8 +85,9 @@ struct CompletionView: View {
         .onAppear {
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    let intro = labyrinth.characterEnd.name.map { "You found \($0)! " } ?? ""
                     ttsService.speak(
-                        "\(labyrinth.completionMessage) \(labyrinth.educationalQuestion)",
+                        "\(intro)\(labyrinth.completionMessage) \(labyrinth.educationalQuestion)",
                         rate: preferences.ttsRate
                     )
                 }

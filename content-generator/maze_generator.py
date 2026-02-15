@@ -343,26 +343,24 @@ class FullMazeGenerator:
         shape: str = "rect",
         canvas_width: int = 600,
         canvas_height: int = 500,
+        override_rows: Optional[int] = None,
+        override_cols: Optional[int] = None,
     ) -> Dict[str, Any]:
         """Generate a complete maze with all data needed for the app."""
         path_width = 35 if age <= 4 else 25
 
-        # Ages 3-4 easy: use organic paths
-        if age <= 4 and difficulty == "easy":
-            gen = OrganicPathGenerator(canvas_width, canvas_height, path_width)
-            num_turns = random.randint(3, 5)
-            path_data = gen.generate(num_turns)
-            path_data["maze_type"] = "organic"
-            path_data["complexity"] = difficulty
-            return path_data
-
-        # Determine grid size based on difficulty
-        sizes = {
-            "easy": (5, 7),
-            "medium": (7, 9),
-            "hard": (9, 12),
-        }
-        rows, cols = sizes.get(difficulty, (7, 9))
+        # Determine grid size based on difficulty and age
+        if override_rows and override_cols:
+            rows, cols = override_rows, override_cols
+        elif age <= 4 and difficulty == "easy":
+            rows, cols = (4, 5)
+        else:
+            sizes = {
+                "easy": (5, 7),
+                "medium": (7, 9),
+                "hard": (9, 12),
+            }
+            rows, cols = sizes.get(difficulty, (7, 9))
 
         cell_size = min(
             (canvas_width - 40) // cols,

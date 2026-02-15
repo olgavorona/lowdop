@@ -1,0 +1,316 @@
+{
+  "id": "denny_013",
+  "age_range": "4-5",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny's Surprise Picnic Path",
+  "story_setup": "Mama Coral is setting up a special ocean picnic among the beautiful coral formations. Denny wants to swim through the Coral Garden to join her for this wonderful surprise.",
+  "instruction": "Draw a line to help Denny reach Mama Coral for the picnic.",
+  "tts_instruction": "Can you help Denny find his way to Mama Coral? She's preparing a lovely surprise picnic in the Coral Garden. Draw a gentle line with your finger to guide Denny through the maze to reach her.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "mother crab",
+    "description": "Warm coral-pink mother crab, nurturing, slightly larger with a pearl necklace",
+    "position": "top_right",
+    "name": "Mama Coral",
+    "image_asset": "mama_coral"
+  },
+  "educational_question": "What kinds of sea creatures do you think might live in a coral garden with Denny and Mama Coral?",
+  "fun_fact": "Baby crabs like Denny molt their shells as they grow, getting a brand new bigger shell underneath!",
+  "completion_message": "Wonderful! Denny has reached Mama Coral and they can enjoy their ocean picnic together.",
+  "path_data": {
+    "svg_path": "M 20 50 L 100 50 M 20 130 L 100 130 M 20 50 L 20 130 M 100 50 L 180 50 M 100 130 L 180 130 M 180 50 L 260 50 M 260 50 L 260 130 M 260 50 L 340 50 M 260 50 L 260 130 M 340 50 L 420 50 M 420 50 L 420 130 M 420 50 L 500 50 M 420 50 L 420 130 M 500 50 L 580 50 M 580 50 L 580 130 M 20 130 L 100 130 M 20 130 L 20 210 M 100 130 L 180 130 M 180 130 L 180 210 M 260 130 L 260 210 M 180 130 L 180 210 M 340 130 L 340 210 M 260 130 L 260 210 M 340 210 L 420 210 M 340 130 L 340 210 M 500 130 L 500 210 M 420 210 L 500 210 M 580 130 L 580 210 M 500 130 L 500 210 M 100 210 L 100 290 M 20 210 L 20 290 M 100 290 L 180 290 M 100 210 L 100 290 M 260 210 L 260 290 M 180 290 L 260 290 M 260 290 L 340 290 M 260 210 L 260 290 M 340 210 L 420 210 M 420 210 L 420 290 M 420 210 L 500 210 M 500 210 L 500 290 M 420 210 L 420 290 M 580 210 L 580 290 M 500 210 L 500 290 M 20 370 L 100 370 M 20 290 L 20 370 M 100 290 L 180 290 M 100 370 L 180 370 M 180 290 L 260 290 M 180 370 L 260 370 M 260 290 L 340 290 M 260 370 L 340 370 M 420 290 L 420 370 M 340 370 L 420 370 M 500 290 L 500 370 M 420 290 L 420 370 M 580 290 L 580 370 M 500 290 L 500 370 M 20 370 L 100 370 M 20 450 L 100 450 M 20 370 L 20 450 M 100 370 L 180 370 M 100 450 L 180 450 M 180 370 L 260 370 M 180 450 L 260 450 M 260 370 L 340 370 M 260 450 L 340 450 M 340 370 L 420 370 M 340 450 L 420 450 M 420 450 L 500 450 M 580 370 L 580 450 M 500 450 L 580 450",
+    "solution_path": "M 60 90 L 140 90 L 220 90 L 220 170 L 220 250 L 140 250 L 140 170 L 60 170 L 60 250 L 60 330 L 140 330 L 220 330 L 300 330 L 380 330 L 380 250 L 300 250 L 300 170 L 300 90 L 380 90 L 380 170 L 460 170 L 460 90 L 540 90 L 540 170 L 540 250 L 540 330 L 540 410",
+    "width": 25,
+    "complexity": "medium",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 60,
+      "y": 90
+    },
+    "end_point": {
+      "x": 540,
+      "y": 410
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 60,
+          "y": 90
+        },
+        "end": {
+          "x": 140,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 140,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 140,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 60,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 170
+        },
+        "end": {
+          "x": 60,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 250
+        },
+        "end": {
+          "x": 60,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 330
+        },
+        "end": {
+          "x": 140,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 380,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 90
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 90
+        },
+        "end": {
+          "x": 540,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 90
+        },
+        "end": {
+          "x": 540,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 170
+        },
+        "end": {
+          "x": 540,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 250
+        },
+        "end": {
+          "x": 540,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 330
+        },
+        "end": {
+          "x": 540,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#E74C3C",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  }
+}

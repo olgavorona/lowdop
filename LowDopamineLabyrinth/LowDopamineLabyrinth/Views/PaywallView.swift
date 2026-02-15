@@ -66,6 +66,19 @@ struct PaywallView: View {
             }
             .padding(.horizontal, 40)
 
+            #if targetEnvironment(simulator)
+            Button(action: { dismiss() }) {
+                Text("Skip (Simulator)")
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
+                    .background(Color(hex: "#6BBF7B") ?? .green)
+                    .cornerRadius(12)
+            }
+            .padding(.horizontal, 40)
+            #endif
+
             Button(action: { dismiss() }) {
                 Text("Maybe Later")
                     .font(.system(size: 16, weight: .medium, design: .rounded))

@@ -1,0 +1,156 @@
+{
+  "characters": {
+    "denny": {
+      "name": "Denny",
+      "type": "baby crab",
+      "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+      "color": "#E74C3C",
+      "personality": "curious, cheerful, brave",
+      "emoji": "\ud83e\udd80",
+      "image_prompt": "Cute cartoon baby crab, bright orange-red color, big expressive eyes, small claws, children's book illustration style, simple, friendly, transparent background"
+    },
+    "mama_coral": {
+      "name": "Mama Coral",
+      "type": "mother crab",
+      "description": "Warm coral-pink mother crab, nurturing, slightly larger with a pearl necklace",
+      "color": "#F1948A",
+      "personality": "nurturing, warm, protective",
+      "emoji": "\ud83e\udd80",
+      "image_prompt": "Cute cartoon mother crab, warm coral-pink color, pearl necklace, gentle smile, children's book illustration style, simple, friendly, transparent background"
+    },
+    "papa_reef": {
+      "name": "Papa Reef",
+      "type": "father crab",
+      "description": "Deep red-brown father crab, strong and calm, one big claw for hugging",
+      "color": "#922B21",
+      "personality": "strong, calm, protective",
+      "emoji": "\ud83e\udd80",
+      "image_prompt": "Cute cartoon father crab, deep red-brown color, one large claw, calm expression, children's book illustration style, simple, friendly, transparent background"
+    },
+    "sandy": {
+      "name": "Sandy",
+      "type": "little sister crab",
+      "description": "Sandy-yellow little sister crab, playful and giggly, tiny with a bow",
+      "color": "#F9E79F",
+      "personality": "playful, giggly, energetic",
+      "emoji": "\ud83e\udd80",
+      "image_prompt": "Cute cartoon tiny baby crab, sandy-yellow color, small pink bow, giggling expression, children's book illustration style, simple, friendly, transparent background"
+    },
+    "finn": {
+      "name": "Finn",
+      "type": "clownfish",
+      "description": "Orange clownfish with white stripes, brave and adventurous",
+      "color": "#E67E22",
+      "personality": "brave, adventurous, energetic",
+      "emoji": "\ud83d\udc20",
+      "image_prompt": "Cute cartoon clownfish, orange with white stripes, brave expression, children's book illustration style, simple, friendly, transparent background"
+    },
+    "stella": {
+      "name": "Stella",
+      "type": "starfish",
+      "description": "Purple-pink starfish, wise and kind, gives good advice",
+      "color": "#8E44AD",
+      "personality": "wise, kind, thoughtful",
+      "emoji": "\u2b50",
+      "image_prompt": "Cute cartoon starfish, purple-pink color, wise gentle expression, children's book illustration style, simple, friendly, transparent background"
+    },
+    "ollie": {
+      "name": "Ollie",
+      "type": "octopus",
+      "description": "Blue-purple octopus, clever and funny, always carries things in tentacles",
+      "color": "#6C3483",
+      "personality": "clever, funny, helpful",
+      "emoji": "\ud83d\udc19",
+      "image_prompt": "Cute cartoon octopus, blue-purple color, funny expression, holding small objects in tentacles, children's book illustration style, simple, friendly, transparent background"
+    },
+    "shelly": {
+      "name": "Shelly",
+      "type": "sea turtle",
+      "description": "Green sea turtle with a patterned shell, slow but steady, tells stories",
+      "color": "#27AE60",
+      "personality": "patient, wise, storyteller",
+      "emoji": "\ud83d\udc22",
+      "image_prompt": "Cute cartoon sea turtle, green with patterned shell, gentle wise expression, children's book illustration style, simple, friendly, transparent background"
+    },
+    "bubbles": {
+      "name": "Bubbles",
+      "type": "seahorse",
+      "description": "Golden-yellow seahorse, shy but loyal, blows tiny bubbles",
+      "color": "#F4D03F",
+      "personality": "shy, loyal, gentle",
+      "emoji": "\ud83e\udee7",
+      "image_prompt": "Cute cartoon seahorse, golden-yellow color, shy sweet expression, tiny bubbles around, children's book illustration style, simple, friendly, transparent background"
+    },
+    "pearl": {
+      "name": "Pearl",
+      "type": "jellyfish",
+      "description": "Translucent pink-white jellyfish, gentle and floaty, glows softly",
+      "color": "#FADBD8",
+      "personality": "gentle, graceful, calming",
+      "emoji": "\ud83e\udeb4",
+      "image_prompt": "Cute cartoon jellyfish, translucent pink-white color, soft glow, gentle expression, children's book illustration style, simple, friendly, transparent background"
+    }
+  },
+  "locations": {
+    "sandy_shore": {
+      "name": "Sandy Shore",
+      "background_color": "#F4D03F",
+      "description": "Warm golden beach with shells and tide pools",
+      "decorative_elements": ["shells", "tide_pools", "sand"]
+    },
+    "coral_garden": {
+      "name": "Coral Garden",
+      "background_color": "#E74C3C",
+      "description": "Colorful coral formations, anemones",
+      "decorative_elements": ["coral", "anemones", "small_fish"]
+    },
+    "kelp_forest": {
+      "name": "Kelp Forest",
+      "background_color": "#27AE60",
+      "description": "Tall swaying green kelp, dappled light",
+      "decorative_elements": ["kelp", "light_rays", "small_fish"]
+    },
+    "bubble_lagoon": {
+      "name": "Bubble Lagoon",
+      "background_color": "#3498DB",
+      "description": "Calm blue waters with rising bubbles",
+      "decorative_elements": ["bubbles", "water", "pebbles"]
+    },
+    "starfish_cove": {
+      "name": "Starfish Cove",
+      "background_color": "#8E44AD",
+      "description": "Purple-tinted rocky cove",
+      "decorative_elements": ["rocks", "starfish", "sea_urchins"]
+    },
+    "shipwreck_playground": {
+      "name": "Shipwreck Playground",
+      "background_color": "#E67E22",
+      "description": "Old friendly shipwreck, treasure chests",
+      "decorative_elements": ["ship", "treasure", "porthole"]
+    },
+    "moonlit_reef": {
+      "name": "Moonlit Reef",
+      "background_color": "#2C3E50",
+      "description": "Nighttime reef with bioluminescence",
+      "decorative_elements": ["moon", "glowing_coral", "stars"]
+    },
+    "whale_song_valley": {
+      "name": "Whale Song Valley",
+      "background_color": "#2980B9",
+      "description": "Deep blue, gentle whale silhouettes",
+      "decorative_elements": ["whales", "waves", "deep_water"]
+    },
+    "treasure_caves": {
+      "name": "Treasure Caves",
+      "background_color": "#D4AC0D",
+      "description": "Golden-lit underwater caves",
+      "decorative_elements": ["caves", "gold", "crystals"]
+    },
+    "current_highway": {
+      "name": "Ocean Current Highway",
+      "background_color": "#1ABC9C",
+      "description": "Fast-flowing turquoise currents",
+      "decorative_elements": ["currents", "bubbles", "seaweed"]
+    }
+  }
+}

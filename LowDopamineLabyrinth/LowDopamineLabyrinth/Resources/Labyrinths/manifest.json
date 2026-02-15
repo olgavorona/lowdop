@@ -1,215 +1,166 @@
 {
-  "total": 30,
+  "universe": "denny",
+  "total": 20,
   "labyrinths": [
     {
-      "id": "lab_001",
+      "id": "denny_001",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "animals",
-      "title": "Help Bunny Find Mama"
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Finds Mama Coral"
     },
     {
-      "id": "lab_002",
+      "id": "denny_002",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "nature",
-      "title": "Bunny Finds Her Garden"
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Coral Garden Adventure"
     },
     {
-      "id": "lab_003",
+      "id": "denny_003",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "home",
-      "title": "Help Teddy Find Bed"
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Finds Sandy's Bubbles"
     },
     {
-      "id": "lab_004",
+      "id": "denny_004",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "family",
-      "title": "Help Baby Find Mama"
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Special Shell"
     },
     {
-      "id": "lab_005",
+      "id": "denny_005",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "garden",
-      "title": "Bunny Finds the Carrots"
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Glowing Rock Mystery"
     },
     {
-      "id": "lab_006",
+      "id": "denny_006",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "pets",
-      "title": "Help Bunny Find Home"
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny Finds Shy Bubbles"
     },
     {
-      "id": "lab_007",
+      "id": "denny_007",
       "age_range": "3-4",
       "difficulty": "easy",
-      "theme": "farm",
-      "title": "Help Cow Find Hay"
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Follows Shelly's Trail"
     },
     {
-      "id": "lab_008",
-      "age_range": "3-4",
-      "difficulty": "easy",
-      "theme": "colors",
-      "title": "Rainbow Bear's Color Walk"
-    },
-    {
-      "id": "lab_009",
-      "age_range": "3-4",
-      "difficulty": "easy",
-      "theme": "seasons",
-      "title": "Bear's Season Walk"
-    },
-    {
-      "id": "lab_010",
-      "age_range": "3-4",
-      "difficulty": "easy",
-      "theme": "food",
-      "title": "Help Bunny Find Carrots"
-    },
-    {
-      "id": "lab_011",
-      "age_range": "5-6",
+      "id": "denny_008",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "adventures",
-      "title": "Luna's Moonbeam Adventure"
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Helps Find Ollie's Toy"
     },
     {
-      "id": "lab_012",
-      "age_range": "5-6",
+      "id": "denny_009",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "garden",
-      "title": "Bunny's Garden Adventure"
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Shipwreck Adventure"
     },
     {
-      "id": "lab_013",
-      "age_range": "5-6",
+      "id": "denny_010",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "seasons",
-      "title": "Bear's Seasonal Journey"
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Helps Pearl"
     },
     {
-      "id": "lab_014",
-      "age_range": "5-6",
+      "id": "denny_011",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "weather",
-      "title": "Sunny Day Adventure"
+      "theme": "ocean",
+      "location": "treasure_caves",
+      "title": "Denny's Glowing Treasure Hunt"
     },
     {
-      "id": "lab_015",
-      "age_range": "5-6",
+      "id": "denny_012",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "playground",
-      "title": "Find the Lost Ball"
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny Finds Sandy"
     },
     {
-      "id": "lab_016",
-      "age_range": "5-6",
+      "id": "denny_013",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "fairy_tales",
-      "title": "Little Red's Cookie Path"
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Surprise Picnic Path"
     },
     {
-      "id": "lab_017",
-      "age_range": "5-6",
+      "id": "denny_014",
+      "age_range": "4-5",
       "difficulty": "medium",
-      "theme": "helping_others",
-      "title": "Helping Hands Next Door"
+      "theme": "ocean",
+      "location": "current_highway",
+      "title": "Denny Rides the Current"
     },
     {
-      "id": "lab_018",
-      "age_range": "5-6",
-      "difficulty": "medium",
-      "theme": "music",
-      "title": "Help Melody Find Music"
-    },
-    {
-      "id": "lab_019",
-      "age_range": "5-6",
-      "difficulty": "medium",
-      "theme": "bugs",
-      "title": "Bee Finds Her Flower"
-    },
-    {
-      "id": "lab_020",
-      "age_range": "5-6",
-      "difficulty": "medium",
-      "theme": "birds",
-      "title": "Robin Finds Her Nest"
-    },
-    {
-      "id": "lab_021",
-      "age_range": "5-6",
-      "difficulty": "hard",
-      "theme": "space",
-      "title": "Space Friend Finds Home"
-    },
-    {
-      "id": "lab_022",
+      "id": "denny_015",
       "age_range": "5-6",
       "difficulty": "hard",
       "theme": "ocean",
-      "title": "Deep Sea Friends"
+      "location": "moonlit_reef",
+      "title": "Denny's Glowing Night Adventure"
     },
     {
-      "id": "lab_023",
+      "id": "denny_016",
       "age_range": "5-6",
       "difficulty": "hard",
-      "theme": "community",
-      "title": "Mail Delivery Helper"
+      "theme": "ocean",
+      "location": "whale_song_valley",
+      "title": "Denny's Whale Song Adventure"
     },
     {
-      "id": "lab_024",
+      "id": "denny_017",
       "age_range": "5-6",
       "difficulty": "hard",
-      "theme": "dinosaurs",
-      "title": "Baby Dinosaur Finds Family"
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Treasure Map Adventure"
     },
     {
-      "id": "lab_025",
+      "id": "denny_018",
       "age_range": "5-6",
       "difficulty": "hard",
-      "theme": "weather",
-      "title": "Raindrop's Journey Home"
+      "theme": "ocean",
+      "location": "treasure_caves",
+      "title": "Denny's Golden Pearl Quest"
     },
     {
-      "id": "lab_026",
+      "id": "denny_019",
       "age_range": "5-6",
       "difficulty": "hard",
-      "theme": "transportation",
-      "title": "Bicycle to the Park"
+      "theme": "ocean",
+      "location": "current_highway",
+      "title": "Denny's Ocean Current Rescue"
     },
     {
-      "id": "lab_027",
+      "id": "denny_020",
       "age_range": "5-6",
       "difficulty": "hard",
-      "theme": "recycling",
-      "title": "Bottle's Recycling Journey"
-    },
-    {
-      "id": "lab_028",
-      "age_range": "5-6",
-      "difficulty": "hard",
-      "theme": "world_cultures",
-      "title": "Around the World Adventure"
-    },
-    {
-      "id": "lab_029",
-      "age_range": "5-6",
-      "difficulty": "hard",
-      "theme": "inventions",
-      "title": "The Inventor's Helper Robot"
-    },
-    {
-      "id": "lab_030",
-      "age_range": "5-6",
-      "difficulty": "hard",
-      "theme": "sports",
-      "title": "Soccer Ball Adventure"
+      "theme": "ocean",
+      "location": "moonlit_reef",
+      "title": "Denny's Glowing Coral Adventure"
     }
   ]
 }

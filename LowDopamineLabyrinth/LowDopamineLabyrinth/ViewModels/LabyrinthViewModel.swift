@@ -53,7 +53,7 @@ class LabyrinthViewModel: ObservableObject {
                 }
             }
 
-            if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint) {
+            if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 20 * scale) {
                 isCompleted = true
                 showSolution = true
             }

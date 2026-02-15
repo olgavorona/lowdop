@@ -2,7 +2,7 @@ age_groups:
   young:
     ages: [3, 4]
     path_width: 35
-    maze_types: ["organic"]
+    maze_types: ["grid"]
     shapes: ["rect"]
     difficulties: ["easy"]
     grid_sizes:

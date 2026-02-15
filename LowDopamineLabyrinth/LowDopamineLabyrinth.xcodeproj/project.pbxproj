@@ -27,36 +27,28 @@
 		AA000018 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000018; };
 		AA000019 /* NavigationControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000019; };
 		AA000020 /* LabyrinthGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000020; };
-		AA100001 /* lab_001.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100001; };
-		AA100002 /* lab_002.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100002; };
-		AA100003 /* lab_003.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100003; };
-		AA100004 /* lab_004.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100004; };
-		AA100005 /* lab_005.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100005; };
-		AA100006 /* lab_006.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100006; };
-		AA100007 /* lab_007.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100007; };
-		AA100008 /* lab_008.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100008; };
-		AA100009 /* lab_009.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100009; };
-		AA100010 /* lab_010.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100010; };
-		AA100011 /* lab_011.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100011; };
-		AA100012 /* lab_012.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100012; };
-		AA100013 /* lab_013.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100013; };
-		AA100014 /* lab_014.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100014; };
-		AA100015 /* lab_015.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100015; };
-		AA100016 /* lab_016.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100016; };
-		AA100017 /* lab_017.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100017; };
-		AA100018 /* lab_018.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100018; };
-		AA100019 /* lab_019.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100019; };
-		AA100020 /* lab_020.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100020; };
-		AA100021 /* lab_021.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100021; };
-		AA100022 /* lab_022.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100022; };
-		AA100023 /* lab_023.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100023; };
-		AA100024 /* lab_024.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100024; };
-		AA100025 /* lab_025.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100025; };
-		AA100026 /* lab_026.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100026; };
-		AA100027 /* lab_027.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100027; };
-		AA100028 /* lab_028.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100028; };
-		AA100029 /* lab_029.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100029; };
-		AA100030 /* lab_030.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100030; };
+		AA000021 /* LabyrinthGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000021; };
+		AA000022 /* CharacterMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000022; };
+		AA200001 /* denny_001.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200001; };
+		AA200002 /* denny_002.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200002; };
+		AA200003 /* denny_003.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200003; };
+		AA200004 /* denny_004.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200004; };
+		AA200005 /* denny_005.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200005; };
+		AA200006 /* denny_006.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200006; };
+		AA200007 /* denny_007.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200007; };
+		AA200008 /* denny_008.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200008; };
+		AA200009 /* denny_009.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200009; };
+		AA200010 /* denny_010.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200010; };
+		AA200011 /* denny_011.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200011; };
+		AA200012 /* denny_012.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200012; };
+		AA200013 /* denny_013.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200013; };
+		AA200014 /* denny_014.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200014; };
+		AA200015 /* denny_015.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200015; };
+		AA200016 /* denny_016.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200016; };
+		AA200017 /* denny_017.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200017; };
+		AA200018 /* denny_018.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200018; };
+		AA200019 /* denny_019.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200019; };
+		AA200020 /* denny_020.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200020; };
 		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031; };
 /* End PBXBuildFile section */
 
@@ -82,36 +74,28 @@
 		AB000018 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		AB000019 /* NavigationControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControls.swift; sourceTree = "<group>"; };
 		AB000020 /* LabyrinthGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGameView.swift; sourceTree = "<group>"; };
-		AC100001 /* lab_001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_001.json; sourceTree = "<group>"; };
-		AC100002 /* lab_002.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_002.json; sourceTree = "<group>"; };
-		AC100003 /* lab_003.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_003.json; sourceTree = "<group>"; };
-		AC100004 /* lab_004.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_004.json; sourceTree = "<group>"; };
-		AC100005 /* lab_005.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_005.json; sourceTree = "<group>"; };
-		AC100006 /* lab_006.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_006.json; sourceTree = "<group>"; };
-		AC100007 /* lab_007.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_007.json; sourceTree = "<group>"; };
-		AC100008 /* lab_008.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_008.json; sourceTree = "<group>"; };
-		AC100009 /* lab_009.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_009.json; sourceTree = "<group>"; };
-		AC100010 /* lab_010.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_010.json; sourceTree = "<group>"; };
-		AC100011 /* lab_011.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_011.json; sourceTree = "<group>"; };
-		AC100012 /* lab_012.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_012.json; sourceTree = "<group>"; };
-		AC100013 /* lab_013.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_013.json; sourceTree = "<group>"; };
-		AC100014 /* lab_014.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_014.json; sourceTree = "<group>"; };
-		AC100015 /* lab_015.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_015.json; sourceTree = "<group>"; };
-		AC100016 /* lab_016.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_016.json; sourceTree = "<group>"; };
-		AC100017 /* lab_017.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_017.json; sourceTree = "<group>"; };
-		AC100018 /* lab_018.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_018.json; sourceTree = "<group>"; };
-		AC100019 /* lab_019.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_019.json; sourceTree = "<group>"; };
-		AC100020 /* lab_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_020.json; sourceTree = "<group>"; };
-		AC100021 /* lab_021.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_021.json; sourceTree = "<group>"; };
-		AC100022 /* lab_022.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_022.json; sourceTree = "<group>"; };
-		AC100023 /* lab_023.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_023.json; sourceTree = "<group>"; };
-		AC100024 /* lab_024.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_024.json; sourceTree = "<group>"; };
-		AC100025 /* lab_025.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_025.json; sourceTree = "<group>"; };
-		AC100026 /* lab_026.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_026.json; sourceTree = "<group>"; };
-		AC100027 /* lab_027.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_027.json; sourceTree = "<group>"; };
-		AC100028 /* lab_028.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_028.json; sourceTree = "<group>"; };
-		AC100029 /* lab_029.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_029.json; sourceTree = "<group>"; };
-		AC100030 /* lab_030.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lab_030.json; sourceTree = "<group>"; };
+		AB000021 /* LabyrinthGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGridView.swift; sourceTree = "<group>"; };
+		AB000022 /* CharacterMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMarkerView.swift; sourceTree = "<group>"; };
+		AC200001 /* denny_001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001.json; sourceTree = "<group>"; };
+		AC200002 /* denny_002.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_002.json; sourceTree = "<group>"; };
+		AC200003 /* denny_003.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_003.json; sourceTree = "<group>"; };
+		AC200004 /* denny_004.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_004.json; sourceTree = "<group>"; };
+		AC200005 /* denny_005.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_005.json; sourceTree = "<group>"; };
+		AC200006 /* denny_006.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_006.json; sourceTree = "<group>"; };
+		AC200007 /* denny_007.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_007.json; sourceTree = "<group>"; };
+		AC200008 /* denny_008.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_008.json; sourceTree = "<group>"; };
+		AC200009 /* denny_009.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_009.json; sourceTree = "<group>"; };
+		AC200010 /* denny_010.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_010.json; sourceTree = "<group>"; };
+		AC200011 /* denny_011.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_011.json; sourceTree = "<group>"; };
+		AC200012 /* denny_012.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_012.json; sourceTree = "<group>"; };
+		AC200013 /* denny_013.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_013.json; sourceTree = "<group>"; };
+		AC200014 /* denny_014.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_014.json; sourceTree = "<group>"; };
+		AC200015 /* denny_015.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_015.json; sourceTree = "<group>"; };
+		AC200016 /* denny_016.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_016.json; sourceTree = "<group>"; };
+		AC200017 /* denny_017.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_017.json; sourceTree = "<group>"; };
+		AC200018 /* denny_018.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_018.json; sourceTree = "<group>"; };
+		AC200019 /* denny_019.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_019.json; sourceTree = "<group>"; };
+		AC200020 /* denny_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020.json; sourceTree = "<group>"; };
 		AC100031 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,10 +157,12 @@
 				AB000013 /* OnboardingView.swift */,
 				AB000014 /* LabyrinthListView.swift */,
 				AB000020 /* LabyrinthGameView.swift */,
+				AB000021 /* LabyrinthGridView.swift */,
 				AB000015 /* DrawingCanvas.swift */,
 				AB000019 /* NavigationControls.swift */,
 				AB000016 /* CompletionView.swift */,
 				AB000017 /* PaywallView.swift */,
+				AB000022 /* CharacterMarkerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,36 +207,26 @@
 		AE000008 /* Labyrinths */ = {
 			isa = PBXGroup;
 			children = (
-				AC100001 /* lab_001.json */,
-				AC100002 /* lab_002.json */,
-				AC100003 /* lab_003.json */,
-				AC100004 /* lab_004.json */,
-				AC100005 /* lab_005.json */,
-				AC100006 /* lab_006.json */,
-				AC100007 /* lab_007.json */,
-				AC100008 /* lab_008.json */,
-				AC100009 /* lab_009.json */,
-				AC100010 /* lab_010.json */,
-				AC100011 /* lab_011.json */,
-				AC100012 /* lab_012.json */,
-				AC100013 /* lab_013.json */,
-				AC100014 /* lab_014.json */,
-				AC100015 /* lab_015.json */,
-				AC100016 /* lab_016.json */,
-				AC100017 /* lab_017.json */,
-				AC100018 /* lab_018.json */,
-				AC100019 /* lab_019.json */,
-				AC100020 /* lab_020.json */,
-				AC100021 /* lab_021.json */,
-				AC100022 /* lab_022.json */,
-				AC100023 /* lab_023.json */,
-				AC100024 /* lab_024.json */,
-				AC100025 /* lab_025.json */,
-				AC100026 /* lab_026.json */,
-				AC100027 /* lab_027.json */,
-				AC100028 /* lab_028.json */,
-				AC100029 /* lab_029.json */,
-				AC100030 /* lab_030.json */,
+				AC200001 /* denny_001.json */,
+				AC200002 /* denny_002.json */,
+				AC200003 /* denny_003.json */,
+				AC200004 /* denny_004.json */,
+				AC200005 /* denny_005.json */,
+				AC200006 /* denny_006.json */,
+				AC200007 /* denny_007.json */,
+				AC200008 /* denny_008.json */,
+				AC200009 /* denny_009.json */,
+				AC200010 /* denny_010.json */,
+				AC200011 /* denny_011.json */,
+				AC200012 /* denny_012.json */,
+				AC200013 /* denny_013.json */,
+				AC200014 /* denny_014.json */,
+				AC200015 /* denny_015.json */,
+				AC200016 /* denny_016.json */,
+				AC200017 /* denny_017.json */,
+				AC200018 /* denny_018.json */,
+				AC200019 /* denny_019.json */,
+				AC200020 /* denny_020.json */,
 				AC100031 /* manifest.json */,
 			);
 			path = Labyrinths;
@@ -315,36 +291,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA000003 /* Assets.xcassets in Resources */,
-				AA100001 /* lab_001.json in Resources */,
-				AA100002 /* lab_002.json in Resources */,
-				AA100003 /* lab_003.json in Resources */,
-				AA100004 /* lab_004.json in Resources */,
-				AA100005 /* lab_005.json in Resources */,
-				AA100006 /* lab_006.json in Resources */,
-				AA100007 /* lab_007.json in Resources */,
-				AA100008 /* lab_008.json in Resources */,
-				AA100009 /* lab_009.json in Resources */,
-				AA100010 /* lab_010.json in Resources */,
-				AA100011 /* lab_011.json in Resources */,
-				AA100012 /* lab_012.json in Resources */,
-				AA100013 /* lab_013.json in Resources */,
-				AA100014 /* lab_014.json in Resources */,
-				AA100015 /* lab_015.json in Resources */,
-				AA100016 /* lab_016.json in Resources */,
-				AA100017 /* lab_017.json in Resources */,
-				AA100018 /* lab_018.json in Resources */,
-				AA100019 /* lab_019.json in Resources */,
-				AA100020 /* lab_020.json in Resources */,
-				AA100021 /* lab_021.json in Resources */,
-				AA100022 /* lab_022.json in Resources */,
-				AA100023 /* lab_023.json in Resources */,
-				AA100024 /* lab_024.json in Resources */,
-				AA100025 /* lab_025.json in Resources */,
-				AA100026 /* lab_026.json in Resources */,
-				AA100027 /* lab_027.json in Resources */,
-				AA100028 /* lab_028.json in Resources */,
-				AA100029 /* lab_029.json in Resources */,
-				AA100030 /* lab_030.json in Resources */,
+				AA200001 /* denny_001.json in Resources */,
+				AA200002 /* denny_002.json in Resources */,
+				AA200003 /* denny_003.json in Resources */,
+				AA200004 /* denny_004.json in Resources */,
+				AA200005 /* denny_005.json in Resources */,
+				AA200006 /* denny_006.json in Resources */,
+				AA200007 /* denny_007.json in Resources */,
+				AA200008 /* denny_008.json in Resources */,
+				AA200009 /* denny_009.json in Resources */,
+				AA200010 /* denny_010.json in Resources */,
+				AA200011 /* denny_011.json in Resources */,
+				AA200012 /* denny_012.json in Resources */,
+				AA200013 /* denny_013.json in Resources */,
+				AA200014 /* denny_014.json in Resources */,
+				AA200015 /* denny_015.json in Resources */,
+				AA200016 /* denny_016.json in Resources */,
+				AA200017 /* denny_017.json in Resources */,
+				AA200018 /* denny_018.json in Resources */,
+				AA200019 /* denny_019.json in Resources */,
+				AA200020 /* denny_020.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +341,8 @@
 				AA000018 /* SubscriptionManager.swift in Sources */,
 				AA000019 /* NavigationControls.swift in Sources */,
 				AA000020 /* LabyrinthGameView.swift in Sources */,
+				AA000021 /* LabyrinthGridView.swift in Sources */,
+				AA000022 /* CharacterMarkerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

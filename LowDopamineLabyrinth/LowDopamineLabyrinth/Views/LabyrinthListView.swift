@@ -33,6 +33,10 @@ struct LabyrinthListView: View {
                         },
                         onReset: {
                             vm.reset()
+                        },
+                        onBack: {
+                            ttsService.stop()
+                            gameViewModel.closeGame()
                         }
                     )
                     .background(vm.backgroundColor.opacity(0.8))
@@ -66,11 +70,7 @@ struct LabyrinthListView: View {
                 }
             }
         }
-        .sheet(isPresented: $gameViewModel.showPaywall) {
-            PaywallView()
-        }
         .onAppear {
-            gameViewModel.loadLabyrinths()
             updateVM()
         }
         .animation(.easeInOut(duration: 0.3), value: showCompletion)
@@ -85,7 +85,13 @@ struct LabyrinthListView: View {
     private func updateVM() {
         showCompletion = false
         if let lab = gameViewModel.currentLabyrinth {
-            labyrinthVM = LabyrinthViewModel(labyrinth: lab)
+            let oldCanvas = labyrinthVM?.canvasSize ?? .zero
+            let newVM = LabyrinthViewModel(labyrinth: lab)
+            newVM.canvasSize = oldCanvas
+            if oldCanvas != .zero {
+                newVM.setupValidator(tolerance: preferences.pathTolerance)
+            }
+            labyrinthVM = newVM
         }
     }
 }

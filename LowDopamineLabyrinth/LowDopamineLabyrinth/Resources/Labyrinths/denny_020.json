@@ -1,0 +1,496 @@
+{
+  "id": "denny_020",
+  "age_range": "5-6",
+  "difficulty": "hard",
+  "theme": "ocean",
+  "location": "moonlit_reef",
+  "title": "Denny's Glowing Coral Adventure",
+  "story_setup": "The moon shines bright over the reef tonight, and Stella has something magical to show Denny. The coral is glowing with beautiful colors that only come out at night!",
+  "instruction": "Draw a line to help Denny reach Stella and see the glowing coral.",
+  "tts_instruction": "Can you help Denny find his way to Stella? Draw a gentle line through the maze so Denny can reach his starfish friend and see the beautiful glowing coral together.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish, wise and kind, gives good advice",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella"
+  },
+  "educational_question": "What do you think makes the coral glow at night?",
+  "fun_fact": "Some coral and sea creatures make their own light using special chemicals in their bodies, just like fireflies do on land.",
+  "completion_message": "Denny made it to Stella and now they can watch the magical coral bloom together!",
+  "path_data": {
+    "svg_path": "M 21 33 L 83 33 M 83 33 L 83 95 M 21 33 L 21 95 M 83 33 L 145 33 M 83 33 L 83 95 M 145 33 L 207 33 M 145 95 L 207 95 M 207 33 L 269 33 M 207 95 L 269 95 M 269 33 L 331 33 M 331 33 L 331 95 M 331 33 L 393 33 M 331 33 L 331 95 M 393 33 L 455 33 M 393 95 L 455 95 M 455 33 L 517 33 M 517 33 L 517 95 M 517 33 L 579 33 M 579 33 L 579 95 M 517 33 L 517 95 M 21 157 L 83 157 M 21 95 L 21 157 M 145 95 L 145 157 M 83 157 L 145 157 M 145 95 L 207 95 M 145 95 L 145 157 M 207 95 L 269 95 M 269 95 L 269 157 M 269 157 L 331 157 M 269 95 L 269 157 M 393 95 L 393 157 M 331 157 L 393 157 M 393 95 L 455 95 M 455 95 L 455 157 M 393 95 L 393 157 M 517 95 L 517 157 M 455 95 L 455 157 M 579 95 L 579 157 M 517 95 L 517 157 M 21 157 L 83 157 M 21 157 L 21 219 M 83 157 L 145 157 M 145 157 L 145 219 M 207 157 L 207 219 M 145 157 L 145 219 M 207 219 L 269 219 M 207 157 L 207 219 M 269 157 L 331 157 M 331 157 L 393 157 M 331 219 L 393 219 M 455 157 L 455 219 M 393 219 L 455 219 M 517 157 L 517 219 M 455 157 L 455 219 M 579 157 L 579 219 M 517 157 L 517 219 M 83 219 L 83 281 M 21 219 L 21 281 M 83 281 L 145 281 M 83 219 L 83 281 M 207 219 L 207 281 M 145 281 L 207 281 M 207 219 L 269 219 M 269 219 L 269 281 M 207 219 L 207 281 M 269 281 L 331 281 M 269 219 L 269 281 M 331 219 L 393 219 M 331 281 L 393 281 M 393 219 L 455 219 M 393 281 L 455 281 M 517 219 L 517 281 M 455 281 L 517 281 M 579 219 L 579 281 M 517 219 L 517 281 M 83 281 L 83 343 M 21 281 L 21 343 M 83 281 L 145 281 M 83 281 L 83 343 M 145 281 L 207 281 M 207 281 L 207 343 M 207 343 L 269 343 M 207 281 L 207 343 M 269 281 L 331 281 M 269 343 L 331 343 M 331 281 L 393 281 M 393 281 L 455 281 M 393 343 L 455 343 M 455 281 L 517 281 M 455 343 L 517 343 M 579 281 L 579 343 M 21 405 L 83 405 M 21 343 L 21 405 M 145 343 L 145 405 M 83 405 L 145 405 M 207 343 L 207 405 M 145 343 L 145 405 M 207 343 L 269 343 M 207 343 L 207 405 M 269 343 L 331 343 M 331 343 L 331 405 M 393 343 L 393 405 M 331 405 L 393 405 M 331 343 L 331 405 M 393 343 L 455 343 M 393 343 L 393 405 M 455 343 L 517 343 M 517 343 L 517 405 M 579 343 L 579 405 M 517 343 L 517 405 M 21 405 L 83 405 M 21 467 L 83 467 M 21 405 L 21 467 M 83 405 L 145 405 M 83 467 L 145 467 M 145 467 L 207 467 M 269 405 L 269 467 M 207 467 L 269 467 M 269 467 L 331 467 M 269 405 L 269 467 M 331 405 L 393 405 M 331 467 L 393 467 M 455 405 L 455 467 M 393 467 L 455 467 M 455 467 L 517 467 M 455 405 L 455 467 M 579 405 L 579 467 M 517 467 L 579 467",
+    "solution_path": "M 52 64 L 52 126 L 114 126 L 114 64 L 176 64 L 238 64 L 300 64 L 300 126 L 362 126 L 362 64 L 424 64 L 486 64 L 486 126 L 486 188 L 486 250 L 424 250 L 362 250 L 300 250 L 300 188 L 238 188 L 238 126 L 176 126 L 176 188 L 176 250 L 114 250 L 114 188 L 52 188 L 52 250 L 52 312 L 52 374 L 114 374 L 114 312 L 176 312 L 176 374 L 176 436 L 238 436 L 238 374 L 300 374 L 300 436 L 362 436 L 424 436 L 424 374 L 486 374 L 486 436 L 548 436",
+    "width": 25,
+    "complexity": "hard",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 52,
+      "y": 64
+    },
+    "end_point": {
+      "x": 548,
+      "y": 436
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 52,
+          "y": 64
+        },
+        "end": {
+          "x": 52,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 126
+        },
+        "end": {
+          "x": 114,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 126
+        },
+        "end": {
+          "x": 114,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 64
+        },
+        "end": {
+          "x": 176,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 64
+        },
+        "end": {
+          "x": 238,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 64
+        },
+        "end": {
+          "x": 300,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 64
+        },
+        "end": {
+          "x": 300,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 126
+        },
+        "end": {
+          "x": 362,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 126
+        },
+        "end": {
+          "x": 362,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 64
+        },
+        "end": {
+          "x": 424,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 424,
+          "y": 64
+        },
+        "end": {
+          "x": 486,
+          "y": 64
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 64
+        },
+        "end": {
+          "x": 486,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 126
+        },
+        "end": {
+          "x": 486,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 188
+        },
+        "end": {
+          "x": 486,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 250
+        },
+        "end": {
+          "x": 424,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 424,
+          "y": 250
+        },
+        "end": {
+          "x": 362,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 188
+        },
+        "end": {
+          "x": 238,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 188
+        },
+        "end": {
+          "x": 238,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 126
+        },
+        "end": {
+          "x": 176,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 126
+        },
+        "end": {
+          "x": 176,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 188
+        },
+        "end": {
+          "x": 176,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 250
+        },
+        "end": {
+          "x": 114,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 250
+        },
+        "end": {
+          "x": 114,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 188
+        },
+        "end": {
+          "x": 52,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 188
+        },
+        "end": {
+          "x": 52,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 250
+        },
+        "end": {
+          "x": 52,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 312
+        },
+        "end": {
+          "x": 52,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 52,
+          "y": 374
+        },
+        "end": {
+          "x": 114,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 374
+        },
+        "end": {
+          "x": 114,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 114,
+          "y": 312
+        },
+        "end": {
+          "x": 176,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 312
+        },
+        "end": {
+          "x": 176,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 374
+        },
+        "end": {
+          "x": 176,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 176,
+          "y": 436
+        },
+        "end": {
+          "x": 238,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 436
+        },
+        "end": {
+          "x": 238,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 374
+        },
+        "end": {
+          "x": 300,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 374
+        },
+        "end": {
+          "x": 300,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 436
+        },
+        "end": {
+          "x": 362,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 436
+        },
+        "end": {
+          "x": 424,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 424,
+          "y": 436
+        },
+        "end": {
+          "x": 424,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 424,
+          "y": 374
+        },
+        "end": {
+          "x": 486,
+          "y": 374
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 374
+        },
+        "end": {
+          "x": 486,
+          "y": 436
+        }
+      },
+      {
+        "start": {
+          "x": 486,
+          "y": 436
+        },
+        "end": {
+          "x": 548,
+          "y": 436
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#2C3E50",
+    "decorative_elements": [
+      "moon",
+      "glowing_coral",
+      "stars"
+    ]
+  }
+}

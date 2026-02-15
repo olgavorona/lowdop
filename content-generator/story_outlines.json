@@ -1,0 +1,225 @@
+{
+  "universe": "denny",
+  "outlines": [
+    {
+      "id": "denny_001",
+      "number": 1,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "sandy_shore",
+      "character_end": "mama_coral",
+      "story_summary": "Denny wakes up and looks for Mama on the beach",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_002",
+      "number": 2,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "coral_garden",
+      "character_end": "finn",
+      "story_summary": "Denny explores the coral garden to find his friend Finn",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_003",
+      "number": 3,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "bubble_lagoon",
+      "character_end": "sandy",
+      "story_summary": "Denny's little sister Sandy is blowing bubbles \u2014 find her!",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_004",
+      "number": 4,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "sandy_shore",
+      "character_end": "papa_reef",
+      "story_summary": "Denny wants to show Papa the shell he found",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_005",
+      "number": 5,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "starfish_cove",
+      "character_end": "stella",
+      "story_summary": "Denny visits wise Stella to ask about the glowing rocks",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_006",
+      "number": 6,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "coral_garden",
+      "character_end": "bubbles",
+      "story_summary": "Shy Bubbles is hiding \u2014 help Denny find the seahorse",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_007",
+      "number": 7,
+      "difficulty": "easy",
+      "age_range": "3-4",
+      "grid_size": [4, 5],
+      "location": "kelp_forest",
+      "character_end": "shelly",
+      "story_summary": "Denny follows Shelly's trail through the kelp forest",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_008",
+      "number": 8,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "kelp_forest",
+      "character_end": "ollie",
+      "story_summary": "Ollie lost his favorite toy in the kelp \u2014 help Denny find him",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_009",
+      "number": 9,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "shipwreck_playground",
+      "character_end": "finn",
+      "story_summary": "Denny and Finn explore the old shipwreck together",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_010",
+      "number": 10,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "bubble_lagoon",
+      "character_end": "pearl",
+      "story_summary": "Pearl is tangled in seaweed \u2014 Denny rushes to help",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_011",
+      "number": 11,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "treasure_caves",
+      "character_end": "stella",
+      "story_summary": "Stella found a glowing treasure \u2014 lead Denny to it",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_012",
+      "number": 12,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "starfish_cove",
+      "character_end": "sandy",
+      "story_summary": "Sandy wandered off during hide-and-seek",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_013",
+      "number": 13,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "coral_garden",
+      "character_end": "mama_coral",
+      "story_summary": "Mama is preparing a surprise ocean picnic",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_014",
+      "number": 14,
+      "difficulty": "medium",
+      "age_range": "4-5",
+      "grid_size": [5, 7],
+      "location": "current_highway",
+      "character_end": "shelly",
+      "story_summary": "Denny rides the ocean current to catch up with Shelly",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_015",
+      "number": 15,
+      "difficulty": "hard",
+      "age_range": "5-6",
+      "grid_size": [7, 9],
+      "location": "moonlit_reef",
+      "character_end": "pearl",
+      "story_summary": "Nighttime adventure \u2014 Pearl's glow lights the way",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_016",
+      "number": 16,
+      "difficulty": "hard",
+      "age_range": "5-6",
+      "grid_size": [7, 9],
+      "location": "whale_song_valley",
+      "character_end": "papa_reef",
+      "story_summary": "Papa took Denny to hear the whale songs",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_017",
+      "number": 17,
+      "difficulty": "hard",
+      "age_range": "5-6",
+      "grid_size": [7, 9],
+      "location": "shipwreck_playground",
+      "character_end": "ollie",
+      "story_summary": "Ollie found a treasure map in the shipwreck",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_018",
+      "number": 18,
+      "difficulty": "hard",
+      "age_range": "5-6",
+      "grid_size": [7, 9],
+      "location": "treasure_caves",
+      "character_end": "finn",
+      "story_summary": "Denny and Finn solve riddles to find the golden pearl",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_019",
+      "number": 19,
+      "difficulty": "hard",
+      "age_range": "5-6",
+      "grid_size": [7, 9],
+      "location": "current_highway",
+      "character_end": "bubbles",
+      "story_summary": "Bubbles got swept away by the current \u2014 rescue mission!",
+      "shape": "rect"
+    },
+    {
+      "id": "denny_020",
+      "number": 20,
+      "difficulty": "hard",
+      "age_range": "5-6",
+      "grid_size": [7, 9],
+      "location": "moonlit_reef",
+      "character_end": "stella",
+      "story_summary": "Stella shows Denny the bioluminescent coral bloom",
+      "shape": "rect"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "denny_005",
+  "age_range": "3-4",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "starfish_cove",
+  "title": "Denny's Glowing Rock Mystery",
+  "story_setup": "Denny the baby crab found some pretty rocks that glow in the dark at Starfish Cove. He wants to ask wise Stella the starfish what makes them sparkle so brightly.",
+  "instruction": "Draw a line to help Denny reach Stella.",
+  "tts_instruction": "Can you help Denny reach Stella by drawing a line through the maze? Take your time and guide Denny safely to his wise friend.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish, wise and kind, gives good advice",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella"
+  },
+  "educational_question": "What other things in the ocean do you think might glow or sparkle?",
+  "fun_fact": "Some sea creatures like jellyfish and plankton can make their own light to glow in the dark ocean.",
+  "completion_message": "Denny made it to Stella and learned that tiny sea creatures make the rocks glow!",
+  "path_data": {
+    "svg_path": "M 20 26 L 132 26 M 20 138 L 132 138 M 20 26 L 20 138 M 132 26 L 244 26 M 132 138 L 244 138 M 244 26 L 356 26 M 244 138 L 356 138 M 356 26 L 468 26 M 356 138 L 468 138 M 468 26 L 580 26 M 580 26 L 580 138 M 20 138 L 132 138 M 20 138 L 20 250 M 132 138 L 244 138 M 132 250 L 244 250 M 244 138 L 356 138 M 356 138 L 356 250 M 356 138 L 468 138 M 356 138 L 356 250 M 580 138 L 580 250 M 468 250 L 580 250 M 132 250 L 132 362 M 20 250 L 20 362 M 132 250 L 244 250 M 132 362 L 244 362 M 132 250 L 132 362 M 356 250 L 356 362 M 244 362 L 356 362 M 356 362 L 468 362 M 356 250 L 356 362 M 468 250 L 580 250 M 580 250 L 580 362 M 20 474 L 132 474 M 20 362 L 20 474 M 132 362 L 244 362 M 132 474 L 244 474 M 244 362 L 356 362 M 244 474 L 356 474 M 356 362 L 468 362 M 356 474 L 468 474 M 580 362 L 580 474 M 468 474 L 580 474",
+    "solution_path": "M 76 82 L 188 82 L 300 82 L 412 82 L 524 82 L 524 194 L 412 194 L 412 306 L 524 306 L 524 418",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 76,
+      "y": 82
+    },
+    "end_point": {
+      "x": 524,
+      "y": 418
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 76,
+          "y": 82
+        },
+        "end": {
+          "x": 188,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 412,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 82
+        },
+        "end": {
+          "x": 524,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 82
+        },
+        "end": {
+          "x": 524,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 524,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 306
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#8E44AD",
+    "decorative_elements": [
+      "rocks",
+      "starfish",
+      "sea_urchins"
+    ]
+  }
+}

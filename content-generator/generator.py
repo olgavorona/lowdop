@@ -233,6 +233,183 @@ def generate_starter_pack(client: anthropic.Anthropic, config: dict, output_dir:
     print(f"Total labyrinths generated: {len(all_labs)}")
 
 
+def load_denny_universe() -> dict:
+    """Load the Denny character universe data."""
+    path = Path(__file__).parent / "characters" / "denny_universe.json"
+    with open(path) as f:
+        return json.load(f)
+
+
+def load_story_outlines() -> dict:
+    """Load the Denny story outlines."""
+    path = Path(__file__).parent / "story_outlines.json"
+    with open(path) as f:
+        return json.load(f)
+
+
+def generate_denny_story(
+    client: anthropic.Anthropic,
+    outline: dict,
+    universe: dict,
+) -> dict:
+    """Call Claude API with denny_story_prompt.txt template for a single story."""
+    template_path = Path(__file__).parent / "templates" / "denny_story_prompt.txt"
+    with open(template_path) as f:
+        template = f.read()
+
+    denny = universe["characters"]["denny"]
+    end_char_key = outline["character_end"]
+    end_char = universe["characters"][end_char_key]
+    location = universe["locations"][outline["location"]]
+
+    prompt = template.format(
+        start_character_type=denny["type"],
+        start_character_description=denny["description"],
+        end_character_name=end_char["name"],
+        end_character_type=end_char["type"],
+        end_character_description=end_char["description"],
+        end_character_key=end_char_key,
+        location_name=location["name"],
+        location_description=location["description"],
+        story_summary=outline["story_summary"],
+        age_range=outline["age_range"],
+        difficulty=outline["difficulty"],
+    )
+
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=1024,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    response_text = message.content[0].text.strip()
+    if response_text.startswith("```"):
+        lines = response_text.split("\n")
+        lines = [l for l in lines if not l.startswith("```")]
+        response_text = "\n".join(lines)
+
+    return json.loads(response_text)
+
+
+def generate_denny_pack(client: anthropic.Anthropic, output_dir: Path):
+    """Generate all 20 Denny labyrinths from story outlines."""
+    universe = load_denny_universe()
+    outlines_data = load_story_outlines()
+    outlines = outlines_data["outlines"]
+
+    all_labs = []
+    maze_gen = FullMazeGenerator()
+
+    # Map difficulty to age for maze generation
+    difficulty_age = {"easy": 3, "medium": 5, "hard": 6}
+
+    for outline in outlines:
+        lab_id = outline["id"]
+        difficulty = outline["difficulty"]
+        age = difficulty_age[difficulty]
+        rows, cols = outline["grid_size"]
+        shape = outline["shape"]
+        end_char_key = outline["character_end"]
+        end_char = universe["characters"][end_char_key]
+        denny = universe["characters"]["denny"]
+        location = universe["locations"][outline["location"]]
+
+        print(f"  Generating {lab_id}: {outline['story_summary']}...")
+
+        try:
+            # Generate maze with grid size from outline
+            maze_data = maze_gen.generate_maze(
+                difficulty=difficulty,
+                age=age,
+                shape=shape,
+                canvas_width=600,
+                canvas_height=500,
+                override_rows=rows,
+                override_cols=cols,
+            )
+
+            # Generate story via Claude API
+            story = generate_denny_story(client, outline, universe)
+
+            # Visual theme from location
+            bg_color = location["background_color"]
+            decorative = location["decorative_elements"]
+
+            # Generate preview SVG
+            svg = maze_gen.to_full_svg(maze_data, bg_color)
+
+            labyrinth = {
+                "id": lab_id,
+                "age_range": outline["age_range"],
+                "difficulty": difficulty,
+                "theme": "ocean",
+                "location": outline["location"],
+                "title": story.get("title", f"Denny's {location['name']} Adventure"),
+                "story_setup": story.get("story_setup", ""),
+                "instruction": story.get("instruction", ""),
+                "tts_instruction": story.get("tts_instruction", ""),
+                "character_start": story.get("character_start", {
+                    "type": denny["type"],
+                    "description": denny["description"],
+                    "position": "bottom_left",
+                    "name": "Denny",
+                    "image_asset": "denny",
+                }),
+                "character_end": story.get("character_end", {
+                    "type": end_char["type"],
+                    "description": end_char["description"],
+                    "position": "top_right",
+                    "name": end_char["name"],
+                    "image_asset": end_char_key,
+                }),
+                "educational_question": story.get("educational_question", ""),
+                "fun_fact": story.get("fun_fact", ""),
+                "completion_message": story.get("completion_message", "Well done!"),
+                "path_data": {
+                    "svg_path": maze_data.get("svg_path", ""),
+                    "solution_path": maze_data.get("solution_path", ""),
+                    "width": maze_data.get("path_width", 30),
+                    "complexity": difficulty,
+                    "maze_type": maze_data.get("maze_type", "grid"),
+                    "start_point": maze_data.get("start_point", {}),
+                    "end_point": maze_data.get("end_point", {}),
+                    "segments": maze_data.get("segments", []),
+                    "canvas_width": maze_data.get("canvas_width", 600),
+                    "canvas_height": maze_data.get("canvas_height", 500),
+                    "control_points": maze_data.get("control_points", []),
+                },
+                "visual_theme": {
+                    "background_color": bg_color,
+                    "decorative_elements": decorative,
+                },
+                "preview_svg": svg,
+            }
+
+            all_labs.append(labyrinth)
+        except Exception as e:
+            print(f"  Error generating {lab_id}: {e}")
+            continue
+
+    save_labyrinths(all_labs, output_dir)
+
+    # Save manifest
+    manifest = {
+        "universe": "denny",
+        "total": len(all_labs),
+        "labyrinths": [
+            {"id": lab["id"], "age_range": lab["age_range"],
+             "difficulty": lab["difficulty"], "theme": lab["theme"],
+             "location": lab["location"], "title": lab["title"]}
+            for lab in all_labs
+        ],
+    }
+    manifest_path = output_dir / "manifest.json"
+    with open(manifest_path, "w") as f:
+        json.dump(manifest, f, indent=2)
+    print(f"\nManifest saved: {manifest_path}")
+    print(f"Total Denny labyrinths generated: {len(all_labs)}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generate labyrinth content")
     parser.add_argument("--age", type=int, choices=[3, 4, 5, 6], help="Target age")
@@ -240,6 +417,7 @@ def main():
     parser.add_argument("--theme", type=str, help="Theme name")
     parser.add_argument("--count", type=int, default=1, help="Number to generate")
     parser.add_argument("--starter-pack", action="store_true", help="Generate full 30-labyrinth starter pack")
+    parser.add_argument("--universe", type=str, choices=["denny"], help="Generate labyrinths for a character universe")
     parser.add_argument("--output", type=str, default=None, help="Output directory")
 
     args = parser.parse_args()
@@ -254,7 +432,9 @@ def main():
 
     client = anthropic.Anthropic(api_key=api_key)
 
-    if args.starter_pack:
+    if args.universe == "denny":
+        generate_denny_pack(client, output_dir)
+    elif args.starter_pack:
         generate_starter_pack(client, config, output_dir)
     elif args.age and args.difficulty and args.theme:
         themes = [args.theme]
@@ -264,6 +444,7 @@ def main():
         parser.print_help()
         print("\nExamples:")
         print("  python generator.py --starter-pack")
+        print("  python generator.py --universe denny")
         print("  python generator.py --age 4 --difficulty easy --theme animals --count 2")
 
 

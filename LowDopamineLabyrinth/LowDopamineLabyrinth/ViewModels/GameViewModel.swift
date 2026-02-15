@@ -4,6 +4,7 @@ class GameViewModel: ObservableObject {
     @Published var labyrinths: [Labyrinth] = []
     @Published var currentIndex: Int = 0
     @Published var showPaywall: Bool = false
+    @Published var selectedLabyrinth: Labyrinth?
 
     let preferences: UserPreferences
     let subscriptionManager: SubscriptionManager
@@ -14,8 +15,12 @@ class GameViewModel: ObservableObject {
         return labyrinths[currentIndex]
     }
 
-    var progressText: String {
-        "\(currentIndex + 1) / \(labyrinths.count)"
+    var isSimulator: Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        return false
+        #endif
     }
 
     init(preferences: UserPreferences,
@@ -29,6 +34,18 @@ class GameViewModel: ObservableObject {
     func loadLabyrinths() {
         labyrinths = LabyrinthLoader.shared.loadForAgeGroup(preferences.ageGroup)
         currentIndex = 0
+        selectedLabyrinth = nil
+    }
+
+    func selectLabyrinth(_ labyrinth: Labyrinth) {
+        if let idx = labyrinths.firstIndex(where: { $0.id == labyrinth.id }) {
+            currentIndex = idx
+        }
+        selectedLabyrinth = labyrinth
+    }
+
+    func closeGame() {
+        selectedLabyrinth = nil
     }
 
     func nextLabyrinth() {
@@ -38,12 +55,14 @@ class GameViewModel: ObservableObject {
         }
         if currentIndex < labyrinths.count - 1 {
             currentIndex += 1
+            selectedLabyrinth = currentLabyrinth
         }
     }
 
     func previousLabyrinth() {
         if currentIndex > 0 {
             currentIndex -= 1
+            selectedLabyrinth = currentLabyrinth
         }
     }
 
@@ -55,6 +74,7 @@ class GameViewModel: ObservableObject {
     }
 
     func canProceed() -> Bool {
-        preferences.canPlayToday(isPremium: subscriptionManager.isPremium)
+        if isSimulator { return true }
+        return preferences.canPlayToday(isPremium: subscriptionManager.isPremium)
     }
 }

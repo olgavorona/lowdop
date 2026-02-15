@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LabyrinthGameView: View {
-    @StateObject var viewModel: LabyrinthViewModel
+    @ObservedObject var viewModel: LabyrinthViewModel
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
     let onComplete: () -> Void
@@ -22,7 +22,7 @@ struct LabyrinthGameView: View {
                         .font(.system(size: 14, design: .rounded))
                         .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
-                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
@@ -99,31 +99,27 @@ struct LabyrinthGameView: View {
         }
         .onChange(of: viewModel.isCompleted) { completed in
             if completed {
-                if preferences.ttsEnabled {
-                    ttsService.speak(viewModel.labyrinth.completionMessage, rate: preferences.ttsRate)
-                }
                 onComplete()
             }
         }
     }
 
     private var startMarker: some View {
-        ZStack {
-            Circle()
-                .fill(Color(hex: "#E74C3C") ?? .red)
-                .frame(width: 28 * viewModel.scale, height: 28 * viewModel.scale)
-            Triangle()
-                .fill(Color.white)
-                .frame(width: 12 * viewModel.scale, height: 12 * viewModel.scale)
-        }
+        CharacterMarkerView(
+            character: viewModel.labyrinth.characterStart,
+            scale: viewModel.scale,
+            isStart: true
+        )
         .position(viewModel.startPoint)
     }
 
     private var endMarker: some View {
-        StarShape(points: 5, innerRatio: 0.45)
-            .fill(Color(hex: "#F1C40F") ?? .yellow)
-            .frame(width: 24 * viewModel.scale, height: 24 * viewModel.scale)
-            .position(viewModel.endPoint)
+        CharacterMarkerView(
+            character: viewModel.labyrinth.characterEnd,
+            scale: viewModel.scale,
+            isStart: false
+        )
+        .position(viewModel.endPoint)
     }
 }
 

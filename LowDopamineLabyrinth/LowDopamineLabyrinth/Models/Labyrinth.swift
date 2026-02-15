@@ -16,6 +16,7 @@ struct Labyrinth: Codable, Identifiable {
     let completionMessage: String
     let pathData: PathData
     let visualTheme: VisualTheme
+    let location: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +32,7 @@ struct Labyrinth: Codable, Identifiable {
         case completionMessage = "completion_message"
         case pathData = "path_data"
         case visualTheme = "visual_theme"
+        case location
     }
 }
 
@@ -38,6 +40,13 @@ struct LabyrinthCharacter: Codable {
     let type: String
     let description: String
     let position: String
+    let name: String?
+    let imageAsset: String?
+
+    enum CodingKeys: String, CodingKey {
+        case type, description, position, name
+        case imageAsset = "image_asset"
+    }
 }
 
 struct PathData: Codable {
@@ -98,10 +107,11 @@ struct ManifestEntry: Codable {
     let difficulty: String
     let theme: String
     let title: String
+    let location: String?
 
     enum CodingKeys: String, CodingKey {
         case id
         case ageRange = "age_range"
-        case difficulty, theme, title
+        case difficulty, theme, title, location
     }
 }
