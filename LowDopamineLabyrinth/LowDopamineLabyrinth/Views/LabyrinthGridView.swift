@@ -82,7 +82,7 @@ struct LabyrinthGridView: View {
         .onAppear {
             gameViewModel.loadLabyrinths()
         }
-        .fullScreenCover(item: $gameViewModel.selectedLabyrinth) { _ in
+        .fullScreenCover(isPresented: $gameViewModel.isPlaying) {
             LabyrinthListView()
         }
         .sheet(isPresented: $gameViewModel.showPaywall) {

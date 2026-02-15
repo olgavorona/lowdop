@@ -93,7 +93,9 @@ struct LabyrinthGameView: View {
         .onAppear {
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    ttsService.speak(viewModel.labyrinth.ttsInstruction, rate: preferences.ttsRate)
+                    if !ttsService.playAudio(viewModel.labyrinth.audioInstruction) {
+                        ttsService.speak(viewModel.labyrinth.ttsInstruction, rate: preferences.ttsRate)
+                    }
                 }
             }
         }

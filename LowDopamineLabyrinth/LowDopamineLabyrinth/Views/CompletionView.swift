@@ -85,11 +85,13 @@ struct CompletionView: View {
         .onAppear {
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    let intro = labyrinth.characterEnd.name.map { "You found \($0)! " } ?? ""
-                    ttsService.speak(
-                        "\(intro)\(labyrinth.completionMessage) \(labyrinth.educationalQuestion)",
-                        rate: preferences.ttsRate
-                    )
+                    if !ttsService.playAudio(labyrinth.audioCompletion) {
+                        let intro = labyrinth.characterEnd.name.map { "You found \($0)! " } ?? ""
+                        ttsService.speak(
+                            "\(intro)\(labyrinth.completionMessage) \(labyrinth.educationalQuestion)",
+                            rate: preferences.ttsRate
+                        )
+                    }
                 }
             }
         }

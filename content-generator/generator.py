@@ -410,6 +410,107 @@ def generate_denny_pack(client: anthropic.Anthropic, output_dir: Path):
     print(f"Total Denny labyrinths generated: {len(all_labs)}")
 
 
+def generate_audio_for_labyrinths(labyrinth_dir: Path):
+    """Generate ElevenLabs TTS audio for all labyrinths in a directory."""
+    elevenlabs_key = os.environ.get("ELEVENLABS_API_KEY")
+    if not elevenlabs_key:
+        print("Error: ELEVENLABS_API_KEY environment variable not set")
+        sys.exit(1)
+
+    try:
+        import requests
+    except ImportError:
+        print("Error: requests package not installed. Run: pip install requests")
+        sys.exit(1)
+
+    audio_dir = labyrinth_dir / "audio"
+    audio_dir.mkdir(parents=True, exist_ok=True)
+
+    # ElevenLabs API settings
+    voice_id = os.environ.get("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")  # Default: Rachel
+    api_url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
+    headers = {
+        "xi-api-key": elevenlabs_key,
+        "Content-Type": "application/json",
+        "Accept": "audio/mpeg",
+    }
+
+    json_files = sorted(labyrinth_dir.glob("lab_*.json"))
+    print(f"\nGenerating audio for {len(json_files)} labyrinths...")
+
+    for json_path in json_files:
+        with open(json_path) as f:
+            lab = json.load(f)
+
+        lab_id = lab["id"]
+
+        # Generate instruction audio
+        instruction_file = f"{lab_id}_instruction.m4a"
+        instruction_path = audio_dir / instruction_file
+        if not instruction_path.exists():
+            tts_text = lab.get("tts_instruction", "")
+            if tts_text:
+                print(f"  Generating instruction audio for {lab_id}...")
+                _call_elevenlabs(api_url, headers, tts_text, instruction_path)
+            else:
+                instruction_file = None
+        else:
+            print(f"  Skipping {instruction_file} (already exists)")
+
+        # Generate completion audio
+        completion_file = f"{lab_id}_completion.m4a"
+        completion_path = audio_dir / completion_file
+        if not completion_path.exists():
+            char_name = lab.get("character_end", {}).get("name", "")
+            intro = f"You found {char_name}! " if char_name else ""
+            completion_text = f"{intro}{lab.get('completion_message', '')} {lab.get('educational_question', '')}"
+            if completion_text.strip():
+                print(f"  Generating completion audio for {lab_id}...")
+                _call_elevenlabs(api_url, headers, completion_text, completion_path)
+            else:
+                completion_file = None
+        else:
+            print(f"  Skipping {completion_file} (already exists)")
+
+        # Update JSON with audio filenames
+        updated = False
+        if instruction_file and "audio_instruction" not in lab:
+            lab["audio_instruction"] = instruction_file
+            updated = True
+        if completion_file and "audio_completion" not in lab:
+            lab["audio_completion"] = completion_file
+            updated = True
+
+        if updated:
+            with open(json_path, "w") as f:
+                json.dump(lab, f, indent=2)
+            print(f"  Updated {json_path.name} with audio fields")
+
+    print(f"\nAudio generation complete. Files saved to: {audio_dir}")
+
+
+def _call_elevenlabs(api_url: str, headers: dict, text: str, output_path: Path):
+    """Call ElevenLabs API to generate speech audio."""
+    import requests
+
+    payload = {
+        "text": text,
+        "model_id": "eleven_monolingual_v1",
+        "voice_settings": {
+            "stability": 0.6,
+            "similarity_boost": 0.75,
+        },
+    }
+
+    try:
+        response = requests.post(api_url, json=payload, headers=headers, timeout=30)
+        response.raise_for_status()
+        with open(output_path, "wb") as f:
+            f.write(response.content)
+    except Exception as e:
+        print(f"    Error generating audio: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generate labyrinth content")
     parser.add_argument("--age", type=int, choices=[3, 4, 5, 6], help="Target age")
@@ -419,11 +520,16 @@ def main():
     parser.add_argument("--starter-pack", action="store_true", help="Generate full 30-labyrinth starter pack")
     parser.add_argument("--universe", type=str, choices=["denny"], help="Generate labyrinths for a character universe")
     parser.add_argument("--output", type=str, default=None, help="Output directory")
+    parser.add_argument("--generate-audio", action="store_true", help="Generate ElevenLabs TTS audio for existing labyrinths")
 
     args = parser.parse_args()
     config = load_config()
 
     output_dir = Path(args.output) if args.output else Path(__file__).parent / "output" / "labyrinths"
+
+    if args.generate_audio:
+        generate_audio_for_labyrinths(output_dir)
+        return
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
@@ -446,6 +552,7 @@ def main():
         print("  python generator.py --starter-pack")
         print("  python generator.py --universe denny")
         print("  python generator.py --age 4 --difficulty easy --theme animals --count 2")
+        print("  python generator.py --generate-audio --output path/to/labyrinths")
 
 
 if __name__ == "__main__":

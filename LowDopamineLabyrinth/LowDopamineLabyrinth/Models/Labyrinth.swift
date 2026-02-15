@@ -17,6 +17,8 @@ struct Labyrinth: Codable, Identifiable {
     let pathData: PathData
     let visualTheme: VisualTheme
     let location: String?
+    let audioInstruction: String?
+    let audioCompletion: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -33,6 +35,8 @@ struct Labyrinth: Codable, Identifiable {
         case pathData = "path_data"
         case visualTheme = "visual_theme"
         case location
+        case audioInstruction = "audio_instruction"
+        case audioCompletion = "audio_completion"
     }
 }
 

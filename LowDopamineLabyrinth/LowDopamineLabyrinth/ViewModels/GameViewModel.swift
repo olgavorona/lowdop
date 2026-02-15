@@ -4,7 +4,7 @@ class GameViewModel: ObservableObject {
     @Published var labyrinths: [Labyrinth] = []
     @Published var currentIndex: Int = 0
     @Published var showPaywall: Bool = false
-    @Published var selectedLabyrinth: Labyrinth?
+    @Published var isPlaying: Bool = false
 
     let preferences: UserPreferences
     let subscriptionManager: SubscriptionManager
@@ -34,18 +34,18 @@ class GameViewModel: ObservableObject {
     func loadLabyrinths() {
         labyrinths = LabyrinthLoader.shared.loadForAgeGroup(preferences.ageGroup)
         currentIndex = 0
-        selectedLabyrinth = nil
+        isPlaying = false
     }
 
     func selectLabyrinth(_ labyrinth: Labyrinth) {
         if let idx = labyrinths.firstIndex(where: { $0.id == labyrinth.id }) {
             currentIndex = idx
         }
-        selectedLabyrinth = labyrinth
+        isPlaying = true
     }
 
     func closeGame() {
-        selectedLabyrinth = nil
+        isPlaying = false
     }
 
     func nextLabyrinth() {
@@ -55,14 +55,12 @@ class GameViewModel: ObservableObject {
         }
         if currentIndex < labyrinths.count - 1 {
             currentIndex += 1
-            selectedLabyrinth = currentLabyrinth
         }
     }
 
     func previousLabyrinth() {
         if currentIndex > 0 {
             currentIndex -= 1
-            selectedLabyrinth = currentLabyrinth
         }
     }
 

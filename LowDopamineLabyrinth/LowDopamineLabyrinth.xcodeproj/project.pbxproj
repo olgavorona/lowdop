@@ -7,49 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA000001 /* LowDopamineLabyrinthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000001; };
-		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000002; };
-		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB000003; };
-		AA000004 /* Labyrinth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000004; };
-		AA000005 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000005; };
-		AA000006 /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000006; };
-		AA000007 /* LabyrinthLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000007; };
-		AA000008 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000008; };
-		AA000009 /* DrawingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000009; };
-		AA000010 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000010; };
-		AA000011 /* LabyrinthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000011; };
-		AA000012 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000012; };
-		AA000013 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000013; };
-		AA000014 /* LabyrinthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000014; };
-		AA000015 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000015; };
-		AA000016 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000016; };
-		AA000017 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000017; };
-		AA000018 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000018; };
-		AA000019 /* NavigationControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000019; };
-		AA000020 /* LabyrinthGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000020; };
-		AA000021 /* LabyrinthGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000021; };
-		AA000022 /* CharacterMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000022; };
-		AA200001 /* denny_001.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200001; };
-		AA200002 /* denny_002.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200002; };
-		AA200003 /* denny_003.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200003; };
-		AA200004 /* denny_004.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200004; };
-		AA200005 /* denny_005.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200005; };
-		AA200006 /* denny_006.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200006; };
-		AA200007 /* denny_007.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200007; };
-		AA200008 /* denny_008.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200008; };
-		AA200009 /* denny_009.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200009; };
-		AA200010 /* denny_010.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200010; };
-		AA200011 /* denny_011.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200011; };
-		AA200012 /* denny_012.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200012; };
-		AA200013 /* denny_013.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200013; };
-		AA200014 /* denny_014.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200014; };
-		AA200015 /* denny_015.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200015; };
-		AA200016 /* denny_016.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200016; };
-		AA200017 /* denny_017.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200017; };
-		AA200018 /* denny_018.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200018; };
-		AA200019 /* denny_019.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200019; };
-		AA200020 /* denny_020.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200020; };
-		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031; };
+		AA000001 /* LowDopamineLabyrinthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000001 /* LowDopamineLabyrinthApp.swift */; };
+		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000002 /* ContentView.swift */; };
+		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB000003 /* Assets.xcassets */; };
+		AA000004 /* Labyrinth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000004 /* Labyrinth.swift */; };
+		AA000005 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000005 /* UserPreferences.swift */; };
+		AA000006 /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000006 /* SVGPathParser.swift */; };
+		AA000007 /* LabyrinthLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000007 /* LabyrinthLoader.swift */; };
+		AA000008 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000008 /* TTSService.swift */; };
+		AA000009 /* DrawingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000009 /* DrawingValidator.swift */; };
+		AA000010 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000010 /* ProgressTracker.swift */; };
+		AA000011 /* LabyrinthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000011 /* LabyrinthViewModel.swift */; };
+		AA000012 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000012 /* GameViewModel.swift */; };
+		AA000013 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000013 /* OnboardingView.swift */; };
+		AA000014 /* LabyrinthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000014 /* LabyrinthListView.swift */; };
+		AA000015 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000015 /* DrawingCanvas.swift */; };
+		AA000016 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000016 /* CompletionView.swift */; };
+		AA000017 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000017 /* PaywallView.swift */; };
+		AA000018 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000018 /* SubscriptionManager.swift */; };
+		AA000019 /* NavigationControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000019 /* NavigationControls.swift */; };
+		AA000020 /* LabyrinthGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000020 /* LabyrinthGameView.swift */; };
+		AA000021 /* LabyrinthGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000021 /* LabyrinthGridView.swift */; };
+		AA000022 /* CharacterMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000022 /* CharacterMarkerView.swift */; };
+		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031 /* manifest.json */; };
+		AA200001 /* denny_001.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200001 /* denny_001.json */; };
+		AA200002 /* denny_002.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200002 /* denny_002.json */; };
+		AA200003 /* denny_003.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200003 /* denny_003.json */; };
+		AA200004 /* denny_004.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200004 /* denny_004.json */; };
+		AA200005 /* denny_005.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200005 /* denny_005.json */; };
+		AA200006 /* denny_006.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200006 /* denny_006.json */; };
+		AA200007 /* denny_007.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200007 /* denny_007.json */; };
+		AA200008 /* denny_008.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200008 /* denny_008.json */; };
+		AA200009 /* denny_009.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200009 /* denny_009.json */; };
+		AA200010 /* denny_010.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200010 /* denny_010.json */; };
+		AA200011 /* denny_011.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200011 /* denny_011.json */; };
+		AA200012 /* denny_012.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200012 /* denny_012.json */; };
+		AA200013 /* denny_013.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200013 /* denny_013.json */; };
+		AA200014 /* denny_014.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200014 /* denny_014.json */; };
+		AA200015 /* denny_015.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200015 /* denny_015.json */; };
+		AA200016 /* denny_016.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200016 /* denny_016.json */; };
+		AA200017 /* denny_017.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200017 /* denny_017.json */; };
+		AA200018 /* denny_018.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200018 /* denny_018.json */; };
+		AA200019 /* denny_019.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200019 /* denny_019.json */; };
+		AA200020 /* denny_020.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200020 /* denny_020.json */; };
+		BA000001 /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001 /* GameViewModelTests.swift */; };
+		BA000002 /* DrawingValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000002 /* DrawingValidatorTests.swift */; };
+		BA000003 /* LabyrinthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000003 /* LabyrinthViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,7 @@
 		AB000020 /* LabyrinthGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGameView.swift; sourceTree = "<group>"; };
 		AB000021 /* LabyrinthGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGridView.swift; sourceTree = "<group>"; };
 		AB000022 /* CharacterMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMarkerView.swift; sourceTree = "<group>"; };
+		AC100031 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		AC200001 /* denny_001.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001.json; sourceTree = "<group>"; };
 		AC200002 /* denny_002.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_002.json; sourceTree = "<group>"; };
 		AC200003 /* denny_003.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_003.json; sourceTree = "<group>"; };
@@ -96,8 +100,29 @@
 		AC200018 /* denny_018.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_018.json; sourceTree = "<group>"; };
 		AC200019 /* denny_019.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_019.json; sourceTree = "<group>"; };
 		AC200020 /* denny_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020.json; sourceTree = "<group>"; };
-		AC100031 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		BB000000 /* LowDopamineLabyrinthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LowDopamineLabyrinthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB000001 /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
+		BB000002 /* DrawingValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingValidatorTests.swift; sourceTree = "<group>"; };
+		BB000003 /* LabyrinthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXContainerItemProxy section */
+		BC000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF000001;
+			remoteInfo = LowDopamineLabyrinth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		BD000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF000001 /* LowDopamineLabyrinth */;
+			targetProxy = BC000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		AD000001 /* Frameworks */ = {
@@ -107,23 +132,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BD000010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AE000000 /* root */ = {
+		AE000000 = {
 			isa = PBXGroup;
 			children = (
 				AE000001 /* LowDopamineLabyrinth */,
+				BE000001 /* LowDopamineLabyrinthTests */,
 				AE000099 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		AE000099 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AB000000 /* LowDopamineLabyrinth.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		AE000001 /* LowDopamineLabyrinth */ = {
@@ -232,6 +257,25 @@
 			path = Labyrinths;
 			sourceTree = "<group>";
 		};
+		AE000099 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB000000 /* LowDopamineLabyrinth.app */,
+				BB000000 /* LowDopamineLabyrinthTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE000001 /* LowDopamineLabyrinthTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB000001 /* GameViewModelTests.swift */,
+				BB000002 /* DrawingValidatorTests.swift */,
+				BB000003 /* LabyrinthViewModelTests.swift */,
+			);
+			path = LowDopamineLabyrinthTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,6 +296,23 @@
 			productReference = AB000000 /* LowDopamineLabyrinth.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BF000001 /* LowDopamineLabyrinthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF000010 /* Build configuration list for PBXNativeTarget "LowDopamineLabyrinthTests" */;
+			buildPhases = (
+				BF000002 /* Sources */,
+				BD000010 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD000001 /* PBXTargetDependency */,
+			);
+			name = LowDopamineLabyrinthTests;
+			productName = LowDopamineLabyrinthTests;
+			productReference = BB000000 /* LowDopamineLabyrinthTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,6 +325,10 @@
 				TargetAttributes = {
 					AF000001 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					BF000001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AF000001;
 					};
 				};
 			};
@@ -281,6 +346,7 @@
 			projectRoot = "";
 			targets = (
 				AF000001 /* LowDopamineLabyrinth */,
+				BF000001 /* LowDopamineLabyrinthTests */,
 			);
 		};
 /* End PBXProject section */
@@ -346,6 +412,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA000001 /* GameViewModelTests.swift in Sources */,
+				BA000002 /* DrawingValidatorTests.swift in Sources */,
+				BA000003 /* LabyrinthViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -354,9 +430,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Low Dopamine Labyrinth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -364,6 +441,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,10 +449,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
 		};
@@ -383,9 +461,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Low Dopamine Labyrinth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -393,6 +472,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,10 +480,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Release;
 		};
@@ -526,6 +606,54 @@
 			};
 			name = Release;
 		};
+		BF000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LowDopamineLabyrinth.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LowDopamineLabyrinth";
+			};
+			name = Debug;
+		};
+		BF000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LowDopamineLabyrinth.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LowDopamineLabyrinth";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -547,8 +675,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BF000010 /* Build configuration list for PBXNativeTarget "LowDopamineLabyrinthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF000011 /* Debug */,
+				BF000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-
 	};
 	rootObject = AF000000 /* Project object */;
 }

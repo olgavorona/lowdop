@@ -20,7 +20,7 @@ struct PaywallView: View {
 
             Text("Come back tomorrow for a new labyrinth,\nor unlock all of them now.")
                 .font(.system(size: 16, design: .rounded))
-                .foregroundColor(.secondary)
+                .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
@@ -54,14 +54,14 @@ struct PaywallView: View {
                 if subscriptionManager.products.isEmpty {
                     Text("Subscriptions loading...")
                         .font(.system(size: 14, design: .rounded))
-                        .foregroundColor(.secondary)
+                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
                 }
 
                 Button("Restore Purchases") {
                     Task { await subscriptionManager.restorePurchases() }
                 }
                 .font(.system(size: 14, design: .rounded))
-                .foregroundColor(.secondary)
+                .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
                 .padding(.top, 8)
             }
             .padding(.horizontal, 40)
@@ -82,7 +82,7 @@ struct PaywallView: View {
             Button(action: { dismiss() }) {
                 Text("Maybe Later")
                     .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .foregroundColor(.secondary)
+                    .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
             }
             .frame(height: 44)
             .padding(.bottom, 24)

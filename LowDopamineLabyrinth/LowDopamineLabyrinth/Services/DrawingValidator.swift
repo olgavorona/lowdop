@@ -24,6 +24,31 @@ struct DrawingValidator {
         return minDist
     }
 
+    func nearestSegmentIndex(to point: CGPoint) -> Int? {
+        var minDist: CGFloat = .greatestFiniteMagnitude
+        var bestIndex: Int?
+        for (i, segment) in segments.enumerated() {
+            let a = CGPoint(x: CGFloat(segment.start.x) * scale + offset.x,
+                            y: CGFloat(segment.start.y) * scale + offset.y)
+            let b = CGPoint(x: CGFloat(segment.end.x) * scale + offset.x,
+                            y: CGFloat(segment.end.y) * scale + offset.y)
+            let dist = pointToSegmentDistance(point, a, b)
+            if dist < minDist {
+                minDist = dist
+                bestIndex = i
+            }
+        }
+        return bestIndex
+    }
+
+    func isNearStart(_ point: CGPoint, startPoint: PointData, radius: CGFloat = 30) -> Bool {
+        let start = CGPoint(x: CGFloat(startPoint.x) * scale + offset.x,
+                            y: CGFloat(startPoint.y) * scale + offset.y)
+        let dx = point.x - start.x
+        let dy = point.y - start.y
+        return sqrt(dx * dx + dy * dy) <= radius
+    }
+
     func isNearEnd(_ point: CGPoint, endPoint: PointData, radius: CGFloat = 30) -> Bool {
         let end = CGPoint(x: CGFloat(endPoint.x) * scale + offset.x,
                           y: CGFloat(endPoint.y) * scale + offset.y)
