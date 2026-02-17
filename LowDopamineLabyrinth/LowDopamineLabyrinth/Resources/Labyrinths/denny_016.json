@@ -392,5 +392,7 @@
       "waves",
       "deep_water"
     ]
-  }
+  },
+  "audio_instruction": "denny_016_instruction.mp3",
+  "audio_completion": "denny_016_completion.mp3"
 }

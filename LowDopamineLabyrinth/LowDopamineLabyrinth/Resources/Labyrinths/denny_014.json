@@ -192,5 +192,7 @@
       "bubbles",
       "seaweed"
     ]
-  }
+  },
+  "audio_instruction": "denny_014_instruction.mp3",
+  "audio_completion": "denny_014_completion.mp3"
 }

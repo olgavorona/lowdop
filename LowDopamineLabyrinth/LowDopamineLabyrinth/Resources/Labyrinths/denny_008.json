@@ -352,5 +352,7 @@
       "light_rays",
       "small_fish"
     ]
-  }
+  },
+  "audio_instruction": "denny_008_instruction.mp3",
+  "audio_completion": "denny_008_completion.mp3"
 }

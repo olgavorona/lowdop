@@ -50,6 +50,7 @@
 		AA200018 /* denny_018.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200018 /* denny_018.json */; };
 		AA200019 /* denny_019.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200019 /* denny_019.json */; };
 		AA200020 /* denny_020.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200020 /* denny_020.json */; };
+		AA300001 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC300001 /* audio */; };
 		BA000001 /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001 /* GameViewModelTests.swift */; };
 		BA000002 /* DrawingValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000002 /* DrawingValidatorTests.swift */; };
 		BA000003 /* LabyrinthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000003 /* LabyrinthViewModelTests.swift */; };
@@ -100,6 +101,7 @@
 		AC200018 /* denny_018.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_018.json; sourceTree = "<group>"; };
 		AC200019 /* denny_019.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_019.json; sourceTree = "<group>"; };
 		AC200020 /* denny_020.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020.json; sourceTree = "<group>"; };
+		AC300001 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		BB000000 /* LowDopamineLabyrinthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LowDopamineLabyrinthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB000001 /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
 		BB000002 /* DrawingValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingValidatorTests.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 		AE000008 /* Labyrinths */ = {
 			isa = PBXGroup;
 			children = (
+				AC300001 /* audio */,
 				AC200001 /* denny_001.json */,
 				AC200002 /* denny_002.json */,
 				AC200003 /* denny_003.json */,
@@ -378,6 +381,7 @@
 				AA200019 /* denny_019.json in Resources */,
 				AA200020 /* denny_020.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
+				AA300001 /* audio in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

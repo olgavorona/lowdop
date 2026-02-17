@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 import yaml
+from dotenv import load_dotenv
 
 try:
     import anthropic
@@ -426,8 +427,8 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
     audio_dir = labyrinth_dir / "audio"
     audio_dir.mkdir(parents=True, exist_ok=True)
 
-    # ElevenLabs API settings
-    voice_id = os.environ.get("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")  # Default: Rachel
+    # ElevenLabs API settings — Charlotte voice (warm, kid-friendly)
+    voice_id = os.environ.get("ELEVENLABS_VOICE_ID", "XB0fDUnXU5powFXDhCwa")
     api_url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
     headers = {
         "xi-api-key": elevenlabs_key,
@@ -435,7 +436,7 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
         "Accept": "audio/mpeg",
     }
 
-    json_files = sorted(labyrinth_dir.glob("lab_*.json"))
+    json_files = sorted(labyrinth_dir.glob("denny_*.json"))
     print(f"\nGenerating audio for {len(json_files)} labyrinths...")
 
     for json_path in json_files:
@@ -445,7 +446,7 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
         lab_id = lab["id"]
 
         # Generate instruction audio
-        instruction_file = f"{lab_id}_instruction.m4a"
+        instruction_file = f"{lab_id}_instruction.mp3"
         instruction_path = audio_dir / instruction_file
         if not instruction_path.exists():
             tts_text = lab.get("tts_instruction", "")
@@ -458,7 +459,7 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
             print(f"  Skipping {instruction_file} (already exists)")
 
         # Generate completion audio
-        completion_file = f"{lab_id}_completion.m4a"
+        completion_file = f"{lab_id}_completion.mp3"
         completion_path = audio_dir / completion_file
         if not completion_path.exists():
             char_name = lab.get("character_end", {}).get("name", "")
@@ -474,10 +475,10 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
 
         # Update JSON with audio filenames
         updated = False
-        if instruction_file and "audio_instruction" not in lab:
+        if instruction_file and lab.get("audio_instruction") != instruction_file:
             lab["audio_instruction"] = instruction_file
             updated = True
-        if completion_file and "audio_completion" not in lab:
+        if completion_file and lab.get("audio_completion") != completion_file:
             lab["audio_completion"] = completion_file
             updated = True
 
@@ -495,7 +496,7 @@ def _call_elevenlabs(api_url: str, headers: dict, text: str, output_path: Path):
 
     payload = {
         "text": text,
-        "model_id": "eleven_monolingual_v1",
+        "model_id": "eleven_turbo_v2_5",
         "voice_settings": {
             "stability": 0.6,
             "similarity_boost": 0.75,
@@ -523,6 +524,7 @@ def main():
     parser.add_argument("--generate-audio", action="store_true", help="Generate ElevenLabs TTS audio for existing labyrinths")
 
     args = parser.parse_args()
+    load_dotenv()
     config = load_config()
 
     output_dir = Path(args.output) if args.output else Path(__file__).parent / "output" / "labyrinths"

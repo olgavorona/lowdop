@@ -492,5 +492,7 @@
       "glowing_coral",
       "stars"
     ]
-  }
+  },
+  "audio_instruction": "denny_020_instruction.mp3",
+  "audio_completion": "denny_020_completion.mp3"
 }

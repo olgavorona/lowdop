@@ -29,10 +29,6 @@ class UserPreferences: ObservableObject {
         ageGroup == .young ? 20 : 15
     }
 
-    var ttsRate: Float {
-        ageGroup == .young ? 0.4 : 0.45
-    }
-
     init() {
         let savedAge = defaults.string(forKey: "ageGroup") ?? AgeGroup.young.rawValue
         self.ageGroup = AgeGroup(rawValue: savedAge) ?? .young

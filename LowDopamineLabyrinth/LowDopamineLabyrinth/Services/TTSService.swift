@@ -1,24 +1,47 @@
 import AVFoundation
 
 class TTSService: ObservableObject {
-    private let synthesizer = AVSpeechSynthesizer()
     private var audioPlayer: AVAudioPlayer?
 
+    private static let audioBaseURL = "https://lowdop-audio.cdn.example.com/labyrinths/audio/"
+
+    private static var cacheDir: URL {
+        let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        return caches.appendingPathComponent("labyrinth_audio")
+    }
+
+    @discardableResult
     func playAudio(_ filename: String?) -> Bool {
         guard let filename = filename, !filename.isEmpty else { return false }
 
         let name = (filename as NSString).deletingPathExtension
         let ext = (filename as NSString).pathExtension
 
-        guard let url = Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Labyrinths/audio") else {
-            // Also try without subdirectory
-            guard let url = Bundle.main.url(forResource: name, withExtension: ext) else {
-                return false
-            }
+        // 1. Check bundle
+        if let url = Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Labyrinths/audio") {
             return playURL(url)
         }
-        return playURL(url)
+
+        // 2. Check cache directory
+        let cached = Self.cacheDir.appendingPathComponent(filename)
+        if FileManager.default.fileExists(atPath: cached.path) {
+            return playURL(cached)
+        }
+
+        return false
     }
+
+    func prepareAudio(for labyrinth: Labyrinth) {
+        downloadIfNeeded(labyrinth.audioInstruction)
+        downloadIfNeeded(labyrinth.audioCompletion)
+    }
+
+    func stop() {
+        audioPlayer?.stop()
+        audioPlayer = nil
+    }
+
+    // MARK: - Private
 
     private func playURL(_ url: URL) -> Bool {
         do {
@@ -32,19 +55,28 @@ class TTSService: ObservableObject {
         }
     }
 
-    func speak(_ text: String, rate: Float = 0.45) {
-        synthesizer.stopSpeaking(at: .immediate)
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.rate = rate
-        utterance.pitchMultiplier = 1.1
-        utterance.volume = 0.9
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        synthesizer.speak(utterance)
-    }
+    private func downloadIfNeeded(_ filename: String?) {
+        guard let filename = filename, !filename.isEmpty else { return }
 
-    func stop() {
-        synthesizer.stopSpeaking(at: .immediate)
-        audioPlayer?.stop()
-        audioPlayer = nil
+        let name = (filename as NSString).deletingPathExtension
+        let ext = (filename as NSString).pathExtension
+
+        // Already in bundle — nothing to do
+        if Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Labyrinths/audio") != nil {
+            return
+        }
+
+        let cached = Self.cacheDir.appendingPathComponent(filename)
+        if FileManager.default.fileExists(atPath: cached.path) { return }
+
+        // Fire-and-forget background download
+        guard let remote = URL(string: Self.audioBaseURL + filename) else { return }
+        URLSession.shared.dataTask(with: remote) { data, response, _ in
+            guard let data = data,
+                  let http = response as? HTTPURLResponse,
+                  http.statusCode == 200 else { return }
+            try? FileManager.default.createDirectory(at: Self.cacheDir, withIntermediateDirectories: true)
+            try? data.write(to: cached)
+        }.resume()
     }
 }

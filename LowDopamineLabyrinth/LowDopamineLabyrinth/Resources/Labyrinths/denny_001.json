@@ -122,5 +122,7 @@
       "tide_pools",
       "sand"
     ]
-  }
+  },
+  "audio_instruction": "denny_001_instruction.mp3",
+  "audio_completion": "denny_001_completion.mp3"
 }

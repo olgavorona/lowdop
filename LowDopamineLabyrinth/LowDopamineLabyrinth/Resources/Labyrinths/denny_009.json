@@ -212,5 +212,7 @@
       "treasure",
       "porthole"
     ]
-  }
+  },
+  "audio_instruction": "denny_009_instruction.mp3",
+  "audio_completion": "denny_009_completion.mp3"
 }

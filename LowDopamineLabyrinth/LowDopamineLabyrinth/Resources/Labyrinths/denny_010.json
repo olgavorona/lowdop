@@ -232,5 +232,7 @@
       "water",
       "pebbles"
     ]
-  }
+  },
+  "audio_instruction": "denny_010_instruction.mp3",
+  "audio_completion": "denny_010_completion.mp3"
 }

@@ -142,5 +142,7 @@
       "starfish",
       "sea_urchins"
     ]
-  }
+  },
+  "audio_instruction": "denny_005_instruction.mp3",
+  "audio_completion": "denny_005_completion.mp3"
 }

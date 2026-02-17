@@ -312,5 +312,7 @@
       "anemones",
       "small_fish"
     ]
-  }
+  },
+  "audio_instruction": "denny_013_instruction.mp3",
+  "audio_completion": "denny_013_completion.mp3"
 }

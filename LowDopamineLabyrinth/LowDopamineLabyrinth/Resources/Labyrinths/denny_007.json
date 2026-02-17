@@ -222,5 +222,7 @@
       "light_rays",
       "small_fish"
     ]
-  }
+  },
+  "audio_instruction": "denny_007_instruction.mp3",
+  "audio_completion": "denny_007_completion.mp3"
 }

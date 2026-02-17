@@ -412,5 +412,7 @@
       "gold",
       "crystals"
     ]
-  }
+  },
+  "audio_instruction": "denny_018_instruction.mp3",
+  "audio_completion": "denny_018_completion.mp3"
 }

@@ -92,6 +92,7 @@ struct LabyrinthListView: View {
                 newVM.setupValidator(tolerance: preferences.pathTolerance)
             }
             labyrinthVM = newVM
+            ttsService.prepareAudio(for: lab)
         }
     }
 }
