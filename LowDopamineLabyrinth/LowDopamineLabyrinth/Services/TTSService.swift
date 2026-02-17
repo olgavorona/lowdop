@@ -17,8 +17,8 @@ class TTSService: ObservableObject {
         let name = (filename as NSString).deletingPathExtension
         let ext = (filename as NSString).pathExtension
 
-        // 1. Check bundle
-        if let url = Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Labyrinths/audio") {
+        // 1. Check bundle (folder reference copies as "audio/" at bundle root)
+        if let url = Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "audio") {
             return playURL(url)
         }
 
@@ -62,7 +62,7 @@ class TTSService: ObservableObject {
         let ext = (filename as NSString).pathExtension
 
         // Already in bundle — nothing to do
-        if Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "Labyrinths/audio") != nil {
+        if Bundle.main.url(forResource: name, withExtension: ext, subdirectory: "audio") != nil {
             return
         }
 

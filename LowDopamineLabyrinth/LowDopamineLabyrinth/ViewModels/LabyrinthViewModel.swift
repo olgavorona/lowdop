@@ -14,6 +14,8 @@ class LabyrinthViewModel: ObservableObject {
 
     private var startedNearStart: Bool = false
     private var visitedSegments: Set<Int> = []
+    private var passedGate: Bool = false
+    private lazy var rawGatePoint: CGPoint? = parseRawGatePoint()
 
     var scale: CGFloat {
         guard canvasSize.width > 0 else { return 1.0 }
@@ -78,15 +80,27 @@ class LabyrinthViewModel: ObservableObject {
             visitedSegments.insert(segIdx)
         }
 
+        // Check gate — penultimate solution waypoint ensures correct approach direction
+        if onPath, let raw = rawGatePoint {
+            let gate = CGPoint(x: raw.x * scale + offset.x, y: raw.y * scale + offset.y)
+            let dx = point.x - gate.x
+            let dy = point.y - gate.y
+            if sqrt(dx * dx + dy * dy) <= 30 * scale {
+                passedGate = true
+            }
+        }
+
         // Check completion — require ALL of:
         // 1. Started near start point
         // 2. Visited at least 50% of path segments
-        // 3. Currently near end point
+        // 3. Passed through the gate (penultimate solution waypoint)
+        // 4. Currently near end point
         if onPath {
             let totalSegments = labyrinth.pathData.segments.count
             let requiredSegments = max(1, Int(Double(totalSegments) * 0.5))
             if startedNearStart
                 && visitedSegments.count >= requiredSegments
+                && passedGate
                 && validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 20 * scale) {
                 isCompleted = true
                 showSolution = true
@@ -109,6 +123,33 @@ class LabyrinthViewModel: ObservableObject {
         hasStartedDrawing = false
         startedNearStart = false
         visitedSegments = []
+        passedGate = false
+    }
+
+    /// Parse the penultimate waypoint from the solution path (e.g. "M 76 82 L 188 82 L ...").
+    /// Returns raw (unscaled) coordinates — scale at usage time.
+    private func parseRawGatePoint() -> CGPoint? {
+        let path = labyrinth.pathData.solutionPath
+        guard !path.isEmpty else { return nil }
+        // Normalize commas to spaces, then split
+        let normalized = path.replacingOccurrences(of: ",", with: " ")
+        let tokens = normalized.split(separator: " ").map(String.init)
+        var waypoints: [(Double, Double)] = []
+        var i = 0
+        while i < tokens.count {
+            let cmd = tokens[i]
+            if (cmd == "M" || cmd == "L"), i + 2 < tokens.count,
+               let x = Double(tokens[i + 1]),
+               let y = Double(tokens[i + 2]) {
+                waypoints.append((x, y))
+                i += 3
+            } else {
+                i += 1
+            }
+        }
+        guard waypoints.count >= 2 else { return nil }
+        let gate = waypoints[waypoints.count - 2]
+        return CGPoint(x: CGFloat(gate.0), y: CGFloat(gate.1))
     }
 
     var mazePath: Path {

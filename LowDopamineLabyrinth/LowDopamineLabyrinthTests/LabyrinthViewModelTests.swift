@@ -30,7 +30,7 @@ final class LabyrinthViewModelTests: XCTestCase {
             completionMessage: "Done!",
             pathData: PathData(
                 svgPath: "M10,10 L150,10 L150,150 L290,150 L290,290",
-                solutionPath: "M10,10 L290,290",
+                solutionPath: "M 10 10 L 150 10 L 150 150 L 290 150 L 290 290",
                 width: 30,
                 complexity: "easy",
                 mazeType: "grid",
