@@ -6,75 +6,78 @@ struct CompletionView: View {
     let onRepeat: () -> Void
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    /// iPhone landscape = compact, iPad = regular
+    private var isCompact: Bool { verticalSizeClass == .compact }
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: isCompact ? 10 : 20) {
+                // Character celebration
+                CharacterMarkerView(
+                    character: labyrinth.characterEnd,
+                    scale: isCompact ? 1.0 : 2.5,
+                    isStart: false
+                )
 
-            // Character celebration
-            CharacterMarkerView(
-                character: labyrinth.characterEnd,
-                scale: 2.5,
-                isStart: false
-            )
-
-            Text(labyrinth.completionMessage)
-                .font(.system(size: 22, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-
-            // Educational section
-            VStack(spacing: 12) {
-                Text(labyrinth.educationalQuestion)
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                Text(labyrinth.completionMessage)
+                    .font(.system(size: isCompact ? 16 : 22, weight: .bold, design: .rounded))
                     .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal)
 
-                HStack(spacing: 8) {
-                    Image(systemName: "lightbulb.fill")
-                        .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
-                    Text(labyrinth.funFact)
-                        .font(.system(size: 14, design: .rounded))
-                        .foregroundColor(.secondary)
-                }
-                .padding()
-                .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
-                .cornerRadius(12)
-            }
-            .padding(.horizontal, 24)
+                // Educational section
+                VStack(spacing: isCompact ? 6 : 12) {
+                    Text(labyrinth.educationalQuestion)
+                        .font(.system(size: isCompact ? 13 : 16, weight: .medium, design: .rounded))
+                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                        .multilineTextAlignment(.center)
 
-            Spacer()
-
-            // Actions
-            VStack(spacing: 12) {
-                Button(action: onNext) {
-                    HStack {
-                        Text("Next Labyrinth")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                        Image(systemName: "arrow.right")
+                    HStack(spacing: 8) {
+                        Image(systemName: "lightbulb.fill")
+                            .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
+                        Text(labyrinth.funFact)
+                            .font(.system(size: isCompact ? 12 : 14, design: .rounded))
+                            .foregroundColor(.secondary)
                     }
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(Color(hex: "#6BBF7B") ?? .green)
-                    .cornerRadius(16)
+                    .padding(isCompact ? 8 : 16)
+                    .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+                    .cornerRadius(12)
                 }
+                .padding(.horizontal, 24)
 
-                Button(action: onRepeat) {
-                    Text("Try Again")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundColor(.secondary)
+                // Actions
+                VStack(spacing: isCompact ? 6 : 12) {
+                    Button(action: onNext) {
+                        HStack {
+                            Text("Next Labyrinth")
+                                .font(.system(size: isCompact ? 16 : 20, weight: .bold, design: .rounded))
+                            Image(systemName: "arrow.right")
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: isCompact ? 40 : 56)
+                        .background(Color(hex: "#6BBF7B") ?? .green)
+                        .cornerRadius(isCompact ? 12 : 16)
+                    }
+
+                    Button(action: onRepeat) {
+                        Text("Try Again")
+                            .font(.system(size: isCompact ? 14 : 16, weight: .medium, design: .rounded))
+                            .foregroundColor(.secondary)
+                    }
+                    .frame(height: isCompact ? 32 : 44)
                 }
-                .frame(height: 44)
+                .padding(.horizontal, isCompact ? 24 : 40)
+                .padding(.bottom, isCompact ? 12 : 24)
             }
-            .padding(.horizontal, 40)
-            .padding(.bottom, 24)
+            .padding(.top, isCompact ? 12 : 20)
         }
         .background(Color.white)
         .cornerRadius(24)
         .shadow(color: .black.opacity(0.15), radius: 20, y: 10)
-        .padding(20)
+        .padding(isCompact ? 10 : 20)
         .onAppear {
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

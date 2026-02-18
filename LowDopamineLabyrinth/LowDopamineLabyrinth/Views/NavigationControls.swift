@@ -9,15 +9,24 @@ struct NavigationControls: View {
     var onBack: (() -> Void)? = nil
     @Binding var ttsEnabled: Bool
 
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    /// iPhone landscape = compact, iPad = regular
+    private var isCompact: Bool { verticalSizeClass == .compact }
+    private var buttonSize: CGFloat { isCompact ? 36 : 48 }
+    private var iconSize: CGFloat { isCompact ? 13 : 16 }
+    private var chevronSize: CGFloat { isCompact ? 15 : 18 }
+    private var counterSize: CGFloat { isCompact ? 13 : 15 }
+
     var body: some View {
-        HStack {
+        HStack(spacing: isCompact ? 8 : 12) {
             // Close (X) — left, circular
             if let onBack = onBack {
                 Button(action: onBack) {
                     Image(systemName: "xmark")
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: iconSize, weight: .semibold))
                         .foregroundColor(.white)
-                        .frame(width: 48, height: 48)
+                        .frame(width: buttonSize, height: buttonSize)
                         .background(.ultraThinMaterial)
                         .clipShape(Circle())
                 }
@@ -26,27 +35,27 @@ struct NavigationControls: View {
             Spacer()
 
             // Centered pill: prev | counter | next
-            HStack(spacing: 16) {
+            HStack(spacing: isCompact ? 10 : 16) {
                 Button(action: onPrevious) {
                     Image(systemName: "chevron.left")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.system(size: chevronSize, weight: .semibold))
                         .foregroundColor(currentIndex > 0 ? .white : .white.opacity(0.3))
                 }
                 .disabled(currentIndex <= 0)
 
                 Text("\(currentIndex + 1) / \(total)")
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .font(.system(size: counterSize, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.9))
 
                 Button(action: onNext) {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.system(size: chevronSize, weight: .semibold))
                         .foregroundColor(currentIndex < total - 1 ? .white : .white.opacity(0.3))
                 }
                 .disabled(currentIndex >= total - 1)
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 10)
+            .padding(.horizontal, isCompact ? 14 : 20)
+            .padding(.vertical, isCompact ? 6 : 10)
             .background(.ultraThinMaterial)
             .clipShape(Capsule())
 
@@ -55,9 +64,9 @@ struct NavigationControls: View {
             // Sound toggle — circular
             Button(action: { ttsEnabled.toggle() }) {
                 Image(systemName: ttsEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: iconSize, weight: .semibold))
                     .foregroundColor(.white)
-                    .frame(width: 48, height: 48)
+                    .frame(width: buttonSize, height: buttonSize)
                     .background(.ultraThinMaterial)
                     .clipShape(Circle())
             }
@@ -65,14 +74,14 @@ struct NavigationControls: View {
             // Reset — circular
             Button(action: onReset) {
                 Image(systemName: "arrow.counterclockwise")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: iconSize, weight: .semibold))
                     .foregroundColor(.white)
-                    .frame(width: 48, height: 48)
+                    .frame(width: buttonSize, height: buttonSize)
                     .background(.ultraThinMaterial)
                     .clipShape(Circle())
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.horizontal, isCompact ? 8 : 12)
+        .padding(.vertical, isCompact ? 4 : 8)
     }
 }

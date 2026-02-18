@@ -4,7 +4,11 @@ struct LabyrinthGameView: View {
     @ObservedObject var viewModel: LabyrinthViewModel
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     let onComplete: () -> Void
+
+    /// iPhone landscape = compact, iPad = regular
+    private var isCompact: Bool { verticalSizeClass == .compact }
 
     var body: some View {
         ZStack {
@@ -13,20 +17,21 @@ struct LabyrinthGameView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Compact top bar — title + instruction
+                // Top bar — title + instruction (compact on iPhone, full on iPad)
                 HStack(spacing: 8) {
                     Text(viewModel.labyrinth.title)
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .font(.system(size: isCompact ? 12 : 15, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
+                        .layoutPriority(1)
 
                     Text(viewModel.labyrinth.ttsInstruction)
-                        .font(.system(size: 12, design: .rounded))
+                        .font(.system(size: isCompact ? 11 : 14, design: .rounded))
                         .foregroundColor(.white.opacity(0.8))
-                        .lineLimit(1)
+                        .lineLimit(isCompact ? 1 : 2)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 12)
-                .padding(.vertical, 6)
+                .padding(.vertical, isCompact ? 4 : 8)
                 .background(Color.black.opacity(0.25))
 
                 // Full-width maze
