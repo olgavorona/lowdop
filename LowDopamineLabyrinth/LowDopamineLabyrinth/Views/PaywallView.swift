@@ -5,6 +5,7 @@ struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
     @State private var isPurchasing = false
+    var onSkip: (() -> Void)? = nil
 
     var body: some View {
         VStack(spacing: 24) {
@@ -67,7 +68,10 @@ struct PaywallView: View {
             .padding(.horizontal, 40)
 
             #if targetEnvironment(simulator)
-            Button(action: { dismiss() }) {
+            Button(action: {
+                onSkip?()
+                dismiss()
+            }) {
                 Text("Skip (Simulator)")
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(.white)

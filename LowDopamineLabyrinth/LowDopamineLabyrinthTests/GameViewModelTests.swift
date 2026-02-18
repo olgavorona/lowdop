@@ -368,6 +368,42 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertEqual(vm.currentIndex, 1)
     }
 
+    func testMaybeLaterClosesGameForFreeUser() {
+        // Simulate: free user blocked → dismisses paywall → should go back to grid
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+        vm.labyrinths = makeSampleLabyrinths(count: 5)
+
+        vm.selectLabyrinth(vm.labyrinths[0])
+        vm.completeCurrentLabyrinth()
+        XCTAssertTrue(vm.isPlaying)
+        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after 1 play")
+
+        // "Maybe Later" dismisses paywall → closeGame() to return to grid
+        vm.closeGame()
+        XCTAssertFalse(vm.isPlaying, "Should return to grid after Maybe Later")
+    }
+
+    func testFreeUserCannotStartLabyrinthAfterDailyLimit() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+        vm.labyrinths = makeSampleLabyrinths(count: 5)
+
+        // Use up the daily play
+        prefs.recordPlay()
+        XCTAssertFalse(vm.canProceed(), "Should not be able to play after daily limit")
+
+        // Grid should block — canProceed() is false so selectLabyrinth should not be called
+        // (This is enforced in the view layer, but we verify the gate here)
+        XCTAssertFalse(vm.isPlaying)
+    }
+
     // MARK: - Sequential Unlock / Progress Tests
 
     func testSequentialUnlockLogic() {

@@ -6,6 +6,7 @@ struct LabyrinthListView: View {
     @EnvironmentObject var ttsService: TTSService
     @State private var showCompletion = false
     @State private var showPaywall = false
+    @State private var paywallSkipped = false
     @State private var labyrinthVM: LabyrinthViewModel?
 
     var body: some View {
@@ -75,20 +76,18 @@ struct LabyrinthListView: View {
         }
         .animation(.easeInOut(duration: 0.3), value: showCompletion)
         .sheet(isPresented: $showPaywall, onDismiss: {
-            // After paywall dismiss: advance if purchased or on simulator
-            if gameViewModel.isPremium {
+            if gameViewModel.isPremium || paywallSkipped {
+                // Purchased or skipped: advance to next labyrinth
+                paywallSkipped = false
                 gameViewModel.nextLabyrinth()
                 updateVM()
             } else {
-                #if targetEnvironment(simulator)
-                // Simulator: skip always advances
-                gameViewModel.nextLabyrinth()
-                updateVM()
-                #endif
-                // Real device, not premium: stay on current labyrinth
+                // "Maybe Later": go back to main grid
+                ttsService.stop()
+                gameViewModel.closeGame()
             }
         }) {
-            PaywallView()
+            PaywallView(onSkip: { paywallSkipped = true })
         }
     }
 

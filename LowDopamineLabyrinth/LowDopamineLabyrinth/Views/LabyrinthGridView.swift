@@ -4,9 +4,13 @@ struct LabyrinthGridView: View {
     @EnvironmentObject var gameViewModel: GameViewModel
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var progressTracker: ProgressTracker
+    @EnvironmentObject var subscriptionManager: SubscriptionManager
     @State private var showAgeSelector = false
     @State private var showParentalGate = false
     @State private var showPrivacyPolicy = false
+    @State private var showPaywall = false
+    @State private var paywallSkipped = false
+    @State private var pendingLabyrinth: Labyrinth? = nil
     @State private var parentalGateAction: ParentalGateAction = .privacyPolicy
 
     private enum ParentalGateAction {
@@ -81,6 +85,37 @@ struct LabyrinthGridView: View {
                     .frame(height: 8)
                     .padding(.horizontal, 20)
 
+                    // "Come back tomorrow" banner for free users who used their daily play
+                    if !gameViewModel.canProceed() {
+                        HStack(spacing: 12) {
+                            Image(systemName: "moon.zzz.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("See you tomorrow!")
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                                Text("Your free labyrinth for today is done. Come back tomorrow for a new one!")
+                                    .font(.system(size: 13, design: .rounded))
+                                    .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
+                            }
+                            Spacer()
+                            Button(action: { showPaywall = true }) {
+                                Text("Unlock All")
+                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 14)
+                                    .padding(.vertical, 8)
+                                    .background(Color(hex: "#5BA8D9") ?? .blue)
+                                    .cornerRadius(10)
+                            }
+                        }
+                        .padding(16)
+                        .background(Color(hex: "#5BA8D9")?.opacity(0.1) ?? .blue.opacity(0.1))
+                        .cornerRadius(14)
+                        .padding(.horizontal, 20)
+                    }
+
                     // Grid — 4 columns for landscape
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(Array(gameViewModel.labyrinths.enumerated()), id: \.element.id) { index, labyrinth in
@@ -93,7 +128,12 @@ struct LabyrinthGridView: View {
                             )
                             .onTapGesture {
                                 if isUnlocked {
-                                    gameViewModel.selectLabyrinth(labyrinth)
+                                    if gameViewModel.canProceed() {
+                                        gameViewModel.selectLabyrinth(labyrinth)
+                                    } else {
+                                        pendingLabyrinth = labyrinth
+                                        showPaywall = true
+                                    }
                                 }
                             }
                         }
@@ -138,6 +178,17 @@ struct LabyrinthGridView: View {
         .sheet(isPresented: $showPrivacyPolicy) {
             PrivacyPolicyView()
         }
+        .sheet(isPresented: $showPaywall, onDismiss: {
+            if let lab = pendingLabyrinth, (gameViewModel.isPremium || paywallSkipped) {
+                paywallSkipped = false
+                pendingLabyrinth = nil
+                gameViewModel.selectLabyrinth(lab)
+            } else {
+                pendingLabyrinth = nil
+            }
+        }) {
+            PaywallView(onSkip: { paywallSkipped = true })
+        }
     }
 
     private var progressFraction: CGFloat {
@@ -156,22 +207,31 @@ struct LabyrinthCard: View {
         VStack(spacing: 8) {
             // Colored maze thumbnail area
             ZStack {
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(Color(hex: labyrinth.visualTheme.backgroundColor) ?? .blue)
-                    .frame(minHeight: 80)
-                    .aspectRatio(1.1, contentMode: .fit)
-
-                if isLocked {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 28, weight: .medium))
-                        .foregroundColor(.white.opacity(0.5))
-                } else {
-                    CharacterMarkerView(
-                        character: labyrinth.characterEnd,
-                        scale: 2.5,
-                        isStart: false
-                    )
+                GeometryReader { geo in
+                    let thumbSize = min(geo.size.width, geo.size.height)
+                    let charScale = thumbSize * 0.5 / 80 // 50% of square, end marker = 80*scale
+                    Color.clear
+                    ZStack {
+                        if isLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 28, weight: .medium))
+                                .foregroundColor(.white.opacity(0.5))
+                        } else {
+                            CharacterMarkerView(
+                                character: labyrinth.characterEnd,
+                                scale: charScale,
+                                isStart: false
+                            )
+                        }
+                    }
+                    .frame(width: geo.size.width, height: geo.size.height)
                 }
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(Color(hex: labyrinth.visualTheme.backgroundColor) ?? .blue)
+                )
+                .aspectRatio(1.1, contentMode: .fit)
+                .frame(minHeight: 80)
 
                 // Completion star badge (top-right corner)
                 if isCompleted {
