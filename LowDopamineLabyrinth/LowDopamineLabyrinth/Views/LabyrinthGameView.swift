@@ -17,21 +17,21 @@ struct LabyrinthGameView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Top bar — title + instruction (compact on iPhone, full on iPad)
-                HStack(spacing: 8) {
+                // Top bar — title + instruction (minimal on iPhone, full on iPad)
+                HStack(spacing: 6) {
                     Text(viewModel.labyrinth.title)
-                        .font(.system(size: isCompact ? 12 : 15, weight: .bold, design: .rounded))
+                        .font(.system(size: isCompact ? 11 : 15, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .layoutPriority(1)
 
                     Text(viewModel.labyrinth.ttsInstruction)
-                        .font(.system(size: isCompact ? 11 : 14, design: .rounded))
+                        .font(.system(size: isCompact ? 10 : 14, design: .rounded))
                         .foregroundColor(.white.opacity(0.8))
                         .lineLimit(isCompact ? 1 : 2)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 12)
-                .padding(.vertical, isCompact ? 4 : 8)
+                .padding(.horizontal, isCompact ? 8 : 12)
+                .padding(.vertical, isCompact ? 2 : 8)
                 .background(Color.black.opacity(0.25))
 
                 // Full-width maze

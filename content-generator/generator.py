@@ -462,9 +462,7 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
         completion_file = f"{lab_id}_completion.mp3"
         completion_path = audio_dir / completion_file
         if not completion_path.exists():
-            char_name = lab.get("character_end", {}).get("name", "")
-            intro = f"You found {char_name}! " if char_name else ""
-            completion_text = f"{intro}{lab.get('completion_message', '')} {lab.get('educational_question', '')}"
+            completion_text = f"{lab.get('completion_message', '')} {lab.get('educational_question', '')}"
             if completion_text.strip():
                 print(f"  Generating completion audio for {lab_id}...")
                 _call_elevenlabs(api_url, headers, completion_text, completion_path)

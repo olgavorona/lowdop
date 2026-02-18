@@ -13,13 +13,13 @@ struct NavigationControls: View {
 
     /// iPhone landscape = compact, iPad = regular
     private var isCompact: Bool { verticalSizeClass == .compact }
-    private var buttonSize: CGFloat { isCompact ? 36 : 48 }
-    private var iconSize: CGFloat { isCompact ? 13 : 16 }
-    private var chevronSize: CGFloat { isCompact ? 15 : 18 }
-    private var counterSize: CGFloat { isCompact ? 13 : 15 }
+    private var buttonSize: CGFloat { isCompact ? 28 : 48 }
+    private var iconSize: CGFloat { isCompact ? 11 : 16 }
+    private var chevronSize: CGFloat { isCompact ? 13 : 18 }
+    private var counterSize: CGFloat { isCompact ? 11 : 15 }
 
     var body: some View {
-        HStack(spacing: isCompact ? 8 : 12) {
+        HStack(spacing: isCompact ? 6 : 12) {
             // Close (X) — left, circular
             if let onBack = onBack {
                 Button(action: onBack) {
@@ -54,8 +54,8 @@ struct NavigationControls: View {
                 }
                 .disabled(currentIndex >= total - 1)
             }
-            .padding(.horizontal, isCompact ? 14 : 20)
-            .padding(.vertical, isCompact ? 6 : 10)
+            .padding(.horizontal, isCompact ? 10 : 20)
+            .padding(.vertical, isCompact ? 4 : 10)
             .background(.ultraThinMaterial)
             .clipShape(Capsule())
 
@@ -81,7 +81,7 @@ struct NavigationControls: View {
                     .clipShape(Circle())
             }
         }
-        .padding(.horizontal, isCompact ? 8 : 12)
-        .padding(.vertical, isCompact ? 4 : 8)
+        .padding(.horizontal, isCompact ? 6 : 12)
+        .padding(.vertical, isCompact ? 2 : 8)
     }
 }

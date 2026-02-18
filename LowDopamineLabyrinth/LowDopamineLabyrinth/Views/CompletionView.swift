@@ -79,6 +79,9 @@ struct CompletionView: View {
         .shadow(color: .black.opacity(0.15), radius: 20, y: 10)
         .padding(isCompact ? 10 : 20)
         .onAppear {
+            // Stop any instruction audio that may still be playing
+            ttsService.stop()
+            // Play completion narration after a brief pause
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     ttsService.playAudio(labyrinth.audioCompletion)
