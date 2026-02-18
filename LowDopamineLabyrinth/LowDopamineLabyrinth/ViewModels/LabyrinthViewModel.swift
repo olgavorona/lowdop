@@ -81,7 +81,7 @@ class LabyrinthViewModel: ObservableObject {
         }
 
         // Check gate — penultimate solution waypoint ensures correct approach direction
-        if onPath, let raw = rawGatePoint {
+        if let raw = rawGatePoint {
             let gate = CGPoint(x: raw.x * scale + offset.x, y: raw.y * scale + offset.y)
             let dx = point.x - gate.x
             let dy = point.y - gate.y
@@ -94,17 +94,15 @@ class LabyrinthViewModel: ObservableObject {
         // 1. Started near start point
         // 2. Visited at least 50% of path segments
         // 3. Passed through the gate (penultimate solution waypoint)
-        // 4. Currently near end point
-        if onPath {
-            let totalSegments = labyrinth.pathData.segments.count
-            let requiredSegments = max(1, Int(Double(totalSegments) * 0.5))
-            if startedNearStart
-                && visitedSegments.count >= requiredSegments
-                && passedGate
-                && validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 20 * scale) {
-                isCompleted = true
-                showSolution = true
-            }
+        // 4. Currently near end point (generous radius for kids)
+        let totalSegments = labyrinth.pathData.segments.count
+        let requiredSegments = max(1, Int(Double(totalSegments) * 0.5))
+        if startedNearStart
+            && visitedSegments.count >= requiredSegments
+            && passedGate
+            && validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 40 * scale) {
+            isCompleted = true
+            showSolution = true
         }
     }
 

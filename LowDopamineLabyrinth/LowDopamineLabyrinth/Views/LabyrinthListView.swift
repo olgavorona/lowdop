@@ -93,6 +93,11 @@ struct LabyrinthListView: View {
             }
             labyrinthVM = newVM
             ttsService.prepareAudio(for: lab)
+            if preferences.ttsEnabled {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    ttsService.playAudio(lab.audioInstruction)
+                }
+            }
         }
     }
 }

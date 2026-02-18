@@ -117,14 +117,7 @@ struct LabyrinthCard: View {
                     .frame(minHeight: 100)
                     .aspectRatio(1.1, contentMode: .fit)
 
-                if isCompleted {
-                    // Show gold star badge for completed
-                    StarShape(points: 5, innerRatio: 0.45)
-                        .fill(Color(hex: "#F1C40F") ?? .yellow)
-                        .frame(width: 36, height: 36)
-                        .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
-                } else if let endName = labyrinth.characterEnd.name {
-                    // Show end character info for Denny universe
+                if let endName = labyrinth.characterEnd.name {
                     VStack(spacing: 4) {
                         CharacterMarkerView(
                             character: labyrinth.characterEnd,
@@ -136,15 +129,29 @@ struct LabyrinthCard: View {
                             .foregroundColor(.white.opacity(0.9))
                     }
                 } else {
-                    // Fallback: index number
                     Text("\(index)")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
                         .foregroundColor(.white.opacity(0.85))
                 }
+
+                // Completion star badge (top-right corner)
+                if isCompleted {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            StarShape(points: 5, innerRatio: 0.45)
+                                .fill(Color(hex: "#F1C40F") ?? .yellow)
+                                .frame(width: 28, height: 28)
+                                .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+                                .padding(8)
+                        }
+                        Spacer()
+                    }
+                }
             }
 
-            // Title
-            Text(labyrinth.title)
+            // Title with level number
+            Text("\(index). \(labyrinth.title)")
                 .font(.system(size: 16, weight: .semibold, design: .rounded))
                 .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                 .lineLimit(2)

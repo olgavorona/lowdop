@@ -14,19 +14,19 @@ struct LabyrinthGameView: View {
 
             VStack(spacing: 0) {
                 // Story header
-                VStack(spacing: 4) {
+                VStack(spacing: 6) {
                     Text(viewModel.labyrinth.title)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
-                    Text(viewModel.labyrinth.storySetup)
-                        .font(.system(size: 14, design: .rounded))
+                    Text(viewModel.labyrinth.ttsInstruction)
+                        .font(.system(size: 20, design: .rounded))
                         .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.horizontal)
-                .padding(.top, 8)
-                .padding(.bottom, 8)
+                .padding(.top, 4)
+                .padding(.bottom, 4)
 
                 // Maze area with GeometryReader
                 GeometryReader { geometry in
@@ -88,13 +88,6 @@ struct LabyrinthGameView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 4)
-            }
-        }
-        .onAppear {
-            if preferences.ttsEnabled {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    ttsService.playAudio(viewModel.labyrinth.audioInstruction)
-                }
             }
         }
         .onChange(of: viewModel.isCompleted) { completed in
