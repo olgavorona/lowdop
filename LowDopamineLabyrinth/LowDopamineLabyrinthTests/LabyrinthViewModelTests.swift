@@ -55,7 +55,7 @@ final class LabyrinthViewModelTests: XCTestCase {
         return vm
     }
 
-    // MARK: - Drawing always works (no blocked strokes)
+    // MARK: - Drawing always works
 
     func testDrawingAlwaysAppends() {
         let vm = setupVM()
@@ -65,21 +65,9 @@ final class LabyrinthViewModelTests: XCTestCase {
         XCTAssertTrue(vm.hasStartedDrawing)
         XCTAssertEqual(vm.currentStroke.count, 1)
 
-        // Even off-path points are drawn
+        // More points are drawn
         vm.handleDragPoint(CGPoint(x: 200, y: 200))
         XCTAssertEqual(vm.currentStroke.count, 2)
-    }
-
-    func testOffPathPointsChangeColor() {
-        let vm = setupVM()
-
-        // Start on path
-        vm.handleDragPoint(CGPoint(x: 12, y: 12))
-        XCTAssertTrue(vm.isOnPath)
-
-        // Move off path — isOnPath should turn false
-        vm.handleDragPoint(CGPoint(x: 50, y: 200))
-        XCTAssertFalse(vm.isOnPath)
     }
 
     // MARK: - Stroke management
@@ -117,75 +105,60 @@ final class LabyrinthViewModelTests: XCTestCase {
         XCTAssertEqual(vm.drawingStrokes[1].count, 2)
     }
 
-    // MARK: - Completion validation
+    // MARK: - Completion (paper-like: just reach the end)
 
-    func testCompletionRequiresStartNearStartPoint() {
+    func testCompletionByReachingEndPoint() {
         let vm = setupVM()
 
-        // Start far from start point (150,150 instead of 10,10)
-        vm.handleDragPoint(CGPoint(x: 150, y: 150))
+        // Start anywhere and draw to the end
+        vm.handleDragPoint(CGPoint(x: 50, y: 50))
+        vm.handleDragPoint(CGPoint(x: 288, y: 288))
 
-        // Walk through remaining segments
-        for x in stride(from: 160.0, through: 290.0, by: 20.0) {
-            vm.handleDragPoint(CGPoint(x: x, y: 150))
-        }
-        for y in stride(from: 160.0, through: 290.0, by: 20.0) {
-            vm.handleDragPoint(CGPoint(x: 290, y: y))
-        }
-
-        XCTAssertFalse(vm.isCompleted, "Should not complete when drawing didn't start near start")
+        XCTAssertTrue(vm.isCompleted, "Should complete when reaching the end point")
+        XCTAssertTrue(vm.showSolution, "Should show solution on completion")
     }
 
-    func testCompletionRequiresEnoughSegmentsVisited() {
+    func testCompletionFromStartFollowingPath() {
         let vm = setupVM()
 
-        // Start near start
+        // Start at start, follow path to end
         vm.handleDragPoint(CGPoint(x: 12, y: 12))
-
-        // Only walk segment 0 (1 out of 4 = 25%, need 50%)
-        for x in stride(from: 20.0, through: 140.0, by: 10.0) {
-            vm.handleDragPoint(CGPoint(x: x, y: 10))
-        }
-
-        XCTAssertFalse(vm.isCompleted, "Should not complete with only 1 of 4 segments visited")
-    }
-
-    func testCompletionByFollowingFullPath() {
-        let vm = setupVM()
-
-        // Start at start
-        vm.handleDragPoint(CGPoint(x: 12, y: 12))
-
-        // Walk along segment 0 (horizontal at y=10)
         for x in stride(from: 20.0, through: 150.0, by: 20.0) {
             vm.handleDragPoint(CGPoint(x: x, y: 10))
         }
-
-        // Walk along segment 1 (vertical at x=150)
         for y in stride(from: 20.0, through: 150.0, by: 20.0) {
             vm.handleDragPoint(CGPoint(x: 150, y: y))
         }
-
-        // Walk along segment 2 (horizontal at y=150)
         for x in stride(from: 160.0, through: 290.0, by: 20.0) {
             vm.handleDragPoint(CGPoint(x: x, y: 150))
         }
-
-        // Walk along segment 3 (vertical at x=290)
         for y in stride(from: 160.0, through: 290.0, by: 20.0) {
             vm.handleDragPoint(CGPoint(x: 290, y: y))
         }
 
-        XCTAssertTrue(vm.isCompleted, "Should complete after tracing the full path from start to end")
+        XCTAssertTrue(vm.isCompleted, "Should complete after tracing the full path")
     }
 
-    func testCannotCompleteByTouchingEndOnly() {
+    func testNotCompleteWithoutReachingEnd() {
         let vm = setupVM()
 
-        // Just touch the end point directly — has no startedNearStart
-        vm.handleDragPoint(CGPoint(x: 288, y: 288))
+        // Draw but don't reach end
+        vm.handleDragPoint(CGPoint(x: 12, y: 12))
+        vm.handleDragPoint(CGPoint(x: 150, y: 150))
 
-        XCTAssertFalse(vm.isCompleted, "Should not complete by just touching end point")
+        XCTAssertFalse(vm.isCompleted, "Should not complete without reaching end point")
+    }
+
+    func testNoDragAfterCompletion() {
+        let vm = setupVM()
+
+        // Complete the maze
+        vm.handleDragPoint(CGPoint(x: 288, y: 288))
+        XCTAssertTrue(vm.isCompleted)
+
+        let strokeCount = vm.currentStroke.count
+        vm.handleDragPoint(CGPoint(x: 100, y: 100))
+        XCTAssertEqual(vm.currentStroke.count, strokeCount, "Should not add points after completion")
     }
 
     // MARK: - Reset
@@ -201,9 +174,31 @@ final class LabyrinthViewModelTests: XCTestCase {
 
         XCTAssertTrue(vm.drawingStrokes.isEmpty)
         XCTAssertTrue(vm.currentStroke.isEmpty)
-        XCTAssertTrue(vm.isOnPath)
         XCTAssertFalse(vm.isCompleted)
         XCTAssertFalse(vm.showSolution)
         XCTAssertFalse(vm.hasStartedDrawing)
+    }
+
+    // MARK: - Scale and offset
+
+    func testScaleCalculation() {
+        let lab = makeSampleLabyrinth()
+        let vm = LabyrinthViewModel(labyrinth: lab)
+        vm.canvasSize = CGSize(width: 600, height: 600)
+
+        // Canvas is 300x300, view is 600x600 → scale = 2.0
+        XCTAssertEqual(vm.scale, 2.0, accuracy: 0.01)
+    }
+
+    func testStartAndEndPointsScale() {
+        let lab = makeSampleLabyrinth()
+        let vm = LabyrinthViewModel(labyrinth: lab)
+        vm.canvasSize = CGSize(width: 300, height: 300)
+
+        // Scale 1:1, offset 0 → points match raw data
+        XCTAssertEqual(vm.startPoint.x, 10, accuracy: 1)
+        XCTAssertEqual(vm.startPoint.y, 10, accuracy: 1)
+        XCTAssertEqual(vm.endPoint.x, 290, accuracy: 1)
+        XCTAssertEqual(vm.endPoint.y, 290, accuracy: 1)
     }
 }

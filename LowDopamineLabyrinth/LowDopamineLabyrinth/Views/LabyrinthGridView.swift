@@ -5,6 +5,15 @@ struct LabyrinthGridView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var progressTracker: ProgressTracker
     @State private var showAgeSelector = false
+    @State private var showPaywallAfterGate = false
+    @State private var showParentalGate = false
+    @State private var showPrivacyPolicy = false
+    @State private var parentalGateAction: ParentalGateAction = .privacyPolicy
+
+    private enum ParentalGateAction {
+        case privacyPolicy
+        case ageSelector
+    }
 
     private let columns = [
         GridItem(.flexible(), spacing: 20),
@@ -26,8 +35,11 @@ struct LabyrinthGridView: View {
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
-                        // Age badge — tappable to change
-                        Button(action: { showAgeSelector = true }) {
+                        // Age badge — tappable to change (behind parental gate)
+                        Button(action: {
+                            parentalGateAction = .ageSelector
+                            showParentalGate = true
+                        }) {
                             HStack(spacing: 4) {
                                 Text(preferences.ageGroup.displayName + " yrs")
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
@@ -39,6 +51,16 @@ struct LabyrinthGridView: View {
                             .padding(.vertical, 6)
                             .background(Color(hex: "#6BBF7B") ?? .green)
                             .cornerRadius(12)
+                        }
+                        // For Parents button
+                        Button(action: {
+                            parentalGateAction = .privacyPolicy
+                            showParentalGate = true
+                        }) {
+                            Image(systemName: "lock.shield")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.5) ?? .gray)
+                                .frame(width: 32, height: 32)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -85,7 +107,18 @@ struct LabyrinthGridView: View {
         .fullScreenCover(isPresented: $gameViewModel.isPlaying) {
             LabyrinthListView()
         }
-        .sheet(isPresented: $gameViewModel.showPaywall) {
+        .fullScreenCover(isPresented: $gameViewModel.showPaywall) {
+            ParentalGateView(
+                onSuccess: {
+                    gameViewModel.showPaywall = false
+                    showPaywallAfterGate = true
+                },
+                onCancel: {
+                    gameViewModel.showPaywall = false
+                }
+            )
+        }
+        .sheet(isPresented: $showPaywallAfterGate) {
             PaywallView()
         }
         .sheet(isPresented: $showAgeSelector) {
@@ -94,6 +127,25 @@ struct LabyrinthGridView: View {
                 gameViewModel.loadLabyrinths()
                 showAgeSelector = false
             })
+        }
+        .fullScreenCover(isPresented: $showParentalGate) {
+            ParentalGateView(
+                onSuccess: {
+                    showParentalGate = false
+                    switch parentalGateAction {
+                    case .privacyPolicy:
+                        showPrivacyPolicy = true
+                    case .ageSelector:
+                        showAgeSelector = true
+                    }
+                },
+                onCancel: {
+                    showParentalGate = false
+                }
+            )
+        }
+        .sheet(isPresented: $showPrivacyPolicy) {
+            PrivacyPolicyView()
         }
     }
 
@@ -117,17 +169,12 @@ struct LabyrinthCard: View {
                     .frame(minHeight: 100)
                     .aspectRatio(1.1, contentMode: .fit)
 
-                if let endName = labyrinth.characterEnd.name {
-                    VStack(spacing: 4) {
-                        CharacterMarkerView(
-                            character: labyrinth.characterEnd,
-                            scale: 1.5,
-                            isStart: false
-                        )
-                        Text(endName)
-                            .font(.system(size: 11, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.9))
-                    }
+                if labyrinth.characterEnd.name != nil {
+                    CharacterMarkerView(
+                        character: labyrinth.characterEnd,
+                        scale: 1.5,
+                        isStart: false
+                    )
                 } else {
                     Text("\(index)")
                         .font(.system(size: 32, weight: .bold, design: .rounded))

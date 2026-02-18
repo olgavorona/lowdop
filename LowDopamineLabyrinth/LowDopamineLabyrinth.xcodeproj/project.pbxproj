@@ -29,6 +29,9 @@
 		AA000020 /* LabyrinthGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000020 /* LabyrinthGameView.swift */; };
 		AA000021 /* LabyrinthGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000021 /* LabyrinthGridView.swift */; };
 		AA000022 /* CharacterMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000022 /* CharacterMarkerView.swift */; };
+		AA000023 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000023 /* ParentalGateView.swift */; };
+		AA000024 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000024 /* PrivacyPolicyView.swift */; };
+		AA000025 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AB000025 /* PrivacyInfo.xcprivacy */; };
 		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031 /* manifest.json */; };
 		AA200001 /* denny_001.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200001 /* denny_001.json */; };
 		AA200002 /* denny_002.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200002 /* denny_002.json */; };
@@ -77,6 +80,9 @@
 		AB000017 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		AB000018 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		AB000019 /* NavigationControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControls.swift; sourceTree = "<group>"; };
+		AB000023 /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
+		AB000024 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		AB000025 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AB000020 /* LabyrinthGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGameView.swift; sourceTree = "<group>"; };
 		AB000021 /* LabyrinthGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGridView.swift; sourceTree = "<group>"; };
 		AB000022 /* CharacterMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMarkerView.swift; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				AE000006 /* Utilities */,
 				AE000007 /* Resources */,
 				AB000003 /* Assets.xcassets */,
+				AB000025 /* PrivacyInfo.xcprivacy */,
 			);
 			path = LowDopamineLabyrinth;
 			sourceTree = "<group>";
@@ -190,6 +197,8 @@
 				AB000016 /* CompletionView.swift */,
 				AB000017 /* PaywallView.swift */,
 				AB000022 /* CharacterMarkerView.swift */,
+				AB000023 /* ParentalGateView.swift */,
+				AB000024 /* PrivacyPolicyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +391,7 @@
 				AA200020 /* denny_020.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
 				AA300001 /* audio in Resources */,
+				AA000025 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +423,8 @@
 				AA000020 /* LabyrinthGameView.swift in Sources */,
 				AA000021 /* LabyrinthGridView.swift in Sources */,
 				AA000022 /* CharacterMarkerView.swift in Sources */,
+				AA000023 /* ParentalGateView.swift in Sources */,
+				AA000024 /* PrivacyPolicyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

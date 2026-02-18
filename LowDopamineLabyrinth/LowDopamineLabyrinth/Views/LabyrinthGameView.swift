@@ -13,8 +13,9 @@ struct LabyrinthGameView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Story header
+                // Story header — centered vertically in available space above maze
                 VStack(spacing: 6) {
+                    Spacer(minLength: 0)
                     Text(viewModel.labyrinth.title)
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
@@ -23,10 +24,10 @@ struct LabyrinthGameView: View {
                         .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
+                    Spacer(minLength: 0)
                 }
                 .padding(.horizontal)
-                .padding(.top, 4)
-                .padding(.bottom, 4)
+                .frame(minHeight: 80)
 
                 // Maze area with GeometryReader
                 GeometryReader { geometry in
@@ -60,6 +61,25 @@ struct LabyrinthGameView: View {
 
                         // Drawing canvas overlay
                         DrawingCanvas(viewModel: viewModel, tolerance: preferences.pathTolerance)
+
+                        // Sound toggle — top right corner
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    preferences.ttsEnabled.toggle()
+                                }) {
+                                    Image(systemName: preferences.ttsEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.white.opacity(0.7))
+                                        .frame(width: 40, height: 40)
+                                        .background(Color.black.opacity(0.2))
+                                        .cornerRadius(10)
+                                }
+                                .padding(8)
+                            }
+                            Spacer()
+                        }
                     }
                     .onAppear {
                         viewModel.canvasSize = geometry.size
@@ -73,21 +93,6 @@ struct LabyrinthGameView: View {
                 .background(viewModel.backgroundColor.opacity(0.3))
                 .cornerRadius(12)
                 .padding(.horizontal, 8)
-
-                // TTS toggle
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        preferences.ttsEnabled.toggle()
-                    }) {
-                        Image(systemName: preferences.ttsEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
-                            .font(.system(size: 20))
-                            .foregroundColor(.white.opacity(0.7))
-                            .frame(width: 44, height: 44)
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 4)
             }
         }
         .onChange(of: viewModel.isCompleted) { completed in

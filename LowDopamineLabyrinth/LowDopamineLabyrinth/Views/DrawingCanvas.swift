@@ -38,10 +38,6 @@ struct DrawingCanvas: View {
                     DragGesture(minimumDistance: 0)
                         .onChanged { value in
                             viewModel.handleDragPoint(value.location)
-                            if !viewModel.isOnPath {
-                                let generator = UIImpactFeedbackGenerator(style: .light)
-                                generator.impactOccurred()
-                            }
                         }
                         .onEnded { _ in
                             viewModel.handleDragEnd()

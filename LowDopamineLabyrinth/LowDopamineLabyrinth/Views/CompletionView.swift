@@ -12,18 +12,11 @@ struct CompletionView: View {
             Spacer()
 
             // Character celebration
-            VStack(spacing: 8) {
-                CharacterMarkerView(
-                    character: labyrinth.characterEnd,
-                    scale: 2.5,
-                    isStart: false
-                )
-                if let name = labyrinth.characterEnd.name {
-                    Text(name)
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
-                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                }
-            }
+            CharacterMarkerView(
+                character: labyrinth.characterEnd,
+                scale: 2.5,
+                isStart: false
+            )
 
             Text(labyrinth.completionMessage)
                 .font(.system(size: 22, weight: .bold, design: .rounded))
