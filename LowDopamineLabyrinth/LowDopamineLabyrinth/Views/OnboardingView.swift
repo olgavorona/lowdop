@@ -3,6 +3,7 @@ import SwiftUI
 struct OnboardingView: View {
     @EnvironmentObject var preferences: UserPreferences
     @State private var selectedAge: AgeGroup = .young
+    @State private var showPrivacyPolicy = false
 
     var body: some View {
         VStack(spacing: 30) {
@@ -48,11 +49,21 @@ struct OnboardingView: View {
             }
             .padding(.horizontal, 40)
 
-            Spacer()
+            // Privacy policy — required by Apple during onboarding
+            Button(action: { showPrivacyPolicy = true }) {
+                Text("Privacy Policy")
+                    .font(.system(size: 13, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .underline()
+            }
+            .padding(.bottom, 16)
         }
         .padding()
         .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
         .ignoresSafeArea()
+        .sheet(isPresented: $showPrivacyPolicy) {
+            PrivacyPolicyView()
+        }
     }
 }
 

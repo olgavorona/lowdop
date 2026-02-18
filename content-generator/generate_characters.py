@@ -33,10 +33,11 @@ except ImportError:
 #
 # Style: "children's book illustration, soft watercolor style"
 # - Consistent across ALL characters for visual cohesion
-# - Circular composition (clipped to circle in the app)
-# - Clean solid-color background matching character's theme color
+# - Full character body visible with transparent background
 # - Simple, friendly, big expressive eyes — aimed at ages 3-6
 # - No text, no humans, no scary elements
+# NOTE: DALL-E 3 may not produce true transparency. Post-process
+# with background removal (e.g. rembg) for clean transparent PNGs.
 #
 # DALL-E 3 settings:
 # - Model: dall-e-3
@@ -48,8 +49,8 @@ except ImportError:
 STYLE_SUFFIX = (
     "Children's book illustration, soft watercolor style, "
     "simple and friendly, big expressive eyes, "
-    "centered in frame, circular composition, "
-    "clean solid colored background, "
+    "centered in frame, full character body visible, "
+    "transparent background, PNG with alpha channel, "
     "no text, no humans, suitable for ages 3-6"
 )
 
@@ -72,8 +73,7 @@ def build_prompt(character: dict) -> str:
     ]:
         base = base.replace(remove, "")
 
-    bg_color = character.get("color", "#4A90E2")
-    return f"{base}, on a clean {bg_color} colored circular background, {STYLE_SUFFIX}"
+    return f"{base}, {STYLE_SUFFIX}"
 
 
 def generate_character_image(

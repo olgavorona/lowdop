@@ -50,8 +50,8 @@ class LabyrinthViewModel: ObservableObject {
             currentStroke.append(point)
         }
 
-        // Completion: just reach the end point (treat like paper — no cheating checks)
-        if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 40 * scale) {
+        // Completion: reach near the end character (radius matches visible character size)
+        if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 60 * scale) {
             isCompleted = true
             showSolution = true
         }

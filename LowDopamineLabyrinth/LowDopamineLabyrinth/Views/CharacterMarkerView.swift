@@ -6,11 +6,10 @@ struct CharacterMarkerView: View {
     let character: LabyrinthCharacter
     let scale: CGFloat
     let isStart: Bool
-
-    @State private var isPulsing = false
+    var clipToCircle: Bool = true
 
     private var markerSize: CGFloat {
-        (isStart ? 32 : 28) * scale
+        (isStart ? 32 : 80) * scale
     }
 
     var body: some View {
@@ -18,24 +17,31 @@ struct CharacterMarkerView: View {
             Group {
                 if let imageAsset = character.imageAsset,
                    UIImage(named: imageAsset) != nil {
-                    Image(imageAsset)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: markerSize, height: markerSize)
-                        .clipShape(Circle())
-                        .overlay(markerBorder)
-                        .shadow(color: .black.opacity(0.2), radius: 3 * scale, y: 1 * scale)
+                    if clipToCircle {
+                        Image(imageAsset)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: markerSize, height: markerSize)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .strokeBorder(
+                                        isStart ? (Color(hex: "#27AE60") ?? .green) : Color.white,
+                                        lineWidth: 2 * scale
+                                    )
+                            )
+                            .shadow(color: .black.opacity(0.2), radius: 3 * scale, y: 1 * scale)
+                    } else {
+                        Image(imageAsset)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: markerSize, height: markerSize)
+                            .shadow(color: .black.opacity(0.3), radius: 4 * scale, y: 2 * scale)
+                    }
                 } else {
                     fallbackMarker
                 }
             }
-            .scaleEffect((!isStart && isPulsing) ? 1.15 : 1.0)
-            .animation(
-                !isStart
-                    ? .easeInOut(duration: 0.8).repeatForever(autoreverses: true)
-                    : .default,
-                value: isPulsing
-            )
 
             // Label below marker
             if isStart {
@@ -48,29 +54,13 @@ struct CharacterMarkerView: View {
                     .cornerRadius(4 * scale)
             } else if let name = character.name {
                 Text(name)
-                    .font(.system(size: max(8, 9 * scale), weight: .semibold, design: .rounded))
+                    .font(.system(size: max(10, 13 * scale), weight: .bold, design: .rounded))
                     .foregroundColor(.white)
-                    .padding(.horizontal, 3 * scale)
-                    .padding(.vertical, 1 * scale)
-                    .background(Color.black.opacity(0.4))
-                    .cornerRadius(3 * scale)
+                    .padding(.horizontal, 4 * scale)
+                    .padding(.vertical, 2 * scale)
+                    .background(Color.black.opacity(0.5))
+                    .cornerRadius(4 * scale)
             }
-        }
-        .onAppear {
-            if !isStart {
-                isPulsing = true
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var markerBorder: some View {
-        if isStart {
-            Circle()
-                .strokeBorder(Color(hex: "#27AE60") ?? .green, lineWidth: 2 * scale)
-        } else {
-            Circle()
-                .strokeBorder(Color.white, style: StrokeStyle(lineWidth: 2 * scale, dash: [4 * scale, 3 * scale]))
         }
     }
 
@@ -83,7 +73,13 @@ struct CharacterMarkerView: View {
                     .fill(characterColor)
                     .frame(width: markerSize, height: markerSize)
                     .shadow(color: .black.opacity(0.15), radius: 2 * scale)
-                    .overlay(markerBorder)
+                    .overlay(
+                        Circle()
+                            .strokeBorder(
+                                isStart ? (Color(hex: "#27AE60") ?? .green) : Color.white,
+                                lineWidth: 2 * scale
+                            )
+                    )
                 Text(emoji)
                     .font(.system(size: markerSize * 0.55))
             }
@@ -103,7 +99,7 @@ struct CharacterMarkerView: View {
         } else {
             StarShape(points: 5, innerRatio: 0.45)
                 .fill(Color(hex: "#F1C40F") ?? .yellow)
-                .frame(width: 24 * scale, height: 24 * scale)
+                .frame(width: 40 * scale, height: 40 * scale)
         }
     }
 

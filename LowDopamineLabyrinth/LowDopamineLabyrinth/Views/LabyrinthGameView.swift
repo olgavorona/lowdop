@@ -13,25 +13,29 @@ struct LabyrinthGameView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Story header — centered vertically in available space above maze
-                VStack(spacing: 6) {
-                    Spacer(minLength: 0)
+                // Compact top bar — title + instruction
+                HStack(spacing: 8) {
                     Text(viewModel.labyrinth.title)
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
-                    Text(viewModel.labyrinth.ttsInstruction)
-                        .font(.system(size: 20, design: .rounded))
-                        .foregroundColor(.white.opacity(0.9))
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Spacer(minLength: 0)
-                }
-                .padding(.horizontal)
-                .frame(minHeight: 80)
 
-                // Maze area with GeometryReader
-                GeometryReader { geometry in
+                    Text(viewModel.labyrinth.ttsInstruction)
+                        .font(.system(size: 12, design: .rounded))
+                        .foregroundColor(.white.opacity(0.8))
+                        .lineLimit(1)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color.black.opacity(0.25))
+
+                // Full-width maze
+                GeometryReader { mazeGeo in
                     ZStack {
+                        // Cartoonish ocean background pattern
+                        OceanPatternView()
+                            .opacity(0.15)
+
                         // Maze path
                         if viewModel.labyrinth.pathData.mazeType == "organic" {
                             viewModel.mazePath
@@ -53,46 +57,24 @@ struct LabyrinthGameView: View {
                                     lineCap: .round, lineJoin: .round))
                         }
 
-                        // Start marker — arrow
+                        // Start marker — circled
                         startMarker
 
-                        // End marker — star
+                        // End marker — full character shape, no circle clip
                         endMarker
 
                         // Drawing canvas overlay
                         DrawingCanvas(viewModel: viewModel, tolerance: preferences.pathTolerance)
-
-                        // Sound toggle — top right corner
-                        VStack {
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    preferences.ttsEnabled.toggle()
-                                }) {
-                                    Image(systemName: preferences.ttsEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
-                                        .font(.system(size: 18))
-                                        .foregroundColor(.white.opacity(0.7))
-                                        .frame(width: 40, height: 40)
-                                        .background(Color.black.opacity(0.2))
-                                        .cornerRadius(10)
-                                }
-                                .padding(8)
-                            }
-                            Spacer()
-                        }
                     }
                     .onAppear {
-                        viewModel.canvasSize = geometry.size
+                        viewModel.canvasSize = mazeGeo.size
                         viewModel.setupValidator(tolerance: preferences.pathTolerance)
                     }
-                    .onChange(of: geometry.size) { newSize in
+                    .onChange(of: mazeGeo.size) { newSize in
                         viewModel.canvasSize = newSize
                         viewModel.setupValidator(tolerance: preferences.pathTolerance)
                     }
                 }
-                .background(viewModel.backgroundColor.opacity(0.3))
-                .cornerRadius(12)
-                .padding(.horizontal, 8)
             }
         }
         .onChange(of: viewModel.isCompleted) { completed in
@@ -106,7 +88,8 @@ struct LabyrinthGameView: View {
         CharacterMarkerView(
             character: viewModel.labyrinth.characterStart,
             scale: viewModel.scale,
-            isStart: true
+            isStart: true,
+            clipToCircle: true
         )
         .position(viewModel.startPoint)
     }
@@ -115,9 +98,90 @@ struct LabyrinthGameView: View {
         CharacterMarkerView(
             character: viewModel.labyrinth.characterEnd,
             scale: viewModel.scale,
-            isStart: false
+            isStart: false,
+            clipToCircle: false
         )
+        .allowsHitTesting(false)
         .position(viewModel.endPoint)
+    }
+}
+
+// MARK: - Ocean Background Pattern
+
+struct OceanPatternView: View {
+    var body: some View {
+        GeometryReader { geo in
+            Canvas { context, size in
+                let waveCount = 6
+                let bubblePositions: [(CGFloat, CGFloat, CGFloat)] = [
+                    (0.1, 0.2, 8), (0.3, 0.7, 12), (0.5, 0.3, 6),
+                    (0.7, 0.8, 10), (0.85, 0.15, 7), (0.15, 0.5, 9),
+                    (0.6, 0.55, 5), (0.9, 0.45, 11), (0.4, 0.9, 8),
+                    (0.25, 0.35, 6), (0.75, 0.6, 7), (0.55, 0.1, 9),
+                ]
+
+                // Draw wavy lines
+                for i in 0..<waveCount {
+                    let y = size.height * CGFloat(i + 1) / CGFloat(waveCount + 1)
+                    var path = SwiftUI.Path()
+                    path.move(to: CGPoint(x: 0, y: y))
+                    let segments = 8
+                    for s in 0..<segments {
+                        let x1 = size.width * CGFloat(s) / CGFloat(segments) + size.width / CGFloat(segments) / 2
+                        let x2 = size.width * CGFloat(s + 1) / CGFloat(segments)
+                        let amp: CGFloat = (i % 2 == 0) ? 12 : -12
+                        path.addQuadCurve(
+                            to: CGPoint(x: x2, y: y),
+                            control: CGPoint(x: x1, y: y + amp)
+                        )
+                    }
+                    context.stroke(path, with: .color(.white), lineWidth: 1.5)
+                }
+
+                // Draw bubbles
+                for (xFrac, yFrac, radius) in bubblePositions {
+                    let center = CGPoint(x: size.width * xFrac, y: size.height * yFrac)
+                    let rect = CGRect(
+                        x: center.x - radius, y: center.y - radius,
+                        width: radius * 2, height: radius * 2
+                    )
+                    context.stroke(
+                        SwiftUI.Path(ellipseIn: rect),
+                        with: .color(.white),
+                        lineWidth: 1.2
+                    )
+                    // Highlight
+                    let highlight = CGRect(
+                        x: center.x - radius * 0.3, y: center.y - radius * 0.5,
+                        width: radius * 0.4, height: radius * 0.3
+                    )
+                    context.fill(
+                        SwiftUI.Path(ellipseIn: highlight),
+                        with: .color(.white.opacity(0.4))
+                    )
+                }
+
+                // Small starfish shapes
+                let starPositions: [(CGFloat, CGFloat)] = [
+                    (0.08, 0.85), (0.92, 0.9), (0.45, 0.05),
+                ]
+                for (xFrac, yFrac) in starPositions {
+                    let center = CGPoint(x: size.width * xFrac, y: size.height * yFrac)
+                    var star = SwiftUI.Path()
+                    let points = 5
+                    let outerR: CGFloat = 10
+                    let innerR: CGFloat = 4
+                    for j in 0..<(points * 2) {
+                        let angle = CGFloat(j) * .pi / CGFloat(points) - .pi / 2
+                        let r = j % 2 == 0 ? outerR : innerR
+                        let pt = CGPoint(x: center.x + r * cos(angle), y: center.y + r * sin(angle))
+                        if j == 0 { star.move(to: pt) } else { star.addLine(to: pt) }
+                    }
+                    star.closeSubpath()
+                    context.stroke(star, with: .color(.white), lineWidth: 1.0)
+                }
+            }
+        }
     }
 }
 

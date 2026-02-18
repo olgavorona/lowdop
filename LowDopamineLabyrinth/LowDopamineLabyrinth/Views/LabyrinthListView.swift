@@ -5,6 +5,7 @@ struct LabyrinthListView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
     @State private var showCompletion = false
+    @State private var showPaywall = false
     @State private var labyrinthVM: LabyrinthViewModel?
 
     var body: some View {
@@ -28,8 +29,7 @@ struct LabyrinthListView: View {
                         },
                         onNext: {
                             ttsService.stop()
-                            gameViewModel.nextLabyrinth()
-                            updateVM()
+                            attemptNext()
                         },
                         onReset: {
                             vm.reset()
@@ -37,7 +37,8 @@ struct LabyrinthListView: View {
                         onBack: {
                             ttsService.stop()
                             gameViewModel.closeGame()
-                        }
+                        },
+                        ttsEnabled: $preferences.ttsEnabled
                     )
                     .background(vm.backgroundColor.opacity(0.8))
                 }
@@ -52,8 +53,7 @@ struct LabyrinthListView: View {
                         onNext: {
                             showCompletion = false
                             ttsService.stop()
-                            gameViewModel.nextLabyrinth()
-                            updateVM()
+                            attemptNext()
                         },
                         onRepeat: {
                             showCompletion = false
@@ -74,6 +74,31 @@ struct LabyrinthListView: View {
             updateVM()
         }
         .animation(.easeInOut(duration: 0.3), value: showCompletion)
+        .sheet(isPresented: $showPaywall, onDismiss: {
+            // After paywall dismiss: advance if purchased or on simulator
+            if gameViewModel.isPremium {
+                gameViewModel.nextLabyrinth()
+                updateVM()
+            } else {
+                #if targetEnvironment(simulator)
+                // Simulator: skip always advances
+                gameViewModel.nextLabyrinth()
+                updateVM()
+                #endif
+                // Real device, not premium: stay on current labyrinth
+            }
+        }) {
+            PaywallView()
+        }
+    }
+
+    private func attemptNext() {
+        if gameViewModel.canProceed() {
+            gameViewModel.nextLabyrinth()
+            updateVM()
+        } else {
+            showPaywall = true
+        }
     }
 
     private func makeVM(for lab: Labyrinth) -> LabyrinthViewModel {

@@ -15,12 +15,8 @@ class GameViewModel: ObservableObject {
         return labyrinths[currentIndex]
     }
 
-    var isSimulator: Bool {
-        #if targetEnvironment(simulator)
-        return true
-        #else
-        return false
-        #endif
+    var isPremium: Bool {
+        subscriptionManager.isPremium
     }
 
     init(preferences: UserPreferences,
@@ -49,10 +45,6 @@ class GameViewModel: ObservableObject {
     }
 
     func nextLabyrinth() {
-        guard canProceed() else {
-            showPaywall = true
-            return
-        }
         if currentIndex < labyrinths.count - 1 {
             currentIndex += 1
         }
@@ -72,7 +64,6 @@ class GameViewModel: ObservableObject {
     }
 
     func canProceed() -> Bool {
-        if isSimulator { return true }
         return preferences.canPlayToday(isPremium: subscriptionManager.isPremium)
     }
 }

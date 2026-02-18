@@ -5,7 +5,6 @@ struct LabyrinthGridView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var progressTracker: ProgressTracker
     @State private var showAgeSelector = false
-    @State private var showPaywallAfterGate = false
     @State private var showParentalGate = false
     @State private var showPrivacyPolicy = false
     @State private var parentalGateAction: ParentalGateAction = .privacyPolicy
@@ -16,8 +15,10 @@ struct LabyrinthGridView: View {
     }
 
     private let columns = [
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20)
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
     ]
 
     var body: some View {
@@ -80,16 +81,20 @@ struct LabyrinthGridView: View {
                     .frame(height: 8)
                     .padding(.horizontal, 20)
 
-                    // Grid — 2 columns for young kids
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    // Grid — 4 columns for landscape
+                    LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(Array(gameViewModel.labyrinths.enumerated()), id: \.element.id) { index, labyrinth in
+                            let isUnlocked = index == 0 || progressTracker.isCompleted(gameViewModel.labyrinths[index - 1].id)
                             LabyrinthCard(
                                 labyrinth: labyrinth,
                                 index: index + 1,
-                                isCompleted: progressTracker.isCompleted(labyrinth.id)
+                                isCompleted: progressTracker.isCompleted(labyrinth.id),
+                                isLocked: !isUnlocked
                             )
                             .onTapGesture {
-                                gameViewModel.selectLabyrinth(labyrinth)
+                                if isUnlocked {
+                                    gameViewModel.selectLabyrinth(labyrinth)
+                                }
                             }
                         }
                     }
@@ -106,20 +111,6 @@ struct LabyrinthGridView: View {
         }
         .fullScreenCover(isPresented: $gameViewModel.isPlaying) {
             LabyrinthListView()
-        }
-        .fullScreenCover(isPresented: $gameViewModel.showPaywall) {
-            ParentalGateView(
-                onSuccess: {
-                    gameViewModel.showPaywall = false
-                    showPaywallAfterGate = true
-                },
-                onCancel: {
-                    gameViewModel.showPaywall = false
-                }
-            )
-        }
-        .sheet(isPresented: $showPaywallAfterGate) {
-            PaywallView()
         }
         .sheet(isPresented: $showAgeSelector) {
             AgePickerSheet(onSelect: { newAge in
@@ -159,26 +150,27 @@ struct LabyrinthCard: View {
     let labyrinth: Labyrinth
     let index: Int
     let isCompleted: Bool
+    var isLocked: Bool = false
 
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 8) {
             // Colored maze thumbnail area
             ZStack {
                 RoundedRectangle(cornerRadius: 14)
                     .fill(Color(hex: labyrinth.visualTheme.backgroundColor) ?? .blue)
-                    .frame(minHeight: 100)
+                    .frame(minHeight: 80)
                     .aspectRatio(1.1, contentMode: .fit)
 
-                if labyrinth.characterEnd.name != nil {
+                if isLocked {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 28, weight: .medium))
+                        .foregroundColor(.white.opacity(0.5))
+                } else {
                     CharacterMarkerView(
                         character: labyrinth.characterEnd,
-                        scale: 1.5,
+                        scale: 2.5,
                         isStart: false
                     )
-                } else {
-                    Text("\(index)")
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(.white.opacity(0.85))
                 }
 
                 // Completion star badge (top-right corner)
@@ -188,18 +180,19 @@ struct LabyrinthCard: View {
                             Spacer()
                             StarShape(points: 5, innerRatio: 0.45)
                                 .fill(Color(hex: "#F1C40F") ?? .yellow)
-                                .frame(width: 28, height: 28)
+                                .frame(width: 24, height: 24)
                                 .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
-                                .padding(8)
+                                .padding(6)
                         }
                         Spacer()
                     }
                 }
             }
+            .opacity(isLocked ? 0.5 : 1.0)
 
             // Title with level number
             Text("\(index). \(labyrinth.title)")
-                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
                 .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
@@ -207,22 +200,22 @@ struct LabyrinthCard: View {
 
             if let location = labyrinth.location {
                 Text(location.replacingOccurrences(of: "_", with: " ").capitalized)
-                    .font(.system(size: 12, design: .rounded))
+                    .font(.system(size: 11, design: .rounded))
                     .foregroundColor(.secondary)
             }
 
             // Difficulty dots
-            HStack(spacing: 5) {
+            HStack(spacing: 4) {
                 ForEach(0..<3, id: \.self) { i in
                     Circle()
                         .fill(i < difficultyLevel ? difficultyColor : Color.gray.opacity(0.2))
-                        .frame(width: 10, height: 10)
+                        .frame(width: 8, height: 8)
                 }
             }
         }
-        .padding(12)
+        .padding(10)
         .background(Color.white)
-        .cornerRadius(16)
+        .cornerRadius(14)
         .shadow(color: .black.opacity(0.06), radius: 6, y: 3)
     }
 
