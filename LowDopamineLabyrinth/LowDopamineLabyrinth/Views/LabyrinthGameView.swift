@@ -31,7 +31,7 @@ struct LabyrinthGameView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, isCompact ? 8 : 12)
-                .padding(.vertical, isCompact ? 2 : 8)
+                .padding(.vertical, isCompact ? 1 : 8)
                 .background(Color.black.opacity(0.25))
 
                 // Full-width maze

@@ -43,6 +43,7 @@ struct LabyrinthListView: View {
                     )
                     .background(vm.backgroundColor.opacity(0.8))
                 }
+                .ignoresSafeArea(.container, edges: .bottom)
 
                 if showCompletion {
                     Color.black.opacity(0.4)

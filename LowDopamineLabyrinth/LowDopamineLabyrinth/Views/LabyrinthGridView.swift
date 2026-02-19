@@ -250,19 +250,19 @@ struct LabyrinthCard: View {
             }
             .opacity(isLocked ? 0.5 : 1.0)
 
-            // Title with level number
+            // Title with level number — fixed height for uniform cards
             Text("\(index). \(labyrinth.title)")
                 .font(.system(size: 14, weight: .semibold, design: .rounded))
                 .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
+                .frame(height: 36, alignment: .top)
 
-            if let location = labyrinth.location {
-                Text(location.replacingOccurrences(of: "_", with: " ").capitalized)
-                    .font(.system(size: 11, design: .rounded))
-                    .foregroundColor(.secondary)
-            }
+            Text((labyrinth.location ?? "").replacingOccurrences(of: "_", with: " ").capitalized)
+                .font(.system(size: 11, design: .rounded))
+                .foregroundColor(.secondary)
+                .frame(height: 14)
+                .opacity(labyrinth.location != nil ? 1 : 0)
 
             // Difficulty dots
             HStack(spacing: 4) {
