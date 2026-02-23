@@ -18,47 +18,6 @@ class LabyrinthViewModel: ObservableObject {
     /// Cached tight bounding box — computed once on init.
     private let cachedContentBounds: CGRect
 
-    /// Tight bounding box for corridor mazes; full canvas for grid mazes.
-    private static func computeContentBounds(for labyrinth: Labyrinth) -> CGRect {
-        let isCorridor = labyrinth.pathData.mazeType.hasPrefix("corridor")
-        guard isCorridor else {
-            return CGRect(x: 0, y: 0,
-                          width: CGFloat(labyrinth.pathData.canvasWidth),
-                          height: CGFloat(labyrinth.pathData.canvasHeight))
-        }
-
-        var xs: [CGFloat] = []
-        var ys: [CGFloat] = []
-        for seg in labyrinth.pathData.segments {
-            xs.append(CGFloat(seg.start.x))
-            xs.append(CGFloat(seg.end.x))
-            ys.append(CGFloat(seg.start.y))
-            ys.append(CGFloat(seg.end.y))
-        }
-        xs.append(CGFloat(labyrinth.pathData.startPoint.x))
-        xs.append(CGFloat(labyrinth.pathData.endPoint.x))
-        ys.append(CGFloat(labyrinth.pathData.startPoint.y))
-        ys.append(CGFloat(labyrinth.pathData.endPoint.y))
-        if let items = labyrinth.pathData.items {
-            for item in items {
-                xs.append(CGFloat(item.x))
-                ys.append(CGFloat(item.y))
-            }
-        }
-
-        guard let minX = xs.min(), let maxX = xs.max(),
-              let minY = ys.min(), let maxY = ys.max() else {
-            return CGRect(x: 0, y: 0,
-                          width: CGFloat(labyrinth.pathData.canvasWidth),
-                          height: CGFloat(labyrinth.pathData.canvasHeight))
-        }
-
-        let margin: CGFloat = 60
-        return CGRect(x: minX - margin, y: minY - margin,
-                      width: (maxX - minX) + margin * 2,
-                      height: (maxY - minY) + margin * 2)
-    }
-
     var scale: CGFloat {
         guard canvasSize.width > 0 else { return 1.0 }
         let bounds = cachedContentBounds
@@ -117,7 +76,7 @@ class LabyrinthViewModel: ObservableObject {
 
     init(labyrinth: Labyrinth) {
         self.labyrinth = labyrinth
-        self.cachedContentBounds = Self.computeContentBounds(for: labyrinth)
+        self.cachedContentBounds = labyrinth.contentBounds
     }
 
     func setupValidator(tolerance: CGFloat) {
