@@ -217,49 +217,23 @@ struct LabyrinthCard: View {
             // Colored maze thumbnail area
             ZStack {
                 GeometryReader { geo in
-                    let bounds = labyrinth.contentBounds
-                    let scaleX = geo.size.width / bounds.width
-                    let scaleY = geo.size.height / bounds.height
-                    let mazeScale = min(scaleX, scaleY) * 0.85
-                    let mazeOffset = CGPoint(
-                        x: geo.size.width / 2 - bounds.midX * mazeScale,
-                        y: geo.size.height / 2 - bounds.midY * mazeScale
-                    )
-                    let isCorridor = labyrinth.pathData.mazeType.hasPrefix("corridor") || labyrinth.pathData.mazeType == "organic"
-                    let lineWidth = isCorridor
-                        ? CGFloat(labyrinth.pathData.width) * mazeScale
-                        : max(1.5, 2 * mazeScale)
-
+                    let thumbSize = min(geo.size.width, geo.size.height)
+                    let charScale = thumbSize * 0.5 / 80 // 50% of square, end marker = 80*scale
                     Color.clear
-
-                    if isLocked {
-                        // Faded maze + lock icon
-                        SVGPathParser.parse(labyrinth.pathData.svgPath, scale: mazeScale, offset: mazeOffset)
-                            .stroke(Color.white.opacity(0.2), style: StrokeStyle(
-                                lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-                        Image(systemName: "lock.fill")
-                            .font(.system(size: 28, weight: .medium))
-                            .foregroundColor(.white.opacity(0.5))
-                            .frame(width: geo.size.width, height: geo.size.height)
-                    } else {
-                        // Maze path
-                        SVGPathParser.parse(labyrinth.pathData.svgPath, scale: mazeScale, offset: mazeOffset)
-                            .stroke(Color.white.opacity(0.7), style: StrokeStyle(
-                                lineWidth: lineWidth, lineCap: .round, lineJoin: .round))
-
-                        // Small character at end point
-                        let endPos = CGPoint(
-                            x: CGFloat(labyrinth.pathData.endPoint.x) * mazeScale + mazeOffset.x,
-                            y: CGFloat(labyrinth.pathData.endPoint.y) * mazeScale + mazeOffset.y
-                        )
-                        let charScale = min(geo.size.width, geo.size.height) * 0.3 / 80
-                        CharacterMarkerView(
-                            character: labyrinth.characterEnd,
-                            scale: charScale,
-                            isStart: false
-                        )
-                        .position(endPos)
+                    ZStack {
+                        if isLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 28, weight: .medium))
+                                .foregroundColor(.white.opacity(0.5))
+                        } else {
+                            CharacterMarkerView(
+                                character: labyrinth.characterEnd,
+                                scale: charScale,
+                                isStart: false
+                            )
+                        }
                     }
+                    .frame(width: geo.size.width, height: geo.size.height)
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 14)

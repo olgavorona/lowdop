@@ -37,15 +37,20 @@ class LabyrinthLoader {
         let all = loadAll()
         let filtered = all.filter { $0.difficulty == level.rawValue }
 
-        // Interleave normal and adventure labyrinths
+        // Interleave normal and adventure labyrinths, shifting adventure
+        // by half to avoid pairing stories with the same end character
         let normal = filtered.filter { $0.itemRule == nil }
         let adventure = filtered.filter { $0.itemRule != nil }
+        let shift = adventure.count / 2
 
         var result: [Labyrinth] = []
         let maxCount = max(normal.count, adventure.count)
         for i in 0..<maxCount {
             if i < normal.count { result.append(normal[i]) }
-            if i < adventure.count { result.append(adventure[i]) }
+            if !adventure.isEmpty {
+                let advIndex = (i + shift) % adventure.count
+                if i < adventure.count { result.append(adventure[advIndex]) }
+            }
         }
         return result
     }
