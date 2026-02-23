@@ -7,8 +7,8 @@ import math
 
 SIZE = 1024
 MARGIN = 80
-CELL_SIZE = 80
-WALL_WIDTH = 12
+BASE_CELL_SIZE = 80
+WALL_WIDTH = 14
 PATH_COLOR = (255, 255, 255, 180)  # semi-transparent white
 
 
@@ -74,7 +74,7 @@ def generate_maze(cols, rows):
     return walls - removed, removed
 
 
-def draw_maze(img: Image.Image, walls, cols, rows, offset_x, offset_y):
+def draw_maze(img: Image.Image, walls, cols, rows, offset_x, offset_y, cell_size):
     """Draw maze walls as white lines."""
     draw = ImageDraw.Draw(img, "RGBA")
     overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
@@ -82,20 +82,20 @@ def draw_maze(img: Image.Image, walls, cols, rows, offset_x, offset_y):
 
     # Draw outer border
     x0, y0 = offset_x, offset_y
-    x1 = offset_x + cols * CELL_SIZE
-    y1 = offset_y + rows * CELL_SIZE
+    x1 = offset_x + cols * cell_size
+    y1 = offset_y + rows * cell_size
 
     # Draw cell walls
     for (r1, c1), (r2, c2) in walls:
         if r1 == r2:  # vertical wall (between columns)
-            wx = offset_x + max(c1, c2) * CELL_SIZE
-            wy1 = offset_y + r1 * CELL_SIZE
-            wy2 = wy1 + CELL_SIZE
+            wx = offset_x + max(c1, c2) * cell_size
+            wy1 = offset_y + r1 * cell_size
+            wy2 = wy1 + cell_size
             overlay_draw.line([(wx, wy1), (wx, wy2)], fill=PATH_COLOR, width=WALL_WIDTH)
         else:  # horizontal wall (between rows)
-            wy = offset_y + max(r1, r2) * CELL_SIZE
-            wx1 = offset_x + c1 * CELL_SIZE
-            wx2 = wx1 + CELL_SIZE
+            wy = offset_y + max(r1, r2) * cell_size
+            wx1 = offset_x + c1 * cell_size
+            wx2 = wx1 + cell_size
             overlay_draw.line([(wx1, wy), (wx2, wy)], fill=PATH_COLOR, width=WALL_WIDTH)
 
     # Draw border
@@ -130,27 +130,26 @@ def main():
     img = Image.new("RGBA", (SIZE, SIZE))
     draw_gradient_fast(img)
 
-    # Generate and draw maze
+    # Generate and draw maze — fill nearly edge-to-edge
     cols, rows = 10, 10
-    maze_w = cols * CELL_SIZE  # 800
-    maze_h = rows * CELL_SIZE  # 800
-    offset_x = (SIZE - maze_w) // 2
-    offset_y = (SIZE - maze_h) // 2
+    cell_size = int(BASE_CELL_SIZE * ((SIZE - 40) / (cols * BASE_CELL_SIZE)))  # ~98px
+    offset_x = (SIZE - cols * cell_size) // 2
+    offset_y = (SIZE - rows * cell_size) // 2
 
     walls, _ = generate_maze(cols, rows)
-    draw_maze(img, walls, cols, rows, offset_x, offset_y)
+    draw_maze(img, walls, cols, rows, offset_x, offset_y, cell_size)
 
     # Add bubbles
     add_bubbles(img)
 
-    # Overlay Denny character (centered, lower portion)
+    # Overlay Denny character — large and centered
     denny = Image.open("output/characters/denny.png").convert("RGBA")
-    denny_size = 480
+    denny_size = 650
     denny = denny.resize((denny_size, denny_size), Image.LANCZOS)
 
-    # Position Denny center-bottom of the icon
+    # Position Denny centered, slightly below middle
     dx = (SIZE - denny_size) // 2
-    dy = SIZE - denny_size - 60
+    dy = (SIZE - denny_size) // 2 + 60
 
     # Add subtle shadow behind Denny
     shadow = Image.new("RGBA", img.size, (0, 0, 0, 0))
