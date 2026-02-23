@@ -17,7 +17,7 @@ struct LabyrinthGameView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Top bar — title + instruction (minimal on iPhone, full on iPad)
+                // Top bar — title + instruction + optional item HUD
                 HStack(spacing: 6) {
                     Text(viewModel.labyrinth.title)
                         .font(.system(size: isCompact ? 11 : 15, weight: .bold, design: .rounded))
@@ -28,6 +28,17 @@ struct LabyrinthGameView: View {
                         .font(.system(size: isCompact ? 10 : 14, design: .rounded))
                         .foregroundColor(.white.opacity(0.8))
                         .lineLimit(isCompact ? 1 : 2)
+
+                    if viewModel.hasItems {
+                        Spacer()
+                        Text(viewModel.itemHUDText)
+                            .font(.system(size: isCompact ? 12 : 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 2)
+                            .background(Color.black.opacity(0.3))
+                            .cornerRadius(8)
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, isCompact ? 8 : 12)
@@ -47,6 +58,11 @@ struct LabyrinthGameView: View {
                                 .stroke(Color.white, style: StrokeStyle(
                                     lineWidth: CGFloat(viewModel.labyrinth.pathData.width) * viewModel.scale,
                                     lineCap: .round, lineJoin: .round))
+                        } else if viewModel.labyrinth.pathData.mazeType.hasPrefix("corridor") {
+                            viewModel.mazePath
+                                .stroke(Color.white, style: StrokeStyle(
+                                    lineWidth: CGFloat(viewModel.labyrinth.pathData.width) * viewModel.scale,
+                                    lineCap: .round, lineJoin: .round))
                         } else {
                             viewModel.mazePath
                                 .stroke(Color.white, style: StrokeStyle(
@@ -62,6 +78,18 @@ struct LabyrinthGameView: View {
                                     lineCap: .round, lineJoin: .round))
                         }
 
+                        // Item emoji overlay (between maze and drawing canvas)
+                        if let items = viewModel.labyrinth.pathData.items {
+                            ForEach(Array(items.enumerated()), id: \.offset) { index, item in
+                                if !viewModel.collectedItemIndices.contains(index) {
+                                    Text(item.emoji)
+                                        .font(.system(size: viewModel.itemFontSize))
+                                        .position(viewModel.itemPoint(item))
+                                        .allowsHitTesting(false)
+                                }
+                            }
+                        }
+
                         // Start marker — circled
                         startMarker
 
@@ -70,6 +98,18 @@ struct LabyrinthGameView: View {
 
                         // Drawing canvas overlay
                         DrawingCanvas(viewModel: viewModel, tolerance: preferences.pathTolerance)
+
+                        // "Collect all items" hint
+                        if viewModel.showItemHint {
+                            Text(collectHintText)
+                                .font(.system(size: isCompact ? 14 : 18, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(Color.black.opacity(0.7))
+                                .cornerRadius(12)
+                                .transition(.opacity)
+                        }
                     }
                     .onAppear {
                         viewModel.canvasSize = mazeGeo.size
@@ -87,6 +127,12 @@ struct LabyrinthGameView: View {
                 onComplete()
             }
         }
+    }
+
+    private var collectHintText: String {
+        let emoji = viewModel.labyrinth.itemEmoji ?? ""
+        let remaining = viewModel.totalItemCount - viewModel.collectedItemIndices.count
+        return "Find all \(remaining) \(emoji) first!"
     }
 
     private var startMarker: some View {

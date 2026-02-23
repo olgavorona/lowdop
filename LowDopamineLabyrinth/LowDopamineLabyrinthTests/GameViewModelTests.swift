@@ -6,7 +6,7 @@ final class GameViewModelTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         // Clean up UserDefaults keys used by UserPreferences to isolate tests
-        let keys = ["lastPlayedTimestamp", "dailyLabyrinthsPlayed", "ageGroup",
+        let keys = ["lastPlayedTimestamp", "dailyLabyrinthsPlayed", "difficultyLevel",
                      "ttsEnabled", "hasCompletedOnboarding", "ttsDefaultSet",
                      "completedLabyrinths"]
         for key in keys {
@@ -41,12 +41,15 @@ final class GameViewModelTests: XCTestCase {
                     segments: [SegmentData(start: PointData(x: 0, y: 0), end: PointData(x: 100, y: 100))],
                     canvasWidth: 600,
                     canvasHeight: 500,
-                    controlPoints: nil
+                    controlPoints: nil,
+                    items: nil
                 ),
                 visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: ["stars"]),
                 location: "coral_reef",
                 audioInstruction: nil,
-                audioCompletion: nil
+                audioCompletion: nil,
+                itemRule: nil,
+                itemEmoji: nil
             )
         }
     }

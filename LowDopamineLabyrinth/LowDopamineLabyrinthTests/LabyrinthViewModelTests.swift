@@ -39,12 +39,15 @@ final class LabyrinthViewModelTests: XCTestCase {
                 segments: segments ?? defaultSegments,
                 canvasWidth: 300,
                 canvasHeight: 300,
-                controlPoints: nil
+                controlPoints: nil,
+                items: nil
             ),
             visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: []),
             location: nil,
             audioInstruction: nil,
-            audioCompletion: nil
+            audioCompletion: nil,
+            itemRule: nil,
+            itemEmoji: nil
         )
     }
 

@@ -1,0 +1,130 @@
+{
+  "id": "denny_014_lv2",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "sandy_shore",
+  "title": "Denny Avoids Sea Urchins",
+  "story_setup": "The sandy shore has prickly sea urchins hiding in the sand! Denny needs to be careful getting to Papa Reef.",
+  "instruction": "Draw a path to Papa Reef, but watch out for the prickly sea urchins!",
+  "tts_instruction": "Careful! There are prickly sea urchins on the shore. Help Denny find a safe path to Papa Reef without stepping on them!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "father crab",
+    "description": "Deep red-brown father crab, strong and calm, one big claw for hugging",
+    "position": "top_right",
+    "name": "Papa Reef",
+    "image_asset": "papa_reef"
+  },
+  "educational_question": "Why do sea urchins have spines? What do they use them for?",
+  "fun_fact": "Sea urchins use their spines for protection and to help them move along the ocean floor. Some sea urchins can live for over 200 years!",
+  "completion_message": "Denny reached Papa Reef safely! Great job avoiding the sea urchins!",
+  "item_rule": "avoid",
+  "item_emoji": "🦔",
+  "path_data": {
+    "svg_path": "M 300 82 L 300 194 M 188 194 L 188 306 M 300 194 L 300 306 M 188 306 L 188 418 M 300 306 L 412 306 M 412 306 L 412 418 M 76 418 L 188 418 M 188 418 L 300 418 M 300 418 L 412 418 M 412 418 L 524 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
+    "solution_path": "M 300 82 L 300 194 L 300 306 L 412 306 L 412 418 L 524 418",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "corridor_mountain",
+    "start_point": {
+      "x": 300,
+      "y": 82
+    },
+    "end_point": {
+      "x": 524,
+      "y": 418
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 188,
+        "y": 418,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 188,
+        "y": 194,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 300,
+        "y": 418,
+        "emoji": "🦔",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#F4D03F",
+    "decorative_elements": [
+      "shells",
+      "tide_pools",
+      "sand"
+    ]
+  },
+  "audio_instruction": "denny_014_instruction.mp3",
+  "audio_completion": "denny_014_completion.mp3"
+}

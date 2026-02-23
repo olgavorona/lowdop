@@ -6,24 +6,109 @@ class LabyrinthViewModel: ObservableObject {
     @Published var isCompleted: Bool = false
     @Published var showSolution: Bool = false
     @Published var hasStartedDrawing: Bool = false
+    @Published var collectedItemIndices: Set<Int> = []
+    @Published var avoidedItemHits: Int = 0
+    @Published var showItemHint: Bool = false
 
     let labyrinth: Labyrinth
     private var validator: DrawingValidator?
     @Published var canvasSize: CGSize = .zero
 
+    /// Tight bounding box for corridor mazes; full canvas for grid mazes.
+    private var contentBounds: CGRect {
+        let isCorridor = labyrinth.pathData.mazeType.hasPrefix("corridor")
+        guard isCorridor else {
+            return CGRect(x: 0, y: 0,
+                          width: CGFloat(labyrinth.pathData.canvasWidth),
+                          height: CGFloat(labyrinth.pathData.canvasHeight))
+        }
+
+        var xs: [CGFloat] = []
+        var ys: [CGFloat] = []
+        for seg in labyrinth.pathData.segments {
+            xs.append(CGFloat(seg.start.x))
+            xs.append(CGFloat(seg.end.x))
+            ys.append(CGFloat(seg.start.y))
+            ys.append(CGFloat(seg.end.y))
+        }
+        xs.append(CGFloat(labyrinth.pathData.startPoint.x))
+        xs.append(CGFloat(labyrinth.pathData.endPoint.x))
+        ys.append(CGFloat(labyrinth.pathData.startPoint.y))
+        ys.append(CGFloat(labyrinth.pathData.endPoint.y))
+        if let items = labyrinth.pathData.items {
+            for item in items {
+                xs.append(CGFloat(item.x))
+                ys.append(CGFloat(item.y))
+            }
+        }
+
+        guard let minX = xs.min(), let maxX = xs.max(),
+              let minY = ys.min(), let maxY = ys.max() else {
+            return CGRect(x: 0, y: 0,
+                          width: CGFloat(labyrinth.pathData.canvasWidth),
+                          height: CGFloat(labyrinth.pathData.canvasHeight))
+        }
+
+        let margin: CGFloat = 60
+        return CGRect(x: minX - margin, y: minY - margin,
+                      width: (maxX - minX) + margin * 2,
+                      height: (maxY - minY) + margin * 2)
+    }
+
     var scale: CGFloat {
         guard canvasSize.width > 0 else { return 1.0 }
-        let scaleX = canvasSize.width / CGFloat(labyrinth.pathData.canvasWidth)
-        let scaleY = canvasSize.height / CGFloat(labyrinth.pathData.canvasHeight)
+        let bounds = contentBounds
+        let scaleX = canvasSize.width / bounds.width
+        let scaleY = canvasSize.height / bounds.height
         return min(scaleX, scaleY)
     }
 
     var offset: CGPoint {
         guard canvasSize.width > 0 else { return .zero }
-        let scaledW = CGFloat(labyrinth.pathData.canvasWidth) * scale
-        let scaledH = CGFloat(labyrinth.pathData.canvasHeight) * scale
-        return CGPoint(x: (canvasSize.width - scaledW) / 2,
-                       y: (canvasSize.height - scaledH) / 2)
+        let bounds = contentBounds
+        let centerX = bounds.midX
+        let centerY = bounds.midY
+        return CGPoint(x: canvasSize.width / 2 - centerX * scale,
+                       y: canvasSize.height / 2 - centerY * scale)
+    }
+
+    var isCollectType: Bool {
+        labyrinth.itemRule == "collect"
+    }
+
+    var isAvoidType: Bool {
+        labyrinth.itemRule == "avoid"
+    }
+
+    var hasItems: Bool {
+        labyrinth.pathData.items != nil && !(labyrinth.pathData.items?.isEmpty ?? true)
+    }
+
+    var totalItemCount: Int {
+        labyrinth.pathData.items?.count ?? 0
+    }
+
+    var allItemsCollected: Bool {
+        guard isCollectType else { return true }
+        return collectedItemIndices.count >= totalItemCount
+    }
+
+    var itemFontSize: CGFloat {
+        24 * scale
+    }
+
+    func itemPoint(_ item: ItemData) -> CGPoint {
+        CGPoint(x: CGFloat(item.x) * scale + offset.x,
+                y: CGFloat(item.y) * scale + offset.y)
+    }
+
+    var itemHUDText: String {
+        guard let emoji = labyrinth.itemEmoji else { return "" }
+        if isCollectType {
+            return "\(emoji) \(collectedItemIndices.count)/\(totalItemCount)"
+        } else {
+            return "\(emoji) Avoid!"
+        }
     }
 
     init(labyrinth: Labyrinth) {
@@ -50,10 +135,43 @@ class LabyrinthViewModel: ObservableObject {
             currentStroke.append(point)
         }
 
+        // Check item proximity
+        checkItemProximity(point)
+
         // Completion: reach near the end character (radius matches visible character size)
         if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 60 * scale) {
-            isCompleted = true
-            showSolution = true
+            if isCollectType && !allItemsCollected {
+                // Show hint — don't complete yet
+                showItemHint = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                    self?.showItemHint = false
+                }
+            } else {
+                isCompleted = true
+                showSolution = true
+            }
+        }
+    }
+
+    private func checkItemProximity(_ point: CGPoint) {
+        guard let items = labyrinth.pathData.items else { return }
+        let radius: CGFloat = 30 * scale
+
+        for (index, item) in items.enumerated() {
+            guard !collectedItemIndices.contains(index) else { continue }
+            let itemPos = itemPoint(item)
+            let dx = point.x - itemPos.x
+            let dy = point.y - itemPos.y
+            let dist = sqrt(dx * dx + dy * dy)
+
+            if dist <= radius {
+                if isCollectType {
+                    collectedItemIndices.insert(index)
+                } else if isAvoidType {
+                    avoidedItemHits += 1
+                    collectedItemIndices.insert(index) // Mark as "hit" to avoid re-counting
+                }
+            }
         }
     }
 
@@ -69,6 +187,9 @@ class LabyrinthViewModel: ObservableObject {
         isCompleted = false
         showSolution = false
         hasStartedDrawing = false
+        collectedItemIndices = []
+        avoidedItemHits = 0
+        showItemHint = false
     }
 
     var mazePath: Path {

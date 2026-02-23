@@ -1,0 +1,312 @@
+{
+  "id": "denny_020_lv3",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "bubble_lagoon",
+  "title": "Denny Dodges Pollution",
+  "story_setup": "Some trash has floated into the beautiful lagoon. Denny needs to swim around it to reach Pearl and help clean up.",
+  "instruction": "Swim to Pearl without touching the trash in the lagoon!",
+  "tts_instruction": "Oh no, there's litter in the lagoon! Help Denny swim around the trash to reach Pearl. Together they'll clean up the ocean!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "jellyfish",
+    "description": "Translucent pink-white jellyfish, gentle and floaty, glows softly",
+    "position": "top_right",
+    "name": "Pearl",
+    "image_asset": "pearl"
+  },
+  "educational_question": "How can we help keep the ocean clean? What should we never throw in the water?",
+  "fun_fact": "Over 8 million tons of plastic end up in the ocean every year. Using reusable bottles and bags helps protect sea creatures like Denny!",
+  "completion_message": "Denny reached Pearl safely! Now they can clean up the lagoon together!",
+  "item_rule": "avoid",
+  "item_emoji": "🗑️",
+  "path_data": {
+    "svg_path": "M 55 75 L 125 75 M 125 75 L 125 145 M 195 75 L 265 75 M 195 75 L 195 145 M 265 75 L 265 145 M 335 75 L 405 75 M 335 75 L 335 145 M 405 75 L 475 75 M 405 75 L 405 145 M 475 75 L 475 145 M 545 75 L 545 145 M 55 145 L 125 145 M 55 145 L 55 215 M 265 145 L 335 145 M 405 145 L 405 215 M 475 145 L 545 145 M 545 145 L 545 215 M 55 215 L 125 215 M 125 215 L 195 215 M 195 215 L 265 215 M 265 215 L 335 215 M 335 215 L 335 285 M 405 215 L 405 285 M 475 215 L 545 215 M 545 215 L 545 285 M 55 285 L 125 285 M 55 285 L 55 355 M 125 285 L 195 285 M 195 285 L 265 285 M 265 285 L 335 285 M 405 285 L 475 285 M 405 285 L 405 355 M 475 285 L 475 355 M 55 355 L 55 425 M 125 355 L 195 355 M 195 355 L 265 355 M 265 355 L 335 355 M 335 355 L 405 355 M 475 355 L 545 355 M 545 355 L 545 425 M 55 425 L 125 425 M 125 425 L 195 425 M 195 425 L 265 425 M 265 425 L 335 425 M 335 425 L 405 425 M 405 425 L 475 425 M 475 425 L 545 425 M 55 75 L 55 75 M 125 75 L 125 75 M 195 75 L 195 75 M 265 75 L 265 75 M 335 75 L 335 75 M 405 75 L 405 75 M 475 75 L 475 75 M 545 75 L 545 75 M 55 145 L 55 145 M 125 145 L 125 145 M 195 145 L 195 145 M 265 145 L 265 145 M 335 145 L 335 145 M 405 145 L 405 145 M 475 145 L 475 145 M 545 145 L 545 145 M 55 215 L 55 215 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 475 215 L 475 215 M 545 215 L 545 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 55 355 L 55 355 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 475 355 L 475 355 M 545 355 L 545 355 M 55 425 L 55 425 M 125 425 L 125 425 M 195 425 L 195 425 M 265 425 L 265 425 M 335 425 L 335 425 M 405 425 L 405 425 M 475 425 L 475 425 M 545 425 L 545 425",
+    "solution_path": "M 55 75 L 125 75 L 125 145 L 55 145 L 55 215 L 125 215 L 195 215 L 265 215 L 335 215 L 335 285 L 265 285 L 195 285 L 125 285 L 55 285 L 55 355 L 55 425 L 125 425 L 195 425 L 265 425 L 335 425 L 405 425 L 475 425 L 545 425",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_rect",
+    "start_point": {
+      "x": 55,
+      "y": 75
+    },
+    "end_point": {
+      "x": 545,
+      "y": 425
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 55,
+          "y": 75
+        },
+        "end": {
+          "x": 125,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 75
+        },
+        "end": {
+          "x": 125,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 145
+        },
+        "end": {
+          "x": 55,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 145
+        },
+        "end": {
+          "x": 55,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 215
+        },
+        "end": {
+          "x": 125,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 265,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 125,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 285
+        },
+        "end": {
+          "x": 55,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 285
+        },
+        "end": {
+          "x": 55,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 355
+        },
+        "end": {
+          "x": 55,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 425
+        },
+        "end": {
+          "x": 125,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 425
+        },
+        "end": {
+          "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 425
+        },
+        "end": {
+          "x": 265,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 425
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 425
+        },
+        "end": {
+          "x": 405,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 425
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 425
+        },
+        "end": {
+          "x": 545,
+          "y": 425
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 475,
+        "y": 355,
+        "emoji": "🗑️",
+        "on_solution": false
+      },
+      {
+        "x": 405,
+        "y": 355,
+        "emoji": "🗑️",
+        "on_solution": false
+      },
+      {
+        "x": 545,
+        "y": 145,
+        "emoji": "🗑️",
+        "on_solution": false
+      },
+      {
+        "x": 405,
+        "y": 215,
+        "emoji": "🗑️",
+        "on_solution": false
+      },
+      {
+        "x": 545,
+        "y": 215,
+        "emoji": "🗑️",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#3498DB",
+    "decorative_elements": [
+      "bubbles",
+      "water",
+      "pebbles"
+    ]
+  },
+  "audio_instruction": "denny_020_instruction.mp3",
+  "audio_completion": "denny_020_completion.mp3"
+}

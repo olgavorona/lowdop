@@ -5,7 +5,7 @@ struct LabyrinthGridView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var progressTracker: ProgressTracker
     @EnvironmentObject var subscriptionManager: SubscriptionManager
-    @State private var showAgeSelector = false
+    @State private var showDifficultyPicker = false
     @State private var showParentalGate = false
     @State private var showPrivacyPolicy = false
     @State private var showPaywall = false
@@ -15,7 +15,7 @@ struct LabyrinthGridView: View {
 
     private enum ParentalGateAction {
         case privacyPolicy
-        case ageSelector
+        case difficultyPicker
     }
 
     private let columns = [
@@ -40,13 +40,13 @@ struct LabyrinthGridView: View {
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
-                        // Age badge — tappable to change (behind parental gate)
+                        // Difficulty badge — tappable to change (behind parental gate)
                         Button(action: {
-                            parentalGateAction = .ageSelector
+                            parentalGateAction = .difficultyPicker
                             showParentalGate = true
                         }) {
                             HStack(spacing: 4) {
-                                Text(preferences.ageGroup.displayName + " yrs")
+                                Text(preferences.difficultyLevel.displayName)
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                                 Image(systemName: "chevron.down")
                                     .font(.system(size: 10, weight: .bold))
@@ -84,6 +84,15 @@ struct LabyrinthGridView: View {
                     }
                     .frame(height: 8)
                     .padding(.horizontal, 20)
+
+                    // Location header
+                    if let location = gameViewModel.labyrinths.first?.location {
+                        Text(location.replacingOccurrences(of: "_", with: " ").capitalized)
+                            .font(.system(size: 18, weight: .semibold, design: .rounded))
+                            .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 20)
+                    }
 
                     // "Come back tomorrow" banner for free users who used their daily play
                     if !gameViewModel.canProceed() {
@@ -152,11 +161,11 @@ struct LabyrinthGridView: View {
         .fullScreenCover(isPresented: $gameViewModel.isPlaying) {
             LabyrinthListView()
         }
-        .sheet(isPresented: $showAgeSelector) {
-            AgePickerSheet(onSelect: { newAge in
-                preferences.ageGroup = newAge
+        .sheet(isPresented: $showDifficultyPicker) {
+            DifficultyPickerSheet(onSelect: { newLevel in
+                preferences.difficultyLevel = newLevel
                 gameViewModel.loadLabyrinths()
-                showAgeSelector = false
+                showDifficultyPicker = false
             })
         }
         .fullScreenCover(isPresented: $showParentalGate) {
@@ -166,8 +175,8 @@ struct LabyrinthGridView: View {
                     switch parentalGateAction {
                     case .privacyPolicy:
                         showPrivacyPolicy = true
-                    case .ageSelector:
-                        showAgeSelector = true
+                    case .difficultyPicker:
+                        showDifficultyPicker = true
                     }
                 },
                 onCancel: {
@@ -247,6 +256,22 @@ struct LabyrinthCard: View {
                         Spacer()
                     }
                 }
+
+                // Item emoji badge (bottom-right corner) for adventure mazes
+                if let emoji = labyrinth.itemEmoji {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text(emoji)
+                                .font(.system(size: 16))
+                                .padding(4)
+                                .background(Color.white.opacity(0.85))
+                                .cornerRadius(8)
+                                .padding(6)
+                        }
+                    }
+                }
             }
             .opacity(isLocked ? 0.5 : 1.0)
 
@@ -257,68 +282,31 @@ struct LabyrinthCard: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .frame(height: 36, alignment: .top)
-
-            Text((labyrinth.location ?? "").replacingOccurrences(of: "_", with: " ").capitalized)
-                .font(.system(size: 11, design: .rounded))
-                .foregroundColor(.secondary)
-                .frame(height: 14)
-                .opacity(labyrinth.location != nil ? 1 : 0)
-
-            // Difficulty dots
-            HStack(spacing: 4) {
-                ForEach(0..<3, id: \.self) { i in
-                    Circle()
-                        .fill(i < difficultyLevel ? difficultyColor : Color.gray.opacity(0.2))
-                        .frame(width: 8, height: 8)
-                }
-            }
         }
         .padding(10)
         .background(Color.white)
         .cornerRadius(14)
         .shadow(color: .black.opacity(0.06), radius: 6, y: 3)
     }
-
-    private var difficultyLevel: Int {
-        switch labyrinth.difficulty {
-        case "easy": return 1
-        case "medium": return 2
-        case "hard": return 3
-        default: return 1
-        }
-    }
-
-    private var difficultyColor: Color {
-        switch labyrinth.difficulty {
-        case "easy": return Color(hex: "#6BBF7B") ?? .green
-        case "medium": return Color(hex: "#5BA8D9") ?? .blue
-        case "hard": return Color(hex: "#E67E22") ?? .orange
-        default: return .gray
-        }
-    }
 }
 
-struct AgePickerSheet: View {
-    let onSelect: (AgeGroup) -> Void
+struct DifficultyPickerSheet: View {
+    let onSelect: (DifficultyLevel) -> Void
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack(spacing: 24) {
-            Text("Change Age Group")
+            Text("Change Difficulty")
                 .font(.system(size: 22, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                 .padding(.top, 24)
 
             HStack(spacing: 16) {
-                ForEach(AgeGroup.allCases, id: \.self) { group in
-                    Button(action: { onSelect(group) }) {
+                ForEach(DifficultyLevel.allCases, id: \.self) { level in
+                    Button(action: { onSelect(level) }) {
                         VStack(spacing: 8) {
-                            Text(group == .young ? "🐣" : "⭐")
-                                .font(.system(size: 36))
-                            Text(group.displayName)
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("years")
-                                .font(.system(size: 14, design: .rounded))
+                            Text(level.displayName)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
                         }
                         .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                         .frame(maxWidth: .infinity)

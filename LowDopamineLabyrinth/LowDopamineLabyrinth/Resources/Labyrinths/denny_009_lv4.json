@@ -1,0 +1,498 @@
+{
+  "id": "denny_009_lv4",
+  "age_range": "4-5",
+  "difficulty": "hard",
+  "theme": "ocean",
+  "location": "shipwreck_playground",
+  "title": "Denny's Shipwreck Adventure",
+  "story_setup": "Denny the baby crab found an old shipwreck to explore! His friend Finn the clownfish is waiting by a treasure chest to show Denny all the wonderful things they can discover together.",
+  "instruction": "Draw a line to help Denny reach Finn at the treasure chest.",
+  "tts_instruction": "Can you help Denny find his way through the shipwreck to reach his friend Finn? Draw a gentle line with your finger to guide Denny safely to where Finn is waiting by the treasure chest.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "What do you think Denny and Finn might find inside the old treasure chest on the shipwreck?",
+  "fun_fact": "Baby crabs like Denny grow bigger by shedding their hard shell and growing a new, larger one underneath.",
+  "completion_message": "Great job helping Denny reach Finn at the shipwreck - now they can explore the treasure chest together!",
+  "path_data": {
+    "svg_path": "M 20 26 L 76 26 M 20 82 L 76 82 M 20 26 L 20 82 M 76 26 L 132 26 M 76 82 L 132 82 M 132 26 L 188 26 M 188 26 L 188 82 M 188 26 L 244 26 M 188 26 L 188 82 M 244 26 L 300 26 M 244 82 L 300 82 M 300 26 L 356 26 M 356 26 L 356 82 M 356 26 L 412 26 M 356 26 L 356 82 M 412 26 L 468 26 M 412 82 L 468 82 M 468 26 L 524 26 M 468 82 L 524 82 M 524 26 L 580 26 M 580 26 L 580 82 M 20 82 L 76 82 M 20 82 L 20 138 M 76 82 L 132 82 M 132 82 L 132 138 M 76 138 L 132 138 M 132 138 L 188 138 M 132 82 L 132 138 M 244 82 L 244 138 M 188 138 L 244 138 M 244 82 L 300 82 M 300 82 L 300 138 M 244 82 L 244 138 M 356 82 L 356 138 M 300 82 L 300 138 M 412 82 L 412 138 M 356 82 L 356 138 M 412 82 L 468 82 M 412 82 L 412 138 M 468 82 L 524 82 M 524 82 L 524 138 M 468 138 L 524 138 M 580 82 L 580 138 M 524 82 L 524 138 M 76 138 L 76 194 M 20 138 L 20 194 M 76 138 L 132 138 M 76 138 L 76 194 M 132 138 L 188 138 M 188 138 L 244 138 M 300 138 L 300 194 M 244 194 L 300 194 M 356 138 L 356 194 M 300 138 L 300 194 M 412 138 L 412 194 M 356 138 L 356 194 M 412 194 L 468 194 M 412 138 L 412 194 M 468 138 L 524 138 M 468 194 L 524 194 M 580 138 L 580 194 M 524 194 L 580 194 M 76 194 L 76 250 M 20 194 L 20 250 M 132 194 L 132 250 M 76 194 L 76 250 M 188 194 L 188 250 M 132 194 L 132 250 M 244 194 L 244 250 M 188 250 L 244 250 M 188 194 L 188 250 M 244 194 L 300 194 M 244 194 L 244 250 M 356 194 L 356 250 M 300 250 L 356 250 M 356 250 L 412 250 M 356 194 L 356 250 M 412 194 L 468 194 M 412 250 L 468 250 M 468 194 L 524 194 M 524 194 L 580 194 M 580 194 L 580 250 M 20 250 L 20 306 M 132 250 L 132 306 M 76 306 L 132 306 M 132 306 L 188 306 M 132 250 L 132 306 M 188 250 L 244 250 M 188 306 L 244 306 M 300 250 L 300 306 M 244 306 L 300 306 M 300 250 L 356 250 M 300 250 L 300 306 M 356 250 L 412 250 M 356 306 L 412 306 M 412 250 L 468 250 M 468 250 L 468 306 M 524 250 L 524 306 M 468 306 L 524 306 M 468 250 L 468 306 M 580 250 L 580 306 M 524 250 L 524 306 M 20 362 L 76 362 M 20 306 L 20 362 M 76 306 L 132 306 M 132 306 L 132 362 M 132 306 L 188 306 M 132 306 L 132 362 M 188 306 L 244 306 M 244 306 L 244 362 M 244 306 L 300 306 M 244 306 L 244 362 M 356 306 L 356 362 M 356 306 L 412 306 M 356 306 L 356 362 M 468 306 L 468 362 M 412 362 L 468 362 M 468 306 L 524 306 M 468 306 L 468 362 M 580 306 L 580 362 M 20 362 L 76 362 M 76 362 L 76 418 M 20 362 L 20 418 M 76 418 L 132 418 M 76 362 L 76 418 M 188 362 L 188 418 M 132 418 L 188 418 M 244 362 L 244 418 M 188 362 L 188 418 M 300 362 L 300 418 M 244 418 L 300 418 M 244 362 L 244 418 M 356 362 L 356 418 M 300 362 L 300 418 M 356 418 L 412 418 M 356 362 L 356 418 M 412 362 L 468 362 M 412 418 L 468 418 M 524 362 L 524 418 M 468 418 L 524 418 M 580 362 L 580 418 M 524 362 L 524 418 M 20 474 L 76 474 M 20 418 L 20 474 M 76 418 L 132 418 M 76 474 L 132 474 M 132 418 L 188 418 M 132 474 L 188 474 M 188 474 L 244 474 M 244 418 L 300 418 M 244 474 L 300 474 M 356 418 L 356 474 M 300 474 L 356 474 M 356 418 L 412 418 M 356 474 L 412 474 M 356 418 L 356 474 M 412 418 L 468 418 M 412 474 L 468 474 M 468 418 L 524 418 M 468 474 L 524 474 M 580 418 L 580 474 M 524 474 L 580 474",
+    "solution_path": "M 48 54 L 104 54 L 160 54 L 160 110 L 216 110 L 216 54 L 272 54 L 328 54 L 328 110 L 328 166 L 328 222 L 272 222 L 272 278 L 216 278 L 160 278 L 160 222 L 160 166 L 104 166 L 104 222 L 104 278 L 48 278 L 48 334 L 104 334 L 104 390 L 160 390 L 160 334 L 216 334 L 216 390 L 216 446 L 272 446 L 328 446 L 328 390 L 328 334 L 328 278 L 384 278 L 440 278 L 440 334 L 384 334 L 384 390 L 440 390 L 496 390 L 496 334 L 552 334 L 552 390 L 552 446",
+    "width": 25,
+    "complexity": "hard",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 48,
+      "y": 54
+    },
+    "end_point": {
+      "x": 552,
+      "y": 446
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 48,
+          "y": 54
+        },
+        "end": {
+          "x": 104,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 54
+        },
+        "end": {
+          "x": 160,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 54
+        },
+        "end": {
+          "x": 160,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 110
+        },
+        "end": {
+          "x": 216,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 110
+        },
+        "end": {
+          "x": 216,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 54
+        },
+        "end": {
+          "x": 272,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 54
+        },
+        "end": {
+          "x": 328,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 54
+        },
+        "end": {
+          "x": 328,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 110
+        },
+        "end": {
+          "x": 328,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 166
+        },
+        "end": {
+          "x": 328,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 222
+        },
+        "end": {
+          "x": 272,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 222
+        },
+        "end": {
+          "x": 272,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 278
+        },
+        "end": {
+          "x": 216,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 278
+        },
+        "end": {
+          "x": 160,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 278
+        },
+        "end": {
+          "x": 160,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 222
+        },
+        "end": {
+          "x": 160,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 166
+        },
+        "end": {
+          "x": 104,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 166
+        },
+        "end": {
+          "x": 104,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 222
+        },
+        "end": {
+          "x": 104,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 278
+        },
+        "end": {
+          "x": 48,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 48,
+          "y": 278
+        },
+        "end": {
+          "x": 48,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 48,
+          "y": 334
+        },
+        "end": {
+          "x": 104,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 334
+        },
+        "end": {
+          "x": 104,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 390
+        },
+        "end": {
+          "x": 160,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 390
+        },
+        "end": {
+          "x": 160,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 334
+        },
+        "end": {
+          "x": 216,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 334
+        },
+        "end": {
+          "x": 216,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 390
+        },
+        "end": {
+          "x": 216,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 446
+        },
+        "end": {
+          "x": 272,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 446
+        },
+        "end": {
+          "x": 328,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 446
+        },
+        "end": {
+          "x": 328,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 390
+        },
+        "end": {
+          "x": 328,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 334
+        },
+        "end": {
+          "x": 328,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 278
+        },
+        "end": {
+          "x": 384,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 334
+        },
+        "end": {
+          "x": 384,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 334
+        },
+        "end": {
+          "x": 384,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 390
+        },
+        "end": {
+          "x": 440,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 390
+        },
+        "end": {
+          "x": 496,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 390
+        },
+        "end": {
+          "x": 496,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 334
+        },
+        "end": {
+          "x": 552,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 552,
+          "y": 334
+        },
+        "end": {
+          "x": 552,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 552,
+          "y": 390
+        },
+        "end": {
+          "x": 552,
+          "y": 446
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#E67E22",
+    "decorative_elements": [
+      "ship",
+      "treasure",
+      "porthole"
+    ]
+  },
+  "audio_instruction": "denny_009_instruction.mp3",
+  "audio_completion": "denny_009_completion.mp3"
+}

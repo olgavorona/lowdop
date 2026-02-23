@@ -1,0 +1,130 @@
+{
+  "id": "denny_017_lv2",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "kelp_forest",
+  "title": "Denny's Seaweed Harvest",
+  "story_setup": "Shelly needs seaweed for a special recipe! Denny is helping gather the freshest pieces from the kelp forest.",
+  "instruction": "Collect all the seaweed as you make your way to Shelly!",
+  "tts_instruction": "Shelly needs seaweed for cooking! Help Denny pick up every piece of seaweed in the kelp forest on the way to Shelly.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "sea turtle",
+    "description": "Green sea turtle with a patterned shell, slow but steady, tells stories",
+    "position": "top_right",
+    "name": "Shelly",
+    "image_asset": "shelly"
+  },
+  "educational_question": "Do you know any foods that are made with seaweed?",
+  "fun_fact": "Seaweed is a superfood! It's used to make sushi wraps, ice cream, and even toothpaste. Kelp can grow up to 2 feet per day!",
+  "completion_message": "Denny gathered all the seaweed! Shelly can make her special recipe now!",
+  "item_rule": "collect",
+  "item_emoji": "🌿",
+  "path_data": {
+    "svg_path": "M 300 82 L 300 194 M 188 194 L 300 194 M 188 194 L 188 306 M 76 306 L 188 306 M 188 306 L 300 306 M 300 306 L 412 306 M 300 306 L 300 418 M 412 306 L 524 306 M 188 418 L 300 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 76 306 L 76 306 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 524 306 L 524 306 M 188 418 L 188 418 M 300 418 L 300 418",
+    "solution_path": "M 300 82 L 300 194 L 188 194 L 188 306 L 300 306 L 300 418",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "corridor_diamond",
+    "start_point": {
+      "x": 300,
+      "y": 82
+    },
+    "end_point": {
+      "x": 300,
+      "y": 418
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 194,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 300,
+        "y": 306,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 188,
+        "y": 194,
+        "emoji": "🌿",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#27AE60",
+    "decorative_elements": [
+      "kelp",
+      "light_rays",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_017_instruction.mp3",
+  "audio_completion": "denny_017_completion.mp3"
+}

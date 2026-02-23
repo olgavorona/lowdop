@@ -28,7 +28,7 @@ class GameViewModel: ObservableObject {
     }
 
     func loadLabyrinths() {
-        labyrinths = LabyrinthLoader.shared.loadForAgeGroup(preferences.ageGroup)
+        labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel)
         currentIndex = 0
         isPlaying = false
     }

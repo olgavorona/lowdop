@@ -1,0 +1,264 @@
+{
+  "id": "denny_018_lv4",
+  "age_range": "3-6",
+  "difficulty": "hard",
+  "theme": "ocean",
+  "location": "kelp_forest",
+  "title": "Denny Avoids Dark Caves",
+  "story_setup": "Dark cave openings dot the kelp forest floor. Denny needs to swim past them to find Ollie.",
+  "instruction": "Find your way to Ollie, but stay away from the dark caves!",
+  "tts_instruction": "The kelp forest has spooky dark caves! Help Denny swim around them to find Ollie. Don't get too close to the dark openings!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "octopus",
+    "description": "Blue-purple octopus, clever and funny, always carries things in tentacles",
+    "position": "top_right",
+    "name": "Ollie",
+    "image_asset": "ollie"
+  },
+  "educational_question": "What animals might live in underwater caves?",
+  "fun_fact": "Underwater caves can be home to blind fish and shrimp that have adapted to life in complete darkness over millions of years!",
+  "completion_message": "Denny found Ollie without going near the dark caves! Well done!",
+  "item_rule": "avoid",
+  "item_emoji": "🕳️",
+  "path_data": {
+    "svg_path": "M 216 110 L 272 110 M 272 110 L 272 166 M 328 110 L 384 110 M 328 110 L 328 166 M 160 166 L 216 166 M 160 166 L 160 222 M 216 166 L 272 166 M 328 166 L 384 166 M 328 166 L 328 222 M 384 166 L 440 166 M 440 166 L 440 222 M 160 222 L 160 278 M 216 222 L 272 222 M 216 222 L 216 278 M 272 222 L 328 222 M 328 222 L 384 222 M 440 222 L 440 278 M 160 278 L 160 334 M 216 278 L 272 278 M 328 278 L 384 278 M 328 278 L 328 334 M 384 278 L 440 278 M 440 278 L 440 334 M 160 334 L 216 334 M 216 334 L 272 334 M 272 334 L 328 334 M 384 334 L 440 334 M 384 334 L 384 390 M 216 390 L 272 390 M 272 390 L 328 390 M 328 390 L 384 390 M 216 110 L 216 110 M 272 110 L 272 110 M 328 110 L 328 110 M 384 110 L 384 110 M 160 166 L 160 166 M 216 166 L 216 166 M 272 166 L 272 166 M 328 166 L 328 166 M 384 166 L 384 166 M 440 166 L 440 166 M 160 222 L 160 222 M 216 222 L 216 222 M 272 222 L 272 222 M 328 222 L 328 222 M 384 222 L 384 222 M 440 222 L 440 222 M 160 278 L 160 278 M 216 278 L 216 278 M 272 278 L 272 278 M 328 278 L 328 278 M 384 278 L 384 278 M 440 278 L 440 278 M 160 334 L 160 334 M 216 334 L 216 334 M 272 334 L 272 334 M 328 334 L 328 334 M 384 334 L 384 334 M 440 334 L 440 334 M 216 390 L 216 390 M 272 390 L 272 390 M 328 390 L 328 390 M 384 390 L 384 390",
+    "solution_path": "M 216 110 L 272 110 L 272 166 L 216 166 L 160 166 L 160 222 L 160 278 L 160 334 L 216 334 L 272 334 L 328 334 L 328 278 L 384 278 L 440 278 L 440 334 L 384 334 L 384 390",
+    "width": 25,
+    "complexity": "hard",
+    "maze_type": "corridor_circle",
+    "start_point": {
+      "x": 216,
+      "y": 110
+    },
+    "end_point": {
+      "x": 384,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 216,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 166
+        },
+        "end": {
+          "x": 216,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 166
+        },
+        "end": {
+          "x": 160,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 166
+        },
+        "end": {
+          "x": 160,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 222
+        },
+        "end": {
+          "x": 160,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 278
+        },
+        "end": {
+          "x": 160,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 334
+        },
+        "end": {
+          "x": 216,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 334
+        },
+        "end": {
+          "x": 272,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 334
+        },
+        "end": {
+          "x": 328,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 334
+        },
+        "end": {
+          "x": 328,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 278
+        },
+        "end": {
+          "x": 384,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 334
+        },
+        "end": {
+          "x": 384,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 334
+        },
+        "end": {
+          "x": 384,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 384,
+        "y": 166,
+        "emoji": "🕳️",
+        "on_solution": false
+      },
+      {
+        "x": 272,
+        "y": 278,
+        "emoji": "🕳️",
+        "on_solution": false
+      },
+      {
+        "x": 216,
+        "y": 390,
+        "emoji": "🕳️",
+        "on_solution": false
+      },
+      {
+        "x": 272,
+        "y": 222,
+        "emoji": "🕳️",
+        "on_solution": false
+      },
+      {
+        "x": 272,
+        "y": 390,
+        "emoji": "🕳️",
+        "on_solution": false
+      },
+      {
+        "x": 328,
+        "y": 222,
+        "emoji": "🕳️",
+        "on_solution": false
+      },
+      {
+        "x": 328,
+        "y": 110,
+        "emoji": "🕳️",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#27AE60",
+    "decorative_elements": [
+      "kelp",
+      "light_rays",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_018_instruction.mp3",
+  "audio_completion": "denny_018_completion.mp3"
+}

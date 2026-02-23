@@ -2,54 +2,39 @@ import SwiftUI
 
 struct OnboardingView: View {
     @EnvironmentObject var preferences: UserPreferences
-    @State private var selectedAge: AgeGroup = .young
     @State private var showPrivacyPolicy = false
 
+    private let levelColors: [DifficultyLevel: [Color]] = [
+        .beginner: [Color(hex: "#81D4FA") ?? .blue, Color(hex: "#4FC3F7") ?? .blue],
+        .easy: [Color(hex: "#4FC3F7") ?? .blue, Color(hex: "#29B6F6") ?? .blue],
+        .medium: [Color(hex: "#29B6F6") ?? .blue, Color(hex: "#039BE5") ?? .blue],
+        .hard: [Color(hex: "#039BE5") ?? .blue, Color(hex: "#0277BD") ?? .blue],
+        .expert: [Color(hex: "#0277BD") ?? .blue, Color(hex: "#01579B") ?? .blue],
+    ]
+
     var body: some View {
-        VStack(spacing: 30) {
-            Spacer()
-
-            Text("Welcome!")
-                .font(.system(size: 36, weight: .bold, design: .rounded))
+        VStack(spacing: 16) {
+            Text("Choose Your Challenge")
+                .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                .padding(.top, 20)
 
-            Text("Let's set up your labyrinth adventure")
-                .font(.system(size: 18, design: .rounded))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
+            HStack(spacing: 12) {
+                ForEach(DifficultyLevel.allCases, id: \.self) { level in
+                    DifficultyCard(
+                        level: level,
+                        colors: levelColors[level] ?? [.blue, .blue],
+                        samplePath: loadSamplePath(for: level)
+                    ) {
+                        preferences.difficultyLevel = level
+                        preferences.hasCompletedOnboarding = true
+                    }
+                }
+            }
+            .padding(.horizontal, 20)
 
             Spacer()
 
-            Text("How old are you?")
-                .font(.system(size: 22, weight: .medium, design: .rounded))
-
-            HStack(spacing: 20) {
-                AgeButton(title: "3-4", emoji: "🐣", isSelected: selectedAge == .young) {
-                    selectedAge = .young
-                }
-                AgeButton(title: "5-6", emoji: "🌟", isSelected: selectedAge == .older) {
-                    selectedAge = .older
-                }
-            }
-            .padding(.horizontal)
-
-            Spacer()
-
-            Button(action: {
-                preferences.ageGroup = selectedAge
-                preferences.hasCompletedOnboarding = true
-            }) {
-                Text("Start!")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(Color(hex: "#6BBF7B") ?? .green)
-                    .cornerRadius(16)
-            }
-            .padding(.horizontal, 40)
-
-            // Privacy policy — required by Apple during onboarding
             Button(action: { showPrivacyPolicy = true }) {
                 Text("Privacy Policy")
                     .font(.system(size: 13, design: .rounded))
@@ -65,35 +50,71 @@ struct OnboardingView: View {
             PrivacyPolicyView()
         }
     }
+
+    private func loadSamplePath(for level: DifficultyLevel) -> String {
+        guard let url = Bundle.main.url(forResource: "difficulty_samples", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let samples = try? JSONDecoder().decode([String: String].self, from: data) else {
+            return ""
+        }
+        return samples[level.rawValue] ?? ""
+    }
 }
 
-struct AgeButton: View {
-    let title: String
-    let emoji: String
-    let isSelected: Bool
+struct DifficultyCard: View {
+    let level: DifficultyLevel
+    let colors: [Color]
+    let samplePath: String
     let action: () -> Void
+
+    private var levelNumber: Int {
+        switch level {
+        case .beginner: return 1
+        case .easy: return 2
+        case .medium: return 3
+        case .hard: return 4
+        case .expert: return 5
+        }
+    }
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: 8) {
-                Text(emoji)
-                    .font(.system(size: 44))
-                Text(title)
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundColor(isSelected ? .white : Color(hex: "#5D4E37") ?? .brown)
-                Text("years")
-                    .font(.system(size: 14, design: .rounded))
-                    .foregroundColor(isSelected ? .white.opacity(0.8) : .secondary)
+                // Mini maze preview
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(LinearGradient(
+                            colors: colors,
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ))
+
+                    if !samplePath.isEmpty {
+                        GeometryReader { geo in
+                            let scale = min(geo.size.width, geo.size.height) / 600
+                            SVGPathParser.parse(samplePath, scale: scale)
+                                .stroke(Color.white.opacity(0.6), lineWidth: 2)
+                        }
+                        .padding(8)
+                    }
+                }
+                .aspectRatio(1.0, contentMode: .fit)
+
+                // Level name
+                Text(level.displayName)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+
+                // Difficulty dots
+                HStack(spacing: 3) {
+                    ForEach(0..<5, id: \.self) { i in
+                        Circle()
+                            .fill(i < levelNumber ? colors[0] : Color.gray.opacity(0.2))
+                            .frame(width: 8, height: 8)
+                    }
+                }
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 140)
-            .background(isSelected ? (Color(hex: "#6BBF7B") ?? .green) : Color.white)
-            .cornerRadius(20)
-            .shadow(color: .black.opacity(0.08), radius: 8, y: 4)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(isSelected ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
-            )
         }
     }
 }

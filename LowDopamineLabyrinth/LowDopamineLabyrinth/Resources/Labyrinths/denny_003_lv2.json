@@ -1,0 +1,188 @@
+{
+  "id": "denny_003_lv2",
+  "age_range": "3-4",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "bubble_lagoon",
+  "title": "Denny Finds Sandy's Bubbles",
+  "story_setup": "Denny the baby crab is swimming in Bubble Lagoon. His little sister Sandy is somewhere in the lagoon, blowing pretty bubbles!",
+  "instruction": "Draw a line to help Denny swim to Sandy.",
+  "tts_instruction": "Can you help Denny swim through the lagoon to find his little sister Sandy? Draw a line with your finger to show Denny the way through the bubbles.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "little sister crab",
+    "description": "Sandy-yellow little sister crab, playful and giggly, tiny with a bow",
+    "position": "top_right",
+    "name": "Sandy",
+    "image_asset": "sandy"
+  },
+  "educational_question": "What other sea animals do you think might live in a lagoon with Denny and Sandy?",
+  "fun_fact": "Baby crabs like Denny and Sandy can walk sideways, forwards, and backwards!",
+  "completion_message": "Hooray! Denny found Sandy and now they can play with the bubbles together.",
+  "path_data": {
+    "svg_path": "M 20 26 L 132 26 M 132 26 L 132 138 M 20 26 L 20 138 M 132 26 L 244 26 M 132 26 L 132 138 M 244 26 L 356 26 M 244 138 L 356 138 M 356 26 L 468 26 M 356 138 L 468 138 M 468 26 L 580 26 M 580 26 L 580 138 M 132 138 L 132 250 M 20 138 L 20 250 M 244 138 L 244 250 M 132 138 L 132 250 M 244 138 L 356 138 M 244 138 L 244 250 M 356 138 L 468 138 M 468 138 L 468 250 M 580 138 L 580 250 M 468 138 L 468 250 M 132 250 L 132 362 M 20 250 L 20 362 M 244 250 L 244 362 M 132 250 L 132 362 M 356 250 L 356 362 M 244 250 L 244 362 M 468 250 L 468 362 M 356 362 L 468 362 M 356 250 L 356 362 M 580 250 L 580 362 M 468 250 L 468 362 M 20 474 L 132 474 M 20 362 L 20 474 M 244 362 L 244 474 M 132 474 L 244 474 M 244 474 L 356 474 M 244 362 L 244 474 M 356 362 L 468 362 M 356 474 L 468 474 M 580 362 L 580 474 M 468 474 L 580 474",
+    "solution_path": "M 76 82 L 76 194 L 76 306 L 76 418 L 188 418 L 188 306 L 188 194 L 188 82 L 300 82 L 412 82 L 524 82 L 524 194 L 524 306 L 524 418",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 76,
+      "y": 82
+    },
+    "end_point": {
+      "x": 524,
+      "y": 418
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 76,
+          "y": 82
+        },
+        "end": {
+          "x": 76,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 76,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 306
+        },
+        "end": {
+          "x": 76,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 412,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 82
+        },
+        "end": {
+          "x": 524,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 82
+        },
+        "end": {
+          "x": 524,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 194
+        },
+        "end": {
+          "x": 524,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 306
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#3498DB",
+    "decorative_elements": [
+      "bubbles",
+      "water",
+      "pebbles"
+    ]
+  },
+  "audio_instruction": "denny_003_instruction.mp3",
+  "audio_completion": "denny_003_completion.mp3"
+}

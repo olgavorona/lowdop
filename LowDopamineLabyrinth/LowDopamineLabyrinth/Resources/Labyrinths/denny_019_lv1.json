@@ -1,0 +1,114 @@
+{
+  "id": "denny_019_lv1",
+  "age_range": "3-6",
+  "difficulty": "beginner",
+  "theme": "ocean",
+  "location": "shipwreck_playground",
+  "title": "Denny's Treasure Hunt",
+  "story_setup": "Finn discovered sparkly gems near the old shipwreck! He and Denny are on a treasure hunt to collect them all.",
+  "instruction": "Collect all the gems on your way to meet Finn at the shipwreck!",
+  "tts_instruction": "Treasure hunt! Help Denny collect every sparkling gem hidden around the shipwreck before meeting Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "If you found a treasure chest, what would you wish was inside?",
+  "fun_fact": "Real treasure has been found in shipwrecks! The Atocha shipwreck had gold and emeralds worth over 400 million dollars!",
+  "completion_message": "Denny found all the treasure! What an amazing adventure with Finn!",
+  "item_rule": "collect",
+  "item_emoji": "💎",
+  "path_data": {
+    "svg_path": "M 370 110 L 370 250 M 230 250 L 370 250 M 230 250 L 230 390 M 90 390 L 230 390 M 230 390 L 370 390 M 370 390 L 510 390 M 370 110 L 370 110 M 230 250 L 230 250 M 370 250 L 370 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
+    "solution_path": "M 370 110 L 370 250 L 230 250 L 230 390 L 90 390",
+    "width": 40,
+    "complexity": "beginner",
+    "maze_type": "corridor_mountain",
+    "start_point": {
+      "x": 370,
+      "y": 110
+    },
+    "end_point": {
+      "x": 90,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 390
+        },
+        "end": {
+          "x": 90,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 230,
+        "y": 250,
+        "emoji": "💎",
+        "on_solution": true
+      },
+      {
+        "x": 370,
+        "y": 250,
+        "emoji": "💎",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E67E22",
+    "decorative_elements": [
+      "ship",
+      "treasure",
+      "porthole"
+    ]
+  },
+  "audio_instruction": "denny_019_instruction.mp3",
+  "audio_completion": "denny_019_completion.mp3"
+}

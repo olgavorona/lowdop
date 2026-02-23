@@ -190,6 +190,41 @@ class MazeGenerator:
             d += f" L {x} {y}"
         return d
 
+    def to_svg_corridors(self, offset_x: int = 0, offset_y: int = 0, mask: Optional[set] = None) -> str:
+        """Generate SVG path data for corridor-style rendering.
+
+        Draws lines between cell centers where walls are removed,
+        rendered with wide stroke + round line caps = natural corridor look.
+        """
+        paths = []
+        cs = self.cell_size
+        half = cs // 2
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if mask and (r, c) not in mask:
+                    continue
+                cell = self.grid[r][c]
+                cx = offset_x + c * cs + half
+                cy = offset_y + r * cs + half
+                # Only draw right and bottom connections to avoid duplicates
+                if not cell.walls["right"] and c + 1 < self.cols:
+                    if not mask or (r, c + 1) in mask:
+                        nx = offset_x + (c + 1) * cs + half
+                        paths.append(f"M {cx} {cy} L {nx} {cy}")
+                if not cell.walls["bottom"] and r + 1 < self.rows:
+                    if not mask or (r + 1, c) in mask:
+                        ny = offset_y + (r + 1) * cs + half
+                        paths.append(f"M {cx} {cy} L {cx} {ny}")
+        # Add dots at each cell center for round nodes
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if mask and (r, c) not in mask:
+                    continue
+                cx = offset_x + c * cs + half
+                cy = offset_y + r * cs + half
+                paths.append(f"M {cx} {cy} L {cx} {cy}")
+        return " ".join(paths)
+
 
 class ShapeMask:
     """Generates cell masks for shaped mazes."""
@@ -336,6 +371,54 @@ class FullMazeGenerator:
         "circle": ShapeMask.circle,
     }
 
+    def place_items(
+        self,
+        maze: MazeGenerator,
+        solution: List[Tuple[int, int]],
+        start: Tuple[int, int],
+        end: Tuple[int, int],
+        item_rule: str,
+        item_count: int,
+        item_emoji: str,
+        offset_x: int,
+        offset_y: int,
+        cell_size: int,
+        mask: Optional[set] = None,
+    ) -> List[Dict[str, Any]]:
+        """Place items on or off the solution path.
+
+        - collect: items on solution path cells (excluding start/end)
+        - avoid: items on non-solution cells
+        """
+        half = cell_size // 2
+        solution_set = set(solution)
+
+        if item_rule == "collect":
+            # Place on solution path cells, excluding start and end
+            candidates = [cell for cell in solution if cell != start and cell != end]
+        else:
+            # Place on non-solution cells
+            if mask:
+                all_cells = list(mask)
+            else:
+                all_cells = [(r, c) for r in range(maze.rows) for c in range(maze.cols)]
+            candidates = [cell for cell in all_cells if cell not in solution_set]
+
+        random.shuffle(candidates)
+        chosen = candidates[:min(item_count, len(candidates))]
+
+        items = []
+        for r, c in chosen:
+            x = offset_x + c * cell_size + half
+            y = offset_y + r * cell_size + half
+            items.append({
+                "x": x,
+                "y": y,
+                "emoji": item_emoji,
+                "on_solution": (r, c) in solution_set,
+            })
+        return items
+
     def generate_maze(
         self,
         difficulty: str = "easy",
@@ -345,8 +428,19 @@ class FullMazeGenerator:
         canvas_height: int = 500,
         override_rows: Optional[int] = None,
         override_cols: Optional[int] = None,
+        render_style: str = "walls",
+        item_rule: Optional[str] = None,
+        item_count: int = 0,
+        item_emoji: Optional[str] = None,
+        start_position: Optional[str] = None,
+        end_position: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """Generate a complete maze with all data needed for the app."""
+        """Generate a complete maze with all data needed for the app.
+
+        render_style: "walls" (default) or "corridor"
+        item_rule: None, "collect", or "avoid"
+        start_position/end_position: override start/end placement
+        """
         path_width = 35 if age <= 4 else 25
 
         # Determine grid size based on difficulty and age
@@ -404,13 +498,34 @@ class FullMazeGenerator:
             start = (0, 0)
             end = (rows - 1, cols - 1)
 
+        # Override start/end positions if specified
+        if start_position and mask:
+            mask_list = sorted(mask)
+            pos_map = self._position_candidates(mask_list, rows, cols)
+            if start_position in pos_map:
+                start = random.choice(pos_map[start_position])
+        if end_position and mask:
+            mask_list = sorted(mask)
+            pos_map = self._position_candidates(mask_list, rows, cols)
+            if end_position in pos_map:
+                candidates_end = [c for c in pos_map[end_position] if c != start]
+                if candidates_end:
+                    end = random.choice(candidates_end)
+
         # Require solution to visit a meaningful fraction of cells
         # Medium: >= 40% of cells, Hard: >= 50% of cells
         min_ratio = {"easy": 0.3, "medium": 0.4, "hard": 0.5}.get(difficulty, 0.3)
         maze.generate(start, mask, end=end, min_solution_ratio=min_ratio)
         solution = maze.solve(start, end)
 
-        walls_svg = maze.to_svg_walls(offset_x, offset_y, mask)
+        # Choose SVG rendering style
+        if render_style == "corridor":
+            svg_path = maze.to_svg_corridors(offset_x, offset_y, mask)
+            maze_type_prefix = "corridor"
+        else:
+            svg_path = maze.to_svg_walls(offset_x, offset_y, mask)
+            maze_type_prefix = "grid" if shape == "rect" else "shaped"
+
         solution_svg = maze.solution_to_svg_path(offset_x, offset_y)
 
         half = cell_size // 2
@@ -436,9 +551,14 @@ class FullMazeGenerator:
                     }
                 })
 
-        return {
-            "maze_type": "grid" if shape == "rect" else f"shaped_{shape}",
-            "svg_path": walls_svg,
+        if render_style == "corridor":
+            maze_type = f"corridor_{shape}"
+        else:
+            maze_type = "grid" if shape == "rect" else f"shaped_{shape}"
+
+        result = {
+            "maze_type": maze_type,
+            "svg_path": svg_path,
             "solution_path": solution_svg,
             "path_width": path_width,
             "cell_size": cell_size,
@@ -452,6 +572,52 @@ class FullMazeGenerator:
             "complexity": difficulty,
             "shape": shape,
         }
+
+        # Place items if requested
+        if item_rule and item_count > 0 and item_emoji and solution:
+            items = self.place_items(
+                maze, solution, start, end,
+                item_rule, item_count, item_emoji,
+                offset_x, offset_y, cell_size, mask,
+            )
+            result["items"] = items
+
+        return result
+
+    @staticmethod
+    def _position_candidates(mask_list: list, rows: int, cols: int) -> Dict[str, List[Tuple[int, int]]]:
+        """Map position names to candidate cells within the mask."""
+        min_r = min(r for r, c in mask_list)
+        max_r = max(r for r, c in mask_list)
+        min_c = min(c for r, c in mask_list)
+        max_c = max(c for r, c in mask_list)
+        mid_r = (min_r + max_r) // 2
+        mid_c = (min_c + max_c) // 2
+        positions: Dict[str, List[Tuple[int, int]]] = {
+            "top": [], "bottom": [], "left": [], "right": [],
+            "top_left": [], "top_right": [], "bottom_left": [], "bottom_right": [],
+            "center": [],
+        }
+        for r, c in mask_list:
+            if r == min_r:
+                positions["top"].append((r, c))
+            if r == max_r:
+                positions["bottom"].append((r, c))
+            if c == min_c:
+                positions["left"].append((r, c))
+            if c == max_c:
+                positions["right"].append((r, c))
+            if r == min_r and c <= mid_c:
+                positions["top_left"].append((r, c))
+            if r == min_r and c >= mid_c:
+                positions["top_right"].append((r, c))
+            if r == max_r and c <= mid_c:
+                positions["bottom_left"].append((r, c))
+            if r == max_r and c >= mid_c:
+                positions["bottom_right"].append((r, c))
+            if abs(r - mid_r) <= 1 and abs(c - mid_c) <= 1:
+                positions["center"].append((r, c))
+        return positions
 
     def to_full_svg(self, maze_data: Dict[str, Any], bg_color: str = "#4A90E2") -> str:
         """Render a complete SVG image for preview."""

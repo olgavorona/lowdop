@@ -1,0 +1,208 @@
+{
+  "id": "denny_018_lv3",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "kelp_forest",
+  "title": "Denny Avoids Dark Caves",
+  "story_setup": "Dark cave openings dot the kelp forest floor. Denny needs to swim past them to find Ollie.",
+  "instruction": "Find your way to Ollie, but stay away from the dark caves!",
+  "tts_instruction": "The kelp forest has spooky dark caves! Help Denny swim around them to find Ollie. Don't get too close to the dark openings!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "octopus",
+    "description": "Blue-purple octopus, clever and funny, always carries things in tentacles",
+    "position": "top_right",
+    "name": "Ollie",
+    "image_asset": "ollie"
+  },
+  "educational_question": "What animals might live in underwater caves?",
+  "fun_fact": "Underwater caves can be home to blind fish and shrimp that have adapted to life in complete darkness over millions of years!",
+  "completion_message": "Denny found Ollie without going near the dark caves! Well done!",
+  "item_rule": "avoid",
+  "item_emoji": "🕳️",
+  "path_data": {
+    "svg_path": "M 195 145 L 195 215 M 265 145 L 335 145 M 335 145 L 405 145 M 335 145 L 335 215 M 405 145 L 405 215 M 195 215 L 265 215 M 265 215 L 335 215 M 405 215 L 405 285 M 195 285 L 265 285 M 195 285 L 195 355 M 265 285 L 335 285 M 335 285 L 405 285 M 195 355 L 265 355 M 265 355 L 335 355 M 335 355 L 405 355 M 195 145 L 195 145 M 265 145 L 265 145 M 335 145 L 335 145 M 405 145 L 405 145 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355",
+    "solution_path": "M 195 145 L 195 215 L 265 215 L 335 215 L 335 145 L 405 145 L 405 215 L 405 285 L 335 285 L 265 285 L 195 285 L 195 355 L 265 355 L 335 355 L 405 355",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_circle",
+    "start_point": {
+      "x": 195,
+      "y": 145
+    },
+    "end_point": {
+      "x": 405,
+      "y": 355
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 195,
+          "y": 145
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 145
+        },
+        "end": {
+          "x": 405,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 145
+        },
+        "end": {
+          "x": 405,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 215
+        },
+        "end": {
+          "x": 405,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 265,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 265,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 405,
+          "y": 355
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 265,
+        "y": 145,
+        "emoji": "🕳️",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#27AE60",
+    "decorative_elements": [
+      "kelp",
+      "light_rays",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_018_instruction.mp3",
+  "audio_completion": "denny_018_completion.mp3"
+}

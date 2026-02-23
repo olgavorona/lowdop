@@ -1,0 +1,192 @@
+{
+  "id": "denny_012_lv3",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny Dodges Jellyfish",
+  "story_setup": "The coral garden is full of jellyfish today! Denny needs to swim carefully to reach his friend Finn without touching any.",
+  "instruction": "Draw a path to reach Finn, but try to avoid the jellyfish!",
+  "tts_instruction": "Oh no, jellyfish! Help Denny swim through the coral garden to reach Finn. Try not to touch the jellyfish along the way!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "Why do jellyfish sting? Is it to protect themselves?",
+  "fun_fact": "Jellyfish don't have brains, hearts, or bones! They are made of 95% water.",
+  "completion_message": "Denny made it safely to Finn through the jellyfish!",
+  "item_rule": "avoid",
+  "item_emoji": "🪼",
+  "path_data": {
+    "svg_path": "M 265 75 L 265 145 M 265 145 L 335 145 M 335 145 L 335 215 M 125 215 L 125 285 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 335 215 M 405 215 L 405 285 M 55 285 L 125 285 M 125 285 L 125 355 M 195 285 L 195 355 M 265 285 L 335 285 M 335 285 L 405 285 M 335 285 L 335 355 M 405 285 L 475 285 M 405 285 L 405 355 M 475 285 L 545 285 M 125 355 L 195 355 M 195 355 L 265 355 M 265 355 L 335 355 M 335 355 L 335 425 M 265 425 L 335 425 M 265 75 L 265 75 M 265 145 L 265 145 M 335 145 L 335 145 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 265 425 L 265 425 M 335 425 L 335 425",
+    "solution_path": "M 265 75 L 265 145 L 335 145 L 335 215 L 265 215 L 195 215 L 195 285 L 195 355 L 265 355 L 335 355 L 335 425",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_diamond",
+    "start_point": {
+      "x": 265,
+      "y": 75
+    },
+    "end_point": {
+      "x": 335,
+      "y": 425
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 265,
+          "y": 75
+        },
+        "end": {
+          "x": 265,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 265,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 265,
+        "y": 285,
+        "emoji": "🪼",
+        "on_solution": false
+      },
+      {
+        "x": 405,
+        "y": 355,
+        "emoji": "🪼",
+        "on_solution": false
+      },
+      {
+        "x": 335,
+        "y": 285,
+        "emoji": "🪼",
+        "on_solution": false
+      },
+      {
+        "x": 475,
+        "y": 285,
+        "emoji": "🪼",
+        "on_solution": false
+      },
+      {
+        "x": 265,
+        "y": 425,
+        "emoji": "🪼",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E74C3C",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_012_instruction.mp3",
+  "audio_completion": "denny_012_completion.mp3"
+}

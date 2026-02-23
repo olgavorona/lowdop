@@ -1,0 +1,272 @@
+{
+  "id": "denny_011_lv4",
+  "age_range": "3-6",
+  "difficulty": "hard",
+  "theme": "ocean",
+  "location": "sandy_shore",
+  "title": "Denny's Shell Collection",
+  "story_setup": "Mommy Coral asked Denny to collect beautiful shells scattered along the sandy shore. Can you help Denny find them all?",
+  "instruction": "Draw a path and collect all the shells along the way to reach Mommy Coral!",
+  "tts_instruction": "Help Denny collect all the shells on the beach! Draw a path through the maze and pick up every shell before reaching Mommy Coral.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "mother crab",
+    "description": "Warm coral-pink mother crab, nurturing, slightly larger with a pearl necklace",
+    "position": "top_right",
+    "name": "Mommy Coral",
+    "image_asset": "mama_coral"
+  },
+  "educational_question": "How many shells did Denny collect? Can you count them?",
+  "fun_fact": "Seashells are the homes of soft-bodied animals called mollusks. When the animal grows too big, it makes a bigger shell!",
+  "completion_message": "Denny collected all the shells! Mommy Coral is so proud!",
+  "item_rule": "collect",
+  "item_emoji": "🐚",
+  "path_data": {
+    "svg_path": "M 272 54 L 272 110 M 272 110 L 272 166 M 272 166 L 328 166 M 328 166 L 328 222 M 216 222 L 272 222 M 216 222 L 216 278 M 272 222 L 328 222 M 384 222 L 384 278 M 160 278 L 160 334 M 216 278 L 272 278 M 272 278 L 272 334 M 328 278 L 384 278 M 328 278 L 328 334 M 384 278 L 384 334 M 104 334 L 160 334 M 104 334 L 104 390 M 160 334 L 216 334 M 216 334 L 216 390 M 272 334 L 272 390 M 328 334 L 328 390 M 384 334 L 440 334 M 440 334 L 440 390 M 104 390 L 160 390 M 104 390 L 104 446 M 160 390 L 160 446 M 272 390 L 272 446 M 384 390 L 440 390 M 384 390 L 384 446 M 440 390 L 496 390 M 496 390 L 496 446 M 48 446 L 104 446 M 160 446 L 216 446 M 216 446 L 272 446 M 272 446 L 328 446 M 328 446 L 384 446 M 440 446 L 496 446 M 496 446 L 552 446 M 272 54 L 272 54 M 272 110 L 272 110 M 272 166 L 272 166 M 328 166 L 328 166 M 216 222 L 216 222 M 272 222 L 272 222 M 328 222 L 328 222 M 384 222 L 384 222 M 160 278 L 160 278 M 216 278 L 216 278 M 272 278 L 272 278 M 328 278 L 328 278 M 384 278 L 384 278 M 104 334 L 104 334 M 160 334 L 160 334 M 216 334 L 216 334 M 272 334 L 272 334 M 328 334 L 328 334 M 384 334 L 384 334 M 440 334 L 440 334 M 104 390 L 104 390 M 160 390 L 160 390 M 216 390 L 216 390 M 272 390 L 272 390 M 328 390 L 328 390 M 384 390 L 384 390 M 440 390 L 440 390 M 496 390 L 496 390 M 48 446 L 48 446 M 104 446 L 104 446 M 160 446 L 160 446 M 216 446 L 216 446 M 272 446 L 272 446 M 328 446 L 328 446 M 384 446 L 384 446 M 440 446 L 440 446 M 496 446 L 496 446 M 552 446 L 552 446",
+    "solution_path": "M 272 54 L 272 110 L 272 166 L 328 166 L 328 222 L 272 222 L 216 222 L 216 278 L 272 278 L 272 334 L 272 390 L 272 446 L 328 446 L 384 446 L 384 390 L 440 390 L 496 390 L 496 446 L 552 446",
+    "width": 25,
+    "complexity": "hard",
+    "maze_type": "corridor_triangle",
+    "start_point": {
+      "x": 272,
+      "y": 54
+    },
+    "end_point": {
+      "x": 552,
+      "y": 446
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 272,
+          "y": 54
+        },
+        "end": {
+          "x": 272,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 166
+        },
+        "end": {
+          "x": 328,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 166
+        },
+        "end": {
+          "x": 328,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 222
+        },
+        "end": {
+          "x": 272,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 222
+        },
+        "end": {
+          "x": 216,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 222
+        },
+        "end": {
+          "x": 216,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 278
+        },
+        "end": {
+          "x": 272,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 278
+        },
+        "end": {
+          "x": 272,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 334
+        },
+        "end": {
+          "x": 272,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 390
+        },
+        "end": {
+          "x": 272,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 446
+        },
+        "end": {
+          "x": 328,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 446
+        },
+        "end": {
+          "x": 384,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 446
+        },
+        "end": {
+          "x": 384,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 390
+        },
+        "end": {
+          "x": 440,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 390
+        },
+        "end": {
+          "x": 496,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 390
+        },
+        "end": {
+          "x": 496,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 446
+        },
+        "end": {
+          "x": 552,
+          "y": 446
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 496,
+        "y": 390,
+        "emoji": "🐚",
+        "on_solution": true
+      },
+      {
+        "x": 216,
+        "y": 278,
+        "emoji": "🐚",
+        "on_solution": true
+      },
+      {
+        "x": 272,
+        "y": 390,
+        "emoji": "🐚",
+        "on_solution": true
+      },
+      {
+        "x": 384,
+        "y": 446,
+        "emoji": "🐚",
+        "on_solution": true
+      },
+      {
+        "x": 272,
+        "y": 278,
+        "emoji": "🐚",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#F4D03F",
+    "decorative_elements": [
+      "shells",
+      "tide_pools",
+      "sand"
+    ]
+  },
+  "audio_instruction": "denny_011_instruction.mp3",
+  "audio_completion": "denny_011_completion.mp3"
+}

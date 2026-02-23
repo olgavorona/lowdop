@@ -1,0 +1,104 @@
+{
+  "id": "denny_013_lv2",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "bubble_lagoon",
+  "title": "Denny's Bubble Chase",
+  "story_setup": "Sandy is blowing magical bubbles in the lagoon! Denny wants to catch them all before they float away.",
+  "instruction": "Catch all the bubbles as you draw a path to reach Sandy!",
+  "tts_instruction": "Sandy is making bubbles! Help Denny catch every bubble in the lagoon as you draw a path to reach Sandy.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "little sister crab",
+    "description": "Sandy-yellow little sister crab, playful and giggly, tiny with a bow",
+    "position": "top_right",
+    "name": "Sandy",
+    "image_asset": "sandy"
+  },
+  "educational_question": "What shape are bubbles? Are they always round?",
+  "fun_fact": "Bubbles are round because the air inside pushes equally in all directions, making a sphere — the shape with the smallest surface!",
+  "completion_message": "Denny caught all of Sandy's bubbles! What fun!",
+  "item_rule": "collect",
+  "item_emoji": "🫧",
+  "path_data": {
+    "svg_path": "M 300 82 L 300 194 M 188 194 L 188 306 M 300 194 L 300 306 M 412 194 L 412 306 M 188 306 L 300 306 M 300 306 L 412 306 M 300 306 L 300 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 300 418 L 300 418",
+    "solution_path": "M 300 82 L 300 194 L 300 306 L 300 418",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "corridor_circle",
+    "start_point": {
+      "x": 300,
+      "y": 82
+    },
+    "end_point": {
+      "x": 300,
+      "y": 418
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 306,
+        "emoji": "🫧",
+        "on_solution": true
+      },
+      {
+        "x": 300,
+        "y": 194,
+        "emoji": "🫧",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#3498DB",
+    "decorative_elements": [
+      "bubbles",
+      "water",
+      "pebbles"
+    ]
+  },
+  "audio_instruction": "denny_013_instruction.mp3",
+  "audio_completion": "denny_013_completion.mp3"
+}

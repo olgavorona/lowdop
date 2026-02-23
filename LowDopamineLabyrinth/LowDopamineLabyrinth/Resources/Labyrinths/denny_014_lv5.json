@@ -1,0 +1,616 @@
+{
+  "id": "denny_014_lv5",
+  "age_range": "3-6",
+  "difficulty": "expert",
+  "theme": "ocean",
+  "location": "sandy_shore",
+  "title": "Denny Avoids Sea Urchins",
+  "story_setup": "The sandy shore has prickly sea urchins hiding in the sand! Denny needs to be careful getting to Papa Reef.",
+  "instruction": "Draw a path to Papa Reef, but watch out for the prickly sea urchins!",
+  "tts_instruction": "Careful! There are prickly sea urchins on the shore. Help Denny find a safe path to Papa Reef without stepping on them!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "father crab",
+    "description": "Deep red-brown father crab, strong and calm, one big claw for hugging",
+    "position": "top_right",
+    "name": "Papa Reef",
+    "image_asset": "papa_reef"
+  },
+  "educational_question": "Why do sea urchins have spines? What do they use them for?",
+  "fun_fact": "Sea urchins use their spines for protection and to help them move along the ocean floor. Some sea urchins can live for over 200 years!",
+  "completion_message": "Denny reached Papa Reef safely! Great job avoiding the sea urchins!",
+  "item_rule": "avoid",
+  "item_emoji": "🦔",
+  "path_data": {
+    "svg_path": "M 256 56 L 256 99 M 299 56 L 342 56 M 342 56 L 342 99 M 213 99 L 213 142 M 256 99 L 299 99 M 299 99 L 342 99 M 342 99 L 342 142 M 213 142 L 256 142 M 213 142 L 213 185 M 256 142 L 299 142 M 342 142 L 385 142 M 385 142 L 385 185 M 170 185 L 213 185 M 170 185 L 170 228 M 213 185 L 213 228 M 256 185 L 299 185 M 256 185 L 256 228 M 299 185 L 342 185 M 342 185 L 342 228 M 385 185 L 385 228 M 170 228 L 170 271 M 213 228 L 213 271 M 256 228 L 299 228 M 299 228 L 299 271 M 342 228 L 342 271 M 385 228 L 385 271 M 428 228 L 428 271 M 127 271 L 127 314 M 170 271 L 170 314 M 213 271 L 256 271 M 256 271 L 256 314 M 299 271 L 299 314 M 342 271 L 342 314 M 385 271 L 385 314 M 428 271 L 428 314 M 127 314 L 127 357 M 170 314 L 170 357 M 213 314 L 213 357 M 256 314 L 299 314 M 342 314 L 342 357 M 385 314 L 385 357 M 428 314 L 471 314 M 428 314 L 428 357 M 471 314 L 471 357 M 84 357 L 127 357 M 84 357 L 84 400 M 127 357 L 127 400 M 170 357 L 170 400 M 213 357 L 256 357 M 213 357 L 213 400 M 256 357 L 299 357 M 299 357 L 299 400 M 342 357 L 385 357 M 428 357 L 428 400 M 471 357 L 471 400 M 84 400 L 84 443 M 170 400 L 213 400 M 256 400 L 256 443 M 299 400 L 299 443 M 342 400 L 385 400 M 342 400 L 342 443 M 385 400 L 428 400 M 471 400 L 514 400 M 514 400 L 514 443 M 41 443 L 84 443 M 84 443 L 127 443 M 127 443 L 170 443 M 170 443 L 213 443 M 213 443 L 256 443 M 256 443 L 299 443 M 299 443 L 342 443 M 385 443 L 428 443 M 428 443 L 471 443 M 471 443 L 514 443 M 514 443 L 557 443 M 256 56 L 256 56 M 299 56 L 299 56 M 342 56 L 342 56 M 213 99 L 213 99 M 256 99 L 256 99 M 299 99 L 299 99 M 342 99 L 342 99 M 213 142 L 213 142 M 256 142 L 256 142 M 299 142 L 299 142 M 342 142 L 342 142 M 385 142 L 385 142 M 170 185 L 170 185 M 213 185 L 213 185 M 256 185 L 256 185 M 299 185 L 299 185 M 342 185 L 342 185 M 385 185 L 385 185 M 170 228 L 170 228 M 213 228 L 213 228 M 256 228 L 256 228 M 299 228 L 299 228 M 342 228 L 342 228 M 385 228 L 385 228 M 428 228 L 428 228 M 127 271 L 127 271 M 170 271 L 170 271 M 213 271 L 213 271 M 256 271 L 256 271 M 299 271 L 299 271 M 342 271 L 342 271 M 385 271 L 385 271 M 428 271 L 428 271 M 127 314 L 127 314 M 170 314 L 170 314 M 213 314 L 213 314 M 256 314 L 256 314 M 299 314 L 299 314 M 342 314 L 342 314 M 385 314 L 385 314 M 428 314 L 428 314 M 471 314 L 471 314 M 84 357 L 84 357 M 127 357 L 127 357 M 170 357 L 170 357 M 213 357 L 213 357 M 256 357 L 256 357 M 299 357 L 299 357 M 342 357 L 342 357 M 385 357 L 385 357 M 428 357 L 428 357 M 471 357 L 471 357 M 84 400 L 84 400 M 127 400 L 127 400 M 170 400 L 170 400 M 213 400 L 213 400 M 256 400 L 256 400 M 299 400 L 299 400 M 342 400 L 342 400 M 385 400 L 385 400 M 428 400 L 428 400 M 471 400 L 471 400 M 514 400 L 514 400 M 41 443 L 41 443 M 84 443 L 84 443 M 127 443 L 127 443 M 170 443 L 170 443 M 213 443 L 213 443 M 256 443 L 256 443 M 299 443 L 299 443 M 342 443 L 342 443 M 385 443 L 385 443 M 428 443 L 428 443 M 471 443 L 471 443 M 514 443 L 514 443 M 557 443 L 557 443",
+    "solution_path": "M 256 56 L 256 99 L 299 99 L 342 99 L 342 142 L 385 142 L 385 185 L 385 228 L 385 271 L 385 314 L 385 357 L 342 357 L 342 314 L 342 271 L 342 228 L 342 185 L 299 185 L 256 185 L 256 228 L 299 228 L 299 271 L 299 314 L 256 314 L 256 271 L 213 271 L 213 228 L 213 185 L 170 185 L 170 228 L 170 271 L 170 314 L 170 357 L 170 400 L 213 400 L 213 357 L 256 357 L 299 357 L 299 400 L 299 443 L 342 443 L 342 400 L 385 400 L 428 400 L 428 357 L 428 314 L 471 314 L 471 357 L 471 400 L 514 400 L 514 443 L 557 443",
+    "width": 22,
+    "complexity": "expert",
+    "maze_type": "corridor_mountain",
+    "start_point": {
+      "x": 256,
+      "y": 56
+    },
+    "end_point": {
+      "x": 557,
+      "y": 443
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 256,
+          "y": 56
+        },
+        "end": {
+          "x": 256,
+          "y": 99
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 99
+        },
+        "end": {
+          "x": 299,
+          "y": 99
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 99
+        },
+        "end": {
+          "x": 342,
+          "y": 99
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 99
+        },
+        "end": {
+          "x": 342,
+          "y": 142
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 142
+        },
+        "end": {
+          "x": 385,
+          "y": 142
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 142
+        },
+        "end": {
+          "x": 385,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 185
+        },
+        "end": {
+          "x": 385,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 228
+        },
+        "end": {
+          "x": 385,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 271
+        },
+        "end": {
+          "x": 385,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 314
+        },
+        "end": {
+          "x": 385,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 357
+        },
+        "end": {
+          "x": 342,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 357
+        },
+        "end": {
+          "x": 342,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 314
+        },
+        "end": {
+          "x": 342,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 271
+        },
+        "end": {
+          "x": 342,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 228
+        },
+        "end": {
+          "x": 342,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 185
+        },
+        "end": {
+          "x": 299,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 185
+        },
+        "end": {
+          "x": 256,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 185
+        },
+        "end": {
+          "x": 256,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 228
+        },
+        "end": {
+          "x": 299,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 228
+        },
+        "end": {
+          "x": 299,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 271
+        },
+        "end": {
+          "x": 299,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 314
+        },
+        "end": {
+          "x": 256,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 314
+        },
+        "end": {
+          "x": 256,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 271
+        },
+        "end": {
+          "x": 213,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 271
+        },
+        "end": {
+          "x": 213,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 228
+        },
+        "end": {
+          "x": 213,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 185
+        },
+        "end": {
+          "x": 170,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 185
+        },
+        "end": {
+          "x": 170,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 228
+        },
+        "end": {
+          "x": 170,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 271
+        },
+        "end": {
+          "x": 170,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 314
+        },
+        "end": {
+          "x": 170,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 357
+        },
+        "end": {
+          "x": 170,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 400
+        },
+        "end": {
+          "x": 213,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 400
+        },
+        "end": {
+          "x": 213,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 357
+        },
+        "end": {
+          "x": 256,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 357
+        },
+        "end": {
+          "x": 299,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 357
+        },
+        "end": {
+          "x": 299,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 400
+        },
+        "end": {
+          "x": 299,
+          "y": 443
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 443
+        },
+        "end": {
+          "x": 342,
+          "y": 443
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 443
+        },
+        "end": {
+          "x": 342,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 342,
+          "y": 400
+        },
+        "end": {
+          "x": 385,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 385,
+          "y": 400
+        },
+        "end": {
+          "x": 428,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 428,
+          "y": 400
+        },
+        "end": {
+          "x": 428,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 428,
+          "y": 357
+        },
+        "end": {
+          "x": 428,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 428,
+          "y": 314
+        },
+        "end": {
+          "x": 471,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 471,
+          "y": 314
+        },
+        "end": {
+          "x": 471,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 471,
+          "y": 357
+        },
+        "end": {
+          "x": 471,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 471,
+          "y": 400
+        },
+        "end": {
+          "x": 514,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 514,
+          "y": 400
+        },
+        "end": {
+          "x": 514,
+          "y": 443
+        }
+      },
+      {
+        "start": {
+          "x": 514,
+          "y": 443
+        },
+        "end": {
+          "x": 557,
+          "y": 443
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 127,
+        "y": 443,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 127,
+        "y": 400,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 213,
+        "y": 314,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 428,
+        "y": 443,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 84,
+        "y": 357,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 471,
+        "y": 443,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 385,
+        "y": 443,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 127,
+        "y": 271,
+        "emoji": "🦔",
+        "on_solution": false
+      },
+      {
+        "x": 170,
+        "y": 443,
+        "emoji": "🦔",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#F4D03F",
+    "decorative_elements": [
+      "shells",
+      "tide_pools",
+      "sand"
+    ]
+  },
+  "audio_instruction": "denny_014_instruction.mp3",
+  "audio_completion": "denny_014_completion.mp3"
+}

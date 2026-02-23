@@ -1,0 +1,128 @@
+{
+  "id": "denny_008_lv2",
+  "age_range": "4-5",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "kelp_forest",
+  "title": "Denny Helps Find Ollie's Toy",
+  "story_setup": "Ollie the octopus lost his favorite toy somewhere in the tall kelp forest. Denny the baby crab wants to help his friend find it.",
+  "instruction": "Draw a line to help Denny reach Ollie through the kelp.",
+  "tts_instruction": "Can you help Denny find his way through the kelp forest to reach Ollie? Draw a gentle line with your finger to guide Denny safely to his octopus friend.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "octopus",
+    "description": "Blue-purple octopus, clever and funny, always carries things in tentacles",
+    "position": "top_right",
+    "name": "Ollie",
+    "image_asset": "ollie"
+  },
+  "educational_question": "What do you think grows in a kelp forest besides kelp?",
+  "fun_fact": "Kelp can grow up to two feet in just one day, making it one of the fastest-growing plants in the ocean.",
+  "completion_message": "Great job helping Denny reach Ollie in the kelp forest!",
+  "path_data": {
+    "svg_path": "M 20 26 L 132 26 M 132 26 L 132 138 M 20 26 L 20 138 M 132 26 L 244 26 M 132 138 L 244 138 M 132 26 L 132 138 M 244 26 L 356 26 M 356 26 L 468 26 M 468 26 L 580 26 M 580 26 L 580 138 M 468 138 L 580 138 M 20 250 L 132 250 M 20 138 L 20 250 M 132 138 L 244 138 M 244 138 L 244 250 M 356 138 L 356 250 M 244 250 L 356 250 M 244 138 L 244 250 M 356 250 L 468 250 M 356 138 L 356 250 M 468 138 L 580 138 M 580 138 L 580 250 M 20 250 L 132 250 M 132 250 L 132 362 M 20 250 L 20 362 M 132 362 L 244 362 M 132 250 L 132 362 M 244 250 L 356 250 M 244 362 L 356 362 M 356 250 L 468 250 M 468 250 L 468 362 M 580 250 L 580 362 M 468 250 L 468 362 M 20 474 L 132 474 M 20 362 L 20 474 M 132 362 L 244 362 M 132 474 L 244 474 M 244 362 L 356 362 M 244 474 L 356 474 M 356 474 L 468 474 M 580 362 L 580 474 M 468 474 L 580 474",
+    "solution_path": "M 76 82 L 76 194 L 188 194 L 188 306 L 300 306 L 412 306 L 412 418 L 524 418",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 76,
+      "y": 82
+    },
+    "end_point": {
+      "x": 524,
+      "y": 418
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 76,
+          "y": 82
+        },
+        "end": {
+          "x": 76,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#27AE60",
+    "decorative_elements": [
+      "kelp",
+      "light_rays",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_008_instruction.mp3",
+  "audio_completion": "denny_008_completion.mp3"
+}

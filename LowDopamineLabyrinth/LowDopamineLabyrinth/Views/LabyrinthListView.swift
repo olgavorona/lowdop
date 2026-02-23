@@ -60,7 +60,10 @@ struct LabyrinthListView: View {
                         onRepeat: {
                             showCompletion = false
                             vm.reset()
-                        }
+                        },
+                        collectedCount: vm.collectedItemIndices.count,
+                        totalItemCount: vm.totalItemCount,
+                        avoidedItemHits: vm.avoidedItemHits
                     )
                     .transition(.scale.combined(with: .opacity))
                 }

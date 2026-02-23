@@ -25,9 +25,20 @@ class LabyrinthLoader {
         return cachedLabyrinths
     }
 
-    func loadForAgeGroup(_ ageGroup: AgeGroup) -> [Labyrinth] {
+    func loadForDifficulty(_ level: DifficultyLevel) -> [Labyrinth] {
         let all = loadAll()
-        let difficulties = Set(ageGroup.difficulties)
-        return all.filter { difficulties.contains($0.difficulty) }
+        let filtered = all.filter { $0.difficulty == level.rawValue }
+
+        // Interleave normal and adventure labyrinths
+        let normal = filtered.filter { $0.itemRule == nil }
+        let adventure = filtered.filter { $0.itemRule != nil }
+
+        var result: [Labyrinth] = []
+        let maxCount = max(normal.count, adventure.count)
+        for i in 0..<maxCount {
+            if i < normal.count { result.append(normal[i]) }
+            if i < adventure.count { result.append(adventure[i]) }
+        }
+        return result
     }
 }

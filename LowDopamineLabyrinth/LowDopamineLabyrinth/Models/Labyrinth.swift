@@ -1,5 +1,17 @@
 import Foundation
 
+struct ItemData: Codable {
+    let x: Double
+    let y: Double
+    let emoji: String
+    let onSolution: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case x, y, emoji
+        case onSolution = "on_solution"
+    }
+}
+
 struct Labyrinth: Codable, Identifiable {
     let id: String
     let ageRange: String
@@ -19,6 +31,8 @@ struct Labyrinth: Codable, Identifiable {
     let location: String?
     let audioInstruction: String?
     let audioCompletion: String?
+    let itemRule: String?
+    let itemEmoji: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -37,6 +51,8 @@ struct Labyrinth: Codable, Identifiable {
         case location
         case audioInstruction = "audio_instruction"
         case audioCompletion = "audio_completion"
+        case itemRule = "item_rule"
+        case itemEmoji = "item_emoji"
     }
 }
 
@@ -65,6 +81,7 @@ struct PathData: Codable {
     let canvasWidth: Double
     let canvasHeight: Double
     let controlPoints: [PointData]?
+    let items: [ItemData]?
 
     enum CodingKeys: String, CodingKey {
         case svgPath = "svg_path"
@@ -77,6 +94,7 @@ struct PathData: Codable {
         case canvasWidth = "canvas_width"
         case canvasHeight = "canvas_height"
         case controlPoints = "control_points"
+        case items
     }
 }
 
@@ -107,15 +125,12 @@ struct LabyrinthManifest: Codable {
 
 struct ManifestEntry: Codable {
     let id: String
-    let ageRange: String
     let difficulty: String
     let theme: String
     let title: String
     let location: String?
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case ageRange = "age_range"
-        case difficulty, theme, title, location
+        case id, difficulty, theme, title, location
     }
 }

@@ -1,0 +1,186 @@
+{
+  "id": "denny_015_lv3",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "starfish_cove",
+  "title": "Denny's Starfish Search",
+  "story_setup": "Stella lost her favorite star-shaped treasures in the cove! Denny wants to help find them all.",
+  "instruction": "Collect all the stars to help Stella as you find your way to her!",
+  "tts_instruction": "Stella needs your help! Draw a path through the cove and collect all the lost stars before reaching Stella.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish, wise and kind, gives good advice",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella"
+  },
+  "educational_question": "How many arms does a starfish have? Can they grow new ones?",
+  "fun_fact": "Starfish can regrow their arms if one breaks off! Some starfish have more than 5 arms — the sun star can have up to 40!",
+  "completion_message": "Denny found all of Stella's stars! She's so happy!",
+  "item_rule": "collect",
+  "item_emoji": "⭐",
+  "path_data": {
+    "svg_path": "M 265 75 L 265 145 M 335 75 L 335 145 M 195 145 L 195 215 M 265 145 L 335 145 M 335 145 L 405 145 M 405 145 L 405 215 M 125 215 L 125 285 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 335 215 M 265 215 L 265 285 M 405 215 L 475 215 M 475 215 L 475 285 M 55 285 L 125 285 M 125 285 L 195 285 M 265 285 L 265 355 M 335 285 L 405 285 M 335 285 L 335 355 M 405 285 L 475 285 M 475 285 L 545 285 M 265 355 L 265 425 M 335 355 L 335 425 M 265 425 L 335 425 M 265 75 L 265 75 M 335 75 L 335 75 M 195 145 L 195 145 M 265 145 L 265 145 M 335 145 L 335 145 M 405 145 L 405 145 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 475 215 L 475 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 265 355 L 265 355 M 335 355 L 335 355 M 265 425 L 265 425 M 335 425 L 335 425",
+    "solution_path": "M 265 75 L 265 145 L 335 145 L 405 145 L 405 215 L 475 215 L 475 285 L 405 285 L 335 285 L 335 355 L 335 425",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 265,
+      "y": 75
+    },
+    "end_point": {
+      "x": 335,
+      "y": 425
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 265,
+          "y": 75
+        },
+        "end": {
+          "x": 265,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 145
+        },
+        "end": {
+          "x": 405,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 145
+        },
+        "end": {
+          "x": 405,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 215
+        },
+        "end": {
+          "x": 475,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 215
+        },
+        "end": {
+          "x": 475,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 285
+        },
+        "end": {
+          "x": 405,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 475,
+        "y": 285,
+        "emoji": "⭐",
+        "on_solution": true
+      },
+      {
+        "x": 475,
+        "y": 215,
+        "emoji": "⭐",
+        "on_solution": true
+      },
+      {
+        "x": 405,
+        "y": 145,
+        "emoji": "⭐",
+        "on_solution": true
+      },
+      {
+        "x": 335,
+        "y": 355,
+        "emoji": "⭐",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#8E44AD",
+    "decorative_elements": [
+      "rocks",
+      "starfish",
+      "sea_urchins"
+    ]
+  },
+  "audio_instruction": "denny_015_instruction.mp3",
+  "audio_completion": "denny_015_completion.mp3"
+}

@@ -1,0 +1,108 @@
+{
+  "id": "denny_002_lv1",
+  "age_range": "3-4",
+  "difficulty": "beginner",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny's Coral Garden Adventure",
+  "story_setup": "Denny the baby crab is exploring the beautiful coral garden. He wants to find his friend Finn the clownfish who is hiding among the colorful corals.",
+  "instruction": "Draw a line to help Denny reach Finn.",
+  "tts_instruction": "Can you help Denny find his way through the coral garden? Draw a gentle line with your finger to help Denny reach his friend Finn. Take your time and enjoy the journey!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "What colors do you see in coral gardens, and what other ocean friends might live there?",
+  "fun_fact": "Clownfish like Finn make their homes in sea anemones, which protect them with their soft, waving arms.",
+  "completion_message": "Wonderful! Denny found Finn and now they can play together in the coral garden.",
+  "path_data": {
+    "svg_path": "M 20 40 L 160 40 M 20 180 L 160 180 M 20 40 L 20 180 M 160 40 L 300 40 M 300 40 L 300 180 M 300 40 L 440 40 M 300 40 L 300 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 180 L 160 180 M 160 180 L 160 320 M 20 180 L 20 320 M 300 180 L 300 320 M 160 180 L 160 320 M 440 180 L 440 320 M 300 320 L 440 320 M 300 180 L 300 320 M 580 180 L 580 320 M 440 180 L 440 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 300 320 L 440 320 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460",
+    "solution_path": "M 90 110 L 230 110 L 230 250 L 230 390 L 370 390 L 510 390",
+    "width": 40,
+    "complexity": "beginner",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 90,
+      "y": 110
+    },
+    "end_point": {
+      "x": 510,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 390
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 390
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#E74C3C",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_002_instruction.mp3",
+  "audio_completion": "denny_002_completion.mp3"
+}

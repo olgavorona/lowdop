@@ -4,12 +4,29 @@ struct CompletionView: View {
     let labyrinth: Labyrinth
     let onNext: () -> Void
     let onRepeat: () -> Void
+    var collectedCount: Int = 0
+    var totalItemCount: Int = 0
+    var avoidedItemHits: Int = 0
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     /// iPhone landscape = compact, iPad = regular
     private var isCompact: Bool { verticalSizeClass == .compact }
+
+    private var itemStatsText: String? {
+        guard let rule = labyrinth.itemRule, let emoji = labyrinth.itemEmoji else { return nil }
+        if rule == "collect" {
+            return "You collected \(collectedCount)/\(totalItemCount) \(emoji)"
+        } else if rule == "avoid" {
+            if avoidedItemHits == 0 {
+                return "You avoided all the \(emoji)!"
+            } else {
+                return "You touched \(avoidedItemHits) \(emoji) — try to avoid them all!"
+            }
+        }
+        return nil
+    }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -26,6 +43,15 @@ struct CompletionView: View {
                     .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
+
+                // Item stats
+                if let statsText = itemStatsText {
+                    Text(statsText)
+                        .font(.system(size: isCompact ? 15 : 18, weight: .semibold, design: .rounded))
+                        .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
 
                 // Educational section
                 VStack(spacing: isCompact ? 4 : 12) {

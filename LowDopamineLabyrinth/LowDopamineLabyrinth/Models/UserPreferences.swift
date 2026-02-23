@@ -3,8 +3,8 @@ import Foundation
 class UserPreferences: ObservableObject {
     private let defaults = UserDefaults.standard
 
-    @Published var ageGroup: AgeGroup {
-        didSet { defaults.set(ageGroup.rawValue, forKey: "ageGroup") }
+    @Published var difficultyLevel: DifficultyLevel {
+        didSet { defaults.set(difficultyLevel.rawValue, forKey: "difficultyLevel") }
     }
 
     @Published var ttsEnabled: Bool {
@@ -26,12 +26,12 @@ class UserPreferences: ObservableObject {
     }
 
     var pathTolerance: CGFloat {
-        ageGroup == .young ? 20 : 15
+        difficultyLevel.pathTolerance
     }
 
     init() {
-        let savedAge = defaults.string(forKey: "ageGroup") ?? AgeGroup.young.rawValue
-        self.ageGroup = AgeGroup(rawValue: savedAge) ?? .young
+        let savedLevel = defaults.string(forKey: "difficultyLevel") ?? DifficultyLevel.beginner.rawValue
+        self.difficultyLevel = DifficultyLevel(rawValue: savedLevel) ?? .beginner
         self.ttsEnabled = defaults.bool(forKey: "ttsEnabled")
         self.hasCompletedOnboarding = defaults.bool(forKey: "hasCompletedOnboarding")
 
@@ -64,21 +64,18 @@ class UserPreferences: ObservableObject {
     }
 }
 
-enum AgeGroup: String, CaseIterable {
-    case young = "3-4"
-    case older = "5-6"
+enum DifficultyLevel: String, CaseIterable {
+    case beginner, easy, medium, hard, expert
 
-    var displayName: String {
-        switch self {
-        case .young: return "3-4"
-        case .older: return "5-6"
-        }
-    }
+    var displayName: String { rawValue.capitalized }
 
-    var difficulties: [String] {
+    var pathTolerance: CGFloat {
         switch self {
-        case .young: return ["easy"]
-        case .older: return ["medium", "hard"]
+        case .beginner: return 25
+        case .easy: return 22
+        case .medium: return 18
+        case .hard: return 15
+        case .expert: return 12
         }
     }
 }

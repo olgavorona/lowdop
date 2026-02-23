@@ -1,0 +1,114 @@
+{
+  "id": "denny_011_lv1",
+  "age_range": "3-6",
+  "difficulty": "beginner",
+  "theme": "ocean",
+  "location": "sandy_shore",
+  "title": "Denny's Shell Collection",
+  "story_setup": "Mommy Coral asked Denny to collect beautiful shells scattered along the sandy shore. Can you help Denny find them all?",
+  "instruction": "Draw a path and collect all the shells along the way to reach Mommy Coral!",
+  "tts_instruction": "Help Denny collect all the shells on the beach! Draw a path through the maze and pick up every shell before reaching Mommy Coral.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "mother crab",
+    "description": "Warm coral-pink mother crab, nurturing, slightly larger with a pearl necklace",
+    "position": "top_right",
+    "name": "Mommy Coral",
+    "image_asset": "mama_coral"
+  },
+  "educational_question": "How many shells did Denny collect? Can you count them?",
+  "fun_fact": "Seashells are the homes of soft-bodied animals called mollusks. When the animal grows too big, it makes a bigger shell!",
+  "completion_message": "Denny collected all the shells! Mommy Coral is so proud!",
+  "item_rule": "collect",
+  "item_emoji": "🐚",
+  "path_data": {
+    "svg_path": "M 230 110 L 230 250 M 230 250 L 230 390 M 370 250 L 370 390 M 90 390 L 230 390 M 230 390 L 370 390 M 370 390 L 510 390 M 230 110 L 230 110 M 230 250 L 230 250 M 370 250 L 370 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
+    "solution_path": "M 230 110 L 230 250 L 230 390 L 370 390 L 510 390",
+    "width": 40,
+    "complexity": "beginner",
+    "maze_type": "corridor_triangle",
+    "start_point": {
+      "x": 230,
+      "y": 110
+    },
+    "end_point": {
+      "x": 510,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 390
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 390
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 230,
+        "y": 250,
+        "emoji": "🐚",
+        "on_solution": true
+      },
+      {
+        "x": 370,
+        "y": 390,
+        "emoji": "🐚",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#F4D03F",
+    "decorative_elements": [
+      "shells",
+      "tide_pools",
+      "sand"
+    ]
+  },
+  "audio_instruction": "denny_011_instruction.mp3",
+  "audio_completion": "denny_011_completion.mp3"
+}

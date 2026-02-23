@@ -1,0 +1,368 @@
+{
+  "id": "denny_017_lv5",
+  "age_range": "3-6",
+  "difficulty": "expert",
+  "theme": "ocean",
+  "location": "kelp_forest",
+  "title": "Denny's Seaweed Harvest",
+  "story_setup": "Shelly needs seaweed for a special recipe! Denny is helping gather the freshest pieces from the kelp forest.",
+  "instruction": "Collect all the seaweed as you make your way to Shelly!",
+  "tts_instruction": "Shelly needs seaweed for cooking! Help Denny pick up every piece of seaweed in the kelp forest on the way to Shelly.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "sea turtle",
+    "description": "Green sea turtle with a patterned shell, slow but steady, tells stories",
+    "position": "top_right",
+    "name": "Shelly",
+    "image_asset": "shelly"
+  },
+  "educational_question": "Do you know any foods that are made with seaweed?",
+  "fun_fact": "Seaweed is a superfood! It's used to make sushi wraps, ice cream, and even toothpaste. Kelp can grow up to 2 feet per day!",
+  "completion_message": "Denny gathered all the seaweed! Shelly can make her special recipe now!",
+  "item_rule": "collect",
+  "item_emoji": "🌿",
+  "path_data": {
+    "svg_path": "M 299 56 L 299 99 M 256 99 L 256 142 M 299 99 L 299 142 M 213 142 L 256 142 M 213 142 L 213 185 M 299 142 L 299 185 M 342 142 L 385 142 M 342 142 L 342 185 M 385 142 L 385 185 M 170 185 L 170 228 M 213 185 L 256 185 M 213 185 L 213 228 M 256 185 L 299 185 M 385 185 L 428 185 M 385 185 L 385 228 M 428 185 L 428 228 M 84 228 L 127 228 M 84 228 L 84 271 M 127 228 L 170 228 M 170 228 L 213 228 M 256 228 L 299 228 M 299 228 L 342 228 M 342 228 L 385 228 M 342 228 L 342 271 M 428 228 L 471 228 M 471 228 L 471 271 M 41 271 L 84 271 M 84 271 L 127 271 M 127 271 L 170 271 M 170 271 L 170 314 M 213 271 L 256 271 M 213 271 L 213 314 M 256 271 L 299 271 M 299 271 L 299 314 M 342 271 L 385 271 M 342 271 L 342 314 M 385 271 L 428 271 M 428 271 L 428 314 M 471 271 L 514 271 M 471 271 L 471 314 M 514 271 L 557 271 M 84 314 L 127 314 M 127 314 L 170 314 M 170 314 L 170 357 M 213 314 L 256 314 M 256 314 L 256 357 M 299 314 L 299 357 M 342 314 L 385 314 M 428 314 L 428 357 M 170 357 L 213 357 M 213 357 L 256 357 M 299 357 L 299 400 M 342 357 L 385 357 M 342 357 L 342 400 M 385 357 L 428 357 M 385 357 L 385 400 M 213 400 L 256 400 M 256 400 L 299 400 M 256 400 L 256 443 M 299 400 L 342 400 M 256 443 L 299 443 M 299 56 L 299 56 M 256 99 L 256 99 M 299 99 L 299 99 M 213 142 L 213 142 M 256 142 L 256 142 M 299 142 L 299 142 M 342 142 L 342 142 M 385 142 L 385 142 M 170 185 L 170 185 M 213 185 L 213 185 M 256 185 L 256 185 M 299 185 L 299 185 M 342 185 L 342 185 M 385 185 L 385 185 M 428 185 L 428 185 M 84 228 L 84 228 M 127 228 L 127 228 M 170 228 L 170 228 M 213 228 L 213 228 M 256 228 L 256 228 M 299 228 L 299 228 M 342 228 L 342 228 M 385 228 L 385 228 M 428 228 L 428 228 M 471 228 L 471 228 M 41 271 L 41 271 M 84 271 L 84 271 M 127 271 L 127 271 M 170 271 L 170 271 M 213 271 L 213 271 M 256 271 L 256 271 M 299 271 L 299 271 M 342 271 L 342 271 M 385 271 L 385 271 M 428 271 L 428 271 M 471 271 L 471 271 M 514 271 L 514 271 M 557 271 L 557 271 M 84 314 L 84 314 M 127 314 L 127 314 M 170 314 L 170 314 M 213 314 L 213 314 M 256 314 L 256 314 M 299 314 L 299 314 M 342 314 L 342 314 M 385 314 L 385 314 M 428 314 L 428 314 M 471 314 L 471 314 M 170 357 L 170 357 M 213 357 L 213 357 M 256 357 L 256 357 M 299 357 L 299 357 M 342 357 L 342 357 M 385 357 L 385 357 M 428 357 L 428 357 M 213 400 L 213 400 M 256 400 L 256 400 M 299 400 L 299 400 M 342 400 L 342 400 M 385 400 L 385 400 M 256 443 L 256 443 M 299 443 L 299 443",
+    "solution_path": "M 299 56 L 299 99 L 299 142 L 299 185 L 256 185 L 213 185 L 213 228 L 170 228 L 127 228 L 84 228 L 84 271 L 127 271 L 170 271 L 170 314 L 170 357 L 213 357 L 256 357 L 256 314 L 213 314 L 213 271 L 256 271 L 299 271 L 299 314 L 299 357 L 299 400 L 256 400 L 256 443 L 299 443",
+    "width": 22,
+    "complexity": "expert",
+    "maze_type": "corridor_diamond",
+    "start_point": {
+      "x": 299,
+      "y": 56
+    },
+    "end_point": {
+      "x": 299,
+      "y": 443
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 299,
+          "y": 56
+        },
+        "end": {
+          "x": 299,
+          "y": 99
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 99
+        },
+        "end": {
+          "x": 299,
+          "y": 142
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 142
+        },
+        "end": {
+          "x": 299,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 185
+        },
+        "end": {
+          "x": 256,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 185
+        },
+        "end": {
+          "x": 213,
+          "y": 185
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 185
+        },
+        "end": {
+          "x": 213,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 228
+        },
+        "end": {
+          "x": 170,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 228
+        },
+        "end": {
+          "x": 127,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 127,
+          "y": 228
+        },
+        "end": {
+          "x": 84,
+          "y": 228
+        }
+      },
+      {
+        "start": {
+          "x": 84,
+          "y": 228
+        },
+        "end": {
+          "x": 84,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 84,
+          "y": 271
+        },
+        "end": {
+          "x": 127,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 127,
+          "y": 271
+        },
+        "end": {
+          "x": 170,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 271
+        },
+        "end": {
+          "x": 170,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 314
+        },
+        "end": {
+          "x": 170,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 170,
+          "y": 357
+        },
+        "end": {
+          "x": 213,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 357
+        },
+        "end": {
+          "x": 256,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 357
+        },
+        "end": {
+          "x": 256,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 314
+        },
+        "end": {
+          "x": 213,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 314
+        },
+        "end": {
+          "x": 213,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 213,
+          "y": 271
+        },
+        "end": {
+          "x": 256,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 271
+        },
+        "end": {
+          "x": 299,
+          "y": 271
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 271
+        },
+        "end": {
+          "x": 299,
+          "y": 314
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 314
+        },
+        "end": {
+          "x": 299,
+          "y": 357
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 357
+        },
+        "end": {
+          "x": 299,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 299,
+          "y": 400
+        },
+        "end": {
+          "x": 256,
+          "y": 400
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 400
+        },
+        "end": {
+          "x": 256,
+          "y": 443
+        }
+      },
+      {
+        "start": {
+          "x": 256,
+          "y": 443
+        },
+        "end": {
+          "x": 299,
+          "y": 443
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 84,
+        "y": 228,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 84,
+        "y": 271,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 213,
+        "y": 314,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 127,
+        "y": 271,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 170,
+        "y": 314,
+        "emoji": "🌿",
+        "on_solution": true
+      },
+      {
+        "x": 299,
+        "y": 314,
+        "emoji": "🌿",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#27AE60",
+    "decorative_elements": [
+      "kelp",
+      "light_rays",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_017_instruction.mp3",
+  "audio_completion": "denny_017_completion.mp3"
+}

@@ -1,0 +1,114 @@
+{
+  "id": "denny_016_lv1",
+  "age_range": "3-6",
+  "difficulty": "beginner",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny Escapes the Nets",
+  "story_setup": "Old fishing nets are tangled in the coral garden. Denny must swim around them to reach Bubbles.",
+  "instruction": "Swim to Bubbles without getting caught in the nets!",
+  "tts_instruction": "Watch out for the old nets! Help Denny swim carefully through the coral garden to reach Bubbles without getting tangled.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "seahorse",
+    "description": "Golden-yellow seahorse, shy but loyal, blows tiny bubbles",
+    "position": "top_right",
+    "name": "Bubbles",
+    "image_asset": "bubbles"
+  },
+  "educational_question": "Why are old fishing nets bad for the ocean? What can we do to help?",
+  "fun_fact": "Lost fishing nets, called ghost nets, can trap sea animals for years. Beach cleanups help protect ocean creatures!",
+  "completion_message": "Denny swam safely past the nets to reach Bubbles!",
+  "item_rule": "avoid",
+  "item_emoji": "🕸️",
+  "path_data": {
+    "svg_path": "M 230 110 L 230 250 M 230 250 L 370 250 M 370 250 L 370 390 M 90 390 L 230 390 M 230 390 L 370 390 M 370 390 L 510 390 M 230 110 L 230 110 M 230 250 L 230 250 M 370 250 L 370 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
+    "solution_path": "M 230 110 L 230 250 L 370 250 L 370 390 L 510 390",
+    "width": 40,
+    "complexity": "beginner",
+    "maze_type": "corridor_triangle",
+    "start_point": {
+      "x": 230,
+      "y": 110
+    },
+    "end_point": {
+      "x": 510,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 390
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 90,
+        "y": 390,
+        "emoji": "🕸️",
+        "on_solution": false
+      },
+      {
+        "x": 230,
+        "y": 390,
+        "emoji": "🕸️",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E74C3C",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_016_instruction.mp3",
+  "audio_completion": "denny_016_completion.mp3"
+}

@@ -1,65 +1,33 @@
-age_groups:
-  young:
-    ages: [3, 4]
-    path_width: 35
-    maze_types: ["grid"]
+difficulty_levels:
+  beginner:
+    grid_size: [3, 4]
+    path_width: 40
+    path_tolerance: 25
     shapes: ["rect"]
-    difficulties: ["easy"]
-    grid_sizes:
-      easy: [4, 5]
-    themes:
-      - animals
-      - nature
-      - home
-      - family
-      - garden
-      - pets
-      - farm
-      - colors
-      - seasons
-      - food
 
-  middle:
-    ages: [4, 5]
+  easy:
+    grid_size: [4, 5]
+    path_width: 35
+    path_tolerance: 22
+    shapes: ["rect"]
+
+  medium:
+    grid_size: [6, 8]
     path_width: 30
-    maze_types: ["grid"]
-    shapes: ["rect", "triangle", "tree"]
-    difficulties: ["easy", "medium"]
-    grid_sizes:
-      easy: [5, 7]
-      medium: [6, 8]
-    themes:
-      - adventures
-      - garden
-      - seasons
-      - weather
-      - playground
-      - fairy_tales
-      - helping_others
-      - music
-      - bugs
-      - birds
+    path_tolerance: 18
+    shapes: ["rect"]
 
-  older:
-    ages: [5, 6]
+  hard:
+    grid_size: [8, 10]
     path_width: 25
-    maze_types: ["grid", "shaped"]
-    shapes: ["rect", "triangle", "tree", "mountain", "diamond", "circle"]
-    difficulties: ["medium", "hard"]
-    grid_sizes:
-      medium: [7, 9]
-      hard: [9, 12]
-    themes:
-      - space
-      - ocean
-      - community
-      - dinosaurs
-      - weather
-      - transportation
-      - recycling
-      - world_cultures
-      - inventions
-      - sports
+    path_tolerance: 15
+    shapes: ["rect"]
+
+  expert:
+    grid_size: [10, 13]
+    path_width: 22
+    path_tolerance: 12
+    shapes: ["rect"]
 
 visual_themes:
   animals:

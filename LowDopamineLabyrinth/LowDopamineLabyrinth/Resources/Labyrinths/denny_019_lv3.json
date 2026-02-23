@@ -1,0 +1,276 @@
+{
+  "id": "denny_019_lv3",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "shipwreck_playground",
+  "title": "Denny's Treasure Hunt",
+  "story_setup": "Finn discovered sparkly gems near the old shipwreck! He and Denny are on a treasure hunt to collect them all.",
+  "instruction": "Collect all the gems on your way to meet Finn at the shipwreck!",
+  "tts_instruction": "Treasure hunt! Help Denny collect every sparkling gem hidden around the shipwreck before meeting Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "If you found a treasure chest, what would you wish was inside?",
+  "fun_fact": "Real treasure has been found in shipwrecks! The Atocha shipwreck had gold and emeralds worth over 400 million dollars!",
+  "completion_message": "Denny found all the treasure! What an amazing adventure with Finn!",
+  "item_rule": "collect",
+  "item_emoji": "💎",
+  "path_data": {
+    "svg_path": "M 265 75 L 335 75 M 335 75 L 335 145 M 265 145 L 335 145 M 265 145 L 265 215 M 405 145 L 405 215 M 195 215 L 195 285 M 265 215 L 335 215 M 335 215 L 405 215 M 405 215 L 405 285 M 195 285 L 265 285 M 195 285 L 195 355 M 265 285 L 335 285 M 335 285 L 405 285 M 475 285 L 475 355 M 125 355 L 125 425 M 195 355 L 195 425 M 265 355 L 335 355 M 265 355 L 265 425 M 335 355 L 405 355 M 405 355 L 475 355 M 475 355 L 475 425 M 55 425 L 125 425 M 125 425 L 195 425 M 195 425 L 265 425 M 335 425 L 405 425 M 405 425 L 475 425 M 475 425 L 545 425 M 265 75 L 265 75 M 335 75 L 335 75 M 265 145 L 265 145 M 335 145 L 335 145 M 405 145 L 405 145 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 475 355 L 475 355 M 55 425 L 55 425 M 125 425 L 125 425 M 195 425 L 195 425 M 265 425 L 265 425 M 335 425 L 335 425 M 405 425 L 405 425 M 475 425 L 475 425 M 545 425 L 545 425",
+    "solution_path": "M 265 75 L 335 75 L 335 145 L 265 145 L 265 215 L 335 215 L 405 215 L 405 285 L 335 285 L 265 285 L 195 285 L 195 355 L 195 425 L 265 425 L 265 355 L 335 355 L 405 355 L 475 355 L 475 425 L 545 425",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_mountain",
+    "start_point": {
+      "x": 265,
+      "y": 75
+    },
+    "end_point": {
+      "x": 545,
+      "y": 425
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 265,
+          "y": 75
+        },
+        "end": {
+          "x": 335,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 75
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 145
+        },
+        "end": {
+          "x": 265,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 145
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 215
+        },
+        "end": {
+          "x": 405,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 215
+        },
+        "end": {
+          "x": 405,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 265,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 425
+        },
+        "end": {
+          "x": 265,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 425
+        },
+        "end": {
+          "x": 265,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 405,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 425
+        },
+        "end": {
+          "x": 545,
+          "y": 425
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 265,
+        "y": 355,
+        "emoji": "💎",
+        "on_solution": true
+      },
+      {
+        "x": 405,
+        "y": 355,
+        "emoji": "💎",
+        "on_solution": true
+      },
+      {
+        "x": 475,
+        "y": 355,
+        "emoji": "💎",
+        "on_solution": true
+      },
+      {
+        "x": 335,
+        "y": 145,
+        "emoji": "💎",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E67E22",
+    "decorative_elements": [
+      "ship",
+      "treasure",
+      "porthole"
+    ]
+  },
+  "audio_instruction": "denny_019_instruction.mp3",
+  "audio_completion": "denny_019_completion.mp3"
+}

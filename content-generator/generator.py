@@ -411,6 +411,412 @@ def generate_denny_pack(client: anthropic.Anthropic, output_dir: Path):
     print(f"Total Denny labyrinths generated: {len(all_labs)}")
 
 
+def generate_difficulty_variants(source_dir: Path, output_dir: Path):
+    """Generate 50 labyrinth variants (10 stories x 5 difficulty levels).
+
+    Reuses story content from the first 10 existing JSONs (denny_001-010)
+    and generates new maze data at each difficulty level's grid size.
+    Audio is shared: all variants reference the base story's audio files.
+    """
+    config = load_config()
+    difficulty_levels = config["difficulty_levels"]
+    maze_gen = FullMazeGenerator()
+
+    # Load existing base stories (denny_001 through denny_010)
+    base_stories = {}
+    for i in range(1, 11):
+        base_id = f"denny_{i:03d}"
+        json_path = source_dir / f"{base_id}.json"
+        if not json_path.exists():
+            print(f"  Warning: {json_path} not found, skipping")
+            continue
+        with open(json_path) as f:
+            base_stories[base_id] = json.load(f)
+
+    if not base_stories:
+        print("Error: No base story JSONs found")
+        return
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    all_labs = []
+    difficulty_names = ["beginner", "easy", "medium", "hard", "expert"]
+
+    for base_id, base in base_stories.items():
+        for lv_idx, diff_name in enumerate(difficulty_names, 1):
+            variant_id = f"{base_id}_lv{lv_idx}"
+            diff_config = difficulty_levels[diff_name]
+            rows, cols = diff_config["grid_size"]
+            path_width = diff_config["path_width"]
+
+            print(f"  Generating {variant_id} ({diff_name} {rows}x{cols})...")
+
+            try:
+                maze_data = maze_gen.generate_maze(
+                    difficulty=diff_name,
+                    age=4,
+                    shape="rect",
+                    canvas_width=600,
+                    canvas_height=500,
+                    override_rows=rows,
+                    override_cols=cols,
+                )
+
+                # Build variant from base story content + new maze
+                variant = {
+                    "id": variant_id,
+                    "age_range": base.get("age_range", "3-6"),
+                    "difficulty": diff_name,
+                    "theme": base.get("theme", "ocean"),
+                    "location": base.get("location", "sandy_shore"),
+                    "title": base["title"],
+                    "story_setup": base["story_setup"],
+                    "instruction": base["instruction"],
+                    "tts_instruction": base.get("tts_instruction", ""),
+                    "character_start": base["character_start"],
+                    "character_end": base["character_end"],
+                    "educational_question": base.get("educational_question", ""),
+                    "fun_fact": base.get("fun_fact", ""),
+                    "completion_message": base.get("completion_message", "Well done!"),
+                    "path_data": {
+                        "svg_path": maze_data.get("svg_path", ""),
+                        "solution_path": maze_data.get("solution_path", ""),
+                        "width": path_width,
+                        "complexity": diff_name,
+                        "maze_type": maze_data.get("maze_type", "grid"),
+                        "start_point": maze_data.get("start_point", {}),
+                        "end_point": maze_data.get("end_point", {}),
+                        "segments": maze_data.get("segments", []),
+                        "canvas_width": maze_data.get("canvas_width", 600),
+                        "canvas_height": maze_data.get("canvas_height", 500),
+                        "control_points": maze_data.get("control_points", []),
+                    },
+                    "visual_theme": base.get("visual_theme", {
+                        "background_color": "#4A90E2",
+                        "decorative_elements": ["stars"],
+                    }),
+                }
+
+                # Shared audio — reference base story's audio files
+                if base.get("audio_instruction"):
+                    variant["audio_instruction"] = base["audio_instruction"]
+                if base.get("audio_completion"):
+                    variant["audio_completion"] = base["audio_completion"]
+
+                all_labs.append(variant)
+            except Exception as e:
+                print(f"  Error generating {variant_id}: {e}")
+                continue
+
+    # Save individual JSONs
+    for lab in all_labs:
+        json_path = output_dir / f"{lab['id']}.json"
+        with open(json_path, "w") as f:
+            json.dump(lab, f, indent=2)
+        print(f"  Saved: {json_path}")
+
+    # Save manifest
+    manifest = {
+        "universe": "denny",
+        "total": len(all_labs),
+        "labyrinths": [
+            {"id": lab["id"], "difficulty": lab["difficulty"],
+             "theme": lab["theme"], "location": lab["location"],
+             "title": lab["title"]}
+            for lab in all_labs
+        ],
+    }
+    manifest_path = output_dir / "manifest.json"
+    with open(manifest_path, "w") as f:
+        json.dump(manifest, f, indent=2)
+
+    # Generate difficulty_samples.json (first labyrinth's solution_path per level)
+    samples = {}
+    for diff_name in difficulty_names:
+        for lab in all_labs:
+            if lab["difficulty"] == diff_name:
+                samples[diff_name] = lab["path_data"]["solution_path"]
+                break
+    samples_path = output_dir / "difficulty_samples.json"
+    with open(samples_path, "w") as f:
+        json.dump(samples, f, indent=2)
+
+    print(f"\nManifest saved: {manifest_path}")
+    print(f"Difficulty samples saved: {samples_path}")
+    print(f"Total variants generated: {len(all_labs)}")
+
+
+ADVENTURE_STORIES = {
+    "011": {
+        "title": "Denny's Shell Collection",
+        "character_end": "mama_coral",
+        "location": "sandy_shore",
+        "item_rule": "collect",
+        "item_emoji": "\U0001f41a",
+        "shape": "triangle",
+        "story_setup": "Mommy Coral asked Denny to collect beautiful shells scattered along the sandy shore. Can you help Denny find them all?",
+        "instruction": "Draw a path and collect all the shells along the way to reach Mommy Coral!",
+        "tts_instruction": "Help Denny collect all the shells on the beach! Draw a path through the maze and pick up every shell before reaching Mommy Coral.",
+        "educational_question": "How many shells did Denny collect? Can you count them?",
+        "fun_fact": "Seashells are the homes of soft-bodied animals called mollusks. When the animal grows too big, it makes a bigger shell!",
+        "completion_message": "Denny collected all the shells! Mommy Coral is so proud!",
+    },
+    "012": {
+        "title": "Denny Dodges Jellyfish",
+        "character_end": "finn",
+        "location": "coral_garden",
+        "item_rule": "avoid",
+        "item_emoji": "\U0001fabc",
+        "shape": "diamond",
+        "story_setup": "The coral garden is full of jellyfish today! Denny needs to swim carefully to reach his friend Finn without touching any.",
+        "instruction": "Draw a path to reach Finn, but try to avoid the jellyfish!",
+        "tts_instruction": "Oh no, jellyfish! Help Denny swim through the coral garden to reach Finn. Try not to touch the jellyfish along the way!",
+        "educational_question": "Why do jellyfish sting? Is it to protect themselves?",
+        "fun_fact": "Jellyfish don't have brains, hearts, or bones! They are made of 95% water.",
+        "completion_message": "Denny made it safely to Finn through the jellyfish!",
+    },
+    "013": {
+        "title": "Denny's Bubble Chase",
+        "character_end": "sandy",
+        "location": "bubble_lagoon",
+        "item_rule": "collect",
+        "item_emoji": "\U0001fae7",
+        "shape": "circle",
+        "story_setup": "Sandy is blowing magical bubbles in the lagoon! Denny wants to catch them all before they float away.",
+        "instruction": "Catch all the bubbles as you draw a path to reach Sandy!",
+        "tts_instruction": "Sandy is making bubbles! Help Denny catch every bubble in the lagoon as you draw a path to reach Sandy.",
+        "educational_question": "What shape are bubbles? Are they always round?",
+        "fun_fact": "Bubbles are round because the air inside pushes equally in all directions, making a sphere — the shape with the smallest surface!",
+        "completion_message": "Denny caught all of Sandy's bubbles! What fun!",
+    },
+    "014": {
+        "title": "Denny Avoids Sea Urchins",
+        "character_end": "papa_reef",
+        "location": "sandy_shore",
+        "item_rule": "avoid",
+        "item_emoji": "\U0001f994",
+        "shape": "mountain",
+        "story_setup": "The sandy shore has prickly sea urchins hiding in the sand! Denny needs to be careful getting to Papa Reef.",
+        "instruction": "Draw a path to Papa Reef, but watch out for the prickly sea urchins!",
+        "tts_instruction": "Careful! There are prickly sea urchins on the shore. Help Denny find a safe path to Papa Reef without stepping on them!",
+        "educational_question": "Why do sea urchins have spines? What do they use them for?",
+        "fun_fact": "Sea urchins use their spines for protection and to help them move along the ocean floor. Some sea urchins can live for over 200 years!",
+        "completion_message": "Denny reached Papa Reef safely! Great job avoiding the sea urchins!",
+    },
+    "015": {
+        "title": "Denny's Starfish Search",
+        "character_end": "stella",
+        "location": "starfish_cove",
+        "item_rule": "collect",
+        "item_emoji": "\u2b50",
+        "shape": "tree",
+        "story_setup": "Stella lost her favorite star-shaped treasures in the cove! Denny wants to help find them all.",
+        "instruction": "Collect all the stars to help Stella as you find your way to her!",
+        "tts_instruction": "Stella needs your help! Draw a path through the cove and collect all the lost stars before reaching Stella.",
+        "educational_question": "How many arms does a starfish have? Can they grow new ones?",
+        "fun_fact": "Starfish can regrow their arms if one breaks off! Some starfish have more than 5 arms — the sun star can have up to 40!",
+        "completion_message": "Denny found all of Stella's stars! She's so happy!",
+    },
+    "016": {
+        "title": "Denny Escapes the Nets",
+        "character_end": "bubbles",
+        "location": "coral_garden",
+        "item_rule": "avoid",
+        "item_emoji": "\U0001f578\ufe0f",
+        "shape": "triangle",
+        "story_setup": "Old fishing nets are tangled in the coral garden. Denny must swim around them to reach Bubbles.",
+        "instruction": "Swim to Bubbles without getting caught in the nets!",
+        "tts_instruction": "Watch out for the old nets! Help Denny swim carefully through the coral garden to reach Bubbles without getting tangled.",
+        "educational_question": "Why are old fishing nets bad for the ocean? What can we do to help?",
+        "fun_fact": "Lost fishing nets, called ghost nets, can trap sea animals for years. Beach cleanups help protect ocean creatures!",
+        "completion_message": "Denny swam safely past the nets to reach Bubbles!",
+    },
+    "017": {
+        "title": "Denny's Seaweed Harvest",
+        "character_end": "shelly",
+        "location": "kelp_forest",
+        "item_rule": "collect",
+        "item_emoji": "\U0001f33f",
+        "shape": "diamond",
+        "story_setup": "Shelly needs seaweed for a special recipe! Denny is helping gather the freshest pieces from the kelp forest.",
+        "instruction": "Collect all the seaweed as you make your way to Shelly!",
+        "tts_instruction": "Shelly needs seaweed for cooking! Help Denny pick up every piece of seaweed in the kelp forest on the way to Shelly.",
+        "educational_question": "Do you know any foods that are made with seaweed?",
+        "fun_fact": "Seaweed is a superfood! It's used to make sushi wraps, ice cream, and even toothpaste. Kelp can grow up to 2 feet per day!",
+        "completion_message": "Denny gathered all the seaweed! Shelly can make her special recipe now!",
+    },
+    "018": {
+        "title": "Denny Avoids Dark Caves",
+        "character_end": "ollie",
+        "location": "kelp_forest",
+        "item_rule": "avoid",
+        "item_emoji": "\U0001f573\ufe0f",
+        "shape": "circle",
+        "story_setup": "Dark cave openings dot the kelp forest floor. Denny needs to swim past them to find Ollie.",
+        "instruction": "Find your way to Ollie, but stay away from the dark caves!",
+        "tts_instruction": "The kelp forest has spooky dark caves! Help Denny swim around them to find Ollie. Don't get too close to the dark openings!",
+        "educational_question": "What animals might live in underwater caves?",
+        "fun_fact": "Underwater caves can be home to blind fish and shrimp that have adapted to life in complete darkness over millions of years!",
+        "completion_message": "Denny found Ollie without going near the dark caves! Well done!",
+    },
+    "019": {
+        "title": "Denny's Treasure Hunt",
+        "character_end": "finn",
+        "location": "shipwreck_playground",
+        "item_rule": "collect",
+        "item_emoji": "\U0001f48e",
+        "shape": "mountain",
+        "story_setup": "Finn discovered sparkly gems near the old shipwreck! He and Denny are on a treasure hunt to collect them all.",
+        "instruction": "Collect all the gems on your way to meet Finn at the shipwreck!",
+        "tts_instruction": "Treasure hunt! Help Denny collect every sparkling gem hidden around the shipwreck before meeting Finn.",
+        "educational_question": "If you found a treasure chest, what would you wish was inside?",
+        "fun_fact": "Real treasure has been found in shipwrecks! The Atocha shipwreck had gold and emeralds worth over 400 million dollars!",
+        "completion_message": "Denny found all the treasure! What an amazing adventure with Finn!",
+    },
+    "020": {
+        "title": "Denny Dodges Pollution",
+        "character_end": "pearl",
+        "location": "bubble_lagoon",
+        "item_rule": "avoid",
+        "item_emoji": "\U0001f5d1\ufe0f",
+        "shape": "rect",
+        "story_setup": "Some trash has floated into the beautiful lagoon. Denny needs to swim around it to reach Pearl and help clean up.",
+        "instruction": "Swim to Pearl without touching the trash in the lagoon!",
+        "tts_instruction": "Oh no, there's litter in the lagoon! Help Denny swim around the trash to reach Pearl. Together they'll clean up the ocean!",
+        "educational_question": "How can we help keep the ocean clean? What should we never throw in the water?",
+        "fun_fact": "Over 8 million tons of plastic end up in the ocean every year. Using reusable bottles and bags helps protect sea creatures like Denny!",
+        "completion_message": "Denny reached Pearl safely! Now they can clean up the lagoon together!",
+    },
+}
+
+# Item counts per difficulty for adventure mazes
+ADVENTURE_ITEM_COUNTS = {
+    "collect": {
+        "beginner": 2, "easy": 3, "medium": 4, "hard": 5, "expert": 6,
+    },
+    "avoid": {
+        "beginner": 2, "easy": 3, "medium": 5, "hard": 7, "expert": 9,
+    },
+}
+
+
+def generate_adventure_variants(output_dir: Path):
+    """Generate 50 adventure labyrinth variants (10 stories x 5 difficulty levels).
+
+    Stories 011-020 with corridor-style mazes and collect/avoid items.
+    """
+    config = load_config()
+    difficulty_levels = config["difficulty_levels"]
+    universe = load_denny_universe()
+    maze_gen = FullMazeGenerator()
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    all_labs = []
+    difficulty_names = ["beginner", "easy", "medium", "hard", "expert"]
+
+    for story_num_str, story in ADVENTURE_STORIES.items():
+        end_char_key = story["character_end"]
+        end_char = universe["characters"][end_char_key]
+        denny = universe["characters"]["denny"]
+        location = universe["locations"][story["location"]]
+        item_rule = story["item_rule"]
+        item_emoji = story["item_emoji"]
+        shape = story["shape"]
+
+        for lv_idx, diff_name in enumerate(difficulty_names, 1):
+            variant_id = f"denny_{story_num_str}_lv{lv_idx}"
+            diff_config = difficulty_levels[diff_name]
+            rows, cols = diff_config["grid_size"]
+            path_width = diff_config["path_width"]
+            item_count = ADVENTURE_ITEM_COUNTS[item_rule][diff_name]
+
+            print(f"  Generating {variant_id} ({diff_name} {rows}x{cols} {item_rule} {item_emoji})...")
+
+            try:
+                maze_data = maze_gen.generate_maze(
+                    difficulty=diff_name,
+                    age=4,
+                    shape=shape,
+                    canvas_width=600,
+                    canvas_height=500,
+                    override_rows=rows,
+                    override_cols=cols,
+                    render_style="corridor",
+                    item_rule=item_rule,
+                    item_count=item_count,
+                    item_emoji=item_emoji,
+                )
+
+                bg_color = location["background_color"]
+                decorative = location["decorative_elements"]
+
+                variant = {
+                    "id": variant_id,
+                    "age_range": "3-6",
+                    "difficulty": diff_name,
+                    "theme": "ocean",
+                    "location": story["location"],
+                    "title": story["title"],
+                    "story_setup": story["story_setup"],
+                    "instruction": story["instruction"],
+                    "tts_instruction": story["tts_instruction"],
+                    "character_start": {
+                        "type": denny["type"],
+                        "description": denny["description"],
+                        "position": "bottom_left",
+                        "name": "Denny",
+                        "image_asset": "denny",
+                    },
+                    "character_end": {
+                        "type": end_char["type"],
+                        "description": end_char["description"],
+                        "position": "top_right",
+                        "name": end_char["name"],
+                        "image_asset": end_char_key,
+                    },
+                    "educational_question": story["educational_question"],
+                    "fun_fact": story["fun_fact"],
+                    "completion_message": story["completion_message"],
+                    "item_rule": item_rule,
+                    "item_emoji": item_emoji,
+                    "path_data": {
+                        "svg_path": maze_data.get("svg_path", ""),
+                        "solution_path": maze_data.get("solution_path", ""),
+                        "width": path_width,
+                        "complexity": diff_name,
+                        "maze_type": maze_data.get("maze_type", "corridor_rect"),
+                        "start_point": maze_data.get("start_point", {}),
+                        "end_point": maze_data.get("end_point", {}),
+                        "segments": maze_data.get("segments", []),
+                        "canvas_width": maze_data.get("canvas_width", 600),
+                        "canvas_height": maze_data.get("canvas_height", 500),
+                        "control_points": maze_data.get("control_points", []),
+                        "items": maze_data.get("items", []),
+                    },
+                    "visual_theme": {
+                        "background_color": bg_color,
+                        "decorative_elements": decorative,
+                    },
+                    "audio_instruction": f"denny_{story_num_str}_instruction.mp3",
+                    "audio_completion": f"denny_{story_num_str}_completion.mp3",
+                }
+
+                all_labs.append(variant)
+            except Exception as e:
+                print(f"  Error generating {variant_id}: {e}")
+                import traceback
+                traceback.print_exc()
+                continue
+
+    # Save individual JSONs
+    for lab in all_labs:
+        json_path = output_dir / f"{lab['id']}.json"
+        with open(json_path, "w") as f:
+            json.dump(lab, f, indent=2, ensure_ascii=False)
+        print(f"  Saved: {json_path}")
+
+    print(f"\nTotal adventure variants generated: {len(all_labs)}")
+
+
 def generate_audio_for_labyrinths(labyrinth_dir: Path):
     """Generate ElevenLabs TTS audio for all labyrinths in a directory."""
     elevenlabs_key = os.environ.get("ELEVENLABS_API_KEY")
@@ -439,39 +845,44 @@ def generate_audio_for_labyrinths(labyrinth_dir: Path):
     json_files = sorted(labyrinth_dir.glob("denny_*.json"))
     print(f"\nGenerating audio for {len(json_files)} labyrinths...")
 
+    # Track already-generated shared audio to avoid duplicates across difficulty variants
+    generated_audio: set[str] = set()
+
     for json_path in json_files:
         with open(json_path) as f:
             lab = json.load(f)
 
         lab_id = lab["id"]
 
-        # Generate instruction audio
-        instruction_file = f"{lab_id}_instruction.mp3"
+        # Use audio filename from JSON if set (shared across difficulty levels),
+        # otherwise construct from lab_id
+        instruction_file = lab.get("audio_instruction") or f"{lab_id}_instruction.mp3"
         instruction_path = audio_dir / instruction_file
-        if not instruction_path.exists():
+        if not instruction_path.exists() and instruction_file not in generated_audio:
             tts_text = lab.get("tts_instruction", "")
             if tts_text:
-                print(f"  Generating instruction audio for {lab_id}...")
+                print(f"  Generating instruction audio: {instruction_file}...")
                 _call_elevenlabs(api_url, headers, tts_text, instruction_path)
+                generated_audio.add(instruction_file)
             else:
                 instruction_file = None
         else:
             print(f"  Skipping {instruction_file} (already exists)")
 
-        # Generate completion audio
-        completion_file = f"{lab_id}_completion.mp3"
+        completion_file = lab.get("audio_completion") or f"{lab_id}_completion.mp3"
         completion_path = audio_dir / completion_file
-        if not completion_path.exists():
+        if not completion_path.exists() and completion_file not in generated_audio:
             completion_text = f"{lab.get('completion_message', '')} {lab.get('educational_question', '')}"
             if completion_text.strip():
-                print(f"  Generating completion audio for {lab_id}...")
+                print(f"  Generating completion audio: {completion_file}...")
                 _call_elevenlabs(api_url, headers, completion_text, completion_path)
+                generated_audio.add(completion_file)
             else:
                 completion_file = None
         else:
             print(f"  Skipping {completion_file} (already exists)")
 
-        # Update JSON with audio filenames
+        # Update JSON with audio filenames if not already set
         updated = False
         if instruction_file and lab.get("audio_instruction") != instruction_file:
             lab["audio_instruction"] = instruction_file
@@ -520,12 +931,24 @@ def main():
     parser.add_argument("--universe", type=str, choices=["denny"], help="Generate labyrinths for a character universe")
     parser.add_argument("--output", type=str, default=None, help="Output directory")
     parser.add_argument("--generate-audio", action="store_true", help="Generate ElevenLabs TTS audio for existing labyrinths")
+    parser.add_argument("--difficulty-variants", action="store_true", help="Generate 50 difficulty variants from first 10 stories")
+    parser.add_argument("--adventure-variants", action="store_true", help="Generate 50 adventure maze variants (stories 011-020)")
+    parser.add_argument("--source-dir", type=str, default=None, help="Source directory with base story JSONs (for --difficulty-variants)")
 
     args = parser.parse_args()
     load_dotenv()
     config = load_config()
 
     output_dir = Path(args.output) if args.output else Path(__file__).parent / "output" / "labyrinths"
+
+    if args.adventure_variants:
+        generate_adventure_variants(output_dir)
+        return
+
+    if args.difficulty_variants:
+        source_dir = Path(args.source_dir) if args.source_dir else output_dir
+        generate_difficulty_variants(source_dir, output_dir)
+        return
 
     if args.generate_audio:
         generate_audio_for_labyrinths(output_dir)

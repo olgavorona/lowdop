@@ -1,0 +1,94 @@
+{
+  "id": "denny_012_lv1",
+  "age_range": "3-6",
+  "difficulty": "beginner",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny Dodges Jellyfish",
+  "story_setup": "The coral garden is full of jellyfish today! Denny needs to swim carefully to reach his friend Finn without touching any.",
+  "instruction": "Draw a path to reach Finn, but try to avoid the jellyfish!",
+  "tts_instruction": "Oh no, jellyfish! Help Denny swim through the coral garden to reach Finn. Try not to touch the jellyfish along the way!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "Why do jellyfish sting? Is it to protect themselves?",
+  "fun_fact": "Jellyfish don't have brains, hearts, or bones! They are made of 95% water.",
+  "completion_message": "Denny made it safely to Finn through the jellyfish!",
+  "item_rule": "avoid",
+  "item_emoji": "🪼",
+  "path_data": {
+    "svg_path": "M 230 110 L 230 250 M 90 250 L 230 250 M 230 250 L 370 250 M 230 250 L 230 390 M 370 250 L 510 250 M 230 110 L 230 110 M 90 250 L 90 250 M 230 250 L 230 250 M 370 250 L 370 250 M 510 250 L 510 250 M 230 390 L 230 390",
+    "solution_path": "M 230 110 L 230 250 L 230 390",
+    "width": 40,
+    "complexity": "beginner",
+    "maze_type": "corridor_diamond",
+    "start_point": {
+      "x": 230,
+      "y": 110
+    },
+    "end_point": {
+      "x": 230,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 90,
+        "y": 250,
+        "emoji": "🪼",
+        "on_solution": false
+      },
+      {
+        "x": 370,
+        "y": 250,
+        "emoji": "🪼",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E74C3C",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_012_instruction.mp3",
+  "audio_completion": "denny_012_completion.mp3"
+}

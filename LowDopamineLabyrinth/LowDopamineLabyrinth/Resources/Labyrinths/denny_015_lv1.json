@@ -1,0 +1,124 @@
+{
+  "id": "denny_015_lv1",
+  "age_range": "3-6",
+  "difficulty": "beginner",
+  "theme": "ocean",
+  "location": "starfish_cove",
+  "title": "Denny's Starfish Search",
+  "story_setup": "Stella lost her favorite star-shaped treasures in the cove! Denny wants to help find them all.",
+  "instruction": "Collect all the stars to help Stella as you find your way to her!",
+  "tts_instruction": "Stella needs your help! Draw a path through the cove and collect all the lost stars before reaching Stella.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish, wise and kind, gives good advice",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella"
+  },
+  "educational_question": "How many arms does a starfish have? Can they grow new ones?",
+  "fun_fact": "Starfish can regrow their arms if one breaks off! Some starfish have more than 5 arms — the sun star can have up to 40!",
+  "completion_message": "Denny found all of Stella's stars! She's so happy!",
+  "item_rule": "collect",
+  "item_emoji": "⭐",
+  "path_data": {
+    "svg_path": "M 230 110 L 370 110 M 370 110 L 370 250 M 230 250 L 370 250 M 230 250 L 230 390 M 230 390 L 370 390 M 230 110 L 230 110 M 370 110 L 370 110 M 230 250 L 230 250 M 370 250 L 370 250 M 230 390 L 230 390 M 370 390 L 370 390",
+    "solution_path": "M 230 110 L 370 110 L 370 250 L 230 250 L 230 390 L 370 390",
+    "width": 40,
+    "complexity": "beginner",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 230,
+      "y": 110
+    },
+    "end_point": {
+      "x": 370,
+      "y": 390
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 390
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 370,
+        "y": 110,
+        "emoji": "⭐",
+        "on_solution": true
+      },
+      {
+        "x": 230,
+        "y": 250,
+        "emoji": "⭐",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#8E44AD",
+    "decorative_elements": [
+      "rocks",
+      "starfish",
+      "sea_urchins"
+    ]
+  },
+  "audio_instruction": "denny_015_instruction.mp3",
+  "audio_completion": "denny_015_completion.mp3"
+}

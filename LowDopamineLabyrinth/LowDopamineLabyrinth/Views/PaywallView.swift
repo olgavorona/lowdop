@@ -67,12 +67,12 @@ struct PaywallView: View {
             }
             .padding(.horizontal, 40)
 
-            #if targetEnvironment(simulator)
+            #if DEBUG
             Button(action: {
                 onSkip?()
                 dismiss()
             }) {
-                Text("Skip (Simulator)")
+                Text("Skip (Dev)")
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
