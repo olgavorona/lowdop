@@ -442,6 +442,11 @@ def generate_difficulty_variants(source_dir: Path, output_dir: Path):
     difficulty_names = ["beginner", "easy", "medium", "hard", "expert"]
 
     for base_id, base in base_stories.items():
+        story_num = base_id.split("_")[1]  # e.g. "001"
+        positions = STORY_POSITIONS.get(story_num, {})
+        start_pos = positions.get("start")
+        end_pos = positions.get("end")
+
         for lv_idx, diff_name in enumerate(difficulty_names, 1):
             variant_id = f"{base_id}_lv{lv_idx}"
             diff_config = difficulty_levels[diff_name]
@@ -459,6 +464,8 @@ def generate_difficulty_variants(source_dir: Path, output_dir: Path):
                     canvas_height=500,
                     override_rows=rows,
                     override_cols=cols,
+                    start_position=start_pos,
+                    end_position=end_pos,
                 )
 
                 # Build variant from base story content + new maze
@@ -529,12 +536,12 @@ def generate_difficulty_variants(source_dir: Path, output_dir: Path):
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=2)
 
-    # Generate difficulty_samples.json (first labyrinth's solution_path per level)
+    # Generate difficulty_samples.json (first labyrinth's svg_path per level for maze previews)
     samples = {}
     for diff_name in difficulty_names:
         for lab in all_labs:
             if lab["difficulty"] == diff_name:
-                samples[diff_name] = lab["path_data"]["solution_path"]
+                samples[diff_name] = lab["path_data"]["svg_path"]
                 break
     samples_path = output_dir / "difficulty_samples.json"
     with open(samples_path, "w") as f:
@@ -699,6 +706,42 @@ ADVENTURE_ITEM_COUNTS = {
 }
 
 
+# Start/end positions per story — start never at top to avoid iOS curtain gesture
+# Grid scale factors for shaped mazes — compensates for mask cell loss
+# so effective cell count stays appropriate for the difficulty level.
+SHAPE_GRID_SCALE = {
+    "rect": 1.0,
+    "mountain": 1.25,
+    "tree": 1.3,
+    "triangle": 1.5,
+    "diamond": 1.5,
+    "circle": 1.8,
+}
+
+STORY_POSITIONS = {
+    "001": {"start": "bottom_left", "end": "top_right"},
+    "002": {"start": "right", "end": "left"},
+    "003": {"start": "bottom_right", "end": "top_left"},
+    "004": {"start": "left", "end": "right"},
+    "005": {"start": "bottom_left", "end": "top_right"},
+    "006": {"start": "bottom_right", "end": "top_left"},
+    "007": {"start": "left", "end": "top_right"},
+    "008": {"start": "bottom_right", "end": "left"},
+    "009": {"start": "bottom_left", "end": "right"},
+    "010": {"start": "right", "end": "top_left"},
+    "011": {"start": "bottom_left", "end": "top"},
+    "012": {"start": "left", "end": "right"},
+    "013": {"start": "bottom", "end": "right"},
+    "014": {"start": "bottom_right", "end": "left"},
+    "015": {"start": "bottom", "end": "top"},
+    "016": {"start": "bottom_right", "end": "left"},
+    "017": {"start": "left", "end": "right"},
+    "018": {"start": "bottom", "end": "left"},
+    "019": {"start": "bottom_left", "end": "top_right"},
+    "020": {"start": "bottom_left", "end": "top_right"},
+}
+
+
 def generate_adventure_variants(output_dir: Path):
     """Generate 50 adventure labyrinth variants (10 stories x 5 difficulty levels).
 
@@ -721,13 +764,21 @@ def generate_adventure_variants(output_dir: Path):
         item_rule = story["item_rule"]
         item_emoji = story["item_emoji"]
         shape = story["shape"]
+        positions = STORY_POSITIONS.get(story_num_str, {})
+        start_pos = positions.get("start")
+        end_pos = positions.get("end")
 
         for lv_idx, diff_name in enumerate(difficulty_names, 1):
             variant_id = f"denny_{story_num_str}_lv{lv_idx}"
             diff_config = difficulty_levels[diff_name]
-            rows, cols = diff_config["grid_size"]
+            base_rows, base_cols = diff_config["grid_size"]
             path_width = diff_config["path_width"]
             item_count = ADVENTURE_ITEM_COUNTS[item_rule][diff_name]
+
+            # Scale up grid for shaped mazes to compensate for mask cell loss
+            grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)
+            rows = max(base_rows, round(base_rows * grid_scale))
+            cols = max(base_cols, round(base_cols * grid_scale))
 
             print(f"  Generating {variant_id} ({diff_name} {rows}x{cols} {item_rule} {item_emoji})...")
 
@@ -744,6 +795,8 @@ def generate_adventure_variants(output_dir: Path):
                     item_rule=item_rule,
                     item_count=item_count,
                     item_emoji=item_emoji,
+                    start_position=start_pos,
+                    end_position=end_pos,
                 )
 
                 bg_color = location["background_color"]
@@ -814,7 +867,30 @@ def generate_adventure_variants(output_dir: Path):
             json.dump(lab, f, indent=2, ensure_ascii=False)
         print(f"  Saved: {json_path}")
 
-    print(f"\nTotal adventure variants generated: {len(all_labs)}")
+    # Append adventure entries to manifest (merge with existing if present)
+    manifest_path = output_dir / "manifest.json"
+    manifest = {"universe": "denny", "total": 0, "labyrinths": []}
+    if manifest_path.exists():
+        with open(manifest_path) as f:
+            manifest = json.load(f)
+
+    # Remove any old adventure entries (011-020) before appending fresh ones
+    existing = [e for e in manifest["labyrinths"] if not any(
+        f"denny_{s}_" in e["id"] for s in ADVENTURE_STORIES.keys()
+    )]
+    new_entries = [
+        {"id": lab["id"], "difficulty": lab["difficulty"],
+         "theme": lab["theme"], "location": lab["location"],
+         "title": lab["title"]}
+        for lab in all_labs
+    ]
+    manifest["labyrinths"] = existing + new_entries
+    manifest["total"] = len(manifest["labyrinths"])
+
+    with open(manifest_path, "w") as f:
+        json.dump(manifest, f, indent=2)
+    print(f"\nManifest updated: {manifest_path} ({manifest['total']} entries)")
+    print(f"Total adventure variants generated: {len(all_labs)}")
 
 
 def generate_audio_for_labyrinths(labyrinth_dir: Path):

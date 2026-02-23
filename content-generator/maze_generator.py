@@ -371,6 +371,115 @@ class FullMazeGenerator:
         "circle": ShapeMask.circle,
     }
 
+    @staticmethod
+    def _remove_wall_between(maze: MazeGenerator, r1: int, c1: int, r2: int, c2: int):
+        """Remove wall between two adjacent cells to create a new connection."""
+        dr = r2 - r1
+        dc = c2 - c1
+        if dr == -1:
+            maze.grid[r1][c1].walls["top"] = False
+            maze.grid[r2][c2].walls["bottom"] = False
+        elif dr == 1:
+            maze.grid[r1][c1].walls["bottom"] = False
+            maze.grid[r2][c2].walls["top"] = False
+        elif dc == 1:
+            maze.grid[r1][c1].walls["right"] = False
+            maze.grid[r2][c2].walls["left"] = False
+        elif dc == -1:
+            maze.grid[r1][c1].walls["left"] = False
+            maze.grid[r2][c2].walls["right"] = False
+
+    def create_avoid_forks(
+        self,
+        maze: MazeGenerator,
+        solution: List[Tuple[int, int]],
+        start: Tuple[int, int],
+        end: Tuple[int, int],
+        item_count: int,
+        item_emoji: str,
+        offset_x: int,
+        offset_y: int,
+        cell_size: int,
+        mask: Optional[set] = None,
+    ) -> List[Dict[str, Any]]:
+        """Create forking paths with avoid items at solution path corners.
+
+        At each corner A→B→C in the solution, computes a bypass cell D that
+        cuts the corner. Opens walls A↔D and D↔C so the player sees two
+        routes: through B (has obstacle) or through D (safe bypass).
+        """
+        half = cell_size // 2
+        solution_set = set(solution)
+
+        # Find corners (direction changes) in solution path
+        candidates = []
+        for i in range(1, len(solution) - 1):
+            A = solution[i - 1]
+            B = solution[i]
+            C = solution[i + 1]
+            dir_in = (B[0] - A[0], B[1] - A[1])
+            dir_out = (C[0] - B[0], C[1] - B[1])
+            if dir_in == dir_out:
+                continue  # straight segment, not a corner
+
+            # Bypass cell D: from A, step in dir_out direction
+            D = (A[0] + dir_out[0], A[1] + dir_out[1])
+
+            # Validate D
+            if not (0 <= D[0] < maze.rows and 0 <= D[1] < maze.cols):
+                continue
+            if mask and D not in mask:
+                continue
+            if D in solution_set:
+                continue
+            # D must be adjacent to both A and C
+            if abs(D[0] - A[0]) + abs(D[1] - A[1]) != 1:
+                continue
+            if abs(D[0] - C[0]) + abs(D[1] - C[1]) != 1:
+                continue
+            candidates.append((i, A, B, C, D))
+
+        # Select evenly-spaced candidates
+        if len(candidates) <= item_count:
+            chosen = candidates
+        else:
+            step = len(candidates) / item_count
+            chosen = [candidates[int(i * step)] for i in range(item_count)]
+
+        items = []
+        for _idx, A, B, C, D in chosen:
+            # Open walls A↔D and D↔C to create bypass route
+            self._remove_wall_between(maze, A[0], A[1], D[0], D[1])
+            self._remove_wall_between(maze, D[0], D[1], C[0], C[1])
+
+            # Place avoid item on B (the corner cell on the solution)
+            x = offset_x + B[1] * cell_size + half
+            y = offset_y + B[0] * cell_size + half
+            items.append({
+                "x": x,
+                "y": y,
+                "emoji": item_emoji,
+                "on_solution": True,
+            })
+
+        return items
+
+    @staticmethod
+    def _rect_position(rows: int, cols: int, position_name: str) -> Optional[Tuple[int, int]]:
+        """Map position name to cell coordinates for rectangular (non-masked) mazes."""
+        positions = {
+            "top_left": (0, 0),
+            "top": (0, cols // 2),
+            "top_right": (0, cols - 1),
+            "left": (rows // 2, 0),
+            "center": (rows // 2, cols // 2),
+            "right": (rows // 2, cols - 1),
+            "bottom_left": (rows - 1, 0),
+            "bottom": (rows - 1, cols // 2),
+            "bottom_right": (rows - 1, cols - 1),
+        }
+        return positions.get(position_name)
+
     def place_items(
         self,
         maze: MazeGenerator,
@@ -512,9 +621,22 @@ class FullMazeGenerator:
                 if candidates_end:
                     end = random.choice(candidates_end)
 
+        # Override start/end for rect mazes (no mask)
+        if not mask:
+            if start_position:
+                pos = self._rect_position(rows, cols, start_position)
+                if pos:
+                    start = pos
+            if end_position:
+                pos = self._rect_position(rows, cols, end_position)
+                if pos and pos != start:
+                    end = pos
+
         # Require solution to visit a meaningful fraction of cells
         # Medium: >= 40% of cells, Hard: >= 50% of cells
-        min_ratio = {"easy": 0.3, "medium": 0.4, "hard": 0.5}.get(difficulty, 0.3)
+        min_ratio = {
+            "beginner": 0.3, "easy": 0.3, "medium": 0.4, "hard": 0.5, "expert": 0.4,
+        }.get(difficulty, 0.3)
         maze.generate(start, mask, end=end, min_solution_ratio=min_ratio)
         solution = maze.solve(start, end)
 
@@ -575,11 +697,23 @@ class FullMazeGenerator:
 
         # Place items if requested
         if item_rule and item_count > 0 and item_emoji and solution:
-            items = self.place_items(
-                maze, solution, start, end,
-                item_rule, item_count, item_emoji,
-                offset_x, offset_y, cell_size, mask,
-            )
+            if item_rule == "avoid":
+                items = self.create_avoid_forks(
+                    maze, solution, start, end,
+                    item_count, item_emoji,
+                    offset_x, offset_y, cell_size, mask,
+                )
+                # Re-render SVG from modified maze (walls were opened for bypass routes)
+                if render_style == "corridor":
+                    result["svg_path"] = maze.to_svg_corridors(offset_x, offset_y, mask)
+                else:
+                    result["svg_path"] = maze.to_svg_walls(offset_x, offset_y, mask)
+            else:
+                items = self.place_items(
+                    maze, solution, start, end,
+                    item_rule, item_count, item_emoji,
+                    offset_x, offset_y, cell_size, mask,
+                )
             result["items"] = items
 
         return result

@@ -85,10 +85,20 @@ struct LabyrinthGameView: View {
                                     ? viewModel.collectedItemIndices.contains(index)
                                     : viewModel.hitItemIndices.contains(index)
                                 if !isHidden {
-                                    Text(item.emoji)
-                                        .font(.system(size: viewModel.itemFontSize))
-                                        .position(viewModel.itemPoint(item))
-                                        .allowsHitTesting(false)
+                                    ZStack {
+                                        if viewModel.isAvoidType {
+                                            Circle()
+                                                .fill(Color.red.opacity(0.25))
+                                                .frame(width: viewModel.itemFontSize * 1.8,
+                                                       height: viewModel.itemFontSize * 1.8)
+                                                .position(viewModel.itemPoint(item))
+                                                .allowsHitTesting(false)
+                                        }
+                                        Text(item.emoji)
+                                            .font(.system(size: viewModel.itemFontSize))
+                                            .position(viewModel.itemPoint(item))
+                                            .allowsHitTesting(false)
+                                    }
                                 }
                             }
                         }

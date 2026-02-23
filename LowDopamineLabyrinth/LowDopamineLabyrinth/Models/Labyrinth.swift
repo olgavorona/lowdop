@@ -120,37 +120,13 @@ struct VisualTheme: Codable {
 }
 
 extension Labyrinth {
-    /// Tight bounding box for corridor mazes; full canvas for grid mazes.
+    /// Bounding box for scaling — uses full canvas for all maze types.
+    /// Corridor SVG paths include the entire maze structure (not just the
+    /// solution), so a tight box from solution segments would over-zoom.
     var contentBounds: CGRect {
-        let isCorridor = pathData.mazeType.hasPrefix("corridor")
-        guard isCorridor else {
-            return CGRect(x: 0, y: 0,
-                          width: CGFloat(pathData.canvasWidth),
-                          height: CGFloat(pathData.canvasHeight))
-        }
-        var xs: [CGFloat] = []
-        var ys: [CGFloat] = []
-        for seg in pathData.segments {
-            xs.append(CGFloat(seg.start.x)); xs.append(CGFloat(seg.end.x))
-            ys.append(CGFloat(seg.start.y)); ys.append(CGFloat(seg.end.y))
-        }
-        xs.append(CGFloat(pathData.startPoint.x)); xs.append(CGFloat(pathData.endPoint.x))
-        ys.append(CGFloat(pathData.startPoint.y)); ys.append(CGFloat(pathData.endPoint.y))
-        if let items = pathData.items {
-            for item in items {
-                xs.append(CGFloat(item.x)); ys.append(CGFloat(item.y))
-            }
-        }
-        guard let minX = xs.min(), let maxX = xs.max(),
-              let minY = ys.min(), let maxY = ys.max() else {
-            return CGRect(x: 0, y: 0,
-                          width: CGFloat(pathData.canvasWidth),
-                          height: CGFloat(pathData.canvasHeight))
-        }
-        let margin: CGFloat = 60
-        return CGRect(x: minX - margin, y: minY - margin,
-                      width: (maxX - minX) + margin * 2,
-                      height: (maxY - minY) + margin * 2)
+        return CGRect(x: 0, y: 0,
+                      width: CGFloat(pathData.canvasWidth),
+                      height: CGFloat(pathData.canvasHeight))
     }
 }
 
