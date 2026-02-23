@@ -15,8 +15,8 @@ struct ParentalGateView: View {
     init(onSuccess: @escaping () -> Void, onCancel: @escaping () -> Void) {
         self.onSuccess = onSuccess
         self.onCancel = onCancel
-        let a = Int.random(in: 12...29)
-        let b = Int.random(in: 12...29)
+        let a = Int.random(in: 2...9)
+        let b = Int.random(in: 2...9)
         _a = State(initialValue: a)
         _b = State(initialValue: b)
     }
@@ -82,8 +82,8 @@ struct ParentalGateView: View {
         } else {
             showError = true
             // Randomize new problem on failure
-            a = Int.random(in: 12...29)
-            b = Int.random(in: 12...29)
+            a = Int.random(in: 2...9)
+            b = Int.random(in: 2...9)
             answer = ""
         }
     }

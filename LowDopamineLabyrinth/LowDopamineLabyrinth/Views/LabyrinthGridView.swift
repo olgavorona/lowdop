@@ -294,34 +294,51 @@ struct DifficultyPickerSheet: View {
     let onSelect: (DifficultyLevel) -> Void
     @Environment(\.dismiss) var dismiss
 
-    var body: some View {
-        VStack(spacing: 24) {
-            Text("Change Difficulty")
-                .font(.system(size: 22, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                .padding(.top, 24)
+    private let levelColors: [DifficultyLevel: [Color]] = [
+        .beginner: [Color(hex: "#81D4FA") ?? .blue, Color(hex: "#4FC3F7") ?? .blue],
+        .easy: [Color(hex: "#4FC3F7") ?? .blue, Color(hex: "#29B6F6") ?? .blue],
+        .medium: [Color(hex: "#29B6F6") ?? .blue, Color(hex: "#039BE5") ?? .blue],
+        .hard: [Color(hex: "#039BE5") ?? .blue, Color(hex: "#0277BD") ?? .blue],
+        .expert: [Color(hex: "#0277BD") ?? .blue, Color(hex: "#01579B") ?? .blue],
+    ]
 
-            HStack(spacing: 16) {
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Change Difficulty")
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                .padding(.top, 20)
+
+            HStack(spacing: 12) {
                 ForEach(DifficultyLevel.allCases, id: \.self) { level in
-                    Button(action: { onSelect(level) }) {
-                        VStack(spacing: 8) {
-                            Text(level.displayName)
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                        }
-                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 20)
-                        .background(Color(hex: "#6BBF7B")?.opacity(0.15) ?? .green.opacity(0.15))
-                        .cornerRadius(16)
+                    DifficultyCard(
+                        level: level,
+                        colors: levelColors[level] ?? [.blue, .blue],
+                        samplePath: loadSamplePath(for: level)
+                    ) {
+                        onSelect(level)
                     }
                 }
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, 20)
+
+            Spacer()
 
             Button("Cancel") { dismiss() }
                 .font(.system(size: 16, weight: .medium, design: .rounded))
                 .foregroundColor(.secondary)
-                .padding(.bottom, 24)
+                .padding(.bottom, 16)
         }
+        .padding()
+        .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+    }
+
+    private func loadSamplePath(for level: DifficultyLevel) -> String {
+        guard let url = Bundle.main.url(forResource: "difficulty_samples", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let samples = try? JSONDecoder().decode([String: String].self, from: data) else {
+            return ""
+        }
+        return samples[level.rawValue] ?? ""
     }
 }
