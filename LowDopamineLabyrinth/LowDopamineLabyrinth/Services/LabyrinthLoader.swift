@@ -12,9 +12,17 @@ class LabyrinthLoader {
     }
 
     func loadLabyrinth(id: String) -> Labyrinth? {
-        guard let url = Bundle.main.url(forResource: id, withExtension: "json") else { return nil }
-        guard let data = try? Data(contentsOf: url) else { return nil }
-        return try? JSONDecoder().decode(Labyrinth.self, from: data)
+        guard let url = Bundle.main.url(forResource: id, withExtension: "json") else {
+            print("[LabyrinthLoader] Missing resource: \(id).json")
+            return nil
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode(Labyrinth.self, from: data)
+        } catch {
+            print("[LabyrinthLoader] Failed to decode \(id).json: \(error)")
+            return nil
+        }
     }
 
     func loadAll() -> [Labyrinth] {

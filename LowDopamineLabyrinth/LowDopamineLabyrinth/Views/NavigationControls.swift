@@ -30,6 +30,7 @@ struct NavigationControls: View {
                         .background(.ultraThinMaterial)
                         .clipShape(Circle())
                 }
+                .accessibilityLabel("Close")
             }
 
             Spacer()
@@ -42,6 +43,7 @@ struct NavigationControls: View {
                         .foregroundColor(currentIndex > 0 ? .white : .white.opacity(0.3))
                 }
                 .disabled(currentIndex <= 0)
+                .accessibilityLabel("Previous labyrinth")
 
                 Text("\(currentIndex + 1) / \(total)")
                     .font(.system(size: counterSize, weight: .medium, design: .rounded))
@@ -53,6 +55,7 @@ struct NavigationControls: View {
                         .foregroundColor(currentIndex < total - 1 ? .white : .white.opacity(0.3))
                 }
                 .disabled(currentIndex >= total - 1)
+                .accessibilityLabel("Next labyrinth")
             }
             .padding(.horizontal, isCompact ? 10 : 20)
             .padding(.vertical, isCompact ? 4 : 10)
@@ -70,6 +73,7 @@ struct NavigationControls: View {
                     .background(.ultraThinMaterial)
                     .clipShape(Circle())
             }
+            .accessibilityLabel(ttsEnabled ? "Mute sound" : "Enable sound")
 
             // Reset — circular
             Button(action: onReset) {
@@ -80,6 +84,7 @@ struct NavigationControls: View {
                     .background(.ultraThinMaterial)
                     .clipShape(Circle())
             }
+            .accessibilityLabel("Reset drawing")
         }
         .padding(.horizontal, isCompact ? 6 : 12)
         .padding(.vertical, isCompact ? 2 : 8)

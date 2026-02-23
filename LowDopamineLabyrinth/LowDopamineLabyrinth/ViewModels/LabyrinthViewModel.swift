@@ -7,6 +7,7 @@ class LabyrinthViewModel: ObservableObject {
     @Published var showSolution: Bool = false
     @Published var hasStartedDrawing: Bool = false
     @Published var collectedItemIndices: Set<Int> = []
+    @Published var hitItemIndices: Set<Int> = []
     @Published var avoidedItemHits: Int = 0
     @Published var showItemHint: Bool = false
 
@@ -14,8 +15,11 @@ class LabyrinthViewModel: ObservableObject {
     private var validator: DrawingValidator?
     @Published var canvasSize: CGSize = .zero
 
+    /// Cached tight bounding box — computed once on init.
+    private let cachedContentBounds: CGRect
+
     /// Tight bounding box for corridor mazes; full canvas for grid mazes.
-    private var contentBounds: CGRect {
+    private static func computeContentBounds(for labyrinth: Labyrinth) -> CGRect {
         let isCorridor = labyrinth.pathData.mazeType.hasPrefix("corridor")
         guard isCorridor else {
             return CGRect(x: 0, y: 0,
@@ -57,7 +61,7 @@ class LabyrinthViewModel: ObservableObject {
 
     var scale: CGFloat {
         guard canvasSize.width > 0 else { return 1.0 }
-        let bounds = contentBounds
+        let bounds = cachedContentBounds
         let scaleX = canvasSize.width / bounds.width
         let scaleY = canvasSize.height / bounds.height
         return min(scaleX, scaleY)
@@ -65,7 +69,7 @@ class LabyrinthViewModel: ObservableObject {
 
     var offset: CGPoint {
         guard canvasSize.width > 0 else { return .zero }
-        let bounds = contentBounds
+        let bounds = cachedContentBounds
         let centerX = bounds.midX
         let centerY = bounds.midY
         return CGPoint(x: canvasSize.width / 2 - centerX * scale,
@@ -113,6 +117,7 @@ class LabyrinthViewModel: ObservableObject {
 
     init(labyrinth: Labyrinth) {
         self.labyrinth = labyrinth
+        self.cachedContentBounds = Self.computeContentBounds(for: labyrinth)
     }
 
     func setupValidator(tolerance: CGFloat) {
@@ -158,18 +163,17 @@ class LabyrinthViewModel: ObservableObject {
         let radius: CGFloat = 30 * scale
 
         for (index, item) in items.enumerated() {
-            guard !collectedItemIndices.contains(index) else { continue }
             let itemPos = itemPoint(item)
             let dx = point.x - itemPos.x
             let dy = point.y - itemPos.y
             let dist = sqrt(dx * dx + dy * dy)
 
             if dist <= radius {
-                if isCollectType {
+                if isCollectType && !collectedItemIndices.contains(index) {
                     collectedItemIndices.insert(index)
-                } else if isAvoidType {
+                } else if isAvoidType && !hitItemIndices.contains(index) {
                     avoidedItemHits += 1
-                    collectedItemIndices.insert(index) // Mark as "hit" to avoid re-counting
+                    hitItemIndices.insert(index)
                 }
             }
         }
@@ -188,6 +192,7 @@ class LabyrinthViewModel: ObservableObject {
         showSolution = false
         hasStartedDrawing = false
         collectedItemIndices = []
+        hitItemIndices = []
         avoidedItemHits = 0
         showItemHint = false
     }

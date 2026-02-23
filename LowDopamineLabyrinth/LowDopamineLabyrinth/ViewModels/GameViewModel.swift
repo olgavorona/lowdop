@@ -36,8 +36,8 @@ class GameViewModel: ObservableObject {
     func selectLabyrinth(_ labyrinth: Labyrinth) {
         if let idx = labyrinths.firstIndex(where: { $0.id == labyrinth.id }) {
             currentIndex = idx
+            isPlaying = true
         }
-        isPlaying = true
     }
 
     func closeGame() {

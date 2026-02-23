@@ -18,7 +18,7 @@ final class GameViewModelTests: XCTestCase {
         (0..<count).map { i in
             Labyrinth(
                 id: "lab_\(i)",
-                ageRange: "3-4",
+                ageRange: nil,
                 difficulty: "easy",
                 theme: "ocean",
                 title: "Lab \(i)",
@@ -442,5 +442,185 @@ final class GameViewModelTests: XCTestCase {
         progress.markCompleted(labyrinths[2].id)
 
         XCTAssertEqual(progress.completedCount(in: labyrinths), 2)
+    }
+
+    // MARK: - selectLabyrinth safety
+
+    func testSelectLabyrinthDoesNotSetPlayingWhenNotFound() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+        vm.labyrinths = makeSampleLabyrinths(count: 3)
+
+        // Create a labyrinth that is NOT in the list
+        let orphan = makeSampleLabyrinths(count: 1).first!
+        let fake = Labyrinth(
+            id: "nonexistent_999",
+            ageRange: nil, difficulty: orphan.difficulty, theme: orphan.theme,
+            title: orphan.title, storySetup: orphan.storySetup,
+            instruction: orphan.instruction, ttsInstruction: orphan.ttsInstruction,
+            characterStart: orphan.characterStart, characterEnd: orphan.characterEnd,
+            educationalQuestion: orphan.educationalQuestion, funFact: orphan.funFact,
+            completionMessage: orphan.completionMessage, pathData: orphan.pathData,
+            visualTheme: orphan.visualTheme, location: orphan.location,
+            audioInstruction: nil, audioCompletion: nil, itemRule: nil, itemEmoji: nil
+        )
+
+        vm.selectLabyrinth(fake)
+
+        XCTAssertFalse(vm.isPlaying, "Should not start playing when labyrinth is not in the list")
+    }
+
+    // MARK: - recordPlay date logic
+
+    func testRecordPlayResetsCountOnNewDay() {
+        let prefs = UserPreferences()
+        // Simulate a play from yesterday
+        prefs.lastPlayedTimestamp = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        prefs.dailyLabyrinthsPlayed = 5
+
+        prefs.recordPlay()
+
+        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 1, "Should reset to 1 on a new day")
+    }
+
+    func testRecordPlayIncrementsOnSameDay() {
+        let prefs = UserPreferences()
+        prefs.lastPlayedTimestamp = Date()
+        prefs.dailyLabyrinthsPlayed = 0
+
+        prefs.recordPlay()
+
+        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 1)
+
+        prefs.recordPlay()
+
+        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 2)
+    }
+}
+
+// MARK: - LabyrinthViewModel Item Tests
+
+final class LabyrinthViewModelItemTests: XCTestCase {
+
+    private func makeLabyrinth(itemRule: String?, itemEmoji: String?, items: [ItemData]?) -> Labyrinth {
+        Labyrinth(
+            id: "test_items",
+            ageRange: nil,
+            difficulty: "easy",
+            theme: "ocean",
+            title: "Test",
+            storySetup: "Story",
+            instruction: "Go",
+            ttsInstruction: "Go",
+            characterStart: LabyrinthCharacter(type: "crab", description: "Denny", position: "bottom_left", name: "Denny", imageAsset: "denny"),
+            characterEnd: LabyrinthCharacter(type: "fish", description: "Finn", position: "top_right", name: "Finn", imageAsset: "finn"),
+            educationalQuestion: "Q?",
+            funFact: "Fact",
+            completionMessage: "Done!",
+            pathData: PathData(
+                svgPath: "M0,0 L200,0 M0,0 L0,200 M200,0 L200,200 M0,200 L200,200",
+                solutionPath: "M100,100 L100,100",
+                width: 30,
+                complexity: "easy",
+                mazeType: "corridor_rect",
+                startPoint: PointData(x: 0, y: 0),
+                endPoint: PointData(x: 200, y: 200),
+                segments: [
+                    SegmentData(start: PointData(x: 0, y: 0), end: PointData(x: 200, y: 0)),
+                    SegmentData(start: PointData(x: 0, y: 0), end: PointData(x: 0, y: 200)),
+                    SegmentData(start: PointData(x: 200, y: 0), end: PointData(x: 200, y: 200)),
+                    SegmentData(start: PointData(x: 0, y: 200), end: PointData(x: 200, y: 200))
+                ],
+                canvasWidth: 300,
+                canvasHeight: 300,
+                controlPoints: nil,
+                items: items
+            ),
+            visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: []),
+            location: nil,
+            audioInstruction: nil,
+            audioCompletion: nil,
+            itemRule: itemRule,
+            itemEmoji: itemEmoji
+        )
+    }
+
+    func testCollectTypeProperties() {
+        let lab = makeLabyrinth(itemRule: "collect", itemEmoji: "🐚", items: [
+            ItemData(x: 50, y: 50, emoji: "🐚", onSolution: true),
+            ItemData(x: 100, y: 100, emoji: "🐚", onSolution: true)
+        ])
+        let vm = LabyrinthViewModel(labyrinth: lab)
+
+        XCTAssertTrue(vm.isCollectType)
+        XCTAssertFalse(vm.isAvoidType)
+        XCTAssertTrue(vm.hasItems)
+        XCTAssertEqual(vm.totalItemCount, 2)
+        XCTAssertFalse(vm.allItemsCollected)
+    }
+
+    func testAvoidTypeProperties() {
+        let lab = makeLabyrinth(itemRule: "avoid", itemEmoji: "🪼", items: [
+            ItemData(x: 50, y: 50, emoji: "🪼", onSolution: false)
+        ])
+        let vm = LabyrinthViewModel(labyrinth: lab)
+
+        XCTAssertFalse(vm.isCollectType)
+        XCTAssertTrue(vm.isAvoidType)
+        XCTAssertTrue(vm.hasItems)
+        XCTAssertEqual(vm.totalItemCount, 1)
+        XCTAssertTrue(vm.allItemsCollected, "allItemsCollected should be true for avoid type (no gate)")
+    }
+
+    func testNoItemsProperties() {
+        let lab = makeLabyrinth(itemRule: nil, itemEmoji: nil, items: nil)
+        let vm = LabyrinthViewModel(labyrinth: lab)
+
+        XCTAssertFalse(vm.isCollectType)
+        XCTAssertFalse(vm.isAvoidType)
+        XCTAssertFalse(vm.hasItems)
+        XCTAssertEqual(vm.totalItemCount, 0)
+    }
+
+    func testResetClearsItemState() {
+        let lab = makeLabyrinth(itemRule: "collect", itemEmoji: "🐚", items: [
+            ItemData(x: 50, y: 50, emoji: "🐚", onSolution: true)
+        ])
+        let vm = LabyrinthViewModel(labyrinth: lab)
+        vm.collectedItemIndices.insert(0)
+        vm.hitItemIndices.insert(0)
+        vm.avoidedItemHits = 3
+
+        vm.reset()
+
+        XCTAssertTrue(vm.collectedItemIndices.isEmpty)
+        XCTAssertTrue(vm.hitItemIndices.isEmpty)
+        XCTAssertEqual(vm.avoidedItemHits, 0)
+        XCTAssertFalse(vm.isCompleted)
+        XCTAssertFalse(vm.showItemHint)
+    }
+
+    func testItemHUDTextCollect() {
+        let lab = makeLabyrinth(itemRule: "collect", itemEmoji: "🐚", items: [
+            ItemData(x: 50, y: 50, emoji: "🐚", onSolution: true),
+            ItemData(x: 100, y: 100, emoji: "🐚", onSolution: true)
+        ])
+        let vm = LabyrinthViewModel(labyrinth: lab)
+
+        XCTAssertEqual(vm.itemHUDText, "🐚 0/2")
+
+        vm.collectedItemIndices.insert(0)
+        XCTAssertEqual(vm.itemHUDText, "🐚 1/2")
+    }
+
+    func testItemHUDTextAvoid() {
+        let lab = makeLabyrinth(itemRule: "avoid", itemEmoji: "🪼", items: [
+            ItemData(x: 50, y: 50, emoji: "🪼", onSolution: false)
+        ])
+        let vm = LabyrinthViewModel(labyrinth: lab)
+
+        XCTAssertEqual(vm.itemHUDText, "🪼 Avoid!")
     }
 }

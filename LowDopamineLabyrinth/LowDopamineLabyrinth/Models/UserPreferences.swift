@@ -54,13 +54,13 @@ class UserPreferences: ObservableObject {
     }
 
     func recordPlay() {
-        lastPlayedTimestamp = Date()
         let calendar = Calendar.current
         if let lastPlayed = lastPlayedTimestamp, !calendar.isDateInToday(lastPlayed) {
             dailyLabyrinthsPlayed = 1
         } else {
             dailyLabyrinthsPlayed += 1
         }
+        lastPlayedTimestamp = Date()
     }
 }
 

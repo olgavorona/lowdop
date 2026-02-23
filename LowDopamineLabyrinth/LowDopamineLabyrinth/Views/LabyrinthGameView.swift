@@ -81,7 +81,10 @@ struct LabyrinthGameView: View {
                         // Item emoji overlay (between maze and drawing canvas)
                         if let items = viewModel.labyrinth.pathData.items {
                             ForEach(Array(items.enumerated()), id: \.offset) { index, item in
-                                if !viewModel.collectedItemIndices.contains(index) {
+                                let isHidden = viewModel.isCollectType
+                                    ? viewModel.collectedItemIndices.contains(index)
+                                    : viewModel.hitItemIndices.contains(index)
+                                if !isHidden {
                                     Text(item.emoji)
                                         .font(.system(size: viewModel.itemFontSize))
                                         .position(viewModel.itemPoint(item))

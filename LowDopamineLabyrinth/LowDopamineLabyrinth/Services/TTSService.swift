@@ -51,6 +51,7 @@ class TTSService: ObservableObject {
             audioPlayer?.play()
             return true
         } catch {
+            print("[TTSService] Failed to play \(url.lastPathComponent): \(error)")
             return false
         }
     }

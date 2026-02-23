@@ -14,7 +14,7 @@ struct ItemData: Codable {
 
 struct Labyrinth: Codable, Identifiable {
     let id: String
-    let ageRange: String
+    let ageRange: String?
     let difficulty: String
     let theme: String
     let title: String
