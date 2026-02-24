@@ -7,8 +7,6 @@ class LabyrinthViewModel: ObservableObject {
     @Published var showSolution: Bool = false
     @Published var hasStartedDrawing: Bool = false
     @Published var collectedItemIndices: Set<Int> = []
-    @Published var hitItemIndices: Set<Int> = []
-    @Published var avoidedItemHits: Int = 0
     @Published var showItemHint: Bool = false
 
     let labyrinth: Labyrinth
@@ -39,10 +37,6 @@ class LabyrinthViewModel: ObservableObject {
         labyrinth.itemRule == "collect"
     }
 
-    var isAvoidType: Bool {
-        labyrinth.itemRule == "avoid"
-    }
-
     var hasItems: Bool {
         labyrinth.pathData.items != nil && !(labyrinth.pathData.items?.isEmpty ?? true)
     }
@@ -67,11 +61,7 @@ class LabyrinthViewModel: ObservableObject {
 
     var itemHUDText: String {
         guard let emoji = labyrinth.itemEmoji else { return "" }
-        if isCollectType {
-            return "\(emoji) \(collectedItemIndices.count)/\(totalItemCount)"
-        } else {
-            return "\(emoji) Avoid!"
-        }
+        return "\(emoji) \(collectedItemIndices.count)/\(totalItemCount)"
     }
 
     init(labyrinth: Labyrinth) {
@@ -119,7 +109,10 @@ class LabyrinthViewModel: ObservableObject {
 
     private func checkItemProximity(_ point: CGPoint) {
         guard let items = labyrinth.pathData.items else { return }
-        let radius: CGFloat = 30 * scale
+        // Use path tolerance (if validator is set up) so items on adjacent paths
+        // aren't accidentally collected, especially on harder difficulties
+        let baseTolerance = validator?.tolerance ?? 30
+        let radius: CGFloat = baseTolerance * scale
 
         for (index, item) in items.enumerated() {
             let itemPos = itemPoint(item)
@@ -127,13 +120,8 @@ class LabyrinthViewModel: ObservableObject {
             let dy = point.y - itemPos.y
             let dist = sqrt(dx * dx + dy * dy)
 
-            if dist <= radius {
-                if isCollectType && !collectedItemIndices.contains(index) {
-                    collectedItemIndices.insert(index)
-                } else if isAvoidType && !hitItemIndices.contains(index) {
-                    avoidedItemHits += 1
-                    hitItemIndices.insert(index)
-                }
+            if dist <= radius && !collectedItemIndices.contains(index) {
+                collectedItemIndices.insert(index)
             }
         }
     }
@@ -151,8 +139,6 @@ class LabyrinthViewModel: ObservableObject {
         showSolution = false
         hasStartedDrawing = false
         collectedItemIndices = []
-        hitItemIndices = []
-        avoidedItemHits = 0
         showItemHint = false
     }
 

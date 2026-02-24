@@ -4,13 +4,14 @@ struct DrawingCanvas: View {
     @ObservedObject var viewModel: LabyrinthViewModel
     let tolerance: CGFloat
 
-    private let strokeColor = Color(hex: "#5BA8D9") ?? .blue
+    private let outlineStyle = StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round)
+    private let fillStyle = StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round)
 
     var body: some View {
         ZStack {
             // Completed strokes
             ForEach(viewModel.drawingStrokes.indices, id: \.self) { strokeIndex in
-                Path { path in
+                let strokePath = Path { path in
                     let stroke = viewModel.drawingStrokes[strokeIndex]
                     guard !stroke.isEmpty else { return }
                     path.move(to: stroke[0])
@@ -18,18 +19,20 @@ struct DrawingCanvas: View {
                         path.addLine(to: point)
                     }
                 }
-                .stroke(strokeColor, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+                strokePath.stroke(Color.black.opacity(0.3), style: outlineStyle)
+                strokePath.stroke(Color.white, style: fillStyle)
             }
 
             // Current active stroke
-            Path { path in
+            let currentPath = Path { path in
                 guard !viewModel.currentStroke.isEmpty else { return }
                 path.move(to: viewModel.currentStroke[0])
                 for point in viewModel.currentStroke.dropFirst() {
                     path.addLine(to: point)
                 }
             }
-            .stroke(strokeColor, style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
+            currentPath.stroke(Color.black.opacity(0.3), style: outlineStyle)
+            currentPath.stroke(Color.white, style: fillStyle)
 
             // Invisible touch capture layer
             Color.clear
