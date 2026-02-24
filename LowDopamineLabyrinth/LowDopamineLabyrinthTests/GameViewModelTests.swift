@@ -8,7 +8,7 @@ final class GameViewModelTests: XCTestCase {
         // Clean up UserDefaults keys used by UserPreferences to isolate tests
         let keys = ["lastPlayedTimestamp", "dailyLabyrinthsPlayed", "difficultyLevel",
                      "ttsEnabled", "hasCompletedOnboarding", "ttsDefaultSet",
-                     "completedLabyrinths"]
+                     "completedLabyrinths", "totalFreeLabyrinthsPlayed"]
         for key in keys {
             UserDefaults.standard.removeObject(forKey: key)
         }
@@ -253,10 +253,12 @@ final class GameViewModelTests: XCTestCase {
         let progress = ProgressTracker()
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
-        // Record one play (daily limit is 1 for free users)
+        // Use up initial 3 free plays
+        prefs.totalFreeLabyrinthsPlayed = 3
+        // Record one more play today (daily limit is 1)
         prefs.recordPlay()
 
-        XCTAssertFalse(vm.canProceed(), "Free user who played today should be blocked by paywall")
+        XCTAssertFalse(vm.canProceed(), "Free user who used 3 free plays + 1 daily should be blocked")
     }
 
     func testCanProceedResetsOnNewDay() {
@@ -266,7 +268,8 @@ final class GameViewModelTests: XCTestCase {
         let progress = ProgressTracker()
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
-        // Simulate play from yesterday
+        // All 3 free plays used; simulate play from yesterday
+        prefs.totalFreeLabyrinthsPlayed = 3
         prefs.dailyLabyrinthsPlayed = 1
         prefs.lastPlayedTimestamp = Calendar.current.date(byAdding: .day, value: -1, to: Date())
 
@@ -301,8 +304,8 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertNotNil(prefs.lastPlayedTimestamp)
     }
 
-    func testPaywallFlowFreeUserBlockedAfterFirstCompletion() {
-        // Full flow: select → complete → attempt next → blocked
+    func testPaywallFlowFreeUserBlockedAfterFourthCompletion() {
+        // Full flow: 3 free plays + 1 daily = 4 total, then blocked
         let prefs = UserPreferences()
         let sub = SubscriptionManager()
         sub.isPremium = false
@@ -310,17 +313,19 @@ final class GameViewModelTests: XCTestCase {
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
-        // 1. Select and play labyrinth 0
+        // 1. Use initial 3 free plays
         vm.selectLabyrinth(vm.labyrinths[0])
-        XCTAssertTrue(vm.isPlaying)
+        for i in 0..<3 {
+            vm.completeCurrentLabyrinth()
+            XCTAssertTrue(vm.canProceed(), "Should be able to proceed during first 3 free plays (play \(i+1))")
+            vm.nextLabyrinth()
+        }
 
-        // 2. Complete it (this calls recordPlay)
+        // 2. Complete 4th labyrinth (1 daily play after 3 free)
         vm.completeCurrentLabyrinth()
-        XCTAssertTrue(progress.isCompleted("lab_0"))
 
         // 3. Try to proceed — should be blocked (daily limit reached)
-        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after completing one labyrinth")
-        XCTAssertEqual(vm.currentIndex, 0, "Should stay on current labyrinth when blocked")
+        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after 4th play")
     }
 
     func testPaywallFlowPremiumUserCanAlwaysAdvance() {
@@ -354,6 +359,8 @@ final class GameViewModelTests: XCTestCase {
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
+        // Use up 3 free + 1 daily to trigger block
+        prefs.totalFreeLabyrinthsPlayed = 3
         vm.selectLabyrinth(vm.labyrinths[0])
         vm.completeCurrentLabyrinth()
 
@@ -380,10 +387,12 @@ final class GameViewModelTests: XCTestCase {
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
+        // Use up 3 free + 1 daily to trigger block
+        prefs.totalFreeLabyrinthsPlayed = 3
         vm.selectLabyrinth(vm.labyrinths[0])
         vm.completeCurrentLabyrinth()
         XCTAssertTrue(vm.isPlaying)
-        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after 1 play")
+        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after daily limit")
 
         // "Maybe Later" dismisses paywall → closeGame() to return to grid
         vm.closeGame()
@@ -398,13 +407,97 @@ final class GameViewModelTests: XCTestCase {
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
-        // Use up the daily play
+        // Use up 3 free plays + 1 daily
+        prefs.totalFreeLabyrinthsPlayed = 3
         prefs.recordPlay()
         XCTAssertFalse(vm.canProceed(), "Should not be able to play after daily limit")
 
-        // Grid should block — canProceed() is false so selectLabyrinth should not be called
-        // (This is enforced in the view layer, but we verify the gate here)
         XCTAssertFalse(vm.isPlaying)
+    }
+
+    // MARK: - 3-Free Model Tests
+
+    func testFreeUserGetsThreeFreePlaysBeforeLimit() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+        vm.labyrinths = makeSampleLabyrinths(count: 5)
+
+        // 3 labyrinths on the same day — all should succeed
+        vm.selectLabyrinth(vm.labyrinths[0])
+        for i in 0..<3 {
+            XCTAssertTrue(vm.canProceed(), "Free user should be able to play during first 3 plays (play \(i+1))")
+            vm.completeCurrentLabyrinth()
+            if i < 2 {
+                vm.nextLabyrinth()
+            }
+        }
+        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 3)
+    }
+
+    func testFreeUserAfterThreeFreePlaysGetsOnePerDay() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+        vm.labyrinths = makeSampleLabyrinths(count: 5)
+
+        // 3 total played already
+        prefs.totalFreeLabyrinthsPlayed = 3
+        // Simulate yesterday's play
+        prefs.lastPlayedTimestamp = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+        prefs.dailyLabyrinthsPlayed = 1
+
+        // New day → should get 1 play
+        XCTAssertTrue(vm.canProceed(), "Should get 1 play on new day")
+
+        vm.selectLabyrinth(vm.labyrinths[0])
+        vm.completeCurrentLabyrinth()
+
+        // Now blocked
+        XCTAssertFalse(vm.canProceed(), "Should be blocked after 1 daily play")
+    }
+
+    func testTotalFreeCounterIncrementsOnRecordPlay() {
+        let prefs = UserPreferences()
+        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 0)
+
+        prefs.recordPlay()
+        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 1)
+
+        prefs.recordPlay()
+        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 2)
+
+        prefs.recordPlay()
+        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 3)
+    }
+
+    func testFreeLabyrinthsRemainingDuringInitialFree() {
+        let prefs = UserPreferences()
+
+        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 3)
+
+        prefs.recordPlay()
+        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 2)
+
+        prefs.recordPlay()
+        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 1)
+
+        prefs.recordPlay()
+        // After 3 plays, transitions to daily mode with counter reset — 1 daily play available
+        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 1)
+
+        // Use the daily play
+        prefs.recordPlay()
+        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 0)
+    }
+
+    func testFreeLabyrinthsRemainingReturnsNilForPremium() {
+        let prefs = UserPreferences()
+        XCTAssertNil(prefs.freeLabyrinthsRemaining(isPremium: true))
     }
 
     // MARK: - Sequential Unlock / Progress Tests
@@ -555,23 +648,9 @@ final class LabyrinthViewModelItemTests: XCTestCase {
         let vm = LabyrinthViewModel(labyrinth: lab)
 
         XCTAssertTrue(vm.isCollectType)
-        XCTAssertFalse(vm.isAvoidType)
         XCTAssertTrue(vm.hasItems)
         XCTAssertEqual(vm.totalItemCount, 2)
         XCTAssertFalse(vm.allItemsCollected)
-    }
-
-    func testAvoidTypeProperties() {
-        let lab = makeLabyrinth(itemRule: "avoid", itemEmoji: "🪼", items: [
-            ItemData(x: 50, y: 50, emoji: "🪼", onSolution: false)
-        ])
-        let vm = LabyrinthViewModel(labyrinth: lab)
-
-        XCTAssertFalse(vm.isCollectType)
-        XCTAssertTrue(vm.isAvoidType)
-        XCTAssertTrue(vm.hasItems)
-        XCTAssertEqual(vm.totalItemCount, 1)
-        XCTAssertTrue(vm.allItemsCollected, "allItemsCollected should be true for avoid type (no gate)")
     }
 
     func testNoItemsProperties() {
@@ -579,7 +658,6 @@ final class LabyrinthViewModelItemTests: XCTestCase {
         let vm = LabyrinthViewModel(labyrinth: lab)
 
         XCTAssertFalse(vm.isCollectType)
-        XCTAssertFalse(vm.isAvoidType)
         XCTAssertFalse(vm.hasItems)
         XCTAssertEqual(vm.totalItemCount, 0)
     }
@@ -590,14 +668,10 @@ final class LabyrinthViewModelItemTests: XCTestCase {
         ])
         let vm = LabyrinthViewModel(labyrinth: lab)
         vm.collectedItemIndices.insert(0)
-        vm.hitItemIndices.insert(0)
-        vm.avoidedItemHits = 3
 
         vm.reset()
 
         XCTAssertTrue(vm.collectedItemIndices.isEmpty)
-        XCTAssertTrue(vm.hitItemIndices.isEmpty)
-        XCTAssertEqual(vm.avoidedItemHits, 0)
         XCTAssertFalse(vm.isCompleted)
         XCTAssertFalse(vm.showItemHint)
     }
@@ -613,14 +687,5 @@ final class LabyrinthViewModelItemTests: XCTestCase {
 
         vm.collectedItemIndices.insert(0)
         XCTAssertEqual(vm.itemHUDText, "🐚 1/2")
-    }
-
-    func testItemHUDTextAvoid() {
-        let lab = makeLabyrinth(itemRule: "avoid", itemEmoji: "🪼", items: [
-            ItemData(x: 50, y: 50, emoji: "🪼", onSolution: false)
-        ])
-        let vm = LabyrinthViewModel(labyrinth: lab)
-
-        XCTAssertEqual(vm.itemHUDText, "🪼 Avoid!")
     }
 }

@@ -25,6 +25,11 @@ class UserPreferences: ObservableObject {
         set { defaults.set(newValue, forKey: "dailyLabyrinthsPlayed") }
     }
 
+    var totalFreeLabyrinthsPlayed: Int {
+        get { defaults.integer(forKey: "totalFreeLabyrinthsPlayed") }
+        set { defaults.set(newValue, forKey: "totalFreeLabyrinthsPlayed") }
+    }
+
     var pathTolerance: CGFloat {
         difficultyLevel.pathTolerance
     }
@@ -44,6 +49,9 @@ class UserPreferences: ObservableObject {
 
     func canPlayToday(isPremium: Bool) -> Bool {
         if isPremium { return true }
+        // First 3 labyrinths are always free, no daily limit
+        if totalFreeLabyrinthsPlayed < 3 { return true }
+        // After 3 total: 1 per day
         guard let lastPlayed = lastPlayedTimestamp else { return true }
         let calendar = Calendar.current
         if !calendar.isDateInToday(lastPlayed) {
@@ -60,7 +68,26 @@ class UserPreferences: ObservableObject {
         } else {
             dailyLabyrinthsPlayed += 1
         }
+        totalFreeLabyrinthsPlayed += 1
+        // When initial free plays are exhausted, reset daily counter
+        // so the 1-per-day limit starts fresh
+        if totalFreeLabyrinthsPlayed == 3 {
+            dailyLabyrinthsPlayed = 0
+        }
         lastPlayedTimestamp = Date()
+    }
+
+    /// Returns remaining free plays for UI display. nil = unlimited (premium).
+    func freeLabyrinthsRemaining(isPremium: Bool) -> Int? {
+        if isPremium { return nil }
+        if totalFreeLabyrinthsPlayed < 3 {
+            return 3 - totalFreeLabyrinthsPlayed
+        }
+        // After initial 3: daily limit
+        guard let lastPlayed = lastPlayedTimestamp else { return 1 }
+        let calendar = Calendar.current
+        if !calendar.isDateInToday(lastPlayed) { return 1 }
+        return max(0, 1 - dailyLabyrinthsPlayed)
     }
 }
 

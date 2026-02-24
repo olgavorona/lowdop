@@ -94,35 +94,59 @@ struct LabyrinthGridView: View {
                             .padding(.horizontal, 20)
                     }
 
-                    // "Come back tomorrow" banner for free users who used their daily play
-                    if !gameViewModel.canProceed() {
-                        HStack(spacing: 12) {
-                            Image(systemName: "moon.zzz.fill")
-                                .font(.system(size: 24))
-                                .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("See you tomorrow!")
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                                Text("Your free labyrinth for today is done. Come back tomorrow for a new one!")
-                                    .font(.system(size: 13, design: .rounded))
-                                    .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
+                    // Free plays banner
+                    if let remaining = preferences.freeLabyrinthsRemaining(isPremium: subscriptionManager.isPremium) {
+                        if remaining > 0 && preferences.totalFreeLabyrinthsPlayed < 3 {
+                            // Initial free plays remaining
+                            HStack(spacing: 12) {
+                                Image(systemName: "gift.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(Color(hex: "#6BBF7B") ?? .green)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("\(remaining) free labyrinth\(remaining == 1 ? "" : "s") left!")
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                                    Text("Try them out — no subscription needed.")
+                                        .font(.system(size: 13, design: .rounded))
+                                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
+                                }
+                                Spacer()
                             }
-                            Spacer()
-                            Button(action: { showPaywall = true }) {
-                                Text("Unlock All")
-                                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 14)
-                                    .padding(.vertical, 8)
-                                    .background(Color(hex: "#5BA8D9") ?? .blue)
-                                    .cornerRadius(10)
+                            .padding(16)
+                            .background(Color(hex: "#6BBF7B")?.opacity(0.1) ?? .green.opacity(0.1))
+                            .cornerRadius(14)
+                            .padding(.horizontal, 20)
+                        } else if remaining == 0 {
+                            // Daily limit reached
+                            HStack(spacing: 12) {
+                                Image(systemName: "moon.zzz.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("See you tomorrow!")
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                                    Text("Your free labyrinth for today is done. Come back tomorrow for a new one!")
+                                        .font(.system(size: 13, design: .rounded))
+                                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
+                                }
+                                Spacer()
+                                Button(action: { showPaywall = true }) {
+                                    Text("Unlock All")
+                                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 14)
+                                        .padding(.vertical, 8)
+                                        .background(Color(hex: "#5BA8D9") ?? .blue)
+                                        .cornerRadius(10)
+                                }
                             }
+                            .padding(16)
+                            .background(Color(hex: "#5BA8D9")?.opacity(0.1) ?? .blue.opacity(0.1))
+                            .cornerRadius(14)
+                            .padding(.horizontal, 20)
                         }
-                        .padding(16)
-                        .background(Color(hex: "#5BA8D9")?.opacity(0.1) ?? .blue.opacity(0.1))
-                        .cornerRadius(14)
-                        .padding(.horizontal, 20)
+                        // remaining > 0 && totalFreeLabyrinthsPlayed >= 3: no banner (can still play today)
                     }
 
                     // Grid — 4 columns for landscape

@@ -4,7 +4,12 @@ class SubscriptionManager: ObservableObject {
     @Published var isPremium: Bool = false
     @Published var products: [Product] = []
 
-    private let productIds = ["labyrinth_unlimited_monthly", "labyrinth_unlimited_yearly"]
+    private let productIds = [
+        "labyrinth_unlimited_weekly",
+        "labyrinth_unlimited_monthly",
+        "labyrinth_unlimited_yearly",
+        "labyrinth_unlimited_lifetime"
+    ]
     private var transactionListener: Task<Void, Never>?
 
     init() {
@@ -57,6 +62,7 @@ class SubscriptionManager: ObservableObject {
     private func checkEntitlements() async {
         for await result in Transaction.currentEntitlements {
             if let transaction = try? checkVerified(result) {
+                // Check auto-renewable subscriptions and non-consumable (lifetime)
                 if productIds.contains(transaction.productID) {
                     isPremium = true
                     return
