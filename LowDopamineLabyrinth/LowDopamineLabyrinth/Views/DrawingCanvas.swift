@@ -20,7 +20,7 @@ struct DrawingCanvas: View {
                     }
                 }
                 strokePath.stroke(Color.black.opacity(0.3), style: outlineStyle)
-                strokePath.stroke(Color.white, style: fillStyle)
+                strokePath.stroke(Color(hex: "#E74C3C") ?? .red, style: fillStyle)
             }
 
             // Current active stroke
@@ -32,7 +32,7 @@ struct DrawingCanvas: View {
                 }
             }
             currentPath.stroke(Color.black.opacity(0.3), style: outlineStyle)
-            currentPath.stroke(Color.white, style: fillStyle)
+            currentPath.stroke(Color(hex: "#E74C3C") ?? .red, style: fillStyle)
 
             // Invisible touch capture layer
             Color.clear
