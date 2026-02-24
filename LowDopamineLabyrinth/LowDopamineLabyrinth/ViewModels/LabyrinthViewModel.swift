@@ -94,16 +94,8 @@ class LabyrinthViewModel: ObservableObject {
 
         // Completion: reach near the end character (radius matches visible character size)
         if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 60 * scale) {
-            if isCollectType && !allItemsCollected {
-                // Show hint — don't complete yet
-                showItemHint = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
-                    self?.showItemHint = false
-                }
-            } else {
-                isCompleted = true
-                showSolution = true
-            }
+            isCompleted = true
+            showSolution = true
         }
     }
 
