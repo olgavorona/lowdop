@@ -55,14 +55,17 @@ struct PaywallView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 16)
 
-                // Restore + Privacy
-                HStack(spacing: 16) {
+                // Restore + Terms + Privacy
+                HStack(spacing: 12) {
                     Button("Restore Purchases") {
                         Task { await subscriptionManager.restorePurchases() }
                     }
                     Text("|")
                         .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.3))
-                    Link("Privacy Policy", destination: URL(string: "https://lowdopaminelabyrinth.com/privacy")!)
+                    Link("Terms", destination: URL(string: "https://olgavorona.github.io/lowdop/terms")!)
+                    Text("|")
+                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.3))
+                    Link("Privacy", destination: URL(string: "https://olgavorona.github.io/lowdop/privacy")!)
                 }
                 .font(.system(size: 12, design: .rounded))
                 .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.6))

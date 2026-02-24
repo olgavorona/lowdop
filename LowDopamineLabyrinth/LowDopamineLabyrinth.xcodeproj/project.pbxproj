@@ -32,6 +32,7 @@
 		AA000023 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000023 /* ParentalGateView.swift */; };
 		AA000024 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000024 /* PrivacyPolicyView.swift */; };
 		AA000025 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AB000025 /* PrivacyInfo.xcprivacy */; };
+		AA000026 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000026 /* TermsOfServiceView.swift */; };
 		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031 /* manifest.json */; };
 		AA200101 /* denny_001_lv1.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200101 /* denny_001_lv1.json */; };
 		AA200102 /* denny_001_lv2.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200102 /* denny_001_lv2.json */; };
@@ -163,6 +164,7 @@
 		AB000019 /* NavigationControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControls.swift; sourceTree = "<group>"; };
 		AB000023 /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
 		AB000024 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		AB000026 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		AB000025 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AB000020 /* LabyrinthGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGameView.swift; sourceTree = "<group>"; };
 		AB000021 /* LabyrinthGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGridView.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				AB000022 /* CharacterMarkerView.swift */,
 				AB000023 /* ParentalGateView.swift */,
 				AB000024 /* PrivacyPolicyView.swift */,
+				AB000026 /* TermsOfServiceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				AA000022 /* CharacterMarkerView.swift in Sources */,
 				AA000023 /* ParentalGateView.swift in Sources */,
 				AA000024 /* PrivacyPolicyView.swift in Sources */,
+				AA000026 /* TermsOfServiceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

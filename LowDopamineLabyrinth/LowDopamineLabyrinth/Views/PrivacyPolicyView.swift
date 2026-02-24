@@ -11,7 +11,7 @@ struct PrivacyPolicyView: View {
                         Text("Privacy Policy")
                             .font(.system(size: 24, weight: .bold, design: .rounded))
 
-                        Text("Last updated: February 18, 2026")
+                        Text("Last updated: February 24, 2026")
                             .font(.system(size: 13, design: .rounded))
                             .foregroundColor(.secondary)
 
@@ -30,7 +30,7 @@ struct PrivacyPolicyView: View {
 
                     section("Local Storage") {
                         Text("The App stores a small amount of non-personal data on your device only (never transmitted):")
-                        bullet("Selected age group (3-4 or 5-6)")
+                        bullet("Selected difficulty level")
                         bullet("Sound preference (on/off)")
                         bullet("Completed labyrinth progress")
                         bullet("Subscription status")
