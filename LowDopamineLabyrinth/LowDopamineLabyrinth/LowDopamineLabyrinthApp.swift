@@ -7,6 +7,10 @@ struct LowDopamineLabyrinthApp: App {
     @StateObject private var progressTracker = ProgressTracker()
     @StateObject private var ttsService = TTSService()
 
+    init() {
+        Analytics.configure()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView(

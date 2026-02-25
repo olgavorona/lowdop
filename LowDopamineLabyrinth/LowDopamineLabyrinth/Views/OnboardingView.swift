@@ -28,6 +28,7 @@ struct OnboardingView: View {
                     ) {
                         preferences.difficultyLevel = level
                         preferences.hasCompletedOnboarding = true
+                        Analytics.send("Onboarding.difficultySelected", with: ["level": level.rawValue])
                     }
                 }
             }

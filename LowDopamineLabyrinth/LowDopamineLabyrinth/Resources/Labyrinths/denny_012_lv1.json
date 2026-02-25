@@ -4,10 +4,10 @@
   "difficulty": "beginner",
   "theme": "ocean",
   "location": "coral_garden",
-  "title": "Denny Dodges Jellyfish",
-  "story_setup": "The coral garden is full of jellyfish today! Denny needs to swim carefully to reach his friend Finn without touching any.",
-  "instruction": "Draw a path to reach Finn, but try to avoid the jellyfish!",
-  "tts_instruction": "Oh no, jellyfish! Help Denny swim through the coral garden to reach Finn. Try not to touch the jellyfish along the way!",
+  "title": "Denny's Pearl Dive",
+  "story_setup": "Shiny pearls are hidden all around the coral garden! Denny and Finn want to collect them all before the tide comes in.",
+  "instruction": "Collect all the pearls as you draw a path to reach Finn!",
+  "tts_instruction": "Look at all those pearls! Help Denny explore the coral garden and collect every pearl before reaching Finn.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -22,30 +22,30 @@
     "name": "Finn",
     "image_asset": "finn"
   },
-  "educational_question": "Why do jellyfish sting? Is it to protect themselves?",
-  "fun_fact": "Jellyfish don't have brains, hearts, or bones! They are made of 95% water.",
-  "completion_message": "Denny made it safely to Finn through the jellyfish!",
-  "item_rule": "avoid",
-  "item_emoji": "🪼",
+  "educational_question": "Where do pearls come from? Which animal makes them?",
+  "fun_fact": "Pearls are made by oysters! When a tiny grain of sand gets inside, the oyster covers it with smooth layers until it becomes a pearl.",
+  "completion_message": "Denny found all the pearls! Finn is amazed!",
+  "item_rule": "collect",
+  "item_emoji": "🦪",
   "path_data": {
-    "svg_path": "M 253 110 L 253 203 M 160 203 L 253 203 M 160 203 L 160 296 M 253 203 L 346 203 M 253 203 L 253 296 M 346 203 L 346 296 M 67 296 L 160 296 M 160 296 L 253 296 M 253 296 L 346 296 M 253 296 L 253 389 M 346 296 L 439 296 M 439 296 L 532 296 M 160 389 L 253 389 M 253 389 L 346 389 M 253 110 L 253 110 M 160 203 L 160 203 M 253 203 L 253 203 M 346 203 L 346 203 M 67 296 L 67 296 M 160 296 L 160 296 M 253 296 L 253 296 M 346 296 L 346 296 M 439 296 L 439 296 M 532 296 L 532 296 M 160 389 L 160 389 M 253 389 L 253 389 M 346 389 L 346 389",
-    "solution_path": "M 67 296 L 160 296 L 160 203 L 253 203 L 346 203 L 346 296 L 439 296 L 532 296",
+    "svg_path": "M 253 110 L 253 203 M 160 203 L 253 203 M 253 203 L 346 203 M 346 203 L 346 296 M 67 296 L 160 296 M 160 296 L 253 296 M 160 296 L 160 389 M 253 296 L 253 389 M 346 296 L 439 296 M 346 296 L 346 389 M 439 296 L 532 296 M 253 389 L 346 389 M 253 110 L 253 110 M 160 203 L 160 203 M 253 203 L 253 203 M 346 203 L 346 203 M 67 296 L 67 296 M 160 296 L 160 296 M 253 296 L 253 296 M 346 296 L 346 296 M 439 296 L 439 296 M 532 296 L 532 296 M 160 389 L 160 389 M 253 389 L 253 389 M 346 389 L 346 389",
+    "solution_path": "M 160 389 L 160 296 L 253 296 L 253 389 L 346 389 L 346 296 L 346 203 L 253 203 L 253 110",
     "width": 40,
     "complexity": "beginner",
     "maze_type": "corridor_diamond",
     "start_point": {
-      "x": 67,
-      "y": 296
+      "x": 160,
+      "y": 389
     },
     "end_point": {
-      "x": 532,
-      "y": 296
+      "x": 253,
+      "y": 110
     },
     "segments": [
       {
         "start": {
-          "x": 67,
-          "y": 296
+          "x": 160,
+          "y": 389
         },
         "end": {
           "x": 160,
@@ -58,13 +58,53 @@
           "y": 296
         },
         "end": {
-          "x": 160,
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 296
+        },
+        "end": {
+          "x": 253,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 389
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 389
+        },
+        "end": {
+          "x": 346,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 346,
           "y": 203
         }
       },
       {
         "start": {
-          "x": 160,
+          "x": 346,
           "y": 203
         },
         "end": {
@@ -78,38 +118,8 @@
           "y": 203
         },
         "end": {
-          "x": 346,
-          "y": 203
-        }
-      },
-      {
-        "start": {
-          "x": 346,
-          "y": 203
-        },
-        "end": {
-          "x": 346,
-          "y": 296
-        }
-      },
-      {
-        "start": {
-          "x": 346,
-          "y": 296
-        },
-        "end": {
-          "x": 439,
-          "y": 296
-        }
-      },
-      {
-        "start": {
-          "x": 439,
-          "y": 296
-        },
-        "end": {
-          "x": 532,
-          "y": 296
+          "x": 253,
+          "y": 110
         }
       }
     ],
@@ -118,15 +128,15 @@
     "control_points": [],
     "items": [
       {
-        "x": 160,
-        "y": 203,
-        "emoji": "🪼",
+        "x": 253,
+        "y": 296,
+        "emoji": "🦪",
         "on_solution": true
       },
       {
-        "x": 346,
+        "x": 253,
         "y": 203,
-        "emoji": "🪼",
+        "emoji": "🦪",
         "on_solution": true
       }
     ]

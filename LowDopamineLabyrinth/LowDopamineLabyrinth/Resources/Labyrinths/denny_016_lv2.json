@@ -4,10 +4,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "coral_garden",
-  "title": "Denny Escapes the Nets",
-  "story_setup": "Old fishing nets are tangled in the coral garden. Denny must swim around them to reach Bubbles.",
-  "instruction": "Swim to Bubbles without getting caught in the nets!",
-  "tts_instruction": "Watch out for the old nets! Help Denny swim carefully through the coral garden to reach Bubbles without getting tangled.",
+  "title": "Denny's Clam Hunt",
+  "story_setup": "Bubbles spotted tasty clams hiding in the coral garden! Denny is helping gather them for a yummy seafood feast.",
+  "instruction": "Collect all the clams as you draw a path to reach Bubbles!",
+  "tts_instruction": "Yummy clams everywhere! Help Denny find every clam hiding in the coral garden on the way to Bubbles.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -22,80 +22,70 @@
     "name": "Bubbles",
     "image_asset": "bubbles"
   },
-  "educational_question": "Why are old fishing nets bad for the ocean? What can we do to help?",
-  "fun_fact": "Lost fishing nets, called ghost nets, can trap sea animals for years. Beach cleanups help protect ocean creatures!",
-  "completion_message": "Denny swam safely past the nets to reach Bubbles!",
-  "item_rule": "avoid",
-  "item_emoji": "🕸️",
+  "educational_question": "How do clams eat? Do they have mouths?",
+  "fun_fact": "Clams filter water to eat! A single clam can clean up to 50 gallons of water every day. That helps keep the ocean clean!",
+  "completion_message": "Denny found all the clams! Bubbles is ready for a feast!",
+  "item_rule": "collect",
+  "item_emoji": "🦪",
   "path_data": {
-    "svg_path": "M 265 75 L 265 145 M 265 145 L 265 215 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 335 215 M 265 215 L 265 285 M 335 215 L 335 285 M 195 285 L 265 285 M 195 285 L 195 355 M 265 285 L 335 285 M 265 285 L 265 355 M 335 285 L 405 285 M 335 285 L 335 355 M 405 285 L 405 355 M 125 355 L 195 355 M 125 355 L 125 425 M 265 355 L 335 355 M 265 355 L 265 425 M 335 355 L 405 355 M 405 355 L 475 355 M 475 355 L 475 425 M 55 425 L 125 425 M 125 425 L 195 425 M 195 425 L 265 425 M 335 425 L 405 425 M 405 425 L 475 425 M 475 425 L 545 425 M 265 75 L 265 75 M 265 145 L 265 145 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 475 355 L 475 355 M 55 425 L 55 425 M 125 425 L 125 425 M 195 425 L 195 425 M 265 425 L 265 425 M 335 425 L 335 425 M 405 425 L 405 425 M 475 425 L 475 425 M 545 425 L 545 425",
-    "solution_path": "M 335 425 L 405 425 L 475 425 L 475 355 L 405 355 L 405 285 L 335 285 L 335 215 L 265 215 L 195 215 L 195 285 L 195 355 L 125 355 L 125 425 L 55 425",
+    "svg_path": "M 265 75 L 265 145 M 265 145 L 265 215 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 335 215 M 335 215 L 335 285 M 195 285 L 265 285 M 265 285 L 265 355 M 335 285 L 405 285 M 335 285 L 335 355 M 125 355 L 195 355 M 125 355 L 125 425 M 265 355 L 265 425 M 335 355 L 405 355 M 405 355 L 475 355 M 405 355 L 405 425 M 55 425 L 125 425 M 125 425 L 195 425 M 195 425 L 265 425 M 265 425 L 335 425 M 405 425 L 475 425 M 475 425 L 545 425 M 265 75 L 265 75 M 265 145 L 265 145 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 475 355 L 475 355 M 55 425 L 55 425 M 125 425 L 125 425 M 195 425 L 195 425 M 265 425 L 265 425 M 335 425 L 335 425 M 405 425 L 405 425 M 475 425 L 475 425 M 545 425 L 545 425",
+    "solution_path": "M 545 425 L 475 425 L 405 425 L 405 355 L 335 355 L 335 285 L 335 215 L 265 215 L 265 145 L 265 75",
     "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_triangle",
     "start_point": {
-      "x": 335,
+      "x": 545,
       "y": 425
     },
     "end_point": {
-      "x": 55,
-      "y": 425
+      "x": 265,
+      "y": 75
     },
     "segments": [
       {
         "start": {
+          "x": 545,
+          "y": 425
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 425
+        },
+        "end": {
+          "x": 405,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 425
+        },
+        "end": {
+          "x": 405,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 355
+        },
+        "end": {
           "x": 335,
-          "y": 425
-        },
-        "end": {
-          "x": 405,
-          "y": 425
-        }
-      },
-      {
-        "start": {
-          "x": 405,
-          "y": 425
-        },
-        "end": {
-          "x": 475,
-          "y": 425
-        }
-      },
-      {
-        "start": {
-          "x": 475,
-          "y": 425
-        },
-        "end": {
-          "x": 475,
           "y": 355
         }
       },
       {
         "start": {
-          "x": 475,
+          "x": 335,
           "y": 355
-        },
-        "end": {
-          "x": 405,
-          "y": 355
-        }
-      },
-      {
-        "start": {
-          "x": 405,
-          "y": 355
-        },
-        "end": {
-          "x": 405,
-          "y": 285
-        }
-      },
-      {
-        "start": {
-          "x": 405,
-          "y": 285
         },
         "end": {
           "x": 335,
@@ -128,58 +118,18 @@
           "y": 215
         },
         "end": {
-          "x": 195,
-          "y": 215
+          "x": 265,
+          "y": 145
         }
       },
       {
         "start": {
-          "x": 195,
-          "y": 215
+          "x": 265,
+          "y": 145
         },
         "end": {
-          "x": 195,
-          "y": 285
-        }
-      },
-      {
-        "start": {
-          "x": 195,
-          "y": 285
-        },
-        "end": {
-          "x": 195,
-          "y": 355
-        }
-      },
-      {
-        "start": {
-          "x": 195,
-          "y": 355
-        },
-        "end": {
-          "x": 125,
-          "y": 355
-        }
-      },
-      {
-        "start": {
-          "x": 125,
-          "y": 355
-        },
-        "end": {
-          "x": 125,
-          "y": 425
-        }
-      },
-      {
-        "start": {
-          "x": 125,
-          "y": 425
-        },
-        "end": {
-          "x": 55,
-          "y": 425
+          "x": 265,
+          "y": 75
         }
       }
     ],
@@ -188,21 +138,21 @@
     "control_points": [],
     "items": [
       {
+        "x": 475,
+        "y": 425,
+        "emoji": "🦪",
+        "on_solution": true
+      },
+      {
         "x": 405,
-        "y": 285,
-        "emoji": "🕸️",
+        "y": 425,
+        "emoji": "🦪",
         "on_solution": true
       },
       {
         "x": 335,
-        "y": 215,
-        "emoji": "🕸️",
-        "on_solution": true
-      },
-      {
-        "x": 195,
-        "y": 215,
-        "emoji": "🕸️",
+        "y": 285,
+        "emoji": "🦪",
         "on_solution": true
       }
     ]

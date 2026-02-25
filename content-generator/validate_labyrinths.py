@@ -7,9 +7,8 @@ from collections import defaultdict
 
 LAB_DIR = Path(__file__).parent.parent / "LowDopamineLabyrinth" / "LowDopamineLabyrinth" / "Resources" / "Labyrinths"
 
-# Target item counts per difficulty
+# Target item counts per difficulty (all collect)
 COLLECT_TARGETS = {"beginner": 2, "easy": 3, "medium": 4, "hard": 5, "expert": 6}
-AVOID_TARGETS = {"beginner": 2, "easy": 3, "medium": 5, "hard": 7, "expert": 9}
 
 # Minimum solution segment counts per difficulty
 MIN_SEGMENTS = {"beginner": 3, "easy": 6, "medium": 12, "hard": 20, "expert": 35}
@@ -73,29 +72,12 @@ def validate_labyrinth(lab: dict) -> list:
             f"Start Y={start['y']:.0f} is at the top (max {MAX_START_Y_TOP})"))
 
     # 4. Item count vs target (adventure mazes only)
-    if is_adventure and item_rule:
-        targets = AVOID_TARGETS if item_rule == "avoid" else COLLECT_TARGETS
-        target = targets.get(difficulty, 3)
+    if is_adventure and item_rule == "collect":
+        target = COLLECT_TARGETS.get(difficulty, 3)
         actual = len(items)
-        # Avoid items need fork geometry — accept fewer at low difficulties
-        min_threshold = 0.3 if item_rule == "avoid" else 0.5
-        if actual < max(1, target * min_threshold):
+        if actual < max(1, int(target * 0.5)):
             issues.append(("LOW_ITEM_COUNT",
-                f"{item_rule}: {actual} items (target {target}, min {max(1, int(target*min_threshold))})"))
-
-    # 5. Avoid items should all be on_solution
-    if item_rule == "avoid":
-        off_solution = [i for i in items if not i.get("on_solution", False)]
-        if off_solution:
-            issues.append(("AVOID_OFF_SOLUTION",
-                f"{len(off_solution)}/{len(items)} avoid items not on solution"))
-
-    # 6. Collect items should all be on_solution
-    if item_rule == "collect":
-        off_solution = [i for i in items if not i.get("on_solution", True)]
-        if off_solution:
-            issues.append(("COLLECT_OFF_SOLUTION",
-                f"{len(off_solution)}/{len(items)} collect items not on solution"))
+                f"collect: {actual} items (target {target}, min {max(1, int(target*0.5))})"))
 
     # 7. SVG path complexity (corridor mazes should have enough corridors)
     if is_corridor:

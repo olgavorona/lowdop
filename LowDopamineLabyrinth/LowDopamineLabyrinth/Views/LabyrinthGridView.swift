@@ -131,7 +131,10 @@ struct LabyrinthGridView: View {
                                         .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
                                 }
                                 Spacer()
-                                Button(action: { showPaywall = true }) {
+                                Button(action: {
+                                    showPaywall = true
+                                    Analytics.send("Paywall.shown", with: ["trigger": "banner"])
+                                }) {
                                     Text("Unlock All")
                                         .font(.system(size: 13, weight: .bold, design: .rounded))
                                         .foregroundColor(.white)
@@ -160,12 +163,18 @@ struct LabyrinthGridView: View {
                                 isLocked: !isUnlocked
                             )
                             .onTapGesture {
+                                Analytics.send("Grid.labyrinthTapped", with: [
+                                    "labyrinthId": labyrinth.id,
+                                    "index": String(index),
+                                    "isLocked": String(!isUnlocked)
+                                ])
                                 if isUnlocked {
                                     if gameViewModel.canProceed() {
                                         gameViewModel.selectLabyrinth(labyrinth)
                                     } else {
                                         pendingLabyrinth = labyrinth
                                         showPaywall = true
+                                        Analytics.send("Paywall.shown", with: ["trigger": "grid"])
                                     }
                                 }
                             }
@@ -181,15 +190,22 @@ struct LabyrinthGridView: View {
         .navigationViewStyle(.stack)
         .onAppear {
             gameViewModel.loadLabyrinths()
+            Analytics.send("Grid.opened", with: [
+                "difficulty": preferences.difficultyLevel.rawValue,
+                "completedCount": String(progressTracker.completedCount(in: gameViewModel.labyrinths)),
+                "totalCount": String(gameViewModel.labyrinths.count)
+            ])
         }
         .fullScreenCover(isPresented: $gameViewModel.isPlaying) {
             LabyrinthListView()
         }
         .sheet(isPresented: $showDifficultyPicker) {
             DifficultyPickerSheet(onSelect: { newLevel in
+                let oldLevel = preferences.difficultyLevel
                 preferences.difficultyLevel = newLevel
                 gameViewModel.loadLabyrinths()
                 showDifficultyPicker = false
+                Analytics.send("Grid.difficultyChanged", with: ["from": oldLevel.rawValue, "to": newLevel.rawValue])
             })
         }
         .fullScreenCover(isPresented: $showParentalGate) {

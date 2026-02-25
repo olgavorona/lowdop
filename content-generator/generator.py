@@ -568,18 +568,18 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny collected all the shells! Mommy Coral is so proud!",
     },
     "012": {
-        "title": "Denny Dodges Jellyfish",
+        "title": "Denny's Pearl Dive",
         "character_end": "finn",
         "location": "coral_garden",
-        "item_rule": "avoid",
-        "item_emoji": "\U0001fabc",
+        "item_rule": "collect",
+        "item_emoji": "\U0001f9aa",
         "shape": "diamond",
-        "story_setup": "The coral garden is full of jellyfish today! Denny needs to swim carefully to reach his friend Finn without touching any.",
-        "instruction": "Draw a path to reach Finn, but try to avoid the jellyfish!",
-        "tts_instruction": "Oh no, jellyfish! Help Denny swim through the coral garden to reach Finn. Try not to touch the jellyfish along the way!",
-        "educational_question": "Why do jellyfish sting? Is it to protect themselves?",
-        "fun_fact": "Jellyfish don't have brains, hearts, or bones! They are made of 95% water.",
-        "completion_message": "Denny made it safely to Finn through the jellyfish!",
+        "story_setup": "Shiny pearls are hidden all around the coral garden! Denny and Finn want to collect them all before the tide comes in.",
+        "instruction": "Collect all the pearls as you draw a path to reach Finn!",
+        "tts_instruction": "Look at all those pearls! Help Denny explore the coral garden and collect every pearl before reaching Finn.",
+        "educational_question": "Where do pearls come from? Which animal makes them?",
+        "fun_fact": "Pearls are made by oysters! When a tiny grain of sand gets inside, the oyster covers it with smooth layers until it becomes a pearl.",
+        "completion_message": "Denny found all the pearls! Finn is amazed!",
     },
     "013": {
         "title": "Denny's Bubble Chase",
@@ -596,18 +596,18 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny caught all of Sandy's bubbles! What fun!",
     },
     "014": {
-        "title": "Denny Avoids Sea Urchins",
-        "character_end": "papa_reef",
+        "title": "Denny's Coral Bits",
+        "character_end": "daddy_reef",
         "location": "sandy_shore",
-        "item_rule": "avoid",
-        "item_emoji": "\U0001f994",
+        "item_rule": "collect",
+        "item_emoji": "\U0001fab8",
         "shape": "mountain",
-        "story_setup": "The sandy shore has prickly sea urchins hiding in the sand! Denny needs to be careful getting to Papa Reef.",
-        "instruction": "Draw a path to Papa Reef, but watch out for the prickly sea urchins!",
-        "tts_instruction": "Careful! There are prickly sea urchins on the shore. Help Denny find a safe path to Papa Reef without stepping on them!",
-        "educational_question": "Why do sea urchins have spines? What do they use them for?",
-        "fun_fact": "Sea urchins use their spines for protection and to help them move along the ocean floor. Some sea urchins can live for over 200 years!",
-        "completion_message": "Denny reached Papa Reef safely! Great job avoiding the sea urchins!",
+        "story_setup": "Colorful bits of coral have washed up on the shore! Daddy Reef wants Denny to collect them to build a new reef garden.",
+        "instruction": "Collect all the coral pieces as you draw a path to Daddy Reef!",
+        "tts_instruction": "Daddy Reef needs coral pieces! Help Denny pick up every colorful coral bit on the beach on the way to Daddy Reef.",
+        "educational_question": "Did you know coral is alive? What kind of animal is it?",
+        "fun_fact": "Coral reefs are home to 25% of all ocean life! Tiny animals called polyps build the reef by creating hard skeletons around themselves.",
+        "completion_message": "Denny collected all the coral! Daddy Reef will build an amazing reef garden!",
     },
     "015": {
         "title": "Denny's Starfish Search",
@@ -624,18 +624,18 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny found all of Stella's stars! She's so happy!",
     },
     "016": {
-        "title": "Denny Escapes the Nets",
+        "title": "Denny's Clam Hunt",
         "character_end": "bubbles",
         "location": "coral_garden",
-        "item_rule": "avoid",
-        "item_emoji": "\U0001f578\ufe0f",
+        "item_rule": "collect",
+        "item_emoji": "\U0001f9aa",
         "shape": "triangle",
-        "story_setup": "Old fishing nets are tangled in the coral garden. Denny must swim around them to reach Bubbles.",
-        "instruction": "Swim to Bubbles without getting caught in the nets!",
-        "tts_instruction": "Watch out for the old nets! Help Denny swim carefully through the coral garden to reach Bubbles without getting tangled.",
-        "educational_question": "Why are old fishing nets bad for the ocean? What can we do to help?",
-        "fun_fact": "Lost fishing nets, called ghost nets, can trap sea animals for years. Beach cleanups help protect ocean creatures!",
-        "completion_message": "Denny swam safely past the nets to reach Bubbles!",
+        "story_setup": "Bubbles spotted tasty clams hiding in the coral garden! Denny is helping gather them for a yummy seafood feast.",
+        "instruction": "Collect all the clams as you draw a path to reach Bubbles!",
+        "tts_instruction": "Yummy clams everywhere! Help Denny find every clam hiding in the coral garden on the way to Bubbles.",
+        "educational_question": "How do clams eat? Do they have mouths?",
+        "fun_fact": "Clams filter water to eat! A single clam can clean up to 50 gallons of water every day. That helps keep the ocean clean!",
+        "completion_message": "Denny found all the clams! Bubbles is ready for a feast!",
     },
     "017": {
         "title": "Denny's Seaweed Harvest",
@@ -652,18 +652,18 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny gathered all the seaweed! Shelly can make her special recipe now!",
     },
     "018": {
-        "title": "Denny Avoids Dark Caves",
+        "title": "Denny's Kelp Harvest",
         "character_end": "ollie",
         "location": "kelp_forest",
-        "item_rule": "avoid",
-        "item_emoji": "\U0001f573\ufe0f",
+        "item_rule": "collect",
+        "item_emoji": "\U0001f96c",
         "shape": "circle",
-        "story_setup": "Dark cave openings dot the kelp forest floor. Denny needs to swim past them to find Ollie.",
-        "instruction": "Find your way to Ollie, but stay away from the dark caves!",
-        "tts_instruction": "The kelp forest has spooky dark caves! Help Denny swim around them to find Ollie. Don't get too close to the dark openings!",
-        "educational_question": "What animals might live in underwater caves?",
-        "fun_fact": "Underwater caves can be home to blind fish and shrimp that have adapted to life in complete darkness over millions of years!",
-        "completion_message": "Denny found Ollie without going near the dark caves! Well done!",
+        "story_setup": "Ollie needs fresh kelp leaves for a special soup! Denny is swimming through the forest to gather the best ones.",
+        "instruction": "Collect all the kelp leaves as you draw a path to reach Ollie!",
+        "tts_instruction": "Ollie needs kelp for soup! Help Denny swim through the forest and collect every kelp leaf before reaching Ollie.",
+        "educational_question": "What is kelp? Is it a plant or something else?",
+        "fun_fact": "Giant kelp can grow up to 2 feet per day, making it one of the fastest growing things on Earth! Sea otters wrap themselves in kelp to sleep.",
+        "completion_message": "Denny gathered all the kelp! Ollie's soup will be delicious!",
     },
     "019": {
         "title": "Denny's Treasure Hunt",
@@ -680,29 +680,24 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny found all the treasure! What an amazing adventure with Finn!",
     },
     "020": {
-        "title": "Denny Dodges Pollution",
+        "title": "Denny's Coin Collection",
         "character_end": "pearl",
         "location": "bubble_lagoon",
-        "item_rule": "avoid",
-        "item_emoji": "\U0001f5d1\ufe0f",
+        "item_rule": "collect",
+        "item_emoji": "\U0001fa99",
         "shape": "rect",
-        "story_setup": "Some trash has floated into the beautiful lagoon. Denny needs to swim around it to reach Pearl and help clean up.",
-        "instruction": "Swim to Pearl without touching the trash in the lagoon!",
-        "tts_instruction": "Oh no, there's litter in the lagoon! Help Denny swim around the trash to reach Pearl. Together they'll clean up the ocean!",
-        "educational_question": "How can we help keep the ocean clean? What should we never throw in the water?",
-        "fun_fact": "Over 8 million tons of plastic end up in the ocean every year. Using reusable bottles and bags helps protect sea creatures like Denny!",
-        "completion_message": "Denny reached Pearl safely! Now they can clean up the lagoon together!",
+        "story_setup": "Old pirate coins have sunk to the bottom of the lagoon! Denny and Pearl are on a mission to collect them all.",
+        "instruction": "Collect all the coins as you draw a path to reach Pearl!",
+        "tts_instruction": "Pirate treasure! Help Denny pick up every gold coin in the lagoon on the way to Pearl.",
+        "educational_question": "If you found pirate treasure, what would you buy with it?",
+        "fun_fact": "Real pirate coins were called pieces of eight! They were made of silver and could be cut into eight pieces to make change.",
+        "completion_message": "Denny collected all the coins! Pearl and Denny are rich!",
     },
 }
 
-# Item counts per difficulty for adventure mazes
+# Item counts per difficulty for adventure mazes (all collect)
 ADVENTURE_ITEM_COUNTS = {
-    "collect": {
-        "beginner": 2, "easy": 3, "medium": 4, "hard": 5, "expert": 6,
-    },
-    "avoid": {
-        "beginner": 2, "easy": 3, "medium": 5, "hard": 7, "expert": 9,
-    },
+    "beginner": 2, "easy": 3, "medium": 4, "hard": 5, "expert": 6,
 }
 
 
@@ -720,32 +715,32 @@ SHAPE_GRID_SCALE = {
 
 STORY_POSITIONS = {
     "001": {"start": "bottom_left", "end": "top_right"},
-    "002": {"start": "right", "end": "left"},
+    "002": {"start": "bottom_right", "end": "top_left"},
     "003": {"start": "bottom_right", "end": "top_left"},
-    "004": {"start": "left", "end": "right"},
+    "004": {"start": "bottom_left", "end": "top_right"},
     "005": {"start": "bottom_left", "end": "top_right"},
     "006": {"start": "bottom_right", "end": "top_left"},
-    "007": {"start": "left", "end": "top_right"},
-    "008": {"start": "bottom_right", "end": "left"},
-    "009": {"start": "bottom_left", "end": "right"},
-    "010": {"start": "right", "end": "top_left"},
-    "011": {"start": "bottom_left", "end": "top"},
-    "012": {"start": "left", "end": "right"},
-    "013": {"start": "bottom", "end": "right"},
-    "014": {"start": "bottom_right", "end": "left"},
-    "015": {"start": "bottom", "end": "top"},
-    "016": {"start": "bottom_right", "end": "left"},
-    "017": {"start": "left", "end": "right"},
-    "018": {"start": "bottom", "end": "left"},
+    "007": {"start": "bottom_left", "end": "top_right"},
+    "008": {"start": "bottom_right", "end": "top_left"},
+    "009": {"start": "bottom_left", "end": "top_right"},
+    "010": {"start": "bottom_right", "end": "top_left"},
+    "011": {"start": "bottom_left", "end": "top_right"},
+    "012": {"start": "bottom_left", "end": "top_right"},
+    "013": {"start": "bottom_right", "end": "top_left"},
+    "014": {"start": "bottom_right", "end": "top_left"},
+    "015": {"start": "bottom_left", "end": "top_right"},
+    "016": {"start": "bottom_right", "end": "top_left"},
+    "017": {"start": "bottom_left", "end": "top_right"},
+    "018": {"start": "bottom_left", "end": "top_right"},
     "019": {"start": "bottom_left", "end": "top_right"},
-    "020": {"start": "bottom_left", "end": "top_right"},
+    "020": {"start": "bottom_right", "end": "top_left"},
 }
 
 
 def generate_adventure_variants(output_dir: Path):
     """Generate 50 adventure labyrinth variants (10 stories x 5 difficulty levels).
 
-    Stories 011-020 with corridor-style mazes and collect/avoid items.
+    Stories 011-020 with corridor-style mazes and collect items.
     """
     config = load_config()
     difficulty_levels = config["difficulty_levels"]
@@ -773,7 +768,7 @@ def generate_adventure_variants(output_dir: Path):
             diff_config = difficulty_levels[diff_name]
             base_rows, base_cols = diff_config["grid_size"]
             path_width = diff_config["path_width"]
-            item_count = ADVENTURE_ITEM_COUNTS[item_rule][diff_name]
+            item_count = ADVENTURE_ITEM_COUNTS[diff_name]
 
             # Scale up grid for shaped mazes to compensate for mask cell loss
             grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)

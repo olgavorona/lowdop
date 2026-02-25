@@ -4,10 +4,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "coral_garden",
-  "title": "Denny Dodges Jellyfish",
-  "story_setup": "The coral garden is full of jellyfish today! Denny needs to swim carefully to reach his friend Finn without touching any.",
-  "instruction": "Draw a path to reach Finn, but try to avoid the jellyfish!",
-  "tts_instruction": "Oh no, jellyfish! Help Denny swim through the coral garden to reach Finn. Try not to touch the jellyfish along the way!",
+  "title": "Denny's Pearl Dive",
+  "story_setup": "Shiny pearls are hidden all around the coral garden! Denny and Finn want to collect them all before the tide comes in.",
+  "instruction": "Collect all the pearls as you draw a path to reach Finn!",
+  "tts_instruction": "Look at all those pearls! Help Denny explore the coral garden and collect every pearl before reaching Finn.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -22,49 +22,39 @@
     "name": "Finn",
     "image_asset": "finn"
   },
-  "educational_question": "Why do jellyfish sting? Is it to protect themselves?",
-  "fun_fact": "Jellyfish don't have brains, hearts, or bones! They are made of 95% water.",
-  "completion_message": "Denny made it safely to Finn through the jellyfish!",
-  "item_rule": "avoid",
-  "item_emoji": "🪼",
+  "educational_question": "Where do pearls come from? Which animal makes them?",
+  "fun_fact": "Pearls are made by oysters! When a tiny grain of sand gets inside, the oyster covers it with smooth layers until it becomes a pearl.",
+  "completion_message": "Denny found all the pearls! Finn is amazed!",
+  "item_rule": "collect",
+  "item_emoji": "🦪",
   "path_data": {
-    "svg_path": "M 265 75 L 265 145 M 265 145 L 335 145 M 335 145 L 335 215 M 125 215 L 195 215 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 335 215 M 265 215 L 265 285 M 335 215 L 405 215 M 405 215 L 405 285 M 55 285 L 125 285 M 125 285 L 195 285 M 125 285 L 125 355 M 195 285 L 195 355 M 265 285 L 335 285 M 335 285 L 335 355 M 405 285 L 475 285 M 405 285 L 405 355 M 475 285 L 545 285 M 125 355 L 195 355 M 195 355 L 265 355 M 265 355 L 335 355 M 335 355 L 335 425 M 265 425 L 335 425 M 265 75 L 265 75 M 265 145 L 265 145 M 335 145 L 335 145 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 265 425 L 265 425 M 335 425 L 335 425",
-    "solution_path": "M 55 285 L 125 285 L 125 355 L 195 355 L 265 355 L 335 355 L 335 285 L 265 285 L 265 215 L 335 215 L 405 215 L 405 285 L 475 285 L 545 285",
+    "svg_path": "M 265 75 L 265 145 M 265 145 L 335 145 M 335 145 L 335 215 M 125 215 L 195 215 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 265 285 M 335 215 L 405 215 M 335 215 L 335 285 M 405 215 L 405 285 M 55 285 L 125 285 M 125 285 L 195 285 M 125 285 L 125 355 M 265 285 L 335 285 M 405 285 L 475 285 M 405 285 L 405 355 M 475 285 L 545 285 M 125 355 L 195 355 M 195 355 L 265 355 M 265 355 L 265 425 M 335 355 L 405 355 M 335 355 L 335 425 M 265 75 L 265 75 M 265 145 L 265 145 M 335 145 L 335 145 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 265 425 L 265 425 M 335 425 L 335 425",
+    "solution_path": "M 265 425 L 265 355 L 195 355 L 125 355 L 125 285 L 195 285 L 195 215 L 265 215 L 265 285 L 335 285 L 335 215 L 335 145 L 265 145 L 265 75",
     "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_diamond",
     "start_point": {
-      "x": 55,
-      "y": 285
+      "x": 265,
+      "y": 425
     },
     "end_point": {
-      "x": 545,
-      "y": 285
+      "x": 265,
+      "y": 75
     },
     "segments": [
       {
         "start": {
-          "x": 55,
-          "y": 285
+          "x": 265,
+          "y": 425
         },
         "end": {
-          "x": 125,
-          "y": 285
-        }
-      },
-      {
-        "start": {
-          "x": 125,
-          "y": 285
-        },
-        "end": {
-          "x": 125,
+          "x": 265,
           "y": 355
         }
       },
       {
         "start": {
-          "x": 125,
+          "x": 265,
           "y": 355
         },
         "end": {
@@ -78,34 +68,54 @@
           "y": 355
         },
         "end": {
-          "x": 265,
+          "x": 125,
           "y": 355
         }
       },
       {
         "start": {
-          "x": 265,
+          "x": 125,
           "y": 355
         },
         "end": {
-          "x": 335,
-          "y": 355
+          "x": 125,
+          "y": 285
         }
       },
       {
         "start": {
-          "x": 335,
-          "y": 355
+          "x": 125,
+          "y": 285
         },
         "end": {
-          "x": 335,
+          "x": 195,
           "y": 285
         }
       },
       {
         "start": {
-          "x": 335,
+          "x": 195,
           "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
         },
         "end": {
           "x": 265,
@@ -118,14 +128,14 @@
           "y": 285
         },
         "end": {
-          "x": 265,
-          "y": 215
+          "x": 335,
+          "y": 285
         }
       },
       {
         "start": {
-          "x": 265,
-          "y": 215
+          "x": 335,
+          "y": 285
         },
         "end": {
           "x": 335,
@@ -138,38 +148,28 @@
           "y": 215
         },
         "end": {
-          "x": 405,
-          "y": 215
+          "x": 335,
+          "y": 145
         }
       },
       {
         "start": {
-          "x": 405,
-          "y": 215
+          "x": 335,
+          "y": 145
         },
         "end": {
-          "x": 405,
-          "y": 285
+          "x": 265,
+          "y": 145
         }
       },
       {
         "start": {
-          "x": 405,
-          "y": 285
+          "x": 265,
+          "y": 145
         },
         "end": {
-          "x": 475,
-          "y": 285
-        }
-      },
-      {
-        "start": {
-          "x": 475,
-          "y": 285
-        },
-        "end": {
-          "x": 545,
-          "y": 285
+          "x": 265,
+          "y": 75
         }
       }
     ],
@@ -178,9 +178,21 @@
     "control_points": [],
     "items": [
       {
-        "x": 125,
-        "y": 355,
-        "emoji": "🪼",
+        "x": 265,
+        "y": 215,
+        "emoji": "🦪",
+        "on_solution": true
+      },
+      {
+        "x": 195,
+        "y": 285,
+        "emoji": "🦪",
+        "on_solution": true
+      },
+      {
+        "x": 265,
+        "y": 145,
+        "emoji": "🦪",
         "on_solution": true
       }
     ]

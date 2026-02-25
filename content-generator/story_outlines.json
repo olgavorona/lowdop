@@ -173,7 +173,7 @@
       "difficulty": "beginner",
       "grid_size": [3, 4],
       "location": "sandy_shore",
-      "character_end": "papa_reef",
+      "character_end": "daddy_reef",
       "story_summary": "Denny wants to show Papa the shell he found",
       "shape": "rect"
     },
@@ -184,7 +184,7 @@
       "difficulty": "easy",
       "grid_size": [4, 5],
       "location": "sandy_shore",
-      "character_end": "papa_reef",
+      "character_end": "daddy_reef",
       "story_summary": "Denny wants to show Papa the shell he found",
       "shape": "rect"
     },
@@ -195,7 +195,7 @@
       "difficulty": "medium",
       "grid_size": [6, 8],
       "location": "sandy_shore",
-      "character_end": "papa_reef",
+      "character_end": "daddy_reef",
       "story_summary": "Denny wants to show Papa the shell he found",
       "shape": "rect"
     },
@@ -206,7 +206,7 @@
       "difficulty": "hard",
       "grid_size": [8, 10],
       "location": "sandy_shore",
-      "character_end": "papa_reef",
+      "character_end": "daddy_reef",
       "story_summary": "Denny wants to show Papa the shell he found",
       "shape": "rect"
     },
@@ -217,7 +217,7 @@
       "difficulty": "expert",
       "grid_size": [10, 13],
       "location": "sandy_shore",
-      "character_end": "papa_reef",
+      "character_end": "daddy_reef",
       "story_summary": "Denny wants to show Papa the shell he found",
       "shape": "rect"
     },

@@ -5,7 +5,6 @@ class SubscriptionManager: ObservableObject {
     @Published var products: [Product] = []
 
     private let productIds = [
-        "labyrinth_unlimited_weekly",
         "labyrinth_unlimited_monthly",
         "labyrinth_unlimited_yearly",
         "labyrinth_unlimited_lifetime"

@@ -7,7 +7,7 @@
       "color": "#E74C3C",
       "personality": "curious, cheerful, brave",
       "emoji": "\ud83e\udd80",
-      "image_prompt": "Cute cartoon baby crab, bright orange-red color, big expressive eyes, small claws, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "One cute cartoon baby crab, orange-red color, round body, two big round eyes on short stalks, two small symmetrical claws raised cheerfully, six tiny legs, happy smile, centered in large empty white space, soft watercolor painting style, white background, no other characters, no writing, no text, no letters"
     },
     "mama_coral": {
       "name": "Mommy Coral",
@@ -16,10 +16,10 @@
       "color": "#F1948A",
       "personality": "nurturing, warm, protective",
       "emoji": "\ud83e\udd80",
-      "image_prompt": "Cute cartoon mother crab, warm coral-pink color, pearl necklace, gentle smile, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "Cute cartoon young mother crab, warm coral-pink color, small pearl necklace, youthful happy face with big bright eyes, smooth round body, no wrinkles, looks like a young mom not a grandmother, two small claws, full body visible with padding, children's book illustration style, simple, friendly, transparent background"
     },
-    "papa_reef": {
-      "name": "Papa Reef",
+    "daddy_reef": {
+      "name": "Daddy Reef",
       "type": "father crab",
       "description": "Deep red-brown father crab, strong and calm, one big claw for hugging",
       "color": "#922B21",
@@ -88,7 +88,7 @@
       "color": "#FADBD8",
       "personality": "gentle, graceful, calming",
       "emoji": "\ud83e\udeb4",
-      "image_prompt": "Cute cartoon jellyfish, translucent pink-white color, soft glow, gentle expression, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "One cute cartoon jellyfish character, pink-purple dome head with big sweet eyes, long flowing pink and lavender tentacles clearly visible below, gentle happy expression, full body with tentacles fully shown, white background, no text, no writing"
     }
   },
   "locations": {

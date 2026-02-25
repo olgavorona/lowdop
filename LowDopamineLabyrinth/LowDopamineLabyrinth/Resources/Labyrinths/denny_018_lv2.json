@@ -4,10 +4,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "kelp_forest",
-  "title": "Denny Avoids Dark Caves",
-  "story_setup": "Dark cave openings dot the kelp forest floor. Denny needs to swim past them to find Ollie.",
-  "instruction": "Find your way to Ollie, but stay away from the dark caves!",
-  "tts_instruction": "The kelp forest has spooky dark caves! Help Denny swim around them to find Ollie. Don't get too close to the dark openings!",
+  "title": "Denny's Kelp Harvest",
+  "story_setup": "Ollie needs fresh kelp leaves for a special soup! Denny is swimming through the forest to gather the best ones.",
+  "instruction": "Collect all the kelp leaves as you draw a path to reach Ollie!",
+  "tts_instruction": "Ollie needs kelp for soup! Help Denny swim through the forest and collect every kelp leaf before reaching Ollie.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -22,14 +22,14 @@
     "name": "Ollie",
     "image_asset": "ollie"
   },
-  "educational_question": "What animals might live in underwater caves?",
-  "fun_fact": "Underwater caves can be home to blind fish and shrimp that have adapted to life in complete darkness over millions of years!",
-  "completion_message": "Denny found Ollie without going near the dark caves! Well done!",
-  "item_rule": "avoid",
-  "item_emoji": "🕳️",
+  "educational_question": "What is kelp? Is it a plant or something else?",
+  "fun_fact": "Giant kelp can grow up to 2 feet per day, making it one of the fastest growing things on Earth! Sea otters wrap themselves in kelp to sleep.",
+  "completion_message": "Denny gathered all the kelp! Ollie's soup will be delicious!",
+  "item_rule": "collect",
+  "item_emoji": "🥬",
   "path_data": {
-    "svg_path": "M 300 64 L 300 126 M 176 126 L 238 126 M 176 126 L 176 188 M 238 126 L 300 126 M 238 126 L 238 188 M 300 126 L 362 126 M 362 126 L 424 126 M 424 126 L 424 188 M 238 188 L 238 250 M 300 188 L 362 188 M 362 188 L 424 188 M 114 250 L 176 250 M 176 250 L 238 250 M 176 250 L 176 312 M 238 250 L 300 250 M 238 250 L 238 312 M 300 250 L 362 250 M 300 250 L 300 312 M 362 250 L 424 250 M 424 250 L 486 250 M 424 250 L 424 312 M 176 312 L 238 312 M 176 312 L 176 374 M 238 312 L 300 312 M 362 312 L 424 312 M 362 312 L 362 374 M 424 312 L 424 374 M 176 374 L 238 374 M 300 374 L 362 374 M 300 374 L 300 436 M 362 374 L 424 374 M 300 64 L 300 64 M 176 126 L 176 126 M 238 126 L 238 126 M 300 126 L 300 126 M 362 126 L 362 126 M 424 126 L 424 126 M 176 188 L 176 188 M 238 188 L 238 188 M 300 188 L 300 188 M 362 188 L 362 188 M 424 188 L 424 188 M 114 250 L 114 250 M 176 250 L 176 250 M 238 250 L 238 250 M 300 250 L 300 250 M 362 250 L 362 250 M 424 250 L 424 250 M 486 250 L 486 250 M 176 312 L 176 312 M 238 312 L 238 312 M 300 312 L 300 312 M 362 312 L 362 312 M 424 312 L 424 312 M 176 374 L 176 374 M 238 374 L 238 374 M 300 374 L 300 374 M 362 374 L 362 374 M 424 374 L 424 374 M 300 436 L 300 436",
-    "solution_path": "M 300 436 L 300 374 L 362 374 L 362 312 L 424 312 L 424 250 L 362 250 L 300 250 L 300 312 L 238 312 L 176 312 L 176 250 L 114 250",
+    "svg_path": "M 300 64 L 300 126 M 176 126 L 238 126 M 176 126 L 176 188 M 238 126 L 300 126 M 300 126 L 362 126 M 362 126 L 424 126 M 362 126 L 362 188 M 424 126 L 424 188 M 176 188 L 238 188 M 238 188 L 300 188 M 362 188 L 362 250 M 424 188 L 424 250 M 114 250 L 176 250 M 176 250 L 238 250 M 176 250 L 176 312 M 238 250 L 300 250 M 300 250 L 300 312 M 362 250 L 362 312 M 424 250 L 486 250 M 424 250 L 424 312 M 176 312 L 238 312 M 176 312 L 176 374 M 238 312 L 238 374 M 300 312 L 362 312 M 424 312 L 424 374 M 238 374 L 300 374 M 300 374 L 300 436 M 362 374 L 424 374 M 300 64 L 300 64 M 176 126 L 176 126 M 238 126 L 238 126 M 300 126 L 300 126 M 362 126 L 362 126 M 424 126 L 424 126 M 176 188 L 176 188 M 238 188 L 238 188 M 300 188 L 300 188 M 362 188 L 362 188 M 424 188 L 424 188 M 114 250 L 114 250 M 176 250 L 176 250 M 238 250 L 238 250 M 300 250 L 300 250 M 362 250 L 362 250 M 424 250 L 424 250 M 486 250 L 486 250 M 176 312 L 176 312 M 238 312 L 238 312 M 300 312 L 300 312 M 362 312 L 362 312 M 424 312 L 424 312 M 176 374 L 176 374 M 238 374 L 238 374 M 300 374 L 300 374 M 362 374 L 362 374 M 424 374 L 424 374 M 300 436 L 300 436",
+    "solution_path": "M 300 436 L 300 374 L 238 374 L 238 312 L 176 312 L 176 250 L 238 250 L 300 250 L 300 312 L 362 312 L 362 250 L 362 188 L 362 126 L 300 126 L 300 64",
     "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_circle",
@@ -38,8 +38,8 @@
       "y": 436
     },
     "end_point": {
-      "x": 114,
-      "y": 250
+      "x": 300,
+      "y": 64
     },
     "segments": [
       {
@@ -58,74 +58,14 @@
           "y": 374
         },
         "end": {
-          "x": 362,
+          "x": 238,
           "y": 374
         }
       },
       {
         "start": {
-          "x": 362,
+          "x": 238,
           "y": 374
-        },
-        "end": {
-          "x": 362,
-          "y": 312
-        }
-      },
-      {
-        "start": {
-          "x": 362,
-          "y": 312
-        },
-        "end": {
-          "x": 424,
-          "y": 312
-        }
-      },
-      {
-        "start": {
-          "x": 424,
-          "y": 312
-        },
-        "end": {
-          "x": 424,
-          "y": 250
-        }
-      },
-      {
-        "start": {
-          "x": 424,
-          "y": 250
-        },
-        "end": {
-          "x": 362,
-          "y": 250
-        }
-      },
-      {
-        "start": {
-          "x": 362,
-          "y": 250
-        },
-        "end": {
-          "x": 300,
-          "y": 250
-        }
-      },
-      {
-        "start": {
-          "x": 300,
-          "y": 250
-        },
-        "end": {
-          "x": 300,
-          "y": 312
-        }
-      },
-      {
-        "start": {
-          "x": 300,
-          "y": 312
         },
         "end": {
           "x": 238,
@@ -158,8 +98,88 @@
           "y": 250
         },
         "end": {
-          "x": 114,
+          "x": 238,
           "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 238,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 312
+        },
+        "end": {
+          "x": 362,
+          "y": 312
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 312
+        },
+        "end": {
+          "x": 362,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 250
+        },
+        "end": {
+          "x": 362,
+          "y": 188
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 188
+        },
+        "end": {
+          "x": 362,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 362,
+          "y": 126
+        },
+        "end": {
+          "x": 300,
+          "y": 126
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 126
+        },
+        "end": {
+          "x": 300,
+          "y": 64
         }
       }
     ],
@@ -168,21 +188,21 @@
     "control_points": [],
     "items": [
       {
-        "x": 362,
-        "y": 312,
-        "emoji": "🕳️",
+        "x": 238,
+        "y": 374,
+        "emoji": "🥬",
         "on_solution": true
       },
       {
         "x": 300,
         "y": 312,
-        "emoji": "🕳️",
+        "emoji": "🥬",
         "on_solution": true
       },
       {
-        "x": 176,
-        "y": 312,
-        "emoji": "🕳️",
+        "x": 362,
+        "y": 250,
+        "emoji": "🥬",
         "on_solution": true
       }
     ]

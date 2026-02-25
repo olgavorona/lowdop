@@ -81,24 +81,11 @@ struct LabyrinthGameView: View {
                         // Item emoji overlay (between maze and drawing canvas)
                         if let items = viewModel.labyrinth.pathData.items {
                             ForEach(Array(items.enumerated()), id: \.offset) { index, item in
-                                let isHidden = viewModel.isCollectType
-                                    ? viewModel.collectedItemIndices.contains(index)
-                                    : viewModel.hitItemIndices.contains(index)
-                                if !isHidden {
-                                    ZStack {
-                                        if viewModel.isAvoidType {
-                                            Circle()
-                                                .fill(Color.red.opacity(0.25))
-                                                .frame(width: viewModel.itemFontSize * 1.8,
-                                                       height: viewModel.itemFontSize * 1.8)
-                                                .position(viewModel.itemPoint(item))
-                                                .allowsHitTesting(false)
-                                        }
-                                        Text(item.emoji)
-                                            .font(.system(size: viewModel.itemFontSize))
-                                            .position(viewModel.itemPoint(item))
-                                            .allowsHitTesting(false)
-                                    }
+                                if !viewModel.collectedItemIndices.contains(index) {
+                                    Text(item.emoji)
+                                        .font(.system(size: viewModel.itemFontSize))
+                                        .position(viewModel.itemPoint(item))
+                                        .allowsHitTesting(false)
                                 }
                             }
                         }

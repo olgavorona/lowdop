@@ -4,10 +4,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "bubble_lagoon",
-  "title": "Denny Dodges Pollution",
-  "story_setup": "Some trash has floated into the beautiful lagoon. Denny needs to swim around it to reach Pearl and help clean up.",
-  "instruction": "Swim to Pearl without touching the trash in the lagoon!",
-  "tts_instruction": "Oh no, there's litter in the lagoon! Help Denny swim around the trash to reach Pearl. Together they'll clean up the ocean!",
+  "title": "Denny's Coin Collection",
+  "story_setup": "Old pirate coins have sunk to the bottom of the lagoon! Denny and Pearl are on a mission to collect them all.",
+  "instruction": "Collect all the coins as you draw a path to reach Pearl!",
+  "tts_instruction": "Pirate treasure! Help Denny pick up every gold coin in the lagoon on the way to Pearl.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -22,72 +22,32 @@
     "name": "Pearl",
     "image_asset": "pearl"
   },
-  "educational_question": "How can we help keep the ocean clean? What should we never throw in the water?",
-  "fun_fact": "Over 8 million tons of plastic end up in the ocean every year. Using reusable bottles and bags helps protect sea creatures like Denny!",
-  "completion_message": "Denny reached Pearl safely! Now they can clean up the lagoon together!",
-  "item_rule": "avoid",
-  "item_emoji": "🗑️",
+  "educational_question": "If you found pirate treasure, what would you buy with it?",
+  "fun_fact": "Real pirate coins were called pieces of eight! They were made of silver and could be cut into eight pieces to make change.",
+  "completion_message": "Denny collected all the coins! Pearl and Denny are rich!",
+  "item_rule": "collect",
+  "item_emoji": "🪙",
   "path_data": {
-    "svg_path": "M 76 82 L 188 82 M 76 82 L 76 194 M 188 82 L 300 82 M 300 82 L 412 82 M 412 82 L 524 82 M 76 194 L 188 194 M 188 194 L 300 194 M 300 194 L 412 194 M 412 194 L 524 194 M 524 194 L 524 306 M 76 306 L 188 306 M 76 306 L 76 418 M 188 306 L 300 306 M 188 306 L 188 418 M 300 306 L 412 306 M 412 306 L 524 306 M 524 306 L 524 418 M 76 418 L 188 418 M 188 418 L 300 418 M 300 418 L 412 418 M 412 418 L 524 418 M 76 82 L 76 82 M 188 82 L 188 82 M 300 82 L 300 82 M 412 82 L 412 82 M 524 82 L 524 82 M 76 194 L 76 194 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 524 194 L 524 194 M 76 306 L 76 306 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 524 306 L 524 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
-    "solution_path": "M 76 418 L 76 306 L 188 306 L 300 306 L 412 306 L 524 306 L 524 194 L 412 194 L 300 194 L 188 194 L 76 194 L 76 82 L 188 82 L 300 82 L 412 82 L 524 82",
+    "svg_path": "M 76 82 L 188 82 M 76 82 L 76 194 M 188 82 L 188 194 M 300 82 L 412 82 M 300 82 L 300 194 M 412 82 L 524 82 M 524 82 L 524 194 M 76 194 L 76 306 M 300 194 L 412 194 M 412 194 L 412 306 M 524 194 L 524 306 M 76 306 L 188 306 M 76 306 L 76 418 M 188 306 L 300 306 M 300 306 L 412 306 M 524 306 L 524 418 M 76 418 L 188 418 M 188 418 L 300 418 M 300 418 L 412 418 M 76 82 L 76 82 M 188 82 L 188 82 M 300 82 L 300 82 M 412 82 L 412 82 M 524 82 L 524 82 M 76 194 L 76 194 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 524 194 L 524 194 M 76 306 L 76 306 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 524 306 L 524 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
+    "solution_path": "M 524 418 L 524 306 L 524 194 L 524 82 L 412 82 L 300 82 L 300 194 L 412 194 L 412 306 L 300 306 L 188 306 L 76 306 L 76 194 L 76 82",
     "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_rect",
     "start_point": {
-      "x": 76,
+      "x": 524,
       "y": 418
     },
     "end_point": {
-      "x": 524,
+      "x": 76,
       "y": 82
     },
     "segments": [
       {
         "start": {
-          "x": 76,
+          "x": 524,
           "y": 418
         },
         "end": {
-          "x": 76,
-          "y": 306
-        }
-      },
-      {
-        "start": {
-          "x": 76,
-          "y": 306
-        },
-        "end": {
-          "x": 188,
-          "y": 306
-        }
-      },
-      {
-        "start": {
-          "x": 188,
-          "y": 306
-        },
-        "end": {
-          "x": 300,
-          "y": 306
-        }
-      },
-      {
-        "start": {
-          "x": 300,
-          "y": 306
-        },
-        "end": {
-          "x": 412,
-          "y": 306
-        }
-      },
-      {
-        "start": {
-          "x": 412,
-          "y": 306
-        },
-        "end": {
           "x": 524,
           "y": 306
         }
@@ -108,87 +68,107 @@
           "y": 194
         },
         "end": {
-          "x": 412,
-          "y": 194
-        }
-      },
-      {
-        "start": {
-          "x": 412,
-          "y": 194
-        },
-        "end": {
-          "x": 300,
-          "y": 194
-        }
-      },
-      {
-        "start": {
-          "x": 300,
-          "y": 194
-        },
-        "end": {
-          "x": 188,
-          "y": 194
-        }
-      },
-      {
-        "start": {
-          "x": 188,
-          "y": 194
-        },
-        "end": {
-          "x": 76,
-          "y": 194
-        }
-      },
-      {
-        "start": {
-          "x": 76,
-          "y": 194
-        },
-        "end": {
-          "x": 76,
-          "y": 82
-        }
-      },
-      {
-        "start": {
-          "x": 76,
-          "y": 82
-        },
-        "end": {
-          "x": 188,
-          "y": 82
-        }
-      },
-      {
-        "start": {
-          "x": 188,
-          "y": 82
-        },
-        "end": {
-          "x": 300,
-          "y": 82
-        }
-      },
-      {
-        "start": {
-          "x": 300,
-          "y": 82
-        },
-        "end": {
-          "x": 412,
-          "y": 82
-        }
-      },
-      {
-        "start": {
-          "x": 412,
-          "y": 82
-        },
-        "end": {
           "x": 524,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 524,
+          "y": 82
+        },
+        "end": {
+          "x": 412,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 76,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 306
+        },
+        "end": {
+          "x": 76,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 76,
           "y": 82
         }
       }
@@ -198,9 +178,21 @@
     "control_points": [],
     "items": [
       {
-        "x": 76,
-        "y": 306,
-        "emoji": "🗑️",
+        "x": 300,
+        "y": 82,
+        "emoji": "🪙",
+        "on_solution": true
+      },
+      {
+        "x": 300,
+        "y": 194,
+        "emoji": "🪙",
+        "on_solution": true
+      },
+      {
+        "x": 412,
+        "y": 82,
+        "emoji": "🪙",
         "on_solution": true
       }
     ]

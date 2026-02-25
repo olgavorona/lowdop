@@ -18,6 +18,12 @@ struct LabyrinthListView: View {
                     LabyrinthGameView(viewModel: vm, onComplete: {
                         gameViewModel.completeCurrentLabyrinth()
                         showCompletion = true
+                        Analytics.send("Game.completed", with: [
+                            "labyrinthId": lab.id,
+                            "difficulty": preferences.difficultyLevel.rawValue,
+                            "itemsCollected": String(vm.collectedItemIndices.count),
+                            "totalItems": String(vm.totalItemCount)
+                        ])
                     })
 
                     NavigationControls(
@@ -25,18 +31,25 @@ struct LabyrinthListView: View {
                         total: gameViewModel.labyrinths.count,
                         onPrevious: {
                             ttsService.stop()
+                            Analytics.send("Game.navigatedPrev", with: ["fromIndex": String(gameViewModel.currentIndex)])
                             gameViewModel.previousLabyrinth()
                             updateVM()
                         },
                         onNext: {
                             ttsService.stop()
+                            Analytics.send("Game.navigatedNext", with: ["fromIndex": String(gameViewModel.currentIndex)])
                             attemptNext()
                         },
                         onReset: {
                             vm.reset()
+                            Analytics.send("Game.reset", with: ["labyrinthId": lab.id])
                         },
                         onBack: {
                             ttsService.stop()
+                            Analytics.send("Game.closed", with: [
+                                "labyrinthId": lab.id,
+                                "wasCompleted": String(showCompletion)
+                            ])
                             gameViewModel.closeGame()
                         },
                         ttsEnabled: $preferences.ttsEnabled
@@ -55,15 +68,16 @@ struct LabyrinthListView: View {
                         onNext: {
                             showCompletion = false
                             ttsService.stop()
+                            Analytics.send("Completion.nextTapped", with: ["labyrinthId": lab.id])
                             attemptNext()
                         },
                         onRepeat: {
                             showCompletion = false
                             vm.reset()
+                            Analytics.send("Completion.repeatTapped", with: ["labyrinthId": lab.id])
                         },
                         collectedCount: vm.collectedItemIndices.count,
-                        totalItemCount: vm.totalItemCount,
-                        avoidedItemHits: vm.avoidedItemHits
+                        totalItemCount: vm.totalItemCount
                     )
                     .transition(.scale.combined(with: .opacity))
                 }
@@ -101,6 +115,7 @@ struct LabyrinthListView: View {
             updateVM()
         } else {
             showPaywall = true
+            Analytics.send("Paywall.shown", with: ["trigger": "game"])
         }
     }
 
@@ -120,6 +135,10 @@ struct LabyrinthListView: View {
                 newVM.setupValidator(tolerance: preferences.pathTolerance)
             }
             labyrinthVM = newVM
+            Analytics.send("Game.started", with: [
+                "labyrinthId": lab.id,
+                "difficulty": preferences.difficultyLevel.rawValue
+            ])
             ttsService.prepareAudio(for: lab)
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

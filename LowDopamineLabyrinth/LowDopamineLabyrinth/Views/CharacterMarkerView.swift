@@ -107,7 +107,7 @@ struct CharacterMarkerView: View {
         let emojiMap: [String: String] = [
             "denny": "\u{1F980}",
             "mama_coral": "\u{1F980}",
-            "papa_reef": "\u{1F980}",
+            "daddy_reef": "\u{1F980}",
             "sandy": "\u{1F980}",
             "finn": "\u{1F420}",
             "stella": "\u{2B50}",
@@ -126,7 +126,7 @@ struct CharacterMarkerView: View {
         let colorMap: [String: String] = [
             "denny": "#E74C3C",
             "mama_coral": "#F1948A",
-            "papa_reef": "#922B21",
+            "daddy_reef": "#922B21",
             "sandy": "#F4D03F",
             "finn": "#E67E22",
             "stella": "#8E44AD",

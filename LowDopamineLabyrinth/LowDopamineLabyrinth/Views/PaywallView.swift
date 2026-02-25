@@ -58,6 +58,7 @@ struct PaywallView: View {
                 // Restore + Terms + Privacy
                 HStack(spacing: 12) {
                     Button("Restore Purchases") {
+                        Analytics.send("Paywall.restoreTapped")
                         Task { await subscriptionManager.restorePurchases() }
                     }
                     Text("|")
@@ -88,6 +89,7 @@ struct PaywallView: View {
                     )
                     .onTapGesture {
                         selectedProductID = product.id
+                        Analytics.send("Paywall.planSelected", with: ["productId": product.id])
                     }
                 }
 
@@ -128,7 +130,10 @@ struct PaywallView: View {
                 }
                 #endif
 
-                Button(action: { dismiss() }) {
+                Button(action: {
+                    Analytics.send("Paywall.dismissed", with: ["selectedPlan": selectedProductID])
+                    dismiss()
+                }) {
                     Text("Maybe Later")
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.6))
@@ -169,11 +174,15 @@ struct PaywallView: View {
 
     private func executePurchase() {
         guard let product = subscriptionManager.products.first(where: { $0.id == selectedProductID }) else { return }
+        Analytics.send("Paywall.purchaseAttempted", with: ["productId": product.id])
         Task {
             isPurchasing = true
             let success = await subscriptionManager.purchase(product)
             isPurchasing = false
-            if success { dismiss() }
+            if success {
+                Analytics.send("Paywall.purchaseSucceeded", with: ["productId": product.id])
+                dismiss()
+            }
         }
     }
 }

@@ -66,16 +66,33 @@ class MazeGenerator:
             current.walls["left"] = False
             next_cell.walls["right"] = False
 
+    @staticmethod
+    def _count_turns(path: List[Tuple[int, int]]) -> int:
+        """Count direction changes in a solution path."""
+        if len(path) < 3:
+            return 0
+        turns = 0
+        for i in range(2, len(path)):
+            dr1 = path[i-1][0] - path[i-2][0]
+            dc1 = path[i-1][1] - path[i-2][1]
+            dr2 = path[i][0] - path[i-1][0]
+            dc2 = path[i][1] - path[i-1][1]
+            if (dr1, dc1) != (dr2, dc2):
+                turns += 1
+        return turns
+
     def generate(self, start: Tuple[int, int] = (0, 0), mask: Optional[set] = None,
-                 end: Optional[Tuple[int, int]] = None, min_solution_ratio: float = 0.0):
+                 end: Optional[Tuple[int, int]] = None, min_solution_ratio: float = 0.0,
+                 min_turns: int = 0):
         """Generate maze using recursive backtracking with optional cell mask.
 
         If min_solution_ratio > 0 and end is provided, regenerates until the
         solution path visits at least that fraction of the total cells.
-        This prevents trivially short paths through complex mazes.
+        min_turns enforces a minimum number of direction changes in the solution.
+        This prevents trivially short or straight-line paths.
         """
         total_cells = len(mask) if mask else self.rows * self.cols
-        max_attempts = 20
+        max_attempts = 50
 
         for attempt in range(max_attempts):
             self._init_grid()
@@ -101,11 +118,12 @@ class MazeGenerator:
                 else:
                     current = stack.pop()
 
-            # Check solution length if requirements specified
-            if min_solution_ratio > 0 and end:
+            # Check solution quality if requirements specified
+            if end and (min_solution_ratio > 0 or min_turns > 0):
                 solution = self.solve(start, end)
                 ratio = len(solution) / total_cells if total_cells > 0 else 0
-                if ratio >= min_solution_ratio:
+                turns = self._count_turns(solution)
+                if ratio >= min_solution_ratio and turns >= min_turns:
                     return
                 # Otherwise loop and regenerate
             else:
@@ -372,99 +390,6 @@ class FullMazeGenerator:
     }
 
     @staticmethod
-    def _remove_wall_between(maze: MazeGenerator, r1: int, c1: int, r2: int, c2: int):
-        """Remove wall between two adjacent cells to create a new connection."""
-        dr = r2 - r1
-        dc = c2 - c1
-        if dr == -1:
-            maze.grid[r1][c1].walls["top"] = False
-            maze.grid[r2][c2].walls["bottom"] = False
-        elif dr == 1:
-            maze.grid[r1][c1].walls["bottom"] = False
-            maze.grid[r2][c2].walls["top"] = False
-        elif dc == 1:
-            maze.grid[r1][c1].walls["right"] = False
-            maze.grid[r2][c2].walls["left"] = False
-        elif dc == -1:
-            maze.grid[r1][c1].walls["left"] = False
-            maze.grid[r2][c2].walls["right"] = False
-
-    def create_avoid_forks(
-        self,
-        maze: MazeGenerator,
-        solution: List[Tuple[int, int]],
-        start: Tuple[int, int],
-        end: Tuple[int, int],
-        item_count: int,
-        item_emoji: str,
-        offset_x: int,
-        offset_y: int,
-        cell_size: int,
-        mask: Optional[set] = None,
-    ) -> List[Dict[str, Any]]:
-        """Create forking paths with avoid items at solution path corners.
-
-        At each corner A→B→C in the solution, computes a bypass cell D that
-        cuts the corner. Opens walls A↔D and D↔C so the player sees two
-        routes: through B (has obstacle) or through D (safe bypass).
-        """
-        half = cell_size // 2
-        solution_set = set(solution)
-
-        # Find corners (direction changes) in solution path
-        candidates = []
-        for i in range(1, len(solution) - 1):
-            A = solution[i - 1]
-            B = solution[i]
-            C = solution[i + 1]
-            dir_in = (B[0] - A[0], B[1] - A[1])
-            dir_out = (C[0] - B[0], C[1] - B[1])
-            if dir_in == dir_out:
-                continue  # straight segment, not a corner
-
-            # Bypass cell D: from A, step in dir_out direction
-            D = (A[0] + dir_out[0], A[1] + dir_out[1])
-
-            # Validate D
-            if not (0 <= D[0] < maze.rows and 0 <= D[1] < maze.cols):
-                continue
-            if mask and D not in mask:
-                continue
-            if D in solution_set:
-                continue
-            # D must be adjacent to both A and C
-            if abs(D[0] - A[0]) + abs(D[1] - A[1]) != 1:
-                continue
-            if abs(D[0] - C[0]) + abs(D[1] - C[1]) != 1:
-                continue
-            candidates.append((i, A, B, C, D))
-
-        # Select evenly-spaced candidates
-        if len(candidates) <= item_count:
-            chosen = candidates
-        else:
-            step = len(candidates) / item_count
-            chosen = [candidates[int(i * step)] for i in range(item_count)]
-
-        items = []
-        for _idx, A, B, C, D in chosen:
-            # Open walls A↔D and D↔C to create bypass route
-            self._remove_wall_between(maze, A[0], A[1], D[0], D[1])
-            self._remove_wall_between(maze, D[0], D[1], C[0], C[1])
-
-            # Place avoid item on B (the corner cell on the solution)
-            x = offset_x + B[1] * cell_size + half
-            y = offset_y + B[0] * cell_size + half
-            items.append({
-                "x": x,
-                "y": y,
-                "emoji": item_emoji,
-                "on_solution": True,
-            })
-
-        return items
-
-    @staticmethod
     def _rect_position(rows: int, cols: int, position_name: str) -> Optional[Tuple[int, int]]:
         """Map position name to cell coordinates for rectangular (non-masked) mazes."""
         positions = {
@@ -486,7 +411,6 @@ class FullMazeGenerator:
         solution: List[Tuple[int, int]],
         start: Tuple[int, int],
         end: Tuple[int, int],
-        item_rule: str,
         item_count: int,
         item_emoji: str,
         offset_x: int,
@@ -494,27 +418,18 @@ class FullMazeGenerator:
         cell_size: int,
         mask: Optional[set] = None,
     ) -> List[Dict[str, Any]]:
-        """Place items on or off the solution path.
+        """Place collect items along the solution path only.
 
-        - collect: items on solution path cells (excluding start/end)
-        - avoid: items on non-solution cells
+        Items are placed on cells the player will naturally pass through,
+        excluding the start and end cells.
         """
         half = cell_size // 2
-        solution_set = set(solution)
 
-        if item_rule == "collect":
-            # Place on solution path cells, excluding start and end
-            candidates = [cell for cell in solution if cell != start and cell != end]
-        else:
-            # Place on non-solution cells
-            if mask:
-                all_cells = list(mask)
-            else:
-                all_cells = [(r, c) for r in range(maze.rows) for c in range(maze.cols)]
-            candidates = [cell for cell in all_cells if cell not in solution_set]
+        # Only use solution path cells, excluding start and end
+        path_cells = [cell for cell in solution if cell != start and cell != end]
 
-        random.shuffle(candidates)
-        chosen = candidates[:min(item_count, len(candidates))]
+        random.shuffle(path_cells)
+        chosen = path_cells[:min(item_count, len(path_cells))]
 
         items = []
         for r, c in chosen:
@@ -524,7 +439,7 @@ class FullMazeGenerator:
                 "x": x,
                 "y": y,
                 "emoji": item_emoji,
-                "on_solution": (r, c) in solution_set,
+                "on_solution": True,
             })
         return items
 
@@ -547,7 +462,7 @@ class FullMazeGenerator:
         """Generate a complete maze with all data needed for the app.
 
         render_style: "walls" (default) or "corridor"
-        item_rule: None, "collect", or "avoid"
+        item_rule: None or "collect"
         start_position/end_position: override start/end placement
         """
         path_width = 35 if age <= 4 else 25
@@ -633,11 +548,14 @@ class FullMazeGenerator:
                     end = pos
 
         # Require solution to visit a meaningful fraction of cells
-        # Medium: >= 40% of cells, Hard: >= 50% of cells
+        # and have a minimum number of turns (no straight-line paths)
         min_ratio = {
             "beginner": 0.3, "easy": 0.3, "medium": 0.4, "hard": 0.5, "expert": 0.4,
         }.get(difficulty, 0.3)
-        maze.generate(start, mask, end=end, min_solution_ratio=min_ratio)
+        min_turns = {
+            "beginner": 3, "easy": 4, "medium": 5, "hard": 6, "expert": 7,
+        }.get(difficulty, 3)
+        maze.generate(start, mask, end=end, min_solution_ratio=min_ratio, min_turns=min_turns)
         solution = maze.solve(start, end)
 
         # Choose SVG rendering style
@@ -695,25 +613,13 @@ class FullMazeGenerator:
             "shape": shape,
         }
 
-        # Place items if requested
+        # Place collect items across the maze if requested
         if item_rule and item_count > 0 and item_emoji and solution:
-            if item_rule == "avoid":
-                items = self.create_avoid_forks(
-                    maze, solution, start, end,
-                    item_count, item_emoji,
-                    offset_x, offset_y, cell_size, mask,
-                )
-                # Re-render SVG from modified maze (walls were opened for bypass routes)
-                if render_style == "corridor":
-                    result["svg_path"] = maze.to_svg_corridors(offset_x, offset_y, mask)
-                else:
-                    result["svg_path"] = maze.to_svg_walls(offset_x, offset_y, mask)
-            else:
-                items = self.place_items(
-                    maze, solution, start, end,
-                    item_rule, item_count, item_emoji,
-                    offset_x, offset_y, cell_size, mask,
-                )
+            items = self.place_items(
+                maze, solution, start, end,
+                item_count, item_emoji,
+                offset_x, offset_y, cell_size, mask,
+            )
             result["items"] = items
 
         return result

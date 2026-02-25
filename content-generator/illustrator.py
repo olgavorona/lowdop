@@ -19,7 +19,7 @@ def load_universe():
 CHARACTER_EMOJI = {
     "denny": "\ud83e\udd80",
     "mama_coral": "\ud83e\udd80",
-    "papa_reef": "\ud83e\udd80",
+    "daddy_reef": "\ud83e\udd80",
     "sandy": "\ud83e\udd80",
     "finn": "\ud83d\udc20",
     "stella": "\u2b50",

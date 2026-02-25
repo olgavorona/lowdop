@@ -392,35 +392,35 @@
       "difficulty": "beginner",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Dodges Jellyfish"
+      "title": "Denny's Pearl Dive"
     },
     {
       "id": "denny_012_lv2",
       "difficulty": "easy",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Dodges Jellyfish"
+      "title": "Denny's Pearl Dive"
     },
     {
       "id": "denny_012_lv3",
       "difficulty": "medium",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Dodges Jellyfish"
+      "title": "Denny's Pearl Dive"
     },
     {
       "id": "denny_012_lv4",
       "difficulty": "hard",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Dodges Jellyfish"
+      "title": "Denny's Pearl Dive"
     },
     {
       "id": "denny_012_lv5",
       "difficulty": "expert",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Dodges Jellyfish"
+      "title": "Denny's Pearl Dive"
     },
     {
       "id": "denny_013_lv1",
@@ -462,35 +462,35 @@
       "difficulty": "beginner",
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny Avoids Sea Urchins"
+      "title": "Denny's Coral Bits"
     },
     {
       "id": "denny_014_lv2",
       "difficulty": "easy",
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny Avoids Sea Urchins"
+      "title": "Denny's Coral Bits"
     },
     {
       "id": "denny_014_lv3",
       "difficulty": "medium",
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny Avoids Sea Urchins"
+      "title": "Denny's Coral Bits"
     },
     {
       "id": "denny_014_lv4",
       "difficulty": "hard",
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny Avoids Sea Urchins"
+      "title": "Denny's Coral Bits"
     },
     {
       "id": "denny_014_lv5",
       "difficulty": "expert",
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny Avoids Sea Urchins"
+      "title": "Denny's Coral Bits"
     },
     {
       "id": "denny_015_lv1",
@@ -532,35 +532,35 @@
       "difficulty": "beginner",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Escapes the Nets"
+      "title": "Denny's Clam Hunt"
     },
     {
       "id": "denny_016_lv2",
       "difficulty": "easy",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Escapes the Nets"
+      "title": "Denny's Clam Hunt"
     },
     {
       "id": "denny_016_lv3",
       "difficulty": "medium",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Escapes the Nets"
+      "title": "Denny's Clam Hunt"
     },
     {
       "id": "denny_016_lv4",
       "difficulty": "hard",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Escapes the Nets"
+      "title": "Denny's Clam Hunt"
     },
     {
       "id": "denny_016_lv5",
       "difficulty": "expert",
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny Escapes the Nets"
+      "title": "Denny's Clam Hunt"
     },
     {
       "id": "denny_017_lv1",
@@ -602,35 +602,35 @@
       "difficulty": "beginner",
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny Avoids Dark Caves"
+      "title": "Denny's Kelp Harvest"
     },
     {
       "id": "denny_018_lv2",
       "difficulty": "easy",
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny Avoids Dark Caves"
+      "title": "Denny's Kelp Harvest"
     },
     {
       "id": "denny_018_lv3",
       "difficulty": "medium",
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny Avoids Dark Caves"
+      "title": "Denny's Kelp Harvest"
     },
     {
       "id": "denny_018_lv4",
       "difficulty": "hard",
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny Avoids Dark Caves"
+      "title": "Denny's Kelp Harvest"
     },
     {
       "id": "denny_018_lv5",
       "difficulty": "expert",
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny Avoids Dark Caves"
+      "title": "Denny's Kelp Harvest"
     },
     {
       "id": "denny_019_lv1",
@@ -672,35 +672,35 @@
       "difficulty": "beginner",
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny Dodges Pollution"
+      "title": "Denny's Coin Collection"
     },
     {
       "id": "denny_020_lv2",
       "difficulty": "easy",
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny Dodges Pollution"
+      "title": "Denny's Coin Collection"
     },
     {
       "id": "denny_020_lv3",
       "difficulty": "medium",
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny Dodges Pollution"
+      "title": "Denny's Coin Collection"
     },
     {
       "id": "denny_020_lv4",
       "difficulty": "hard",
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny Dodges Pollution"
+      "title": "Denny's Coin Collection"
     },
     {
       "id": "denny_020_lv5",
       "difficulty": "expert",
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny Dodges Pollution"
+      "title": "Denny's Coin Collection"
     }
   ]
 }

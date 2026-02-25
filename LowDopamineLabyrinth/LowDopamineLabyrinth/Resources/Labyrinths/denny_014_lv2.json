@@ -4,10 +4,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "sandy_shore",
-  "title": "Denny Avoids Sea Urchins",
-  "story_setup": "The sandy shore has prickly sea urchins hiding in the sand! Denny needs to be careful getting to Papa Reef.",
-  "instruction": "Draw a path to Papa Reef, but watch out for the prickly sea urchins!",
-  "tts_instruction": "Careful! There are prickly sea urchins on the shore. Help Denny find a safe path to Papa Reef without stepping on them!",
+  "title": "Denny's Coral Bits",
+  "story_setup": "Colorful bits of coral have washed up on the shore! Daddy Reef wants Denny to collect them to build a new reef garden.",
+  "instruction": "Collect all the coral pieces as you draw a path to Daddy Reef!",
+  "tts_instruction": "Daddy Reef needs coral pieces! Help Denny pick up every colorful coral bit on the beach on the way to Daddy Reef.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -19,22 +19,22 @@
     "type": "father crab",
     "description": "Deep red-brown father crab, strong and calm, one big claw for hugging",
     "position": "top_right",
-    "name": "Papa Reef",
-    "image_asset": "papa_reef"
+    "name": "Daddy Reef",
+    "image_asset": "daddy_reef"
   },
-  "educational_question": "Why do sea urchins have spines? What do they use them for?",
-  "fun_fact": "Sea urchins use their spines for protection and to help them move along the ocean floor. Some sea urchins can live for over 200 years!",
-  "completion_message": "Denny reached Papa Reef safely! Great job avoiding the sea urchins!",
-  "item_rule": "avoid",
-  "item_emoji": "🦔",
+  "educational_question": "Did you know coral is alive? What kind of animal is it?",
+  "fun_fact": "Coral reefs are home to 25% of all ocean life! Tiny animals called polyps build the reef by creating hard skeletons around themselves.",
+  "completion_message": "Denny collected all the coral! Daddy Reef will build an amazing reef garden!",
+  "item_rule": "collect",
+  "item_emoji": "🪸",
   "path_data": {
-    "svg_path": "M 346 66 L 346 158 M 254 158 L 346 158 M 254 158 L 254 250 M 346 158 L 346 250 M 254 250 L 254 342 M 346 250 L 438 250 M 438 250 L 438 342 M 162 342 L 254 342 M 162 342 L 162 434 M 346 342 L 438 342 M 346 342 L 346 434 M 438 342 L 438 434 M 70 434 L 162 434 M 254 434 L 346 434 M 346 434 L 438 434 M 438 434 L 530 434 M 346 66 L 346 66 M 254 158 L 254 158 M 346 158 L 346 158 M 254 250 L 254 250 M 346 250 L 346 250 M 438 250 L 438 250 M 162 342 L 162 342 M 254 342 L 254 342 M 346 342 L 346 342 M 438 342 L 438 342 M 70 434 L 70 434 M 162 434 L 162 434 M 254 434 L 254 434 M 346 434 L 346 434 M 438 434 L 438 434 M 530 434 L 530 434",
-    "solution_path": "M 254 434 L 346 434 L 346 342 L 438 342 L 438 250 L 346 250 L 346 158 L 254 158 L 254 250 L 254 342 L 162 342 L 162 434 L 70 434",
+    "svg_path": "M 346 66 L 346 158 M 254 158 L 346 158 M 254 158 L 254 250 M 254 250 L 346 250 M 254 250 L 254 342 M 346 250 L 438 250 M 346 250 L 346 342 M 438 250 L 438 342 M 162 342 L 254 342 M 162 342 L 162 434 M 346 342 L 346 434 M 438 342 L 438 434 M 70 434 L 162 434 M 162 434 L 254 434 M 438 434 L 530 434 M 346 66 L 346 66 M 254 158 L 254 158 M 346 158 L 346 158 M 254 250 L 254 250 M 346 250 L 346 250 M 438 250 L 438 250 M 162 342 L 162 342 M 254 342 L 254 342 M 346 342 L 346 342 M 438 342 L 438 342 M 70 434 L 70 434 M 162 434 L 162 434 M 254 434 L 254 434 M 346 434 L 346 434 M 438 434 L 438 434 M 530 434 L 530 434",
+    "solution_path": "M 346 434 L 346 342 L 346 250 L 254 250 L 254 342 L 162 342 L 162 434 L 70 434",
     "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_mountain",
     "start_point": {
-      "x": 254,
+      "x": 346,
       "y": 434
     },
     "end_point": {
@@ -44,16 +44,6 @@
     "segments": [
       {
         "start": {
-          "x": 254,
-          "y": 434
-        },
-        "end": {
-          "x": 346,
-          "y": 434
-        }
-      },
-      {
-        "start": {
           "x": 346,
           "y": 434
         },
@@ -68,26 +58,6 @@
           "y": 342
         },
         "end": {
-          "x": 438,
-          "y": 342
-        }
-      },
-      {
-        "start": {
-          "x": 438,
-          "y": 342
-        },
-        "end": {
-          "x": 438,
-          "y": 250
-        }
-      },
-      {
-        "start": {
-          "x": 438,
-          "y": 250
-        },
-        "end": {
           "x": 346,
           "y": 250
         }
@@ -96,26 +66,6 @@
         "start": {
           "x": 346,
           "y": 250
-        },
-        "end": {
-          "x": 346,
-          "y": 158
-        }
-      },
-      {
-        "start": {
-          "x": 346,
-          "y": 158
-        },
-        "end": {
-          "x": 254,
-          "y": 158
-        }
-      },
-      {
-        "start": {
-          "x": 254,
-          "y": 158
         },
         "end": {
           "x": 254,
@@ -168,9 +118,21 @@
     "control_points": [],
     "items": [
       {
+        "x": 254,
+        "y": 250,
+        "emoji": "🪸",
+        "on_solution": true
+      },
+      {
         "x": 346,
+        "y": 250,
+        "emoji": "🪸",
+        "on_solution": true
+      },
+      {
+        "x": 162,
         "y": 342,
-        "emoji": "🦔",
+        "emoji": "🪸",
         "on_solution": true
       }
     ]

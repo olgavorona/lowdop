@@ -4,10 +4,10 @@
   "difficulty": "beginner",
   "theme": "ocean",
   "location": "bubble_lagoon",
-  "title": "Denny Dodges Pollution",
-  "story_setup": "Some trash has floated into the beautiful lagoon. Denny needs to swim around it to reach Pearl and help clean up.",
-  "instruction": "Swim to Pearl without touching the trash in the lagoon!",
-  "tts_instruction": "Oh no, there's litter in the lagoon! Help Denny swim around the trash to reach Pearl. Together they'll clean up the ocean!",
+  "title": "Denny's Coin Collection",
+  "story_setup": "Old pirate coins have sunk to the bottom of the lagoon! Denny and Pearl are on a mission to collect them all.",
+  "instruction": "Collect all the coins as you draw a path to reach Pearl!",
+  "tts_instruction": "Pirate treasure! Help Denny pick up every gold coin in the lagoon on the way to Pearl.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -22,49 +22,39 @@
     "name": "Pearl",
     "image_asset": "pearl"
   },
-  "educational_question": "How can we help keep the ocean clean? What should we never throw in the water?",
-  "fun_fact": "Over 8 million tons of plastic end up in the ocean every year. Using reusable bottles and bags helps protect sea creatures like Denny!",
-  "completion_message": "Denny reached Pearl safely! Now they can clean up the lagoon together!",
-  "item_rule": "avoid",
-  "item_emoji": "🗑️",
+  "educational_question": "If you found pirate treasure, what would you buy with it?",
+  "fun_fact": "Real pirate coins were called pieces of eight! They were made of silver and could be cut into eight pieces to make change.",
+  "completion_message": "Denny collected all the coins! Pearl and Denny are rich!",
+  "item_rule": "collect",
+  "item_emoji": "🪙",
   "path_data": {
-    "svg_path": "M 90 110 L 230 110 M 230 110 L 370 110 M 370 110 L 510 110 M 370 110 L 370 250 M 510 110 L 510 250 M 90 250 L 230 250 M 90 250 L 90 390 M 230 250 L 370 250 M 230 250 L 230 390 M 370 250 L 510 250 M 510 250 L 510 390 M 90 390 L 230 390 M 230 390 L 370 390 M 370 390 L 510 390 M 90 110 L 90 110 M 230 110 L 230 110 M 370 110 L 370 110 M 510 110 L 510 110 M 90 250 L 90 250 M 230 250 L 230 250 M 370 250 L 370 250 M 510 250 L 510 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
-    "solution_path": "M 90 390 L 90 250 L 230 250 L 370 250 L 510 250 L 510 110",
+    "svg_path": "M 90 110 L 230 110 M 90 110 L 90 250 M 230 110 L 370 110 M 370 110 L 510 110 M 370 110 L 370 250 M 90 250 L 230 250 M 230 250 L 230 390 M 370 250 L 510 250 M 510 250 L 510 390 M 90 390 L 230 390 M 230 390 L 370 390 M 90 110 L 90 110 M 230 110 L 230 110 M 370 110 L 370 110 M 510 110 L 510 110 M 90 250 L 90 250 M 230 250 L 230 250 M 370 250 L 370 250 M 510 250 L 510 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
+    "solution_path": "M 510 390 L 510 250 L 370 250 L 370 110 L 230 110 L 90 110",
     "width": 40,
     "complexity": "beginner",
     "maze_type": "corridor_rect",
     "start_point": {
-      "x": 90,
+      "x": 510,
       "y": 390
     },
     "end_point": {
-      "x": 510,
+      "x": 90,
       "y": 110
     },
     "segments": [
       {
         "start": {
-          "x": 90,
+          "x": 510,
           "y": 390
         },
         "end": {
-          "x": 90,
+          "x": 510,
           "y": 250
         }
       },
       {
         "start": {
-          "x": 90,
-          "y": 250
-        },
-        "end": {
-          "x": 230,
-          "y": 250
-        }
-      },
-      {
-        "start": {
-          "x": 230,
+          "x": 510,
           "y": 250
         },
         "end": {
@@ -78,17 +68,27 @@
           "y": 250
         },
         "end": {
-          "x": 510,
-          "y": 250
+          "x": 370,
+          "y": 110
         }
       },
       {
         "start": {
-          "x": 510,
-          "y": 250
+          "x": 370,
+          "y": 110
         },
         "end": {
-          "x": 510,
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 90,
           "y": 110
         }
       }
@@ -98,15 +98,15 @@
     "control_points": [],
     "items": [
       {
-        "x": 90,
+        "x": 370,
         "y": 250,
-        "emoji": "🗑️",
+        "emoji": "🪙",
         "on_solution": true
       },
       {
-        "x": 510,
-        "y": 250,
-        "emoji": "🗑️",
+        "x": 230,
+        "y": 110,
+        "emoji": "🪙",
         "on_solution": true
       }
     ]

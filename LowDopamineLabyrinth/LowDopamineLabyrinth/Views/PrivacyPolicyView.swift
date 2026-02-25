@@ -38,7 +38,11 @@ struct PrivacyPolicyView: View {
                     }
 
                     section("Third-Party Services") {
-                        Text("We do not use any third-party analytics, advertising, or tracking services. The App does not contain ads of any kind.")
+                        Text("The only third-party service used is TelemetryDeck for anonymous analytics (see below). The App does not contain ads of any kind.")
+                    }
+
+                    section("Analytics") {
+                        Text("We use TelemetryDeck to collect anonymous usage statistics (e.g., which mazes are played, which difficulty levels are popular). TelemetryDeck does not collect personal information, IP addresses, or device identifiers. All data is fully anonymous and cannot be linked to any individual user. Learn more at telemetrydeck.com.")
                     }
 
                     section("In-App Purchases") {

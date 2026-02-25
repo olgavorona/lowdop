@@ -65,7 +65,10 @@ struct NavigationControls: View {
             Spacer()
 
             // Sound toggle — circular
-            Button(action: { ttsEnabled.toggle() }) {
+            Button(action: {
+                ttsEnabled.toggle()
+                Analytics.send("Settings.ttsToggled", with: ["enabled": String(ttsEnabled)])
+            }) {
                 Image(systemName: ttsEnabled ? "speaker.wave.2.fill" : "speaker.slash.fill")
                     .font(.system(size: iconSize, weight: .semibold))
                     .foregroundColor(.white)
