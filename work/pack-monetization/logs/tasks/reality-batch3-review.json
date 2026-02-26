@@ -1,0 +1,319 @@
+{
+  "meta": {
+    "batch": 3,
+    "iteration": 1,
+    "tasks": [7, 8, 9],
+    "reviewer": "reality-checker",
+    "date": "2026-02-26",
+    "status": "changes_required"
+  },
+
+  "task_7": {
+    "title": "PaywallView — single product",
+    "status": "changes_required",
+    "findings": [
+      {
+        "id": "T7-A1",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "PaywallView.swift confirmed to exist at the stated path. All named elements (PlanCard struct, selectedProductID, yearlyID, lifetimeID, ctaText, auto-renewal disclaimer, ForEach plan cards, ParentalGateView fullScreenCover, restorePurchases button, Terms/Privacy links, #if DEBUG Skip button, Maybe Later button, executePurchase) are present in the current file exactly as described. File reality matches task description 100%."
+      },
+      {
+        "id": "T7-A2",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "SubscriptionManager.swift confirmed: products is [Product], isPremium is Bool, purchase(_ product: Product) async -> Bool, restorePurchases() async, loadProducts() async — all referenced APIs exist. The task's claim about post-task-5 shape (single product) is a forward reference dependency on task 5 completing first, which is correctly flagged in dependencies."
+      },
+      {
+        "id": "T7-A3",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "ParentalGateView.swift confirmed: init(onSuccess: @escaping () -> Void, onCancel: @escaping () -> Void). The fullScreenCover usage pattern in PaywallView matches this signature exactly."
+      },
+      {
+        "id": "T7-B1",
+        "category": "B_feasibility",
+        "severity": "critical",
+        "description": "Step 8 says to change Analytics.send('Paywall.dismissed') to remove the 'selectedPlan' parameter. However, Analytics.send(_:with:) uses a [String: String] dict with a default of [:]. Removing 'selectedPlan' from the dict is trivially done but the task says 'update Paywall.dismissed to not include selectedPlan parameter' — this is fine. The critical issue: the task says remove 'Paywall.planSelected' event but does not mention that there may be TelemetryDeck SDK constraints on signal names. This is not a blocker — TelemetryDeck accepts arbitrary string event names — so this is informational only.",
+        "severity_override": "warning",
+        "flag_reason": "Downgraded from critical on closer inspection: no actual blocker."
+      },
+      {
+        "id": "T7-B2",
+        "category": "B_feasibility",
+        "severity": "warning",
+        "description": "executePurchase() simplification: task says 'just use subscriptionManager.products.first'. The current code uses products.first(where: { $0.id == selectedProductID }). The replacement 'products.first' is simpler and correct when there is exactly one product. However, if loadProducts() hasn't completed yet and products is empty, 'products.first' will return nil and the guard will exit. Task does note the loading fallback — disable CTA when products.isEmpty — so this edge case is handled if that guidance is followed. No critical issue but implementer must ensure the guard-nil exit path is handled gracefully (e.g., show an error, not silently fail)."
+      },
+      {
+        "id": "T7-C1",
+        "category": "C_hallucinations",
+        "severity": "info",
+        "description": "No hallucinated APIs. All referenced properties and methods exist in current codebase."
+      },
+      {
+        "id": "T7-D1",
+        "category": "D_security",
+        "severity": "info",
+        "description": "Security note in task correctly identifies the parental gate requirement (Apple guideline 1.3). The current code already implements this correctly (showParentalGate -> ParentalGateView fullScreenCover -> onSuccess -> executePurchase). Task correctly mandates this must remain. No issues."
+      },
+      {
+        "id": "T7-E1",
+        "category": "E_tdd",
+        "severity": "info",
+        "description": "TDD anchor is 'Delete' — UI view, no testable logic introduced. Purchase logic lives in SubscriptionManager (task 5). This is an acceptable rationale for a pure UI simplification task."
+      },
+      {
+        "id": "T7-F1",
+        "category": "F_implementation_hints",
+        "severity": "info",
+        "description": "Implementation hints are accurate and actionable. The two-column HStack layout preservation hint is correct (the current layout uses HStack(spacing: 0) with two frame(maxWidth: .infinity) columns). Guidance to use subscriptionManager.products.first for display and purchase is correct given single-product model."
+      }
+    ],
+    "summary": "Task 7 is well-specified and closely matches codebase reality. No critical issues. One warning: ensure the executePurchase() nil-guard path provides visible feedback to the user rather than a silent no-op when products have not loaded."
+  },
+
+  "task_8": {
+    "title": "BookshelfView + ContentView navigation",
+    "status": "changes_required",
+    "findings": [
+      {
+        "id": "T8-A1",
+        "category": "A_reality",
+        "severity": "critical",
+        "description": "Task says BookshelfView should use 'LabyrinthLoader.shared.loadStories()' (from task 4). Current LabyrinthLoader.swift has NO loadStories() method. This method does not exist yet — it is introduced in task 4, which must complete first. Task 8 depends_on [4] in frontmatter, which is correct. However the task body says 'Use LabyrinthLoader.shared.loadStories() (from task 4)' but also says the TDD anchor is 'Delete — this is a UI view task'. The critical gap: if task 4 is not done, this file will not compile. The task's own NOTE in AC says 'BookshelfView.swift is NOT yet in pbxproj — that happens in task 11'. This is honest. However there is no guidance on how to write BookshelfView.swift such that it compiles without loadStories() being available. The implementer could stub it locally, but that would need to be reconciled in task 4. This is a sequencing risk that could cause confusion."
+      },
+      {
+        "id": "T8-A2",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "ContentView.swift confirmed: the current binary if/else pattern exactly matches the code shown in the 'Current ContentView navigation (before this task)' snippet. The task's description of the current state is accurate."
+      },
+      {
+        "id": "T8-A3",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "OnboardingView.swift confirmed: preferences.difficultyLevel = level and preferences.hasCompletedOnboarding = true are the completion actions. This matches the task's 'Current OnboardingView completion action (relevant lines)' snippet. No changes needed to OnboardingView in this task — ContentView routing to Bookshelf instead of Grid takes care of the flow change."
+      },
+      {
+        "id": "T8-A4",
+        "category": "A_reality",
+        "severity": "warning",
+        "description": "Task says BookshelfView should use ProgressTracker to calculate completion progress. ProgressTracker.swift is confirmed: it has completedIds: Set<String>, isCompleted(_:), completedCount(in:). However completedCount(in:) takes [Labyrinth], not a pack or story abstraction. To calculate story-level completion (a story = 3 difficulty levels all completed), BookshelfView would need to iterate completedIds checking for all 3 variants per story. The task's simpler fallback ('completed labyrinths / total labyrinths in pack is also acceptable') is a valid option. This is a feasibility nuance, not a blocker."
+      },
+      {
+        "id": "T8-A5",
+        "category": "A_reality",
+        "severity": "critical",
+        "description": "Task says BookshelfView should include 'a difficulty badge showing current difficulty level (same style as grid's badge) — tapping it opens a parental gate -> difficulty picker flow'. The difficulty picker in LabyrinthGridView uses a DifficultyPickerSheet presented as a .sheet. But in BookshelfView, there is no gameViewModel or loadLabyrinths() call. After changing difficulty from the bookshelf, the grid would need to reload. The task does not specify how the difficulty change in BookshelfView propagates to the grid. Since UserPreferences is an EnvironmentObject and gameViewModel.loadLabyrinths() is called in LabyrinthGridView.onAppear, this likely works automatically — but the task should have stated this explicitly. This is a design gap that could cause confusion or an incomplete implementation."
+      },
+      {
+        "id": "T8-A6",
+        "category": "A_reality",
+        "severity": "critical",
+        "description": "Task references ParentalGateAction enum for the difficulty picker flow in BookshelfView, patterned after LabyrinthGridView. However, ParentalGateAction is defined as a private enum inside LabyrinthGridView struct — it is not accessible outside that file. BookshelfView must define its own equivalent enum or inline the logic. The task does not mention this scoping issue."
+      },
+      {
+        "id": "T8-B1",
+        "category": "B_feasibility",
+        "severity": "warning",
+        "description": "The implementation hint says 'Use @State private var selectedPack: String? = nil in ContentView for the three-state navigation'. This is a valid approach. However the task also says 'Consider: pack selection should NOT be persisted to UserDefaults'. Since selectedPack is @State (not persisted), this is already handled correctly by the hint. No issue, just confirming alignment."
+      },
+      {
+        "id": "T8-B2",
+        "category": "B_feasibility",
+        "severity": "warning",
+        "description": "Task says LabyrinthGridView should have 'a way to navigate back to the bookshelf (a back button or callback)'. Currently LabyrinthGridView has no back navigation and uses NavigationView with .navigationBarHidden(true). ContentView would need to pass a callback (e.g. onBackToBookshelf: () -> Void) into LabyrinthGridView, or LabyrinthGridView would need a binding to selectedPack in ContentView. The task mentions passing a callback or binding but does not specify the exact mechanism. This leaves implementation open, which is acceptable for a code-writing task, but the implementer should be aware that LabyrinthGridView's current initializer takes no parameters (it uses EnvironmentObjects only), so adding a callback would change the call site in ContentView."
+      },
+      {
+        "id": "T8-B3",
+        "category": "B_feasibility",
+        "severity": "warning",
+        "description": "Task says 'What BookshelfView needs to pass to LabyrinthGridView: The pack's story list ... LabyrinthGridView currently calls gameViewModel.loadLabyrinths() on appear, which uses LabyrinthLoader.shared.loadForDifficulty() — this existing behavior can remain; pack filtering can be layered on later'. This is acceptable as a deferral but means the grid will show ALL stories at the selected difficulty, not just stories belonging to the selected pack. With the current single-pack design this makes no visible difference, but it is a design inconsistency versus the spec which says 'Grid shows all 20 stories for the selected pack'. Flagged as a warning — the deferral is reasonable but should be documented."
+      },
+      {
+        "id": "T8-C1",
+        "category": "C_hallucinations",
+        "severity": "critical",
+        "description": "Task references 'LabyrinthLoader.shared.loadStories()' as if it already exists. It does not exist in the current codebase. This is a forward reference to task 4's output. If task 8 is executed before task 4, or if task 4 deviates, this call will fail to compile. The task's depends_on [4] is set, but the hallucination risk is that an agent implementing task 8 might try to call loadStories() before it exists."
+      },
+      {
+        "id": "T8-D1",
+        "category": "D_security",
+        "severity": "info",
+        "description": "Task correctly maintains the parental gate before the difficulty picker on the bookshelf screen (same pattern as LabyrinthGridView). No IAP touches in this task."
+      },
+      {
+        "id": "T8-E1",
+        "category": "E_tdd",
+        "severity": "warning",
+        "description": "TDD anchor says 'Delete — UI view task' and defers navigation flow testing to task 11. This is acceptable. However, task 11 says BookshelfView integration test is covered there, yet task 11's description ('Rewrite free-play tests... add tests for StoryInfo, DifficultyLevel, LabyrinthLoader') does not explicitly mention ContentView navigation state tests. There is a risk the three-state navigation logic goes untested."
+      },
+      {
+        "id": "T8-F1",
+        "category": "F_implementation_hints",
+        "severity": "info",
+        "description": "Implementation hints are generally accurate. The pack card gradient suggestion (similar to difficulty cards in OnboardingView) is actionable — DifficultyCard struct is in OnboardingView.swift and can be used as a reference pattern."
+      }
+    ],
+    "summary": "Task 8 has three critical issues: (1) loadStories() does not exist yet — the task correctly depends_on [4] but an agent must not call this before task 4 is done; (2) ParentalGateAction is private to LabyrinthGridView — BookshelfView cannot reuse it and must define its own; (3) the difficulty-change-in-bookshelf propagation to grid is unspecified. These must be clarified before execution."
+  },
+
+  "task_9": {
+    "title": "GameViewModel + LabyrinthGridView — pack-based locking",
+    "status": "changes_required",
+    "findings": [
+      {
+        "id": "T9-A1",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "GameViewModel.swift confirmed: canProceed() method exists (line 66), calls preferences.canPlayToday(isPremium: subscriptionManager.isPremium). completeCurrentLabyrinth() calls preferences.recordPlay() (line 62). Both are present and must be removed as specified."
+      },
+      {
+        "id": "T9-A2",
+        "category": "A_reality",
+        "severity": "info",
+        "description": "LabyrinthGridView.swift confirmed: free-play banners (freeLabyrinthsRemaining, totalFreeLabyrinthsPlayed, gift banner, 'See you tomorrow' banner) are present at lines 97-153. Sequential unlock logic (index == 0 || progressTracker.isCompleted(labyrinths[index-1].id)) is at line 158. canProceed() check is in tap handler at line 172. paywallSkipped state is at line 12. All described elements exist."
+      },
+      {
+        "id": "T9-A3",
+        "category": "A_reality",
+        "severity": "critical",
+        "description": "Task Step 2 says: 'Add a ParentalGateAction.paywall case to handle the locked-story -> parental gate -> paywall flow'. The current ParentalGateAction enum in LabyrinthGridView.swift has exactly TWO cases: .privacyPolicy and .difficultyPicker. Adding a .paywall case requires updating the switch statement in the parental gate's onSuccess callback (lines 215-220). However, the current switch is: 'case .privacyPolicy: showPrivacyPolicy = true; case .difficultyPicker: showDifficultyPicker = true'. A .paywall case would need to set showPaywall = true. The task must specify this switch update explicitly — it is omitted from Step 2's description. This is a gap that could lead to a compile error (non-exhaustive switch) if the case is added but the switch is not updated."
+      },
+      {
+        "id": "T9-A4",
+        "category": "A_reality",
+        "severity": "critical",
+        "description": "Task Step 2 says 'Remove the paywallSkipped state variable and related logic'. LabyrinthGridView.swift shows paywallSkipped is used in the sheet(isPresented: $showPaywall, onDismiss:) closure at line 231: 'if let lab = pendingLabyrinth, (gameViewModel.isPremium || paywallSkipped)'. If paywallSkipped is removed, this condition must be simplified to 'gameViewModel.isPremium' only. The task does not explicitly mention updating this onDismiss closure. An implementer may remove the variable but leave a compile error if the closure still references it. The task should have called this out."
+      },
+      {
+        "id": "T9-A5",
+        "category": "A_reality",
+        "severity": "critical",
+        "description": "TDD test 'testIsStoryCompleteAllDifficulties' and 'testIsStoryCompletePartialDifficulties' test a computed property 'isStoryComplete' on GameViewModel. However, the spec says isStoryComplete checks 'whether all 3 difficulty levels (easy/medium/hard) of the current story are completed' based on currentLabyrinth. The test approach requires: (a) the labyrinth IDs follow denny_NNN_difficulty pattern, and (b) GameViewModel's isStoryComplete uses progressTracker.completedIds. The makeSampleLabyrinths() helper in the existing test file generates IDs like 'lab_0', 'lab_1' — these do NOT match the denny_XXX_difficulty pattern. The TDD tests for isStoryComplete will need to set up labyrinths with IDs like 'denny_005_easy' explicitly. The existing makeSampleLabyrinths() helper cannot be reused for story-based tests. This is a feasibility issue for the TDD anchor."
+      },
+      {
+        "id": "T9-A6",
+        "category": "A_reality",
+        "severity": "warning",
+        "description": "DifficultyPickerSheet levelColors currently has 5 entries: .beginner, .easy, .medium, .hard, .expert. After task 2 removes .beginner and .expert from the enum, accessing levelColors[.beginner] or levelColors[.expert] becomes a compile-time error (enum cases don't exist). However, if task 2 is completed first (as required by depends_on [2]), the compile error would already surface on the levelColors dictionary literal. The task correctly depends_on task 2, so this should be caught at task 2 completion. Flagged as a reminder that the DifficultyPickerSheet dictionary must be updated."
+      },
+      {
+        "id": "T9-A7",
+        "category": "A_reality",
+        "severity": "warning",
+        "description": "UserPreferences.swift: DifficultyLevel enum has .beginner as the default fallback (init() uses DifficultyLevel(rawValue: savedLevel) ?? .beginner). After task 2 removes .beginner, this fallback must change to .easy. The task does not mention this — it is part of task 2's scope, but task 9 implementers should verify task 2 handled it."
+      },
+      {
+        "id": "T9-A8",
+        "category": "A_reality",
+        "severity": "warning",
+        "description": "Task Step 1 says to add 'storyNumber(for labyrinth: Labyrinth) -> Int?'. The Labyrinth struct in Labyrinth.swift has no storyNumber property; the ID field ('id: String') is what the extraction logic would operate on. The implementation hint says: split 'denny_005_easy' on '_' -> ['denny', '005', 'easy'] -> Int('005') -> 5. This is straightforward and correct for the expected ID format. The edge case note ('return nil if pattern doesn't match, treat as unlocked') is appropriate."
+      },
+      {
+        "id": "T9-B1",
+        "category": "B_feasibility",
+        "severity": "info",
+        "description": "Lock state logic is clear and feasible: stories 1-3 use storyNumber <= 3, stories 4-20 use storyNumber > 3 && !subscriptionManager.isPremium. subscriptionManager is already an EnvironmentObject in LabyrinthGridView. No new dependencies needed."
+      },
+      {
+        "id": "T9-B2",
+        "category": "B_feasibility",
+        "severity": "warning",
+        "description": "The task says 'In the grid, derive story number from labyrinth ID to determine lock state, rather than using the grid index'. Currently the grid iterates with 'ForEach(Array(gameViewModel.labyrinths.enumerated()), id: \\.element.id)'. The unlock logic uses 'index' from enumeration. After the change, the lock logic would use storyNumber extracted from labyrinth.id. However, storyNumber(for:) is defined on GameViewModel, not on LabyrinthGridView. The view would need to call gameViewModel.isStoryLocked(storyNumber) or compute storyNumber itself. The task says add isStoryLocked(_:) to GameViewModel — LabyrinthGridView should call gameViewModel.isStoryLocked(). This is a coherent design. No critical issue, but the task should be explicit that LabyrinthGridView calls gameViewModel.isStoryLocked() rather than inlining the logic."
+      },
+      {
+        "id": "T9-C1",
+        "category": "C_hallucinations",
+        "severity": "info",
+        "description": "No hallucinated APIs. ProgressTracker.completedIds (Set<String>), SubscriptionManager.isPremium, GameViewModel structure — all confirmed to exist."
+      },
+      {
+        "id": "T9-D1",
+        "category": "D_security",
+        "severity": "info",
+        "description": "Locked story flow correctly routes through parental gate before paywall. The pattern (parentalGateAction -> showParentalGate -> ParentalGateView onSuccess -> show paywall) preserves COPPA compliance. No security regressions identified."
+      },
+      {
+        "id": "T9-E1",
+        "category": "E_tdd",
+        "severity": "critical",
+        "description": "TDD test 'testCompleteCurrentLabyrinthDoesNotCallRecordPlay' is specified but impossible to implement with the current test infrastructure. There is no mock or spy for UserPreferences — it uses real UserDefaults. The only way to verify 'does NOT modify dailyLabyrinthsPlayed or totalFreeLabyrinthsPlayed' is to read those properties before and after completeCurrentLabyrinth() and assert they are unchanged. After task 2 removes these properties from UserPreferences entirely, this test cannot even compile (it references removed properties). The TDD anchor should be revised: the test should become 'testCompleteCurrentLabyrinthOnlyMarksProgressTracker' — verify progressTracker.isCompleted() returns true after completion, and verify that UserDefaults does NOT contain dailyLabyrinthsPlayed / totalFreeLabyrinthsPlayed keys (since those properties were removed in task 2). The task's test spec is written as if the properties still exist, which contradicts task 2's scope."
+      },
+      {
+        "id": "T9-E2",
+        "category": "E_tdd",
+        "severity": "warning",
+        "description": "Verification step 5 says 'grep -c testIsStoryLocked|testStoryNumber|testIsStoryComplete ... Expected: 7 (matching the 7 new test methods)'. The TDD anchor lists 7 tests. But the pattern 'testIsStoryLocked|testStoryNumber|testIsStoryComplete' matches: testStoryNumberExtraction (1), testIsStoryLockedFreeUser (1), testIsStoryLockedPremiumUser (1), testIsStoryLockedAfterPurchase (1), testIsStoryCompleteAllDifficulties (1), testIsStoryCompletePartialDifficulties (1), testCompleteCurrentLabyrinthDoesNotCallRecordPlay (0 — doesn't match pattern). Verification count would be 6, not 7. The grep pattern in the verification step is wrong and would incorrectly fail a correct implementation."
+      },
+      {
+        "id": "T9-E3",
+        "category": "E_tdd",
+        "severity": "warning",
+        "description": "The list of old tests to remove (17 tests) has been verified against the actual GameViewModelTests.swift. All 17 named tests are confirmed present in the file. Additionally, 'testSequentialUnlockLogic' (line 505) tests the old sequential unlock logic (index == 0 || previousCompleted) which is also being replaced by pack-based locking. This test is NOT in the remove list but should likely be removed or rewritten, as its logic becomes invalid after task 9. The task omits this test from the cleanup list."
+      },
+      {
+        "id": "T9-F1",
+        "category": "F_implementation_hints",
+        "severity": "info",
+        "description": "Story number extraction via split('_') is correct and straightforward. The zero-padded format (denny_005_easy -> ['denny','005','easy'] -> Int('005') = 5) works correctly because Swift's Int() initializer handles leading zeros."
+      },
+      {
+        "id": "T9-F2",
+        "category": "F_implementation_hints",
+        "severity": "warning",
+        "description": "The task says 'The ParentalGateAction enum already exists — add a .paywall case'. As established in T9-A3, the switch statement in onSuccess must also be updated. The implementation hint does not mention this. An agent following the hints literally would add the enum case but may not update the switch, causing a non-exhaustive switch compile error or runtime gap."
+      }
+    ],
+    "summary": "Task 9 has four critical issues: (1) Adding ParentalGateAction.paywall requires updating the exhaustive switch in onSuccess — omitted from task description; (2) paywallSkipped removal requires updating the showPaywall onDismiss closure — omitted; (3) testCompleteCurrentLabyrinthDoesNotCallRecordPlay references properties that task 2 removes — test will not compile as written; (4) testIsStoryComplete tests need custom labyrinth IDs matching denny_NNN_difficulty pattern — the existing makeSampleLabyrinths() helper cannot be reused. Additionally, testSequentialUnlockLogic is not listed for removal but becomes invalid. These issues must be resolved before execution."
+  },
+
+  "cross_task_findings": [
+    {
+      "id": "CROSS-1",
+      "tasks": [7, 8, 9],
+      "severity": "info",
+      "description": "All three tasks correctly depend on prior waves completing first. Task 7 depends_on [5], task 8 depends_on [4], task 9 depends_on [5, 6, 8]. These dependency chains are accurate."
+    },
+    {
+      "id": "CROSS-2",
+      "tasks": [8, 9],
+      "severity": "warning",
+      "description": "Both tasks reference DifficultyPickerSheet and the 3-case DifficultyLevel enum, which come from tasks 2 and 6. If those tasks are not complete, both task 8 and task 9 will have compile errors. The wave dependencies handle this, but agents must enforce wave ordering strictly."
+    },
+    {
+      "id": "CROSS-3",
+      "tasks": [8],
+      "severity": "critical",
+      "description": "ParentalGateAction is a private enum inside LabyrinthGridView struct. Task 8 implies BookshelfView can use the same pattern for its parental gate (difficulty picker flow). BookshelfView is a separate file — it cannot access a private nested type from LabyrinthGridView. BookshelfView must declare its own local enum or use an inline boolean approach. This should be clarified in task 8's implementation hints."
+    }
+  ],
+
+  "overall_assessment": {
+    "status": "changes_required",
+    "critical_count": 8,
+    "warning_count": 10,
+    "info_count": 11,
+    "critical_issues_summary": [
+      "T8-A1: loadStories() does not exist in LabyrinthLoader — task 8 cannot compile until task 4 is complete. Risk of agent proceeding anyway.",
+      "T8-A5: Difficulty change propagation from BookshelfView to LabyrinthGridView is unspecified.",
+      "T8-A6 / CROSS-3: ParentalGateAction is private to LabyrinthGridView — BookshelfView cannot reference it.",
+      "T8-C1: loadStories() forward reference is a hallucination risk for agents running task 8 out of order.",
+      "T9-A3: Adding ParentalGateAction.paywall case requires updating the exhaustive switch in onSuccess — omitted from task description.",
+      "T9-A4: paywallSkipped removal requires updating the showPaywall onDismiss closure — omitted from task description.",
+      "T9-A5: isStoryComplete TDD tests require denny_NNN_difficulty format IDs — existing makeSampleLabyrinths() helper generates incompatible IDs.",
+      "T9-E1: testCompleteCurrentLabyrinthDoesNotCallRecordPlay references properties removed in task 2 — will not compile as written."
+    ],
+    "recommended_actions": [
+      "Task 8: Add explicit note that BookshelfView must define its own ParentalGateAction-equivalent enum (not reuse LabyrinthGridView's private type).",
+      "Task 8: Specify how difficulty changes on the bookshelf propagate (since gameViewModel.loadLabyrinths() is called in LabyrinthGridView.onAppear, it self-corrects, but this should be stated).",
+      "Task 8: Add a helper stub or note for the loadStories() call so the file can compile even if task 4 is not yet integrated.",
+      "Task 9: Add Step 1b: Update the ParentalGateAction switch in onSuccess to handle the new .paywall case.",
+      "Task 9: Add Step 2b: Update the showPaywall onDismiss closure to remove the paywallSkipped condition.",
+      "Task 9: Revise testCompleteCurrentLabyrinthDoesNotCallRecordPlay to be 'verify only progressTracker.isCompleted() is set' rather than checking removed UserPreferences properties.",
+      "Task 9: Add a makeDennyLabyrinth(story:difficulty:) helper in the test file for story-based tests.",
+      "Task 9: Add testSequentialUnlockLogic to the removal list (it tests replaced logic).",
+      "Task 9: Fix verification step 5 grep pattern to correctly count 7 tests (include testCompleteCurrentLabyrinthDoesNotCallRecordPlay in pattern or adjust expected count to 6)."
+    ]
+  }
+}

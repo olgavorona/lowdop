@@ -1,0 +1,433 @@
+{
+  "meta": {
+    "feature_path": "work/pack-monetization",
+    "batch_number": 2,
+    "iteration": 1,
+    "task_numbers": [6, 7, 8, 9, 10],
+    "reviewed_at": "2026-02-26",
+    "status": "changes_required"
+  },
+
+  "tasks": {
+
+    "6": {
+      "title": "OnboardingView — 3 difficulty cards",
+      "status": "approved",
+      "findings": [
+        {
+          "id": "6-A1",
+          "section": "A. Frontmatter",
+          "severity": "info",
+          "issue": "teammate_name field is present but empty. Template allows omitting it; leaving it blank is harmless but untidy.",
+          "fix": "Remove `teammate_name:` line or set to a meaningful value."
+        },
+        {
+          "id": "6-B1",
+          "section": "B. Structure",
+          "severity": "info",
+          "issue": "TDD Anchor section is absent. For a code-writing task this should either be present or explicitly deleted with a comment explaining why. The task modifies Swift source files and has testable changes (levelNumber mapping, dot count).",
+          "fix": "Either add a TDD Anchor with tests for DifficultyCard.levelNumber (returns 1/2/3) and the dots count, or add an explicit comment like '<!-- Non-logic view update — no unit-testable paths added -->' to acknowledge the deliberate omission."
+        },
+        {
+          "id": "6-C1",
+          "section": "C. Context Files — mandatory files",
+          "severity": "critical",
+          "issue": "Required context files are missing: decisions.md, project.md, architecture.md are not listed. The template mandates these always be present. Only user-spec.md and tech-spec.md are included.",
+          "fix": "Add:\n- [decisions.md](../decisions.md)\n- [project.md](~/.claude/skills/project-knowledge/references/project.md)\n- [architecture.md](~/.claude/skills/project-knowledge/references/architecture.md)"
+        },
+        {
+          "id": "6-D1",
+          "section": "D. Atomicity",
+          "severity": "info",
+          "issue": "Task touches only one file (OnboardingView.swift). Well-scoped and atomic.",
+          "fix": null
+        },
+        {
+          "id": "6-E1",
+          "section": "E. Internal Consistency",
+          "severity": "pass",
+          "issue": "frontmatter.skills=[code-writing] matches Required Skills section. frontmatter.reviewers=[code-reviewer] matches Reviewers section.",
+          "fix": null
+        },
+        {
+          "id": "6-F1",
+          "section": "F. Decomposition Quality",
+          "severity": "info",
+          "issue": "depends_on lists [2, 4]. Tech-spec only lists tasks 2 as a direct dependency; task 4 is listed as a dependency in Details but is not strictly required for this view to compile (the view accesses LabyrinthLoader indirectly for sample preview paths, but sample loading already worked before task 4). This creates a potentially unnecessary wave-blocking dependency.",
+          "fix": "Verify whether task 4's loadStories API is actually called in OnboardingView. If OnboardingView only reads difficulty_samples.json directly (not via loadStories), remove task 4 from depends_on to avoid unnecessary wave serialization."
+        },
+        {
+          "id": "6-G1",
+          "section": "G. Carry-forward from tech-spec",
+          "severity": "pass",
+          "issue": "Tech-spec AC items for this task (3-case enum, no beginner/expert in Swift) are covered in the task's AC list. TDD items for this area are minimal and the task correctly defers to enum-level tests in task 2.",
+          "fix": null
+        }
+      ],
+      "critical_findings_count": 1,
+      "task_status": "changes_required"
+    },
+
+    "7": {
+      "title": "PaywallView — single product",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "7-A1",
+          "section": "A. Frontmatter",
+          "severity": "info",
+          "issue": "teammate_name field is present but empty. Same as task 6.",
+          "fix": "Remove `teammate_name:` line."
+        },
+        {
+          "id": "7-B1",
+          "section": "B. Structure — TDD Anchor",
+          "severity": "warning",
+          "issue": "TDD Anchor section is present but contains explanatory prose instead of being deleted. The template says: 'For non-code tasks (user instructions, deploy, config) — delete this section.' PaywallView is a UI view rewrite; the task creator chose to keep the section with a deletion note inside it ('Delete -- this is a UI view'). This is an unusual pattern — the section header exists but the content is an explanation.",
+          "fix": "Delete the entire '## TDD Anchor' section (including the explanation). The Acceptance Criteria and Verification Steps sufficiently cover what must be present. If tests are needed, add a TDD Anchor with actual test method signatures."
+        },
+        {
+          "id": "7-C1",
+          "section": "C. Context Files — mandatory files",
+          "severity": "critical",
+          "issue": "Required context files are missing: decisions.md, project.md, architecture.md are not listed. Only user-spec.md, tech-spec.md, PaywallView.swift, SubscriptionManager.swift, and ParentalGateView.swift are present.",
+          "fix": "Add:\n- [decisions.md](../decisions.md)\n- [project.md](~/.claude/skills/project-knowledge/references/project.md)\n- [architecture.md](~/.claude/skills/project-knowledge/references/architecture.md)"
+        },
+        {
+          "id": "7-C2",
+          "section": "C. Content Quality — Acceptance Criteria",
+          "severity": "warning",
+          "issue": "AC item 'No subscription terminology remains (\"auto-renew\", \"trial\", \"subscribe\", \"subscription\")' uses case-sensitive terms but the Verification Step 4 also uses case-sensitive grep. The term 'Subscribe' (capitalized) is checked, but 'subscribe' (lowercase) variants could still remain. The AC is slightly inconsistent with the verification grep pattern.",
+          "fix": "Either make the AC term list lowercase-inclusive or update Verification Step 4 to use case-insensitive grep (-i flag) for subscription-related terms."
+        },
+        {
+          "id": "7-D1",
+          "section": "D. Atomicity",
+          "severity": "pass",
+          "issue": "Single file modification (PaywallView.swift). Well-scoped.",
+          "fix": null
+        },
+        {
+          "id": "7-E1",
+          "section": "E. Internal Consistency",
+          "severity": "pass",
+          "issue": "frontmatter.skills=[code-writing] matches Required Skills. frontmatter.reviewers=[code-reviewer, security-auditor] matches Reviewers section.",
+          "fix": null
+        },
+        {
+          "id": "7-F1",
+          "section": "F. Decomposition Quality",
+          "severity": "pass",
+          "issue": "depends_on=[5] is correct. Task 5 (SubscriptionManager rewrite) must be done first since PaywallView depends on the new single-product API surface. Wave 3 placement is correct.",
+          "fix": null
+        },
+        {
+          "id": "7-G1",
+          "section": "G. Carry-forward from tech-spec",
+          "severity": "pass",
+          "issue": "Tech-spec AC 'SubscriptionManager uses single non-consumable product ID' and 'No subscription-related code remains' are echoed correctly in task 7 AC. Security note about parental gate is properly carried forward and highlighted for the security-auditor reviewer.",
+          "fix": null
+        }
+      ],
+      "critical_findings_count": 1,
+      "task_status": "changes_required"
+    },
+
+    "8": {
+      "title": "BookshelfView + ContentView navigation",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "8-A1",
+          "section": "A. Frontmatter",
+          "severity": "info",
+          "issue": "teammate_name field is present but empty.",
+          "fix": "Remove `teammate_name:` line."
+        },
+        {
+          "id": "8-B1",
+          "section": "B. Structure — TDD Anchor",
+          "severity": "warning",
+          "issue": "TDD Anchor section is present but contains a deletion note ('Delete — this is a UI view task') rather than being actually deleted. Same pattern as task 7.",
+          "fix": "Delete the entire '## TDD Anchor' section including its content."
+        },
+        {
+          "id": "8-C1",
+          "section": "C. Context Files — mandatory files",
+          "severity": "critical",
+          "issue": "Required context files are missing: decisions.md, project.md, architecture.md are not listed. This is a new-file creation task that adds a new view — project.md and architecture.md are especially important here to understand navigation patterns and environment object injection conventions.",
+          "fix": "Add:\n- [decisions.md](../decisions.md)\n- [project.md](~/.claude/skills/project-knowledge/references/project.md)\n- [architecture.md](~/.claude/skills/project-knowledge/references/architecture.md)"
+        },
+        {
+          "id": "8-C2",
+          "section": "C. Content Quality — Acceptance Criteria",
+          "severity": "warning",
+          "issue": "AC item: 'NOTE: BookshelfView.swift is NOT yet in pbxproj — that happens in task 11. You must still create the file; just be aware the build will need manual Xcode addition or task 11's pbxproj update to fully compile.' This is an implementation note, not an acceptance criterion. Acceptance criteria should be testable facts about the final state.",
+          "fix": "Move this NOTE to the Details section (under Edge cases or Implementation hints). Remove it from the AC checklist."
+        },
+        {
+          "id": "8-C3",
+          "section": "C. Content Quality — Verification Steps",
+          "severity": "warning",
+          "issue": "Verification Step 3 says 'should succeed (assuming task 11 has added the file to pbxproj; if not, verify the file compiles in isolation by checking for syntax errors)'. This is conditional and imprecise — build success is the stated verify: bash target for this task but cannot actually be confirmed until task 11 adds the file to pbxproj. This creates a misleading verification expectation.",
+          "fix": "Clarify the verification step: either explicitly note that build verification depends on task 11 and provide an alternative check (e.g. syntax check via swiftc), or adjust the verify: field to note this dependency. The verify: bash field in frontmatter implies build success is achievable after this task alone."
+        },
+        {
+          "id": "8-D1",
+          "section": "D. Atomicity",
+          "severity": "warning",
+          "issue": "Task creates 1 new file (BookshelfView.swift) and modifies 1 existing file (ContentView.swift). This is within the 1-3 file guideline. However, BookshelfView is described as needing ProgressTracker, UserPreferences, EnvironmentObjects, pack card layout, difficulty badge, 'For Parents' lock icon — this is a substantial UI feature. Combined with ContentView navigation refactor, the scope may be large enough to warrant splitting. That said, both changes are tightly coupled (BookshelfView is pointless without ContentView integration), so keeping them together is defensible.",
+          "fix": "Accept as-is but flag for implementer: BookshelfView is a non-trivial new view. Estimate implementation time carefully."
+        },
+        {
+          "id": "8-E1",
+          "section": "E. Internal Consistency",
+          "severity": "pass",
+          "issue": "frontmatter.skills=[code-writing] matches Required Skills. frontmatter.reviewers=[code-reviewer] matches Reviewers section.",
+          "fix": null
+        },
+        {
+          "id": "8-F1",
+          "section": "F. Decomposition Quality — dependency correctness",
+          "severity": "warning",
+          "issue": "depends_on=[4] only. Tech-spec architecture section shows: BookshelfView depends on LabyrinthLoader.loadStories() (task 4, covered), but BookshelfView also uses SubscriptionManager.isPremium for any future lock indicators and the three-state ContentView navigation may interact with OnboardingView. Task 6 (OnboardingView) updates the navigation trigger (hasCompletedOnboarding) but is in the same wave (wave 3). Since task 6 and task 8 are in the same wave, they run in parallel — this is correct only if they don't write to the same files. Task 6 writes to OnboardingView.swift and task 8 writes to ContentView.swift — no overlap, parallel execution is safe.",
+          "fix": "No change needed for wave assignment. However, consider adding a note in Details clarifying that tasks 6 and 8 are in the same wave and write to different files, so parallel execution is safe."
+        },
+        {
+          "id": "8-F2",
+          "section": "F. Decomposition Quality — pbxproj concern",
+          "severity": "critical",
+          "issue": "The task creates BookshelfView.swift but explicitly states it will NOT be added to pbxproj until task 11. The verify: bash field and build verification step assume the build will succeed, but a new Swift file that is not in pbxproj will not be compiled. This means the 'xcodebuild build' verification cannot actually pass after this task alone. The task has an internal contradiction: it claims verify: bash (build must pass) but creates a file that cannot be built until task 11.",
+          "fix": "Either: (a) add pbxproj update to this task's scope and remove it from task 11, (b) change verify: to a non-build check (e.g. 'bash — file exists and no syntax errors'), or (c) add a clear note that build verification is dependent on task 11 completion and update the frontmatter verify field accordingly. Option (b) is cleanest."
+        },
+        {
+          "id": "8-G1",
+          "section": "G. Carry-forward from tech-spec",
+          "severity": "pass",
+          "issue": "Tech-spec AC 'BookshelfView renders and navigates to grid' is covered. Navigation pattern from tech-spec architecture ('Onboarding -> Bookshelf -> Grid') is correctly reflected. Decision 3 ('Always show bookshelf screen') is referenced in AC.",
+          "fix": null
+        }
+      ],
+      "critical_findings_count": 2,
+      "task_status": "changes_required"
+    },
+
+    "9": {
+      "title": "GameViewModel + LabyrinthGridView — pack-based locking",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "9-A1",
+          "section": "A. Frontmatter",
+          "severity": "info",
+          "issue": "teammate_name field is present but empty.",
+          "fix": "Remove `teammate_name:` line."
+        },
+        {
+          "id": "9-B1",
+          "section": "B. Structure",
+          "severity": "pass",
+          "issue": "All required sections present and in correct order: frontmatter, title, Required Skills, Description, What to do, TDD Anchor, Acceptance Criteria, Context Files, Verification Steps, Details, Reviewers, Post-completion.",
+          "fix": null
+        },
+        {
+          "id": "9-C1",
+          "section": "C. Content Quality — TDD Anchor",
+          "severity": "pass",
+          "issue": "TDD Anchor is well-formed: concrete test method names (testStoryNumberExtraction, testIsStoryLockedFreeUser, etc.) with clear descriptions. 7 new tests specified. Old tests to remove are explicitly listed (17 tests). Format matches template expectation.",
+          "fix": null
+        },
+        {
+          "id": "9-C2",
+          "section": "C. Content Quality — Context Files",
+          "severity": "critical",
+          "issue": "Required mandatory file decisions.md is missing from Context Files. The template mandates [decisions.md](../decisions.md) always be present.",
+          "fix": "Add [decisions.md](../decisions.md) to Context Files section."
+        },
+        {
+          "id": "9-C3",
+          "section": "C. Content Quality — Context Files format",
+          "severity": "warning",
+          "issue": "Code files (GameViewModel.swift, LabyrinthGridView.swift, SubscriptionManager.swift, LabyrinthLoader.swift, UserPreferences.swift, ProgressTracker.swift, GameViewModelTests.swift) are listed as plain text paths rather than markdown links. Other tasks in this batch use markdown link format for code files. Template says 'Context Files: markdown links for all paths'.",
+          "fix": "Convert code file paths to markdown link format, e.g. [GameViewModel.swift](../../../LowDopamineLabyrinth/LowDopamineLabyrinth/ViewModels/GameViewModel.swift)"
+        },
+        {
+          "id": "9-C4",
+          "section": "C. Content Quality — Acceptance Criteria",
+          "severity": "pass",
+          "issue": "AC items are concrete, testable, and comprehensive. All 15 items are checkboxes. Covers: removed methods, new methods, UI behavior, test count, build/test pass.",
+          "fix": null
+        },
+        {
+          "id": "9-C5",
+          "section": "C. Content Quality — Verification Steps",
+          "severity": "pass",
+          "issue": "Verification steps are concrete with exact bash commands and expected output. This is the strongest verification section in the batch.",
+          "fix": null
+        },
+        {
+          "id": "9-D1",
+          "section": "D. Atomicity",
+          "severity": "warning",
+          "issue": "Task modifies 3 files: GameViewModel.swift, LabyrinthGridView.swift, GameViewModelTests.swift. The 3-file limit is met but the scope is large: removing 17 tests, adding 7 new tests, removing methods from GameViewModel, updating lock logic in LabyrinthGridView, updating DifficultyPickerSheet. This is on the high end of atomicity.",
+          "fix": "Accept as-is given the strong thematic cohesion (pack-based locking is a single logical unit). No split needed but flag as high-effort task."
+        },
+        {
+          "id": "9-E1",
+          "section": "E. Internal Consistency",
+          "severity": "pass",
+          "issue": "frontmatter.skills=[code-writing] matches Required Skills. frontmatter.reviewers=[code-reviewer, test-reviewer] matches Reviewers section.",
+          "fix": null
+        },
+        {
+          "id": "9-F1",
+          "section": "F. Decomposition Quality — dependency correctness",
+          "severity": "warning",
+          "issue": "depends_on=[5, 6, 8]. Dependency on task 6 (OnboardingView) is listed but the rationale given is 'ensures onboarding sets a valid 3-case difficulty'. OnboardingView changes are purely UI and don't affect the models or APIs that GameViewModel/LabyrinthGridView use. The dependency on task 6 appears unnecessary — task 2 (DifficultyLevel enum) is the actual prerequisite, and task 2 is a wave 1 dependency of tasks 5, 6, and 8 which are all wave 3. Task 9 is wave 4, so task 2 will already be done. The direct dependency on task 6 is redundant.",
+          "fix": "Remove task 6 from depends_on. The wave 4 placement already ensures tasks 2, 4, 5 are complete (via wave 1→2→3 ordering). Keep depends_on=[5, 8] to enforce the direct API dependencies."
+        },
+        {
+          "id": "9-G1",
+          "section": "G. Carry-forward from tech-spec",
+          "severity": "pass",
+          "issue": "All tech-spec testing strategy unit tests for GameViewModel are represented: story-complete detection, lock state checks, SubscriptionManager single product interaction. Free-play removal is completely covered. Tech-spec AC items 'Free-play tracking fully removed' and 'BookshelfView renders and navigates to grid' are addressed.",
+          "fix": null
+        }
+      ],
+      "critical_findings_count": 1,
+      "task_status": "changes_required"
+    },
+
+    "10": {
+      "title": "LabyrinthListView + CompletionView — story-complete flow",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "10-A1",
+          "section": "A. Frontmatter",
+          "severity": "info",
+          "issue": "teammate_name field is present but empty.",
+          "fix": "Remove `teammate_name:` line."
+        },
+        {
+          "id": "10-B1",
+          "section": "B. Structure — TDD Anchor",
+          "severity": "info",
+          "issue": "TDD Anchor section is present but marked for deletion with an explanation ('Delete this section -- this task is UI navigation and visual verification'). Same pattern as tasks 7 and 8 — the section exists with a deletion instruction inside it, rather than being actually deleted.",
+          "fix": "Delete the entire '## TDD Anchor' section and its content."
+        },
+        {
+          "id": "10-C1",
+          "section": "C. Context Files — mandatory files",
+          "severity": "critical",
+          "issue": "Required context file decisions.md is missing from Context Files section.",
+          "fix": "Add [decisions.md](../decisions.md) to Context Files section."
+        },
+        {
+          "id": "10-C2",
+          "section": "C. Content Quality — Verification Steps",
+          "severity": "warning",
+          "issue": "Step 6 is a 'Visual verification in simulator (user step)' — this is a user action, not an agent-executable verification step. The template says Verification Steps should be agent-executable. User-facing verification belongs in user-spec.md How to verify section, not in task Verification Steps.",
+          "fix": "Remove Step 6 (visual simulator verification) from Verification Steps, or clearly label it as 'User verification (not agent)' and keep only agent-executable steps in the numbered list."
+        },
+        {
+          "id": "10-C3",
+          "section": "C. Content Quality — What to do",
+          "severity": "warning",
+          "issue": "Step 6 in 'What to do' says 'The current attemptNext() calls gameViewModel.canProceed() which was removed in Task 9'. This is a task-to-task dependency description that belongs in Details/Dependencies, not in the What to do steps. The What to do section should focus on deliverables, not explain why prior code is broken.",
+          "fix": "Move the canProceed() context to Details section. Rephrase step 6 as an outcome: 'Update attemptNext() to advance without paywall checks — if the user is already playing, they passed the lock check on the grid.'"
+        },
+        {
+          "id": "10-D1",
+          "section": "D. Atomicity",
+          "severity": "pass",
+          "issue": "Task modifies 2 files (LabyrinthListView.swift, CompletionView.swift). Well-scoped single responsibility: story-complete navigation flow.",
+          "fix": null
+        },
+        {
+          "id": "10-E1",
+          "section": "E. Internal Consistency",
+          "severity": "pass",
+          "issue": "frontmatter.skills=[code-writing] matches Required Skills. frontmatter.reviewers=[code-reviewer] matches Reviewers section.",
+          "fix": null
+        },
+        {
+          "id": "10-F1",
+          "section": "F. Decomposition Quality — dependency correctness",
+          "severity": "warning",
+          "issue": "depends_on=[8, 9]. Task 9 adds isStoryComplete / storyNumber detection to GameViewModel which task 10 uses — this dependency is correct. Task 8 adds BookshelfView and ContentView 3-state navigation which task 10 uses for back-to-bookshelf navigation — also correct. However, the task also references removing canProceed() usage which was removed in task 9 — this is already covered by the task 9 dependency. No issues with dependency correctness.",
+          "fix": null
+        },
+        {
+          "id": "10-F2",
+          "section": "F. Decomposition Quality — story-complete detection ambiguity",
+          "severity": "warning",
+          "issue": "The task describes two approaches for story-complete detection: (a) checking labyrinth.difficulty == 'hard', and (b) using GameViewModel.isCurrentLabyrinthLastInStory (from task 9). The task says 'prefer using that if available, but difficulty == hard is the reliable fallback'. However, task 9's TDD Anchor specifies isStoryComplete as a computed property (not isCurrentLabyrinthLastInStory). The naming inconsistency between task 9 (isStoryComplete) and task 10 (isCurrentLabyrinthLastInStory or isStoryComplete) could cause confusion.",
+          "fix": "Align the method name referenced in task 10 with the one specified in task 9's TDD Anchor: use 'isStoryComplete' consistently."
+        },
+        {
+          "id": "10-G1",
+          "section": "G. Carry-forward from tech-spec",
+          "severity": "pass",
+          "issue": "Tech-spec architecture section 'LabyrinthListView/CompletionView — Story-complete flow returns to bookshelf' is correctly addressed. User-spec AC item 'Completing all 3 levels of a story shows story-complete celebration' and 'After story-complete celebration, user returns to bookshelf' are both covered in AC.",
+          "fix": null
+        }
+      ],
+      "critical_findings_count": 1,
+      "task_status": "changes_required"
+    }
+
+  },
+
+  "cross_task_analysis": {
+    "wave_ordering": {
+      "status": "pass",
+      "notes": "Wave 3 tasks (6, 7, 8) all depend on wave 2 tasks (4, 5). Wave 4 tasks (9, 10) depend on wave 3 tasks (6/8). No dependency cycles detected."
+    },
+    "dependency_cycles": {
+      "status": "pass",
+      "notes": "No cycles. Task 6 -> {2,4}, Task 7 -> {5}, Task 8 -> {4}, Task 9 -> {5,6,8}, Task 10 -> {8,9}. Acyclic."
+    },
+    "parallel_safety": {
+      "status": "pass",
+      "notes": "Tasks 6, 7, and 8 are in wave 3 and can run in parallel. File overlap check: Task 6 writes OnboardingView.swift; Task 7 writes PaywallView.swift; Task 8 writes ContentView.swift and creates BookshelfView.swift. No file overlap — safe to parallelize."
+    },
+    "merge_split_candidates": {
+      "status": "info",
+      "notes": "Task 8 (BookshelfView creation + ContentView navigation) could be split into (a) ContentView navigation state machine and (b) BookshelfView implementation, but the coupling is tight enough that splitting would create a half-working state. No split recommended. Task 9 is large (3 files, 24 test changes) but logically atomic — no split needed."
+    },
+    "recurring_pattern": {
+      "status": "critical",
+      "issue": "All 5 tasks (6, 7, 8, 9, 10) are missing mandatory context files: decisions.md (all 5 tasks), project.md and architecture.md (tasks 6, 7, 8). This is a systemic pattern, not an isolated issue. The task-creator agent did not consistently include all mandatory context files from the template.",
+      "fix": "Apply the missing files fix to all 5 tasks. For tasks 9 and 10, decisions.md is the only missing mandatory file; tasks 6, 7, 8 also need project.md and architecture.md."
+    },
+    "tdd_anchor_pattern": {
+      "status": "warning",
+      "issue": "Tasks 7, 8, and 10 have a TDD Anchor section containing deletion instructions ('Delete -- this is a UI view') rather than being actually deleted. This is a template compliance issue — the section should be absent for non-code tasks, not present with a deletion note inside it.",
+      "fix": "Delete the TDD Anchor section entirely for tasks 7, 8, and 10."
+    },
+    "tech_spec_ac_coverage": {
+      "status": "pass",
+      "notes": "Checking tech-spec global AC items against this batch:\n- 'DifficultyLevel enum has exactly 3 cases' -> covered in task 6 AC\n- 'No references to beginner/expert in Swift code' -> covered in tasks 6 and 9 AC\n- 'SubscriptionManager uses single non-consumable product ID' -> covered in task 7 AC\n- 'No subscription-related code remains' -> covered in task 7 AC\n- 'Free-play tracking fully removed' -> covered in task 9 AC\n- 'BookshelfView renders and navigates to grid' -> covered in task 8 AC\n- 'All unit tests pass' -> covered in task 9 TDD Anchor and AC"
+    }
+  },
+
+  "summary": {
+    "total_findings": 24,
+    "by_severity": {
+      "critical": 6,
+      "warning": 10,
+      "info": 8,
+      "pass": 10
+    },
+    "critical_findings_by_task": {
+      "6": ["6-C1 — missing decisions.md, project.md, architecture.md in Context Files"],
+      "7": ["7-C1 — missing decisions.md, project.md, architecture.md in Context Files"],
+      "8": ["8-C1 — missing decisions.md, project.md, architecture.md in Context Files", "8-F2 — build verification (verify: bash) contradicts that BookshelfView.swift won't be in pbxproj until task 11"],
+      "9": ["9-C2 — missing decisions.md in Context Files"],
+      "10": ["10-C1 — missing decisions.md in Context Files"]
+    },
+    "status": "changes_required",
+    "rationale": "6 critical findings present across all 5 tasks. The most pervasive issue is missing mandatory context files (decisions.md absent from all 5 tasks; project.md and architecture.md absent from tasks 6, 7, 8). Task 8 has an additional critical structural issue: the verify: bash field implies build success is achievable after this task, but BookshelfView.swift cannot be compiled until task 11 adds it to pbxproj. Recommended action: run task-creator in fix mode for all 5 tasks to add missing context files and resolve the task 8 verification contradiction."
+  }
+}

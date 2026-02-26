@@ -1,0 +1,223 @@
+{
+  "batch": 3,
+  "iteration": 1,
+  "feature": "pack-monetization",
+  "tasks": [11, 12],
+  "reviewed_at": "2026-02-26",
+  "reviewer": "task-validator",
+  "sources_of_truth": [
+    ".claude/shared/work-templates/tasks/task.md.template",
+    ".claude/agents/task-creator.md"
+  ],
+  "summary": {
+    "task_11": "changes_required",
+    "task_12": "changes_required",
+    "overall": "changes_required"
+  },
+  "tasks": [
+    {
+      "task_number": 11,
+      "title": "Tests + pbxproj cleanup",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "T11-F1",
+          "severity": "critical",
+          "category": "E. Internal Consistency / F. Decomposition Quality",
+          "section": "Frontmatter",
+          "issue": "wave: 4 is incorrect. Task 11 has depends_on: [9, 10], and tasks 9 and 10 are also wave 4. A task cannot be in the same wave as its dependencies — parallel execution would not wait for 9 and 10 to finish. Task 11 must be in a later wave than both dependencies.",
+          "fix": "Change wave: 4 to wave: 5 in the frontmatter. Verify that wave 5 is not already used by another task that does NOT depend on task 11 (if it is, task 12 would need wave 6). Check: task 12 is currently wave 5 and depends on task 11 — so task 11 must be strictly less than wave 5. Assign task 11 wave: 5 and task 12 wave: 6, OR rename to make the dependency chain consistent."
+        },
+        {
+          "id": "T11-F2",
+          "severity": "critical",
+          "category": "C. Content Quality / G. Carry-forward",
+          "section": "Context Files",
+          "issue": "decisions.md is missing from Context Files. The task-creator rules require it as 'Always (feature-specific)' alongside user-spec.md and tech-spec.md. All three must always be present. Task 11 includes user-spec.md and tech-spec.md but omits decisions.md.",
+          "fix": "Add '- [decisions.md](../decisions.md)' to the Context Files section, immediately after the tech-spec.md line."
+        },
+        {
+          "id": "T11-F3",
+          "severity": "minor",
+          "category": "C. Content Quality",
+          "section": "What to do / Step 4",
+          "issue": "Step 4 says 'Keep all existing navigation tests unchanged' and gives a list of tests. However, two additional tests — testSequentialUnlockLogic and testCompletedCountReflectsProgress — only appear in the Details 'Tests to KEEP' list but are not mentioned in What to do step 4. This creates a risk that the implementing agent misses them since What to do is the primary instruction source.",
+          "fix": "Add testSequentialUnlockLogic and testCompletedCountReflectsProgress to the list in What to do step 4."
+        },
+        {
+          "id": "T11-F4",
+          "severity": "minor",
+          "category": "C. Content Quality",
+          "section": "Verification Steps / Step 6",
+          "issue": "Verification Step 6 comment says 'Expected: ~240 (60 files x 4 references each)' but the command checks for 'denny_.*\\.json' — this counts every occurrence of that pattern in the entire file. The comment uses '~240' (approximate) which is imprecise for a verification step. Verification steps should give exact expected values or explain the approximation clearly.",
+          "fix": "Either provide the exact expected count (240 if there are exactly 4 occurrences per file in the current pbxproj format) or clarify the comment: '# Expected: 240 (60 files × 4 references each: BuildFile comment, FileRef comment, FileRef path, group child comment, resource phase comment — verify count matches post-cleanup state)'."
+        }
+      ]
+    },
+    {
+      "task_number": 12,
+      "title": "Pre-deploy QA",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "T12-F1",
+          "severity": "critical",
+          "category": "E. Internal Consistency / F. Decomposition Quality",
+          "section": "Frontmatter — wave",
+          "issue": "Task 12 has wave: 5 and depends_on: [11]. If Task 11 is corrected to wave: 5 (see T11-F1), then Task 12 cannot also be wave 5 — it depends on Task 11 and must be in a strictly later wave. This conflict is downstream of T11-F1 but is independently critical: after T11-F1 is fixed, Task 12 must be renumbered accordingly.",
+          "fix": "After fixing T11-F1 (assigning Task 11 to wave 5), update Task 12 to wave: 6. If Task 11 is assigned a different wave, set Task 12 to wave: {task_11_wave + 1}."
+        },
+        {
+          "id": "T12-F2",
+          "severity": "minor",
+          "category": "C. Content Quality",
+          "section": "Context Files",
+          "issue": "Project knowledge files (project.md, architecture.md) are absent from Context Files. The task-creator rules state 'Always (project context): project.md, architecture.md'. Even for a QA/verification task with no code changes, the rules require these files. The implementing agent (pre-deploy-qa skill) may need project context to interpret verification failures.",
+          "fix": "Add the project knowledge files to Context Files: '- [project.md](~/.claude/skills/project-knowledge/references/project.md)' and '- [architecture.md](~/.claude/skills/project-knowledge/references/architecture.md)'."
+        },
+        {
+          "id": "T12-F3",
+          "severity": "minor",
+          "category": "C. Content Quality",
+          "section": "Verification Steps / Step 10",
+          "issue": "The grep pattern 'case.*easy.*medium.*hard' only matches a single line that contains all three case names. If DifficultyLevel is declared with one case per line (case easy / case medium / case hard), this grep produces no output, making the verification appear to fail even when the code is correct. The pattern is fragile against valid Swift formatting variations.",
+          "fix": "Replace the single regex with three separate greps (one per case) or use a more robust pattern: 'grep -c \"case easy\" ... && grep -c \"case medium\" ... && grep -c \"case hard\"'. Alternatively, use: 'grep -E \"case (easy|medium|hard)\" ... | wc -l  # Expected: 3'."
+        },
+        {
+          "id": "T12-F4",
+          "severity": "informational",
+          "category": "A. Frontmatter",
+          "section": "Frontmatter — reviewers",
+          "issue": "reviewers: [] is an empty array. The template note says 'Пусто = fallback на дефолтные три' (Empty = fallback to default three). The body Reviewers section explicitly says 'None — QA task does not require review', which aligns with the tech-spec ('Reviewers: none'). The intent is clear but the template semantics say empty triggers fallback. Consider using a comment or explicit null/none value rather than an empty array to signal intentional no-reviewer state.",
+          "fix": "No change required if the orchestration system treats an explicit empty array as 'no reviewers'. If the orchestration system uses [] as 'fallback to defaults', add a comment in the frontmatter or use a sentinel value. Verify against the orchestration system's behavior. Low priority — informational only."
+        }
+      ]
+    }
+  ],
+  "cross_task_findings": [
+    {
+      "id": "CROSS-F1",
+      "severity": "critical",
+      "tasks_affected": [11, 12],
+      "category": "F. Decomposition Quality",
+      "issue": "Wave numbering is broken across the boundary between Task 11 and Task 12. Task 11 (wave 4) depends on tasks 9 and 10 (also wave 4) — dependencies within the same wave are not executable in parallel-wave scheduling. Task 12 (wave 5) depends on Task 11 (wave 4) — this relationship is numerically valid if Task 11 stays wave 4, but becomes invalid if Task 11 is promoted to wave 5. The entire wave-4→5 boundary needs to be corrected atomically: Task 11 → wave 5, Task 12 → wave 6.",
+      "fix": "Update Task 11 frontmatter: wave: 5. Update Task 12 frontmatter: wave: 6."
+    }
+  ],
+  "checklist_results": {
+    "task_11": {
+      "A_frontmatter": {
+        "yaml_present": true,
+        "status_planned": true,
+        "depends_on_array": true,
+        "wave_number_gte_1": true,
+        "skills_array": true,
+        "reviewers_array": true,
+        "verify_string": true,
+        "wave_dependency_consistent": false
+      },
+      "B_structure_all_sections_present": {
+        "required_skills": true,
+        "description": true,
+        "what_to_do": true,
+        "tdd_anchor": true,
+        "acceptance_criteria": true,
+        "context_files": true,
+        "verification_steps": true,
+        "details": true,
+        "reviewers": true,
+        "post_completion": true
+      },
+      "C_content_quality": {
+        "description_clear": true,
+        "what_to_do_concrete_no_pseudocode": true,
+        "tdd_anchor_appropriate": true,
+        "ac_checkboxes": true,
+        "context_files_always_user_spec": true,
+        "context_files_always_tech_spec": true,
+        "context_files_always_decisions": false,
+        "context_files_always_project_md": true,
+        "context_files_always_architecture_md": true,
+        "verification_steps_runnable": true,
+        "details_files_listed": true,
+        "details_edge_cases": true
+      },
+      "D_atomicity": "borderline_by_design",
+      "E_internal_consistency": {
+        "skills_frontmatter_matches_required_skills_section": true,
+        "reviewers_frontmatter_matches_reviewers_section": true,
+        "wave_consistent_with_depends_on": false,
+        "tdd_anchor_matches_ac": true
+      },
+      "F_decomposition_quality": {
+        "matches_tech_spec_task_description": true,
+        "files_to_modify_match_tech_spec": true,
+        "wave_ordering_correct": false
+      },
+      "G_carry_forward_from_tech_spec": {
+        "skill_matches": true,
+        "verify_matches": true,
+        "reviewers_match": true,
+        "files_match": true,
+        "ac_covers_tech_spec_requirements": true
+      }
+    },
+    "task_12": {
+      "A_frontmatter": {
+        "yaml_present": true,
+        "status_planned": true,
+        "depends_on_array": true,
+        "wave_number_gte_1": true,
+        "skills_array": true,
+        "reviewers_array": true,
+        "verify_string": true,
+        "wave_dependency_consistent": false
+      },
+      "B_structure_all_sections_present": {
+        "required_skills": true,
+        "description": true,
+        "what_to_do": true,
+        "tdd_anchor": "correctly_absent_non_code_task",
+        "acceptance_criteria": true,
+        "context_files": true,
+        "verification_steps": true,
+        "details": true,
+        "reviewers": true,
+        "post_completion": true
+      },
+      "C_content_quality": {
+        "description_clear": true,
+        "what_to_do_concrete_no_pseudocode": true,
+        "tdd_anchor_appropriate": true,
+        "ac_checkboxes": true,
+        "context_files_always_user_spec": true,
+        "context_files_always_tech_spec": true,
+        "context_files_always_decisions": true,
+        "context_files_always_project_md": false,
+        "context_files_always_architecture_md": false,
+        "verification_steps_runnable": true,
+        "details_files_listed": true,
+        "details_edge_cases": true
+      },
+      "D_atomicity": "correct_single_qa_pass",
+      "E_internal_consistency": {
+        "skills_frontmatter_matches_required_skills_section": true,
+        "reviewers_frontmatter_matches_reviewers_section": true,
+        "wave_consistent_with_depends_on": false,
+        "ac_covers_both_specs": true
+      },
+      "F_decomposition_quality": {
+        "matches_tech_spec_task_description": true,
+        "verification_steps_cover_all_ac": true,
+        "wave_ordering_correct": false
+      },
+      "G_carry_forward_from_tech_spec": {
+        "skill_matches": true,
+        "verify_matches": true,
+        "reviewers_match": true,
+        "ac_covers_all_tech_spec_criteria": true,
+        "ac_covers_all_user_spec_criteria": true
+      }
+    }
+  }
+}

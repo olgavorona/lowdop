@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "feature_path": "work/pack-monetization",
+    "batch_number": 1,
+    "iteration": 1,
+    "task_numbers": [1, 2, 3, 4, 5],
+    "reviewed_at": "2026-02-26",
+    "status": "changes_required"
+  },
+
+  "summary": {
+    "approved": [],
+    "changes_required": [1, 2, 3, 4, 5],
+    "critical_finding_count": 9,
+    "warning_count": 8,
+    "info_count": 4
+  },
+
+  "shared_issues": [
+    {
+      "id": "SHARED-1",
+      "severity": "critical",
+      "affects_tasks": [1, 2, 3, 4, 5],
+      "section": "Context Files",
+      "issue": "decisions.md is absent from Context Files in all 5 tasks. The template mandates it as one of three always-required feature-level context files: [user-spec.md, tech-spec.md, decisions.md]. decisions.md does not yet exist in work/pack-monetization/, but the template rule is unconditional — the task file must link it so the implementing agent knows to check for it (or create it). Omitting it breaks traceability and the post-completion workflow that writes to it.",
+      "fix": "Add `- [decisions.md](../decisions.md)` to the Context Files section of every task. If the file does not yet exist it should be created (empty or with a header) as part of task setup."
+    },
+    {
+      "id": "SHARED-2",
+      "severity": "warning",
+      "affects_tasks": [1, 3, 5],
+      "section": "Reviewers",
+      "issue": "Reviewer path arrows use ASCII `->` instead of the Unicode `→` shown in the template (tasks 1, 3, 5). Tasks 2 and 4 use the correct `→`. While cosmetically minor, this produces inconsistent formatting in tooling that parses reviewer lines.",
+      "fix": "Replace `->` with `→` in the Reviewers section of tasks 1, 3, and 5."
+    }
+  ],
+
+  "tasks": {
+    "1": {
+      "task_number": 1,
+      "title": "Content file changes",
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T1-1",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "decisions.md missing. See SHARED-1.",
+          "fix": "Add `- [decisions.md](../decisions.md)` to Context Files."
+        },
+        {
+          "id": "T1-2",
+          "severity": "warning",
+          "section": "Reviewers",
+          "issue": "Reviewer path uses `->` instead of `→`. See SHARED-2.",
+          "fix": "Replace `->` with `→` in the Reviewers section."
+        },
+        {
+          "id": "T1-3",
+          "severity": "info",
+          "section": "TDD Anchor",
+          "issue": "TDD Anchor section is absent. This is correct: the task is content/file manipulation (JSON edits, renames, deletes), not code authoring. No action needed.",
+          "fix": null
+        },
+        {
+          "id": "T1-4",
+          "severity": "info",
+          "section": "Context Files",
+          "issue": "project.md and architecture.md are included (correct per template mandatory PK rule). patterns.md is also included (appropriate for file-naming conventions). No missing mandatory PK files.",
+          "fix": null
+        },
+        {
+          "id": "T1-5",
+          "severity": "warning",
+          "section": "Frontmatter",
+          "issue": "reviewers frontmatter contains only [code-reviewer]. The template default is [code-reviewer, test-reviewer]. For a purely file-manipulation task with no new code this is defensible, and the tech-spec explicitly lists only code-reviewer for Task 1. However, the reviewer list should at minimum match the tech-spec decision — it does. No change needed unless policy requires test-reviewer on all tasks.",
+          "fix": "No change required. tech-spec specifies code-reviewer only for Task 1. Confirmed intentional."
+        },
+        {
+          "id": "T1-6",
+          "severity": "info",
+          "section": "Decomposition / Atomicity",
+          "issue": "Task touches 62 files (60 JSON + manifest.json + difficulty_samples.json). This is well above the '1-3 files' atomicity guideline in task-creator.md. However, all changes are mechanical (find-replace + rename) and the task is correctly scoped as the data-layer foundation. Splitting further would create artificial dependency chains. Flagged for awareness.",
+          "fix": "No structural change needed. Acceptable scope for a bulk data migration."
+        }
+      ]
+    },
+
+    "2": {
+      "task_number": 2,
+      "title": "DifficultyLevel enum and UserPreferences",
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T2-1",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "decisions.md missing. See SHARED-1.",
+          "fix": "Add `- [decisions.md](../decisions.md)` to Context Files."
+        },
+        {
+          "id": "T2-2",
+          "severity": "warning",
+          "section": "Context Files",
+          "issue": "testing.md is not listed in Context Files. Task 2 has a TDD Anchor with 7 test cases and the agent writes a new test file. The task-creator rules say code tasks should include patterns.md (which is present) but also testing.md where a Testing section is relevant. testing.md lives at `~/.claude/skills/project-knowledge/references/` per the discovered PK list and was also present in the template's example context list.",
+          "fix": "Add `- [testing.md](~/.claude/skills/project-knowledge/references/testing.md)` to Context Files, or confirm omission is intentional if testing.md has no relevant content for Swift unit tests."
+        },
+        {
+          "id": "T2-3",
+          "severity": "info",
+          "section": "TDD Anchor",
+          "issue": "TDD Anchor is present and well-formed. 7 named test cases with clear descriptions and expected outcomes. Format follows `tests/path::test_name — description`. Uses actual test file path (Swift convention with `::` separator noted). All tests are derivable from ACs. Good quality.",
+          "fix": null
+        },
+        {
+          "id": "T2-4",
+          "severity": "info",
+          "section": "Acceptance Criteria / Tech-Spec Carry-forward",
+          "issue": "All tech-spec AC items for Task 2 are represented: 3-case enum, Codable conformance, pathTolerance values, removed properties/methods, fallback logic. No gaps found.",
+          "fix": null
+        },
+        {
+          "id": "T2-5",
+          "severity": "warning",
+          "section": "Decomposition / Dependency correctness",
+          "issue": "Task 2 has depends_on: [] (wave 1). Correct per tech-spec. However, the Details section references specific line numbers in other files (e.g., 'line 62', 'line 67', 'line 98') which may become stale if those files change during wave 1 execution. This is a documentation quality risk, not a structural defect.",
+          "fix": "Consider replacing absolute line number references with method/property names only, to make the task resilient to minor line-number shifts."
+        }
+      ]
+    },
+
+    "3": {
+      "task_number": 3,
+      "title": "Content generator updates",
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T3-1",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "decisions.md missing. See SHARED-1.",
+          "fix": "Add `- [decisions.md](../decisions.md)` to Context Files."
+        },
+        {
+          "id": "T3-2",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "project.md and architecture.md are absent from Context Files. The template and task-creator rules mandate them as always-required PK files: 'Always: project.md, architecture.md (project context is always needed)'. Tasks 1, 2, and 4 all include them; Task 3 omits them entirely.",
+          "fix": "Add `- [project.md](~/.claude/skills/project-knowledge/references/project.md)` and `- [architecture.md](~/.claude/skills/project-knowledge/references/architecture.md)` to Context Files."
+        },
+        {
+          "id": "T3-3",
+          "severity": "info",
+          "section": "TDD Anchor",
+          "issue": "TDD Anchor section is absent. This is appropriate: the task modifies Python scripts and YAML config, not iOS Swift code. The project's test framework (xcodebuild) cannot run Python tests. The Verification Steps provide grep/python --help checks that serve as functional verification. Correct to omit.",
+          "fix": null
+        },
+        {
+          "id": "T3-4",
+          "severity": "warning",
+          "section": "Reviewers",
+          "issue": "Reviewer path uses `->` instead of `→`. See SHARED-2.",
+          "fix": "Replace `->` with `→` in the Reviewers section."
+        },
+        {
+          "id": "T3-5",
+          "severity": "warning",
+          "section": "Acceptance Criteria",
+          "issue": "The AC does not include a check that the `lv_idx` loop variable is no longer used for file naming (the edge case described in Details). This is a functional correctness criterion mentioned explicitly in Details but not surfaced as an AC checkbox.",
+          "fix": "Add AC: `- [ ] Variant IDs no longer use `_lv{N}` pattern (verified by grepping generator.py for `_lv{lv_idx}` — expected: 0 matches)`"
+        },
+        {
+          "id": "T3-6",
+          "severity": "info",
+          "section": "What to do — Step 1",
+          "issue": "Step 1 says 'Remove the beginner and hard entries... (keeping only easy, medium, expert)' then says 'Rename expert to hard'. The parenthetical 'keeping only easy, medium, expert' is a transitional intermediate state and could confuse an agent. The final state description further down is correct.",
+          "fix": "Reword step 1 to avoid stating the intermediate state. E.g.: 'Remove the beginner and easy (old lv2) entries. Rename expert to hard. Result: 3 entries: easy, medium, hard.'"
+        }
+      ]
+    },
+
+    "4": {
+      "task_number": 4,
+      "title": "Labyrinth model + StoryInfo + LabyrinthLoader",
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T4-1",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "decisions.md missing from Context Files. See SHARED-1. Note: code-research.md is included (good), but decisions.md is separately required by the template.",
+          "fix": "Add `- [decisions.md](../decisions.md)` to Context Files."
+        },
+        {
+          "id": "T4-2",
+          "severity": "warning",
+          "section": "Context Files",
+          "issue": "testing.md is absent. Task 4 creates new test files (StoryInfoTests.swift, LabyrinthModelTests.swift) and the TDD Anchor has 6 test cases. testing.md should be included for the same reason as Task 2.",
+          "fix": "Add `- [testing.md](~/.claude/skills/project-knowledge/references/testing.md)` to Context Files."
+        },
+        {
+          "id": "T4-3",
+          "severity": "warning",
+          "section": "What to do — Step 5 (loadStories)",
+          "issue": "Step 5 says `characterEnd` is derived from 'loading one JSON to get character data'. This requires a file I/O call per story, making `loadStories()` potentially slow. The Details section repeats this concern and notes 'Consider loading lazily or caching' but this is only a hint. The Acceptance Criteria do not require any performance constraint or lazy loading. An implementing agent may naively load 20 JSON files synchronously on the main thread.",
+          "fix": "Add an AC or implementation requirement specifying whether `characterEnd` loading should be lazy or eager, and whether it must be off the main thread. At minimum add an edge case: 'characterEnd loading should not block the main thread'."
+        },
+        {
+          "id": "T4-4",
+          "severity": "info",
+          "section": "TDD Anchor",
+          "issue": "TDD Anchor correctly scopes out loadStories/loadForStory/loadAllForStory from TDD (Bundle resource tests deferred to Task 11). The 6 model-level tests are appropriate and derivable from ACs. Good quality.",
+          "fix": null
+        },
+        {
+          "id": "T4-5",
+          "severity": "warning",
+          "section": "Acceptance Criteria — Tech-spec carry-forward",
+          "issue": "The tech-spec Data Models section specifies `PackInfo` as a struct with fields id, title, free_stories, stories. Task 4's AC item says 'LabyrinthManifest can decode the new pack-based manifest structure (packs array with stories)' but does not explicitly require that `PackInfo` is a named struct. An implementing agent could decode packs inline. This may cause Task 8 (BookshelfView) to fail if it expects a named PackInfo type.",
+          "fix": "Add AC: `- [ ] \\`PackInfo\\` struct exists with fields: id, title, free_stories (CodingKey: freeStories), stories: [Int]`"
+        },
+        {
+          "id": "T4-6",
+          "severity": "info",
+          "section": "Decomposition / Dependency correctness",
+          "issue": "depends_on: [1, 2] is correct. Wave 2 placement is correct. No cycles. Task 4 is the only wave 2 task that explicitly depends on Task 1 (manifest structure) — this is correct and necessary.",
+          "fix": null
+        }
+      ]
+    },
+
+    "5": {
+      "task_number": 5,
+      "title": "SubscriptionManager — single non-consumable",
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T5-1",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "decisions.md missing. See SHARED-1.",
+          "fix": "Add `- [decisions.md](../decisions.md)` to Context Files."
+        },
+        {
+          "id": "T5-2",
+          "severity": "critical",
+          "section": "Context Files",
+          "issue": "project.md and architecture.md are absent from Context Files. Unlike Tasks 1, 2, and 4 (which all include them), Task 5 omits both mandatory PK files. The template rule is 'Always: project.md, architecture.md'.",
+          "fix": "Add `- [project.md](~/.claude/skills/project-knowledge/references/project.md)` and `- [architecture.md](~/.claude/skills/project-knowledge/references/architecture.md)` to Context Files."
+        },
+        {
+          "id": "T5-3",
+          "severity": "critical",
+          "section": "Required Skills",
+          "issue": "The Required Skills section is incomplete. It says `- \\`/skill:code-writing\\`` but omits the markdown link to the SKILL.md file. Every other task includes the full format: `- \\`/skill:code-writing\\` — [skills/code-writing/SKILL.md](~/.claude/skills/code-writing/SKILL.md)`. The path is needed so the implementing agent can actually load the skill.",
+          "fix": "Replace the Required Skills line with: `- \\`/skill:code-writing\\` — [skills/code-writing/SKILL.md](~/.claude/skills/code-writing/SKILL.md)`"
+        },
+        {
+          "id": "T5-4",
+          "severity": "warning",
+          "section": "Reviewers",
+          "issue": "Reviewer paths use `->` instead of `→`. See SHARED-2.",
+          "fix": "Replace `->` with `→` in the Reviewers section."
+        },
+        {
+          "id": "T5-5",
+          "severity": "warning",
+          "section": "Context Files — non-standard entries",
+          "issue": "Task 5's Context Files contains a subsection header `### Source code to read before implementation` and a MEMORY.md entry. Neither appears in the template or in other tasks. The subsection header fragments the context file list and MEMORY.md is not a project-level knowledge file managed by the task system (it is a user-level global file). The source files listed under it (SubscriptionManager.swift, PaywallView.swift, GameViewModel.swift) are valid and should be kept but at the top level of Context Files, not in a subsection.",
+          "fix": "Remove the `### Source code to read before implementation` subsection header. Promote the three source code links to the main Context Files list. Remove the MEMORY.md entry (the agent has access to it independently)."
+        },
+        {
+          "id": "T5-6",
+          "severity": "warning",
+          "section": "Frontmatter / Dependency correctness",
+          "issue": "depends_on: [2] captures only the direct Swift code dependency. Task 5 is in Wave 2 alongside Task 4. Wave 2 conceptually depends on all of Wave 1 (Tasks 1, 2, 3) completing before the build succeeds. Task 5's Details section explicitly notes 'Task 2 (DifficultyLevel enum changes) must be complete — though SubscriptionManager does not directly depend on DifficultyLevel, the build must succeed'. Tasks 1 and 3 also affect the build: Task 1 modifies JSON resource files (build will fail if pbxproj references deleted files), and Task 3 is Python-only so it does not affect the iOS build. Therefore adding Task 1 to depends_on is defensible for build-correctness reasons.",
+          "fix": "Consider changing depends_on to [1, 2] to reflect the full wave 1 completion required for a clean build. At minimum document in Details why Task 1 is not listed."
+        },
+        {
+          "id": "T5-7",
+          "severity": "info",
+          "section": "TDD Anchor",
+          "issue": "3 TDD anchor tests cover static/default state only. The note correctly explains that StoreKit purchase flow is deferred to Task 11. This is appropriate and the tests are well-formed.",
+          "fix": null
+        },
+        {
+          "id": "T5-8",
+          "severity": "info",
+          "section": "Acceptance Criteria — Tech-spec carry-forward",
+          "issue": "Tech-spec AC for Task 5: 'SubscriptionManager uses single non-consumable product ID' and 'No subscription-related code remains'. Both are represented in T5's AC. The compatibility shim (`var products: [Product]`) recommended in Details is not an AC item — this is acceptable since it is a temporary bridge removed in Task 7.",
+          "fix": null
+        }
+      ]
+    }
+  },
+
+  "decomposition_quality": {
+    "traceability_to_tech_spec": {
+      "status": "pass",
+      "notes": "All 5 tasks map 1:1 to their corresponding tech-spec Implementation Tasks entries. Scope, skill, reviewers, and verify fields all match the tech-spec task table. No orphaned tasks, no missing scope."
+    },
+    "dependency_correctness": {
+      "status": "warning",
+      "notes": "Tasks 1, 2, 3 correctly have depends_on: [] and wave: 1. Tasks 4 and 5 correctly have wave: 2. Task 4's depends_on: [1, 2] is complete. Task 5's depends_on: [2] is incomplete — see T5-6. No cycles detected."
+    },
+    "merge_split_candidates": {
+      "candidates": [],
+      "notes": "No obvious merge or split candidates. Task 1 is large (62 files) but appropriately scoped as a bulk migration. No tasks are so small they should be merged."
+    },
+    "wave_ordering": {
+      "status": "pass",
+      "notes": "Wave 1: Tasks 1, 2, 3. Wave 2: Tasks 4, 5. Ordering is consistent with dependency graph. Wave 2 tasks all properly depend on relevant Wave 1 tasks."
+    }
+  },
+
+  "tech_spec_carry_forward": {
+    "ac_items_covered": {
+      "status": "mostly_pass",
+      "gaps": [
+        "PackInfo struct name not explicitly required as an AC in Task 4 (see T4-5)",
+        "config.yaml AC in Task 3 does not verify the lv_idx variable is removed from naming logic (see T3-5)"
+      ]
+    },
+    "tdd_items_covered": {
+      "status": "pass",
+      "notes": "Tech-spec Testing Strategy unit tests: DifficultyLevel (Task 2 TDD Anchor covers this), StoryInfo model (Task 4 TDD Anchor covers this), LabyrinthLoader (Task 4 TDD Anchor partially covers, rest deferred to Task 11), SubscriptionManager (Task 5 TDD Anchor covers default state). All TDD items traceable to tasks."
+    }
+  },
+
+  "fix_priority": {
+    "must_fix_before_execution": [
+      "SHARED-1: Add decisions.md to all 5 tasks",
+      "T3-2: Add project.md and architecture.md to Task 3 Context Files",
+      "T5-2: Add project.md and architecture.md to Task 5 Context Files",
+      "T5-3: Fix incomplete Required Skills section in Task 5"
+    ],
+    "should_fix": [
+      "SHARED-2: Normalize arrow style to → in Tasks 1, 3, 5",
+      "T2-2: Add testing.md to Task 2 Context Files",
+      "T3-5: Add AC for lv_idx removal in Task 3",
+      "T3-6: Reword ambiguous step 1 in Task 3",
+      "T4-2: Add testing.md to Task 4 Context Files",
+      "T4-3: Add performance/threading requirement for characterEnd loading in Task 4",
+      "T4-5: Add explicit PackInfo struct AC in Task 4",
+      "T5-5: Remove non-standard subsection and MEMORY.md from Task 5 Context Files",
+      "T5-6: Consider adding Task 1 to Task 5 depends_on"
+    ],
+    "informational": [
+      "T1-3, T3-3: TDD Anchor correctly absent for non-code tasks",
+      "T2-5: Line number references in Details may become stale",
+      "T1-6: Large file count in Task 1 is acceptable given bulk migration nature",
+      "T5-7, T5-8: TDD and AC coverage for Task 5 is appropriate"
+    ]
+  }
+}

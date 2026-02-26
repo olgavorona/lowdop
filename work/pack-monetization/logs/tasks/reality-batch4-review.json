@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "batch": 4,
+    "iteration": 1,
+    "feature_path": "work/pack-monetization",
+    "tasks": [10, 11, 12],
+    "reviewed_at": "2026-02-26",
+    "status": "changes_required"
+  },
+  "codebase_snapshot": {
+    "labyrinth_json_files": 100,
+    "labyrinth_naming": "denny_NNN_lvX.json (lv1-lv5, 20 stories x 5 levels)",
+    "manifest_total": 100,
+    "manifest_structure": "flat labyrinths array, no packs field, no story field",
+    "difficulty_enum": "5 cases: beginner, easy, medium, hard, expert",
+    "DifficultyLevel_defaults": "beginner (init reads DifficultyLevel.beginner.rawValue)",
+    "GameViewModel_canProceed": "EXISTS — delegates to preferences.canPlayToday(isPremium:)",
+    "GameViewModel_completeCurrentLabyrinth": "calls preferences.recordPlay()",
+    "UserPreferences_free_play_fields": ["lastPlayedTimestamp", "dailyLabyrinthsPlayed", "totalFreeLabyrinthsPlayed", "canPlayToday", "recordPlay", "freeLabyrinthsRemaining"],
+    "SubscriptionManager_productIds": ["labyrinth_unlimited_monthly", "labyrinth_unlimited_yearly", "labyrinth_unlimited_lifetime"],
+    "ContentView_navigation": "hasCompletedOnboarding ? LabyrinthGridView : OnboardingView (no bookshelf state)",
+    "BookshelfView_exists": false,
+    "StoryInfo_model_exists": false,
+    "LabyrinthLoader_loadStories": false,
+    "LabyrinthLoader_loadForStory": false,
+    "Labyrinth_storyNumber": false,
+    "Labyrinth_ageRange_field": "EXISTS (let ageRange: String?)",
+    "LabyrinthManifest_packs_field": false,
+    "ManifestEntry_story_field": false,
+    "pbxproj_labyrinth_references": "100 files (lv1-lv5 naming, AA200XX1-AA200XX5 IDs)",
+    "pbxproj_BookshelfView": false,
+    "pbxproj_next_source_id": "AA000029 is unoccupied (AA000028 = TelemetryDeck framework)",
+    "LabyrinthGridView_canProceed_usage": "EXISTS at line 172 — used to gate labyrinth start from grid",
+    "LabyrinthListView_canProceed_usage": "EXISTS at line 113 in attemptNext()",
+    "CompletionView_isStoryComplete_param": false,
+    "analytics_StoryComplete_events": false
+  },
+  "tasks": {
+    "task_10": {
+      "id": 10,
+      "title": "LabyrinthListView + CompletionView — story-complete flow",
+      "depends_on": [8, 9],
+      "wave": 4,
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T10-C1",
+          "severity": "critical",
+          "category": "feasibility",
+          "title": "canProceed() still exists and must be removed by Task 9 first",
+          "detail": "Task 10 instructs removing canProceed() usage from LabyrinthListView (Step 6, AC item). The method canProceed() currently exists in both GameViewModel.swift (line 66) and is called in LabyrinthListView.swift (line 113) and LabyrinthGridView.swift (line 172). Task 10 correctly declares depends_on [8, 9], so this is only a problem if Task 9 does not fully remove canProceed(). The task description must make clear that Step 6 ('Update attemptNext() logic') requires canProceed() to already be gone. The task text at Step 6 says 'replace this with the new pack-based logic from Task 9' which is correct — but the verification step (Step 2: grep for canProceed in LabyrinthListView) is valid only if Task 9 has been executed. This is sound as a dependency but must be enforced.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/ViewModels/GameViewModel.swift:66, Views/LabyrinthListView.swift:113"
+        },
+        {
+          "id": "T10-C2",
+          "severity": "critical",
+          "category": "hallucination",
+          "title": "GameViewModel.isCurrentLabyrinthLastInStory does not exist",
+          "detail": "Task 10 (Details section) says 'GameViewModel may also expose a computed property like isCurrentLabyrinthLastInStory (from Task 9) — prefer using that if available'. This property does not exist in GameViewModel.swift today and is not listed in Task 9's described changes (Task 9 description mentions pack-based locking and story-complete detection but the actual API shape is unspecified in the task file). The fallback of checking labyrinth.difficulty == \"hard\" is valid and the task correctly names it as the reliable fallback. The mention of the computed property is speculative and may mislead the implementer into searching for a method that may or may not be created by Task 9.",
+          "location": "work/pack-monetization/tasks/10.md — Details section, 'Story-complete detection' paragraph"
+        },
+        {
+          "id": "T10-C3",
+          "severity": "critical",
+          "category": "reality",
+          "title": "BookshelfView.swift does not exist yet",
+          "detail": "Task 10 depends on Task 8 creating BookshelfView.swift. As of the current codebase, BookshelfView.swift does not exist (Glob confirmed). ContentView.swift has no bookshelf navigation state. The task correctly declares depends_on: [8, 9], so this is acceptable, but the implementation agent must not execute Task 10 before Tasks 8 and 9 are complete. The task's own description acknowledges this ('Prerequisite state after Tasks 8-9: BookshelfView exists and is wired into ContentView navigation'). No correction needed in the task text, but execution order must be enforced.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/BookshelfView.swift (does not exist)"
+        },
+        {
+          "id": "T10-C4",
+          "severity": "critical",
+          "category": "reality",
+          "title": "CompletionView has no isStoryComplete parameter — must be added as specified",
+          "detail": "CompletionView.swift currently accepts: labyrinth, onNext, onRepeat, collectedCount, totalItemCount. There is no isStoryComplete parameter. The task correctly identifies this as something to add (Step 3). The current 'Next Labyrinth' button text is hardcoded (line 70 in CompletionView.swift). The proposed conditional text change is the correct approach. No hallucination here; the task accurately describes what needs to change.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/CompletionView.swift:68-71"
+        },
+        {
+          "id": "T10-W1",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "closeGame() navigation relies on ContentView bookshelf state not yet specified",
+          "detail": "Task 10 Step 5 says 'Call gameViewModel.closeGame() to dismiss the game view and return to the grid/bookshelf — The bookshelf should be the visible screen after dismissal (relies on ContentView navigation from Task 8)'. closeGame() sets isPlaying = false, which dismisses the fullScreenCover in LabyrinthGridView. After dismissal, the user lands on LabyrinthGridView, NOT on BookshelfView, unless ContentView's navigation state has been updated by Task 8 to include a separate bookshelf step. The return-to-bookshelf behavior is entirely dependent on Task 8's ContentView changes. The task must trust that Task 8 wires this correctly. If Task 8 uses a separate @State navigation level above LabyrinthGridView, closeGame() alone (setting isPlaying = false) may not be sufficient to reach BookshelfView. The task should be explicit that a separate 'return to bookshelf' mechanism (e.g., a new GameViewModel method or ContentView state change) may be needed beyond just closeGame().",
+          "location": "work/pack-monetization/tasks/10.md — Step 5; LowDopamineLabyrinth/LowDopamineLabyrinth/ViewModels/GameViewModel.swift:43-45"
+        },
+        {
+          "id": "T10-W2",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "analytics event StoryComplete.shown and StoryComplete.backToBookshelf are not pre-registered anywhere",
+          "detail": "Task 10 specifies adding analytics events 'StoryComplete.shown' and 'StoryComplete.backToBookshelf'. The Analytics.send() function exists (Analytics.swift) and accepts arbitrary event name strings, so there is no registration step needed — the events are just strings. However, these event names should be consistent with the naming convention used elsewhere in the codebase (e.g., 'Game.completed', 'Completion.nextTapped', 'Grid.labyrinthTapped'). Verifying naming conventions is low risk. No code blocker.",
+          "location": "work/pack-monetization/tasks/10.md — Details, Analytics events section"
+        },
+        {
+          "id": "T10-W3",
+          "severity": "warning",
+          "category": "tdd_adequacy",
+          "title": "TDD Anchor is explicitly deleted — but story-complete detection logic is testable",
+          "detail": "The TDD Anchor section says 'Delete this section — this task is UI navigation and visual verification'. This is acceptable for SwiftUI view wiring. However, the difficulty == \"hard\" check used for story-complete detection IS unit-testable as pure logic in GameViewModel (if Task 9 exposes it as a computed property). The task correctly delegates this to Task 9 and Task 11. No blocker.",
+          "location": "work/pack-monetization/tasks/10.md — TDD Anchor section"
+        }
+      ],
+      "summary": "Task 10 is structurally sound but has two critical issues: (1) a speculative GameViewModel API reference (isCurrentLabyrinthLastInStory) that may not exist after Task 9, and (2) a navigation assumption that closeGame() alone will return the user to BookshelfView, which depends entirely on how Task 8 structures ContentView navigation. Both are dependency risks rather than task-internal errors. The task should add a note clarifying that if closeGame() alone does not reach the bookshelf, a dedicated 'returnToBookshelf' mechanism must be coordinated with Task 8."
+    },
+    "task_11": {
+      "id": 11,
+      "title": "Tests + pbxproj cleanup",
+      "depends_on": [9, 10],
+      "wave": 4,
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T11-C1",
+          "severity": "critical",
+          "category": "reality",
+          "title": "Labyrinth.ageRange field still exists — makeSampleLabyrinths must keep it",
+          "detail": "Task 11 Step 3 says 'Remove the ageRange parameter (set to nil or remove entirely, matching the post-task-4 Labyrinth model which no longer has ageRange)'. However, Labyrinth.swift currently has 'let ageRange: String?' (line 18) with CodingKey 'age_range'. The Labyrinth struct initializer requires ageRange as a parameter. The existing GameViewModelTests.swift already passes ageRange: nil in makeSampleLabyrinths. Task 4 (Labyrinth model changes) is supposed to remove ageRange. If Task 4 removes it, Task 11's instruction to remove it from the test helper is correct. But the task says 'remove entirely, matching the post-task-4 Labyrinth model which no longer has ageRange' — this is forward-looking and technically correct IF Task 4 removes it. However, the current test file at line 22 already uses ageRange: nil. If Task 4 removes ageRange from the struct, then the ageRange: nil parameter in the test helper MUST be removed or the build will fail. The task correctly identifies this. No hallucination, but the implementer must ensure Task 4 is complete before Task 11.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/Labyrinth.swift:18, LowDopamineLabyrinthTests/GameViewModelTests.swift:22"
+        },
+        {
+          "id": "T11-C2",
+          "severity": "critical",
+          "category": "reality",
+          "title": "LabyrinthLoader has no loadStories() or loadForStory() — tests for these will fail to compile",
+          "detail": "Task 11 Step 8 adds tests for 'loadStories()' and 'loadForStory()' on LabyrinthLoader. These methods do not exist in LabyrinthLoader.swift today (only loadManifest, loadLabyrinth, loadAll, loadForDifficulty exist). These methods are supposed to be added by Task 4. The tests in Task 11 are post-Task-4 tests. This is correct in a dependency chain, but if LabyrinthLoader does not have these methods at Task 11 execution time, the test file will not compile. The task depends_on [9, 10] but NOT [4] explicitly in the depends_on frontmatter — Task 4 is a prerequisite listed in the Details section but not in the depends_on field. This is an inconsistency: Task 11 should declare depends_on [4] (or transitively via 9, since Task 9 depends on Wave 2 which includes Task 4).",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Services/LabyrinthLoader.swift; work/pack-monetization/tasks/11.md — depends_on frontmatter"
+        },
+        {
+          "id": "T11-C3",
+          "severity": "critical",
+          "category": "reality",
+          "title": "StoryInfo model does not exist — tests for it will fail to compile",
+          "detail": "Task 11 Step 7 adds tests for StoryInfo (initialization, isFree, isAdventure, id, labyrinthIds). StoryInfo is supposed to be added by Task 4. It does not exist in any Swift file currently. The same dependency-chain concern as T11-C2 applies. The test class will not compile if StoryInfo is absent at Task 11 execution time. Again, depends_on should explicitly include Task 4 (or at minimum note that tasks through Wave 2 must be complete).",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/ (no StoryInfo.swift exists); work/pack-monetization/tasks/11.md — depends_on frontmatter"
+        },
+        {
+          "id": "T11-C4",
+          "severity": "critical",
+          "category": "reality",
+          "title": "DifficultyLevel still has 5 cases — DifficultyLevel tests will fail until Task 2 is complete",
+          "detail": "Task 11 Step 6 adds tests asserting DifficultyLevel.allCases.count == 3 and pathTolerance values (easy=25, medium=18, hard=12). Currently DifficultyLevel has 5 cases with different pathTolerance values (beginner=25, easy=22, medium=18, hard=15, expert=12). The tests will fail if run against the current enum. This is expected since Task 2 modifies the enum, but depends_on only lists [9, 10], not [2]. Task 2 is a Wave 1 prerequisite that should be in the dependency chain.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/UserPreferences.swift:94-108"
+        },
+        {
+          "id": "T11-C5",
+          "severity": "critical",
+          "category": "reality",
+          "title": "pbxproj currently has 100 labyrinth file references (lv1-lv5), not 60",
+          "detail": "The pbxproj currently references 100 JSON files (AA200101 through AA2020X5 — 20 stories x 5 levels each). Task 11 instructs removing lv2/lv4 entries (40 files) leaving 60. Verification step 6 says 'grep -c denny_.*\\.json in pbxproj — Expected: ~240 (60 files x 4 references each)'. The current count would be ~400 (100 x 4 references). This is a large mechanical edit. The ID scheme described (AA20XX02/AA20XX04 for lv2/lv4) is verified as correct from reading the pbxproj — lv2 entries use IDs ending in 02 and lv4 entries use IDs ending in 04. The rename instructions (lv1->easy, lv3->medium, lv5->hard in comment names and path values) are accurate. No hallucination in the ID scheme, but the scale of the pbxproj edit is large and error-prone.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth.xcodeproj/project.pbxproj"
+        },
+        {
+          "id": "T11-C6",
+          "severity": "critical",
+          "category": "hallucination",
+          "title": "BookshelfView pbxproj IDs: AA000029/AB000029 are correct but task incorrectly states AA000028 is Analytics.swift",
+          "detail": "Task 11 Details says 'BookshelfView: AA000029 (BuildFile), AB000029 (FileReference) — next after Analytics.swift (AA000027/AB000027). Note AA000028 is TelemetryDeck framework, not a source file.' This note is CORRECT — AA000027 is Analytics.swift, AA000028 is TelemetryDeck in Frameworks. So AA000029/AB000029 are the correct next available IDs for a source file. The IDs are verified as unused in the current pbxproj. However, the parenthetical 'next after Analytics.swift (AA000027/AB000027)' could confuse an implementer: AB000028 does NOT exist (AA000028 is a PBXBuildFile for a framework product ref, not a file ref). AB000029 is the correct next FileReference ID. This is technically correct but potentially confusing. Low risk of implementation error.",
+          "location": "work/pack-monetization/tasks/11.md — Details, pbxproj ID scheme section; LowDopamineLabyrinth/LowDopamineLabyrinth.xcodeproj/project.pbxproj:37"
+        },
+        {
+          "id": "T11-W1",
+          "severity": "warning",
+          "category": "tdd_adequacy",
+          "title": "LabyrinthLoader bundle tests may return empty arrays in test target",
+          "detail": "Task 11 Step 8 and the Details edge cases note: 'LabyrinthLoader tests that call loadStories() / loadForStory() depend on bundle resources. In the test target, these may return empty arrays. Consider testing with mock data or testing only the filtering logic.' The test 'testLoadStoriesReturnsStoryMetadata — loadStories() returns non-empty array of StoryInfo' will fail if the test bundle does not include the labyrinth JSON resources. The test suite for LowDopamineLabyrinthTests should have the JSON files included in its bundle (via the test target's Copy Bundle Resources build phase). This should be verified when Task 11 is executed. If the resources are not in the test bundle, 'testLoadStoriesReturnsStoryMetadata' will always fail. The task acknowledges this risk but does not give a definitive resolution.",
+          "location": "work/pack-monetization/tasks/11.md — Details, edge cases; LowDopamineLabyrinthTests/"
+        },
+        {
+          "id": "T11-W2",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "depends_on field is incomplete — Tasks 2 and 4 are implicit but not declared",
+          "detail": "Task 11 frontmatter says depends_on: [9, 10]. But the implementation tests code from Tasks 2 (DifficultyLevel 3 cases), 4 (StoryInfo, LabyrinthLoader.loadStories/loadForStory), and 8 (BookshelfView for pbxproj). In practice this works because Task 9 depends on Wave 2 (which includes Tasks 4, 5) and Task 10 depends on Task 8. But the explicit depends_on list is incomplete and could mislead a scheduling system. Should be depends_on: [2, 4, 8, 9, 10] or at minimum [8, 9, 10].",
+          "location": "work/pack-monetization/tasks/11.md — frontmatter"
+        },
+        {
+          "id": "T11-W3",
+          "severity": "warning",
+          "category": "reality",
+          "title": "testCompleteCurrentLabyrinthTracksProgress calls completeCurrentLabyrinth() which currently calls preferences.recordPlay()",
+          "detail": "The kept test 'testCompleteCurrentLabyrinthTracksProgress' (line 186-197) calls vm.completeCurrentLabyrinth(). Currently this calls preferences.recordPlay() in addition to marking progress. After Task 9 removes recordPlay() from completeCurrentLabyrinth(), the test remains valid (it only asserts progress.isCompleted). But tearDown() currently cleans up 'dailyLabyrinthsPlayed' which will no longer exist. The task correctly instructs removing those keys from tearDown(). Execution order is correct. Minor risk that the implementer forgets to remove the recordPlay() call from completeCurrentLabyrinth() itself (that's Task 9's responsibility).",
+          "location": "LowDopamineLabyrinthTests/GameViewModelTests.swift:186-197"
+        }
+      ],
+      "summary": "Task 11 has four critical dependency gaps: the depends_on frontmatter does not explicitly list Tasks 2 and 4, whose outputs (3-case DifficultyLevel, StoryInfo model, loadStories/loadForStory APIs) are directly tested. If the execution system uses depends_on strictly, Task 11 could be scheduled before these prerequisites are complete, causing compile failures. The pbxproj edit is large but mechanically correct. The LabyrinthLoader bundle resource issue is a known risk. The task should update its depends_on field to explicitly include all Wave 1 and Wave 2 tasks it depends on."
+    },
+    "task_12": {
+      "id": 12,
+      "title": "Pre-deploy QA",
+      "depends_on": [11],
+      "wave": 5,
+      "overall_status": "changes_required",
+      "findings": [
+        {
+          "id": "T12-C1",
+          "severity": "critical",
+          "category": "reality",
+          "title": "Verification step 14 checks wrong path for BookshelfView.swift",
+          "detail": "Task 12 verification step 14 runs: 'ls LowDopamineLabyrinth/LowDopamineLabyrinth/BookshelfView.swift'. But all other Swift Views are in the Views/ subdirectory (e.g., CompletionView.swift, LabyrinthListView.swift, OnboardingView.swift are all in LowDopamineLabyrinth/LowDopamineLabyrinth/Views/). Task 8 instructs creating BookshelfView.swift as a new file in Views/, and task 11 references 'BookshelfView.swift' with path inside the Views group in pbxproj. The verification command should be: 'ls LowDopamineLabyrinth/LowDopamineLabyrinth/Views/BookshelfView.swift'. Using the wrong path will produce a false failure.",
+          "location": "work/pack-monetization/tasks/12.md — Verification step 14"
+        },
+        {
+          "id": "T12-C2",
+          "severity": "critical",
+          "category": "reality",
+          "title": "Verification step 10 grep pattern for DifficultyLevel 3-case check will not work as written",
+          "detail": "Task 12 verification step 10 runs: 'grep -n \"case.*easy.*medium.*hard\" LowDopamineLabyrinth/LowDopamineLabyrinth/*.swift'. This pattern requires all three cases on a single line, but Swift enum cases are typically declared on separate lines: 'case easy', 'case medium', 'case hard'. This grep will return zero matches even if the enum is correctly defined with 3 cases. A correct check would be: 'grep -c \"case easy\\|case medium\\|case hard\" UserPreferences.swift' (expecting 3) combined with verifying 'case beginner' and 'case expert' are absent. The current pattern is a false negative risk.",
+          "location": "work/pack-monetization/tasks/12.md — Verification step 10"
+        },
+        {
+          "id": "T12-W1",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "Verification step 9 checks difficulty_samples.json path with python3 using relative path",
+          "detail": "Step 9 runs 'python3 -c \"import json; d=json.load(open(\"LowDopamineLabyrinth/LowDopamineLabyrinth/Resources/Labyrinths/difficulty_samples.json\"))...' using a relative path. This only works if the command is run from the repo root. The working directory for agent bash calls is /Users/olgavorona/Documents/GitHub/lowdop, which is the repo root, so this is fine in practice. But this is fragile — an absolute path would be safer.",
+          "location": "work/pack-monetization/tasks/12.md — Verification step 9"
+        },
+        {
+          "id": "T12-W2",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "Verification step 13 checks for labyrinth_pack_ocean only in *.swift files at one directory depth",
+          "detail": "Step 13 runs 'grep -r \"labyrinth_pack_ocean\" LowDopamineLabyrinth/LowDopamineLabyrinth/*.swift'. The glob '*.swift' only matches files directly in LowDopamineLabyrinth/LowDopamineLabyrinth/, missing files in subdirectories like Views/, ViewModels/, Services/, Models/. SubscriptionManager.swift is in Services/ and would be missed. The correct command should use recursive grep: 'grep -r \"labyrinth_pack_ocean\" LowDopamineLabyrinth/LowDopamineLabyrinth/' or use -l flag with the correct glob.",
+          "location": "work/pack-monetization/tasks/12.md — Verification step 13"
+        },
+        {
+          "id": "T12-W3",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "Verification step 11 (free-play removal) and step 12 (subscription IDs) use same broken *.swift glob",
+          "detail": "Steps 11 and 12 use 'LowDopamineLabyrinth/LowDopamineLabyrinth/*.swift' which misses subdirectories. For example, UserPreferences.swift is in Models/ and GameViewModel.swift is in ViewModels/. These greps will not catch occurrences in subdirectories, producing false 'clean' results. All grep-based Swift code checks should use recursive grep or a correct glob like '**/*.swift'.",
+          "location": "work/pack-monetization/tasks/12.md — Verification steps 11, 12"
+        },
+        {
+          "id": "T12-W4",
+          "severity": "warning",
+          "category": "feasibility",
+          "title": "No StoreKit testing configuration (.storekit file) existence check in QA steps",
+          "detail": "Task 12 mentions 'StoreKit testing configuration may need to be present for purchase-flow integration tests' in the edge cases section but does not include a verification step to confirm the .storekit configuration file exists. The purchase flow (user-spec AC: 'After purchase, all stories in the pack unlock immediately' and 'Purchase persists across app restarts') cannot be verified without this file or a sandbox environment. The QA task should add a step to verify the StoreKit configuration file exists.",
+          "location": "work/pack-monetization/tasks/12.md — edge cases section"
+        },
+        {
+          "id": "T12-I1",
+          "severity": "info",
+          "category": "implementation_hints",
+          "title": "Current manifest has total:100 and no packs/story fields — verification step 8 will correctly catch this",
+          "detail": "Verification step 8 greps for '\"total\": 60', '\"packs\"', and '\"story\":' in manifest.json. The current manifest has total:100, no packs field, and no story field on entries. After Task 1 completes, these checks will correctly validate the new structure. The QA verification plan is accurate for its post-implementation intent.",
+          "location": "LowDopamineLabyrinth/LowDopamineLabyrinth/Resources/Labyrinths/manifest.json"
+        }
+      ],
+      "summary": "Task 12 has two critical issues: (1) the BookshelfView.swift existence check uses the wrong directory path (missing Views/ subdirectory), and (2) the DifficultyLevel 3-case grep pattern cannot match multiline enum declarations and will always return zero matches even when correct. Three warnings involve the broken '*.swift' glob that misses Swift files in subdirectories — all code-scanning greps in steps 11, 12, 13 will silently miss the relevant source files."
+    }
+  },
+  "cross_task_issues": [
+    {
+      "id": "CX-1",
+      "severity": "critical",
+      "title": "Task 11 depends_on field is missing Tasks 2, 4, 8",
+      "detail": "Task 11 writes tests for DifficultyLevel (Task 2 output), StoryInfo and LabyrinthLoader (Task 4 output), and adds BookshelfView to pbxproj (Task 8 output). Its frontmatter only declares depends_on: [9, 10]. Transitive dependencies via Tasks 9 and 10 cover most of Wave 2, but Task 8 (BookshelfView) is not in the dependency chain of Task 9 or 10 as far as the frontmatter shows. The depends_on should be updated to at minimum [8, 9, 10].",
+      "tasks_affected": [11]
+    },
+    {
+      "id": "CX-2",
+      "severity": "critical",
+      "title": "Navigation return-to-bookshelf mechanism is undefined across Tasks 10 and 8",
+      "detail": "Task 10 says closeGame() returns the user to the bookshelf. Currently closeGame() sets isPlaying = false, which dismisses the fullScreenCover showing LabyrinthListView, returning the user to LabyrinthGridView. But LabyrinthGridView is not BookshelfView. For the user to reach BookshelfView after closeGame(), ContentView's navigation must have a separate bookshelf state layer above the grid. Task 8 is responsible for this, but Task 10 does not specify what signal or state change communicates 'go to bookshelf' vs 'stay at grid'. The tasks collectively assume this works but no task owns the 'after closeGame, show bookshelf not grid' contract explicitly.",
+      "tasks_affected": [8, 10]
+    },
+    {
+      "id": "CX-3",
+      "severity": "warning",
+      "title": "Multiple grep verification commands use non-recursive *.swift glob pattern",
+      "detail": "Tasks 12 verification steps 10, 11, 12, 13 all use 'LowDopamineLabyrinth/LowDopamineLabyrinth/*.swift' which only matches files at the top level of that directory. All Swift source files in this project are in subdirectories (Models/, Views/, ViewModels/, Services/). These checks will silently produce zero matches even when the old code still exists in subdirectories, giving false assurance of completion.",
+      "tasks_affected": [12]
+    }
+  ],
+  "approved_aspects": [
+    "Task 10 correctly identifies the story-complete detection logic (difficulty == 'hard' check) and the CompletionView parameter approach",
+    "Task 10 correctly wires analytics events using the existing Analytics.send() pattern",
+    "Task 10 edge cases section correctly handles Try Again, end-of-list, and paywall removal from LabyrinthListView",
+    "Task 11 test list for deletion (17 free-play tests) is accurate and matches the actual test file content",
+    "Task 11 test list for preservation (16 navigation/progress tests) is accurate and matches the actual test file content",
+    "Task 11 pbxproj ID scheme (AA/AC prefix meanings, lv2=02/lv4=04 ID suffix pattern) is verified correct against actual pbxproj",
+    "Task 11 BookshelfView IDs AA000029/AB000029 are verified unused in current pbxproj",
+    "Task 12 overall QA structure is comprehensive and covers all acceptance criteria from both specs",
+    "Task 12 content file verification steps (steps 2-7) use correct file paths and commands",
+    "Task 12 xcodebuild commands use correct simulator ID and project path"
+  ],
+  "total_findings": {
+    "critical": 8,
+    "warning": 8,
+    "info": 1
+  }
+}

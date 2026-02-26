@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "batch": 2,
+    "iteration": 1,
+    "tasks": [4, 5, 6],
+    "feature_path": "work/pack-monetization",
+    "reviewed_at": "2026-02-26",
+    "status": "changes_required"
+  },
+  "tasks": {
+    "4": {
+      "title": "Labyrinth model + StoryInfo + LabyrinthLoader",
+      "status": "changes_required",
+      "summary": "The task description is sound but contains one critical mismatch: the manifest structure in the task contradicts what code-research.md describes, and the characterEnd-loading strategy is impractical and under-specified. Several model assumptions also need corrections.",
+      "findings": [
+        {
+          "id": "T4-C1",
+          "severity": "critical",
+          "category": "reality",
+          "title": "Manifest structure divergence: task uses 'packs' key, code-research uses 'stories' key",
+          "description": "Task 4 step 2 instructs adding 'packs: [PackInfo]' to LabyrinthManifest with struct fields 'id', 'title', 'free_stories', 'stories: [Int]'. The tech-spec data model section shows the same 'packs' structure. However, code-research.md section B ('manifest.json Changes') specifies a different top-level key 'stories' (not 'packs') with fields 'number', 'title', 'location', 'character_end', 'free', 'labyrinths: [String]'. These are incompatible schemas. Task 1 will produce the actual manifest structure, and whatever it produces is what Task 4 must decode. The Task 4 author must confirm which schema Task 1 actually implements before writing the decoder. If Task 1 follows tech-spec (packs), the task is fine; if Task 1 follows code-research (stories), the struct names and field names are wrong. This ambiguity is a build-breaking risk.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/Labyrinth.swift",
+          "evidence": "tech-spec.md line 113-128 shows 'packs' array; code-research.md lines 398-416 shows 'stories' array — two incompatible schemas for the same manifest file."
+        },
+        {
+          "id": "T4-C2",
+          "severity": "critical",
+          "category": "feasibility",
+          "title": "loadStories() characterEnd requires loading JSON files at O(N) cost — strategy not specified",
+          "description": "Task 4 step 5 says: 'Determine characterEnd from the first matching labyrinth's characterEnd.imageAsset (load one JSON to get character data, or derive from manifest if available)'. The manifest entries do NOT include characterEnd (confirmed by reading manifest.json — fields are: id, difficulty, theme, location, title). This means loadStories() must call loadLabyrinth(id:) for each of the 20 stories to get the characterEnd asset name, adding 20 file reads on every cold-start call. This is a non-trivial performance cost for a method that populates the bookshelf screen. The implementation hint ('Consider loading lazily or caching') is vague and not actionable. The implementer needs a concrete decision: either (a) add characterEnd to ManifestEntry in Task 1's manifest output, eliminating the need to load individual JSON files, or (b) accept the O(20) file reads and ensure they are covered by the existing loadAll() cache. Option (a) is clearly better but requires coordination with Task 1's manifest schema. This cross-task dependency is not flagged anywhere.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Services/LabyrinthLoader.swift",
+          "evidence": "manifest.json entries have only: id, difficulty, theme, location, title — no characterEnd field. LabyrinthLoader.loadAll() already loads all 60 JSONs and caches them, so option (b) is viable but must be made explicit."
+        },
+        {
+          "id": "T4-W1",
+          "severity": "warning",
+          "category": "reality",
+          "title": "ManifestEntry is missing 'story' field — task adds it, but CodingKeys must also be updated",
+          "description": "Current ManifestEntry (confirmed by reading Labyrinth.swift lines 138-148) has CodingKeys enum explicitly listing: id, difficulty, theme, title, location. Adding a 'story: Int' field requires adding 'story' to this CodingKeys enum. The task mentions adding the field but does not mention updating CodingKeys. Missing a CodingKey causes silent decoding failure (nil/default value) rather than a compile error — easy to miss.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/Labyrinth.swift",
+          "evidence": "ManifestEntry.CodingKeys at lines 145-147 enumerates exactly: id, difficulty, theme, title, location."
+        },
+        {
+          "id": "T4-W2",
+          "severity": "warning",
+          "category": "reality",
+          "title": "LabyrinthManifest is missing 'universe' field — adding 'packs' may cause decoding failure",
+          "description": "Current LabyrinthManifest struct (Labyrinth.swift lines 133-136) only decodes 'total' and 'labyrinths'. The actual manifest.json also has 'universe: \"denny\"'. If Task 1 adds a 'packs' array to the manifest, and LabyrinthManifest does not declare it as optional, decoding will fail silently or throw. Adding 'packs: [PackInfo]?' as optional is the correct approach but is not explicitly stated in the task.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/Labyrinth.swift",
+          "evidence": "LabyrinthManifest struct at lines 133-136 has only 'total: Int' and 'labyrinths: [ManifestEntry]' — no 'universe' or 'packs' fields currently."
+        },
+        {
+          "id": "T4-W3",
+          "severity": "warning",
+          "category": "reality",
+          "title": "storyNumber parsing hint is fragile for IDs with renamed suffix (e.g. denny_001_easy)",
+          "description": "The implementation hint says: split on '_' and take the second component (index 1). For 'denny_001_easy', splitting on '_' gives ['denny', '001', 'easy']. Index 1 is '001', which parses to Int 1 — correct. For current IDs like 'denny_001_lv1', splitting gives ['denny', '001', 'lv1'], index 1 is '001' — also correct. HOWEVER, the hint says 'id.split(separator: \"_\")[1]' which will crash with index-out-of-bounds if the ID has fewer than 2 underscores. The task notes 'handle IDs that don't follow the pattern gracefully' but the concrete hint code does not guard against this. The implementer should use guard/bounds-check or subscript with safe indexing.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/Labyrinth.swift",
+          "evidence": "Hint at task line 134: 'id.split(separator: \"_\")[1]' — no bounds check shown."
+        },
+        {
+          "id": "T4-W4",
+          "severity": "warning",
+          "category": "tdd",
+          "title": "TDD anchor file 'LabyrinthModelTests.swift' does not exist — must be created new",
+          "description": "The task specifies tests in 'LowDopamineLabyrinthTests/LabyrinthModelTests.swift'. This file does not exist (confirmed by Glob of all test files — only DrawingValidatorTests.swift, LabyrinthViewModelTests.swift, GameViewModelTests.swift exist). The task must create this file. This is fine but the task says 'or add to existing test file' as an alternative — the implementer should pick one location and be consistent.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinthTests/LabyrinthModelTests.swift",
+          "evidence": "Glob of LowDopamineLabyrinthTests returned: DrawingValidatorTests.swift, LabyrinthViewModelTests.swift, GameViewModelTests.swift — no LabyrinthModelTests.swift."
+        },
+        {
+          "id": "T4-I1",
+          "severity": "info",
+          "category": "feasibility",
+          "title": "loadAll() cache will be shared — loadStories() benefit is automatic, no extra work",
+          "description": "The task notes 'loadStories() can use the same loadAll() cache'. This is correct: loadAll() already caches all Labyrinth objects in cachedLabyrinths (LabyrinthLoader.swift line 29). loadStories() can call loadAll() and group by storyNumber, achieving O(1) after first call. The characterEnd field is available on each cached Labyrinth.characterEnd.imageAsset. This means the O(20) concern in finding T4-C2 can be resolved by simply using loadAll() — but this must be explicitly stated in the implementation.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Services/LabyrinthLoader.swift",
+          "evidence": "LabyrinthLoader.swift lines 28-34: loadAll() checks cachedLabyrinths.isEmpty before loading, returns cache on subsequent calls."
+        }
+      ]
+    },
+    "5": {
+      "title": "SubscriptionManager -- single non-consumable",
+      "status": "changes_required",
+      "summary": "The task is accurate about what needs to change and the API surface is correctly identified. One critical issue: the task acknowledges a build breakage in PaywallView but frames it as 'acceptable' and 'expected', while the recommended mitigation (a compatibility shim) is valid. However, the task dependency says 'depends_on: [2]' but SubscriptionManager does not import or use DifficultyLevel at all — the dependency is stated for build reasons only. More importantly, the TDD anchor tests reference a non-existent test file and the product ID in the task differs from what was mentioned in code-research.",
+      "findings": [
+        {
+          "id": "T5-C1",
+          "severity": "critical",
+          "category": "reality",
+          "title": "Product ID inconsistency: task uses 'labyrinth_pack_ocean' but code-research uses 'labyrinth_pack_full'",
+          "description": "Task 5 specifies the new product ID as 'labyrinth_pack_ocean' (step 1, acceptance criteria, TDD anchor). The code-research.md SubscriptionManager section explicitly proposes 'labyrinth_pack_full' as the replacement ID (code-research.md line 23). The tech-spec architecture section (line 26) is ambiguous — it says 'single non-consumable product ID' without naming it. This inconsistency means the implementer must choose one ID and it must match what is configured in App Store Connect. If the wrong ID is hardcoded, product loading silently returns nil and the purchase flow never shows a product. The task should definitively state which ID to use and why.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Services/SubscriptionManager.swift",
+          "evidence": "Task 5 step 1: 'private let productId = \"labyrinth_pack_ocean\"'. code-research.md line 23: 'Replace productIds array with a single product ID, e.g. \"labyrinth_pack_full\"'."
+        },
+        {
+          "id": "T5-C2",
+          "severity": "critical",
+          "category": "feasibility",
+          "title": "Changing products: [Product] to product: Product? will cause build failure in PaywallView before Task 7",
+          "description": "The task acknowledges this (Details section) and recommends a compatibility shim. However, the task marks verify as 'bash — xcodebuild build succeeds' (tech-spec verification table row 5) and the Acceptance Criteria says 'xcodebuild builds successfully'. If the shim is not added, this task cannot satisfy its own build verification. The task must be explicit that the shim IS required (not optional) for the build check to pass. The current wording says 'Recommended: Option 1' which is too weak — a code reviewer might accept a PR without the shim if the build check is deferred.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/PaywallView.swift",
+          "evidence": "PaywallView.swift lines 83, 96, 114, 176 all reference 'subscriptionManager.products' (the array). Changing to 'product: Product?' without a shim produces 4 compile errors."
+        },
+        {
+          "id": "T5-W1",
+          "severity": "warning",
+          "category": "tdd",
+          "title": "SubscriptionManagerTests.swift does not exist — must be created",
+          "description": "The TDD anchor references 'LowDopamineLabyrinthTests/SubscriptionManagerTests.swift'. Glob of the test directory confirms this file does not exist. The task must create it. This is straightforward but the task does not explicitly say 'create new file' — it could be read as modifying an existing file.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinthTests/SubscriptionManagerTests.swift",
+          "evidence": "Glob of LowDopamineLabyrinthTests returned only: DrawingValidatorTests.swift, LabyrinthViewModelTests.swift, GameViewModelTests.swift — no SubscriptionManagerTests.swift."
+        },
+        {
+          "id": "T5-W2",
+          "severity": "warning",
+          "category": "reality",
+          "title": "isPremium is @Published but test sets it directly — SubscriptionManager is a class, direct assignment works",
+          "description": "The TDD anchor 'test_isPremium_defaults_to_false' requires that a new SubscriptionManager starts with isPremium == false. The existing SubscriptionManager.init() calls Task { await checkEntitlements() } which is async and runs on a background task. In a unit test synchronous context, isPremium will be false initially before the async task runs — so the test will pass, but for the wrong reason if the task races. The existing GameViewModelTests work around this by setting sub.isPremium = true directly after initialization (confirmed in GameViewModelTests.swift lines 62-63). This pattern works because @Published var isPremium: Bool is settable from the outside (no private(set)). The task should note this test pattern explicitly.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Services/SubscriptionManager.swift",
+          "evidence": "SubscriptionManager.swift lines 4-5: '@Published var isPremium: Bool = false' — public setter, no private(set). GameViewModelTests.swift line 63: 'sub.isPremium = true' used throughout existing tests."
+        },
+        {
+          "id": "T5-I1",
+          "severity": "info",
+          "category": "security",
+          "title": "checkVerified and listenForTransactions preservation correctly identified",
+          "description": "The task correctly identifies that checkVerified() (VerificationResult unwrapping) and listenForTransactions() (refund/revocation detection) must be preserved. Both are present in the current implementation (lines 74-92) and are critical security controls for a non-consumable IAP. The security analysis in the task is accurate.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Services/SubscriptionManager.swift",
+          "evidence": "SubscriptionManager.swift lines 74-92 confirmed present."
+        }
+      ]
+    },
+    "6": {
+      "title": "OnboardingView -- 3 difficulty cards",
+      "status": "changes_required",
+      "summary": "The task accurately describes the current state of OnboardingView and the changes required. All file references and code locations are verified correct. One critical gap: the task misses that DifficultyPickerSheet in LabyrinthGridView.swift has its OWN copy of the levelColors dictionary with the same 5-entry .beginner/.expert entries. After Task 2 removes those enum cases, DifficultyPickerSheet will fail to compile if not updated. The task scope is limited to OnboardingView.swift only and does not mention this companion update.",
+      "findings": [
+        {
+          "id": "T6-C1",
+          "severity": "critical",
+          "category": "reality",
+          "title": "DifficultyPickerSheet in LabyrinthGridView.swift has its own 5-entry levelColors — will fail to compile after Task 2",
+          "description": "Task 6 modifies only OnboardingView.swift. However, LabyrinthGridView.swift contains DifficultyPickerSheet (lines 333-384) which has its own private levelColors dictionary with all 5 DifficultyLevel cases including .beginner and .expert (lines 337-343). After Task 2 removes .beginner and .expert from the DifficultyLevel enum, DifficultyPickerSheet's levelColors dictionary will produce compile errors ('type DifficultyLevel has no member beginner', 'type DifficultyLevel has no member expert'). This is not addressed in Task 6's scope. Since Task 6 has 'verify: bash — xcodebuild build', the build will fail unless DifficultyPickerSheet is also updated. The task either needs to expand its scope to include DifficultyPickerSheet or acknowledge this as a known build-breaking dependency on Task 9 (which does update LabyrinthGridView). Code-research.md line 113 explicitly flags this: 'DifficultyCard is also reused by DifficultyPickerSheet in LabyrinthGridView. Both must be updated to 3 levels.'",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/LabyrinthGridView.swift",
+          "evidence": "LabyrinthGridView.swift lines 337-343: DifficultyPickerSheet.levelColors has .beginner and .expert entries. Task 6 modifies only OnboardingView.swift. code-research.md line 113 explicitly notes both must be updated."
+        },
+        {
+          "id": "T6-W1",
+          "severity": "warning",
+          "category": "reality",
+          "title": "Task depends on Task 4 (LabyrinthLoader) but the actual dependency for sample path loading is only Task 1 (difficulty_samples.json) and Task 2 (DifficultyLevel enum)",
+          "description": "Task 6 header says 'depends_on: [2, 4]'. The OnboardingView's loadSamplePath() function (lines 55-62) decodes difficulty_samples.json as [String: String] and looks up level.rawValue. This does not use LabyrinthLoader at all. Task 4 (LabyrinthLoader + StoryInfo) adds no functionality that OnboardingView consumes. The Task 4 dependency is spurious. The real dependencies are Task 2 (DifficultyLevel enum must exist with 3 cases) and Task 1 (difficulty_samples.json must have easy/medium/hard keys). The spurious Task 4 dependency may cause unnecessary wave ordering delays.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/OnboardingView.swift",
+          "evidence": "OnboardingView.swift lines 55-62: loadSamplePath uses Bundle.main.url + JSONDecoder directly, no LabyrinthLoader reference anywhere in OnboardingView.swift."
+        },
+        {
+          "id": "T6-W2",
+          "severity": "warning",
+          "category": "reality",
+          "title": "UserPreferences.init() hardcodes DifficultyLevel.beginner as default — Task 2 must change this before Task 6 code compiles",
+          "description": "UserPreferences.swift line 38: 'let savedLevel = defaults.string(forKey: \"difficultyLevel\") ?? DifficultyLevel.beginner.rawValue' and line 39: 'self.difficultyLevel = DifficultyLevel(rawValue: savedLevel) ?? .beginner'. After Task 2 removes .beginner, both references fail to compile. Task 6 reads UserPreferences via @EnvironmentObject. While Task 6 does not modify UserPreferences.swift, the build will fail until Task 2 fixes UserPreferences.init(). The task correctly notes 'depends_on: [2]' for this reason. This is an accurate dependency, but the task description should clarify that UserPreferences.init() needs the .beginner -> .easy migration specifically (which is in Task 2's scope).",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Models/UserPreferences.swift",
+          "evidence": "UserPreferences.swift lines 38-39 reference .beginner which Task 2 will remove. Task 2 description mentions this: 'Add graceful fallback for old UserDefaults values'."
+        },
+        {
+          "id": "T6-W3",
+          "severity": "warning",
+          "category": "implementation",
+          "title": "Analytics.send call references TelemetryDeck — verify Analytics API matches usage",
+          "description": "Task 6 step 5 says 'Analytics.send(\"Onboarding.difficultySelected\") call with level.rawValue still works'. The current OnboardingView.swift line 31 calls: Analytics.send(\"Onboarding.difficultySelected\", with: [\"level\": level.rawValue]). After Task 2, level.rawValue will be \"easy\"/\"medium\"/\"hard\" instead of \"beginner\"/\"easy\"/\"medium\"/\"hard\"/\"expert\". This is correct behavior — TelemetryDeck will simply record the new values. No code change needed here, but the task should confirm the Analytics.send signature matches actual usage (two-argument form with dictionary).",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/OnboardingView.swift",
+          "evidence": "OnboardingView.swift line 31: Analytics.send(\"Onboarding.difficultySelected\", with: [\"level\": level.rawValue])"
+        },
+        {
+          "id": "T6-I1",
+          "severity": "info",
+          "category": "feasibility",
+          "title": "DifficultyCard struct is defined in OnboardingView.swift and shared via same file — no import needed",
+          "description": "DifficultyCard (lines 65-121 of OnboardingView.swift) is referenced by both OnboardingView and DifficultyPickerSheet (in LabyrinthGridView.swift). Since DifficultyCard is a top-level struct in the same module, it is accessible from LabyrinthGridView without any import. The levelNumber computed property update in DifficultyCard (from 5-case to 3-case switch) will automatically benefit DifficultyPickerSheet once updated.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/OnboardingView.swift",
+          "evidence": "DifficultyCard defined at OnboardingView.swift line 65 as top-level struct. DifficultyPickerSheet at LabyrinthGridView.swift line 354 uses DifficultyCard(...) directly."
+        },
+        {
+          "id": "T6-I2",
+          "severity": "info",
+          "category": "reality",
+          "title": "ForEach(DifficultyLevel.allCases) auto-adjusts to 3 items after Task 2 — correctly noted",
+          "description": "Task 6 correctly states that ForEach(DifficultyLevel.allCases, id: \\.self) in OnboardingView.swift line 23 will automatically yield 3 items after Task 2 reduces the enum to 3 cases. No change needed to the ForEach itself. The same applies to DifficultyPickerSheet line 353.",
+          "file": "LowDopamineLabyrinth/LowDopamineLabyrinth/Views/OnboardingView.swift",
+          "evidence": "OnboardingView.swift line 23: ForEach(DifficultyLevel.allCases, id: \\.self)"
+        }
+      ]
+    }
+  },
+  "cross_task": [
+    {
+      "id": "XT-1",
+      "severity": "critical",
+      "title": "Manifest schema must be agreed between Task 1 and Task 4 before Task 4 can be implemented",
+      "description": "Task 1 (content files) produces the new manifest.json with pack/story grouping metadata. Task 4 must decode exactly what Task 1 produces. Currently tech-spec and code-research describe different schema structures ('packs' vs 'stories' as the top-level grouping key). This ambiguity must be resolved in Task 1 before Task 4 begins. Recommend: tech-spec schema wins (uses 'packs' key), and Task 4's PackInfo struct matches it exactly.",
+      "tasks_affected": [1, 4]
+    },
+    {
+      "id": "XT-2",
+      "severity": "critical",
+      "title": "DifficultyPickerSheet update falls in the gap between Task 6 and Task 9",
+      "description": "Task 6 updates OnboardingView's levelColors and DifficultyCard.levelNumber. Task 9 updates LabyrinthGridView's lock logic. DifficultyPickerSheet's own levelColors dictionary (LabyrinthGridView.swift lines 337-343) is not explicitly in either task's file list. After Task 2 removes .beginner/.expert from the enum, the build will fail at DifficultyPickerSheet immediately. Either Task 6 or Task 9 must own this fix. Given Task 6 is Wave 3 and Task 9 is Wave 4, Task 6 is the right place to fix it (or explicitly call it out as a blocker).",
+      "tasks_affected": [6, 9]
+    },
+    {
+      "id": "XT-3",
+      "severity": "warning",
+      "title": "Task 5 compatibility shim for PaywallView must be explicitly required, not 'recommended'",
+      "description": "Task 5 recommends (not requires) adding a 'var products: [Product]' shim. If the shim is skipped, the Task 5 build verification will fail. Since Task 7 (PaywallView rewrite, Wave 3) is the only consumer, and the waves are sequential, the shim is mandatory for any build check between Task 5 and Task 7 completion.",
+      "tasks_affected": [5, 7]
+    }
+  ],
+  "verified_correct": [
+    "Task 4: File paths for Labyrinth.swift and LabyrinthLoader.swift are correct",
+    "Task 4: Labyrinth struct fields match what is in source (all properties including ageRange, difficulty, characterEnd, itemRule are present)",
+    "Task 4: loadAll() cache mechanism is accurately described",
+    "Task 4: LabyrinthLoader.loadForDifficulty() filter logic '$0.difficulty == level.rawValue' will work correctly once Task 1 and Task 2 rename difficulty values and enum cases",
+    "Task 4: storyNumber/levelName parsing via split(separator: '_') is the correct approach for 'denny_NNN_difficulty' pattern",
+    "Task 5: All 3 current product IDs (labyrinth_unlimited_monthly/yearly/lifetime) correctly identified",
+    "Task 5: SubscriptionManager.swift is 97 lines, all key methods (loadProducts, purchase, restorePurchases, checkEntitlements, listenForTransactions, checkVerified) exist at described locations",
+    "Task 5: PaywallView callers correctly enumerated (subscriptionManager.products, .purchase(), .loadProducts(), .restorePurchases())",
+    "Task 5: GameViewModel uses only subscriptionManager.isPremium — no other SubscriptionManager API used",
+    "Task 5: StoreKit 2 Transaction.currentEntitlements correctly described for non-consumable handling",
+    "Task 6: OnboardingView.swift exists at correct path and has exactly the structure described (5-entry levelColors, 5-case DifficultyCard.levelNumber switch, ForEach 0..<5 dots)",
+    "Task 6: loadSamplePath() decodes difficulty_samples.json as [String: String] and uses level.rawValue — correctly described",
+    "Task 6: Analytics.send() call exists at line 31 with correct argument format",
+    "Task 6: DifficultyCard is defined in OnboardingView.swift (not a separate file)",
+    "Task 6: ContentView is a simple 2-state router (onboarding flag only) — Task 8 handles the bookshelf insertion, not Task 6"
+  ]
+}

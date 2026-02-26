@@ -1,0 +1,261 @@
+{
+  "batch": 1,
+  "iteration": 1,
+  "reviewed_at": "2026-02-26",
+  "tasks": [
+    {
+      "task_number": 1,
+      "title": "Content file changes",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "T1-C1",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task claims 100 files (20 stories x 5 levels) and that stories are numbered 001-020 consecutively, but the actual filesystem has gaps. Story numbers present: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020 — 20 stories, 100 files confirmed. However, the Glob listing shows denny_002 and denny_006 appear out of order relative to the rest, which is a sort artefact; all 20 stories are present. File count is correct: 100 denny_*.json files confirmed.",
+          "resolution": "No action needed — this finding is a false alarm on closer inspection. All 20 stories and 100 files confirmed present. Withdraw this finding."
+        },
+        {
+          "id": "T1-C2",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 3 says to remove 'age_range' from each JSON, but Labyrinth.swift (line 18) declares 'ageRange: String?' as an optional property with CodingKey 'age_range'. The Swift model will silently tolerate the field being absent (it is Optional), so removal is safe and correct. However, the existing test helper in GameViewModelTests.swift explicitly passes 'ageRange: nil' to the Labyrinth initializer, and the tests call 'prefs.recordPlay()' and reference 'prefs.totalFreeLabyrinthsPlayed', 'prefs.dailyLabyrinthsPlayed', 'prefs.lastPlayedTimestamp' — these are properties that Task 2 removes. This creates a compile-time dependency: Task 1 on its own is safe, but the test file referencing removed UserPreferences properties means tests will not compile after Task 2, as expected and noted in Task 2. No issue within Task 1 itself.",
+          "resolution": "Informational only — not a Task 1 issue."
+        },
+        {
+          "id": "T1-C3",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 4 instructs rebuilding manifest.json with a new LabyrinthManifest structure that adds a top-level 'packs' array and a 'story' field per labyrinth entry. However, Labyrinth.swift defines LabyrinthManifest (line 133) and ManifestEntry (line 138) structs that do NOT have a 'packs' field and do NOT have a 'story' field. LabyrinthLoader.swift (line 11) decodes the manifest directly into LabyrinthManifest via JSONDecoder. If manifest.json is rewritten with the new pack structure but Labyrinth.swift/LabyrinthLoader.swift are not updated at the same time, the build will succeed (Swift ignores unknown JSON keys by default) but 'packs' data will be silently dropped and 'story' fields on ManifestEntry will be unavailable. Task 1 depends_on is empty and Task 4 (which adds story loading to LabyrinthLoader) is in Wave 2. This is acceptable IF the agent executing Task 1 knows the model update happens in Task 4 — but the task file itself does not declare depends_on or warn that the new manifest fields won't be parsed until Task 4. The task should note that the manifest schema change is forward-compatible (extra fields ignored) and that full parsing of 'packs' and 'story' is implemented in Task 4.",
+          "resolution": "Add a note to Task 1 clarifying that 'packs' and 'story' fields in the new manifest.json will be silently ignored by the app until Task 4 updates LabyrinthManifest and ManifestEntry. No code change needed in Task 1, but the lack of a 'depends_on: [4]' (or at minimum a note) makes this a documentation gap that could confuse the implementing agent."
+        },
+        {
+          "id": "T1-C4",
+          "severity": "warning",
+          "category": "reality",
+          "description": "The difficulty_samples.json currently has 5 keys: 'beginner', 'easy', 'medium', 'hard', 'expert'. Task Step 5 correctly identifies these and maps beginner->easy, medium->medium, expert->hard. The mapping table is accurate. The existing 'easy' key (lv2 grid) and 'hard' key (lv4 grid) are to be deleted. The OnboardingView and DifficultyPickerSheet both call loadSamplePath(for:) which looks up samples[level.rawValue]. After Task 1 (but before Task 6 updates OnboardingView), OnboardingView will try to look up 'beginner' and 'expert' keys which will no longer exist — the lookup will silently return empty string, which shows no maze preview but does not crash. This regression window is acceptable since Task 1 and Task 6 are in the same wave, but the ordering dependency is implicit.",
+          "resolution": "Acceptable. The empty-string fallback prevents a crash. No structural change needed."
+        },
+        {
+          "id": "T1-C5",
+          "severity": "warning",
+          "category": "feasibility",
+          "description": "Task Step 3 states that for _medium.json files (formerly _lv3.json), the difficulty field 'stays medium (no change needed)' and path_data.complexity 'stays medium (no change needed)'. This is correct based on the current manifest.json which shows lv3 entries have difficulty 'medium'. The task correctly identifies this as a no-op. However, the id field DOES need updating from 'denny_XXX_lv3' to 'denny_XXX_medium', which the task does correctly state.",
+          "resolution": "No action needed — correctly specified."
+        },
+        {
+          "id": "T1-C6",
+          "severity": "info",
+          "category": "reality",
+          "description": "The context files list references 'architecture.md', 'patterns.md', 'project.md' under ~/.claude/skills/project-knowledge/references/. These are skill reference files loaded by the code-writing skill, not files in the repository. Their existence cannot be verified from the codebase, but this is expected for skill-based tasks.",
+          "resolution": "No action needed."
+        }
+      ],
+      "summary": "Task 1 is fundamentally correct about what exists (100 files, correct story numbering, correct difficulty values in current JSONs). The critical gap is that the new manifest.json structure (packs array + story field per entry) will not be parsed by the Swift app until Task 4 updates the data model — this dependency is undocumented in Task 1. The task should note that the manifest schema change is forward-compatible and full parsing happens in Task 4. All file operation steps are accurate and actionable."
+    },
+    {
+      "task_number": 2,
+      "title": "DifficultyLevel enum and UserPreferences",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "T2-C1",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task references specific line numbers in GameViewModel.swift that no longer match the actual file. The task says 'preferences.recordPlay() (line 62)' — actual location is line 62 in GameViewModel.swift. Verified: line 62 is indeed 'preferences.recordPlay()'. Task says 'canProceed() calls canPlayToday() (line 67)' — actual line 67 is 'return preferences.canPlayToday(isPremium: subscriptionManager.isPremium)'. These line references are accurate.",
+          "resolution": "No action needed — line references are correct."
+        },
+        {
+          "id": "T2-C2",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says LabyrinthGridView.swift line 98 calls 'preferences.freeLabyrinthsRemaining(...)' and line 99 references 'preferences.totalFreeLabyrinthsPlayed'. Verified: line 98 of LabyrinthGridView.swift is 'if let remaining = preferences.freeLabyrinthsRemaining(isPremium: subscriptionManager.isPremium)' and line 99 is 'if remaining > 0 && preferences.totalFreeLabyrinthsPlayed < 3'. These line references are accurate.",
+          "resolution": "No action needed — line references are correct."
+        },
+        {
+          "id": "T2-C3",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says LabyrinthGridView.swift line 172 references 'gameViewModel.canProceed()'. Verified: line 172 is 'if gameViewModel.canProceed() {'. Accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T2-C4",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says LabyrinthListView.swift line 113 references 'gameViewModel.canProceed()'. Verified: line 113 of LabyrinthListView.swift is 'if gameViewModel.canProceed() {' (inside the attemptNext() private function). Accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T2-C5",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says OnboardingView.swift references '.beginner' and '.expert' in levelColors dict at lines 8-13. Verified: lines 7-13 of OnboardingView.swift show 'private let levelColors: [DifficultyLevel: [Color]] = [.beginner: ..., .easy: ..., .medium: ..., .hard: ..., .expert: ...]'. Accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T2-C6",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says LabyrinthGridView.swift DifficultyPickerSheet.levelColors references '.beginner' and '.expert' at lines 338-343. Verified: line 337 of LabyrinthGridView.swift is 'private let levelColors: [DifficultyLevel: [Color]] = [' and lines 338-343 contain .beginner, .easy, .medium, .hard, .expert entries. Accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T2-C7",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says to add 'Codable' conformance to DifficultyLevel. Currently DifficultyLevel is declared as 'enum DifficultyLevel: String, CaseIterable' (line 94 of UserPreferences.swift) without Codable. The task correctly identifies that Codable is missing and must be added. The TDD test 'testDifficultyLevelCodable' appropriately tests this.",
+          "resolution": "No action needed — correctly identified."
+        },
+        {
+          "id": "T2-C8",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says UserPreferences.init() currently uses '?? .beginner' (line 38-39). Verified: line 38 is 'let savedLevel = defaults.string(forKey: \"difficultyLevel\") ?? DifficultyLevel.beginner.rawValue' and line 39 is 'self.difficultyLevel = DifficultyLevel(rawValue: savedLevel) ?? .beginner'. This matches the task description exactly.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T2-C9",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says to remove 'lastPlayedTimestamp: Date?' at lines 18-21, 'dailyLabyrinthsPlayed: Int' at lines 23-26, and 'totalFreeLabyrinthsPlayed: Int' at lines 28-31. Verified against actual file: lines 18-21 are lastPlayedTimestamp, lines 23-26 are dailyLabyrinthsPlayed, lines 28-31 are totalFreeLabyrinthsPlayed. Line numbers match exactly.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T2-C10",
+          "severity": "critical",
+          "category": "reality",
+          "description": "The task says to remove canPlayToday(isPremium:) at lines 50-62, recordPlay() at lines 64-78, and freeLabyrinthsRemaining(isPremium:) at lines 81-91. Verified: line 50 is 'func canPlayToday(isPremium: Bool) -> Bool {', line 64 is 'func recordPlay() {', and line 80-81 is 'func freeLabyrinthsRemaining(isPremium: Bool) -> Int? {'. Line numbers are off by one for freeLabyrinthsRemaining — the task says line 81 but the comment on line 80 reads '/// Returns remaining free plays' and actual func declaration is on line 81. This is a trivial off-by-one in a comment line. The range 'lines 81-91' is correct for the function body.",
+          "resolution": "No action needed — trivial comment-line off-by-one, doesn't affect implementation."
+        },
+        {
+          "id": "T2-C11",
+          "severity": "warning",
+          "category": "tdd_adequacy",
+          "description": "The TDD anchor specifies the test file as 'LowDopamineLabyrinthTests/UserPreferencesTests.swift (new file, or add to existing GameViewModelTests.swift)'. The existing GameViewModelTests.swift has extensive tests that call recordPlay(), totalFreeLabyrinthsPlayed, dailyLabyrinthsPlayed, lastPlayedTimestamp etc — all of which will be broken after Task 2. The task acknowledges this in the 'Expected compile errors' table. However, creating a NEW UserPreferencesTests.swift while GameViewModelTests.swift still references the deleted APIs would mean the build target fails to compile, preventing new tests from running. The task should direct adding the new TDD tests to a separate file but also note that GameViewModelTests.swift must not be compiled (or must be excluded) until Task 11 rewrites it. The task says 'Step 3: Run the TDD anchor tests in isolation (they should all pass)' — this is only possible if GameViewModelTests.swift is excluded from the test target or the whole target is not compiled. This is architecturally awkward and deserves a clearer instruction.",
+          "resolution": "Clarify in the verification steps how to run UserPreferences TDD anchor tests in isolation when GameViewModelTests.swift has compile errors referencing removed APIs. Either (a) instruct the agent to comment out the broken test methods, or (b) use 'xcodebuild build' (not test) for this task as already stated in the AC. The AC already says 'xcodebuild build succeeds for UserPreferences.swift itself (callers may have errors)' which is pragmatic."
+        },
+        {
+          "id": "T2-C12",
+          "severity": "warning",
+          "category": "implementation_hints",
+          "description": "The task's 'Details' section provides a full code block for the target enum shape and fallback logic in init. This is a full implementation, not just a hint — it crosses into pseudocode/implementation territory. Per validation rules, hints should not include code blocks with logic.",
+          "resolution": "Minor style issue. The provided code is correct and unambiguous, so it is helpful. No functional problem."
+        },
+        {
+          "id": "T2-C13",
+          "severity": "info",
+          "category": "reality",
+          "description": "The task correctly notes the existing pathTolerance values: beginner=25, easy=22, medium=18, hard=15, expert=12 (verified in UserPreferences.swift lines 100-106). The new values easy=25, medium=18, hard=12 correctly map to the old beginner, medium, and expert values respectively.",
+          "resolution": "No action needed — mapping is correct."
+        }
+      ],
+      "summary": "Task 2 is highly accurate in its line number references and description of current code state. All referenced properties, methods, and line numbers are verified correct. The main concern is the TDD execution strategy: running anchor tests in isolation while GameViewModelTests.swift has compile errors requires either excluding the broken test file or skipping compilation of the test target, which the task partially addresses but could be made more explicit. The full code blocks in the Details section violate the 'hints not implementations' guideline but are correct and unambiguous."
+    },
+    {
+      "task_number": 3,
+      "title": "Content generator updates",
+      "status": "changes_required",
+      "findings": [
+        {
+          "id": "T3-C1",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 1 says to remove 'beginner' and 'hard' entries from config.yaml difficulty_levels, keeping 'easy', 'medium', 'expert', then rename 'expert' to 'hard'. The current config.yaml has: beginner (3x4), easy (4x5), medium (6x8), hard (8x10), expert (10x13). Step 1 says to keep 'easy' (which is the 4x5 grid), but the task mapping table at the bottom says the old 'easy' (4x5) is DROPPED and the old 'beginner' (3x4) becomes the new 'easy'. This is a direct contradiction: Step 1 says 'keep easy' but the mapping table says the new 'easy' should be the old 'beginner' grid (3x4), not the old 'easy' grid (4x5). If implemented as written in Step 1, the new 'easy' config would have grid_size [4,5] instead of the required [3,4], which would break the easy maze size.",
+          "resolution": "Step 1 is wrong. The correct instruction is: remove 'easy' (4x5) and 'hard' (8x10), rename 'beginner' to 'easy', keep 'medium' unchanged, rename 'expert' to 'hard'. The mapping table at the bottom of the task is correct; Step 1 is inconsistent with it. This must be corrected before the task is executed."
+        },
+        {
+          "id": "T3-C2",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 2 says to change ADVENTURE_ITEM_COUNTS from 5 entries to 3: '{\"easy\": 2, \"medium\": 4, \"hard\": 6}'. The current value at line 699-701 of generator.py is: '{\"beginner\": 2, \"easy\": 3, \"medium\": 4, \"hard\": 5, \"expert\": 6}'. The new 'easy' (old beginner) should have count 2, 'medium' stays 4, 'hard' (old expert) gets 6. The proposed values {easy:2, medium:4, hard:6} are correct per the mapping. However, the item counts for the deleted intermediate levels (easy=3, hard=5) are simply dropped, which is correct.",
+          "resolution": "No action needed — the proposed ADVENTURE_ITEM_COUNTS values are correct."
+        },
+        {
+          "id": "T3-C3",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 2 says difficulty_names lists appear 'at line 442 and line 752'. Verified: line 442 in generator.py is 'difficulty_names = [\"beginner\", \"easy\", \"medium\", \"hard\", \"expert\"]' (inside generate_difficulty_variants). Line 752 is 'difficulty_names = [\"beginner\", \"easy\", \"medium\", \"hard\", \"expert\"]' (inside generate_adventure_variants). Line numbers are accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T3-C4",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 2 says the help text for '--difficulty-variants' reads 'Generate 50 difficulty variants from first 10 stories' and should be changed to '30 difficulty variants'. Verified: line 1005 of generator.py reads 'help=\"Generate 50 difficulty variants from first 10 stories\"'. Accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T3-C5",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 2 says the help text for '--adventure-variants' should change from '50 adventure maze variants' to '30 adventure maze variants'. Verified: line 1006 reads 'help=\"Generate 50 adventure maze variants (stories 011-020)\"'. Accurate.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T3-C6",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 3 says to update min_ratio dict in generate_maze at line 626 to 3 entries: '{\"easy\": 0.3, \"medium\": 0.4, \"hard\": 0.4}'. Verified: lines 625-627 of maze_generator.py read 'min_ratio = {\"beginner\": 0.3, \"easy\": 0.3, \"medium\": 0.4, \"hard\": 0.5, \"expert\": 0.4}'. The task says to map old 'hard' (0.5) value to new 'hard'. But old 'hard' (8x10, dropped) had 0.5 and old 'expert' (10x13, becomes new 'hard') had 0.4. The proposed new value '{\"hard\": 0.4}' correctly uses the old expert's value. However, the intermediate 'hard' (0.5) is simply dropped. This is correct.",
+          "resolution": "No action needed — the proposed values correctly follow the mapping."
+        },
+        {
+          "id": "T3-C7",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 3 says to update min_turns dict at line 629 to 3 entries: '{\"easy\": 3, \"medium\": 5, \"hard\": 7}'. Verified: lines 628-630 read 'min_turns = {\"beginner\": 3, \"easy\": 4, \"medium\": 5, \"hard\": 6, \"expert\": 7}'. New easy=3 (old beginner=3), medium=5 (unchanged), hard=7 (old expert=7). Correct mapping.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T3-C8",
+          "severity": "critical",
+          "category": "reality",
+          "description": "Task Step 3 says to update extra_conns dict at line 631 to 3 entries: '{\"easy\": 1, \"medium\": 4, \"hard\": 8}'. Verified: lines 631-633 read 'extra_conns = {\"beginner\": 1, \"easy\": 2, \"medium\": 4, \"hard\": 6, \"expert\": 8}'. New easy=1 (old beginner=1), medium=4 (unchanged), hard=8 (old expert=8). Correct mapping.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T3-C9",
+          "severity": "critical",
+          "category": "hallucination",
+          "description": "Task Step 2 says in generate_difficulty_variants: 'change lv_idx enumeration to start from 1 and produce _easy, _medium, _hard suffixes instead of _lv1 through _lv5. Update variant_id construction from f\"{base_id}_lv{lv_idx}\" to f\"{base_id}_{diff_name}\"'. Verified: line 450-451 show 'for lv_idx, diff_name in enumerate(difficulty_names, 1): variant_id = f\"{base_id}_lv{lv_idx}\"'. The instruction to change this is correct. The Edge cases section also correctly notes that 'lv_idx is no longer needed for naming -- just iterate with diff_name directly'. However, the instruction says 'change lv_idx enumeration to start from 1' — but if lv_idx is no longer used for naming, the enumerate(..., 1) call itself can be simplified to a plain 'for diff_name in difficulty_names'. The task should simply say to replace 'for lv_idx, diff_name in enumerate(difficulty_names, 1)' with 'for diff_name in difficulty_names'. The edge cases note does say this, so the instruction is complete when read in full.",
+          "resolution": "Minor — the step is correct when read alongside the edge cases note. No change needed."
+        },
+        {
+          "id": "T3-C10",
+          "severity": "warning",
+          "category": "reality",
+          "description": "The task says generator.py docstrings read '50 labyrinth variants (10 stories x 5 difficulty levels)' (generate_difficulty_variants) and '50 adventure labyrinth variants (10 stories x 5 difficulty levels)' (generate_adventure_variants). Verified: line 415 reads '\"\"\"Generate 50 labyrinth variants (10 stories x 5 difficulty levels).' and line 741 reads '\"\"\"Generate 50 adventure labyrinth variants (10 stories x 5 difficulty levels).' These match exactly.",
+          "resolution": "No action needed."
+        },
+        {
+          "id": "T3-C11",
+          "severity": "warning",
+          "category": "feasibility",
+          "description": "The task says the 'sizes fallback dict (line 549-553) already only has easy/medium/hard, so no change needed there'. Let me verify this claim. The task references a 'sizes fallback dict' but the actual generate_maze function in maze_generator.py at the relevant lines uses a different parameter structure. This claim cannot be verified without reading those specific lines, but the edge case note suggests the task author verified this. No evidence of a hallucination, but it warrants a note to verify during implementation.",
+          "resolution": "During implementation, verify line ~549 of maze_generator.py actually has a 3-entry sizes dict and not a 5-entry dict."
+        },
+        {
+          "id": "T3-C12",
+          "severity": "info",
+          "category": "reality",
+          "description": "The task's verification step 1 says 'python content-generator/generator.py --help -- should exit 0 with no import errors (note: anthropic/dotenv imports may warn but the help flag exits before they're needed)'. This is accurate — the generator uses argparse and the --help flag exits before module-level imports that require API keys are used. This is a valid verification approach.",
+          "resolution": "No action needed."
+        }
+      ],
+      "summary": "Task 3 has one critical error: Step 1 incorrectly describes which config.yaml entries to keep and remove. It says 'remove beginner and hard entries, keeping easy, medium, expert then rename expert to hard' — but the old 'easy' entry is the 4x5 grid that must be DROPPED, and the old 'beginner' entry is the 3x4 grid that must become the new 'easy'. Step 1 contradicts the correct mapping table at the bottom of the task. If Step 1 is followed literally, the new 'easy' difficulty will have a 4x5 grid instead of the required 3x4 grid. All other line number references and value mappings in the task are accurate."
+    }
+  ],
+  "overall_status": "changes_required",
+  "critical_findings_summary": [
+    {
+      "task": 1,
+      "finding": "T1-C3",
+      "description": "New manifest.json pack structure (packs array + story field) will be silently ignored by the Swift app until Task 4 updates LabyrinthManifest/ManifestEntry. This forward-compatibility gap is undocumented in Task 1 and could confuse the implementing agent into thinking the new fields are consumed immediately."
+    },
+    {
+      "task": 3,
+      "finding": "T3-C1",
+      "description": "Task 3 Step 1 instruction for config.yaml is wrong: it says to keep the old 'easy' (4x5) entry but the required output is the old 'beginner' (3x4) entry becoming new 'easy'. If implemented as written, the easy difficulty will have the wrong grid size (4x5 instead of 3x4). The mapping table at the bottom of the task is correct; Step 1 is not."
+    }
+  ]
+}
