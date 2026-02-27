@@ -59,11 +59,33 @@ class GameViewModel: ObservableObject {
     func completeCurrentLabyrinth() {
         if let lab = currentLabyrinth {
             progressTracker.markCompleted(lab.id)
-            preferences.recordPlay()
         }
     }
 
-    func canProceed() -> Bool {
-        return preferences.canPlayToday(isPremium: subscriptionManager.isPremium)
+    // MARK: - Story Locking
+
+    /// Extracts the story number from a labyrinth ID (e.g., "denny_005_easy" -> 5)
+    func storyNumber(for labyrinth: Labyrinth) -> Int? {
+        let parts = labyrinth.id.split(separator: "_")
+        guard parts.count >= 2, let number = Int(parts[1]) else { return nil }
+        return number
+    }
+
+    /// Returns true if the story is locked (stories 4+ locked for non-premium users)
+    func isStoryLocked(_ storyNumber: Int) -> Bool {
+        return storyNumber > 3 && !isPremium
+    }
+
+    /// Checks whether all 3 difficulty levels of the current labyrinth's story are completed
+    var isStoryComplete: Bool {
+        guard let lab = currentLabyrinth,
+              let story = storyNumber(for: lab) else { return false }
+        let paddedStory = String(format: "%03d", story)
+        let easyId = "denny_\(paddedStory)_easy"
+        let mediumId = "denny_\(paddedStory)_medium"
+        let hardId = "denny_\(paddedStory)_hard"
+        return progressTracker.completedIds.contains(easyId)
+            && progressTracker.completedIds.contains(mediumId)
+            && progressTracker.completedIds.contains(hardId)
     }
 }

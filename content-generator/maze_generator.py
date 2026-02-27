@@ -81,15 +81,54 @@ class MazeGenerator:
                 turns += 1
         return turns
 
+    def _add_extra_connections(self, count: int, mask: Optional[set] = None):
+        """Remove extra internal walls to create loops/cycles in the maze.
+
+        Finds all walls between two adjacent in-maze cells and randomly
+        removes `count` of them, giving the player multiple route choices.
+        """
+        # Collect all internal walls (between two adjacent visited cells that still have a wall)
+        internal_walls = []
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if mask and (r, c) not in mask:
+                    continue
+                cell = self.grid[r][c]
+                # Check right wall
+                if cell.walls["right"] and c + 1 < self.cols:
+                    if not mask or (r, c + 1) in mask:
+                        internal_walls.append((r, c, "right"))
+                # Check bottom wall
+                if cell.walls["bottom"] and r + 1 < self.rows:
+                    if not mask or (r + 1, c) in mask:
+                        internal_walls.append((r, c, "bottom"))
+
+        random.shuffle(internal_walls)
+        removed = 0
+        for r, c, direction in internal_walls:
+            if removed >= count:
+                break
+            cell = self.grid[r][c]
+            if direction == "right":
+                neighbor = self.grid[r][c + 1]
+                cell.walls["right"] = False
+                neighbor.walls["left"] = False
+            elif direction == "bottom":
+                neighbor = self.grid[r + 1][c]
+                cell.walls["bottom"] = False
+                neighbor.walls["top"] = False
+            removed += 1
+
     def generate(self, start: Tuple[int, int] = (0, 0), mask: Optional[set] = None,
                  end: Optional[Tuple[int, int]] = None, min_solution_ratio: float = 0.0,
-                 min_turns: int = 0):
+                 min_turns: int = 0, extra_connections: int = 0):
         """Generate maze using recursive backtracking with optional cell mask.
 
         If min_solution_ratio > 0 and end is provided, regenerates until the
         solution path visits at least that fraction of the total cells.
         min_turns enforces a minimum number of direction changes in the solution.
         This prevents trivially short or straight-line paths.
+        extra_connections: number of extra walls to remove to create loops.
         """
         total_cells = len(mask) if mask else self.rows * self.cols
         max_attempts = 50
@@ -117,6 +156,10 @@ class MazeGenerator:
                     current = next_cell
                 else:
                     current = stack.pop()
+
+            # Add extra connections (loops) after the spanning tree is built
+            if extra_connections > 0:
+                self._add_extra_connections(extra_connections, mask)
 
             # Check solution quality if requirements specified
             if end and (min_solution_ratio > 0 or min_turns > 0):
@@ -418,21 +461,42 @@ class FullMazeGenerator:
         cell_size: int,
         mask: Optional[set] = None,
     ) -> List[Dict[str, Any]]:
-        """Place collect items along the solution path only.
+        """Place collect items across solution AND branch paths.
 
-        Items are placed on cells the player will naturally pass through,
-        excluding the start and end cells.
+        ~40% of items on the solution path, ~60% on non-solution cells,
+        forcing the player to explore dead ends and alternate routes.
         """
         half = cell_size // 2
 
-        # Only use solution path cells, excluding start and end
-        path_cells = [cell for cell in solution if cell != start and cell != end]
+        solution_set = set(solution)
+        solution_cells = [c for c in solution if c != start and c != end]
 
-        random.shuffle(path_cells)
-        chosen = path_cells[:min(item_count, len(path_cells))]
+        # All reachable cells not on the solution path
+        all_cells = set()
+        for r in range(maze.rows):
+            for c in range(maze.cols):
+                if mask and (r, c) not in mask:
+                    continue
+                all_cells.add((r, c))
+        branch_cells = [c for c in all_cells if c not in solution_set and c != start and c != end]
+
+        # Split: ~40% on solution, ~60% on branches
+        on_solution_count = max(1, item_count * 2 // 5)
+        on_branch_count = item_count - on_solution_count
+
+        # If not enough branch cells, put remaining on solution
+        if len(branch_cells) < on_branch_count:
+            on_branch_count = len(branch_cells)
+            on_solution_count = item_count - on_branch_count
+
+        random.shuffle(solution_cells)
+        random.shuffle(branch_cells)
+
+        chosen_solution = solution_cells[:min(on_solution_count, len(solution_cells))]
+        chosen_branch = branch_cells[:min(on_branch_count, len(branch_cells))]
 
         items = []
-        for r, c in chosen:
+        for r, c in chosen_solution:
             x = offset_x + c * cell_size + half
             y = offset_y + r * cell_size + half
             items.append({
@@ -440,6 +504,15 @@ class FullMazeGenerator:
                 "y": y,
                 "emoji": item_emoji,
                 "on_solution": True,
+            })
+        for r, c in chosen_branch:
+            x = offset_x + c * cell_size + half
+            y = offset_y + r * cell_size + half
+            items.append({
+                "x": x,
+                "y": y,
+                "emoji": item_emoji,
+                "on_solution": False,
             })
         return items
 
@@ -550,12 +623,16 @@ class FullMazeGenerator:
         # Require solution to visit a meaningful fraction of cells
         # and have a minimum number of turns (no straight-line paths)
         min_ratio = {
-            "beginner": 0.3, "easy": 0.3, "medium": 0.4, "hard": 0.5, "expert": 0.4,
+            "easy": 0.3, "medium": 0.4, "hard": 0.4,
         }.get(difficulty, 0.3)
         min_turns = {
-            "beginner": 3, "easy": 4, "medium": 5, "hard": 6, "expert": 7,
+            "easy": 3, "medium": 5, "hard": 7,
         }.get(difficulty, 3)
-        maze.generate(start, mask, end=end, min_solution_ratio=min_ratio, min_turns=min_turns)
+        extra_conns = {
+            "easy": 1, "medium": 4, "hard": 8,
+        }.get(difficulty, 2)
+        maze.generate(start, mask, end=end, min_solution_ratio=min_ratio,
+                      min_turns=min_turns, extra_connections=extra_conns)
         solution = maze.solve(start, end)
 
         # Choose SVG rendering style
@@ -574,22 +651,37 @@ class FullMazeGenerator:
         end_x = offset_x + end[1] * cell_size + half
         end_y = offset_y + end[0] * cell_size + half
 
-        # Build segments for hit testing from solution path
+        # Build segments for hit testing from ALL open corridors (not just solution)
         segments = []
-        if solution:
-            for i in range(len(solution) - 1):
-                r1, c1 = solution[i]
-                r2, c2 = solution[i + 1]
-                segments.append({
-                    "start": {
-                        "x": offset_x + c1 * cell_size + half,
-                        "y": offset_y + r1 * cell_size + half
-                    },
-                    "end": {
-                        "x": offset_x + c2 * cell_size + half,
-                        "y": offset_y + r2 * cell_size + half
-                    }
-                })
+        for r in range(rows):
+            for c in range(cols):
+                if mask and (r, c) not in mask:
+                    continue
+                cell = maze.grid[r][c]
+                if not cell.walls["right"] and c + 1 < cols:
+                    if not mask or (r, c + 1) in mask:
+                        segments.append({
+                            "start": {
+                                "x": offset_x + c * cell_size + half,
+                                "y": offset_y + r * cell_size + half
+                            },
+                            "end": {
+                                "x": offset_x + (c + 1) * cell_size + half,
+                                "y": offset_y + r * cell_size + half
+                            }
+                        })
+                if not cell.walls["bottom"] and r + 1 < rows:
+                    if not mask or (r + 1, c) in mask:
+                        segments.append({
+                            "start": {
+                                "x": offset_x + c * cell_size + half,
+                                "y": offset_y + r * cell_size + half
+                            },
+                            "end": {
+                                "x": offset_x + c * cell_size + half,
+                                "y": offset_y + (r + 1) * cell_size + half
+                            }
+                        })
 
         if render_style == "corridor":
             maze_type = f"corridor_{shape}"

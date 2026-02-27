@@ -126,6 +126,9 @@ struct LabyrinthListView: View {
         .onAppear {
             updateVM()
         }
+        .onChange(of: preferences.ttsEnabled) { enabled in
+            if !enabled { ttsService.stop() }
+        }
         .animation(.easeInOut(duration: 0.3), value: showCompletion)
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(

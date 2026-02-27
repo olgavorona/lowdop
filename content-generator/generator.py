@@ -412,7 +412,7 @@ def generate_denny_pack(client: anthropic.Anthropic, output_dir: Path):
 
 
 def generate_difficulty_variants(source_dir: Path, output_dir: Path):
-    """Generate 50 labyrinth variants (10 stories x 5 difficulty levels).
+    """Generate 30 labyrinth variants (10 stories x 3 difficulty levels).
 
     Reuses story content from the first 10 existing JSONs (denny_001-010)
     and generates new maze data at each difficulty level's grid size.
@@ -439,7 +439,7 @@ def generate_difficulty_variants(source_dir: Path, output_dir: Path):
 
     output_dir.mkdir(parents=True, exist_ok=True)
     all_labs = []
-    difficulty_names = ["beginner", "easy", "medium", "hard", "expert"]
+    difficulty_names = ["easy", "medium", "hard"]
 
     for base_id, base in base_stories.items():
         story_num = base_id.split("_")[1]  # e.g. "001"
@@ -447,8 +447,8 @@ def generate_difficulty_variants(source_dir: Path, output_dir: Path):
         start_pos = positions.get("start")
         end_pos = positions.get("end")
 
-        for lv_idx, diff_name in enumerate(difficulty_names, 1):
-            variant_id = f"{base_id}_lv{lv_idx}"
+        for diff_name in difficulty_names:
+            variant_id = f"{base_id}_{diff_name}"
             diff_config = difficulty_levels[diff_name]
             rows, cols = diff_config["grid_size"]
             path_width = diff_config["path_width"]
@@ -697,7 +697,7 @@ ADVENTURE_STORIES = {
 
 # Item counts per difficulty for adventure mazes (all collect)
 ADVENTURE_ITEM_COUNTS = {
-    "beginner": 2, "easy": 3, "medium": 4, "hard": 5, "expert": 6,
+    "easy": 2, "medium": 4, "hard": 6,
 }
 
 
@@ -738,7 +738,7 @@ STORY_POSITIONS = {
 
 
 def generate_adventure_variants(output_dir: Path):
-    """Generate 50 adventure labyrinth variants (10 stories x 5 difficulty levels).
+    """Generate 30 adventure labyrinth variants (10 stories x 3 difficulty levels).
 
     Stories 011-020 with corridor-style mazes and collect items.
     """
@@ -749,7 +749,7 @@ def generate_adventure_variants(output_dir: Path):
 
     output_dir.mkdir(parents=True, exist_ok=True)
     all_labs = []
-    difficulty_names = ["beginner", "easy", "medium", "hard", "expert"]
+    difficulty_names = ["easy", "medium", "hard"]
 
     for story_num_str, story in ADVENTURE_STORIES.items():
         end_char_key = story["character_end"]
@@ -763,8 +763,8 @@ def generate_adventure_variants(output_dir: Path):
         start_pos = positions.get("start")
         end_pos = positions.get("end")
 
-        for lv_idx, diff_name in enumerate(difficulty_names, 1):
-            variant_id = f"denny_{story_num_str}_lv{lv_idx}"
+        for diff_name in difficulty_names:
+            variant_id = f"denny_{story_num_str}_{diff_name}"
             diff_config = difficulty_levels[diff_name]
             base_rows, base_cols = diff_config["grid_size"]
             path_width = diff_config["path_width"]
@@ -1002,8 +1002,8 @@ def main():
     parser.add_argument("--universe", type=str, choices=["denny"], help="Generate labyrinths for a character universe")
     parser.add_argument("--output", type=str, default=None, help="Output directory")
     parser.add_argument("--generate-audio", action="store_true", help="Generate ElevenLabs TTS audio for existing labyrinths")
-    parser.add_argument("--difficulty-variants", action="store_true", help="Generate 50 difficulty variants from first 10 stories")
-    parser.add_argument("--adventure-variants", action="store_true", help="Generate 50 adventure maze variants (stories 011-020)")
+    parser.add_argument("--difficulty-variants", action="store_true", help="Generate 30 difficulty variants from first 10 stories")
+    parser.add_argument("--adventure-variants", action="store_true", help="Generate 30 adventure maze variants (stories 011-020)")
     parser.add_argument("--source-dir", type=str, default=None, help="Source directory with base story JSONs (for --difficulty-variants)")
 
     args = parser.parse_args()

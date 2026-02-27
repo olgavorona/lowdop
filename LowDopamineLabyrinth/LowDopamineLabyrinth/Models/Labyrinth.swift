@@ -128,21 +128,62 @@ extension Labyrinth {
                       width: CGFloat(pathData.canvasWidth),
                       height: CGFloat(pathData.canvasHeight))
     }
+
+    /// Story number parsed from ID: "denny_005_easy" -> 5
+    var storyNumber: Int {
+        let parts = id.split(separator: "_")
+        guard parts.count >= 2, let num = Int(parts[1]) else { return 0 }
+        return num
+    }
+
+    /// Difficulty level name parsed from ID: "denny_005_easy" -> "easy"
+    var levelName: String {
+        let parts = id.split(separator: "_")
+        guard parts.count >= 3 else { return "" }
+        return String(parts.last!)
+    }
 }
 
 struct LabyrinthManifest: Codable {
     let total: Int
+    let packs: [PackInfo]?
     let labyrinths: [ManifestEntry]
+}
+
+struct PackInfo: Codable, Identifiable {
+    let id: String
+    let title: String
+    let freeStories: Int
+    let stories: [Int]
+
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case freeStories = "free_stories"
+        case stories
+    }
 }
 
 struct ManifestEntry: Codable {
     let id: String
     let difficulty: String
+    let story: Int?
     let theme: String
     let title: String
     let location: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, difficulty, theme, title, location
+        case id, difficulty, story, theme, title, location
     }
+}
+
+struct StoryInfo: Identifiable {
+    let number: Int
+    let title: String
+    let location: String
+    let characterEnd: String
+    let isFree: Bool
+    let isAdventure: Bool
+    let labyrinthIds: [String]
+
+    var id: Int { number }
 }

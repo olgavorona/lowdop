@@ -1,0 +1,203 @@
+{
+  "id": "denny_013_easy",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "bubble_lagoon",
+  "title": "Denny's Bubble Chase",
+  "story_setup": "Sandy is blowing magical bubbles in the lagoon! Denny wants to catch them all before they float away.",
+  "instruction": "Catch all the bubbles as you draw a path to reach Sandy!",
+  "tts_instruction": "Sandy is making bubbles! Help Denny catch every bubble in the lagoon as you draw a path to reach Sandy.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "little sister crab",
+    "description": "Sandy-yellow little sister crab, playful and giggly, tiny with a bow",
+    "position": "top_right",
+    "name": "Sandy",
+    "image_asset": "sandy"
+  },
+  "educational_question": "What shape are bubbles? Are they always round?",
+  "fun_fact": "Bubbles are round because the air inside pushes equally in all directions, making a sphere — the shape with the smallest surface!",
+  "completion_message": "Denny caught all of Sandy's bubbles! What fun!",
+  "item_rule": "collect",
+  "item_emoji": "🫧",
+  "path_data": {
+    "svg_path": "M 300 90 L 300 170 M 220 170 L 300 170 M 220 170 L 220 250 M 300 170 L 300 250 M 380 170 L 380 250 M 140 250 L 220 250 M 220 250 L 220 330 M 300 250 L 380 250 M 380 250 L 460 250 M 380 250 L 380 330 M 220 330 L 300 330 M 300 330 L 380 330 M 300 330 L 300 410 M 300 90 L 300 90 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 460 250 L 460 250 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 300 410 L 300 410",
+    "solution_path": "M 300 410 L 300 330 L 220 330 L 220 250 L 220 170 L 300 170 L 300 90",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_circle",
+    "start_point": {
+      "x": 300,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 330,
+        "emoji": "🫧",
+        "on_solution": true
+      },
+      {
+        "x": 380,
+        "y": 330,
+        "emoji": "🫧",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#3498DB",
+    "decorative_elements": [
+      "bubbles",
+      "water",
+      "pebbles"
+    ]
+  },
+  "audio_instruction": "denny_013_instruction.mp3",
+  "audio_completion": "denny_013_completion.mp3"
+}

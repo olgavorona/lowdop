@@ -5,11 +5,9 @@ struct OnboardingView: View {
     @State private var showPrivacyPolicy = false
 
     private let levelColors: [DifficultyLevel: [Color]] = [
-        .beginner: [Color(hex: "#81D4FA") ?? .blue, Color(hex: "#4FC3F7") ?? .blue],
-        .easy: [Color(hex: "#4FC3F7") ?? .blue, Color(hex: "#29B6F6") ?? .blue],
-        .medium: [Color(hex: "#29B6F6") ?? .blue, Color(hex: "#039BE5") ?? .blue],
-        .hard: [Color(hex: "#039BE5") ?? .blue, Color(hex: "#0277BD") ?? .blue],
-        .expert: [Color(hex: "#0277BD") ?? .blue, Color(hex: "#01579B") ?? .blue],
+        .easy: [Color(hex: "#81C784") ?? .green, Color(hex: "#66BB6A") ?? .green],
+        .medium: [Color(hex: "#FFB74D") ?? .orange, Color(hex: "#FFA726") ?? .orange],
+        .hard: [Color(hex: "#EF5350") ?? .red, Color(hex: "#E53935") ?? .red],
     ]
 
     var body: some View {
@@ -70,11 +68,9 @@ struct DifficultyCard: View {
 
     private var levelNumber: Int {
         switch level {
-        case .beginner: return 1
-        case .easy: return 2
-        case .medium: return 3
-        case .hard: return 4
-        case .expert: return 5
+        case .easy: return 1
+        case .medium: return 2
+        case .hard: return 3
         }
     }
 
@@ -108,7 +104,7 @@ struct DifficultyCard: View {
 
                 // Difficulty dots
                 HStack(spacing: 3) {
-                    ForEach(0..<5, id: \.self) { i in
+                    ForEach(0..<3, id: \.self) { i in
                         Circle()
                             .fill(i < levelNumber ? colors[0] : Color.gray.opacity(0.2))
                             .frame(width: 8, height: 8)

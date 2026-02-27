@@ -36,9 +36,16 @@ DerivedData/
 *.swp
 *.swo
 
-# Generated content (keep tracked versions)
-content-generator/output/labyrinths/*.json
-!content-generator/output/labyrinths/.gitkeep
+# Generated content
+content-generator/output/
+
+# Screenshots
+*.PNG
+*.png
+!LowDopamineLabyrinth/**/*.png
+
+# Temporary
+new/
 
 # API keys
 .env

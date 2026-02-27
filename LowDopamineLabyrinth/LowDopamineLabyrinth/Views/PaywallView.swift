@@ -9,7 +9,7 @@ struct PaywallView: View {
     var onSkip: (() -> Void)? = nil
 
     private let benefits = [
-        "100 mazes across 20 ocean stories",
+        "60 mazes across 20 ocean stories",
         "Calm, focused screen time",
         "Educational facts & narration"
     ]
@@ -25,7 +25,7 @@ struct PaywallView: View {
                     .scaledToFit()
                     .frame(height: 100)
 
-                Text("Unlock All Adventures")
+                Text("Buy Forever Access")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
 
@@ -77,21 +77,21 @@ struct PaywallView: View {
                     Text(product.displayPrice)
                         .font(.system(size: 32, weight: .bold, design: .rounded))
                         .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
-
-                    Text("Buy once, play forever")
-                        .font(.system(size: 14, design: .rounded))
-                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
                 } else {
-                    Text("Loading...")
-                        .font(.system(size: 14, design: .rounded))
-                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
+                    Text("Ocean Adventures Pack")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+
+                    Text("Loading price...")
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
                 }
 
                 // CTA button
                 Button(action: {
                     showParentalGate = true
                 }) {
-                    Text("Unlock All Adventures")
+                    Text("Buy once, play forever")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)

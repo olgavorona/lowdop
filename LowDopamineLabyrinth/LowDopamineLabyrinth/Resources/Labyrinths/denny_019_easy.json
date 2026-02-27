@@ -1,0 +1,183 @@
+{
+  "id": "denny_019_easy",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "shipwreck_playground",
+  "title": "Denny's Treasure Hunt",
+  "story_setup": "Finn discovered sparkly gems near the old shipwreck! He and Denny are on a treasure hunt to collect them all.",
+  "instruction": "Collect all the gems on your way to meet Finn at the shipwreck!",
+  "tts_instruction": "Treasure hunt! Help Denny collect every sparkling gem hidden around the shipwreck before meeting Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "If you found a treasure chest, what would you wish was inside?",
+  "fun_fact": "Real treasure has been found in shipwrecks! The Atocha shipwreck had gold and emeralds worth over 400 million dollars!",
+  "completion_message": "Denny found all the treasure! What an amazing adventure with Finn!",
+  "item_rule": "collect",
+  "item_emoji": "💎",
+  "path_data": {
+    "svg_path": "M 300 82 L 300 194 M 188 194 L 300 194 M 188 194 L 188 306 M 188 306 L 300 306 M 300 306 L 412 306 M 300 306 L 300 418 M 412 306 L 412 418 M 76 418 L 188 418 M 188 418 L 300 418 M 300 418 L 412 418 M 412 418 L 524 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
+    "solution_path": "M 188 418 L 300 418 L 300 306 L 188 306 L 188 194 L 300 194 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_mountain",
+    "start_point": {
+      "x": 188,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 418
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 188,
+        "y": 194,
+        "emoji": "💎",
+        "on_solution": true
+      },
+      {
+        "x": 76,
+        "y": 418,
+        "emoji": "💎",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E67E22",
+    "decorative_elements": [
+      "ship",
+      "treasure",
+      "porthole"
+    ]
+  },
+  "audio_instruction": "denny_019_instruction.mp3",
+  "audio_completion": "denny_019_completion.mp3"
+}

@@ -100,7 +100,7 @@
     },
     "coral_garden": {
       "name": "Coral Garden",
-      "background_color": "#E74C3C",
+      "background_color": "#0097A7",
       "description": "Colorful coral formations, anemones",
       "decorative_elements": ["coral", "anemones", "small_fish"]
     },

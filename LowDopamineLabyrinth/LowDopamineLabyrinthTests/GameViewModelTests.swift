@@ -6,12 +6,49 @@ final class GameViewModelTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         // Clean up UserDefaults keys used by UserPreferences to isolate tests
-        let keys = ["lastPlayedTimestamp", "dailyLabyrinthsPlayed", "difficultyLevel",
-                     "ttsEnabled", "hasCompletedOnboarding", "ttsDefaultSet",
-                     "completedLabyrinths", "totalFreeLabyrinthsPlayed"]
+        let keys = ["difficultyLevel", "ttsEnabled", "hasCompletedOnboarding",
+                     "ttsDefaultSet", "completedLabyrinths"]
         for key in keys {
             UserDefaults.standard.removeObject(forKey: key)
         }
+    }
+
+    private func makeStoryLabyrinth(id: String) -> Labyrinth {
+        Labyrinth(
+            id: id,
+            ageRange: nil,
+            difficulty: "easy",
+            theme: "ocean",
+            title: "Story Lab",
+            storySetup: "Story",
+            instruction: "Go",
+            ttsInstruction: "Go find it",
+            characterStart: LabyrinthCharacter(type: "crab", description: "Denny", position: "bottom_left", name: "Denny", imageAsset: "denny"),
+            characterEnd: LabyrinthCharacter(type: "fish", description: "Finn", position: "top_right", name: "Finn", imageAsset: "finn"),
+            educationalQuestion: "Question?",
+            funFact: "Fun fact",
+            completionMessage: "Well done!",
+            pathData: PathData(
+                svgPath: "M0,0 L100,100",
+                solutionPath: "M0,0 L100,100",
+                width: 30,
+                complexity: "easy",
+                mazeType: "grid",
+                startPoint: PointData(x: 0, y: 0),
+                endPoint: PointData(x: 100, y: 100),
+                segments: [SegmentData(start: PointData(x: 0, y: 0), end: PointData(x: 100, y: 100))],
+                canvasWidth: 600,
+                canvasHeight: 500,
+                controlPoints: nil,
+                items: nil
+            ),
+            visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: ["stars"]),
+            location: "coral_reef",
+            audioInstruction: nil,
+            audioCompletion: nil,
+            itemRule: nil,
+            itemEmoji: nil
+        )
     }
 
     private func makeSampleLabyrinths(count: Int) -> [Labyrinth] {
@@ -221,60 +258,7 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertEqual(vm.currentLabyrinth?.id, "lab_1")
     }
 
-    // MARK: - Paywall / canProceed Tests
-
-    func testCanProceedReturnsTrueForPremiumUser() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = true
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-
-        // Even after recording a play, premium users can proceed
-        prefs.recordPlay()
-        XCTAssertTrue(vm.canProceed(), "Premium users should always be able to proceed")
-    }
-
-    func testCanProceedReturnsTrueWhenNoPlaysRecorded() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-
-        // No plays recorded yet — free user should be able to play
-        XCTAssertTrue(vm.canProceed(), "Free user with no plays today should be able to proceed")
-    }
-
-    func testCanProceedReturnsFalseAfterDailyLimitReached() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-
-        // Use up initial 3 free plays
-        prefs.totalFreeLabyrinthsPlayed = 3
-        // Record one more play today (daily limit is 1)
-        prefs.recordPlay()
-
-        XCTAssertFalse(vm.canProceed(), "Free user who used 3 free plays + 1 daily should be blocked")
-    }
-
-    func testCanProceedResetsOnNewDay() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-
-        // All 3 free plays used; simulate play from yesterday
-        prefs.totalFreeLabyrinthsPlayed = 3
-        prefs.dailyLabyrinthsPlayed = 1
-        prefs.lastPlayedTimestamp = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-
-        XCTAssertTrue(vm.canProceed(), "Free user should be able to play on a new day")
-    }
+    // MARK: - Premium / Story Locking Tests
 
     func testIsPremiumReflectsSubscriptionManager() {
         let prefs = UserPreferences()
@@ -288,216 +272,105 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertTrue(vm.isPremium, "Should reflect subscription manager state")
     }
 
-    func testCompleteLabyrinthRecordsPlay() {
+    func testStoryNumberExtraction() {
         let prefs = UserPreferences()
         let sub = SubscriptionManager()
         let progress = ProgressTracker()
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 3)
+
+        let lab1 = makeStoryLabyrinth(id: "denny_001_easy")
+        XCTAssertEqual(vm.storyNumber(for: lab1), 1)
+
+        let lab15 = makeStoryLabyrinth(id: "denny_015_hard")
+        XCTAssertEqual(vm.storyNumber(for: lab15), 15)
+
+        let lab20 = makeStoryLabyrinth(id: "denny_020_medium")
+        XCTAssertEqual(vm.storyNumber(for: lab20), 20)
+    }
+
+    func testIsStoryLockedFreeUser() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+
+        // Stories 1-3 are free
+        XCTAssertFalse(vm.isStoryLocked(1), "Story 1 should be unlocked for free user")
+        XCTAssertFalse(vm.isStoryLocked(2), "Story 2 should be unlocked for free user")
+        XCTAssertFalse(vm.isStoryLocked(3), "Story 3 should be unlocked for free user")
+
+        // Stories 4-20 are locked
+        XCTAssertTrue(vm.isStoryLocked(4), "Story 4 should be locked for free user")
+        XCTAssertTrue(vm.isStoryLocked(10), "Story 10 should be locked for free user")
+        XCTAssertTrue(vm.isStoryLocked(20), "Story 20 should be locked for free user")
+    }
+
+    func testIsStoryLockedPremiumUser() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = true
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+
+        // All stories unlocked for premium
+        for story in 1...20 {
+            XCTAssertFalse(vm.isStoryLocked(story), "Story \(story) should be unlocked for premium user")
+        }
+    }
+
+    func testIsStoryLockedAfterPurchase() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+
+        // Initially locked
+        XCTAssertTrue(vm.isStoryLocked(5), "Story 5 should be locked before purchase")
+
+        // Purchase
+        sub.isPremium = true
+
+        // Now unlocked
+        XCTAssertFalse(vm.isStoryLocked(5), "Story 5 should be unlocked after purchase")
+    }
+
+    func testIsStoryCompleteAllDifficulties() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+
+        // Set up labyrinth list and current index to story 5
+        let lab = makeStoryLabyrinth(id: "denny_005_easy")
+        vm.labyrinths = [lab]
         vm.currentIndex = 0
 
-        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 0)
+        // Mark all 3 difficulty levels as completed
+        progress.markCompleted("denny_005_easy")
+        progress.markCompleted("denny_005_medium")
+        progress.markCompleted("denny_005_hard")
 
-        vm.completeCurrentLabyrinth()
-
-        XCTAssertTrue(prefs.dailyLabyrinthsPlayed >= 1, "Completing a labyrinth should record a play")
-        XCTAssertNotNil(prefs.lastPlayedTimestamp)
+        XCTAssertTrue(vm.isStoryComplete, "Story should be complete when all 3 difficulties are done")
     }
 
-    func testPaywallFlowFreeUserBlockedAfterFourthCompletion() {
-        // Full flow: 3 free plays + 1 daily = 4 total, then blocked
+    func testIsStoryCompletePartialDifficulties() {
         let prefs = UserPreferences()
         let sub = SubscriptionManager()
-        sub.isPremium = false
         let progress = ProgressTracker()
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
 
-        // 1. Use initial 3 free plays
-        vm.selectLabyrinth(vm.labyrinths[0])
-        for i in 0..<3 {
-            vm.completeCurrentLabyrinth()
-            XCTAssertTrue(vm.canProceed(), "Should be able to proceed during first 3 free plays (play \(i+1))")
-            vm.nextLabyrinth()
-        }
+        // Set up labyrinth list and current index to story 5
+        let lab = makeStoryLabyrinth(id: "denny_005_easy")
+        vm.labyrinths = [lab]
+        vm.currentIndex = 0
 
-        // 2. Complete 4th labyrinth (1 daily play after 3 free)
-        vm.completeCurrentLabyrinth()
+        // Only mark 2 of 3 as completed
+        progress.markCompleted("denny_005_easy")
+        progress.markCompleted("denny_005_medium")
 
-        // 3. Try to proceed — should be blocked (daily limit reached)
-        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after 4th play")
-    }
-
-    func testPaywallFlowPremiumUserCanAlwaysAdvance() {
-        // Full flow: select → complete → advance → complete → advance (no blocking)
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = true
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
-
-        // Complete and advance through multiple labyrinths
-        vm.selectLabyrinth(vm.labyrinths[0])
-
-        for i in 0..<3 {
-            vm.completeCurrentLabyrinth()
-            XCTAssertTrue(vm.canProceed(), "Premium user should always be able to proceed (iteration \(i))")
-            vm.nextLabyrinth()
-        }
-
-        XCTAssertEqual(vm.currentIndex, 3)
-        XCTAssertTrue(vm.isPlaying, "Should still be playing throughout")
-    }
-
-    func testPaywallFlowPurchaseMidSessionUnblocks() {
-        // Simulate: free user blocked → purchases subscription → can proceed
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
-
-        // Use up 3 free + 1 daily to trigger block
-        prefs.totalFreeLabyrinthsPlayed = 3
-        vm.selectLabyrinth(vm.labyrinths[0])
-        vm.completeCurrentLabyrinth()
-
-        // Blocked
-        XCTAssertFalse(vm.canProceed())
-
-        // User purchases subscription
-        sub.isPremium = true
-
-        // Now unblocked
-        XCTAssertTrue(vm.canProceed(), "Should be unblocked after purchasing premium")
-        XCTAssertTrue(vm.isPremium)
-
-        vm.nextLabyrinth()
-        XCTAssertEqual(vm.currentIndex, 1)
-    }
-
-    func testMaybeLaterClosesGameForFreeUser() {
-        // Simulate: free user blocked → dismisses paywall → should go back to grid
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
-
-        // Use up 3 free + 1 daily to trigger block
-        prefs.totalFreeLabyrinthsPlayed = 3
-        vm.selectLabyrinth(vm.labyrinths[0])
-        vm.completeCurrentLabyrinth()
-        XCTAssertTrue(vm.isPlaying)
-        XCTAssertFalse(vm.canProceed(), "Free user should be blocked after daily limit")
-
-        // "Maybe Later" dismisses paywall → closeGame() to return to grid
-        vm.closeGame()
-        XCTAssertFalse(vm.isPlaying, "Should return to grid after Maybe Later")
-    }
-
-    func testFreeUserCannotStartLabyrinthAfterDailyLimit() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
-
-        // Use up 3 free plays + 1 daily
-        prefs.totalFreeLabyrinthsPlayed = 3
-        prefs.recordPlay()
-        XCTAssertFalse(vm.canProceed(), "Should not be able to play after daily limit")
-
-        XCTAssertFalse(vm.isPlaying)
-    }
-
-    // MARK: - 3-Free Model Tests
-
-    func testFreeUserGetsThreeFreePlaysBeforeLimit() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
-
-        // 3 labyrinths on the same day — all should succeed
-        vm.selectLabyrinth(vm.labyrinths[0])
-        for i in 0..<3 {
-            XCTAssertTrue(vm.canProceed(), "Free user should be able to play during first 3 plays (play \(i+1))")
-            vm.completeCurrentLabyrinth()
-            if i < 2 {
-                vm.nextLabyrinth()
-            }
-        }
-        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 3)
-    }
-
-    func testFreeUserAfterThreeFreePlaysGetsOnePerDay() {
-        let prefs = UserPreferences()
-        let sub = SubscriptionManager()
-        sub.isPremium = false
-        let progress = ProgressTracker()
-        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
-        vm.labyrinths = makeSampleLabyrinths(count: 5)
-
-        // 3 total played already
-        prefs.totalFreeLabyrinthsPlayed = 3
-        // Simulate yesterday's play
-        prefs.lastPlayedTimestamp = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        prefs.dailyLabyrinthsPlayed = 1
-
-        // New day → should get 1 play
-        XCTAssertTrue(vm.canProceed(), "Should get 1 play on new day")
-
-        vm.selectLabyrinth(vm.labyrinths[0])
-        vm.completeCurrentLabyrinth()
-
-        // Now blocked
-        XCTAssertFalse(vm.canProceed(), "Should be blocked after 1 daily play")
-    }
-
-    func testTotalFreeCounterIncrementsOnRecordPlay() {
-        let prefs = UserPreferences()
-        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 0)
-
-        prefs.recordPlay()
-        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 1)
-
-        prefs.recordPlay()
-        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 2)
-
-        prefs.recordPlay()
-        XCTAssertEqual(prefs.totalFreeLabyrinthsPlayed, 3)
-    }
-
-    func testFreeLabyrinthsRemainingDuringInitialFree() {
-        let prefs = UserPreferences()
-
-        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 3)
-
-        prefs.recordPlay()
-        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 2)
-
-        prefs.recordPlay()
-        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 1)
-
-        prefs.recordPlay()
-        // After 3 plays, transitions to daily mode with counter reset — 1 daily play available
-        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 1)
-
-        // Use the daily play
-        prefs.recordPlay()
-        XCTAssertEqual(prefs.freeLabyrinthsRemaining(isPremium: false), 0)
-    }
-
-    func testFreeLabyrinthsRemainingReturnsNilForPremium() {
-        let prefs = UserPreferences()
-        XCTAssertNil(prefs.freeLabyrinthsRemaining(isPremium: true))
+        XCTAssertFalse(vm.isStoryComplete, "Story should not be complete with only 2 of 3 difficulties done")
     }
 
     // MARK: - Sequential Unlock / Progress Tests
@@ -563,33 +436,6 @@ final class GameViewModelTests: XCTestCase {
         vm.selectLabyrinth(fake)
 
         XCTAssertFalse(vm.isPlaying, "Should not start playing when labyrinth is not in the list")
-    }
-
-    // MARK: - recordPlay date logic
-
-    func testRecordPlayResetsCountOnNewDay() {
-        let prefs = UserPreferences()
-        // Simulate a play from yesterday
-        prefs.lastPlayedTimestamp = Calendar.current.date(byAdding: .day, value: -1, to: Date())
-        prefs.dailyLabyrinthsPlayed = 5
-
-        prefs.recordPlay()
-
-        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 1, "Should reset to 1 on a new day")
-    }
-
-    func testRecordPlayIncrementsOnSameDay() {
-        let prefs = UserPreferences()
-        prefs.lastPlayedTimestamp = Date()
-        prefs.dailyLabyrinthsPlayed = 0
-
-        prefs.recordPlay()
-
-        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 1)
-
-        prefs.recordPlay()
-
-        XCTAssertEqual(prefs.dailyLabyrinthsPlayed, 2)
     }
 }
 

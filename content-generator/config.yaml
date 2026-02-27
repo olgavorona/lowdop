@@ -1,14 +1,8 @@
 difficulty_levels:
-  beginner:
+  easy:
     grid_size: [3, 4]
     path_width: 40
     path_tolerance: 25
-    shapes: ["rect"]
-
-  easy:
-    grid_size: [4, 5]
-    path_width: 35
-    path_tolerance: 22
     shapes: ["rect"]
 
   medium:
@@ -18,12 +12,6 @@ difficulty_levels:
     shapes: ["rect"]
 
   hard:
-    grid_size: [8, 10]
-    path_width: 25
-    path_tolerance: 15
-    shapes: ["rect"]
-
-  expert:
     grid_size: [10, 13]
     path_width: 22
     path_tolerance: 12

@@ -6,6 +6,7 @@ struct CompletionView: View {
     let onRepeat: () -> Void
     var collectedCount: Int = 0
     var totalItemCount: Int = 0
+    var isStoryComplete: Bool = false
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
     @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -27,6 +28,22 @@ struct CompletionView: View {
                     scale: isCompact ? 1.3 : 2.5,
                     isStart: false
                 )
+
+                // Story-complete celebration header
+                if isStoryComplete {
+                    HStack(spacing: 8) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
+                            .font(.system(size: isCompact ? 20 : 28))
+                        Text("Story Complete!")
+                            .font(.system(size: isCompact ? 22 : 28, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
+                            .font(.system(size: isCompact ? 20 : 28))
+                    }
+                    .padding(.bottom, isCompact ? 2 : 4)
+                }
 
                 Text(labyrinth.completionMessage)
                     .font(.system(size: isCompact ? 18 : 22, weight: .bold, design: .rounded))
@@ -67,14 +84,22 @@ struct CompletionView: View {
                 VStack(spacing: isCompact ? 2 : 12) {
                     Button(action: onNext) {
                         HStack {
-                            Text("Next Labyrinth")
-                                .font(.system(size: isCompact ? 16 : 20, weight: .bold, design: .rounded))
-                            Image(systemName: "arrow.right")
+                            if isStoryComplete {
+                                Image(systemName: "books.vertical")
+                                Text("Back to Bookshelf")
+                                    .font(.system(size: isCompact ? 16 : 20, weight: .bold, design: .rounded))
+                            } else {
+                                Text("Next Labyrinth")
+                                    .font(.system(size: isCompact ? 16 : 20, weight: .bold, design: .rounded))
+                                Image(systemName: "arrow.right")
+                            }
                         }
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: isCompact ? 34 : 56)
-                        .background(Color(hex: "#6BBF7B") ?? .green)
+                        .background(isStoryComplete
+                            ? (Color(hex: "#5BA8D9") ?? .blue)
+                            : (Color(hex: "#6BBF7B") ?? .green))
                         .cornerRadius(isCompact ? 10 : 16)
                     }
 

@@ -1,703 +1,512 @@
 {
   "universe": "denny",
-  "total": 100,
+  "total": 60,
+  "packs": [
+    {
+      "id": "ocean_adventures",
+      "title": "Ocean Adventures",
+      "free_stories": 3,
+      "stories": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    }
+  ],
   "labyrinths": [
     {
-      "id": "denny_001_lv1",
-      "difficulty": "beginner",
+      "id": "denny_001_easy",
+      "difficulty": "easy",
+      "story": 1,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny Finds Mommy Coral"
     },
     {
-      "id": "denny_001_lv2",
-      "difficulty": "easy",
+      "id": "denny_001_medium",
+      "difficulty": "medium",
+      "story": 1,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny Finds Mommy Coral"
     },
     {
-      "id": "denny_001_lv3",
-      "difficulty": "medium",
+      "id": "denny_001_hard",
+      "difficulty": "hard",
+      "story": 1,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny Finds Mommy Coral"
     },
     {
-      "id": "denny_001_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny Finds Mommy Coral"
-    },
-    {
-      "id": "denny_001_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny Finds Mommy Coral"
-    },
-    {
-      "id": "denny_002_lv1",
-      "difficulty": "beginner",
+      "id": "denny_002_easy",
+      "difficulty": "easy",
+      "story": 2,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Coral Garden Adventure"
     },
     {
-      "id": "denny_002_lv2",
-      "difficulty": "easy",
+      "id": "denny_002_medium",
+      "difficulty": "medium",
+      "story": 2,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Coral Garden Adventure"
     },
     {
-      "id": "denny_002_lv3",
-      "difficulty": "medium",
+      "id": "denny_002_hard",
+      "difficulty": "hard",
+      "story": 2,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Coral Garden Adventure"
     },
     {
-      "id": "denny_002_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny's Coral Garden Adventure"
-    },
-    {
-      "id": "denny_002_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny's Coral Garden Adventure"
-    },
-    {
-      "id": "denny_003_lv1",
-      "difficulty": "beginner",
+      "id": "denny_003_easy",
+      "difficulty": "easy",
+      "story": 3,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny Finds Sandy's Bubbles"
     },
     {
-      "id": "denny_003_lv2",
-      "difficulty": "easy",
+      "id": "denny_003_medium",
+      "difficulty": "medium",
+      "story": 3,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny Finds Sandy's Bubbles"
     },
     {
-      "id": "denny_003_lv3",
-      "difficulty": "medium",
+      "id": "denny_003_hard",
+      "difficulty": "hard",
+      "story": 3,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny Finds Sandy's Bubbles"
     },
     {
-      "id": "denny_003_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny Finds Sandy's Bubbles"
-    },
-    {
-      "id": "denny_003_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny Finds Sandy's Bubbles"
-    },
-    {
-      "id": "denny_004_lv1",
-      "difficulty": "beginner",
+      "id": "denny_004_easy",
+      "difficulty": "easy",
+      "story": 4,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Special Shell"
     },
     {
-      "id": "denny_004_lv2",
-      "difficulty": "easy",
+      "id": "denny_004_medium",
+      "difficulty": "medium",
+      "story": 4,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Special Shell"
     },
     {
-      "id": "denny_004_lv3",
-      "difficulty": "medium",
+      "id": "denny_004_hard",
+      "difficulty": "hard",
+      "story": 4,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Special Shell"
     },
     {
-      "id": "denny_004_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny's Special Shell"
-    },
-    {
-      "id": "denny_004_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny's Special Shell"
-    },
-    {
-      "id": "denny_005_lv1",
-      "difficulty": "beginner",
+      "id": "denny_005_easy",
+      "difficulty": "easy",
+      "story": 5,
       "theme": "ocean",
       "location": "starfish_cove",
       "title": "Denny's Glowing Rock Mystery"
     },
     {
-      "id": "denny_005_lv2",
-      "difficulty": "easy",
+      "id": "denny_005_medium",
+      "difficulty": "medium",
+      "story": 5,
       "theme": "ocean",
       "location": "starfish_cove",
       "title": "Denny's Glowing Rock Mystery"
     },
     {
-      "id": "denny_005_lv3",
-      "difficulty": "medium",
+      "id": "denny_005_hard",
+      "difficulty": "hard",
+      "story": 5,
       "theme": "ocean",
       "location": "starfish_cove",
       "title": "Denny's Glowing Rock Mystery"
     },
     {
-      "id": "denny_005_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "starfish_cove",
-      "title": "Denny's Glowing Rock Mystery"
-    },
-    {
-      "id": "denny_005_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "starfish_cove",
-      "title": "Denny's Glowing Rock Mystery"
-    },
-    {
-      "id": "denny_006_lv1",
-      "difficulty": "beginner",
+      "id": "denny_006_easy",
+      "difficulty": "easy",
+      "story": 6,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny Finds Shy Bubbles"
     },
     {
-      "id": "denny_006_lv2",
-      "difficulty": "easy",
+      "id": "denny_006_medium",
+      "difficulty": "medium",
+      "story": 6,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny Finds Shy Bubbles"
     },
     {
-      "id": "denny_006_lv3",
-      "difficulty": "medium",
+      "id": "denny_006_hard",
+      "difficulty": "hard",
+      "story": 6,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny Finds Shy Bubbles"
     },
     {
-      "id": "denny_006_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny Finds Shy Bubbles"
-    },
-    {
-      "id": "denny_006_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny Finds Shy Bubbles"
-    },
-    {
-      "id": "denny_007_lv1",
-      "difficulty": "beginner",
+      "id": "denny_007_easy",
+      "difficulty": "easy",
+      "story": 7,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny Follows Shelly's Trail"
     },
     {
-      "id": "denny_007_lv2",
-      "difficulty": "easy",
+      "id": "denny_007_medium",
+      "difficulty": "medium",
+      "story": 7,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny Follows Shelly's Trail"
     },
     {
-      "id": "denny_007_lv3",
-      "difficulty": "medium",
+      "id": "denny_007_hard",
+      "difficulty": "hard",
+      "story": 7,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny Follows Shelly's Trail"
     },
     {
-      "id": "denny_007_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny Follows Shelly's Trail"
-    },
-    {
-      "id": "denny_007_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny Follows Shelly's Trail"
-    },
-    {
-      "id": "denny_008_lv1",
-      "difficulty": "beginner",
+      "id": "denny_008_easy",
+      "difficulty": "easy",
+      "story": 8,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny Helps Find Ollie's Toy"
     },
     {
-      "id": "denny_008_lv2",
-      "difficulty": "easy",
+      "id": "denny_008_medium",
+      "difficulty": "medium",
+      "story": 8,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny Helps Find Ollie's Toy"
     },
     {
-      "id": "denny_008_lv3",
-      "difficulty": "medium",
+      "id": "denny_008_hard",
+      "difficulty": "hard",
+      "story": 8,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny Helps Find Ollie's Toy"
     },
     {
-      "id": "denny_008_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny Helps Find Ollie's Toy"
-    },
-    {
-      "id": "denny_008_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny Helps Find Ollie's Toy"
-    },
-    {
-      "id": "denny_009_lv1",
-      "difficulty": "beginner",
+      "id": "denny_009_easy",
+      "difficulty": "easy",
+      "story": 9,
       "theme": "ocean",
       "location": "shipwreck_playground",
       "title": "Denny's Shipwreck Adventure"
     },
     {
-      "id": "denny_009_lv2",
-      "difficulty": "easy",
+      "id": "denny_009_medium",
+      "difficulty": "medium",
+      "story": 9,
       "theme": "ocean",
       "location": "shipwreck_playground",
       "title": "Denny's Shipwreck Adventure"
     },
     {
-      "id": "denny_009_lv3",
-      "difficulty": "medium",
+      "id": "denny_009_hard",
+      "difficulty": "hard",
+      "story": 9,
       "theme": "ocean",
       "location": "shipwreck_playground",
       "title": "Denny's Shipwreck Adventure"
     },
     {
-      "id": "denny_009_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "shipwreck_playground",
-      "title": "Denny's Shipwreck Adventure"
-    },
-    {
-      "id": "denny_009_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "shipwreck_playground",
-      "title": "Denny's Shipwreck Adventure"
-    },
-    {
-      "id": "denny_010_lv1",
-      "difficulty": "beginner",
+      "id": "denny_010_easy",
+      "difficulty": "easy",
+      "story": 10,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny Helps Pearl"
     },
     {
-      "id": "denny_010_lv2",
-      "difficulty": "easy",
+      "id": "denny_010_medium",
+      "difficulty": "medium",
+      "story": 10,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny Helps Pearl"
     },
     {
-      "id": "denny_010_lv3",
-      "difficulty": "medium",
+      "id": "denny_010_hard",
+      "difficulty": "hard",
+      "story": 10,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny Helps Pearl"
     },
     {
-      "id": "denny_010_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny Helps Pearl"
-    },
-    {
-      "id": "denny_010_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny Helps Pearl"
-    },
-    {
-      "id": "denny_011_lv1",
-      "difficulty": "beginner",
+      "id": "denny_011_easy",
+      "difficulty": "easy",
+      "story": 11,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Shell Collection"
     },
     {
-      "id": "denny_011_lv2",
-      "difficulty": "easy",
+      "id": "denny_011_medium",
+      "difficulty": "medium",
+      "story": 11,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Shell Collection"
     },
     {
-      "id": "denny_011_lv3",
-      "difficulty": "medium",
+      "id": "denny_011_hard",
+      "difficulty": "hard",
+      "story": 11,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Shell Collection"
     },
     {
-      "id": "denny_011_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny's Shell Collection"
-    },
-    {
-      "id": "denny_011_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny's Shell Collection"
-    },
-    {
-      "id": "denny_012_lv1",
-      "difficulty": "beginner",
+      "id": "denny_012_easy",
+      "difficulty": "easy",
+      "story": 12,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Pearl Dive"
     },
     {
-      "id": "denny_012_lv2",
-      "difficulty": "easy",
+      "id": "denny_012_medium",
+      "difficulty": "medium",
+      "story": 12,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Pearl Dive"
     },
     {
-      "id": "denny_012_lv3",
-      "difficulty": "medium",
+      "id": "denny_012_hard",
+      "difficulty": "hard",
+      "story": 12,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Pearl Dive"
     },
     {
-      "id": "denny_012_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny's Pearl Dive"
-    },
-    {
-      "id": "denny_012_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny's Pearl Dive"
-    },
-    {
-      "id": "denny_013_lv1",
-      "difficulty": "beginner",
+      "id": "denny_013_easy",
+      "difficulty": "easy",
+      "story": 13,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Bubble Chase"
     },
     {
-      "id": "denny_013_lv2",
-      "difficulty": "easy",
+      "id": "denny_013_medium",
+      "difficulty": "medium",
+      "story": 13,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Bubble Chase"
     },
     {
-      "id": "denny_013_lv3",
-      "difficulty": "medium",
+      "id": "denny_013_hard",
+      "difficulty": "hard",
+      "story": 13,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Bubble Chase"
     },
     {
-      "id": "denny_013_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny's Bubble Chase"
-    },
-    {
-      "id": "denny_013_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny's Bubble Chase"
-    },
-    {
-      "id": "denny_014_lv1",
-      "difficulty": "beginner",
+      "id": "denny_014_easy",
+      "difficulty": "easy",
+      "story": 14,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Coral Bits"
     },
     {
-      "id": "denny_014_lv2",
-      "difficulty": "easy",
+      "id": "denny_014_medium",
+      "difficulty": "medium",
+      "story": 14,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Coral Bits"
     },
     {
-      "id": "denny_014_lv3",
-      "difficulty": "medium",
+      "id": "denny_014_hard",
+      "difficulty": "hard",
+      "story": 14,
       "theme": "ocean",
       "location": "sandy_shore",
       "title": "Denny's Coral Bits"
     },
     {
-      "id": "denny_014_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny's Coral Bits"
-    },
-    {
-      "id": "denny_014_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "sandy_shore",
-      "title": "Denny's Coral Bits"
-    },
-    {
-      "id": "denny_015_lv1",
-      "difficulty": "beginner",
+      "id": "denny_015_easy",
+      "difficulty": "easy",
+      "story": 15,
       "theme": "ocean",
       "location": "starfish_cove",
       "title": "Denny's Starfish Search"
     },
     {
-      "id": "denny_015_lv2",
-      "difficulty": "easy",
+      "id": "denny_015_medium",
+      "difficulty": "medium",
+      "story": 15,
       "theme": "ocean",
       "location": "starfish_cove",
       "title": "Denny's Starfish Search"
     },
     {
-      "id": "denny_015_lv3",
-      "difficulty": "medium",
+      "id": "denny_015_hard",
+      "difficulty": "hard",
+      "story": 15,
       "theme": "ocean",
       "location": "starfish_cove",
       "title": "Denny's Starfish Search"
     },
     {
-      "id": "denny_015_lv4",
-      "difficulty": "hard",
-      "theme": "ocean",
-      "location": "starfish_cove",
-      "title": "Denny's Starfish Search"
-    },
-    {
-      "id": "denny_015_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "starfish_cove",
-      "title": "Denny's Starfish Search"
-    },
-    {
-      "id": "denny_016_lv1",
-      "difficulty": "beginner",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny's Clam Hunt"
-    },
-    {
-      "id": "denny_016_lv2",
+      "id": "denny_016_easy",
       "difficulty": "easy",
+      "story": 16,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Clam Hunt"
     },
     {
-      "id": "denny_016_lv3",
+      "id": "denny_016_medium",
       "difficulty": "medium",
+      "story": 16,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Clam Hunt"
     },
     {
-      "id": "denny_016_lv4",
+      "id": "denny_016_hard",
       "difficulty": "hard",
+      "story": 16,
       "theme": "ocean",
       "location": "coral_garden",
       "title": "Denny's Clam Hunt"
     },
     {
-      "id": "denny_016_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "coral_garden",
-      "title": "Denny's Clam Hunt"
-    },
-    {
-      "id": "denny_017_lv1",
-      "difficulty": "beginner",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny's Seaweed Harvest"
-    },
-    {
-      "id": "denny_017_lv2",
+      "id": "denny_017_easy",
       "difficulty": "easy",
+      "story": 17,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny's Seaweed Harvest"
     },
     {
-      "id": "denny_017_lv3",
+      "id": "denny_017_medium",
       "difficulty": "medium",
+      "story": 17,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny's Seaweed Harvest"
     },
     {
-      "id": "denny_017_lv4",
+      "id": "denny_017_hard",
       "difficulty": "hard",
+      "story": 17,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny's Seaweed Harvest"
     },
     {
-      "id": "denny_017_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny's Seaweed Harvest"
-    },
-    {
-      "id": "denny_018_lv1",
-      "difficulty": "beginner",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny's Kelp Harvest"
-    },
-    {
-      "id": "denny_018_lv2",
+      "id": "denny_018_easy",
       "difficulty": "easy",
+      "story": 18,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny's Kelp Harvest"
     },
     {
-      "id": "denny_018_lv3",
+      "id": "denny_018_medium",
       "difficulty": "medium",
+      "story": 18,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny's Kelp Harvest"
     },
     {
-      "id": "denny_018_lv4",
+      "id": "denny_018_hard",
       "difficulty": "hard",
+      "story": 18,
       "theme": "ocean",
       "location": "kelp_forest",
       "title": "Denny's Kelp Harvest"
     },
     {
-      "id": "denny_018_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "kelp_forest",
-      "title": "Denny's Kelp Harvest"
-    },
-    {
-      "id": "denny_019_lv1",
-      "difficulty": "beginner",
-      "theme": "ocean",
-      "location": "shipwreck_playground",
-      "title": "Denny's Treasure Hunt"
-    },
-    {
-      "id": "denny_019_lv2",
+      "id": "denny_019_easy",
       "difficulty": "easy",
+      "story": 19,
       "theme": "ocean",
       "location": "shipwreck_playground",
       "title": "Denny's Treasure Hunt"
     },
     {
-      "id": "denny_019_lv3",
+      "id": "denny_019_medium",
       "difficulty": "medium",
+      "story": 19,
       "theme": "ocean",
       "location": "shipwreck_playground",
       "title": "Denny's Treasure Hunt"
     },
     {
-      "id": "denny_019_lv4",
+      "id": "denny_019_hard",
       "difficulty": "hard",
+      "story": 19,
       "theme": "ocean",
       "location": "shipwreck_playground",
       "title": "Denny's Treasure Hunt"
     },
     {
-      "id": "denny_019_lv5",
-      "difficulty": "expert",
-      "theme": "ocean",
-      "location": "shipwreck_playground",
-      "title": "Denny's Treasure Hunt"
-    },
-    {
-      "id": "denny_020_lv1",
-      "difficulty": "beginner",
+      "id": "denny_020_easy",
+      "difficulty": "easy",
+      "story": 20,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Coin Collection"
     },
     {
-      "id": "denny_020_lv2",
-      "difficulty": "easy",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny's Coin Collection"
-    },
-    {
-      "id": "denny_020_lv3",
+      "id": "denny_020_medium",
       "difficulty": "medium",
+      "story": 20,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Coin Collection"
     },
     {
-      "id": "denny_020_lv4",
+      "id": "denny_020_hard",
       "difficulty": "hard",
-      "theme": "ocean",
-      "location": "bubble_lagoon",
-      "title": "Denny's Coin Collection"
-    },
-    {
-      "id": "denny_020_lv5",
-      "difficulty": "expert",
+      "story": 20,
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Coin Collection"

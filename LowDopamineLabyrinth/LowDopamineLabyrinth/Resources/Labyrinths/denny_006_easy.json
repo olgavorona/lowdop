@@ -1,0 +1,177 @@
+{
+  "id": "denny_006_easy",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny Finds Shy Bubbles",
+  "story_setup": "Denny the baby crab is looking for his friend Bubbles in the beautiful Coral Garden. Bubbles the seahorse is hiding behind the pretty coral because he feels shy today.",
+  "instruction": "Draw a line to help Denny reach Bubbles.",
+  "tts_instruction": "Can you help Denny find his shy friend Bubbles? Draw a gentle line through the coral garden to bring these ocean friends together.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "seahorse",
+    "description": "Golden-yellow seahorse, shy but loyal, blows tiny bubbles",
+    "position": "top_right",
+    "name": "Bubbles",
+    "image_asset": "bubbles"
+  },
+  "educational_question": "What other animals do you think live in a coral garden with Denny and Bubbles?",
+  "fun_fact": "Seahorses like Bubbles wrap their tails around coral to stay in one place while they rest.",
+  "completion_message": "Wonderful! Denny found Bubbles and now they can play together in the coral garden.",
+  "path_data": {
+    "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 180 L 20 320 M 160 180 L 300 180 M 300 180 L 300 320 M 300 180 L 440 180 M 300 180 L 300 320 M 580 180 L 580 320 M 440 320 L 580 320 M 20 460 L 160 460 M 20 320 L 20 460 M 300 320 L 300 460 M 160 460 L 300 460 M 300 460 L 440 460 M 300 320 L 300 460 M 440 320 L 580 320 M 580 320 L 580 460 M 440 460 L 580 460",
+    "solution_path": "M 510 390 L 370 390 L 370 250 L 510 250 L 510 110 L 370 110 L 230 110 L 90 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 510,
+      "y": 390
+    },
+    "end_point": {
+      "x": 90,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 90,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 250
+        },
+        "end": {
+          "x": 90,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 390
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 390
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#0097A7",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_006_instruction.mp3",
+  "audio_completion": "denny_006_completion.mp3"
+}
