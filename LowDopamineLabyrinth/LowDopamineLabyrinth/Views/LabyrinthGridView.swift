@@ -44,9 +44,9 @@ struct LabyrinthGridView: View {
                                     Image(systemName: "books.vertical")
                                         .font(.system(size: 16, weight: .medium))
                                 }
-                                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
+                                .foregroundColor(AppColor.textSecondary)
                                 .padding(8)
-                                .background(Color(hex: "#5D4E37")?.opacity(0.08) ?? .gray.opacity(0.08))
+                                .background(AppColor.textPrimary.opacity(0.08))
                                 .cornerRadius(10)
                             }
                         }
@@ -54,10 +54,10 @@ struct LabyrinthGridView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Your Labyrinths")
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                                .foregroundColor(AppColor.textPrimary)
                             Text("\(progressTracker.completedCount(in: gameViewModel.labyrinths)) of \(gameViewModel.labyrinths.count) completed")
                                 .font(.system(size: 15, design: .rounded))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(AppColor.textTertiary)
                         }
                         Spacer()
                         // Difficulty badge — tappable to change (behind parental gate)
@@ -74,7 +74,7 @@ struct LabyrinthGridView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
-                            .background(Color(hex: "#6BBF7B") ?? .green)
+                            .background(AppColor.accentGreen)
                             .cornerRadius(12)
                         }
                         // For Parents button
@@ -84,7 +84,7 @@ struct LabyrinthGridView: View {
                         }) {
                             Image(systemName: "lock.shield")
                                 .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.5) ?? .gray)
+                                .foregroundColor(AppColor.textPrimary.opacity(0.5))
                                 .frame(width: 32, height: 32)
                         }
                     }
@@ -98,7 +98,7 @@ struct LabyrinthGridView: View {
                                 .fill(Color.gray.opacity(0.15))
                                 .frame(height: 8)
                             RoundedRectangle(cornerRadius: 6)
-                                .fill(Color(hex: "#6BBF7B") ?? .green)
+                                .fill(AppColor.accentGreen)
                                 .frame(width: progressFraction * geo.size.width, height: 8)
                         }
                     }
@@ -109,7 +109,7 @@ struct LabyrinthGridView: View {
                     if let location = gameViewModel.labyrinths.first?.location {
                         Text(location.replacingOccurrences(of: "_", with: " ").capitalized)
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
+                            .foregroundColor(AppColor.textSecondary)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 20)
                     }
@@ -145,7 +145,7 @@ struct LabyrinthGridView: View {
                     .padding(.bottom, 24)
                 }
             }
-            .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+            .background(AppColor.background)
             .toolbar(.hidden, for: .navigationBar)
         }
         .onAppear {
@@ -258,7 +258,7 @@ struct LabyrinthCard: View {
                         HStack {
                             Spacer()
                             StarShape(points: 5, innerRatio: 0.45)
-                                .fill(Color(hex: "#F1C40F") ?? .yellow)
+                                .fill(AppColor.accentYellow)
                                 .frame(width: 24, height: 24)
                                 .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
                                 .padding(6)
@@ -288,7 +288,7 @@ struct LabyrinthCard: View {
             // Title with level number — fixed height for uniform cards
             Text("\(index). \(labyrinth.title)")
                 .font(.system(size: 14, weight: .semibold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                .foregroundColor(AppColor.textPrimary)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .frame(height: 36, alignment: .top)
@@ -314,7 +314,7 @@ struct DifficultyPickerSheet: View {
         VStack(spacing: 16) {
             Text("Change Difficulty")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                .foregroundColor(AppColor.textPrimary)
                 .padding(.top, 20)
 
             HStack(spacing: 12) {
@@ -334,11 +334,11 @@ struct DifficultyPickerSheet: View {
 
             Button("Cancel") { dismiss() }
                 .font(.system(size: 16, weight: .medium, design: .rounded))
-                .foregroundColor(.secondary)
+                .foregroundColor(AppColor.textTertiary)
                 .padding(.bottom, 16)
         }
         .padding()
-        .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+        .background(AppColor.background)
     }
 
     private func loadSamplePath(for level: DifficultyLevel) -> String {

@@ -36,6 +36,7 @@
 		AA000027 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000027 /* Analytics.swift */; };
 		AA000028 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = AD000002 /* TelemetryDeck */; };
 		AA000029 /* BookshelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000029 /* BookshelfView.swift */; };
+		AA000030 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000030 /* Theme.swift */; };
 		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031 /* manifest.json */; };
 		AA200101 /* denny_001_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200101 /* denny_001_easy.json */; };
 		AA200102 /* denny_001_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200102 /* denny_001_medium.json */; };
@@ -146,6 +147,7 @@
 		AB000026 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		AB000027 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		AB000029 /* BookshelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfView.swift; sourceTree = "<group>"; };
+		AB000030 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		AC100031 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		AC200101 /* denny_001_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001_easy.json; sourceTree = "<group>"; };
 		AC200102 /* denny_001_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001_medium.json; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				AE000007 /* Resources */,
 				AB000003 /* Assets.xcassets */,
 				AB000025 /* PrivacyInfo.xcprivacy */,
+				AB000030 /* Theme.swift */,
 			);
 			path = LowDopamineLabyrinth;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				AA000026 /* TermsOfServiceView.swift in Sources */,
 				AA000027 /* Analytics.swift in Sources */,
 				AA000029 /* BookshelfView.swift in Sources */,
+				AA000030 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

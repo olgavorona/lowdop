@@ -26,7 +26,7 @@ struct CharacterMarkerView: View {
                             .overlay(
                                 Circle()
                                     .strokeBorder(
-                                        isStart ? (Color(hex: "#27AE60") ?? .green) : Color.white,
+                                        isStart ? (AppColor.endMarkerGreen) : Color.white,
                                         lineWidth: 2 * scale
                                     )
                             )
@@ -50,7 +50,7 @@ struct CharacterMarkerView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 4 * scale)
                     .padding(.vertical, 1 * scale)
-                    .background(Color(hex: "#27AE60") ?? .green)
+                    .background(AppColor.endMarkerGreen)
                     .cornerRadius(4 * scale)
             } else if let name = character.name {
                 Text(name)
@@ -76,7 +76,7 @@ struct CharacterMarkerView: View {
                     .overlay(
                         Circle()
                             .strokeBorder(
-                                isStart ? (Color(hex: "#27AE60") ?? .green) : Color.white,
+                                isStart ? (AppColor.endMarkerGreen) : Color.white,
                                 lineWidth: 2 * scale
                             )
                     )
@@ -90,7 +90,7 @@ struct CharacterMarkerView: View {
                     .frame(width: 28 * scale, height: 28 * scale)
                     .overlay(
                         Circle()
-                            .strokeBorder(Color(hex: "#27AE60") ?? .green, lineWidth: 2 * scale)
+                            .strokeBorder(AppColor.endMarkerGreen, lineWidth: 2 * scale)
                     )
                 Triangle()
                     .fill(Color.white)

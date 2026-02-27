@@ -14,7 +14,7 @@ struct OnboardingView: View {
         VStack(spacing: 16) {
             Text("Choose Your Challenge")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                .foregroundColor(AppColor.textPrimary)
                 .padding(.top, 20)
 
             HStack(spacing: 12) {
@@ -37,13 +37,13 @@ struct OnboardingView: View {
             Button(action: { showPrivacyPolicy = true }) {
                 Text("Privacy Policy")
                     .font(.system(size: 13, design: .rounded))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(AppColor.textTertiary)
                     .underline()
             }
             .padding(.bottom, 16)
         }
         .padding()
-        .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+        .background(AppColor.background)
         .ignoresSafeArea()
         .sheet(isPresented: $showPrivacyPolicy) {
             PrivacyPolicyView()
@@ -100,7 +100,7 @@ struct DifficultyCard: View {
                 // Level name
                 Text(level.displayName)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                    .foregroundColor(AppColor.textPrimary)
 
                 // Difficulty dots
                 HStack(spacing: 3) {

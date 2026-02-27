@@ -48,69 +48,73 @@ struct ParentalGateView: View {
     }
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
+        ScrollView {
+            VStack(spacing: 20) {
+                Spacer(minLength: 24)
 
-            Image(systemName: purpose.icon)
-                .font(.system(size: 36))
-                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.6) ?? .brown)
+                Image(systemName: purpose.icon)
+                    .font(.system(size: 36))
+                    .foregroundColor(AppColor.textTertiary)
 
-            Text("Grown-Up Check")
-                .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                Text("Grown-Up Check")
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .foregroundColor(AppColor.textPrimary)
 
-            Text(purpose.subtitle)
-                .font(.system(size: 16, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
-
-            Text("Please ask a grown-up to answer this question:")
-                .font(.system(size: 16, design: .rounded))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-
-            Text("What is \(a) + \(b)?")
-                .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                .padding(.top, 8)
-
-            TextField("Answer", text: $answer)
-                .keyboardType(.numberPad)
-                .font(.system(size: 24, weight: .medium, design: .rounded))
-                .multilineTextAlignment(.center)
-                .frame(width: 120, height: 56)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(12)
-
-            if showError {
-                Text("That's not right. Try again!")
-                    .font(.system(size: 14, design: .rounded))
-                    .foregroundColor(.red)
-            }
-
-            Button(action: checkAnswer) {
-                Text("Continue")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color(hex: "#6BBF7B") ?? .green)
-                    .cornerRadius(14)
-            }
-            .padding(.horizontal, 40)
-
-            Button(action: {
-                audioPlayer?.stop()
-                onCancel()
-            }) {
-                Text("Go Back")
+                Text(purpose.subtitle)
                     .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .foregroundColor(.secondary)
-            }
+                    .foregroundColor(AppColor.textSecondary)
 
-            Spacer()
+                Text("Please ask a grown-up to answer this question:")
+                    .font(.system(size: 16, design: .rounded))
+                    .foregroundColor(AppColor.textTertiary)
+                    .multilineTextAlignment(.center)
+
+                Text("What is \(a) + \(b)?")
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .foregroundColor(AppColor.textPrimary)
+                    .padding(.top, 8)
+
+                TextField("Answer", text: $answer)
+                    .keyboardType(.numberPad)
+                    .font(.system(size: 24, weight: .medium, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 120, height: 56)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(12)
+
+                if showError {
+                    Text("That's not right. Try again!")
+                        .font(.system(size: 14, design: .rounded))
+                        .foregroundColor(.red)
+                }
+
+                Button(action: checkAnswer) {
+                    Text("Continue")
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(AppColor.accentGreen)
+                        .cornerRadius(14)
+                }
+                .padding(.horizontal, 40)
+
+                Button(action: {
+                    audioPlayer?.stop()
+                    onCancel()
+                }) {
+                    Text("Go Back")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(AppColor.textTertiary)
+                }
+                .padding(.bottom, 24)
+            }
+            .padding()
         }
-        .padding()
-        .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+        .background(AppColor.background)
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
         .onAppear {
             playVoiceover()
         }

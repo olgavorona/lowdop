@@ -27,17 +27,17 @@ struct PaywallView: View {
 
                 Text("Buy Forever Access")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                    .foregroundColor(AppColor.textPrimary)
 
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(benefits, id: \.self) { benefit in
                         HStack(alignment: .top, spacing: 8) {
                             Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(Color(hex: "#6BBF7B") ?? .green)
+                                .foregroundColor(AppColor.accentGreen)
                                 .font(.system(size: 16))
                             Text(benefit)
                                 .font(.system(size: 14, design: .rounded))
-                                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                                .foregroundColor(AppColor.textPrimary)
                         }
                     }
                 }
@@ -51,14 +51,14 @@ struct PaywallView: View {
                         Task { await subscriptionManager.restorePurchases() }
                     }
                     Text("|")
-                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.3))
+                        .foregroundColor(AppColor.textFaint)
                     Link("Terms", destination: URL(string: "https://olgavorona.github.io/lowdop/terms")!)
                     Text("|")
-                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.3))
+                        .foregroundColor(AppColor.textFaint)
                     Link("Privacy", destination: URL(string: "https://olgavorona.github.io/lowdop/privacy")!)
                 }
                 .font(.system(size: 12, design: .rounded))
-                .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.6))
+                .foregroundColor(AppColor.textTertiary)
                 .padding(.bottom, 16)
             }
             .frame(maxWidth: .infinity)
@@ -72,19 +72,19 @@ struct PaywallView: View {
                     // Product display
                     Text(product.displayName)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                        .foregroundColor(AppColor.textPrimary)
 
                     Text(product.displayPrice)
                         .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                        .foregroundColor(AppColor.accentBlue)
                 } else {
                     Text("Ocean Adventures Pack")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                        .foregroundColor(AppColor.textPrimary)
 
                     Text("Loading price...")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                        .foregroundColor(AppColor.accentBlue)
                 }
 
                 // CTA button
@@ -96,7 +96,7 @@ struct PaywallView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: 52)
-                        .background(Color(hex: "#5BA8D9") ?? .blue)
+                        .background(AppColor.accentBlue)
                         .cornerRadius(14)
                 }
                 .disabled(isPurchasing || subscriptionManager.product == nil)
@@ -113,7 +113,7 @@ struct PaywallView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
-                        .background(Color(hex: "#6BBF7B") ?? .green)
+                        .background(AppColor.accentGreen)
                         .cornerRadius(10)
                 }
                 #endif
@@ -124,7 +124,7 @@ struct PaywallView: View {
                 }) {
                     Text("Maybe Later")
                         .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.6))
+                        .foregroundColor(AppColor.textTertiary)
                 }
                 .frame(height: 36)
 
@@ -133,7 +133,7 @@ struct PaywallView: View {
             .frame(maxWidth: .infinity)
             .padding(.horizontal, 24)
         }
-        .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+        .background(AppColor.background)
         .task {
             await subscriptionManager.loadProducts()
         }

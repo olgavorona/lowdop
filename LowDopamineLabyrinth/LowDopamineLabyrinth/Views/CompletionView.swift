@@ -33,13 +33,13 @@ struct CompletionView: View {
                 if isStoryComplete {
                     HStack(spacing: 8) {
                         Image(systemName: "star.fill")
-                            .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
+                            .foregroundColor(AppColor.accentYellow)
                             .font(.system(size: isCompact ? 20 : 28))
                         Text("Story Complete!")
                             .font(.system(size: isCompact ? 22 : 28, weight: .bold, design: .rounded))
-                            .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                            .foregroundColor(AppColor.textPrimary)
                         Image(systemName: "star.fill")
-                            .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
+                            .foregroundColor(AppColor.accentYellow)
                             .font(.system(size: isCompact ? 20 : 28))
                     }
                     .padding(.bottom, isCompact ? 2 : 4)
@@ -47,7 +47,7 @@ struct CompletionView: View {
 
                 Text(labyrinth.completionMessage)
                     .font(.system(size: isCompact ? 18 : 22, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                    .foregroundColor(AppColor.textPrimary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
 
@@ -55,7 +55,7 @@ struct CompletionView: View {
                 if let statsText = itemStatsText {
                     Text(statsText)
                         .font(.system(size: isCompact ? 15 : 18, weight: .semibold, design: .rounded))
-                        .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                        .foregroundColor(AppColor.accentBlue)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
@@ -64,18 +64,18 @@ struct CompletionView: View {
                 VStack(spacing: isCompact ? 4 : 12) {
                     Text(labyrinth.educationalQuestion)
                         .font(.system(size: isCompact ? 14 : 16, weight: .medium, design: .rounded))
-                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                        .foregroundColor(AppColor.textPrimary)
                         .multilineTextAlignment(.center)
 
                     HStack(spacing: 8) {
                         Image(systemName: "lightbulb.fill")
-                            .foregroundColor(Color(hex: "#F1C40F") ?? .yellow)
+                            .foregroundColor(AppColor.accentYellow)
                         Text(labyrinth.funFact)
                             .font(.system(size: isCompact ? 13 : 14, design: .rounded))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(AppColor.textSecondary)
                     }
                     .padding(isCompact ? 6 : 16)
-                    .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+                    .background(AppColor.background)
                     .cornerRadius(12)
                 }
                 .padding(.horizontal, isCompact ? 16 : 24)
@@ -98,15 +98,15 @@ struct CompletionView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: isCompact ? 34 : 56)
                         .background(isStoryComplete
-                            ? (Color(hex: "#5BA8D9") ?? .blue)
-                            : (Color(hex: "#6BBF7B") ?? .green))
+                            ? (AppColor.accentBlue)
+                            : (AppColor.accentGreen))
                         .cornerRadius(isCompact ? 10 : 16)
                     }
 
                     Button(action: onRepeat) {
                         Text("Try Again")
                             .font(.system(size: isCompact ? 13 : 16, weight: .medium, design: .rounded))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(AppColor.textTertiary)
                     }
                     .frame(height: isCompact ? 22 : 44)
                 }

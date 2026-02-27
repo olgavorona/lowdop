@@ -21,7 +21,7 @@ struct BookshelfView: View {
     var body: some View {
         ZStack {
             // Cream background
-            (Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+            AppColor.background
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
@@ -34,7 +34,7 @@ struct BookshelfView: View {
                 // Title
                 Text("Your Adventures")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                    .foregroundColor(AppColor.textPrimary)
                     .padding(.bottom, 24)
 
                 // Pack cards area
@@ -103,7 +103,7 @@ struct BookshelfView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(Color(hex: "#6BBF7B") ?? .green)
+                .background(AppColor.accentGreen)
                 .cornerRadius(12)
             }
 
@@ -114,7 +114,7 @@ struct BookshelfView: View {
             }) {
                 Image(systemName: "lock.shield")
                     .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.5) ?? .gray)
+                    .foregroundColor(AppColor.textPrimary.opacity(0.5))
                     .frame(width: 32, height: 32)
             }
         }
@@ -141,10 +141,10 @@ struct BookshelfView: View {
         VStack(spacing: 12) {
             Image(systemName: "book.closed")
                 .font(.system(size: 48))
-                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.3) ?? .gray)
+                .foregroundColor(AppColor.textPrimary.opacity(0.5))
             Text("No adventures available")
                 .font(.system(size: 18, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.5) ?? .gray)
+                .foregroundColor(AppColor.textTertiary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -166,7 +166,7 @@ struct BookshelfView: View {
                     LinearGradient(
                         colors: [
                             Color(hex: "#4FC3F7") ?? .blue,
-                            Color(hex: "#0288D1") ?? .blue,
+                            AppColor.linkBlue,
                             Color(hex: "#01579B") ?? .blue
                         ],
                         startPoint: .topLeading,
@@ -208,7 +208,7 @@ struct BookshelfView: View {
                     HStack {
                         Text("\(completedStoryCount) of \(totalStoryCount) stories completed")
                             .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
+                            .foregroundColor(AppColor.textSecondary)
                         Spacer()
                     }
 
@@ -235,10 +235,10 @@ struct BookshelfView: View {
                         Spacer()
                         Text("Tap to play")
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundColor(Color(hex: "#0288D1") ?? .blue)
+                            .foregroundColor(AppColor.linkBlue)
                         Image(systemName: "chevron.right")
                             .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(Color(hex: "#0288D1") ?? .blue)
+                            .foregroundColor(AppColor.linkBlue)
                     }
                 }
                 .padding(16)

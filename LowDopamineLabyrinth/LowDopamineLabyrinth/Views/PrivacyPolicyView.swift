@@ -73,7 +73,7 @@ struct PrivacyPolicyView: View {
                         Text("If you have questions about this privacy policy or our practices, please contact us at:")
                         Text("privacy@lowdopamine.com")
                             .font(.system(size: 15, weight: .medium, design: .rounded))
-                            .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
+                            .foregroundColor(AppColor.accentBlue)
                     }
 
                     Spacer(minLength: 40)
@@ -81,7 +81,7 @@ struct PrivacyPolicyView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
             }
-            .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+            .background(AppColor.background)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -96,10 +96,10 @@ struct PrivacyPolicyView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+                .foregroundColor(AppColor.textPrimary)
             content()
                 .font(.system(size: 15, design: .rounded))
-                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.85) ?? .primary)
+                .foregroundColor(AppColor.textPrimary.opacity(0.85))
         }
     }
 
@@ -109,6 +109,6 @@ struct PrivacyPolicyView: View {
             Text(text)
         }
         .font(.system(size: 15, design: .rounded))
-        .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.85) ?? .primary)
+        .foregroundColor(AppColor.textPrimary.opacity(0.85))
     }
 }

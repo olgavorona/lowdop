@@ -119,7 +119,7 @@ struct LabyrinthListView: View {
                 VStack {
                     Text("No labyrinths available")
                         .font(.system(size: 18, design: .rounded))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(AppColor.textTertiary)
                 }
             }
         }
