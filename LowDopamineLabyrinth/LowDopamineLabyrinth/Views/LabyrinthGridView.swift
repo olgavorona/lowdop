@@ -206,7 +206,7 @@ struct LabyrinthGridView: View {
         switch parentalGateAction {
         case .privacyPolicy: return .privacyPolicy
         case .difficultyPicker: return .settings
-        case .paywall: return .store
+        case .paywall: return .paywall
         }
     }
 

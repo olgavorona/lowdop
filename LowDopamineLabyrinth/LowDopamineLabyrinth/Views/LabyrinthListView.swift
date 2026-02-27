@@ -129,7 +129,7 @@ struct LabyrinthListView: View {
         .animation(.easeInOut(duration: 0.3), value: showCompletion)
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(
-                purpose: .store,
+                purpose: .paywall,
                 onSuccess: {
                     showParentalGate = false
                     showPaywall = true

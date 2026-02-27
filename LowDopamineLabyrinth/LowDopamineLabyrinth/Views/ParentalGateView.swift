@@ -1,9 +1,33 @@
 import SwiftUI
+import AVFoundation
 
 /// A parental gate that presents a randomized math problem.
 /// Required by Apple Kids Category guidelines (1.3) to guard
 /// external links, IAP, and settings areas.
 struct ParentalGateView: View {
+    enum Purpose {
+        case paywall
+        case settings
+        case privacyPolicy
+
+        var subtitle: String {
+            switch self {
+            case .paywall: return "You're about to open the Store"
+            case .settings: return "You're about to open Settings"
+            case .privacyPolicy: return "You're about to open Privacy Info"
+            }
+        }
+
+        var icon: String {
+            switch self {
+            case .paywall: return "cart.fill"
+            case .settings: return "gearshape.fill"
+            case .privacyPolicy: return "hand.raised.fill"
+            }
+        }
+    }
+
+    let purpose: Purpose
     let onSuccess: () -> Void
     let onCancel: () -> Void
 
@@ -11,8 +35,10 @@ struct ParentalGateView: View {
     @State private var b: Int
     @State private var answer = ""
     @State private var showError = false
+    @State private var audioPlayer: AVAudioPlayer?
 
-    init(onSuccess: @escaping () -> Void, onCancel: @escaping () -> Void) {
+    init(purpose: Purpose = .settings, onSuccess: @escaping () -> Void, onCancel: @escaping () -> Void) {
+        self.purpose = purpose
         self.onSuccess = onSuccess
         self.onCancel = onCancel
         let a = Int.random(in: 2...9)
@@ -25,9 +51,17 @@ struct ParentalGateView: View {
         VStack(spacing: 20) {
             Spacer()
 
+            Image(systemName: purpose.icon)
+                .font(.system(size: 36))
+                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.6) ?? .brown)
+
             Text("Grown-Up Check")
                 .font(.system(size: 24, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
+
+            Text(purpose.subtitle)
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
 
             Text("Please ask a grown-up to answer this question:")
                 .font(.system(size: 16, design: .rounded))
@@ -64,7 +98,10 @@ struct ParentalGateView: View {
             }
             .padding(.horizontal, 40)
 
-            Button(action: onCancel) {
+            Button(action: {
+                audioPlayer?.stop()
+                onCancel()
+            }) {
                 Text("Go Back")
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundColor(.secondary)
@@ -74,10 +111,17 @@ struct ParentalGateView: View {
         }
         .padding()
         .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
+        .onAppear {
+            playVoiceover()
+        }
+        .onDisappear {
+            audioPlayer?.stop()
+        }
     }
 
     private func checkAnswer() {
         if let entered = Int(answer), entered == a + b {
+            audioPlayer?.stop()
             onSuccess()
         } else {
             showError = true
@@ -85,6 +129,18 @@ struct ParentalGateView: View {
             a = Int.random(in: 2...9)
             b = Int.random(in: 2...9)
             answer = ""
+        }
+    }
+
+    private func playVoiceover() {
+        guard let url = Bundle.main.url(forResource: "parental_gate", withExtension: "mp3", subdirectory: "audio") else { return }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("[ParentalGate] Failed to play voiceover: \(error)")
         }
     }
 }
