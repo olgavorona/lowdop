@@ -9,13 +9,17 @@ struct LabyrinthGridView: View {
     @State private var showParentalGate = false
     @State private var showPrivacyPolicy = false
     @State private var showPaywall = false
-    @State private var paywallSkipped = false
     @State private var pendingLabyrinth: Labyrinth? = nil
     @State private var parentalGateAction: ParentalGateAction = .privacyPolicy
+
+    /// Optional callback to navigate back to the bookshelf.
+    /// When provided, a back button is shown in the header.
+    var onBackToBookshelf: (() -> Void)? = nil
 
     private enum ParentalGateAction {
         case privacyPolicy
         case difficultyPicker
+        case paywall
     }
 
     private let columns = [
@@ -26,11 +30,27 @@ struct LabyrinthGridView: View {
     ]
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
                     // Progress header
                     HStack {
+                        // Back to bookshelf button
+                        if let goBack = onBackToBookshelf {
+                            Button(action: goBack) {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "chevron.left")
+                                        .font(.system(size: 14, weight: .semibold))
+                                    Image(systemName: "books.vertical")
+                                        .font(.system(size: 16, weight: .medium))
+                                }
+                                .foregroundColor(Color(hex: "#5D4E37")?.opacity(0.7) ?? .brown)
+                                .padding(8)
+                                .background(Color(hex: "#5D4E37")?.opacity(0.08) ?? .gray.opacity(0.08))
+                                .cornerRadius(10)
+                            }
+                        }
+
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Your Labyrinths")
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
@@ -94,88 +114,29 @@ struct LabyrinthGridView: View {
                             .padding(.horizontal, 20)
                     }
 
-                    // Free plays banner
-                    if let remaining = preferences.freeLabyrinthsRemaining(isPremium: subscriptionManager.isPremium) {
-                        if remaining > 0 && preferences.totalFreeLabyrinthsPlayed < 3 {
-                            // Initial free plays remaining
-                            HStack(spacing: 12) {
-                                Image(systemName: "gift.fill")
-                                    .font(.system(size: 24))
-                                    .foregroundColor(Color(hex: "#6BBF7B") ?? .green)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("\(remaining) free labyrinth\(remaining == 1 ? "" : "s") left!")
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                                    Text("Try them out — no subscription needed.")
-                                        .font(.system(size: 13, design: .rounded))
-                                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
-                                }
-                                Spacer()
-                            }
-                            .padding(16)
-                            .background(Color(hex: "#6BBF7B")?.opacity(0.1) ?? .green.opacity(0.1))
-                            .cornerRadius(14)
-                            .padding(.horizontal, 20)
-                        } else if remaining == 0 {
-                            // Daily limit reached
-                            HStack(spacing: 12) {
-                                Image(systemName: "moon.zzz.fill")
-                                    .font(.system(size: 24))
-                                    .foregroundColor(Color(hex: "#5BA8D9") ?? .blue)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("See you tomorrow!")
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .foregroundColor(Color(hex: "#5D4E37") ?? .brown)
-                                    Text("Your free labyrinth for today is done. Come back tomorrow for a new one!")
-                                        .font(.system(size: 13, design: .rounded))
-                                        .foregroundColor((Color(hex: "#5D4E37") ?? .brown).opacity(0.7))
-                                }
-                                Spacer()
-                                Button(action: {
-                                    showPaywall = true
-                                    Analytics.send("Paywall.shown", with: ["trigger": "banner"])
-                                }) {
-                                    Text("Unlock All")
-                                        .font(.system(size: 13, weight: .bold, design: .rounded))
-                                        .foregroundColor(.white)
-                                        .padding(.horizontal, 14)
-                                        .padding(.vertical, 8)
-                                        .background(Color(hex: "#5BA8D9") ?? .blue)
-                                        .cornerRadius(10)
-                                }
-                            }
-                            .padding(16)
-                            .background(Color(hex: "#5BA8D9")?.opacity(0.1) ?? .blue.opacity(0.1))
-                            .cornerRadius(14)
-                            .padding(.horizontal, 20)
-                        }
-                        // remaining > 0 && totalFreeLabyrinthsPlayed >= 3: no banner (can still play today)
-                    }
-
                     // Grid — 4 columns for landscape
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(Array(gameViewModel.labyrinths.enumerated()), id: \.element.id) { index, labyrinth in
-                            let isUnlocked = index == 0 || progressTracker.isCompleted(gameViewModel.labyrinths[index - 1].id)
+                            let isLocked = index >= 3 && !gameViewModel.isPremium
                             LabyrinthCard(
                                 labyrinth: labyrinth,
                                 index: index + 1,
                                 isCompleted: progressTracker.isCompleted(labyrinth.id),
-                                isLocked: !isUnlocked
+                                isLocked: isLocked
                             )
                             .onTapGesture {
                                 Analytics.send("Grid.labyrinthTapped", with: [
                                     "labyrinthId": labyrinth.id,
                                     "index": String(index),
-                                    "isLocked": String(!isUnlocked)
+                                    "isLocked": String(isLocked)
                                 ])
-                                if isUnlocked {
-                                    if gameViewModel.canProceed() {
-                                        gameViewModel.selectLabyrinth(labyrinth)
-                                    } else {
-                                        pendingLabyrinth = labyrinth
-                                        showPaywall = true
-                                        Analytics.send("Paywall.shown", with: ["trigger": "grid"])
-                                    }
+                                if isLocked {
+                                    pendingLabyrinth = labyrinth
+                                    parentalGateAction = .paywall
+                                    showParentalGate = true
+                                    Analytics.send("Paywall.shown", with: ["trigger": "grid"])
+                                } else {
+                                    gameViewModel.selectLabyrinth(labyrinth)
                                 }
                             }
                         }
@@ -185,9 +146,8 @@ struct LabyrinthGridView: View {
                 }
             }
             .background(Color(hex: "#FFF8E7") ?? Color(.systemBackground))
-            .navigationBarHidden(true)
+            .toolbar(.hidden, for: .navigationBar)
         }
-        .navigationViewStyle(.stack)
         .onAppear {
             gameViewModel.loadLabyrinths()
             Analytics.send("Grid.opened", with: [
@@ -210,6 +170,7 @@ struct LabyrinthGridView: View {
         }
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(
+                purpose: parentalGatePurpose,
                 onSuccess: {
                     showParentalGate = false
                     switch parentalGateAction {
@@ -217,6 +178,8 @@ struct LabyrinthGridView: View {
                         showPrivacyPolicy = true
                     case .difficultyPicker:
                         showDifficultyPicker = true
+                    case .paywall:
+                        showPaywall = true
                     }
                 },
                 onCancel: {
@@ -228,15 +191,22 @@ struct LabyrinthGridView: View {
             PrivacyPolicyView()
         }
         .sheet(isPresented: $showPaywall, onDismiss: {
-            if let lab = pendingLabyrinth, (gameViewModel.isPremium || paywallSkipped) {
-                paywallSkipped = false
+            if let lab = pendingLabyrinth, gameViewModel.isPremium {
                 pendingLabyrinth = nil
                 gameViewModel.selectLabyrinth(lab)
             } else {
                 pendingLabyrinth = nil
             }
         }) {
-            PaywallView(onSkip: { paywallSkipped = true })
+            PaywallView()
+        }
+    }
+
+    private var parentalGatePurpose: ParentalGateView.Purpose {
+        switch parentalGateAction {
+        case .privacyPolicy: return .privacyPolicy
+        case .difficultyPicker: return .settings
+        case .paywall: return .store
         }
     }
 
@@ -335,11 +305,9 @@ struct DifficultyPickerSheet: View {
     @Environment(\.dismiss) var dismiss
 
     private let levelColors: [DifficultyLevel: [Color]] = [
-        .beginner: [Color(hex: "#81D4FA") ?? .blue, Color(hex: "#4FC3F7") ?? .blue],
         .easy: [Color(hex: "#4FC3F7") ?? .blue, Color(hex: "#29B6F6") ?? .blue],
         .medium: [Color(hex: "#29B6F6") ?? .blue, Color(hex: "#039BE5") ?? .blue],
         .hard: [Color(hex: "#039BE5") ?? .blue, Color(hex: "#0277BD") ?? .blue],
-        .expert: [Color(hex: "#0277BD") ?? .blue, Color(hex: "#01579B") ?? .blue],
     ]
 
     var body: some View {
