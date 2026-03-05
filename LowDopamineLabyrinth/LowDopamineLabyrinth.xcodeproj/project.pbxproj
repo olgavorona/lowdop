@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		038B80AD2F5990EB00FD9E1C /* StoreKitConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 038B80AC2F5990EB00FD9E1C /* StoreKitConfig.storekit */; };
 		AA000001 /* LowDopamineLabyrinthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000001 /* LowDopamineLabyrinthApp.swift */; };
 		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000002 /* ContentView.swift */; };
 		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB000003 /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		038B80AC2F5990EB00FD9E1C /* StoreKitConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreKitConfig.storekit; sourceTree = "<group>"; };
 		AB000000 /* LowDopamineLabyrinth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LowDopamineLabyrinth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB000001 /* LowDopamineLabyrinthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowDopamineLabyrinthApp.swift; sourceTree = "<group>"; };
 		AB000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				AB000003 /* Assets.xcassets */,
 				AB000025 /* PrivacyInfo.xcprivacy */,
 				AB000030 /* Theme.swift */,
+				038B80AC2F5990EB00FD9E1C /* StoreKitConfig.storekit */,
 			);
 			path = LowDopamineLabyrinth;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				AA202003 /* denny_020_hard.json in Resources */,
 				AA201100 /* difficulty_samples.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
+				038B80AD2F5990EB00FD9E1C /* StoreKitConfig.storekit in Resources */,
 				AA300001 /* audio in Resources */,
 				AA000025 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -652,7 +656,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -683,7 +687,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -5,7 +5,6 @@ struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
     @State private var isPurchasing = false
-    @State private var showParentalGate = false
     var onSkip: (() -> Void)? = nil
 
     private let benefits = [
@@ -88,9 +87,7 @@ struct PaywallView: View {
                 }
 
                 // CTA button
-                Button(action: {
-                    showParentalGate = true
-                }) {
+                Button(action: executePurchase) {
                     Text("Buy once, play forever")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
@@ -136,18 +133,6 @@ struct PaywallView: View {
         .background(AppColor.background)
         .task {
             await subscriptionManager.loadProducts()
-        }
-        .fullScreenCover(isPresented: $showParentalGate) {
-            ParentalGateView(
-                purpose: .paywall,
-                onSuccess: {
-                    showParentalGate = false
-                    executePurchase()
-                },
-                onCancel: {
-                    showParentalGate = false
-                }
-            )
         }
     }
 
