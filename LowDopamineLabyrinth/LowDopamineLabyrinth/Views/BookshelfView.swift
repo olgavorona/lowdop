@@ -10,11 +10,11 @@ struct BookshelfView: View {
     @State private var stories: [StoryInfo] = []
     @State private var showParentalGate = false
     @State private var showDifficultyPicker = false
-    @State private var showPrivacyPolicy = false
-    @State private var parentalGateAction: BookshelfParentalGateAction = .privacyPolicy
+    @State private var showAccount = false
+    @State private var parentalGateAction: BookshelfParentalGateAction = .account
 
     private enum BookshelfParentalGateAction {
-        case privacyPolicy
+        case account
         case difficultyPicker
     }
 
@@ -52,12 +52,12 @@ struct BookshelfView: View {
         }
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(
-                purpose: parentalGateAction == .privacyPolicy ? .privacyPolicy : .settings,
+                purpose: parentalGateAction == .account ? .account : .settings,
                 onSuccess: {
                     showParentalGate = false
                     switch parentalGateAction {
-                    case .privacyPolicy:
-                        showPrivacyPolicy = true
+                    case .account:
+                        showAccount = true
                     case .difficultyPicker:
                         showDifficultyPicker = true
                     }
@@ -67,8 +67,10 @@ struct BookshelfView: View {
                 }
             )
         }
-        .sheet(isPresented: $showPrivacyPolicy) {
-            PrivacyPolicyView()
+        .sheet(isPresented: $showAccount) {
+            NavigationStack {
+                AccountView()
+            }
         }
         .sheet(isPresented: $showDifficultyPicker) {
             DifficultyPickerSheet(onSelect: { newLevel in
@@ -109,11 +111,11 @@ struct BookshelfView: View {
 
             // For Parents button
             Button(action: {
-                parentalGateAction = .privacyPolicy
+                parentalGateAction = .account
                 showParentalGate = true
             }) {
-                Image(systemName: "lock.shield")
-                    .font(.system(size: 14, weight: .semibold))
+                Image(systemName: "person.circle")
+                    .font(.system(size: 20, weight: .medium))
                     .foregroundColor(AppColor.textPrimary.opacity(0.5))
                     .frame(width: 32, height: 32)
             }

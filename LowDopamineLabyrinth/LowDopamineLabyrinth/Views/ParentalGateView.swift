@@ -9,12 +9,14 @@ struct ParentalGateView: View {
         case paywall
         case settings
         case privacyPolicy
+        case account
 
         var subtitle: String {
             switch self {
             case .paywall: return "You're about to open the Store"
             case .settings: return "You're about to open Settings"
             case .privacyPolicy: return "You're about to open Privacy Info"
+            case .account: return "You're about to open Account"
             }
         }
 
@@ -23,6 +25,7 @@ struct ParentalGateView: View {
             case .paywall: return "cart.fill"
             case .settings: return "gearshape.fill"
             case .privacyPolicy: return "hand.raised.fill"
+            case .account: return "person.circle.fill"
             }
         }
     }

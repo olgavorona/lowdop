@@ -7,17 +7,17 @@ struct LabyrinthGridView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @State private var showDifficultyPicker = false
     @State private var showParentalGate = false
-    @State private var showPrivacyPolicy = false
+    @State private var showAccount = false
     @State private var showPaywall = false
     @State private var pendingLabyrinth: Labyrinth? = nil
-    @State private var parentalGateAction: ParentalGateAction = .privacyPolicy
+    @State private var parentalGateAction: ParentalGateAction = .account
 
     /// Optional callback to navigate back to the bookshelf.
     /// When provided, a back button is shown in the header.
     var onBackToBookshelf: (() -> Void)? = nil
 
     private enum ParentalGateAction {
-        case privacyPolicy
+        case account
         case difficultyPicker
         case paywall
     }
@@ -79,11 +79,11 @@ struct LabyrinthGridView: View {
                         }
                         // For Parents button
                         Button(action: {
-                            parentalGateAction = .privacyPolicy
+                            parentalGateAction = .account
                             showParentalGate = true
                         }) {
-                            Image(systemName: "lock.shield")
-                                .font(.system(size: 14, weight: .semibold))
+                            Image(systemName: "person.circle")
+                                .font(.system(size: 20, weight: .medium))
                                 .foregroundColor(AppColor.textPrimary.opacity(0.5))
                                 .frame(width: 32, height: 32)
                         }
@@ -174,8 +174,8 @@ struct LabyrinthGridView: View {
                 onSuccess: {
                     showParentalGate = false
                     switch parentalGateAction {
-                    case .privacyPolicy:
-                        showPrivacyPolicy = true
+                    case .account:
+                        showAccount = true
                     case .difficultyPicker:
                         showDifficultyPicker = true
                     case .paywall:
@@ -187,8 +187,10 @@ struct LabyrinthGridView: View {
                 }
             )
         }
-        .sheet(isPresented: $showPrivacyPolicy) {
-            PrivacyPolicyView()
+        .sheet(isPresented: $showAccount) {
+            NavigationStack {
+                AccountView()
+            }
         }
         .sheet(isPresented: $showPaywall, onDismiss: {
             if let lab = pendingLabyrinth, gameViewModel.isPremium {
@@ -204,7 +206,7 @@ struct LabyrinthGridView: View {
 
     private var parentalGatePurpose: ParentalGateView.Purpose {
         switch parentalGateAction {
-        case .privacyPolicy: return .privacyPolicy
+        case .account: return .account
         case .difficultyPicker: return .settings
         case .paywall: return .paywall
         }
