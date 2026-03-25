@@ -32,7 +32,7 @@
 		AA000022 /* CharacterMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000022 /* CharacterMarkerView.swift */; };
 		AA000023 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000023 /* ParentalGateView.swift */; };
 		AA000024 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000024 /* PrivacyPolicyView.swift */; };
-		AA000027 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000027 /* AccountView.swift */; };
+		AA000031 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000028 /* AccountView.swift */; };
 		AA000025 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AB000025 /* PrivacyInfo.xcprivacy */; };
 		AA000026 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000026 /* TermsOfServiceView.swift */; };
 		AA000027 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000027 /* Analytics.swift */; };
@@ -146,7 +146,7 @@
 		AB000022 /* CharacterMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMarkerView.swift; sourceTree = "<group>"; };
 		AB000023 /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
 		AB000024 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
-		AB000027 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		AB000028 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		AB000025 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AB000026 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		AB000027 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 				AB000022 /* CharacterMarkerView.swift */,
 				AB000023 /* ParentalGateView.swift */,
 				AB000024 /* PrivacyPolicyView.swift */,
-				AB000027 /* AccountView.swift */,
+				AB000028 /* AccountView.swift */,
 				AB000026 /* TermsOfServiceView.swift */,
 				AB000029 /* BookshelfView.swift */,
 			);
@@ -614,7 +614,7 @@
 				AA000022 /* CharacterMarkerView.swift in Sources */,
 				AA000023 /* ParentalGateView.swift in Sources */,
 				AA000024 /* PrivacyPolicyView.swift in Sources */,
-				AA000027 /* AccountView.swift in Sources */,
+				AA000031 /* AccountView.swift in Sources */,
 				AA000026 /* TermsOfServiceView.swift in Sources */,
 				AA000027 /* Analytics.swift in Sources */,
 				AA000029 /* BookshelfView.swift in Sources */,
