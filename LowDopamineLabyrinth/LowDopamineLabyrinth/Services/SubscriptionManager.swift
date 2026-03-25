@@ -2,9 +2,13 @@ import StoreKit
 
 class SubscriptionManager: ObservableObject {
     @Published var isPremium: Bool = false
-    @Published var product: Product?
+    @Published var products: [Product] = []
 
-    private let productId = "labyrinth_pack_ocean"
+    private let productIds = [
+        "labyrinth_unlimited_weekly",
+        "labyrinth_unlimited_monthly",
+        "labyrinth_unlimited_lifetime"
+    ]
     private var transactionListener: Task<Void, Never>?
 
     init() {
@@ -19,7 +23,9 @@ class SubscriptionManager: ObservableObject {
     @MainActor
     func loadProducts() async {
         do {
-            product = try await Product.products(for: [productId]).first
+            let loaded = try await Product.products(for: productIds)
+            // Sort in preferred display order: weekly, monthly, lifetime
+            products = productIds.compactMap { id in loaded.first { $0.id == id } }
         } catch {
             print("Failed to load products: \(error)")
         }
@@ -56,7 +62,7 @@ class SubscriptionManager: ObservableObject {
     private func checkEntitlements() async {
         for await result in Transaction.currentEntitlements {
             if let transaction = try? checkVerified(result) {
-                if transaction.productID == productId {
+                if productIds.contains(transaction.productID) {
                     isPremium = true
                     return
                 }

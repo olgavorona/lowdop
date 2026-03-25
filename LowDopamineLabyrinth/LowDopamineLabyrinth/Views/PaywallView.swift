@@ -5,6 +5,7 @@ struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
     @State private var isPurchasing = false
+    @State private var selectedProductId: String = "labyrinth_unlimited_lifetime"
     var onSkip: (() -> Void)? = nil
 
     private let benefits = [
@@ -12,6 +13,10 @@ struct PaywallView: View {
         "Calm, focused screen time",
         "Educational facts & narration"
     ]
+
+    private var selectedProduct: Product? {
+        subscriptionManager.products.first { $0.id == selectedProductId }
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -24,7 +29,7 @@ struct PaywallView: View {
                     .scaledToFit()
                     .frame(height: 100)
 
-                Text("Buy Forever Access")
+                Text("Unlock All Packs")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
 
@@ -43,7 +48,6 @@ struct PaywallView: View {
 
                 Spacer()
 
-                // Restore + Terms + Privacy
                 HStack(spacing: 12) {
                     Button("Restore Purchases") {
                         Analytics.send("Paywall.restoreTapped")
@@ -63,40 +67,44 @@ struct PaywallView: View {
             .frame(maxWidth: .infinity)
             .padding(.horizontal, 24)
 
-            // MARK: - Right Column: Single Product + CTA
+            // MARK: - Right Column: Plan Cards + CTA
             VStack(spacing: 12) {
                 Spacer()
 
-                if let product = subscriptionManager.product {
-                    // Product display
-                    Text(product.displayName)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(AppColor.textPrimary)
-
-                    Text(product.displayPrice)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(AppColor.accentBlue)
+                if subscriptionManager.products.isEmpty {
+                    ProgressView()
+                        .padding()
                 } else {
-                    Text("Ocean Adventures Pack")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(AppColor.textPrimary)
-
-                    Text("Loading price...")
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(AppColor.accentBlue)
+                    VStack(spacing: 8) {
+                        ForEach(subscriptionManager.products, id: \.id) { product in
+                            PlanCardView(
+                                product: product,
+                                isSelected: selectedProductId == product.id,
+                                isBestValue: product.id == "labyrinth_unlimited_lifetime"
+                            ) {
+                                selectedProductId = product.id
+                            }
+                        }
+                    }
                 }
 
-                // CTA button
                 Button(action: executePurchase) {
-                    Text("Buy once, play forever")
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(AppColor.accentBlue)
-                        .cornerRadius(14)
+                    Group {
+                        if isPurchasing {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        } else {
+                            Text(ctaTitle)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 52)
                 }
-                .disabled(isPurchasing || subscriptionManager.product == nil)
+                .background(AppColor.accentBlue)
+                .cornerRadius(14)
+                .disabled(isPurchasing || selectedProduct == nil)
                 .opacity(isPurchasing ? 0.6 : 1.0)
                 .padding(.top, 4)
 
@@ -136,8 +144,19 @@ struct PaywallView: View {
         }
     }
 
+    private var ctaTitle: String {
+        guard let product = selectedProduct else { return "Subscribe" }
+        if let intro = product.subscription?.introductoryOffer, intro.paymentMode == .freeTrial {
+            return "Try Free & Subscribe"
+        }
+        if product.id == "labyrinth_unlimited_lifetime" {
+            return "Buy Once, Play Forever"
+        }
+        return "Subscribe"
+    }
+
     private func executePurchase() {
-        guard let product = subscriptionManager.product else { return }
+        guard let product = selectedProduct else { return }
         Analytics.send("Paywall.purchaseAttempted", with: ["productId": product.id])
         Task {
             isPurchasing = true
@@ -148,5 +167,72 @@ struct PaywallView: View {
                 dismiss()
             }
         }
+    }
+}
+
+private struct PlanCardView: View {
+    let product: Product
+    let isSelected: Bool
+    let isBestValue: Bool
+    let onTap: () -> Void
+
+    private var trialText: String? {
+        guard let intro = product.subscription?.introductoryOffer,
+              intro.paymentMode == .freeTrial else { return nil }
+        let value = intro.period.value
+        let unit: String
+        switch intro.period.unit {
+        case .day:   unit = value == 1 ? "day" : "days"
+        case .week:  unit = value == 1 ? "week" : "weeks"
+        case .month: unit = value == 1 ? "month" : "months"
+        case .year:  unit = value == 1 ? "year" : "years"
+        @unknown default: unit = "days"
+        }
+        return "\(value)-\(unit) free trial"
+    }
+
+    var body: some View {
+        Button(action: onTap) {
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(product.displayName)
+                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                        .foregroundColor(AppColor.textPrimary)
+                    if let trial = trialText {
+                        Text(trial)
+                            .font(.system(size: 12, design: .rounded))
+                            .foregroundColor(AppColor.accentGreen)
+                    }
+                }
+
+                Spacer()
+
+                if isBestValue {
+                    Text("Best Value")
+                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(AppColor.accentGreen)
+                        .cornerRadius(8)
+                }
+
+                Text(product.displayPrice)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundColor(isSelected ? AppColor.accentBlue : AppColor.textPrimary)
+                    .padding(.leading, 8)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(isSelected ? AppColor.accentBlue.opacity(0.08) : Color.white)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(isSelected ? AppColor.accentBlue : Color.gray.opacity(0.2), lineWidth: isSelected ? 2 : 1)
+            )
+        }
+        .buttonStyle(.plain)
     }
 }
