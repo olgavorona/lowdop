@@ -5,7 +5,7 @@ struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
     @State private var isPurchasing = false
-    @State private var selectedProductId: String = "labyrinth_unlimited_lifetime"
+    @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
     var onSkip: (() -> Void)? = nil
 
     private let benefits = [
@@ -80,7 +80,7 @@ struct PaywallView: View {
                             PlanCardView(
                                 product: product,
                                 isSelected: selectedProductId == product.id,
-                                isBestValue: product.id == "labyrinth_unlimited_lifetime"
+                                isBestValue: product.id == "labyrinth_unlimited_lifetime1"
                             ) {
                                 selectedProductId = product.id
                             }
@@ -149,7 +149,7 @@ struct PaywallView: View {
         if let intro = product.subscription?.introductoryOffer, intro.paymentMode == .freeTrial {
             return "Try Free & Subscribe"
         }
-        if product.id == "labyrinth_unlimited_lifetime" {
+        if product.id == "labyrinth_unlimited_lifetime1" {
             return "Buy Once, Play Forever"
         }
         return "Subscribe"

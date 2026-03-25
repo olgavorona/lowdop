@@ -15,7 +15,7 @@
   ],
   "products" : [
     {
-      "displayPrice" : "9.99",
+      "displayPrice" : "59.99",
       "familyShareable" : false,
       "internalID" : "E09B9D7D",
       "localizations" : [
@@ -25,7 +25,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "labyrinth_unlimited_lifetime",
+      "productID" : "labyrinth_unlimited_lifetime1",
       "promotionalImageID" : "E60A234A",
       "referenceName" : "Forever",
       "type" : "NonConsumable"
@@ -60,7 +60,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "0.99",
+          "displayPrice" : "2.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "F1A2B3C4",
@@ -92,7 +92,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "2.99",
+          "displayPrice" : "9.99",
           "familyShareable" : false,
           "groupNumber" : 2,
           "internalID" : "F1A2B3C5",

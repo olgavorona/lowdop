@@ -7,7 +7,7 @@ class SubscriptionManager: ObservableObject {
     private let productIds = [
         "labyrinth_unlimited_weekly",
         "labyrinth_unlimited_monthly",
-        "labyrinth_unlimited_lifetime"
+        "labyrinth_unlimited_lifetime1"
     ]
     private var transactionListener: Task<Void, Never>?
 
