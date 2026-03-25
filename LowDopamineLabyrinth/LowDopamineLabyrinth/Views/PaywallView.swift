@@ -6,6 +6,7 @@ struct PaywallView: View {
     @Environment(\.dismiss) var dismiss
     @State private var isPurchasing = false
     @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
+    @State private var showCancelPrompt = false
     var onSkip: (() -> Void)? = nil
 
     private let benefits = [
@@ -142,6 +143,20 @@ struct PaywallView: View {
         .task {
             await subscriptionManager.loadProducts()
         }
+        .overlay {
+            if showCancelPrompt {
+                CancelSubscriptionPromptView(
+                    subscriptionName: subscriptionDisplayName(subscriptionManager.activeSubscriptionProductId),
+                    onManage: {
+                        Task {
+                            await subscriptionManager.openSubscriptionManagement()
+                            dismiss()
+                        }
+                    },
+                    onSkip: { dismiss() }
+                )
+            }
+        }
     }
 
     private var ctaTitle: String {
@@ -157,6 +172,7 @@ struct PaywallView: View {
 
     private func executePurchase() {
         guard let product = selectedProduct else { return }
+        let isLifetime = product.id == "labyrinth_unlimited_lifetime1"
         Analytics.send("Paywall.purchaseAttempted", with: ["productId": product.id])
         Task {
             isPurchasing = true
@@ -164,8 +180,69 @@ struct PaywallView: View {
             isPurchasing = false
             if success {
                 Analytics.send("Paywall.purchaseSucceeded", with: ["productId": product.id])
-                dismiss()
+                if isLifetime && subscriptionManager.activeSubscriptionProductId != nil {
+                    showCancelPrompt = true
+                } else {
+                    dismiss()
+                }
             }
+        }
+    }
+
+    private func subscriptionDisplayName(_ productId: String?) -> String {
+        switch productId {
+        case "labyrinth_unlimited_weekly":  return "Weekly"
+        case "labyrinth_unlimited_monthly": return "Monthly"
+        default: return "subscription"
+        }
+    }
+}
+
+private struct CancelSubscriptionPromptView: View {
+    let subscriptionName: String
+    let onManage: () -> Void
+    let onSkip: () -> Void
+
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.5).ignoresSafeArea()
+
+            VStack(spacing: 20) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 48))
+                    .foregroundColor(AppColor.accentGreen)
+
+                Text("You have forever access!")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(AppColor.textPrimary)
+
+                Text("You still have an active \(subscriptionName) subscription. Cancel it to avoid future charges.")
+                    .font(.system(size: 15, design: .rounded))
+                    .foregroundColor(AppColor.textSecondary)
+                    .multilineTextAlignment(.center)
+
+                Button(action: onManage) {
+                    Text("Manage Subscriptions")
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(AppColor.accentBlue)
+                        .cornerRadius(14)
+                }
+
+                Button(action: onSkip) {
+                    Text("No Thanks")
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundColor(AppColor.textTertiary)
+                }
+                .frame(height: 36)
+            }
+            .padding(32)
+            .background(Color.white)
+            .cornerRadius(24)
+            .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
+            .padding(40)
         }
     }
 }

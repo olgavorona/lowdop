@@ -1,14 +1,17 @@
 import StoreKit
+import UIKit // UIApplication.shared, UIWindowScene
 
 class SubscriptionManager: ObservableObject {
     @Published var isPremium: Bool = false
     @Published var products: [Product] = []
+    @Published var activeSubscriptionProductId: String? = nil
 
-    private let productIds = [
+    private let subscriptionIds = [
         "labyrinth_unlimited_weekly",
-        "labyrinth_unlimited_monthly",
-        "labyrinth_unlimited_lifetime1"
+        "labyrinth_unlimited_monthly"
     ]
+    private let lifetimeId = "labyrinth_unlimited_lifetime1"
+    private var productIds: [String] { subscriptionIds + [lifetimeId] }
     private var transactionListener: Task<Void, Never>?
 
     init() {
@@ -39,7 +42,7 @@ class SubscriptionManager: ObservableObject {
             case .success(let verification):
                 let transaction = try checkVerified(verification)
                 await transaction.finish()
-                isPremium = true
+                await checkEntitlements()
                 return true
             case .pending, .userCancelled:
                 return false
@@ -59,16 +62,29 @@ class SubscriptionManager: ObservableObject {
     }
 
     @MainActor
-    private func checkEntitlements() async {
+    func openSubscriptionManagement() async {
+        guard let scene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
+        else { return }
+        try? await AppStore.showManageSubscriptions(in: scene)
+    }
+
+    @MainActor
+    func checkEntitlements() async {
+        var hasLifetime = false
+        var activeSubId: String? = nil
+
         for await result in Transaction.currentEntitlements {
             if let transaction = try? checkVerified(result) {
-                if productIds.contains(transaction.productID) {
-                    isPremium = true
-                    return
+                if transaction.productID == lifetimeId {
+                    hasLifetime = true
+                } else if subscriptionIds.contains(transaction.productID) {
+                    activeSubId = transaction.productID
                 }
             }
         }
-        isPremium = false
+        isPremium = hasLifetime || activeSubId != nil
+        activeSubscriptionProductId = activeSubId
     }
 
     private func listenForTransactions() -> Task<Void, Never> {
