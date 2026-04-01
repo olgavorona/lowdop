@@ -6,7 +6,7 @@ import StoreKit
 /// Lightweight state model for onboarding page navigation.
 /// Extracted to allow unit testing without SwiftUI environment.
 final class OnboardingViewModel: ObservableObject {
-    static let totalPages: Int = 4
+    static let totalPages: Int = 5
 
     @Published var currentPage: Int = 0
 
@@ -25,7 +25,6 @@ struct OnboardingView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var subscriptionManager: SubscriptionManager
 
-    /// Called when onboarding completes (any exit path).
     var onComplete: (() -> Void)? = nil
 
     @StateObject private var viewModel = OnboardingViewModel()
@@ -62,10 +61,14 @@ struct OnboardingView: View {
                         .tag(1)
                     OnboardingPage3()
                         .tag(2)
-                    OnboardingPage4(
+                    OnboardingPage4()
+                        .tag(3)
+                    OnboardingPage5(
                         selectedProductId: $selectedProductId,
                         isPurchasing: $isPurchasing,
-                        onPlanTap: { product in
+                        onGetFullAccess: {
+                            let product = subscriptionManager.products.first { $0.id == selectedProductId }
+                                ?? subscriptionManager.products.last
                             pendingProduct = product
                             showParentalGate = true
                         },
@@ -74,12 +77,12 @@ struct OnboardingView: View {
                             Task { await subscriptionManager.restorePurchases() }
                         }
                     )
-                    .tag(3)
+                    .tag(4)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: currentPage)
 
-                // Next button (hidden on last page — page 4 has its own CTA)
+                // Next button (hidden on last page — it has its own CTAs)
                 if !viewModel.isOnLastPage {
                     Button(action: advancePage) {
                         Text("Next")
@@ -97,19 +100,18 @@ struct OnboardingView: View {
             }
         }
         .fullScreenCover(isPresented: $showParentalGate) {
-            if let product = pendingProduct {
-                ParentalGateView(purpose: .paywall) {
-                    // Success: parental gate passed → purchase
-                    showParentalGate = false
-                    Task {
-                        isPurchasing = true
-                        let success = await subscriptionManager.purchase(product)
-                        isPurchasing = false
-                        if success { completeOnboarding() }
-                    }
-                } onCancel: {
-                    showParentalGate = false
+            ParentalGateView(purpose: .paywall) {
+                showParentalGate = false
+                guard let product = pendingProduct else { return }
+                Task {
+                    isPurchasing = true
+                    let success = await subscriptionManager.purchase(product)
+                    isPurchasing = false
+                    if success { completeOnboarding() }
                 }
+            } onCancel: {
+                showParentalGate = false
+                pendingProduct = nil
             }
         }
         .task {
@@ -120,9 +122,7 @@ struct OnboardingView: View {
     }
 
     private func advancePage() {
-        withAnimation {
-            viewModel.advance()
-        }
+        withAnimation { viewModel.advance() }
     }
 
     private func completeOnboarding() {
@@ -132,32 +132,20 @@ struct OnboardingView: View {
     }
 }
 
-// MARK: - Screen 1: How to Play
+// MARK: - Screen 1: Draw the Path
 
 private struct OnboardingPage1: View {
     var body: some View {
         VStack(spacing: 0) {
             Spacer()
 
-            // Illustration
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(AppColor.accentGreen.opacity(0.12))
-                    .frame(width: 220, height: 220)
-
-                if UIImage(named: "onboarding_draw") != nil {
-                    Image("onboarding_draw")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-                        .cornerRadius(16)
-                } else {
-                    Image(systemName: "hand.draw")
-                        .font(.system(size: 72))
-                        .foregroundColor(AppColor.accentGreen)
-                }
-            }
-            .padding(.bottom, 32)
+            bundleImage("onboarding_draw")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 500)
+                .cornerRadius(20)
+                .padding(.horizontal, 32)
+                .padding(.bottom, 32)
 
             Text("Draw the Path")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
@@ -176,39 +164,55 @@ private struct OnboardingPage1: View {
     }
 }
 
-// MARK: - Screen 2: Calm & Focused
+// MARK: - Screen 2: 100 Labyrinths
 
 private struct OnboardingPage2: View {
-    private let features: [(icon: String, label: String)] = [
-        ("checkmark.circle", "No ads, ever"),
-        ("checkmark.circle", "No timers or pressure"),
-        ("checkmark.circle", "Works offline")
-    ]
-
     var body: some View {
         VStack(spacing: 0) {
             Spacer()
 
-            // Maze screenshot or placeholder
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(AppColor.accentBlue.opacity(0.10))
-                    .frame(width: 240, height: 160)
+            Text("100+")
+                .font(.system(size: 96, weight: .heavy, design: .rounded))
+                .foregroundColor(AppColor.accentGreen)
 
-                if UIImage(named: "onboarding_maze_screenshot") != nil {
-                    Image("onboarding_maze_screenshot")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 240, height: 160)
-                        .cornerRadius(16)
-                        .clipped()
-                } else {
-                    Image(systemName: "map")
-                        .font(.system(size: 60))
-                        .foregroundColor(AppColor.accentBlue)
-                }
+            Text("Labyrinths to Explore")
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .foregroundColor(AppColor.textPrimary)
+                .padding(.bottom, 12)
+
+            Text("New adventures added every month")
+                .font(.system(size: 17, design: .rounded))
+                .foregroundColor(AppColor.textSecondary)
+                .padding(.bottom, 36)
+
+            VStack(spacing: 14) {
+                OnboardingFeatureRow(icon: "map.fill",       label: "10 unique ocean stories")
+                OnboardingFeatureRow(icon: "dial.low.fill",  label: "3 difficulty levels for every child")
+                OnboardingFeatureRow(icon: "star.fill",      label: "Collect treasures along the way")
+                OnboardingFeatureRow(icon: "arrow.clockwise",label: "New content added regularly")
             }
-            .padding(.bottom, 28)
+            .padding(.horizontal, 48)
+
+            Spacer()
+        }
+    }
+}
+
+// MARK: - Screen 3: Calm & Focused
+
+private struct OnboardingPage3: View {
+    var body: some View {
+        VStack(spacing: 0) {
+            Spacer()
+
+            bundleImage("onboarding_maze_screenshot")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 420)
+                .cornerRadius(16)
+                .shadow(color: .black.opacity(0.08), radius: 10, y: 4)
+                .padding(.horizontal, 32)
+                .padding(.bottom, 28)
 
             Text("Calm & Focused")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
@@ -222,17 +226,10 @@ private struct OnboardingPage2: View {
                 .padding(.horizontal, 40)
                 .padding(.bottom, 24)
 
-            VStack(alignment: .leading, spacing: 12) {
-                ForEach(features, id: \.label) { feature in
-                    HStack(spacing: 10) {
-                        Image(systemName: feature.icon)
-                            .font(.system(size: 18))
-                            .foregroundColor(AppColor.accentGreen)
-                        Text(feature.label)
-                            .font(.system(size: 16, design: .rounded))
-                            .foregroundColor(AppColor.textPrimary)
-                    }
-                }
+            VStack(spacing: 12) {
+                OnboardingFeatureRow(icon: "checkmark.circle.fill", label: "No ads, ever")
+                OnboardingFeatureRow(icon: "checkmark.circle.fill", label: "No timers or pressure")
+                OnboardingFeatureRow(icon: "checkmark.circle.fill", label: "Works offline")
             }
             .padding(.horizontal, 48)
 
@@ -242,15 +239,15 @@ private struct OnboardingPage2: View {
     }
 }
 
-// MARK: - Screen 3: Difficulty
+// MARK: - Screen 4: Difficulty
 
-private struct OnboardingPage3: View {
+private struct OnboardingPage4: View {
     @EnvironmentObject var preferences: UserPreferences
 
     private let levelColors: [DifficultyLevel: [Color]] = [
-        .easy: [Color(hex: "#81C784") ?? .green, Color(hex: "#66BB6A") ?? .green],
-        .medium: [Color(hex: "#FFB74D") ?? .orange, Color(hex: "#FFA726") ?? .orange],
-        .hard: [Color(hex: "#EF5350") ?? .red, Color(hex: "#E53935") ?? .red]
+        .easy:   [Color(hex: "#4FC3F7") ?? .blue,   Color(hex: "#29B6F6") ?? .blue],
+        .medium: [Color(hex: "#29B6F6") ?? .blue,   Color(hex: "#039BE5") ?? .blue],
+        .hard:   [Color(hex: "#039BE5") ?? .blue,   Color(hex: "#0277BD") ?? .blue],
     ]
 
     var body: some View {
@@ -267,11 +264,12 @@ private struct OnboardingPage3: View {
                 .foregroundColor(AppColor.textSecondary)
                 .padding(.bottom, 32)
 
-            HStack(spacing: 16) {
+            HStack(spacing: 12) {
                 ForEach(DifficultyLevel.allCases, id: \.self) { level in
-                    OnboardingDifficultyButton(
+                    DifficultyCard(
                         level: level,
                         colors: levelColors[level] ?? [.blue, .blue],
+                        samplePath: loadSamplePath(for: level),
                         isSelected: preferences.difficultyLevel == level
                     ) {
                         preferences.difficultyLevel = level
@@ -284,78 +282,24 @@ private struct OnboardingPage3: View {
             Spacer()
         }
     }
-}
 
-private struct OnboardingDifficultyButton: View {
-    let level: DifficultyLevel
-    let colors: [Color]
-    let isSelected: Bool
-    let action: () -> Void
-
-    private var levelNumber: Int {
-        switch level {
-        case .easy: return 1
-        case .medium: return 2
-        case .hard: return 3
+    private func loadSamplePath(for level: DifficultyLevel) -> String {
+        guard let url = Bundle.main.url(forResource: "difficulty_samples", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let samples = try? JSONDecoder().decode([String: String].self, from: data) else {
+            return ""
         }
-    }
-
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 10) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 14)
-                        .fill(LinearGradient(
-                            colors: colors,
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ))
-                        .opacity(isSelected ? 1.0 : 0.55)
-
-                    if isSelected {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 28))
-                            .foregroundColor(.white)
-                    }
-                }
-                .frame(height: 80)
-
-                Text(level.displayName)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundColor(isSelected ? AppColor.textPrimary : AppColor.textSecondary)
-
-                HStack(spacing: 4) {
-                    ForEach(0..<3, id: \.self) { i in
-                        Circle()
-                            .fill(i < levelNumber ? colors[0] : Color.gray.opacity(0.2))
-                            .frame(width: 8, height: 8)
-                    }
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(isSelected ? AppColor.accentGreen.opacity(0.08) : Color.white)
-                    .shadow(color: isSelected ? AppColor.accentGreen.opacity(0.25) : Color.black.opacity(0.05), radius: 6, y: 3)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(isSelected ? AppColor.accentGreen : Color.gray.opacity(0.15), lineWidth: isSelected ? 2 : 1)
-            )
-        }
-        .buttonStyle(.plain)
-        .animation(.easeInOut(duration: 0.15), value: isSelected)
+        return samples[level.rawValue] ?? ""
     }
 }
 
-// MARK: - Screen 4: Soft Paywall
+// MARK: - Screen 5: Soft Paywall
 
-private struct OnboardingPage4: View {
+private struct OnboardingPage5: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Binding var selectedProductId: String
     @Binding var isPurchasing: Bool
-    let onPlanTap: (Product) -> Void
+    let onGetFullAccess: () -> Void
     let onStartFree: () -> Void
     let onRestore: () -> Void
 
@@ -375,10 +319,9 @@ private struct OnboardingPage4: View {
                 .padding(.horizontal, 40)
                 .padding(.bottom, 24)
 
-            // Plan cards
+            // Plan cards — tap to select only
             if subscriptionManager.products.isEmpty {
-                ProgressView()
-                    .padding(.vertical, 24)
+                ProgressView().padding(.vertical, 24)
             } else {
                 VStack(spacing: 8) {
                     ForEach(subscriptionManager.products, id: \.id) { product in
@@ -388,7 +331,6 @@ private struct OnboardingPage4: View {
                             isBestValue: product.id == "labyrinth_unlimited_lifetime1"
                         ) {
                             selectedProductId = product.id
-                            onPlanTap(product)
                         }
                     }
                 }
@@ -397,14 +339,14 @@ private struct OnboardingPage4: View {
 
             Spacer(minLength: 20)
 
-            // Primary CTA
-            Button(action: onStartFree) {
+            // Get Full Access (primary — purchases selected plan)
+            Button(action: onGetFullAccess) {
                 Group {
                     if isPurchasing {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     } else {
-                        Text("Start for Free →")
+                        Text("Get Full Access")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                     }
@@ -417,9 +359,26 @@ private struct OnboardingPage4: View {
             .disabled(isPurchasing)
             .opacity(isPurchasing ? 0.6 : 1.0)
             .padding(.horizontal, 32)
-            .padding(.bottom, 12)
+            .padding(.bottom, 10)
 
-            // Restore link
+            // Start for Free (secondary)
+            Button(action: onStartFree) {
+                Text("Start for Free →")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(AppColor.textSecondary)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 44)
+                    .background(Color.white)
+                    .cornerRadius(14)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                    )
+            }
+            .padding(.horizontal, 32)
+            .padding(.bottom, 10)
+
+            // Restore Purchases (tertiary)
             Button(action: onRestore) {
                 Text("Restore Purchases")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -430,6 +389,8 @@ private struct OnboardingPage4: View {
         }
     }
 }
+
+// MARK: - Plan Card
 
 private struct OnboardingPlanCard: View {
     let product: Product
@@ -443,10 +404,10 @@ private struct OnboardingPlanCard: View {
         let value = intro.period.value
         let unit: String
         switch intro.period.unit {
-        case .day:   unit = value == 1 ? "day" : "days"
-        case .week:  unit = value == 1 ? "week" : "weeks"
+        case .day:   unit = value == 1 ? "day"   : "days"
+        case .week:  unit = value == 1 ? "week"  : "weeks"
         case .month: unit = value == 1 ? "month" : "months"
-        case .year:  unit = value == 1 ? "year" : "years"
+        case .year:  unit = value == 1 ? "year"  : "years"
         @unknown default: unit = "days"
         }
         return "\(value)-\(unit) free trial"
@@ -491,26 +452,57 @@ private struct OnboardingPlanCard: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(isSelected ? AppColor.accentBlue : Color.gray.opacity(0.2), lineWidth: isSelected ? 2 : 1)
+                    .stroke(isSelected ? AppColor.accentBlue : Color.gray.opacity(0.2),
+                            lineWidth: isSelected ? 2 : 1)
             )
         }
         .buttonStyle(.plain)
     }
 }
 
-// MARK: - DifficultyCard (legacy, kept for compatibility)
+// MARK: - Shared helpers
+
+private struct OnboardingFeatureRow: View {
+    let icon: String
+    let label: String
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.system(size: 16))
+                .foregroundColor(AppColor.accentGreen)
+                .frame(width: 24)
+            Text(label)
+                .font(.system(size: 16, design: .rounded))
+                .foregroundColor(AppColor.textPrimary)
+            Spacer()
+        }
+    }
+}
+
+/// Load a PNG from the app bundle (Resources/, not .xcassets).
+private func bundleImage(_ name: String) -> Image {
+    if let path = Bundle.main.path(forResource: name, ofType: "png"),
+       let ui = UIImage(contentsOfFile: path) {
+        return Image(uiImage: ui)
+    }
+    return Image(systemName: "photo")
+}
+
+// MARK: - DifficultyCard (used by LabyrinthGridView + OnboardingPage4)
 
 struct DifficultyCard: View {
     let level: DifficultyLevel
     let colors: [Color]
     let samplePath: String
+    var isSelected: Bool = false
     let action: () -> Void
 
     private var levelNumber: Int {
         switch level {
-        case .easy: return 1
+        case .easy:   return 1
         case .medium: return 2
-        case .hard: return 3
+        case .hard:   return 3
         }
     }
 
@@ -535,6 +527,10 @@ struct DifficultyCard: View {
                     }
                 }
                 .aspectRatio(1.0, contentMode: .fit)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.white, lineWidth: isSelected ? 3 : 0)
+                )
 
                 Text(level.displayName)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -550,5 +546,6 @@ struct DifficultyCard: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .buttonStyle(.plain)
     }
 }
