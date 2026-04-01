@@ -7,8 +7,6 @@ struct PaywallView: View {
     @State private var isPurchasing = false
     @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
     @State private var showCancelPrompt = false
-    var onSkip: (() -> Void)? = nil
-
     private let benefits = [
         "60 mazes across 20 ocean stories",
         "Calm, focused screen time",
