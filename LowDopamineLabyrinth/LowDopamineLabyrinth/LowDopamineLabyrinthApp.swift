@@ -1,7 +1,19 @@
 import SwiftUI
+import UIKit
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        supportedInterfaceOrientationsFor window: UIWindow?
+    ) -> UIInterfaceOrientationMask {
+        return .landscape
+    }
+}
 
 @main
 struct LowDopamineLabyrinthApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @StateObject private var preferences = UserPreferences()
     @StateObject private var subscriptionManager = SubscriptionManager()
     @StateObject private var progressTracker = ProgressTracker()
@@ -52,5 +64,12 @@ struct RootView: View {
             .environmentObject(progressTracker)
             .environmentObject(ttsService)
             .environmentObject(gameViewModel)
+            .onAppear { requestLandscape() }
+    }
+
+    private func requestLandscape() {
+        guard let windowScene = UIApplication.shared.connectedScenes
+                .first(where: { $0 is UIWindowScene }) as? UIWindowScene else { return }
+        windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscape))
     }
 }

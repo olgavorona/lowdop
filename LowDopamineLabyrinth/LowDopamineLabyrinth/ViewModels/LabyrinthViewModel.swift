@@ -70,8 +70,9 @@ class LabyrinthViewModel: ObservableObject {
     }
 
     func setupValidator(tolerance: CGFloat) {
+        let validationSegments = SVGPathParser.parseToSegments(labyrinth.pathData.solutionPath)
         validator = DrawingValidator(
-            segments: labyrinth.pathData.segments,
+            segments: validationSegments.isEmpty ? labyrinth.pathData.segments : validationSegments,
             tolerance: tolerance,
             scale: scale,
             offset: offset
@@ -93,7 +94,7 @@ class LabyrinthViewModel: ObservableObject {
         checkItemProximity(point)
 
         // Completion: reach near the end character (radius matches visible character size)
-        if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 60 * scale) {
+        if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 30 * scale) {
             isCompleted = true
             showSolution = true
         }

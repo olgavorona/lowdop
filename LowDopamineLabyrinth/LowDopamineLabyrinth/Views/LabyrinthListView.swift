@@ -21,9 +21,8 @@ struct LabyrinthListView: View {
                         LabyrinthGameView(viewModel: vm, onComplete: {
                             gameViewModel.completeCurrentLabyrinth()
 
-                            // Check if this was the hard (final) difficulty of a story
-                            let storyComplete = lab.difficulty == "hard"
-                            isStoryComplete = storyComplete
+                            // Check if all 3 difficulty levels of this story are now completed
+                            isStoryComplete = gameViewModel.isStoryComplete
 
                             showCompletion = true
                             Analytics.send("Game.completed", with: [
@@ -33,7 +32,7 @@ struct LabyrinthListView: View {
                                 "totalItems": String(vm.totalItemCount)
                             ])
 
-                            if storyComplete {
+                            if isStoryComplete {
                                 Analytics.send("StoryComplete.shown", with: [
                                     "labyrinthId": lab.id,
                                     "storyNumber": String(lab.storyNumber)

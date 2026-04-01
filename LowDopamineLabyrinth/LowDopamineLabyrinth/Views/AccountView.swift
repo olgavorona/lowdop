@@ -3,6 +3,7 @@ import SwiftUI
 struct AccountView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
+    @State private var showPaywall = false
 
     var body: some View {
         ScrollView {
@@ -23,6 +24,14 @@ struct AccountView: View {
                     }
 
                     if subscriptionManager.activeSubscriptionProductId != nil {
+                        AccountButton(
+                            title: "Get Forever Access",
+                            icon: "infinity",
+                            color: AppColor.accentYellow
+                        ) {
+                            showPaywall = true
+                        }
+
                         AccountButton(
                             title: "Manage Subscription",
                             icon: "arrow.triangle.2.circlepath",
@@ -71,6 +80,9 @@ struct AccountView: View {
                 Button("Done") { dismiss() }
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
             }
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
     }
 

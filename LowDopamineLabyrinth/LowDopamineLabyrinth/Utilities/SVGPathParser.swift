@@ -73,6 +73,37 @@ struct SVGPathParser {
         return path
     }
 
+    /// Parse an SVG M/L path into raw SegmentData (no scale/offset applied).
+    static func parseToSegments(_ svgPath: String) -> [SegmentData] {
+        let tokens = tokenize(svgPath)
+        var segments: [SegmentData] = []
+        var i = 0
+        var current = PointData(x: 0, y: 0)
+
+        while i < tokens.count {
+            let token = tokens[i]
+            switch token {
+            case "M":
+                guard i + 2 < tokens.count,
+                      let x = Double(tokens[i + 1]),
+                      let y = Double(tokens[i + 2]) else { i += 1; continue }
+                current = PointData(x: x, y: y)
+                i += 3
+            case "L":
+                guard i + 2 < tokens.count,
+                      let x = Double(tokens[i + 1]),
+                      let y = Double(tokens[i + 2]) else { i += 1; continue }
+                let next = PointData(x: x, y: y)
+                segments.append(SegmentData(start: current, end: next))
+                current = next
+                i += 3
+            default:
+                i += 1
+            }
+        }
+        return segments
+    }
+
     static func parseToPoints(_ svgPath: String, scale: CGFloat = 1.0, offset: CGPoint = .zero) -> [CGPoint] {
         var points: [CGPoint] = []
         let tokens = tokenize(svgPath)

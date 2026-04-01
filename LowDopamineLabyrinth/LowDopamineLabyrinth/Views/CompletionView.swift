@@ -111,7 +111,7 @@ struct CompletionView: View {
                     .frame(height: isCompact ? 22 : 44)
                 }
                 .padding(.horizontal, isCompact ? 16 : 40)
-                .padding(.top, isCompact ? 8 : 0)
+                .padding(.top, isCompact ? 12 : 24)
                 .padding(.bottom, isCompact ? 4 : 24)
             }
             .padding(.top, isCompact ? 6 : 20)
