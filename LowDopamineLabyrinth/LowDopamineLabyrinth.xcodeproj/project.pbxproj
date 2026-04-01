@@ -102,11 +102,14 @@
 		AA202002 /* denny_020_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202002 /* denny_020_medium.json */; };
 		AA202003 /* denny_020_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202003 /* denny_020_hard.json */; };
 		AA300001 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC300001 /* audio */; };
+		AA300002 /* onboarding_draw.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300002 /* onboarding_draw.png */; };
+		AA300003 /* onboarding_maze_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300003 /* onboarding_maze_screenshot.png */; };
 		BA000001 /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001 /* GameViewModelTests.swift */; };
 		BA000002 /* DrawingValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000002 /* DrawingValidatorTests.swift */; };
 		BA000003 /* LabyrinthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000003 /* LabyrinthViewModelTests.swift */; };
 		BA000004 /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000004 /* UserPreferencesTests.swift */; };
 		BA000005 /* StoryInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000005 /* StoryInfoTests.swift */; };
+		BA000006 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000006 /* OnboardingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,12 +218,15 @@
 		AC202002 /* denny_020_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020_medium.json; sourceTree = "<group>"; };
 		AC202003 /* denny_020_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020_hard.json; sourceTree = "<group>"; };
 		AC300001 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
+		AC300002 /* onboarding_draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_draw.png; sourceTree = "<group>"; };
+		AC300003 /* onboarding_maze_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_maze_screenshot.png; sourceTree = "<group>"; };
 		BB000000 /* LowDopamineLabyrinthTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LowDopamineLabyrinthTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB000001 /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
 		BB000002 /* DrawingValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingValidatorTests.swift; sourceTree = "<group>"; };
 		BB000003 /* LabyrinthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthViewModelTests.swift; sourceTree = "<group>"; };
 		BB000004 /* UserPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesTests.swift; sourceTree = "<group>"; };
 		BB000005 /* StoryInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoTests.swift; sourceTree = "<group>"; };
+		BB000006 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +340,8 @@
 			isa = PBXGroup;
 			children = (
 				AE000008 /* Labyrinths */,
+				AC300002 /* onboarding_draw.png */,
+				AC300003 /* onboarding_maze_screenshot.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -425,6 +433,7 @@
 				BB000003 /* LabyrinthViewModelTests.swift */,
 				BB000004 /* UserPreferencesTests.swift */,
 				BB000005 /* StoryInfoTests.swift */,
+				BB000006 /* OnboardingTests.swift */,
 			);
 			path = LowDopamineLabyrinthTests;
 			sourceTree = "<group>";
@@ -580,6 +589,8 @@
 				AA100031 /* manifest.json in Resources */,
 				038B80AD2F5990EB00FD9E1C /* StoreKitConfig.storekit in Resources */,
 				AA300001 /* audio in Resources */,
+				AA300002 /* onboarding_draw.png in Resources */,
+				AA300003 /* onboarding_maze_screenshot.png in Resources */,
 				AA000025 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +642,7 @@
 				BA000003 /* LabyrinthViewModelTests.swift in Sources */,
 				BA000004 /* UserPreferencesTests.swift in Sources */,
 				BA000005 /* StoryInfoTests.swift in Sources */,
+				BA000006 /* OnboardingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

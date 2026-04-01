@@ -65,6 +65,16 @@ struct RootView: View {
             .environmentObject(ttsService)
             .environmentObject(gameViewModel)
             .onAppear { requestLandscape() }
+            .fullScreenCover(isPresented: Binding(
+                get: { !preferences.hasCompletedOnboarding },
+                set: { _ in }
+            )) {
+                OnboardingView {
+                    preferences.hasCompletedOnboarding = true
+                }
+                .environmentObject(preferences)
+                .environmentObject(subscriptionManager)
+            }
     }
 
     private func requestLandscape() {
