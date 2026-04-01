@@ -180,11 +180,6 @@ private struct OnboardingPage2: View {
                 .foregroundColor(AppColor.textPrimary)
                 .padding(.bottom, 12)
 
-            Text("New adventures added every month")
-                .font(.system(size: 17, design: .rounded))
-                .foregroundColor(AppColor.textSecondary)
-                .padding(.bottom, 36)
-
             VStack(spacing: 14) {
                 OnboardingFeatureRow(icon: "map.fill",       label: "10 unique ocean stories")
                 OnboardingFeatureRow(icon: "dial.low.fill",  label: "3 difficulty levels for every child")
@@ -218,13 +213,6 @@ private struct OnboardingPage3: View {
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
                 .padding(.bottom, 8)
-
-            Text("No flashing animations. No distractions.\nJust quiet focus.")
-                .font(.system(size: 17, design: .rounded))
-                .foregroundColor(AppColor.textSecondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
-                .padding(.bottom, 24)
 
             VStack(spacing: 12) {
                 OnboardingFeatureRow(icon: "checkmark.circle.fill", label: "No ads, ever")
@@ -475,7 +463,6 @@ private struct OnboardingFeatureRow: View {
             Text(label)
                 .font(.system(size: 16, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
-            Spacer()
         }
     }
 }

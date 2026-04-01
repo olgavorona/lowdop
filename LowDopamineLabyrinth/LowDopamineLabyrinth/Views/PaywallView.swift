@@ -109,21 +109,6 @@ struct PaywallView: View {
                 .opacity(isPurchasing ? 0.6 : 1.0)
                 .padding(.top, 4)
 
-                #if DEBUG
-                Button(action: {
-                    onSkip?()
-                    dismiss()
-                }) {
-                    Text("Skip (Dev)")
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 40)
-                        .background(AppColor.accentGreen)
-                        .cornerRadius(10)
-                }
-                #endif
-
                 Button(action: {
                     Analytics.send("Paywall.dismissed")
                     dismiss()
