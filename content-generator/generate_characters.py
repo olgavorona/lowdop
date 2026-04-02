@@ -55,8 +55,9 @@ STYLE_SUFFIX = (
 )
 
 
-def load_universe() -> dict:
-    path = Path(__file__).parent / "characters" / "denny_universe.json"
+def load_universe(universe: str = "ocean") -> dict:
+    filename = "denny_space_universe.json" if universe == "space" else "denny_universe.json"
+    path = Path(__file__).parent / "characters" / filename
     with open(path) as f:
         return json.load(f)
 
@@ -151,6 +152,13 @@ def main():
     parser = argparse.ArgumentParser(description="Generate character images via DALL-E 3")
     parser.add_argument("--character", type=str, help="Generate only this character (by key)")
     parser.add_argument(
+        "--universe",
+        type=str,
+        choices=["ocean", "space"],
+        default="ocean",
+        help="Character universe to generate (default: ocean)",
+    )
+    parser.add_argument(
         "--output",
         type=str,
         default=None,
@@ -177,8 +185,11 @@ def main():
         print("  OPENAI_API_KEY=sk-...")
         sys.exit(1)
 
-    universe = load_universe()
+    universe = load_universe(args.universe)
     characters = universe["characters"]
+
+    # Space images get a _space suffix to avoid overwriting ocean originals
+    name_suffix = "_space" if args.universe == "space" else ""
 
     output_dir = Path(args.output) if args.output else Path(__file__).parent / "output" / "characters"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -203,15 +214,16 @@ def main():
 
     for name, char_data in char_items:
         prompt = build_prompt(char_data)
-        prompts_doc.append({"character": name, "prompt": prompt})
+        asset_name = f"{name}{name_suffix}"
+        prompts_doc.append({"character": asset_name, "prompt": prompt})
 
         if args.dry_run:
-            print(f"  {name}:")
+            print(f"  {asset_name}:")
             print(f"    {prompt}\n")
             continue
 
         try:
-            png_path = generate_character_image(client, name, prompt, output_dir)
+            png_path = generate_character_image(client, asset_name, prompt, output_dir)
 
             if args.install and png_path.exists():
                 xcassets = (
@@ -220,7 +232,7 @@ def main():
                     / "LowDopamineLabyrinth"
                     / "Assets.xcassets"
                 )
-                copy_to_xcassets(name, png_path, xcassets)
+                copy_to_xcassets(asset_name, png_path, xcassets)
         except Exception as e:
             print(f"    Error: {e}")
             continue

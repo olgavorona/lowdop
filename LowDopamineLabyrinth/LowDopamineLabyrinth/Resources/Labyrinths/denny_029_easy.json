@@ -1,0 +1,184 @@
+{
+  "id": "denny_029_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "saturn_rings",
+  "title": "Denny and Saturn's Rings",
+  "story_setup": "Pearl is drifting through Saturn's spectacular rings! Denny is surfing the ring particles collecting the shiniest ice chunks to bring back as souvenirs.",
+  "instruction": "Collect all the shiny ice rings and float your way to Pearl!",
+  "tts_instruction": "Surfing Saturn's rings! Help Denny collect every shiny ice chunk in the rings before finding Pearl floating nearby.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "jellyfish",
+    "description": "Translucent pink-white jellyfish in a glowing dome space suit, gentle and floaty, glows softly in space",
+    "position": "top_right",
+    "name": "Pearl",
+    "image_asset": "pearl_space"
+  },
+  "educational_question": "What are Saturn's rings made of? How many rings does it have?",
+  "fun_fact": "Saturn's rings are made mostly of ice and rock, ranging from tiny grains to chunks as big as a house! The rings are incredibly thin — only about 10 meters thick in places.",
+  "completion_message": "Denny surfed all the way to Pearl through Saturn's rings! The most beautiful sight in the solar system!",
+  "item_rule": "collect",
+  "item_emoji": "🪐",
+  "path_data": {
+    "svg_path": "M 300 82 L 300 194 M 188 194 L 300 194 M 188 194 L 188 306 M 300 194 L 300 306 M 188 306 L 300 306 M 188 306 L 188 418 M 300 306 L 412 306 M 412 306 L 412 418 M 76 418 L 188 418 M 300 418 L 412 418 M 412 418 L 524 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
+    "solution_path": "M 300 418 L 412 418 L 412 306 L 300 306 L 300 194 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_mountain",
+    "start_point": {
+      "x": 300,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 418
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 412,
+        "y": 418,
+        "emoji": "🪐",
+        "on_solution": true
+      },
+      {
+        "x": 188,
+        "y": 306,
+        "emoji": "🪐",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#C4A35A",
+    "decorative_elements": [
+      "ice_ring_chunks",
+      "saturn_in_bg",
+      "ring_particles"
+    ]
+  },
+  "audio_instruction": "denny_029_instruction.mp3",
+  "audio_completion": "denny_029_completion.mp3"
+}

@@ -27,8 +27,8 @@ class GameViewModel: ObservableObject {
         self.progressTracker = progressTracker
     }
 
-    func loadLabyrinths() {
-        labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel)
+    func loadLabyrinths(packId: String = "ocean_adventures") {
+        labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel, packId: packId)
         currentIndex = 0
         isPlaying = false
     }

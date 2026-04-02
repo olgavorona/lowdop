@@ -1,0 +1,156 @@
+{
+  "characters": {
+    "denny": {
+      "name": "Denny",
+      "type": "baby crab",
+      "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+      "color": "#E74C3C",
+      "personality": "curious, cheerful, brave",
+      "emoji": "🦀",
+      "image_prompt": "One cute cartoon baby crab in a tiny white space suit, orange-red color, round helmet with visor, two small symmetrical claws raised cheerfully, happy smile, floating in space with stars in background, centered in large empty white space, soft watercolor painting style, white background, no other characters, no writing, no text, no letters"
+    },
+    "mama_coral": {
+      "name": "Mommy Coral",
+      "type": "mother crab",
+      "description": "Warm coral-pink mother crab in a pink space suit, nurturing, slightly larger with a pearl necklace on the helmet",
+      "color": "#F1948A",
+      "personality": "nurturing, warm, protective",
+      "emoji": "🦀",
+      "image_prompt": "Cute cartoon young mother crab in a pink space suit with helmet, warm coral-pink color, small pearl necklace on the helmet ring, youthful happy face with big bright eyes through visor, smooth round body, no wrinkles, looks like a young mom, two small claws, full body visible, children's book illustration style, simple, friendly, transparent background"
+    },
+    "daddy_reef": {
+      "name": "Daddy Reef",
+      "type": "father crab",
+      "description": "Deep red-brown father crab in a sturdy red space suit, strong and calm, one big claw",
+      "color": "#922B21",
+      "personality": "strong, calm, protective",
+      "emoji": "🦀",
+      "image_prompt": "Cute cartoon father crab in a dark red space suit with helmet, deep red-brown color, one large claw, calm expression through visor, children's book illustration style, simple, friendly, transparent background"
+    },
+    "sandy": {
+      "name": "Sandy",
+      "type": "little sister crab",
+      "description": "Sandy-yellow little sister crab in a tiny yellow space suit with a bow on the helmet, playful and giggly",
+      "color": "#F9E79F",
+      "personality": "playful, giggly, energetic",
+      "emoji": "🦀",
+      "image_prompt": "Cute cartoon tiny baby crab in a yellow space suit with helmet, sandy-yellow color, small pink bow stuck on helmet, giggling expression through visor, children's book illustration style, simple, friendly, transparent background"
+    },
+    "finn": {
+      "name": "Finn",
+      "type": "clownfish",
+      "description": "Orange clownfish in a custom fish-shaped space suit, brave and adventurous",
+      "color": "#E67E22",
+      "personality": "brave, adventurous, energetic",
+      "emoji": "🐠",
+      "image_prompt": "Cute cartoon clownfish in a custom orange and white space suit shaped like a fish, brave expression, floating in space, children's book illustration style, simple, friendly, transparent background"
+    },
+    "stella": {
+      "name": "Stella",
+      "type": "starfish",
+      "description": "Purple-pink starfish in a star-shaped space suit, wise and kind",
+      "color": "#8E44AD",
+      "personality": "wise, kind, thoughtful",
+      "emoji": "⭐",
+      "image_prompt": "Cute cartoon starfish in a purple star-shaped space suit, purple-pink color, wise gentle expression through tiny visor, floating in space, children's book illustration style, simple, friendly, transparent background"
+    },
+    "ollie": {
+      "name": "Ollie",
+      "type": "octopus",
+      "description": "Blue-purple octopus in a multi-armed space suit, clever and funny, tentacles peeking out",
+      "color": "#6C3483",
+      "personality": "clever, funny, helpful",
+      "emoji": "🐙",
+      "image_prompt": "Cute cartoon octopus in a blue-purple space suit with eight sleeve ports for tentacles, funny expression through helmet visor, holding small space objects in tentacles, children's book illustration style, simple, friendly, transparent background"
+    },
+    "shelly": {
+      "name": "Shelly",
+      "type": "sea turtle",
+      "description": "Green sea turtle with a space-decorated shell, slow but steady, wearing a space helmet",
+      "color": "#27AE60",
+      "personality": "patient, wise, storyteller",
+      "emoji": "🐢",
+      "image_prompt": "Cute cartoon sea turtle with space rocket decals on patterned shell, wearing a round space helmet, green color, gentle wise expression, floating in zero gravity, children's book illustration style, simple, friendly, transparent background"
+    },
+    "bubbles": {
+      "name": "Bubbles",
+      "type": "seahorse",
+      "description": "Golden-yellow seahorse in a sleek golden space suit, shy but loyal, tiny oxygen bubbles float behind",
+      "color": "#F4D03F",
+      "personality": "shy, loyal, gentle",
+      "emoji": "🫧",
+      "image_prompt": "Cute cartoon seahorse in a golden space suit, golden-yellow color, shy sweet expression through visor, tiny floating bubbles behind, children's book illustration style, simple, friendly, transparent background"
+    },
+    "pearl": {
+      "name": "Pearl",
+      "type": "jellyfish",
+      "description": "Translucent pink-white jellyfish in a glowing dome space suit, gentle and floaty, glows softly in space",
+      "color": "#FADBD8",
+      "personality": "gentle, graceful, calming",
+      "emoji": "🪼",
+      "image_prompt": "One cute cartoon jellyfish in a glowing pink dome space suit, pink-purple helmet with soft glow, long flowing pink and lavender tentacles visible below, gentle happy expression through visor, floating in starry space, white background, no text, no writing"
+    }
+  },
+  "locations": {
+    "rocket_launch_pad": {
+      "name": "Rocket Launch Pad",
+      "background_color": "#E8D5A3",
+      "description": "A busy launch pad with rockets and countdown clocks",
+      "decorative_elements": ["rockets", "countdown_clock", "launch_flames"]
+    },
+    "moon_crater": {
+      "name": "Moon Crater",
+      "background_color": "#BDC3C7",
+      "description": "Grey lunar surface with craters and Earth visible above",
+      "decorative_elements": ["craters", "earth_view", "moon_rocks"]
+    },
+    "asteroid_belt": {
+      "name": "Asteroid Belt",
+      "background_color": "#2C2C54",
+      "description": "Dark space with floating rocky asteroids and sparkly debris",
+      "decorative_elements": ["asteroids", "space_debris", "stars"]
+    },
+    "alien_planet": {
+      "name": "Alien Planet",
+      "background_color": "#6C3483",
+      "description": "A colorful alien planet surface with strange plants and two moons",
+      "decorative_elements": ["alien_plants", "two_moons", "glowing_crystals"]
+    },
+    "space_station": {
+      "name": "Space Station",
+      "background_color": "#1A1A2E",
+      "description": "A gleaming space station with solar panels floating in orbit",
+      "decorative_elements": ["solar_panels", "portholes", "floating_tools"]
+    },
+    "nebula_cloud": {
+      "name": "Nebula Cloud",
+      "background_color": "#8E44AD",
+      "description": "A breathtaking colorful nebula with swirling gas clouds and new stars forming",
+      "decorative_elements": ["gas_clouds", "forming_stars", "glowing_dust"]
+    },
+    "comet_tail": {
+      "name": "Comet's Tail",
+      "background_color": "#0D47A1",
+      "description": "Racing through space on the blazing tail of a comet",
+      "decorative_elements": ["ice_chunks", "blazing_trail", "streaking_stars"]
+    },
+    "black_hole_edge": {
+      "name": "Black Hole Edge",
+      "background_color": "#0B0B2A",
+      "description": "The mysterious glowing edge of a black hole with swirling light",
+      "decorative_elements": ["event_horizon_glow", "warped_stars", "spiral_light"]
+    },
+    "saturn_rings": {
+      "name": "Saturn's Rings",
+      "background_color": "#C4A35A",
+      "description": "Flying through Saturn's spectacular golden ring system",
+      "decorative_elements": ["ice_ring_chunks", "saturn_in_bg", "ring_particles"]
+    },
+    "starfield": {
+      "name": "Open Starfield",
+      "background_color": "#0A0A1A",
+      "description": "Vast open space filled with thousands of twinkling stars and distant galaxies",
+      "decorative_elements": ["stars", "distant_galaxies", "constellation_dots"]
+    }
+  }
+}

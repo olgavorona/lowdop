@@ -1,0 +1,204 @@
+{
+  "id": "denny_025_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "space_station",
+  "title": "Denny at the Space Station",
+  "story_setup": "Stella needs help fixing the space station! Tools are floating all over in zero gravity. Denny must collect them before they drift away into space.",
+  "instruction": "Collect all the floating tools and help Stella fix the station!",
+  "tts_instruction": "Zero gravity emergency! Help Denny collect every floating tool before finding Stella to fix the space station.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish in a star-shaped space suit, wise and kind",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella_space"
+  },
+  "educational_question": "What does zero gravity feel like? What do astronauts do differently in space?",
+  "fun_fact": "On the International Space Station, astronauts sleep in sleeping bags attached to the wall and eat food from pouches — otherwise it floats away!",
+  "completion_message": "Denny collected all the tools! Stella fixed the space station just in time!",
+  "item_rule": "collect",
+  "item_emoji": "🔧",
+  "path_data": {
+    "svg_path": "M 253 110 L 253 203 M 160 203 L 253 203 M 160 203 L 160 296 M 253 203 L 346 203 M 346 203 L 346 296 M 67 296 L 160 296 M 160 296 L 253 296 M 253 296 L 346 296 M 253 296 L 253 389 M 346 296 L 439 296 M 346 296 L 346 389 M 439 296 L 532 296 M 160 389 L 253 389 M 253 110 L 253 110 M 160 203 L 160 203 M 253 203 L 253 203 M 346 203 L 346 203 M 67 296 L 67 296 M 160 296 L 160 296 M 253 296 L 253 296 M 346 296 L 346 296 M 439 296 L 439 296 M 532 296 L 532 296 M 160 389 L 160 389 M 253 389 L 253 389 M 346 389 L 346 389",
+    "solution_path": "M 160 389 L 253 389 L 253 296 L 160 296 L 160 203 L 253 203 L 253 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_diamond",
+    "start_point": {
+      "x": 160,
+      "y": 389
+    },
+    "end_point": {
+      "x": 253,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 253,
+          "y": 110
+        },
+        "end": {
+          "x": 253,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 203
+        },
+        "end": {
+          "x": 253,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 203
+        },
+        "end": {
+          "x": 160,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 67,
+          "y": 296
+        },
+        "end": {
+          "x": 160,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 296
+        },
+        "end": {
+          "x": 346,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 296
+        },
+        "end": {
+          "x": 253,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 439,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 439,
+          "y": 296
+        },
+        "end": {
+          "x": 532,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 389
+        },
+        "end": {
+          "x": 253,
+          "y": 389
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 253,
+        "y": 203,
+        "emoji": "🔧",
+        "on_solution": true
+      },
+      {
+        "x": 346,
+        "y": 296,
+        "emoji": "🔧",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#1A1A2E",
+    "decorative_elements": [
+      "solar_panels",
+      "portholes",
+      "floating_tools"
+    ]
+  },
+  "audio_instruction": "denny_025_instruction.mp3",
+  "audio_completion": "denny_025_completion.mp3"
+}

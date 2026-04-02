@@ -15,8 +15,8 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if let _ = selectedPack {
-                LabyrinthGridView(onBackToBookshelf: {
+            if let packId = selectedPack {
+                LabyrinthGridView(packId: packId, onBackToBookshelf: {
                     selectedPack = nil
                 })
             } else {

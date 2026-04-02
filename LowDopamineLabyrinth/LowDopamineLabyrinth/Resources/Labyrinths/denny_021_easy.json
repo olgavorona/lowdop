@@ -1,0 +1,194 @@
+{
+  "id": "denny_021_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "rocket_launch_pad",
+  "title": "Denny's First Launch",
+  "story_setup": "Denny is blasting off into space for the very first time! Mommy Coral is waiting at the launch pad control room. Collect all the guiding stars on the way!",
+  "instruction": "Collect all the stars and reach Mommy Coral at the control room!",
+  "tts_instruction": "Blast off! Help Denny collect every guiding star on the launch pad before reaching Mommy Coral at the control room.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "mother crab",
+    "description": "Warm coral-pink mother crab in a pink space suit, nurturing, slightly larger with a pearl necklace on the helmet",
+    "position": "top_right",
+    "name": "Mommy Coral",
+    "image_asset": "mama_coral_space"
+  },
+  "educational_question": "How fast does a rocket need to go to leave Earth? Do you know?",
+  "fun_fact": "A rocket needs to travel at 40,000 kilometers per hour to escape Earth's gravity. That's fast enough to go around the world in less than an hour!",
+  "completion_message": "Denny launched into space! Mommy Coral is so proud!",
+  "item_rule": "collect",
+  "item_emoji": "⭐",
+  "path_data": {
+    "svg_path": "M 90 110 L 230 110 M 90 110 L 90 250 M 230 110 L 370 110 M 370 110 L 510 110 M 510 110 L 510 250 M 90 250 L 230 250 M 230 250 L 230 390 M 370 250 L 510 250 M 370 250 L 370 390 M 510 250 L 510 390 M 90 390 L 230 390 M 230 390 L 370 390 M 90 110 L 90 110 M 230 110 L 230 110 M 370 110 L 370 110 M 510 110 L 510 110 M 90 250 L 90 250 M 230 250 L 230 250 M 370 250 L 370 250 M 510 250 L 510 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
+    "solution_path": "M 90 390 L 230 390 L 370 390 L 370 250 L 510 250 L 510 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_rect",
+    "start_point": {
+      "x": 90,
+      "y": 390
+    },
+    "end_point": {
+      "x": 510,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 90,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 390
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 390
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 370,
+        "y": 250,
+        "emoji": "⭐",
+        "on_solution": true
+      },
+      {
+        "x": 230,
+        "y": 250,
+        "emoji": "⭐",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#E8D5A3",
+    "decorative_elements": [
+      "rockets",
+      "countdown_clock",
+      "launch_flames"
+    ]
+  },
+  "audio_instruction": "denny_021_instruction.mp3",
+  "audio_completion": "denny_021_completion.mp3"
+}

@@ -1,32 +1,22 @@
 {
   "universe": "denny",
-  "total": 60,
+  "total": 90,
   "packs": [
     {
       "id": "ocean_adventures",
       "title": "Ocean Adventures",
       "free_stories": 3,
       "stories": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+      ]
+    },
+    {
+      "id": "space_adventures",
+      "title": "Denny in Space",
+      "free_stories": 0,
+      "stories": [
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30
       ]
     }
   ],
@@ -510,6 +500,246 @@
       "theme": "ocean",
       "location": "bubble_lagoon",
       "title": "Denny's Coin Collection"
+    },
+    {
+      "id": "denny_021_easy",
+      "difficulty": "easy",
+      "story": 21,
+      "theme": "space",
+      "location": "rocket_launch_pad",
+      "title": "Denny's First Launch"
+    },
+    {
+      "id": "denny_021_medium",
+      "difficulty": "medium",
+      "story": 21,
+      "theme": "space",
+      "location": "rocket_launch_pad",
+      "title": "Denny's First Launch"
+    },
+    {
+      "id": "denny_021_hard",
+      "difficulty": "hard",
+      "story": 21,
+      "theme": "space",
+      "location": "rocket_launch_pad",
+      "title": "Denny's First Launch"
+    },
+    {
+      "id": "denny_022_easy",
+      "difficulty": "easy",
+      "story": 22,
+      "theme": "space",
+      "location": "moon_crater",
+      "title": "Denny Walks on the Moon"
+    },
+    {
+      "id": "denny_022_medium",
+      "difficulty": "medium",
+      "story": 22,
+      "theme": "space",
+      "location": "moon_crater",
+      "title": "Denny Walks on the Moon"
+    },
+    {
+      "id": "denny_022_hard",
+      "difficulty": "hard",
+      "story": 22,
+      "theme": "space",
+      "location": "moon_crater",
+      "title": "Denny Walks on the Moon"
+    },
+    {
+      "id": "denny_023_easy",
+      "difficulty": "easy",
+      "story": 23,
+      "theme": "space",
+      "location": "asteroid_belt",
+      "title": "Denny's Asteroid Adventure"
+    },
+    {
+      "id": "denny_023_medium",
+      "difficulty": "medium",
+      "story": 23,
+      "theme": "space",
+      "location": "asteroid_belt",
+      "title": "Denny's Asteroid Adventure"
+    },
+    {
+      "id": "denny_023_hard",
+      "difficulty": "hard",
+      "story": 23,
+      "theme": "space",
+      "location": "asteroid_belt",
+      "title": "Denny's Asteroid Adventure"
+    },
+    {
+      "id": "denny_024_easy",
+      "difficulty": "easy",
+      "story": 24,
+      "theme": "space",
+      "location": "alien_planet",
+      "title": "Denny Meets Aliens"
+    },
+    {
+      "id": "denny_024_medium",
+      "difficulty": "medium",
+      "story": 24,
+      "theme": "space",
+      "location": "alien_planet",
+      "title": "Denny Meets Aliens"
+    },
+    {
+      "id": "denny_024_hard",
+      "difficulty": "hard",
+      "story": 24,
+      "theme": "space",
+      "location": "alien_planet",
+      "title": "Denny Meets Aliens"
+    },
+    {
+      "id": "denny_025_easy",
+      "difficulty": "easy",
+      "story": 25,
+      "theme": "space",
+      "location": "space_station",
+      "title": "Denny at the Space Station"
+    },
+    {
+      "id": "denny_025_medium",
+      "difficulty": "medium",
+      "story": 25,
+      "theme": "space",
+      "location": "space_station",
+      "title": "Denny at the Space Station"
+    },
+    {
+      "id": "denny_025_hard",
+      "difficulty": "hard",
+      "story": 25,
+      "theme": "space",
+      "location": "space_station",
+      "title": "Denny at the Space Station"
+    },
+    {
+      "id": "denny_026_easy",
+      "difficulty": "easy",
+      "story": 26,
+      "theme": "space",
+      "location": "nebula_cloud",
+      "title": "Denny in the Nebula"
+    },
+    {
+      "id": "denny_026_medium",
+      "difficulty": "medium",
+      "story": 26,
+      "theme": "space",
+      "location": "nebula_cloud",
+      "title": "Denny in the Nebula"
+    },
+    {
+      "id": "denny_026_hard",
+      "difficulty": "hard",
+      "story": 26,
+      "theme": "space",
+      "location": "nebula_cloud",
+      "title": "Denny in the Nebula"
+    },
+    {
+      "id": "denny_027_easy",
+      "difficulty": "easy",
+      "story": 27,
+      "theme": "space",
+      "location": "comet_tail",
+      "title": "Denny Rides a Comet"
+    },
+    {
+      "id": "denny_027_medium",
+      "difficulty": "medium",
+      "story": 27,
+      "theme": "space",
+      "location": "comet_tail",
+      "title": "Denny Rides a Comet"
+    },
+    {
+      "id": "denny_027_hard",
+      "difficulty": "hard",
+      "story": 27,
+      "theme": "space",
+      "location": "comet_tail",
+      "title": "Denny Rides a Comet"
+    },
+    {
+      "id": "denny_028_easy",
+      "difficulty": "easy",
+      "story": 28,
+      "theme": "space",
+      "location": "black_hole_edge",
+      "title": "Denny at the Black Hole"
+    },
+    {
+      "id": "denny_028_medium",
+      "difficulty": "medium",
+      "story": 28,
+      "theme": "space",
+      "location": "black_hole_edge",
+      "title": "Denny at the Black Hole"
+    },
+    {
+      "id": "denny_028_hard",
+      "difficulty": "hard",
+      "story": 28,
+      "theme": "space",
+      "location": "black_hole_edge",
+      "title": "Denny at the Black Hole"
+    },
+    {
+      "id": "denny_029_easy",
+      "difficulty": "easy",
+      "story": 29,
+      "theme": "space",
+      "location": "saturn_rings",
+      "title": "Denny and Saturn's Rings"
+    },
+    {
+      "id": "denny_029_medium",
+      "difficulty": "medium",
+      "story": 29,
+      "theme": "space",
+      "location": "saturn_rings",
+      "title": "Denny and Saturn's Rings"
+    },
+    {
+      "id": "denny_029_hard",
+      "difficulty": "hard",
+      "story": 29,
+      "theme": "space",
+      "location": "saturn_rings",
+      "title": "Denny and Saturn's Rings"
+    },
+    {
+      "id": "denny_030_easy",
+      "difficulty": "easy",
+      "story": 30,
+      "theme": "space",
+      "location": "starfield",
+      "title": "Denny's Starfield Journey"
+    },
+    {
+      "id": "denny_030_medium",
+      "difficulty": "medium",
+      "story": 30,
+      "theme": "space",
+      "location": "starfield",
+      "title": "Denny's Starfield Journey"
+    },
+    {
+      "id": "denny_030_hard",
+      "difficulty": "hard",
+      "story": 30,
+      "theme": "space",
+      "location": "starfield",
+      "title": "Denny's Starfield Journey"
     }
   ]
 }

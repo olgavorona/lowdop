@@ -1,0 +1,184 @@
+{
+  "id": "denny_024_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "alien_planet",
+  "title": "Denny Meets Aliens",
+  "story_setup": "Denny has landed on a colorful alien planet! Finn is waiting by the strange glowing forest. Collect the alien flowers as a gift for the planet's inhabitants!",
+  "instruction": "Collect all the alien flowers and find Finn in the glowing forest!",
+  "tts_instruction": "Alien planet! Help Denny gather every colorful alien flower in the glowing forest before reaching Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish in a custom fish-shaped space suit, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn_space"
+  },
+  "educational_question": "Do you think there could be life on other planets? What might it look like?",
+  "fun_fact": "Scientists have discovered over 5,000 planets outside our solar system! Some are in the 'habitable zone' where liquid water might exist.",
+  "completion_message": "Denny delivered the flowers to the aliens! Finn says they loved them!",
+  "item_rule": "collect",
+  "item_emoji": "🌸",
+  "path_data": {
+    "svg_path": "M 188 82 L 300 82 M 188 82 L 188 194 M 300 82 L 300 194 M 76 194 L 188 194 M 188 194 L 300 194 M 300 194 L 412 194 M 300 194 L 300 306 M 412 194 L 524 194 M 188 306 L 300 306 M 188 306 L 188 418 M 188 418 L 300 418 M 188 82 L 188 82 M 300 82 L 300 82 M 76 194 L 76 194 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 524 194 L 524 194 M 188 306 L 188 306 M 300 306 L 300 306 M 188 418 L 188 418 M 300 418 L 300 418",
+    "solution_path": "M 300 418 L 188 418 L 188 306 L 300 306 L 300 194 L 300 82 L 188 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 300,
+      "y": 418
+    },
+    "end_point": {
+      "x": 188,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 194
+        },
+        "end": {
+          "x": 524,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 82,
+        "emoji": "🌸",
+        "on_solution": true
+      },
+      {
+        "x": 524,
+        "y": 194,
+        "emoji": "🌸",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#6C3483",
+    "decorative_elements": [
+      "alien_plants",
+      "two_moons",
+      "glowing_crystals"
+    ]
+  },
+  "audio_instruction": "denny_024_instruction.mp3",
+  "audio_completion": "denny_024_completion.mp3"
+}

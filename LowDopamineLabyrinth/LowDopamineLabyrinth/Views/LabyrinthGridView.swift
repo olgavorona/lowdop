@@ -12,6 +12,8 @@ struct LabyrinthGridView: View {
     @State private var pendingLabyrinth: Labyrinth? = nil
     @State private var parentalGateAction: ParentalGateAction = .account
 
+    var packId: String = "ocean_adventures"
+
     /// Optional callback to navigate back to the bookshelf.
     /// When provided, a back button is shown in the header.
     var onBackToBookshelf: (() -> Void)? = nil
@@ -149,7 +151,7 @@ struct LabyrinthGridView: View {
             .toolbar(.hidden, for: .navigationBar)
         }
         .onAppear {
-            gameViewModel.loadLabyrinths()
+            gameViewModel.loadLabyrinths(packId: packId)
             Analytics.send("Grid.opened", with: [
                 "difficulty": preferences.difficultyLevel.rawValue,
                 "completedCount": String(progressTracker.completedCount(in: gameViewModel.labyrinths)),
@@ -163,7 +165,7 @@ struct LabyrinthGridView: View {
             DifficultyPickerSheet(onSelect: { newLevel in
                 let oldLevel = preferences.difficultyLevel
                 preferences.difficultyLevel = newLevel
-                gameViewModel.loadLabyrinths()
+                gameViewModel.loadLabyrinths(packId: packId)
                 showDifficultyPicker = false
                 Analytics.send("Grid.difficultyChanged", with: ["from": oldLevel.rawValue, "to": newLevel.rawValue])
             })

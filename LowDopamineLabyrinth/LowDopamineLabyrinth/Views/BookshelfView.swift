@@ -7,7 +7,8 @@ struct BookshelfView: View {
 
     let onPackSelected: (String) -> Void
 
-    @State private var stories: [StoryInfo] = []
+    @State private var oceanStories: [StoryInfo] = []
+    @State private var spaceStories: [StoryInfo] = []
     @State private var showParentalGate = false
     @State private var showDifficultyPicker = false
     @State private var showAccount = false
@@ -44,10 +45,11 @@ struct BookshelfView: View {
             }
         }
         .onAppear {
-            stories = LabyrinthLoader.shared.loadStories()
+            oceanStories = LabyrinthLoader.shared.loadStories(packId: "ocean_adventures")
+            spaceStories = LabyrinthLoader.shared.loadStories(packId: "space_adventures")
             Analytics.send("Bookshelf.opened", with: [
                 "difficulty": preferences.difficultyLevel.rawValue,
-                "storyCount": String(stories.count)
+                "storyCount": String(oceanStories.count + spaceStories.count)
             ])
         }
         .fullScreenCover(isPresented: $showParentalGate) {
@@ -126,12 +128,13 @@ struct BookshelfView: View {
 
     private var packCardsArea: some View {
         Group {
-            if stories.isEmpty {
+            if oceanStories.isEmpty && spaceStories.isEmpty {
                 emptyState
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
                         oceanAdventuresCard
+                        spaceAdventuresCard
                     }
                     .padding(.horizontal, 40)
                 }
@@ -154,8 +157,10 @@ struct BookshelfView: View {
     // MARK: - Ocean Adventures Card
 
     private var oceanAdventuresCard: some View {
-        let completedStoryCount = countCompletedStories()
-        let totalStoryCount = stories.count
+        let completedStoryCount = oceanStories.filter { story in
+            story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
+        }.count
+        let totalStoryCount = oceanStories.count
 
         return Button(action: {
             Analytics.send("Bookshelf.packTapped", with: ["pack": "ocean_adventures"])
@@ -253,13 +258,138 @@ struct BookshelfView: View {
         .buttonStyle(PlainButtonStyle())
     }
 
-    // MARK: - Helpers
+    // MARK: - Space Adventures Card
 
-    /// Count how many stories have all 3 difficulty levels completed.
-    private func countCompletedStories() -> Int {
-        stories.filter { story in
+    private var spaceAdventuresCard: some View {
+        let completedStoryCount = spaceStories.filter { story in
             story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
         }.count
+        let totalStoryCount = spaceStories.count
+        let isLocked = !subscriptionManager.isPremium
+
+        return Button(action: {
+            if isLocked {
+                // Tapping locked pack opens paywall (handled via bookshelf parental gate)
+                parentalGateAction = .account
+                showParentalGate = true
+            } else {
+                Analytics.send("Bookshelf.packTapped", with: ["pack": "space_adventures"])
+                onPackSelected("space_adventures")
+            }
+        }) {
+            VStack(spacing: 0) {
+                // Cover area with space gradient
+                ZStack {
+                    LinearGradient(
+                        colors: [
+                            Color(hex: "#1A1A2E") ?? .black,
+                            Color(hex: "#16213E") ?? .indigo,
+                            Color(hex: "#0F3460") ?? .blue
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+
+                    // Stars decoration
+                    ForEach(0..<12, id: \.self) { i in
+                        let xPos = CGFloat((i * 23 + 15) % 260) + 10
+                        let yPos = CGFloat((i * 17 + 20) % 160) + 10
+                        Circle()
+                            .fill(Color.white.opacity(0.6))
+                            .frame(width: i % 3 == 0 ? 4 : 2)
+                            .position(x: xPos, y: yPos)
+                    }
+
+                    // Lock badge
+                    if isLocked {
+                        VStack {
+                            HStack {
+                                Spacer()
+                                HStack(spacing: 4) {
+                                    Image(systemName: "lock.fill")
+                                        .font(.system(size: 11, weight: .bold))
+                                    Text("Premium")
+                                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                                }
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .background(AppColor.accentGreen.opacity(0.9))
+                                .cornerRadius(10)
+                                .padding(12)
+                            }
+                            Spacer()
+                        }
+                    }
+
+                    // Pack title on cover
+                    VStack(spacing: 8) {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(.yellow.opacity(0.9))
+
+                        Text("Denny in Space")
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+
+                        Text("\(totalStoryCount) stories")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(.white.opacity(0.8))
+                    }
+                }
+                .frame(height: 200)
+
+                // Bottom info area
+                VStack(spacing: 10) {
+                    HStack {
+                        if isLocked {
+                            Text("Unlock to explore space!")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(AppColor.textSecondary)
+                        } else {
+                            Text("\(completedStoryCount) of \(totalStoryCount) stories completed")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(AppColor.textSecondary)
+                        }
+                        Spacer()
+                    }
+
+                    GeometryReader { geo in
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.gray.opacity(0.15))
+                                .frame(height: 6)
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color(hex: "#0F3460") ?? .blue)
+                                .frame(
+                                    width: (!isLocked && totalStoryCount > 0)
+                                        ? CGFloat(completedStoryCount) / CGFloat(totalStoryCount) * geo.size.width
+                                        : 0,
+                                    height: 6
+                                )
+                        }
+                    }
+                    .frame(height: 6)
+
+                    HStack {
+                        Spacer()
+                        Text(isLocked ? "Tap to unlock" : "Tap to play")
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
+                        Image(systemName: isLocked ? "lock.fill" : "chevron.right")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
+                    }
+                }
+                .padding(16)
+                .background(Color.white)
+            }
+            .frame(width: 280)
+            .cornerRadius(18)
+            .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
+            .opacity(isLocked ? 0.85 : 1.0)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

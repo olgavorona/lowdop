@@ -33,9 +33,16 @@ class LabyrinthLoader {
         return cachedLabyrinths
     }
 
-    func loadForDifficulty(_ level: DifficultyLevel) -> [Labyrinth] {
+    func loadForDifficulty(_ level: DifficultyLevel, packId: String = "ocean_adventures") -> [Labyrinth] {
         let all = loadAll()
-        let filtered = all.filter { $0.difficulty == level.rawValue }
+        guard let manifest = loadManifest(),
+              let pack = manifest.packs?.first(where: { $0.id == packId }) else {
+            return []
+        }
+        let storySet = Set(pack.stories)
+        let filtered = all.filter {
+            $0.difficulty == level.rawValue && storySet.contains($0.storyNumber)
+        }
 
         // Interleave normal and adventure labyrinths, shifting adventure
         // by half to avoid pairing stories with the same end character
@@ -55,11 +62,11 @@ class LabyrinthLoader {
         return result
     }
 
-    /// Load story metadata for all stories in the first pack.
+    /// Load story metadata for all stories in a pack.
     /// Returns `[StoryInfo]` sorted by story number.
-    func loadStories() -> [StoryInfo] {
+    func loadStories(packId: String = "ocean_adventures") -> [StoryInfo] {
         guard let manifest = loadManifest(),
-              let pack = manifest.packs?.first else { return [] }
+              let pack = manifest.packs?.first(where: { $0.id == packId }) else { return [] }
 
         let freeStories = pack.freeStories
         let all = loadAll()
