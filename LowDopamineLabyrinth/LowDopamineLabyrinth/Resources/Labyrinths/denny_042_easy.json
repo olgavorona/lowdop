@@ -1,0 +1,170 @@
+{
+  "id": "denny_042_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "mushroom_clearing",
+  "title": "Maya's Secret Path",
+  "story_setup": "Maya wants to show Denny her favourite place in the whole forest — a magical clearing full of giant glowing mushrooms! But the path is overgrown and full of twists. Maya knows the way, and Denny follows close behind.",
+  "instruction": "Follow Maya's secret path to the magical mushroom clearing!",
+  "tts_instruction": "Maya knows a secret path! Help Denny follow Maya through the twisted forest trails to reach the magical mushroom clearing.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little mouse",
+    "description": "Tiny brown field mouse in a red polka-dot dress, shy but warm, round ears, bright curious eyes",
+    "position": "top_right",
+    "name": "Maya",
+    "image_asset": "maya_forest"
+  },
+  "educational_question": "Did you know some mushrooms really do glow in the dark? What other things in nature can glow?",
+  "fun_fact": "There are over 80 species of bioluminescent fungi — mushrooms that actually glow! They produce a soft green light at night. Scientists are still figuring out exactly why they do it.",
+  "completion_message": "Denny and Maya made it to the mushroom clearing! The giant glowing mushrooms light up all around them. Denny thinks the forest might be the most magical place he has ever visited.",
+  "path_data": {
+    "svg_path": "M 188 82 L 300 82 M 188 82 L 188 194 M 300 82 L 300 194 M 76 194 L 188 194 M 188 194 L 300 194 M 300 194 L 412 194 M 300 194 L 300 306 M 412 194 L 524 194 M 188 306 L 300 306 M 188 306 L 188 418 M 188 418 L 300 418 M 188 82 L 188 82 M 300 82 L 300 82 M 76 194 L 76 194 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 524 194 L 524 194 M 188 306 L 188 306 M 300 306 L 300 306 M 188 418 L 188 418 M 300 418 L 300 418",
+    "solution_path": "M 300 418 L 188 418 L 188 306 L 300 306 L 300 194 L 300 82 L 188 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 300,
+      "y": 418
+    },
+    "end_point": {
+      "x": 188,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 194
+        },
+        "end": {
+          "x": 524,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#1F2D0F",
+    "decorative_elements": [
+      "giant_mushrooms",
+      "glowing_moss",
+      "fireflies",
+      "fallen_leaves"
+    ]
+  },
+  "audio_instruction": "denny_042_instruction.mp3",
+  "audio_completion": "denny_042_completion.mp3"
+}

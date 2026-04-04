@@ -1027,12 +1027,36 @@
       "title": "Denny Returns Home"
     },
     {
+      "id": "denny_041_easy",
+      "difficulty": "easy",
+      "story": 41,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "What Is That Noise?"
+    },
+    {
       "id": "denny_041_medium",
       "difficulty": "medium",
       "story": 41,
       "theme": "forest",
       "location": "forest_entrance",
       "title": "What Is That Noise?"
+    },
+    {
+      "id": "denny_041_hard",
+      "difficulty": "hard",
+      "story": 41,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "What Is That Noise?"
+    },
+    {
+      "id": "denny_042_easy",
+      "difficulty": "easy",
+      "story": 42,
+      "theme": "forest",
+      "location": "mushroom_clearing",
+      "title": "Maya's Secret Path"
     },
     {
       "id": "denny_042_medium",
@@ -1043,13 +1067,37 @@
       "title": "Maya's Secret Path"
     },
     {
+      "id": "denny_042_hard",
+      "difficulty": "hard",
+      "story": 42,
+      "theme": "forest",
+      "location": "mushroom_clearing",
+      "title": "Maya's Secret Path"
+    },
+    {
+      "id": "denny_043_easy",
+      "difficulty": "easy",
+      "story": 43,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "The Babbling Brook"
+    },
+    {
       "id": "denny_043_medium",
       "difficulty": "medium",
       "story": 43,
       "theme": "forest",
       "location": "babbling_brook",
       "title": "The Babbling Brook"
+    },
+    {
+      "id": "denny_043_hard",
+      "difficulty": "hard",
+      "story": 43,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "The Babbling Brook"
     }
   ],
-  "total": 123
+  "total": 129
 }

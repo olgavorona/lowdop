@@ -162,8 +162,14 @@
 		AA204002 /* denny_040_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204002 /* denny_040_medium.json */; };
 		AA204003 /* denny_040_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204003 /* denny_040_hard.json */; };
 		AA204101 /* denny_041_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204101 /* denny_041_medium.json */; };
+		AA204111 /* denny_041_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204111 /* denny_041_easy.json */; };
+		AA204112 /* denny_041_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204112 /* denny_041_hard.json */; };
 		AA204102 /* denny_042_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204102 /* denny_042_medium.json */; };
+		AA204121 /* denny_042_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204121 /* denny_042_easy.json */; };
+		AA204122 /* denny_042_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204122 /* denny_042_hard.json */; };
 		AA204103 /* denny_043_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204103 /* denny_043_medium.json */; };
+		AA204131 /* denny_043_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204131 /* denny_043_easy.json */; };
+		AA204132 /* denny_043_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204132 /* denny_043_hard.json */; };
 		AA300001 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC300001 /* audio */; };
 		AA300002 /* onboarding_draw.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300002 /* onboarding_draw.png */; };
 		AA300003 /* onboarding_maze_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300003 /* onboarding_maze_screenshot.png */; };
@@ -341,8 +347,14 @@
 		AC204002 /* denny_040_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_040_medium.json; sourceTree = "<group>"; };
 		AC204003 /* denny_040_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_040_hard.json; sourceTree = "<group>"; };
 		AC204101 /* denny_041_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_041_medium.json; sourceTree = "<group>"; };
+		AC204111 /* denny_041_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_041_easy.json; sourceTree = "<group>"; };
+		AC204112 /* denny_041_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_041_hard.json; sourceTree = "<group>"; };
 		AC204102 /* denny_042_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_042_medium.json; sourceTree = "<group>"; };
+		AC204121 /* denny_042_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_042_easy.json; sourceTree = "<group>"; };
+		AC204122 /* denny_042_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_042_hard.json; sourceTree = "<group>"; };
 		AC204103 /* denny_043_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_043_medium.json; sourceTree = "<group>"; };
+		AC204131 /* denny_043_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_043_easy.json; sourceTree = "<group>"; };
+		AC204132 /* denny_043_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_043_hard.json; sourceTree = "<group>"; };
 		AC300001 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		AC300002 /* onboarding_draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_draw.png; sourceTree = "<group>"; };
 		AC300003 /* onboarding_maze_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_maze_screenshot.png; sourceTree = "<group>"; };
@@ -597,8 +609,14 @@
 				AC204002 /* denny_040_medium.json */,
 				AC204003 /* denny_040_hard.json */,
 				AC204101 /* denny_041_medium.json */,
+				AC204111 /* denny_041_easy.json */,
+				AC204112 /* denny_041_hard.json */,
 				AC204102 /* denny_042_medium.json */,
+				AC204121 /* denny_042_easy.json */,
+				AC204122 /* denny_042_hard.json */,
 				AC204103 /* denny_043_medium.json */,
+				AC204131 /* denny_043_easy.json */,
+				AC204132 /* denny_043_hard.json */,
 				AC201100 /* difficulty_samples.json */,
 				AC100031 /* manifest.json */,
 			);
@@ -835,8 +853,14 @@
 				AA204002 /* denny_040_medium.json in Resources */,
 				AA204003 /* denny_040_hard.json in Resources */,
 				AA204101 /* denny_041_medium.json in Resources */,
+				AA204111 /* denny_041_easy.json in Resources */,
+				AA204112 /* denny_041_hard.json in Resources */,
 				AA204102 /* denny_042_medium.json in Resources */,
+				AA204121 /* denny_042_easy.json in Resources */,
+				AA204122 /* denny_042_hard.json in Resources */,
 				AA204103 /* denny_043_medium.json in Resources */,
+				AA204131 /* denny_043_easy.json in Resources */,
+				AA204132 /* denny_043_hard.json in Resources */,
 				AA201100 /* difficulty_samples.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
 				038B80AD2F5990EB00FD9E1C /* StoreKitConfig.storekit in Resources */,
