@@ -103,10 +103,12 @@ FOREST_STORY_POSITIONS = {
     "043": {"start": "bottom_left",  "end": "top_right"},
 }
 
-ORGANIC_ROWS = {
-    # Number of snake lanes (rows) for the winding organic path per difficulty.
-    # More rows = more U-turns = harder to follow.
-    "easy": 3, "medium": 4, "hard": 5,
+ORGANIC_GRID = {
+    # (cols, rows) of the coarse grid used for the labyrinth Hamiltonian path.
+    # More cells = more twists = harder to follow.
+    "easy":   (5, 4),   # 20 cells
+    "medium": (7, 5),   # 35 cells
+    "hard":   (9, 6),   # 54 cells
 }
 
 FOREST_ITEM_COUNTS = {
@@ -119,10 +121,10 @@ FOREST_ITEM_COUNTS = {
 # ---------------------------------------------------------------------------
 
 def generate_organic(diff_name: str, canvas_width: int, canvas_height: int) -> dict:
-    """Generate a winding canvas-filling path and normalise to the shared maze_data format."""
-    num_rows = ORGANIC_ROWS[diff_name]
+    """Generate a labyrinth-style path and normalise to the shared maze_data format."""
+    grid_cols, grid_rows = ORGANIC_GRID[diff_name]
     gen = OrganicPathGenerator(width=canvas_width, height=canvas_height, path_width=35)
-    data = gen.generate(num_turns=num_rows, style="winding")
+    data = gen.generate(style="labyrinth", grid_cols=grid_cols, grid_rows=grid_rows)
     return {
         "svg_path": data["svg_path"],
         "solution_path": "",          # organic = single path, no separate solution

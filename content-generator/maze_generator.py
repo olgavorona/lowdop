@@ -418,8 +418,10 @@ class ShapeMask:
 class OrganicPathGenerator:
     """Generates curved paths for youngest kids (ages 3-4).
 
-    style="simple"  — gentle S-curve from corner to corner (few turns)
-    style="winding" — canvas-filling snake path with U-turns (like reference maze books)
+    style="simple"    — gentle S-curve from corner to corner (few turns)
+    style="winding"   — canvas-filling snake path with U-turns
+    style="labyrinth" — grid-based Hamiltonian path: complex, non-obvious,
+                        looks like a real maze but has one clear wide route
     """
 
     def __init__(self, width: int = 600, height: int = 500, path_width: int = 35):
@@ -427,10 +429,131 @@ class OrganicPathGenerator:
         self.height = height
         self.path_width = path_width
 
-    def generate(self, num_turns: int = 4, style: str = "winding") -> Dict[str, Any]:
+    def generate(self, num_turns: int = 4, style: str = "labyrinth",
+                 grid_cols: int = 7, grid_rows: int = 5) -> Dict[str, Any]:
+        if style == "labyrinth":
+            return self._generate_labyrinth(grid_cols, grid_rows)
         if style == "winding":
             return self._generate_winding(num_rows=num_turns)
         return self._generate_simple(num_turns)
+
+    # ------------------------------------------------------------------
+    # Labyrinth style — grid Hamiltonian path
+    # ------------------------------------------------------------------
+
+    def _find_hamiltonian_path(self, rows: int, cols: int,
+                               start: tuple, end: tuple) -> list:
+        """Randomised DFS with Warnsdorf tie-breaking.
+
+        Tries to visit as many cells as possible (≥70% of grid) before
+        reaching *end*.  Returns the best path found across several attempts.
+        """
+        dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        total = rows * cols
+
+        def nbrs(r: int, c: int, visited: set) -> list:
+            return [(r + dr, c + dc) for dr, dc in dirs
+                    if 0 <= r + dr < rows and 0 <= c + dc < cols
+                    and (r + dr, c + dc) not in visited]
+
+        best: list = [start, end]
+
+        for _ in range(60):
+            visited: set = {start}
+            path: list = [start]
+            found = [False]
+
+            def dfs(r: int, c: int) -> None:
+                if found[0]:
+                    return
+                coverage = len(path) / total
+                candidates = nbrs(r, c, visited)
+
+                # Allow ending only once we've covered enough of the grid
+                if end in candidates:
+                    if coverage >= 0.70:
+                        path.append(end)
+                        found[0] = True
+                        return
+                    candidates = [n for n in candidates if n != end]
+
+                # No moves: if we happen to be next to end still accept
+                if not candidates:
+                    if end in nbrs(r, c, visited - {end}) and coverage >= 0.55:
+                        path.append(end)
+                        found[0] = True
+                    return
+
+                random.shuffle(candidates)
+                # Warnsdorf: fewest onward moves first → avoids dead-end traps
+                candidates.sort(
+                    key=lambda n: len(nbrs(n[0], n[1], visited | {n}))
+                )
+
+                for nr, nc in candidates:
+                    visited.add((nr, nc))
+                    path.append((nr, nc))
+                    dfs(nr, nc)
+                    if found[0]:
+                        return
+                    path.pop()
+                    visited.remove((nr, nc))
+
+            dfs(*start)
+
+            if found[0] and len(path) > len(best):
+                best = path[:]
+            if len(best) >= total * 0.80 and best[-1] == end:
+                break
+
+        if best[-1] != end:
+            best.append(end)
+        return best
+
+    def _generate_labyrinth(self, grid_cols: int = 7,
+                            grid_rows: int = 5) -> Dict[str, Any]:
+        """Grid Hamiltonian path → smooth organic-looking labyrinth route."""
+        margin_x = 55
+        margin_y = 60
+        left  = margin_x
+        right = self.width  - margin_x
+        top   = margin_y
+        bottom = self.height - margin_y
+
+        cell_w = (right - left)  / (grid_cols - 1)
+        cell_h = (bottom - top) / (grid_rows - 1)
+
+        # grid row 0 = top, grid row (grid_rows-1) = bottom
+        start_cell = (grid_rows - 1, 0)           # bottom-left
+        end_cell   = (0,             grid_cols - 1) # top-right
+
+        cells = self._find_hamiltonian_path(grid_rows, grid_cols,
+                                            start_cell, end_cell)
+
+        points: list = []
+        for i, (gr, gc) in enumerate(cells):
+            base_x = left   + gc * cell_w
+            base_y = bottom - gr * cell_h   # row 0→bottom, row (rows-1)→top ... wait
+
+            # grid row 0 = top → base_y = top + 0*cell_h = top
+            # grid row (rows-1) = bottom → base_y = top + (rows-1)*cell_h = bottom
+            base_y = top + gr * cell_h
+
+            # Jitter tapers to zero at start/end for clean entry/exit
+            is_edge = (i == 0 or i == len(cells) - 1)
+            jitter_scale = 0.0 if is_edge else 0.9
+            jx = random.uniform(-cell_w * 0.28, cell_w * 0.28) * jitter_scale
+            jy = random.uniform(-cell_h * 0.28, cell_h * 0.28) * jitter_scale
+
+            x = max(left + 5, min(right  - 5, base_x + jx))
+            y = max(top  + 5, min(bottom - 5, base_y + jy))
+            points.append((x, y))
+
+        # Force exact canvas corners for start/end
+        points[0]  = (left,  bottom)
+        points[-1] = (right, top)
+
+        return self._build_result(points)
 
     def _generate_simple(self, num_turns: int = 4) -> Dict[str, Any]:
         """Original simple S-curve path."""
