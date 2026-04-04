@@ -422,6 +422,7 @@ class OrganicPathGenerator:
     style="winding"   — canvas-filling snake path with U-turns
     style="labyrinth" — grid-based Hamiltonian path: complex, non-obvious,
                         looks like a real maze but has one clear wide route
+    style="flower"    — daisy/flower: N petal loops around a hub, items at petal tips
     """
 
     def __init__(self, width: int = 600, height: int = 500, path_width: int = 35):
@@ -430,12 +431,122 @@ class OrganicPathGenerator:
         self.path_width = path_width
 
     def generate(self, num_turns: int = 4, style: str = "labyrinth",
-                 grid_cols: int = 7, grid_rows: int = 5) -> Dict[str, Any]:
+                 grid_cols: int = 7, grid_rows: int = 5,
+                 num_petals: int = 6, item_emoji: str = "🌸") -> Dict[str, Any]:
+        if style == "flower":
+            return self._generate_flower(num_petals, item_emoji)
         if style == "labyrinth":
             return self._generate_labyrinth(grid_cols, grid_rows)
         if style == "winding":
             return self._generate_winding(num_rows=num_turns)
         return self._generate_simple(num_turns)
+
+    # ------------------------------------------------------------------
+    # Flower style
+    # ------------------------------------------------------------------
+
+    def _generate_flower(self, num_petals: int = 6,
+                         item_emoji: str = "🌸") -> Dict[str, Any]:
+        """Daisy/flower path: N teardrop petal loops radiating from a center hub.
+
+        Layout
+        ------
+        - Petal 0 points DOWN (start: Denny at bottom petal tip).
+        - Petals 1..N-1 visited clockwise; each traced as a teardrop loop.
+        - Items placed at tips of petals 1..N-1 (all except start petal).
+        - Path exits upward after the last petal; end point is above the flower
+          (Maya waits there).
+
+        Difficulty scaling
+        ------------------
+          5 petals  → easy,   path_width ≈ 32 px
+          10 petals → medium, path_width ≈ 24 px
+          20 petals → hard,   path_width ≈ 15 px
+        """
+        import math
+
+        cx = self.width  / 2.0
+        cy = self.height / 2.0
+        margin = 52.0
+
+        # Petal reach from center (shrink slightly for more petals)
+        max_r = min(cx - margin, cy - margin)
+        shrink = max(0.72, 1.0 - (num_petals - 5) * 0.008)
+        petal_len = max_r * 0.82 * shrink
+
+        # Distance at which the petal is widest (used for mid-waypoints)
+        D = petal_len * 0.55
+
+        # Petal half-width: 65% of the angular spacing at distance D,
+        # but at least 14 px so even 20-petal paths are traceable.
+        spacing_at_D = D * math.pi / num_petals   # half of arc between neighbors
+        petal_hw = max(14.0, spacing_at_D * 0.65)
+
+        # Path stroke width — thinner for more petals
+        path_w = max(14, 34 - (num_petals - 5))
+
+        # ---- angle helpers (screen coords: y increases downward) --------
+        # Petal 0 at angle π/2 (= pointing DOWN in screen).
+        # For even N, offset by half a step so no petal sits exactly at top
+        # (avoids the exit stem clashing with a petal tip).
+        base_angle = math.pi / 2
+        if num_petals % 2 == 0:
+            base_angle += math.pi / num_petals
+
+        def pa(i: int) -> float:
+            """Screen angle of petal i."""
+            return base_angle + 2 * math.pi * i / num_petals
+
+        def tip(i: int):
+            a = pa(i)
+            return (cx + petal_len * math.cos(a),
+                    cy + petal_len * math.sin(a))
+
+        def mid(i: int, side: float):
+            """Waypoint at mid-distance D, perpendicular offset by petal_hw.
+            side=+1 → left/out (going outward), side=-1 → right/in (returning).
+            """
+            a = pa(i)
+            perp = a + math.pi / 2
+            bx = cx + D * math.cos(a)
+            by = cy + D * math.sin(a)
+            return (bx + side * petal_hw * math.cos(perp),
+                    by + side * petal_hw * math.sin(perp))
+
+        # ---- build waypoints --------------------------------------------
+        start_pt = tip(0)                          # Denny: bottom petal tip
+        end_pt   = (cx, margin - 12.0)            # Maya: above the flower
+
+        points: list = [start_pt]
+        items:  list = []
+
+        # Return leg of petal 0 (start → center)
+        points.append(mid(0, -1))   # right side of petal 0
+        points.append((cx, cy))     # hub center
+
+        # Petals 1 … N-1
+        for i in range(1, num_petals):
+            points.append(mid(i, +1))   # left side (going out)
+            t = tip(i)
+            points.append(t)             # petal tip
+            points.append(mid(i, -1))   # right side (returning)
+            points.append((cx, cy))      # back to hub
+
+            items.append({
+                "x": round(t[0], 1),
+                "y": round(t[1], 1),
+                "emoji": item_emoji,
+                "on_solution": True,
+            })
+
+        # Exit from hub up to Maya
+        points.append((cx, margin + 8.0))   # just inside top area
+        points.append(end_pt)
+
+        result = self._build_result(points)
+        result["items"]      = items
+        result["path_width"] = path_w
+        return result
 
     # ------------------------------------------------------------------
     # Labyrinth style — grid Hamiltonian path

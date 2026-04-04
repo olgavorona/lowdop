@@ -62,9 +62,11 @@ FOREST_STORIES = {
         "location": "forest_entrance",
         "shape": "rect",
         "maze_style": "organic",
+        "item_rule": "collect",
+        "item_emoji": "🌸",
         "story_setup": "Denny the explorer has arrived at the edge of Whispering Forest! He hears a mysterious rustling sound coming from inside. Could it be the wind? A wild animal? Denny is curious and a little nervous — but mostly curious.",
-        "instruction": "Follow the sounds through the forest and find out what is making that noise!",
-        "tts_instruction": "Denny hears something in the forest! Help Denny follow the rustling sounds through the trees to find out what is hiding.",
+        "instruction": "Collect all the flowers and find Maya hiding in the forest!",
+        "tts_instruction": "Help Denny collect all the flowers in the forest, then find Maya hiding at the top!",
         "educational_question": "Have you ever heard strange sounds in nature? What do you think makes rustling noises in the forest?",
         "fun_fact": "Forests are full of sounds! Leaves rustling, branches creaking, animals scurrying — a healthy forest is never silent. Scientists can even tell how healthy a forest is by listening to it!",
         "completion_message": "It was Maya! A tiny shy mouse hiding behind a giant mushroom. She was scared of the wind — but not anymore. Denny and Maya are now best friends!",
@@ -103,12 +105,11 @@ FOREST_STORY_POSITIONS = {
     "043": {"start": "bottom_left",  "end": "top_right"},
 }
 
-ORGANIC_GRID = {
-    # (cols, rows) of the coarse grid used for the labyrinth Hamiltonian path.
-    # More cells = more twists = harder to follow.
-    "easy":   (5, 4),   # 20 cells
-    "medium": (7, 5),   # 35 cells
-    "hard":   (9, 6),   # 54 cells
+ORGANIC_PETALS = {
+    # Number of petals for the flower path per difficulty.
+    "easy":   5,
+    "medium": 10,
+    "hard":   20,
 }
 
 FOREST_ITEM_COUNTS = {
@@ -120,11 +121,12 @@ FOREST_ITEM_COUNTS = {
 # Generation
 # ---------------------------------------------------------------------------
 
-def generate_organic(diff_name: str, canvas_width: int, canvas_height: int) -> dict:
-    """Generate a labyrinth-style path and normalise to the shared maze_data format."""
-    grid_cols, grid_rows = ORGANIC_GRID[diff_name]
+def generate_organic(diff_name: str, canvas_width: int, canvas_height: int,
+                     item_emoji: str = "🌸") -> dict:
+    """Generate a flower path and normalise to the shared maze_data format."""
+    num_petals = ORGANIC_PETALS[diff_name]
     gen = OrganicPathGenerator(width=canvas_width, height=canvas_height, path_width=35)
-    data = gen.generate(style="labyrinth", grid_cols=grid_cols, grid_rows=grid_rows)
+    data = gen.generate(style="flower", num_petals=num_petals, item_emoji=item_emoji)
     return {
         "svg_path": data["svg_path"],
         "solution_path": "",          # organic = single path, no separate solution
@@ -137,7 +139,7 @@ def generate_organic(diff_name: str, canvas_width: int, canvas_height: int) -> d
         "canvas_width": data["canvas_width"],
         "canvas_height": data["canvas_height"],
         "control_points": data.get("control_points", []),
-        "items": [],
+        "items": data.get("items", []),
     }
 
 
@@ -173,7 +175,10 @@ def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: 
 
             try:
                 if maze_style == "organic":
-                    maze_data = generate_organic(diff_name, canvas_width=600, canvas_height=500)
+                    maze_data = generate_organic(
+                        diff_name, canvas_width=600, canvas_height=500,
+                        item_emoji=item_emoji or "🌸",
+                    )
                 else:
                     grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)
                     rows = max(base_rows, round(base_rows * grid_scale))
