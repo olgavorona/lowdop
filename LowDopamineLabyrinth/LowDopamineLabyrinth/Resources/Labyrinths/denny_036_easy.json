@@ -1,0 +1,189 @@
+{
+  "id": "denny_036_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "ice_planet",
+  "title": "Denny on the Ice Planet",
+  "story_setup": "Bubbles found the most beautiful ice crystal planet! The paths between the frozen crystal formations are tricky — Denny must navigate carefully to reach Bubbles.",
+  "instruction": "Navigate the icy crystal paths and reach Bubbles at the frozen sea!",
+  "tts_instruction": "Icy adventure! Help Denny navigate the slippery ice crystal paths across the frozen planet to reach Bubbles.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "seahorse",
+    "description": "Golden-yellow seahorse in a sleek golden space suit, shy but loyal, tiny oxygen bubbles float behind",
+    "position": "top_right",
+    "name": "Bubbles",
+    "image_asset": "bubbles_space"
+  },
+  "educational_question": "Which planet in our solar system is the coldest? How cold does it get?",
+  "fun_fact": "Neptune is the coldest planet at -214°C! But Europa, one of Jupiter's moons, has a frozen ocean with liquid water underneath — and scientists think it might have life!",
+  "completion_message": "Denny reached Bubbles! They slide together across the frozen sea!",
+  "path_data": {
+    "svg_path": "M 207 64 L 300 64 M 300 64 L 300 157 M 207 64 L 207 157 M 114 157 L 207 157 M 114 157 L 114 250 M 207 250 L 300 250 M 300 157 L 393 157 M 393 157 L 393 250 M 300 250 L 393 250 M 21 250 L 114 250 M 21 343 L 114 343 M 21 250 L 21 343 M 207 250 L 300 250 M 207 343 L 300 343 M 300 250 L 393 250 M 393 250 L 486 250 M 393 343 L 486 343 M 486 250 L 579 250 M 579 250 L 579 343 M 486 343 L 579 343 M 114 436 L 207 436 M 114 343 L 114 436 M 207 343 L 300 343 M 207 436 L 300 436 M 393 343 L 393 436 M 300 436 L 393 436",
+    "solution_path": "M 346 389 L 346 296 L 253 296 L 160 296 L 160 203 L 253 203 L 253 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_diamond",
+    "start_point": {
+      "x": 346,
+      "y": 389
+    },
+    "end_point": {
+      "x": 253,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 253,
+          "y": 110
+        },
+        "end": {
+          "x": 253,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 203
+        },
+        "end": {
+          "x": 253,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 203
+        },
+        "end": {
+          "x": 160,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 67,
+          "y": 296
+        },
+        "end": {
+          "x": 160,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 160,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 296
+        },
+        "end": {
+          "x": 346,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 439,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 439,
+          "y": 296
+        },
+        "end": {
+          "x": 532,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 389
+        },
+        "end": {
+          "x": 253,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 389
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#0D2137",
+    "decorative_elements": [
+      "ice_crystals",
+      "frozen_sea",
+      "aurora"
+    ]
+  },
+  "audio_instruction": "denny_036_instruction.mp3",
+  "audio_completion": "denny_036_completion.mp3"
+}

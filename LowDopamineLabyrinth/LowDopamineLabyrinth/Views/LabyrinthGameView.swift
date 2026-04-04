@@ -48,9 +48,14 @@ struct LabyrinthGameView: View {
                 // Full-width maze
                 GeometryReader { mazeGeo in
                     ZStack {
-                        // Cartoonish ocean background pattern
-                        OceanPatternView()
-                            .opacity(0.15)
+                        // Background pattern — theme-aware
+                        if viewModel.labyrinth.theme == "space" {
+                            SpacePatternView()
+                                .opacity(viewModel.hasItems ? 0.55 : 0.18)
+                        } else {
+                            OceanPatternView()
+                                .opacity(0.15)
+                        }
 
                         // Maze path
                         if viewModel.labyrinth.pathData.mazeType == "organic" {
@@ -230,6 +235,43 @@ struct OceanPatternView: View {
                     }
                     star.closeSubpath()
                     context.stroke(star, with: .color(.white), lineWidth: 1.0)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Space Background Pattern
+
+struct SpacePatternView: View {
+    var body: some View {
+        GeometryReader { geo in
+            Canvas { context, size in
+                // Stars — varied sizes
+                let stars: [(CGFloat, CGFloat, CGFloat)] = [
+                    (0.05, 0.1, 3), (0.18, 0.35, 2), (0.32, 0.08, 4), (0.47, 0.22, 2),
+                    (0.61, 0.15, 3), (0.78, 0.42, 2), (0.88, 0.08, 4), (0.12, 0.6, 3),
+                    (0.27, 0.75, 2), (0.43, 0.55, 4), (0.58, 0.8, 2), (0.72, 0.65, 3),
+                    (0.83, 0.88, 2), (0.95, 0.72, 4), (0.07, 0.92, 3), (0.37, 0.92, 2),
+                    (0.66, 0.48, 3), (0.92, 0.3, 2), (0.53, 0.38, 2), (0.21, 0.18, 3),
+                ]
+                for (xFrac, yFrac, radius) in stars {
+                    let cx = size.width * xFrac
+                    let cy = size.height * yFrac
+                    let r = radius
+                    context.fill(
+                        SwiftUI.Path(ellipseIn: CGRect(x: cx - r, y: cy - r, width: r * 2, height: r * 2)),
+                        with: .color(.white)
+                    )
+                    // Twinkle cross
+                    if r >= 3 {
+                        var cross = SwiftUI.Path()
+                        cross.move(to: CGPoint(x: cx - r * 2, y: cy))
+                        cross.addLine(to: CGPoint(x: cx + r * 2, y: cy))
+                        cross.move(to: CGPoint(x: cx, y: cy - r * 2))
+                        cross.addLine(to: CGPoint(x: cx, y: cy + r * 2))
+                        context.stroke(cross, with: .color(.white.opacity(0.5)), lineWidth: 0.8)
+                    }
                 }
             }
         }

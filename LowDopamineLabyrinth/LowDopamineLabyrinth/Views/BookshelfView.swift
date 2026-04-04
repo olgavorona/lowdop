@@ -12,11 +12,13 @@ struct BookshelfView: View {
     @State private var showParentalGate = false
     @State private var showDifficultyPicker = false
     @State private var showAccount = false
+    @State private var showPaywall = false
     @State private var parentalGateAction: BookshelfParentalGateAction = .account
 
     private enum BookshelfParentalGateAction {
         case account
         case difficultyPicker
+        case paywall
     }
 
     var body: some View {
@@ -54,7 +56,13 @@ struct BookshelfView: View {
         }
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(
-                purpose: parentalGateAction == .account ? .account : .settings,
+                purpose: {
+                    switch parentalGateAction {
+                    case .account: return .account
+                    case .difficultyPicker: return .settings
+                    case .paywall: return .paywall
+                    }
+                }(),
                 onSuccess: {
                     showParentalGate = false
                     switch parentalGateAction {
@@ -62,12 +70,17 @@ struct BookshelfView: View {
                         showAccount = true
                     case .difficultyPicker:
                         showDifficultyPicker = true
+                    case .paywall:
+                        showPaywall = true
                     }
                 },
                 onCancel: {
                     showParentalGate = false
                 }
             )
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
         .sheet(isPresented: $showAccount) {
             NavigationStack {
@@ -269,9 +282,9 @@ struct BookshelfView: View {
 
         return Button(action: {
             if isLocked {
-                // Tapping locked pack opens paywall (handled via bookshelf parental gate)
-                parentalGateAction = .account
+                parentalGateAction = .paywall
                 showParentalGate = true
+                Analytics.send("Paywall.shown", with: ["trigger": "bookshelf"])
             } else {
                 Analytics.send("Bookshelf.packTapped", with: ["pack": "space_adventures"])
                 onPackSelected("space_adventures")

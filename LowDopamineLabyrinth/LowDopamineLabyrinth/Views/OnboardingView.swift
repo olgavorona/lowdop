@@ -61,7 +61,7 @@ struct OnboardingView: View {
                         .tag(1)
                     OnboardingPage3()
                         .tag(2)
-                    OnboardingPage4()
+                    OnboardingPage4(onSelect: advancePage)
                         .tag(3)
                     OnboardingPage5(
                         selectedProductId: $selectedProductId,
@@ -231,6 +231,7 @@ private struct OnboardingPage3: View {
 
 private struct OnboardingPage4: View {
     @EnvironmentObject var preferences: UserPreferences
+    let onSelect: () -> Void
 
     private let levelColors: [DifficultyLevel: [Color]] = [
         .easy:   [Color(hex: "#4FC3F7") ?? .blue,   Color(hex: "#29B6F6") ?? .blue],
@@ -262,6 +263,7 @@ private struct OnboardingPage4: View {
                     ) {
                         preferences.difficultyLevel = level
                         Analytics.send("Onboarding.difficultySelected", with: ["level": level.rawValue])
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect() }
                     }
                 }
             }
@@ -518,6 +520,14 @@ struct DifficultyCard: View {
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.white, lineWidth: isSelected ? 3 : 0)
                 )
+                .overlay(alignment: .topTrailing) {
+                    if isSelected {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                            .padding(6)
+                    }
+                }
 
                 Text(level.displayName)
                     .font(.system(size: 16, weight: .bold, design: .rounded))

@@ -36,6 +36,8 @@ SHAPE_GRID_SCALE = {
     "triangle": 1.5,
     "diamond": 1.5,
     "circle": 1.8,
+    "moon": 1.8,
+    "rocket": 2.0,
 }
 
 
@@ -194,6 +196,127 @@ SPACE_STORIES = {
         "fun_fact": "There are 88 officially named constellations! Ancient people used them as a map to navigate at sea and to track the seasons. Orion is one of the most famous.",
         "completion_message": "Denny connected all the stars! Finn's constellation spells out D-E-N-N-Y!",
     },
+    # Stories 031-040 are regular (no item collection)
+    "031": {
+        "title": "Denny Lands on Mars",
+        "character_end": "mama_coral",
+        "location": "mars_surface",
+        "shape": "circle",
+        "story_setup": "Denny's rocket has landed on the red planet! Mommy Coral is waiting at the base camp across the dusty Martian plains.",
+        "instruction": "Navigate the Martian surface and reach Mommy Coral at base camp!",
+        "tts_instruction": "Welcome to Mars! Help Denny navigate the dusty red paths to reach Mommy Coral at the base camp.",
+        "educational_question": "Why is Mars called the Red Planet? What makes it red?",
+        "fun_fact": "Mars looks red because its soil is full of iron oxide — that's rust! Mars also has the tallest volcano in the solar system, Olympus Mons, three times taller than Mount Everest.",
+        "completion_message": "Denny explored Mars and found Mommy Coral! The first crab on Mars!",
+    },
+    "032": {
+        "title": "Denny Inside Jupiter's Storm",
+        "character_end": "daddy_reef",
+        "location": "jupiter_storm",
+        "shape": "diamond",
+        "story_setup": "Daddy Reef is studying Jupiter's enormous swirling storm! Denny's rocket must weave carefully through the giant swirling cloud bands to reach him.",
+        "instruction": "Navigate through Jupiter's storm clouds and reach Daddy Reef!",
+        "tts_instruction": "Into the storm! Help Denny navigate through Jupiter's swirling cloud bands to find Daddy Reef in the eye of the storm.",
+        "educational_question": "How big is Jupiter's Great Red Spot? Is it bigger than Earth?",
+        "fun_fact": "Jupiter's Great Red Spot is a storm that has been raging for over 350 years! It's so big that Earth could fit inside it. Jupiter is also the largest planet — 1,300 Earths could fit inside!",
+        "completion_message": "Denny flew through the storm! Daddy Reef has all the data they need!",
+    },
+    "033": {
+        "title": "Denny Builds the Lunar Base",
+        "character_end": "stella",
+        "location": "lunar_base",
+        "shape": "mountain",
+        "story_setup": "Stella is building a cozy base on the Moon! Denny must bounce across the winding lunar surface paths to help her.",
+        "instruction": "Bounce across the Moon and reach Stella at the lunar base!",
+        "tts_instruction": "Base building time! Help Denny bounce across the winding Moon paths to reach Stella at the lunar base.",
+        "educational_question": "Could people really live on the Moon one day? What would they need?",
+        "fun_fact": "Scientists are working on plans for a real Moon base! People living there would need air, water, food, and protection from the Sun's radiation. They might even grow plants underground!",
+        "completion_message": "Denny arrived! Together, they finish building the lunar base!",
+    },
+    "034": {
+        "title": "Denny and the Wormhole",
+        "character_end": "ollie",
+        "location": "wormhole",
+        "shape": "circle",
+        "story_setup": "Ollie has discovered a glowing wormhole that leads to another galaxy! Denny must navigate the swirling energy currents to reach the portal entrance.",
+        "instruction": "Navigate the swirling energy and find Ollie at the wormhole!",
+        "tts_instruction": "Amazing discovery! Help Denny follow the swirling energy paths to reach Ollie at the wormhole entrance.",
+        "educational_question": "What is a wormhole? Could we use one to travel to other galaxies?",
+        "fun_fact": "A wormhole is a theoretical tunnel through space and time! Scientists think they might exist but have never found one. If they do exist, they could allow instant travel between distant parts of the universe.",
+        "completion_message": "Denny reached the portal! Denny and Ollie jump through the wormhole together!",
+    },
+    "035": {
+        "title": "Denny in the Alien Jungle",
+        "character_end": "shelly",
+        "location": "alien_jungle",
+        "shape": "tree",
+        "story_setup": "Shelly is painting the bioluminescent alien jungle! Denny must wind through the glowing plants and strange alien paths to reach her.",
+        "instruction": "Wind through the alien jungle and find Shelly!",
+        "tts_instruction": "Glowing jungle! Help Denny find a path through the bioluminescent alien plants to reach Shelly.",
+        "educational_question": "What does bioluminescent mean? Can you think of animals on Earth that glow?",
+        "fun_fact": "Bioluminescence means making your own light! Fireflies, some jellyfish, anglerfish, and deep-sea creatures all glow. Some scientists think alien life might glow too!",
+        "completion_message": "Denny found Shelly! The alien jungle is the most beautiful place in the universe!",
+    },
+    "036": {
+        "title": "Denny on the Ice Planet",
+        "character_end": "bubbles",
+        "location": "ice_planet",
+        "shape": "diamond",
+        "story_setup": "Bubbles found the most beautiful ice crystal planet! The paths between the frozen crystal formations are tricky — Denny must navigate carefully to reach Bubbles.",
+        "instruction": "Navigate the icy crystal paths and reach Bubbles at the frozen sea!",
+        "tts_instruction": "Icy adventure! Help Denny navigate the slippery ice crystal paths across the frozen planet to reach Bubbles.",
+        "educational_question": "Which planet in our solar system is the coldest? How cold does it get?",
+        "fun_fact": "Neptune is the coldest planet at -214°C! But Europa, one of Jupiter's moons, has a frozen ocean with liquid water underneath — and scientists think it might have life!",
+        "completion_message": "Denny reached Bubbles! They slide together across the frozen sea!",
+    },
+    "037": {
+        "title": "Denny's Space Race",
+        "character_end": "sandy",
+        "location": "space_race",
+        "shape": "rect",
+        "story_setup": "Sandy has set up a galactic racing course and is waiting at the finish line! Denny's rocket must follow the winding track to reach the big finish.",
+        "instruction": "Follow the racing track and zoom to Sandy at the finish line!",
+        "tts_instruction": "Race time! Help Denny rocket along the galactic race course to reach Sandy at the finish line!",
+        "educational_question": "How fast do real rockets travel? Can you imagine going that fast?",
+        "fun_fact": "The fastest spacecraft ever launched, the Parker Solar Probe, travels at 692,000 kilometers per hour — that's fast enough to fly from New York to Los Angeles in less than 15 seconds!",
+        "completion_message": "Denny wins the space race! Sandy gives the winner's trophy — a shiny star!",
+    },
+    "038": {
+        "title": "Denny Visits the Robot Planet",
+        "character_end": "pearl",
+        "location": "robot_planet",
+        "shape": "mountain",
+        "story_setup": "Pearl has befriended the robots on their mechanical planet! The robot city has many winding paths — Denny must find Pearl among the gear towers and conveyor belts.",
+        "instruction": "Navigate the mechanical city and find Pearl on the Robot Planet!",
+        "tts_instruction": "Mechanical world! Help Denny navigate the winding robot city paths to find Pearl.",
+        "educational_question": "What can robots do that humans can't? Can you name a robot you know about?",
+        "fun_fact": "There are robots on Mars right now! The Perseverance rover explores the Martian surface taking photos and collecting rock samples. It even has a tiny helicopter friend called Ingenuity!",
+        "completion_message": "Denny found Pearl! The friendly robots put on a light show to celebrate!",
+    },
+    "039": {
+        "title": "Denny at the Galaxy Center",
+        "character_end": "finn",
+        "location": "galaxy_center",
+        "shape": "circle",
+        "story_setup": "Finn has discovered a mysterious signal from the center of the Milky Way galaxy! Denny must navigate through dense clouds of glowing stars to find him.",
+        "instruction": "Navigate the dense starfields and reach Finn at the galaxy core!",
+        "tts_instruction": "Deep space mission! Help Denny navigate through the dense glowing star clouds to reach Finn at the galaxy core.",
+        "educational_question": "What is in the center of our galaxy? Have you heard of a supermassive black hole?",
+        "fun_fact": "At the center of our Milky Way galaxy sits a supermassive black hole called Sagittarius A*. It's four million times heavier than our Sun! Thankfully, we're safely 26,000 light years away from it.",
+        "completion_message": "Denny reached the galaxy core! Together, they decode the mysterious signal!",
+    },
+    "040": {
+        "title": "Denny Returns Home",
+        "character_end": "mama_coral",
+        "location": "earth_orbit",
+        "shape": "rect",
+        "story_setup": "After all the space adventures, Denny is finally heading home! Mommy Coral is waiting with a big hug. Denny must navigate through Earth's orbit to reach her.",
+        "instruction": "Navigate through Earth's orbit and fly home to Mommy Coral!",
+        "tts_instruction": "Heading home! Help Denny navigate through Earth's beautiful orbit to land safely and reach Mommy Coral.",
+        "educational_question": "If you could visit any planet or place in space, where would you go?",
+        "fun_fact": "The International Space Station orbits Earth 16 times every day! Astronauts who return from long missions have to learn to walk again because their muscles got weak in zero gravity.",
+        "completion_message": "Denny is home! Mommy Coral hugs Denny tight — the greatest space explorer in the world!",
+    },
 }
 
 SPACE_STORY_POSITIONS = {
@@ -207,6 +330,16 @@ SPACE_STORY_POSITIONS = {
     "028": {"start": "bottom_right", "end": "top_left"},
     "029": {"start": "bottom_left",  "end": "top_right"},
     "030": {"start": "bottom_right", "end": "top_left"},
+    "031": {"start": "bottom",       "end": "top"},
+    "032": {"start": "bottom_right", "end": "top_left"},
+    "033": {"start": "bottom",       "end": "top"},
+    "034": {"start": "bottom_right", "end": "top_left"},
+    "035": {"start": "bottom_left",  "end": "top_right"},
+    "036": {"start": "bottom_right", "end": "top_left"},
+    "037": {"start": "bottom_left",  "end": "top_right"},
+    "038": {"start": "bottom_right", "end": "top_left"},
+    "039": {"start": "bottom_left",  "end": "top_right"},
+    "040": {"start": "bottom_right", "end": "top_left"},
 }
 
 SPACE_ITEM_COUNTS = {
@@ -234,8 +367,8 @@ def generate_space_variants(output_dir: Path):
         end_char = universe["characters"][end_char_key]
         denny = universe["characters"]["denny"]
         location = universe["locations"][story["location"]]
-        item_rule = story["item_rule"]
-        item_emoji = story["item_emoji"]
+        item_rule = story.get("item_rule")
+        item_emoji = story.get("item_emoji")
         shape = story["shape"]
         positions = SPACE_STORY_POSITIONS.get(story_num_str, {})
         start_pos = positions.get("start")
@@ -246,16 +379,17 @@ def generate_space_variants(output_dir: Path):
             diff_config = difficulty_levels[diff_name]
             base_rows, base_cols = diff_config["grid_size"]
             path_width = diff_config["path_width"]
-            item_count = SPACE_ITEM_COUNTS[diff_name]
+            item_count = SPACE_ITEM_COUNTS[diff_name] if item_rule else 0
 
             grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)
             rows = max(base_rows, round(base_rows * grid_scale))
             cols = max(base_cols, round(base_cols * grid_scale))
 
-            print(f"  Generating {variant_id} ({diff_name} {rows}x{cols} {item_rule} {item_emoji})...")
+            label = f"{item_rule} {item_emoji}" if item_rule else "regular"
+            print(f"  Generating {variant_id} ({diff_name} {rows}x{cols} {label})...")
 
             try:
-                maze_data = maze_gen.generate_maze(
+                maze_kwargs = dict(
                     difficulty=diff_name,
                     age=4,
                     shape=shape,
@@ -263,15 +397,17 @@ def generate_space_variants(output_dir: Path):
                     canvas_height=500,
                     override_rows=rows,
                     override_cols=cols,
-                    render_style="corridor",
-                    item_rule=item_rule,
-                    item_count=item_count,
-                    item_emoji=item_emoji,
                     start_position=start_pos,
                     end_position=end_pos,
                 )
+                if item_rule:
+                    maze_kwargs["item_rule"] = item_rule
+                    maze_kwargs["item_count"] = item_count
+                    maze_kwargs["item_emoji"] = item_emoji
+                maze_data = maze_gen.generate_maze(**maze_kwargs)
 
-                bg_color = location["background_color"]
+                # Collect stories get a dark starfield background
+                bg_color = "#050510" if item_rule == "collect" else location["background_color"]
                 decorative = location["decorative_elements"]
 
                 variant = {
@@ -301,8 +437,7 @@ def generate_space_variants(output_dir: Path):
                     "educational_question": story["educational_question"],
                     "fun_fact": story["fun_fact"],
                     "completion_message": story["completion_message"],
-                    "item_rule": item_rule,
-                    "item_emoji": item_emoji,
+                    **({"item_rule": item_rule, "item_emoji": item_emoji} if item_rule else {}),
                     "path_data": {
                         "svg_path": maze_data.get("svg_path", ""),
                         "solution_path": maze_data.get("solution_path", ""),
@@ -371,7 +506,7 @@ def generate_space_variants(output_dir: Path):
         "id": "space_adventures",
         "title": "Denny in Space",
         "free_stories": 0,
-        "stories": list(range(21, 31)),
+        "stories": list(range(21, 41)),
     })
     manifest["packs"] = packs
 

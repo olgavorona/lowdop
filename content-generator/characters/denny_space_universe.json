@@ -43,7 +43,7 @@
       "color": "#E67E22",
       "personality": "brave, adventurous, energetic",
       "emoji": "🐠",
-      "image_prompt": "Cute cartoon clownfish in a custom orange and white space suit shaped like a fish, brave expression, floating in space, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "ONE single cute cartoon clownfish wearing a tiny orange astronaut jetpack on its back, orange and white stripes, brave happy expression, small fins spread wide, zooming through space with a glowing jetpack flame, ONLY ONE CHARACTER, no other animals, no other characters, children's book illustration style, simple, friendly, transparent background"
     },
     "stella": {
       "name": "Stella",
@@ -52,7 +52,7 @@
       "color": "#8E44AD",
       "personality": "wise, kind, thoughtful",
       "emoji": "⭐",
-      "image_prompt": "Cute cartoon starfish in a purple star-shaped space suit, purple-pink color, wise gentle expression through tiny visor, floating in space, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "ONE single cute cartoon starfish in a purple star-shaped space suit, purple-pink color, wise gentle expression through tiny visor, holding a small shiny silver space ray gun in one arm, floating in space, ONLY ONE CHARACTER, no other animals, no other characters, children's book illustration style, simple, friendly, transparent background"
     },
     "ollie": {
       "name": "Ollie",
@@ -61,7 +61,7 @@
       "color": "#6C3483",
       "personality": "clever, funny, helpful",
       "emoji": "🐙",
-      "image_prompt": "Cute cartoon octopus in a blue-purple space suit with eight sleeve ports for tentacles, funny expression through helmet visor, holding small space objects in tentacles, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "ONE single cute cartoon octopus in a blue-purple space suit with eight sleeve ports for tentacles, funny expression through helmet visor, holding small space objects in tentacles, ONLY ONE CHARACTER, no other animals, no other characters, children's book illustration style, simple, friendly, transparent background"
     },
     "shelly": {
       "name": "Shelly",
@@ -70,7 +70,7 @@
       "color": "#27AE60",
       "personality": "patient, wise, storyteller",
       "emoji": "🐢",
-      "image_prompt": "Cute cartoon sea turtle with space rocket decals on patterned shell, wearing a round space helmet, green color, gentle wise expression, floating in zero gravity, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "ONE single cute cartoon sea turtle wearing a full green space suit covering the entire body including legs and flippers, round helmet with visor over the head, space rocket decals on the suit, gentle wise expression through visor, floating in zero gravity, ONLY ONE CHARACTER, no other animals, no other characters, children's book illustration style, simple, friendly, transparent background"
     },
     "bubbles": {
       "name": "Bubbles",
@@ -79,7 +79,7 @@
       "color": "#F4D03F",
       "personality": "shy, loyal, gentle",
       "emoji": "🫧",
-      "image_prompt": "Cute cartoon seahorse in a golden space suit, golden-yellow color, shy sweet expression through visor, tiny floating bubbles behind, children's book illustration style, simple, friendly, transparent background"
+      "image_prompt": "ONE single cute cartoon seahorse in a golden space suit, golden-yellow color, shy sweet expression through visor, tiny floating bubbles behind, ONLY ONE CHARACTER, no other animals, no other characters, children's book illustration style, simple, friendly, transparent background"
     },
     "pearl": {
       "name": "Pearl",
@@ -88,7 +88,7 @@
       "color": "#FADBD8",
       "personality": "gentle, graceful, calming",
       "emoji": "🪼",
-      "image_prompt": "One cute cartoon jellyfish in a glowing pink dome space suit, pink-purple helmet with soft glow, long flowing pink and lavender tentacles visible below, gentle happy expression through visor, floating in starry space, white background, no text, no writing"
+      "image_prompt": "ONE single cute cartoon jellyfish sitting cheerfully on top of a small cartoon rocket ship, jellyfish is pink-white translucent with flowing pink and lavender tentacles dangling off the sides of the rocket, gentle happy expression, rocket is white with red fins pointing downward, white background, no text, no writing, ONLY ONE CHARACTER, children's book illustration style, simple, friendly"
     }
   },
   "locations": {
@@ -151,6 +151,66 @@
       "background_color": "#0A0A1A",
       "description": "Vast open space filled with thousands of twinkling stars and distant galaxies",
       "decorative_elements": ["stars", "distant_galaxies", "constellation_dots"]
+    },
+    "mars_surface": {
+      "name": "Mars Surface",
+      "background_color": "#8B3A1C",
+      "description": "Red rocky Martian surface with dust storms and towering volcanoes",
+      "decorative_elements": ["red_rocks", "dust_storm", "olympus_mons"]
+    },
+    "jupiter_storm": {
+      "name": "Jupiter's Great Storm",
+      "background_color": "#C4762B",
+      "description": "Swirling orange and brown clouds of Jupiter's famous Great Red Spot",
+      "decorative_elements": ["cloud_bands", "lightning", "vortex"]
+    },
+    "lunar_base": {
+      "name": "Lunar Base",
+      "background_color": "#2D3561",
+      "description": "A cozy moon base with dome habitats glowing against the dark sky",
+      "decorative_elements": ["dome_habitats", "earth_rise", "lunar_rover"]
+    },
+    "wormhole": {
+      "name": "Wormhole",
+      "background_color": "#1A0A2E",
+      "description": "A swirling purple-blue wormhole portal connecting distant galaxies",
+      "decorative_elements": ["swirling_portal", "stretched_stars", "energy_rings"]
+    },
+    "alien_jungle": {
+      "name": "Alien Jungle",
+      "background_color": "#0A2E1A",
+      "description": "A bioluminescent alien jungle glowing with neon plants and floating creatures",
+      "decorative_elements": ["glowing_plants", "floating_creatures", "neon_mushrooms"]
+    },
+    "ice_planet": {
+      "name": "Ice Planet",
+      "background_color": "#0D2137",
+      "description": "A frozen icy planet with towering crystal formations and frozen seas",
+      "decorative_elements": ["ice_crystals", "frozen_sea", "aurora"]
+    },
+    "space_race": {
+      "name": "Space Race Track",
+      "background_color": "#0B1E3D",
+      "description": "A galactic race course with speed boost pads and finish line banners",
+      "decorative_elements": ["boost_pads", "finish_flags", "racing_rockets"]
+    },
+    "robot_planet": {
+      "name": "Robot Planet",
+      "background_color": "#1C2B1A",
+      "description": "A mechanical planet run entirely by friendly robot citizens",
+      "decorative_elements": ["robot_buildings", "gear_trees", "conveyor_paths"]
+    },
+    "galaxy_center": {
+      "name": "Galaxy Center",
+      "background_color": "#0A0520",
+      "description": "The brilliant glowing core of the Milky Way galaxy, dense with stars",
+      "decorative_elements": ["dense_stars", "galactic_glow", "star_clusters"]
+    },
+    "earth_orbit": {
+      "name": "Earth Orbit",
+      "background_color": "#0A1929",
+      "description": "High above Earth, watching continents and oceans slowly turn below",
+      "decorative_elements": ["earth_below", "cloud_swirls", "sunrise_horizon"]
     }
   }
 }

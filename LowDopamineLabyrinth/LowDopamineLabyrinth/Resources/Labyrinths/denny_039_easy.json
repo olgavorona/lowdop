@@ -1,0 +1,189 @@
+{
+  "id": "denny_039_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "galaxy_center",
+  "title": "Denny at the Galaxy Center",
+  "story_setup": "Finn has discovered a mysterious signal from the center of the Milky Way galaxy! Denny must navigate through dense clouds of glowing stars to find him.",
+  "instruction": "Navigate the dense starfields and reach Finn at the galaxy core!",
+  "tts_instruction": "Deep space mission! Help Denny navigate through the dense glowing star clouds to reach Finn at the galaxy core.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish in a custom fish-shaped space suit, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn_space"
+  },
+  "educational_question": "What is in the center of our galaxy? Have you heard of a supermassive black hole?",
+  "fun_fact": "At the center of our Milky Way galaxy sits a supermassive black hole called Sagittarius A*. It's four million times heavier than our Sun! Thankfully, we're safely 26,000 light years away from it.",
+  "completion_message": "Denny reached the galaxy core! Together, they decode the mysterious signal!",
+  "path_data": {
+    "svg_path": "M 260 50 L 340 50 M 340 50 L 340 130 M 260 50 L 260 130 M 180 130 L 260 130 M 180 130 L 180 210 M 260 210 L 340 210 M 340 130 L 420 130 M 420 130 L 420 210 M 340 210 L 420 210 M 100 210 L 180 210 M 100 290 L 180 290 M 100 210 L 100 290 M 260 210 L 340 210 M 340 210 L 420 210 M 420 210 L 500 210 M 500 210 L 500 290 M 420 290 L 500 290 M 260 290 L 260 370 M 180 370 L 260 370 M 180 290 L 180 370 M 260 290 L 260 370 M 420 290 L 420 370 M 340 370 L 420 370 M 340 370 L 340 450 M 260 450 L 340 450 M 260 370 L 260 450",
+    "solution_path": "M 300 410 L 300 330 L 300 250 L 220 250 L 220 170 L 300 170 L 300 90",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_circle",
+    "start_point": {
+      "x": 300,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#0A0520",
+    "decorative_elements": [
+      "dense_stars",
+      "galactic_glow",
+      "star_clusters"
+    ]
+  },
+  "audio_instruction": "denny_039_instruction.mp3",
+  "audio_completion": "denny_039_completion.mp3"
+}

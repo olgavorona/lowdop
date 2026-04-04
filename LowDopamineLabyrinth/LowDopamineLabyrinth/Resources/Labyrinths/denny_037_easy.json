@@ -1,0 +1,179 @@
+{
+  "id": "denny_037_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "space_race",
+  "title": "Denny's Space Race",
+  "story_setup": "Sandy has set up a galactic racing course and is waiting at the finish line! Denny's rocket must follow the winding track to reach the big finish.",
+  "instruction": "Follow the racing track and zoom to Sandy at the finish line!",
+  "tts_instruction": "Race time! Help Denny rocket along the galactic race course to reach Sandy at the finish line!",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "little sister crab",
+    "description": "Sandy-yellow little sister crab in a tiny yellow space suit with a bow on the helmet, playful and giggly",
+    "position": "top_right",
+    "name": "Sandy",
+    "image_asset": "sandy_space"
+  },
+  "educational_question": "How fast do real rockets travel? Can you imagine going that fast?",
+  "fun_fact": "The fastest spacecraft ever launched, the Parker Solar Probe, travels at 692,000 kilometers per hour — that's fast enough to fly from New York to Los Angeles in less than 15 seconds!",
+  "completion_message": "Denny wins the space race! Sandy gives the winner's trophy — a shiny star!",
+  "path_data": {
+    "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 300 40 L 440 40 M 440 40 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 440 40 L 440 180 M 160 180 L 160 320 M 20 320 L 160 320 M 20 180 L 20 320 M 300 180 L 300 320 M 160 180 L 160 320 M 300 180 L 300 320 M 580 180 L 580 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 300 320 L 300 460 M 160 460 L 300 460 M 300 460 L 440 460 M 300 320 L 300 460 M 580 320 L 580 460 M 440 460 L 580 460",
+    "solution_path": "M 90 390 L 230 390 L 230 250 L 230 110 L 370 110 L 370 250 L 510 250 L 510 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 90,
+      "y": 390
+    },
+    "end_point": {
+      "x": 510,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 90,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 390
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 390
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#0B1E3D",
+    "decorative_elements": [
+      "boost_pads",
+      "finish_flags",
+      "racing_rockets"
+    ]
+  },
+  "audio_instruction": "denny_037_instruction.mp3",
+  "audio_completion": "denny_037_completion.mp3"
+}

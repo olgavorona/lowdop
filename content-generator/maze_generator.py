@@ -360,6 +360,60 @@ class ShapeMask:
                     mask.add((r, c))
         return mask
 
+    @staticmethod
+    def moon(rows: int, cols: int) -> set:
+        """Crescent moon shape — full circle with inner circle cut out offset to one side."""
+        mask = set()
+        cr, cc = rows / 2, cols / 2
+        outer_r = min(rows, cols) / 2 - 0.5
+        # Inner circle offset to create crescent
+        inner_r = outer_r * 0.72
+        inner_cc = cc + outer_r * 0.38
+        for r in range(rows):
+            for c in range(cols):
+                in_outer = ((r - cr + 0.5) ** 2 + (c - cc + 0.5) ** 2) <= outer_r ** 2
+                in_inner = ((r - cr + 0.5) ** 2 + (c - inner_cc + 0.5) ** 2) <= inner_r ** 2
+                if in_outer and not in_inner:
+                    mask.add((r, c))
+        return mask
+
+    @staticmethod
+    def rocket(rows: int, cols: int) -> set:
+        """Rocket ship — pointed nose cone, rectangular body, flared fins at base."""
+        mask = set()
+        body_width = max(3, cols // 3)
+        body_start_c = (cols - body_width) // 2
+
+        # Nose cone (top 28%): narrows to a point
+        nose_rows = max(3, rows * 28 // 100)
+        for r in range(nose_rows):
+            progress = r / max(nose_rows - 1, 1)
+            width = max(1, round(body_width * progress))
+            start_c = (cols - width) // 2
+            for c in range(start_c, start_c + width):
+                if 0 <= c < cols:
+                    mask.add((r, c))
+
+        # Body (middle 55%)
+        body_rows = max(3, rows * 55 // 100)
+        for r in range(nose_rows, nose_rows + body_rows):
+            for c in range(body_start_c, body_start_c + body_width):
+                if 0 <= c < cols:
+                    mask.add((r, c))
+
+        # Fins (bottom 17%): flare outward
+        fin_start = nose_rows + body_rows
+        extra = max(2, cols // 7)
+        fin_width = min(cols - 2, body_width + extra * 2)
+        for r in range(fin_start, rows):
+            progress = (r - fin_start) / max(rows - fin_start - 1, 1)
+            current_width = body_width + round(extra * 2 * progress)
+            start_c = (cols - current_width) // 2
+            for c in range(start_c, start_c + current_width):
+                if 0 <= c < cols:
+                    mask.add((r, c))
+        return mask
+
 
 class OrganicPathGenerator:
     """Generates simple curved paths for youngest kids (ages 3-4)."""
@@ -430,6 +484,8 @@ class FullMazeGenerator:
         "mountain": ShapeMask.mountain,
         "diamond": ShapeMask.diamond,
         "circle": ShapeMask.circle,
+        "moon": ShapeMask.moon,
+        "rocket": ShapeMask.rocket,
     }
 
     @staticmethod
