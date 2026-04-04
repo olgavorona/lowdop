@@ -416,15 +416,24 @@ class ShapeMask:
 
 
 class OrganicPathGenerator:
-    """Generates simple curved paths for youngest kids (ages 3-4)."""
+    """Generates curved paths for youngest kids (ages 3-4).
+
+    style="simple"  — gentle S-curve from corner to corner (few turns)
+    style="winding" — canvas-filling snake path with U-turns (like reference maze books)
+    """
 
     def __init__(self, width: int = 600, height: int = 500, path_width: int = 35):
         self.width = width
         self.height = height
         self.path_width = path_width
 
-    def generate(self, num_turns: int = 4) -> Dict[str, Any]:
-        """Generate a simple winding path with gentle curves."""
+    def generate(self, num_turns: int = 4, style: str = "winding") -> Dict[str, Any]:
+        if style == "winding":
+            return self._generate_winding(num_rows=num_turns)
+        return self._generate_simple(num_turns)
+
+    def _generate_simple(self, num_turns: int = 4) -> Dict[str, Any]:
+        """Original simple S-curve path."""
         margin = 60
         points = []
         start_x = margin
@@ -443,8 +452,64 @@ class OrganicPathGenerator:
             points.append((base_x + offset_x, base_y + offset_y))
 
         points.append((end_x, end_y))
+        return self._build_result(points)
 
-        # Build smooth SVG path using quadratic bezier curves
+    def _generate_winding(self, num_rows: int = 4) -> Dict[str, Any]:
+        """Snake path that fills the canvas — rows alternating left→right and right→left.
+
+        num_rows controls complexity:
+          3 → easy   (3 lanes, moderate winding)
+          4 → medium (4 lanes)
+          5 → hard   (5 lanes, dense winding)
+        """
+        margin_x = 55
+        margin_y = 60
+        left = margin_x
+        right = self.width - margin_x
+        top = margin_y
+        bottom = self.height - margin_y
+
+        usable_w = right - left
+        usable_h = bottom - top
+        row_spacing = usable_h / max(num_rows - 1, 1)
+
+        # Points sampled along each horizontal lane
+        pts_per_row = 7
+
+        points: list = []
+
+        for row_i in range(num_rows):
+            going_right = (row_i % 2 == 0)
+            row_y = bottom - row_i * row_spacing
+
+            for j in range(pts_per_row):
+                # Share the edge point with the previous row's last point
+                if row_i > 0 and j == 0:
+                    continue
+
+                t = j / (pts_per_row - 1)  # 0 → 1 across the row
+
+                base_x = (left + usable_w * t) if going_right else (right - usable_w * t)
+
+                # Jitter tapers to zero at row edges so U-turns stay tidy
+                edge_dist = min(t, 1.0 - t)          # 0 at edges, 0.5 in middle
+                jitter_scale = min(edge_dist * 4, 1.0)
+
+                jitter_x = random.uniform(-28, 28) * jitter_scale
+                jitter_y = random.uniform(-row_spacing * 0.22, row_spacing * 0.22) * jitter_scale
+
+                x = max(left + 8, min(right - 8, base_x + jitter_x))
+                y = max(top + 8, min(bottom - 8, row_y + jitter_y))
+                points.append((x, y))
+
+        # Force exact start (bottom-left) and end (top-right)
+        points[0] = (left, bottom)
+        points[-1] = (right, top)
+
+        return self._build_result(points)
+
+    def _build_result(self, points: list) -> Dict[str, Any]:
+        """Convert waypoint list into the standard maze_data dict."""
         svg_path = f"M {points[0][0]:.1f} {points[0][1]:.1f}"
         for i in range(1, len(points) - 1):
             cx = points[i][0]
@@ -454,23 +519,23 @@ class OrganicPathGenerator:
             svg_path += f" Q {cx:.1f} {cy:.1f} {nx:.1f} {ny:.1f}"
         svg_path += f" L {points[-1][0]:.1f} {points[-1][1]:.1f}"
 
-        # Generate path segments for hit-testing
-        segments = []
-        for i in range(len(points) - 1):
-            segments.append({
+        segments = [
+            {
                 "start": {"x": round(points[i][0], 1), "y": round(points[i][1], 1)},
-                "end": {"x": round(points[i + 1][0], 1), "y": round(points[i + 1][1], 1)}
-            })
+                "end":   {"x": round(points[i + 1][0], 1), "y": round(points[i + 1][1], 1)},
+            }
+            for i in range(len(points) - 1)
+        ]
 
         return {
             "svg_path": svg_path,
             "path_width": self.path_width,
             "start_point": {"x": round(points[0][0], 1), "y": round(points[0][1], 1)},
-            "end_point": {"x": round(points[-1][0], 1), "y": round(points[-1][1], 1)},
+            "end_point":   {"x": round(points[-1][0], 1), "y": round(points[-1][1], 1)},
             "control_points": [{"x": round(p[0], 1), "y": round(p[1], 1)} for p in points],
             "segments": segments,
             "canvas_width": self.width,
-            "canvas_height": self.height
+            "canvas_height": self.height,
         }
 
 
