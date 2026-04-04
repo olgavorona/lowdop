@@ -53,6 +53,15 @@
         39,
         40
       ]
+    },
+    {
+      "id": "forest_adventures",
+      "title": "Denny in the Forest",
+      "free_stories": 0,
+      "stories": [
+        41,
+        42
+      ]
     }
   ],
   "labyrinths": [
@@ -1015,7 +1024,23 @@
       "theme": "space",
       "location": "earth_orbit",
       "title": "Denny Returns Home"
+    },
+    {
+      "id": "denny_041_medium",
+      "difficulty": "medium",
+      "story": 41,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "What Is That Noise?"
+    },
+    {
+      "id": "denny_042_medium",
+      "difficulty": "medium",
+      "story": 42,
+      "theme": "forest",
+      "location": "mushroom_clearing",
+      "title": "Maya's Secret Path"
     }
   ],
-  "total": 120
+  "total": 122
 }

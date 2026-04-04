@@ -9,6 +9,7 @@ struct BookshelfView: View {
 
     @State private var oceanStories: [StoryInfo] = []
     @State private var spaceStories: [StoryInfo] = []
+    @State private var forestStories: [StoryInfo] = []
     @State private var showParentalGate = false
     @State private var showDifficultyPicker = false
     @State private var showAccount = false
@@ -49,6 +50,7 @@ struct BookshelfView: View {
         .onAppear {
             oceanStories = LabyrinthLoader.shared.loadStories(packId: "ocean_adventures")
             spaceStories = LabyrinthLoader.shared.loadStories(packId: "space_adventures")
+            forestStories = LabyrinthLoader.shared.loadStories(packId: "forest_adventures")
             Analytics.send("Bookshelf.opened", with: [
                 "difficulty": preferences.difficultyLevel.rawValue,
                 "storyCount": String(oceanStories.count + spaceStories.count)
@@ -141,13 +143,16 @@ struct BookshelfView: View {
 
     private var packCardsArea: some View {
         Group {
-            if oceanStories.isEmpty && spaceStories.isEmpty {
+            if oceanStories.isEmpty && spaceStories.isEmpty && forestStories.isEmpty {
                 emptyState
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
                         oceanAdventuresCard
                         spaceAdventuresCard
+                        if !forestStories.isEmpty {
+                            forestAdventuresCard
+                        }
                     }
                     .padding(.horizontal, 40)
                 }
@@ -392,6 +397,135 @@ struct BookshelfView: View {
                         Image(systemName: isLocked ? "lock.fill" : "chevron.right")
                             .font(.system(size: 11, weight: .bold))
                             .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
+                    }
+                }
+                .padding(16)
+                .background(Color.white)
+            }
+            .frame(width: 280)
+            .cornerRadius(18)
+            .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
+            .opacity(isLocked ? 0.85 : 1.0)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+
+    // MARK: - Forest Adventures Card
+
+    private var forestAdventuresCard: some View {
+        let completedStoryCount = forestStories.filter { story in
+            story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
+        }.count
+        let totalStoryCount = forestStories.count
+        let isLocked = !subscriptionManager.isPremium
+
+        return Button(action: {
+            if isLocked {
+                parentalGateAction = .paywall
+                showParentalGate = true
+                Analytics.send("Paywall.shown", with: ["trigger": "bookshelf"])
+            } else {
+                Analytics.send("Bookshelf.packTapped", with: ["pack": "forest_adventures"])
+                onPackSelected("forest_adventures")
+            }
+        }) {
+            VStack(spacing: 0) {
+                ZStack {
+                    LinearGradient(
+                        colors: [
+                            Color(hex: "#1A3D1A") ?? .green,
+                            Color(hex: "#2D5A27") ?? .green,
+                            Color(hex: "#4A7C3F") ?? .green
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+
+                    // Leaf/tree decoration
+                    ForEach(0..<10, id: \.self) { i in
+                        let xPos = CGFloat((i * 27 + 10) % 260) + 10
+                        let yPos = CGFloat((i * 19 + 15) % 160) + 10
+                        Text(i % 2 == 0 ? "🍃" : "🌿")
+                            .font(.system(size: i % 3 == 0 ? 18 : 12))
+                            .opacity(0.4)
+                            .position(x: xPos, y: yPos)
+                    }
+
+                    if isLocked {
+                        VStack {
+                            HStack {
+                                Spacer()
+                                HStack(spacing: 4) {
+                                    Image(systemName: "lock.fill")
+                                        .font(.system(size: 11, weight: .bold))
+                                    Text("Premium")
+                                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                                }
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .background(AppColor.accentGreen.opacity(0.9))
+                                .cornerRadius(10)
+                                .padding(12)
+                            }
+                            Spacer()
+                        }
+                    }
+
+                    VStack(spacing: 8) {
+                        Text("🌲")
+                            .font(.system(size: 40))
+
+                        Text("Denny in the Forest")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+
+                        Text("\(totalStoryCount) stories")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(.white.opacity(0.8))
+                    }
+                }
+                .frame(height: 200)
+
+                VStack(spacing: 10) {
+                    HStack {
+                        if isLocked {
+                            Text("Unlock to explore the forest!")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(AppColor.textSecondary)
+                        } else {
+                            Text("\(completedStoryCount) of \(totalStoryCount) stories completed")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(AppColor.textSecondary)
+                        }
+                        Spacer()
+                    }
+
+                    GeometryReader { geo in
+                        ZStack(alignment: .leading) {
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.gray.opacity(0.15))
+                                .frame(height: 6)
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color(hex: "#2D5A27") ?? .green)
+                                .frame(
+                                    width: (!isLocked && totalStoryCount > 0)
+                                        ? CGFloat(completedStoryCount) / CGFloat(totalStoryCount) * geo.size.width
+                                        : 0,
+                                    height: 6
+                                )
+                        }
+                    }
+                    .frame(height: 6)
+
+                    HStack {
+                        Spacer()
+                        Text(isLocked ? "Tap to unlock" : "Tap to play")
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.accentGreen)
+                        Image(systemName: isLocked ? "lock.fill" : "chevron.right")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.accentGreen)
                     }
                 }
                 .padding(16)

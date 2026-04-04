@@ -1,0 +1,84 @@
+{
+  "characters": {
+    "denny": {
+      "name": "Denny",
+      "type": "baby crab",
+      "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+      "color": "#E74C3C",
+      "personality": "curious, cheerful, brave",
+      "emoji": "🦀",
+      "image_prompt": "One cute cartoon baby crab wearing a tiny khaki explorer vest and a small safari hat, orange-red color, two small symmetrical claws, big happy eyes, standing on a mossy forest floor, soft watercolor painting style, white background, centered, no other characters, no writing, no text, no letters, children's book illustration style"
+    },
+    "maya": {
+      "name": "Maya",
+      "type": "little mouse",
+      "description": "Tiny brown field mouse in a red polka-dot dress, shy but warm, round ears, bright curious eyes",
+      "color": "#8B4513",
+      "personality": "shy, warm, curious",
+      "emoji": "🐭",
+      "image_prompt": "One single cute cartoon tiny field mouse wearing a red polka-dot dress, soft brown fur, big round ears, bright curious eyes, sweet shy smile, standing upright, white background, soft watercolor painting style, children's book illustration style, no text, no writing, ONLY ONE character"
+    }
+  },
+  "locations": {
+    "forest_entrance": {
+      "name": "Forest Entrance",
+      "background_color": "#1A3D1A",
+      "description": "The edge of a lush green forest where tall trees meet a sunny meadow",
+      "decorative_elements": ["tall_trees", "sunbeams", "wildflowers", "butterflies"]
+    },
+    "mushroom_clearing": {
+      "name": "Mushroom Clearing",
+      "background_color": "#1F2D0F",
+      "description": "A magical clearing filled with giant colorful mushrooms and soft glowing moss",
+      "decorative_elements": ["giant_mushrooms", "glowing_moss", "fireflies", "fallen_leaves"]
+    },
+    "oak_tree": {
+      "name": "The Great Oak",
+      "background_color": "#2A1A08",
+      "description": "The base of an enormous ancient oak tree with twisted roots and a hollow entrance",
+      "decorative_elements": ["giant_roots", "acorns", "ivy", "bark_texture"]
+    },
+    "babbling_brook": {
+      "name": "Babbling Brook",
+      "background_color": "#0D2B2B",
+      "description": "A winding stream with stepping stones, frogs, and weeping willow trees",
+      "decorative_elements": ["stepping_stones", "frogs", "lily_pads", "willow_branches"]
+    },
+    "firefly_meadow": {
+      "name": "Firefly Meadow",
+      "background_color": "#0A1A08",
+      "description": "A twilight meadow where hundreds of fireflies light up the night",
+      "decorative_elements": ["fireflies", "tall_grass", "moon", "dewdrops"]
+    },
+    "berry_bush": {
+      "name": "Berry Bush Patch",
+      "background_color": "#1A0F0A",
+      "description": "A thicket of wild berry bushes heavy with red and purple berries",
+      "decorative_elements": ["red_berries", "purple_berries", "thorny_vines", "birds"]
+    },
+    "owl_hollow": {
+      "name": "Owl's Hollow",
+      "background_color": "#1A1208",
+      "description": "A cozy hollow inside an old tree trunk where a wise owl lives",
+      "decorative_elements": ["candles", "books", "feathers", "moonlight_window"]
+    },
+    "fox_den": {
+      "name": "Fox Den",
+      "background_color": "#2A1206",
+      "description": "A warm cozy den dug into a hillside under an old pine tree",
+      "decorative_elements": ["pine_roots", "warm_glow", "pinecones", "autumn_leaves"]
+    },
+    "waterfall": {
+      "name": "Hidden Waterfall",
+      "background_color": "#062020",
+      "description": "A secret waterfall hidden behind thick ferns with a sparkling pool below",
+      "decorative_elements": ["waterfall", "ferns", "rainbow_mist", "smooth_stones"]
+    },
+    "forest_canopy": {
+      "name": "Forest Canopy",
+      "background_color": "#0A2010",
+      "description": "High up in the treetops where branches intertwine and squirrels leap",
+      "decorative_elements": ["branches", "leaves", "squirrels", "birds_nests"]
+    }
+  }
+}
