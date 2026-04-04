@@ -7,9 +7,7 @@ struct BookshelfView: View {
 
     let onPackSelected: (String) -> Void
 
-    @State private var oceanStories: [StoryInfo] = []
-    @State private var spaceStories: [StoryInfo] = []
-    @State private var forestStories: [StoryInfo] = []
+    @State private var storiesByPack: [String: [StoryInfo]] = [:]
     @State private var showParentalGate = false
     @State private var showDifficultyPicker = false
     @State private var showAccount = false
@@ -17,43 +15,99 @@ struct BookshelfView: View {
     @State private var parentalGateAction: BookshelfParentalGateAction = .account
 
     private enum BookshelfParentalGateAction {
-        case account
-        case difficultyPicker
-        case paywall
+        case account, difficultyPicker, paywall
     }
+
+    // MARK: - Pack Configuration
+
+    private struct PackConfig: Identifiable {
+        let id: String
+        let title: String
+        let gradientColors: [Color]
+        let progressBarColor: Color
+        let isFree: Bool
+        let unlockText: String
+        let icon: PackIcon
+        let decoration: PackDecoration
+        let alwaysShow: Bool
+
+        enum PackIcon {
+            case system(String, Color)
+            case emoji(String)
+        }
+
+        enum PackDecoration {
+            case waves
+            case stars
+            case leaves
+        }
+    }
+
+    private static let packs: [PackConfig] = [
+        PackConfig(
+            id: "ocean_adventures",
+            title: "Ocean Adventures",
+            gradientColors: [Color(hex: "#4FC3F7") ?? .blue, AppColor.linkBlue, Color(hex: "#01579B") ?? .blue],
+            progressBarColor: Color(hex: "#4FC3F7") ?? .blue,
+            isFree: true,
+            unlockText: "",
+            icon: .system("water.waves", .white.opacity(0.9)),
+            decoration: .waves,
+            alwaysShow: true
+        ),
+        PackConfig(
+            id: "space_adventures",
+            title: "Denny in Space",
+            gradientColors: [Color(hex: "#1A1A2E") ?? .black, Color(hex: "#16213E") ?? .indigo, Color(hex: "#0F3460") ?? .blue],
+            progressBarColor: Color(hex: "#0F3460") ?? .blue,
+            isFree: false,
+            unlockText: "Unlock to explore space!",
+            icon: .system("star.fill", .yellow.opacity(0.9)),
+            decoration: .stars,
+            alwaysShow: true
+        ),
+        PackConfig(
+            id: "forest_adventures",
+            title: "Denny in the Forest",
+            gradientColors: [Color(hex: "#1A3D1A") ?? .green, Color(hex: "#2D5A27") ?? .green, Color(hex: "#4A7C3F") ?? .green],
+            progressBarColor: Color(hex: "#2D5A27") ?? .green,
+            isFree: false,
+            unlockText: "Unlock to explore the forest!",
+            icon: .emoji("🌲"),
+            decoration: .leaves,
+            alwaysShow: false
+        ),
+    ]
 
     var body: some View {
         ZStack {
-            // Cream background
             AppColor.background
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Top bar
                 topBar
                     .padding(.horizontal, 24)
                     .padding(.top, 16)
                     .padding(.bottom, 12)
 
-                // Title
                 Text("Your Adventures")
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
                     .padding(.bottom, 24)
 
-                // Pack cards area
                 packCardsArea
 
                 Spacer()
             }
         }
         .onAppear {
-            oceanStories = LabyrinthLoader.shared.loadStories(packId: "ocean_adventures")
-            spaceStories = LabyrinthLoader.shared.loadStories(packId: "space_adventures")
-            forestStories = LabyrinthLoader.shared.loadStories(packId: "forest_adventures")
+            for config in Self.packs {
+                storiesByPack[config.id] = LabyrinthLoader.shared.loadStories(packId: config.id)
+            }
+            let totalLoaded = storiesByPack.values.reduce(0) { $0 + $1.count }
             Analytics.send("Bookshelf.opened", with: [
                 "difficulty": preferences.difficultyLevel.rawValue,
-                "storyCount": String(oceanStories.count + spaceStories.count)
+                "storyCount": String(totalLoaded)
             ])
         }
         .fullScreenCover(isPresented: $showParentalGate) {
@@ -68,17 +122,12 @@ struct BookshelfView: View {
                 onSuccess: {
                     showParentalGate = false
                     switch parentalGateAction {
-                    case .account:
-                        showAccount = true
-                    case .difficultyPicker:
-                        showDifficultyPicker = true
-                    case .paywall:
-                        showPaywall = true
+                    case .account: showAccount = true
+                    case .difficultyPicker: showDifficultyPicker = true
+                    case .paywall: showPaywall = true
                     }
                 },
-                onCancel: {
-                    showParentalGate = false
-                }
+                onCancel: { showParentalGate = false }
             )
         }
         .sheet(isPresented: $showPaywall) {
@@ -107,8 +156,6 @@ struct BookshelfView: View {
     private var topBar: some View {
         HStack {
             Spacer()
-
-            // Difficulty badge
             Button(action: {
                 parentalGateAction = .difficultyPicker
                 showParentalGate = true
@@ -125,8 +172,6 @@ struct BookshelfView: View {
                 .background(AppColor.accentGreen)
                 .cornerRadius(12)
             }
-
-            // For Parents button
             Button(action: {
                 parentalGateAction = .account
                 showParentalGate = true
@@ -139,19 +184,22 @@ struct BookshelfView: View {
         }
     }
 
-    // MARK: - Pack Cards
+    // MARK: - Pack Cards Area
 
     private var packCardsArea: some View {
-        Group {
-            if oceanStories.isEmpty && spaceStories.isEmpty && forestStories.isEmpty {
+        let visiblePacks = Self.packs.filter { config in
+            config.alwaysShow || !(storiesByPack[config.id]?.isEmpty ?? true)
+        }
+        let allEmpty = storiesByPack.isEmpty || storiesByPack.values.allSatisfy { $0.isEmpty }
+
+        return Group {
+            if allEmpty {
                 emptyState
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 24) {
-                        oceanAdventuresCard
-                        spaceAdventuresCard
-                        if !forestStories.isEmpty {
-                            forestAdventuresCard
+                        ForEach(visiblePacks) { config in
+                            packCard(config: config, stories: storiesByPack[config.id] ?? [])
                         }
                     }
                     .padding(.horizontal, 40)
@@ -172,118 +220,14 @@ struct BookshelfView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    // MARK: - Ocean Adventures Card
+    // MARK: - Pack Card
 
-    private var oceanAdventuresCard: some View {
-        let completedStoryCount = oceanStories.filter { story in
+    private func packCard(config: PackConfig, stories: [StoryInfo]) -> some View {
+        let completedCount = stories.filter { story in
             story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
         }.count
-        let totalStoryCount = oceanStories.count
-
-        return Button(action: {
-            Analytics.send("Bookshelf.packTapped", with: ["pack": "ocean_adventures"])
-            onPackSelected("ocean_adventures")
-        }) {
-            VStack(spacing: 0) {
-                // Cover area with ocean gradient
-                ZStack {
-                    // Ocean gradient background
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "#4FC3F7") ?? .blue,
-                            AppColor.linkBlue,
-                            Color(hex: "#01579B") ?? .blue
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-
-                    // Decorative wave shapes
-                    VStack {
-                        Spacer()
-                        WaveShape()
-                            .fill(Color.white.opacity(0.15))
-                            .frame(height: 60)
-                        WaveShape()
-                            .fill(Color.white.opacity(0.1))
-                            .frame(height: 40)
-                            .offset(y: -20)
-                    }
-
-                    // Pack title on cover
-                    VStack(spacing: 8) {
-                        Image(systemName: "water.waves")
-                            .font(.system(size: 40))
-                            .foregroundColor(.white.opacity(0.9))
-
-                        Text("Ocean Adventures")
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
-
-                        Text("\(totalStoryCount) stories")
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.8))
-                    }
-                }
-                .frame(height: 200)
-
-                // Bottom info area
-                VStack(spacing: 10) {
-                    // Progress text
-                    HStack {
-                        Text("\(completedStoryCount) of \(totalStoryCount) stories completed")
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundColor(AppColor.textSecondary)
-                        Spacer()
-                    }
-
-                    // Progress bar
-                    GeometryReader { geo in
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.gray.opacity(0.15))
-                                .frame(height: 6)
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color(hex: "#4FC3F7") ?? .blue)
-                                .frame(
-                                    width: totalStoryCount > 0
-                                        ? CGFloat(completedStoryCount) / CGFloat(totalStoryCount) * geo.size.width
-                                        : 0,
-                                    height: 6
-                                )
-                        }
-                    }
-                    .frame(height: 6)
-
-                    // Tap to play prompt
-                    HStack {
-                        Spacer()
-                        Text("Tap to play")
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundColor(AppColor.linkBlue)
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(AppColor.linkBlue)
-                    }
-                }
-                .padding(16)
-                .background(Color.white)
-            }
-            .frame(width: 280)
-            .cornerRadius(18)
-            .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-
-    // MARK: - Space Adventures Card
-
-    private var spaceAdventuresCard: some View {
-        let completedStoryCount = spaceStories.filter { story in
-            story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
-        }.count
-        let totalStoryCount = spaceStories.count
-        let isLocked = !subscriptionManager.isPremium
+        let totalCount = stories.count
+        let isLocked = !config.isFree && !subscriptionManager.isPremium
 
         return Button(action: {
             if isLocked {
@@ -291,116 +235,14 @@ struct BookshelfView: View {
                 showParentalGate = true
                 Analytics.send("Paywall.shown", with: ["trigger": "bookshelf"])
             } else {
-                Analytics.send("Bookshelf.packTapped", with: ["pack": "space_adventures"])
-                onPackSelected("space_adventures")
+                Analytics.send("Bookshelf.packTapped", with: ["pack": config.id])
+                onPackSelected(config.id)
             }
         }) {
             VStack(spacing: 0) {
-                // Cover area with space gradient
-                ZStack {
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "#1A1A2E") ?? .black,
-                            Color(hex: "#16213E") ?? .indigo,
-                            Color(hex: "#0F3460") ?? .blue
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-
-                    // Stars decoration
-                    ForEach(0..<12, id: \.self) { i in
-                        let xPos = CGFloat((i * 23 + 15) % 260) + 10
-                        let yPos = CGFloat((i * 17 + 20) % 160) + 10
-                        Circle()
-                            .fill(Color.white.opacity(0.6))
-                            .frame(width: i % 3 == 0 ? 4 : 2)
-                            .position(x: xPos, y: yPos)
-                    }
-
-                    // Lock badge
-                    if isLocked {
-                        VStack {
-                            HStack {
-                                Spacer()
-                                HStack(spacing: 4) {
-                                    Image(systemName: "lock.fill")
-                                        .font(.system(size: 11, weight: .bold))
-                                    Text("Premium")
-                                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                                }
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 5)
-                                .background(AppColor.accentGreen.opacity(0.9))
-                                .cornerRadius(10)
-                                .padding(12)
-                            }
-                            Spacer()
-                        }
-                    }
-
-                    // Pack title on cover
-                    VStack(spacing: 8) {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 40))
-                            .foregroundColor(.yellow.opacity(0.9))
-
-                        Text("Denny in Space")
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
-
-                        Text("\(totalStoryCount) stories")
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.8))
-                    }
-                }
-                .frame(height: 200)
-
-                // Bottom info area
-                VStack(spacing: 10) {
-                    HStack {
-                        if isLocked {
-                            Text("Unlock to explore space!")
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundColor(AppColor.textSecondary)
-                        } else {
-                            Text("\(completedStoryCount) of \(totalStoryCount) stories completed")
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundColor(AppColor.textSecondary)
-                        }
-                        Spacer()
-                    }
-
-                    GeometryReader { geo in
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.gray.opacity(0.15))
-                                .frame(height: 6)
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color(hex: "#0F3460") ?? .blue)
-                                .frame(
-                                    width: (!isLocked && totalStoryCount > 0)
-                                        ? CGFloat(completedStoryCount) / CGFloat(totalStoryCount) * geo.size.width
-                                        : 0,
-                                    height: 6
-                                )
-                        }
-                    }
-                    .frame(height: 6)
-
-                    HStack {
-                        Spacer()
-                        Text(isLocked ? "Tap to unlock" : "Tap to play")
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
-                        Image(systemName: isLocked ? "lock.fill" : "chevron.right")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
-                    }
-                }
-                .padding(16)
-                .background(Color.white)
+                packCover(config: config, totalCount: totalCount, isLocked: isLocked)
+                    .frame(height: 200)
+                packBottom(config: config, completedCount: completedCount, totalCount: totalCount, isLocked: isLocked)
             }
             .frame(width: 280)
             .cornerRadius(18)
@@ -410,133 +252,135 @@ struct BookshelfView: View {
         .buttonStyle(PlainButtonStyle())
     }
 
-    // MARK: - Forest Adventures Card
+    private func packCover(config: PackConfig, totalCount: Int, isLocked: Bool) -> some View {
+        ZStack {
+            LinearGradient(colors: config.gradientColors, startPoint: .topLeading, endPoint: .bottomTrailing)
 
-    private var forestAdventuresCard: some View {
-        let completedStoryCount = forestStories.filter { story in
-            story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
-        }.count
-        let totalStoryCount = forestStories.count
-        let isLocked = !subscriptionManager.isPremium
+            packDecoration(config.decoration)
 
-        return Button(action: {
             if isLocked {
-                parentalGateAction = .paywall
-                showParentalGate = true
-                Analytics.send("Paywall.shown", with: ["trigger": "bookshelf"])
-            } else {
-                Analytics.send("Bookshelf.packTapped", with: ["pack": "forest_adventures"])
-                onPackSelected("forest_adventures")
+                premiumBadge
             }
-        }) {
-            VStack(spacing: 0) {
-                ZStack {
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "#1A3D1A") ?? .green,
-                            Color(hex: "#2D5A27") ?? .green,
-                            Color(hex: "#4A7C3F") ?? .green
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
 
-                    // Leaf/tree decoration
-                    ForEach(0..<10, id: \.self) { i in
-                        let xPos = CGFloat((i * 27 + 10) % 260) + 10
-                        let yPos = CGFloat((i * 19 + 15) % 160) + 10
-                        Text(i % 2 == 0 ? "🍃" : "🌿")
-                            .font(.system(size: i % 3 == 0 ? 18 : 12))
-                            .opacity(0.4)
-                            .position(x: xPos, y: yPos)
-                    }
-
-                    if isLocked {
-                        VStack {
-                            HStack {
-                                Spacer()
-                                HStack(spacing: 4) {
-                                    Image(systemName: "lock.fill")
-                                        .font(.system(size: 11, weight: .bold))
-                                    Text("Premium")
-                                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                                }
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 5)
-                                .background(AppColor.accentGreen.opacity(0.9))
-                                .cornerRadius(10)
-                                .padding(12)
-                            }
-                            Spacer()
-                        }
-                    }
-
-                    VStack(spacing: 8) {
-                        Text("🌲")
-                            .font(.system(size: 40))
-
-                        Text("Denny in the Forest")
-                            .font(.system(size: 22, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
-
-                        Text("\(totalStoryCount) stories")
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.8))
-                    }
-                }
-                .frame(height: 200)
-
-                VStack(spacing: 10) {
-                    HStack {
-                        if isLocked {
-                            Text("Unlock to explore the forest!")
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundColor(AppColor.textSecondary)
-                        } else {
-                            Text("\(completedStoryCount) of \(totalStoryCount) stories completed")
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundColor(AppColor.textSecondary)
-                        }
-                        Spacer()
-                    }
-
-                    GeometryReader { geo in
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.gray.opacity(0.15))
-                                .frame(height: 6)
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color(hex: "#2D5A27") ?? .green)
-                                .frame(
-                                    width: (!isLocked && totalStoryCount > 0)
-                                        ? CGFloat(completedStoryCount) / CGFloat(totalStoryCount) * geo.size.width
-                                        : 0,
-                                    height: 6
-                                )
-                        }
-                    }
-                    .frame(height: 6)
-
-                    HStack {
-                        Spacer()
-                        Text(isLocked ? "Tap to unlock" : "Tap to play")
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.accentGreen)
-                        Image(systemName: isLocked ? "lock.fill" : "chevron.right")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.accentGreen)
-                    }
-                }
-                .padding(16)
-                .background(Color.white)
+            VStack(spacing: 8) {
+                packIconView(config.icon)
+                Text(config.title)
+                    .font(.system(size: config.title.count > 16 ? 22 : 24, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                Text("\(totalCount) stories")
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundColor(.white.opacity(0.8))
             }
-            .frame(width: 280)
-            .cornerRadius(18)
-            .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
-            .opacity(isLocked ? 0.85 : 1.0)
         }
-        .buttonStyle(PlainButtonStyle())
+    }
+
+    private func packBottom(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool) -> some View {
+        VStack(spacing: 10) {
+            HStack {
+                Text(isLocked ? config.unlockText : "\(completedCount) of \(totalCount) stories completed")
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundColor(AppColor.textSecondary)
+                Spacer()
+            }
+
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.gray.opacity(0.15))
+                        .frame(height: 6)
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(config.progressBarColor)
+                        .frame(
+                            width: (!isLocked && totalCount > 0)
+                                ? CGFloat(completedCount) / CGFloat(totalCount) * geo.size.width
+                                : 0,
+                            height: 6
+                        )
+                }
+            }
+            .frame(height: 6)
+
+            HStack {
+                Spacer()
+                Text(isLocked ? "Tap to unlock" : "Tap to play")
+                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
+                Image(systemName: isLocked ? "lock.fill" : "chevron.right")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
+            }
+        }
+        .padding(16)
+        .background(Color.white)
+    }
+
+    @ViewBuilder
+    private func packDecoration(_ decoration: PackConfig.PackDecoration) -> some View {
+        switch decoration {
+        case .waves:
+            VStack {
+                Spacer()
+                WaveShape()
+                    .fill(Color.white.opacity(0.15))
+                    .frame(height: 60)
+                WaveShape()
+                    .fill(Color.white.opacity(0.1))
+                    .frame(height: 40)
+                    .offset(y: -20)
+            }
+        case .stars:
+            ForEach(0..<12, id: \.self) { i in
+                let xPos = CGFloat((i * 23 + 15) % 260) + 10
+                let yPos = CGFloat((i * 17 + 20) % 160) + 10
+                Circle()
+                    .fill(Color.white.opacity(0.6))
+                    .frame(width: i % 3 == 0 ? 4 : 2)
+                    .position(x: xPos, y: yPos)
+            }
+        case .leaves:
+            ForEach(0..<10, id: \.self) { i in
+                let xPos = CGFloat((i * 27 + 10) % 260) + 10
+                let yPos = CGFloat((i * 19 + 15) % 160) + 10
+                Text(i % 2 == 0 ? "🍃" : "🌿")
+                    .font(.system(size: i % 3 == 0 ? 18 : 12))
+                    .opacity(0.4)
+                    .position(x: xPos, y: yPos)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func packIconView(_ icon: PackConfig.PackIcon) -> some View {
+        switch icon {
+        case .system(let name, let color):
+            Image(systemName: name)
+                .font(.system(size: 40))
+                .foregroundColor(color)
+        case .emoji(let char):
+            Text(char)
+                .font(.system(size: 40))
+        }
+    }
+
+    private var premiumBadge: some View {
+        VStack {
+            HStack {
+                Spacer()
+                HStack(spacing: 4) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 11, weight: .bold))
+                    Text("Premium")
+                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                }
+                .foregroundColor(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(AppColor.accentGreen.opacity(0.9))
+                .cornerRadius(10)
+                .padding(12)
+            }
+            Spacer()
+        }
     }
 }
 

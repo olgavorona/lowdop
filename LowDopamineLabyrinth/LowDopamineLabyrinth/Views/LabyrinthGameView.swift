@@ -52,6 +52,9 @@ struct LabyrinthGameView: View {
                         if viewModel.labyrinth.theme == "space" {
                             SpacePatternView()
                                 .opacity(viewModel.hasItems ? 0.55 : 0.18)
+                        } else if viewModel.labyrinth.theme == "forest" {
+                            ForestPatternView()
+                                .opacity(0.18)
                         } else {
                             OceanPatternView()
                                 .opacity(0.15)
@@ -272,6 +275,60 @@ struct SpacePatternView: View {
                         cross.addLine(to: CGPoint(x: cx, y: cy + r * 2))
                         context.stroke(cross, with: .color(.white.opacity(0.5)), lineWidth: 0.8)
                     }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Forest Background Pattern
+
+struct ForestPatternView: View {
+    var body: some View {
+        GeometryReader { _ in
+            Canvas { context, size in
+                // Small tree silhouettes
+                let trees: [(CGFloat, CGFloat, CGFloat)] = [
+                    (0.08, 0.85, 14), (0.92, 0.8, 12), (0.45, 0.05, 16),
+                    (0.22, 0.45, 10), (0.75, 0.55, 13), (0.55, 0.9, 11),
+                ]
+                for (xFrac, yFrac, ts) in trees {
+                    let cx = size.width * xFrac
+                    let cy = size.height * yFrac
+                    // Triangle canopy
+                    var canopy = SwiftUI.Path()
+                    canopy.move(to: CGPoint(x: cx, y: cy - ts))
+                    canopy.addLine(to: CGPoint(x: cx - ts * 0.65, y: cy + ts * 0.4))
+                    canopy.addLine(to: CGPoint(x: cx + ts * 0.65, y: cy + ts * 0.4))
+                    canopy.closeSubpath()
+                    context.fill(canopy, with: .color(.white))
+                    // Trunk
+                    var trunk = SwiftUI.Path()
+                    trunk.move(to: CGPoint(x: cx - ts * 0.15, y: cy + ts * 0.4))
+                    trunk.addLine(to: CGPoint(x: cx + ts * 0.15, y: cy + ts * 0.4))
+                    trunk.addLine(to: CGPoint(x: cx + ts * 0.15, y: cy + ts * 0.8))
+                    trunk.addLine(to: CGPoint(x: cx - ts * 0.15, y: cy + ts * 0.8))
+                    trunk.closeSubpath()
+                    context.fill(trunk, with: .color(.white))
+                }
+
+                // Scattered leaf dots
+                let leaves: [(CGFloat, CGFloat, CGFloat)] = [
+                    (0.15, 0.15, 5), (0.35, 0.6, 4), (0.6, 0.25, 6),
+                    (0.8, 0.12, 4), (0.3, 0.88, 5), (0.68, 0.72, 4),
+                    (0.5, 0.48, 3), (0.88, 0.65, 5), (0.12, 0.7, 4),
+                ]
+                for (xFrac, yFrac, r) in leaves {
+                    let cx = size.width * xFrac
+                    let cy = size.height * yFrac
+                    // Simple oval leaf
+                    let leafRect = CGRect(x: cx - r, y: cy - r * 1.4, width: r * 2, height: r * 2.8)
+                    context.stroke(SwiftUI.Path(ellipseIn: leafRect), with: .color(.white), lineWidth: 1.0)
+                    // Midrib
+                    var midrib = SwiftUI.Path()
+                    midrib.move(to: CGPoint(x: cx, y: cy - r * 1.4))
+                    midrib.addLine(to: CGPoint(x: cx, y: cy + r * 1.4))
+                    context.stroke(midrib, with: .color(.white.opacity(0.4)), lineWidth: 0.7)
                 }
             }
         }

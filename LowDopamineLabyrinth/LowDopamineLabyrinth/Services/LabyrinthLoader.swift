@@ -40,9 +40,17 @@ class LabyrinthLoader {
             return []
         }
         let storySet = Set(pack.stories)
-        let filtered = all.filter {
-            $0.difficulty == level.rawValue && storySet.contains($0.storyNumber)
-        }
+        let packLabyrinths = all.filter { storySet.contains($0.storyNumber) }
+
+        // Prefer exact difficulty match; fall back to closest available if the pack
+        // doesn't have variants for the selected difficulty (e.g. a test pack with medium only).
+        let difficultyOrder: [DifficultyLevel] = [.medium, .easy, .hard]
+        let fallbackOrder = ([level] + difficultyOrder.filter { $0 != level })
+        let resolvedDifficulty = fallbackOrder.first { d in
+            packLabyrinths.contains { $0.difficulty == d.rawValue }
+        } ?? level
+
+        let filtered = packLabyrinths.filter { $0.difficulty == resolvedDifficulty.rawValue }
 
         // Interleave normal and adventure labyrinths, shifting adventure
         // by half to avoid pairing stories with the same end character
