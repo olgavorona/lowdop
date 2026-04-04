@@ -60,7 +60,8 @@
       "free_stories": 0,
       "stories": [
         41,
-        42
+        42,
+        43
       ]
     }
   ],
@@ -1040,7 +1041,15 @@
       "theme": "forest",
       "location": "mushroom_clearing",
       "title": "Maya's Secret Path"
+    },
+    {
+      "id": "denny_043_medium",
+      "difficulty": "medium",
+      "story": 43,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "The Babbling Brook"
     }
   ],
-  "total": 122
+  "total": 123
 }

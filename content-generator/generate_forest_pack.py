@@ -2,8 +2,13 @@
 
 Usage:
     python generate_forest_pack.py                    # all stories, all difficulties
-    python generate_forest_pack.py --test             # stories 041-042, medium only
+    python generate_forest_pack.py --test             # stories 041-043, medium only
     python generate_forest_pack.py --output path/     # custom output dir
+
+Maze types (one per story):
+    041 — organic  : simple winding bezier path, no dead ends (easiest)
+    042 — corridor : thick corridor strokes through a tree-shaped grid
+    043 — walls    : traditional wall-based maze at the babbling brook
 """
 
 import argparse
@@ -14,7 +19,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).parent))
-from maze_generator import FullMazeGenerator
+from maze_generator import FullMazeGenerator, OrganicPathGenerator
 
 
 def load_config() -> dict:
@@ -44,6 +49,11 @@ SHAPE_GRID_SCALE = {
 # Denny the explorer crab arrives in Whispering Forest.
 # He hears strange sounds and discovers new friends one by one.
 # Each story continues from the last.
+#
+# maze_style controls the generator:
+#   "organic"   → OrganicPathGenerator (simple curved path, no dead ends)
+#   "corridor"  → render_style="corridor" (thick corridor strokes)
+#   "walls"     → render_style="walls"   (traditional wall-based maze)
 
 FOREST_STORIES = {
     "041": {
@@ -51,6 +61,7 @@ FOREST_STORIES = {
         "character_end": "maya",
         "location": "forest_entrance",
         "shape": "rect",
+        "maze_style": "organic",
         "story_setup": "Denny the explorer has arrived at the edge of Whispering Forest! He hears a mysterious rustling sound coming from inside. Could it be the wind? A wild animal? Denny is curious and a little nervous — but mostly curious.",
         "instruction": "Follow the sounds through the forest and find out what is making that noise!",
         "tts_instruction": "Denny hears something in the forest! Help Denny follow the rustling sounds through the trees to find out what is hiding.",
@@ -63,6 +74,7 @@ FOREST_STORIES = {
         "character_end": "maya",
         "location": "mushroom_clearing",
         "shape": "tree",
+        "maze_style": "corridor",
         "story_setup": "Maya wants to show Denny her favourite place in the whole forest — a magical clearing full of giant glowing mushrooms! But the path is overgrown and full of twists. Maya knows the way, and Denny follows close behind.",
         "instruction": "Follow Maya's secret path to the magical mushroom clearing!",
         "tts_instruction": "Maya knows a secret path! Help Denny follow Maya through the twisted forest trails to reach the magical mushroom clearing.",
@@ -70,11 +82,29 @@ FOREST_STORIES = {
         "fun_fact": "There are over 80 species of bioluminescent fungi — mushrooms that actually glow! They produce a soft green light at night. Scientists are still figuring out exactly why they do it.",
         "completion_message": "Denny and Maya made it to the mushroom clearing! The giant glowing mushrooms light up all around them. Denny thinks the forest might be the most magical place he has ever visited.",
     },
+    "043": {
+        "title": "The Babbling Brook",
+        "character_end": "maya",
+        "location": "babbling_brook",
+        "shape": "rect",
+        "maze_style": "walls",
+        "story_setup": "Denny and Maya hear the sound of water! There is a brook nearby with shiny stepping stones. But the path through the trees is tricky — full of twists and turns. Can they find the way through?",
+        "instruction": "Help Denny and Maya find the path through the trees to reach the babbling brook!",
+        "tts_instruction": "There's a brook with stepping stones ahead! Help Denny and Maya find the right path through the forest to reach the water.",
+        "educational_question": "How do animals cross streams? Some jump on stones, some swim — what else can you think of?",
+        "fun_fact": "Stepping stones in streams help animals and people cross without getting wet. Frogs, otters, and even deer use them! Small streams are some of the most important habitats in a forest.",
+        "completion_message": "They found it! The babbling brook sparkles in the sunlight. Denny sees frogs jumping between the lily pads. Maya says this is her second favourite place in the forest.",
+    },
 }
 
 FOREST_STORY_POSITIONS = {
     "041": {"start": "bottom_left",  "end": "top_right"},
     "042": {"start": "bottom_right", "end": "top_left"},
+    "043": {"start": "bottom_left",  "end": "top_right"},
+}
+
+ORGANIC_TURNS = {
+    "easy": 3, "medium": 5, "hard": 7,
 }
 
 FOREST_ITEM_COUNTS = {
@@ -85,6 +115,27 @@ FOREST_ITEM_COUNTS = {
 # ---------------------------------------------------------------------------
 # Generation
 # ---------------------------------------------------------------------------
+
+def generate_organic(diff_name: str, canvas_width: int, canvas_height: int) -> dict:
+    """Generate an organic curved path and normalise to the shared maze_data format."""
+    turns = ORGANIC_TURNS[diff_name]
+    gen = OrganicPathGenerator(width=canvas_width, height=canvas_height, path_width=35)
+    data = gen.generate(num_turns=turns)
+    return {
+        "svg_path": data["svg_path"],
+        "solution_path": "",          # organic = single path, no separate solution
+        "width": data["path_width"],
+        "complexity": diff_name,
+        "maze_type": "organic",
+        "start_point": data["start_point"],
+        "end_point": data["end_point"],
+        "segments": data["segments"],
+        "canvas_width": data["canvas_width"],
+        "canvas_height": data["canvas_height"],
+        "control_points": data.get("control_points", []),
+        "items": [],
+    }
+
 
 def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: list):
     config = load_config()
@@ -103,6 +154,7 @@ def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: 
         item_rule = story.get("item_rule")
         item_emoji = story.get("item_emoji")
         shape = story["shape"]
+        maze_style = story["maze_style"]
         positions = FOREST_STORY_POSITIONS.get(story_num_str, {})
         start_pos = positions.get("start")
         end_pos = positions.get("end")
@@ -112,33 +164,49 @@ def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: 
             diff_config = difficulty_levels[diff_name]
             base_rows, base_cols = diff_config["grid_size"]
             path_width = diff_config["path_width"]
-            item_count = FOREST_ITEM_COUNTS[diff_name] if item_rule else 0
 
-            grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)
-            rows = max(base_rows, round(base_rows * grid_scale))
-            cols = max(base_cols, round(base_cols * grid_scale))
-
-            label = f"{item_rule} {item_emoji}" if item_rule else "regular"
-            print(f"  Generating {variant_id} ({diff_name} {rows}x{cols} {label})...")
+            print(f"  Generating {variant_id} ({diff_name} [{maze_style}])...")
 
             try:
-                maze_kwargs = dict(
-                    difficulty=diff_name,
-                    age=4,
-                    shape=shape,
-                    canvas_width=600,
-                    canvas_height=500,
-                    override_rows=rows,
-                    override_cols=cols,
-                    render_style="corridor",
-                    start_position=start_pos,
-                    end_position=end_pos,
-                )
-                if item_rule:
-                    maze_kwargs["item_rule"] = item_rule
-                    maze_kwargs["item_count"] = item_count
-                    maze_kwargs["item_emoji"] = item_emoji
-                maze_data = maze_gen.generate_maze(**maze_kwargs)
+                if maze_style == "organic":
+                    maze_data = generate_organic(diff_name, canvas_width=600, canvas_height=500)
+                else:
+                    grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)
+                    rows = max(base_rows, round(base_rows * grid_scale))
+                    cols = max(base_cols, round(base_cols * grid_scale))
+                    item_count = FOREST_ITEM_COUNTS[diff_name] if item_rule else 0
+
+                    maze_kwargs = dict(
+                        difficulty=diff_name,
+                        age=4,
+                        shape=shape,
+                        canvas_width=600,
+                        canvas_height=500,
+                        override_rows=rows,
+                        override_cols=cols,
+                        render_style=maze_style if maze_style == "corridor" else "walls",
+                        start_position=start_pos,
+                        end_position=end_pos,
+                    )
+                    if item_rule:
+                        maze_kwargs["item_rule"] = item_rule
+                        maze_kwargs["item_count"] = item_count
+                        maze_kwargs["item_emoji"] = item_emoji
+                    raw = maze_gen.generate_maze(**maze_kwargs)
+                    maze_data = {
+                        "svg_path": raw.get("svg_path", ""),
+                        "solution_path": raw.get("solution_path", ""),
+                        "width": path_width,
+                        "complexity": diff_name,
+                        "maze_type": raw.get("maze_type", "grid"),
+                        "start_point": raw.get("start_point", {}),
+                        "end_point": raw.get("end_point", {}),
+                        "segments": raw.get("segments", []),
+                        "canvas_width": raw.get("canvas_width", 600),
+                        "canvas_height": raw.get("canvas_height", 500),
+                        "control_points": raw.get("control_points", []),
+                        "items": raw.get("items", []),
+                    }
 
                 bg_color = location["background_color"]
                 decorative = location["decorative_elements"]
@@ -170,21 +238,11 @@ def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: 
                     "educational_question": story["educational_question"],
                     "fun_fact": story["fun_fact"],
                     "completion_message": story["completion_message"],
-                    **({"item_rule": item_rule, "item_emoji": item_emoji} if item_rule else {}),
-                    "path_data": {
-                        "svg_path": maze_data.get("svg_path", ""),
-                        "solution_path": maze_data.get("solution_path", ""),
-                        "width": path_width,
-                        "complexity": diff_name,
-                        "maze_type": maze_data.get("maze_type", "corridor_rect"),
-                        "start_point": maze_data.get("start_point", {}),
-                        "end_point": maze_data.get("end_point", {}),
-                        "segments": maze_data.get("segments", []),
-                        "canvas_width": maze_data.get("canvas_width", 600),
-                        "canvas_height": maze_data.get("canvas_height", 500),
-                        "control_points": maze_data.get("control_points", []),
-                        "items": maze_data.get("items", []),
-                    },
+                    **({
+                        "item_rule": item_rule,
+                        "item_emoji": item_emoji,
+                    } if item_rule else {}),
+                    "path_data": maze_data,
                     "visual_theme": {
                         "background_color": bg_color,
                         "decorative_elements": decorative,
@@ -252,7 +310,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate 'Denny in the Forest' pack")
     parser.add_argument("--output", type=str, default=None)
     parser.add_argument("--test", action="store_true",
-                        help="Generate only stories 041-042 at medium difficulty")
+                        help="Generate stories 041-043 at medium difficulty only")
     args = parser.parse_args()
 
     output_dir = (
@@ -261,9 +319,9 @@ def main():
     )
 
     if args.test:
-        stories = {k: v for k, v in FOREST_STORIES.items() if k in ("041", "042")}
+        stories = FOREST_STORIES
         difficulties = ["medium"]
-        print(f"TEST MODE — 2 stories × 1 difficulty → {output_dir}")
+        print(f"TEST MODE — {len(stories)} stories × 1 difficulty → {output_dir}")
     else:
         stories = FOREST_STORIES
         difficulties = ["easy", "medium", "hard"]
