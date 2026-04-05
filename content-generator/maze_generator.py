@@ -803,6 +803,124 @@ class FullMazeGenerator:
         }
         return positions.get(position_name)
 
+    @staticmethod
+    def _braid_dead_ends(maze: MazeGenerator, mask: Optional[set] = None):
+        """Remove one wall from every dead-end cell, eliminating all dead ends.
+
+        A dead end has exactly one open passage.  We repeatedly scan and open a
+        random closed wall on each dead-end cell until none remain.  This turns
+        a perfect (tree) maze into a braided maze with multiple routes.
+        """
+        opposites = {"top": "bottom", "bottom": "top", "left": "right", "right": "left"}
+        nbr_offsets = {"top": (-1, 0), "right": (0, 1), "bottom": (1, 0), "left": (0, -1)}
+
+        changed = True
+        while changed:
+            changed = False
+            for r in range(maze.rows):
+                for c in range(maze.cols):
+                    if mask and (r, c) not in mask:
+                        continue
+                    cell = maze.grid[r][c]
+                    open_passages = sum(1 for w in ["top", "right", "bottom", "left"]
+                                        if not cell.walls[w])
+                    if open_passages > 1:
+                        continue
+                    # Dead end — pick a random closed wall to an in-maze neighbour
+                    closed = []
+                    for wall, (dr, dc) in nbr_offsets.items():
+                        if not cell.walls[wall]:
+                            continue
+                        nr, nc = r + dr, c + dc
+                        if not (0 <= nr < maze.rows and 0 <= nc < maze.cols):
+                            continue
+                        if mask and (nr, nc) not in mask:
+                            continue
+                        closed.append((wall, nr, nc))
+                    if closed:
+                        wall, nr, nc = random.choice(closed)
+                        cell.walls[wall] = False
+                        maze.grid[nr][nc].walls[opposites[wall]] = False
+                        changed = True
+
+    @staticmethod
+    def _solve_avoiding(maze: MazeGenerator, start: Tuple[int, int],
+                        end: Tuple[int, int], blocked: set) -> bool:
+        """BFS from start to end treating `blocked` cells as impassable."""
+        from collections import deque
+        visited: set = {start}
+        queue: deque = deque([start])
+        while queue:
+            r, c = queue.popleft()
+            if (r, c) == end:
+                return True
+            cell = maze.grid[r][c]
+            nbrs = []
+            if not cell.walls["top"]:    nbrs.append((r - 1, c))
+            if not cell.walls["bottom"]: nbrs.append((r + 1, c))
+            if not cell.walls["left"]:   nbrs.append((r, c - 1))
+            if not cell.walls["right"]:  nbrs.append((r, c + 1))
+            for pos in nbrs:
+                if pos not in visited and pos not in blocked:
+                    visited.add(pos)
+                    queue.append(pos)
+        return False
+
+    def _place_avoid_items(
+        self,
+        maze: MazeGenerator,
+        solution: List[Tuple[int, int]],
+        start: Tuple[int, int],
+        end: Tuple[int, int],
+        num_owls: int,
+        offset_x: int,
+        offset_y: int,
+        cell_size: int,
+        mask: Optional[set] = None,
+    ) -> List[Dict[str, Any]]:
+        """Place owls on junction cells along the solution path.
+
+        Only places an owl where a detour exists (verified by BFS avoiding all
+        placed owls + this candidate).  Owls are spaced at least
+        path_length / (num_owls + 1) steps apart along the solution.
+        """
+        half = cell_size // 2
+
+        def open_passages(r: int, c: int) -> int:
+            cell = maze.grid[r][c]
+            return sum(1 for w in ["top", "right", "bottom", "left"] if not cell.walls[w])
+
+        # Candidate: on solution, not start/end, has ≥2 open passages.
+        # The BFS detour check below is the real guard — even a 2-passage cell
+        # can have an alternate route if the maze is sufficiently braided.
+        candidates = [
+            (i, pos) for i, pos in enumerate(solution)
+            if pos != start and pos != end and open_passages(*pos) >= 2
+        ]
+
+        min_gap = max(2, len(solution) // max(num_owls + 1, 1))
+
+        selected: List[Tuple[int, Tuple[int, int]]] = []
+        last_path_idx = -min_gap
+
+        for path_idx, pos in candidates:
+            if path_idx - last_path_idx < min_gap:
+                continue
+            blocked = {p for _, p in selected} | {pos}
+            if self._solve_avoiding(maze, start, end, blocked):
+                selected.append((path_idx, pos))
+                last_path_idx = path_idx
+            if len(selected) >= num_owls:
+                break
+
+        return [
+            {"x": offset_x + c * cell_size + half,
+             "y": offset_y + r * cell_size + half,
+             "emoji": "🦉",
+             "on_solution": True}
+            for _, (r, c) in selected
+        ]
+
     def place_items(
         self,
         maze: MazeGenerator,
@@ -988,6 +1106,11 @@ class FullMazeGenerator:
         }.get(difficulty, 2)
         maze.generate(start, mask, end=end, min_solution_ratio=min_ratio,
                       min_turns=min_turns, extra_connections=extra_conns)
+
+        # Avoid-type mazes need every dead end removed so detour routes always exist.
+        if item_rule == "avoid":
+            self._braid_dead_ends(maze, mask)
+
         solution = maze.solve(start, end)
 
         # Choose SVG rendering style
@@ -1068,6 +1191,15 @@ class FullMazeGenerator:
                 offset_x, offset_y, cell_size, mask,
             )
             result["items"] = items
+
+        # Place avoid items (owls) — braided maze with obstacles on the solution path
+        if item_rule == "avoid" and solution:
+            num_owls = {"easy": 2, "medium": 3, "hard": 4}.get(difficulty, 2)
+            avoid_items = self._place_avoid_items(
+                maze, solution, start, end, num_owls,
+                offset_x, offset_y, cell_size, mask,
+            )
+            result["avoid_items"] = avoid_items
 
         return result
 

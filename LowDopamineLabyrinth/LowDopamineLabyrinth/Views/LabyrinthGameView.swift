@@ -86,7 +86,7 @@ struct LabyrinthGameView: View {
                                     lineCap: .round, lineJoin: .round))
                         }
 
-                        // Item emoji overlay (between maze and drawing canvas)
+                        // Collect item emoji overlay
                         if let items = viewModel.labyrinth.pathData.items {
                             ForEach(Array(items.enumerated()), id: \.offset) { index, item in
                                 if !viewModel.collectedItemIndices.contains(index) {
@@ -98,6 +98,27 @@ struct LabyrinthGameView: View {
                             }
                         }
 
+                        // Avoid item overlay — owls with danger ring
+                        if let avoidItems = viewModel.labyrinth.pathData.avoidItems {
+                            ForEach(Array(avoidItems.enumerated()), id: \.offset) { _, item in
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.red.opacity(0.25))
+                                        .frame(width: 44 * viewModel.scale,
+                                               height: 44 * viewModel.scale)
+                                    Circle()
+                                        .strokeBorder(Color.red.opacity(0.7),
+                                                      lineWidth: 2 * viewModel.scale)
+                                        .frame(width: 44 * viewModel.scale,
+                                               height: 44 * viewModel.scale)
+                                    Text(item.emoji)
+                                        .font(.system(size: viewModel.itemFontSize * 1.3))
+                                }
+                                .position(viewModel.avoidItemPoint(item))
+                                .allowsHitTesting(false)
+                            }
+                        }
+
                         // Start marker — circled
                         startMarker
 
@@ -106,6 +127,15 @@ struct LabyrinthGameView: View {
 
                         // Drawing canvas overlay
                         DrawingCanvas(viewModel: viewModel, tolerance: preferences.pathTolerance)
+
+                        // Owl hit — red flash
+                        if viewModel.showFailFlash {
+                            Color.red.opacity(0.35)
+                                .ignoresSafeArea()
+                                .allowsHitTesting(false)
+                                .transition(.opacity)
+                                .animation(.easeOut(duration: 0.3), value: viewModel.showFailFlash)
+                        }
 
                         // "Collect all items" hint
                         if viewModel.showItemHint {

@@ -97,12 +97,28 @@ FOREST_STORIES = {
         "fun_fact": "Stepping stones in streams help animals and people cross without getting wet. Frogs, otters, and even deer use them! Small streams are some of the most important habitats in a forest.",
         "completion_message": "They found it! The babbling brook sparkles in the sunlight. Denny sees frogs jumping between the lily pads. Maya says this is her second favourite place in the forest.",
     },
+    "044": {
+        "title": "Watch Out for the Owls!",
+        "character_end": "maya",
+        "location": "owl_hollow",
+        "shape": "rect",
+        "maze_style": "walls",
+        "item_rule": "avoid",
+        "item_emoji": "🦉",
+        "story_setup": "Denny and Maya have wandered into the oldest part of the forest — the Owl Hollow, where wise owls sleep during the day in their favourite trees. Denny must sneak through without waking a single one!",
+        "instruction": "Sneak past the sleeping owls to reach Maya — don't touch them!",
+        "tts_instruction": "Owls are sleeping on the path! Find a way around them to reach Maya at the other side.",
+        "educational_question": "Why do owls sleep during the day? Can you name other animals that are awake at night?",
+        "fun_fact": "Owls have special soft feathers that let them fly almost silently. But they have super-sharp hearing — even a tiny sound can wake them! Owls can turn their heads almost all the way around to look for sounds.",
+        "completion_message": "Denny tiptoed all the way through without waking a single owl! Maya claps quietly so she doesn't wake them either. What a clever little crab!",
+    },
 }
 
 FOREST_STORY_POSITIONS = {
     "041": {"start": "bottom_left",  "end": "top_right"},
     "042": {"start": "bottom_right", "end": "top_left"},
     "043": {"start": "bottom_left",  "end": "top_right"},
+    "044": {"start": "bottom_left",  "end": "top_right"},
 }
 
 ORGANIC_PETALS = {
@@ -216,6 +232,8 @@ def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: 
                         "control_points": raw.get("control_points", []),
                         "items": raw.get("items", []),
                     }
+                    if raw.get("avoid_items"):
+                        maze_data["avoid_items"] = raw["avoid_items"]
 
                 bg_color = location["background_color"]
                 decorative = location["decorative_elements"]

@@ -8,6 +8,7 @@ class LabyrinthViewModel: ObservableObject {
     @Published var hasStartedDrawing: Bool = false
     @Published var collectedItemIndices: Set<Int> = []
     @Published var showItemHint: Bool = false
+    @Published var showFailFlash: Bool = false
 
     let labyrinth: Labyrinth
     private var validator: DrawingValidator?
@@ -37,8 +38,21 @@ class LabyrinthViewModel: ObservableObject {
         labyrinth.itemRule == "collect"
     }
 
+    var isAvoidType: Bool {
+        labyrinth.itemRule == "avoid"
+    }
+
     var hasItems: Bool {
         labyrinth.pathData.items != nil && !(labyrinth.pathData.items?.isEmpty ?? true)
+    }
+
+    var hasAvoidItems: Bool {
+        !(labyrinth.pathData.avoidItems?.isEmpty ?? true)
+    }
+
+    func avoidItemPoint(_ item: ItemData) -> CGPoint {
+        CGPoint(x: CGFloat(item.x) * scale + offset.x,
+                y: CGFloat(item.y) * scale + offset.y)
     }
 
     var totalItemCount: Int {
@@ -80,7 +94,7 @@ class LabyrinthViewModel: ObservableObject {
     }
 
     func handleDragPoint(_ point: CGPoint) {
-        guard !isCompleted else { return }
+        guard !isCompleted, !showFailFlash else { return }
         guard let validator = validator else { return }
 
         if !hasStartedDrawing {
@@ -90,14 +104,50 @@ class LabyrinthViewModel: ObservableObject {
             currentStroke.append(point)
         }
 
-        // Check item proximity
+        // Check collect item proximity
         checkItemProximity(point)
+
+        // Check avoid item hit (owls)
+        if isAvoidType {
+            checkAvoidItemHit(point)
+            if showFailFlash { return }
+        }
 
         // Completion: reach near the end character (radius matches visible character size)
         if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 30 * scale) {
             isCompleted = true
             showSolution = true
         }
+    }
+
+    private func checkAvoidItemHit(_ point: CGPoint) {
+        guard let avoidItems = labyrinth.pathData.avoidItems else { return }
+        let radius: CGFloat = 18 * scale
+        for item in avoidItems {
+            let pos = avoidItemPoint(item)
+            let dx = point.x - pos.x
+            let dy = point.y - pos.y
+            if dx * dx + dy * dy <= radius * radius {
+                triggerOwlHit()
+                return
+            }
+        }
+    }
+
+    private func triggerOwlHit() {
+        showFailFlash = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+            guard let self else { return }
+            self.showFailFlash = false
+            self.resetDrawing()
+        }
+    }
+
+    func resetDrawing() {
+        drawingStrokes = []
+        currentStroke = []
+        hasStartedDrawing = false
+        collectedItemIndices = []
     }
 
     private func checkItemProximity(_ point: CGPoint) {
@@ -133,6 +183,7 @@ class LabyrinthViewModel: ObservableObject {
         hasStartedDrawing = false
         collectedItemIndices = []
         showItemHint = false
+        showFailFlash = false
     }
 
     var mazePath: Path {

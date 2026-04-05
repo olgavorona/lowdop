@@ -1,0 +1,645 @@
+{
+  "id": "denny_044_medium",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "forest",
+  "location": "owl_hollow",
+  "title": "Watch Out for the Owls!",
+  "story_setup": "Denny and Maya have wandered into the oldest part of the forest — the Owl Hollow, where wise owls sleep during the day in their favourite trees. Denny must sneak through without waking a single one!",
+  "instruction": "Sneak past the sleeping owls to reach Maya — don't touch them!",
+  "tts_instruction": "Owls are sleeping on the path! Find a way around them to reach Maya at the other side.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little mouse",
+    "description": "Tiny brown field mouse in a red polka-dot dress, shy but warm, round ears, bright curious eyes",
+    "position": "top_right",
+    "name": "Maya",
+    "image_asset": "maya_forest"
+  },
+  "educational_question": "Why do owls sleep during the day? Can you name other animals that are awake at night?",
+  "fun_fact": "Owls have special soft feathers that let them fly almost silently. But they have super-sharp hearing — even a tiny sound can wake them! Owls can turn their heads almost all the way around to look for sounds.",
+  "completion_message": "Denny tiptoed all the way through without waking a single owl! Maya claps quietly so she doesn't wake them either. What a clever little crab!",
+  "item_rule": "avoid",
+  "item_emoji": "🦉",
+  "path_data": {
+    "svg_path": "M 20 40 L 90 40 M 20 40 L 20 110 M 90 40 L 160 40 M 160 40 L 230 40 M 160 110 L 230 110 M 230 40 L 300 40 M 230 110 L 300 110 M 300 40 L 370 40 M 300 110 L 370 110 M 370 40 L 440 40 M 370 110 L 440 110 M 440 40 L 510 40 M 510 40 L 580 40 M 580 40 L 580 110 M 90 110 L 90 180 M 20 110 L 20 180 M 90 180 L 160 180 M 90 110 L 90 180 M 160 110 L 230 110 M 230 110 L 300 110 M 300 110 L 370 110 M 370 110 L 370 180 M 370 110 L 440 110 M 370 110 L 370 180 M 510 110 L 510 180 M 580 110 L 580 180 M 510 110 L 510 180 M 20 250 L 90 250 M 20 180 L 20 250 M 90 180 L 160 180 M 90 250 L 160 250 M 230 180 L 230 250 M 300 180 L 300 250 M 230 180 L 230 250 M 300 250 L 370 250 M 300 180 L 300 250 M 440 180 L 440 250 M 370 250 L 440 250 M 440 250 L 510 250 M 440 180 L 440 250 M 580 180 L 580 250 M 20 250 L 90 250 M 20 250 L 20 320 M 90 250 L 160 250 M 160 250 L 160 320 M 230 250 L 230 320 M 160 250 L 160 320 M 300 250 L 300 320 M 230 250 L 230 320 M 300 250 L 370 250 M 300 250 L 300 320 M 370 250 L 440 250 M 440 250 L 510 250 M 440 320 L 510 320 M 580 250 L 580 320 M 90 320 L 90 390 M 20 320 L 20 390 M 160 320 L 160 390 M 90 320 L 90 390 M 230 320 L 230 390 M 160 320 L 160 390 M 300 320 L 300 390 M 230 320 L 230 390 M 370 320 L 370 390 M 300 320 L 300 390 M 370 390 L 440 390 M 370 320 L 370 390 M 440 320 L 510 320 M 580 320 L 580 390 M 20 460 L 90 460 M 20 390 L 20 460 M 90 460 L 160 460 M 230 390 L 230 460 M 160 460 L 230 460 M 230 460 L 300 460 M 230 390 L 230 460 M 300 460 L 370 460 M 370 390 L 440 390 M 370 460 L 440 460 M 440 460 L 510 460 M 580 390 L 580 460 M 510 460 L 580 460",
+    "solution_path": "M 55 425 L 125 425 L 195 425 L 195 355 L 195 285 L 195 215 L 195 145 L 125 145 L 125 75 L 195 75 L 265 75 L 335 75 L 405 75 L 475 75 L 545 75",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 55,
+      "y": 425
+    },
+    "end_point": {
+      "x": 545,
+      "y": 75
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 55,
+          "y": 75
+        },
+        "end": {
+          "x": 125,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 75
+        },
+        "end": {
+          "x": 55,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 75
+        },
+        "end": {
+          "x": 195,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 75
+        },
+        "end": {
+          "x": 125,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 75
+        },
+        "end": {
+          "x": 265,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 75
+        },
+        "end": {
+          "x": 335,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 75
+        },
+        "end": {
+          "x": 405,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 75
+        },
+        "end": {
+          "x": 475,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 75
+        },
+        "end": {
+          "x": 545,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 75
+        },
+        "end": {
+          "x": 475,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 75
+        },
+        "end": {
+          "x": 545,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 145
+        },
+        "end": {
+          "x": 55,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 145
+        },
+        "end": {
+          "x": 195,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 145
+        },
+        "end": {
+          "x": 265,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 145
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 145
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 145
+        },
+        "end": {
+          "x": 475,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 145
+        },
+        "end": {
+          "x": 405,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 145
+        },
+        "end": {
+          "x": 475,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 145
+        },
+        "end": {
+          "x": 545,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 215
+        },
+        "end": {
+          "x": 125,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 215
+        },
+        "end": {
+          "x": 405,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 215
+        },
+        "end": {
+          "x": 545,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 215
+        },
+        "end": {
+          "x": 545,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 285
+        },
+        "end": {
+          "x": 125,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 285
+        },
+        "end": {
+          "x": 55,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 285
+        },
+        "end": {
+          "x": 125,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 195,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 285
+        },
+        "end": {
+          "x": 265,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 405,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 475,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 405,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 285
+        },
+        "end": {
+          "x": 545,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 285
+        },
+        "end": {
+          "x": 545,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 355
+        },
+        "end": {
+          "x": 55,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 355
+        },
+        "end": {
+          "x": 125,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 355
+        },
+        "end": {
+          "x": 265,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 355
+        },
+        "end": {
+          "x": 545,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 355
+        },
+        "end": {
+          "x": 545,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 425
+        },
+        "end": {
+          "x": 125,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 425
+        },
+        "end": {
+          "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 425
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 425
+        },
+        "end": {
+          "x": 405,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 425
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 425
+        },
+        "end": {
+          "x": 545,
+          "y": 425
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 195,
+        "y": 215,
+        "emoji": "🦉",
+        "on_solution": true
+      },
+      {
+        "x": 335,
+        "y": 355,
+        "emoji": "🦉",
+        "on_solution": false
+      },
+      {
+        "x": 545,
+        "y": 145,
+        "emoji": "🦉",
+        "on_solution": false
+      },
+      {
+        "x": 265,
+        "y": 425,
+        "emoji": "🦉",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": [
+      {
+        "x": 195,
+        "y": 145,
+        "emoji": "🦉",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#1A1208",
+    "decorative_elements": [
+      "candles",
+      "books",
+      "feathers",
+      "moonlight_window"
+    ]
+  },
+  "audio_instruction": "denny_044_instruction.mp3",
+  "audio_completion": "denny_044_completion.mp3"
+}

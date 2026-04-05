@@ -83,6 +83,7 @@ struct PathData: Codable {
     let canvasHeight: Double
     let controlPoints: [PointData]?
     let items: [ItemData]?
+    let avoidItems: [ItemData]?
 
     enum CodingKeys: String, CodingKey {
         case svgPath = "svg_path"
@@ -96,6 +97,7 @@ struct PathData: Codable {
         case canvasHeight = "canvas_height"
         case controlPoints = "control_points"
         case items
+        case avoidItems = "avoid_items"
     }
 }
 
