@@ -1,0 +1,203 @@
+{
+  "id": "denny_047_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "oak_tree",
+  "title": "Sneak Past the Bees",
+  "story_setup": "A buzzing honey tree stands between Denny and Finn. The bees are busy at work, and Denny must move carefully so he doesn't bump into them.",
+  "instruction": "Find a quiet path past the bees to reach Finn!",
+  "tts_instruction": "The bees are busy near the honey tree. Help Denny find the safe path past them to Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "fox cub",
+    "description": "Small orange fox cub with a white-tipped tail, bright clever eyes, and soft fluffy fur",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "fox_forest"
+  },
+  "educational_question": "Why are bees important in a forest or garden?",
+  "fun_fact": "Bees help plants make seeds and fruit by moving pollen from flower to flower. That is called pollination.",
+  "completion_message": "Denny tiptoed safely past the bees. Finn cheered from the far side of the oak roots and showed Denny the way onward.",
+  "path_data": {
+    "svg_path": "M 244 26 L 356 26 M 356 26 L 356 138 M 244 26 L 244 138 M 132 138 L 244 138 M 132 138 L 132 250 M 356 138 L 356 250 M 132 250 L 132 362 M 356 250 L 468 250 M 468 250 L 468 362 M 20 362 L 132 362 M 20 474 L 132 474 M 20 362 L 20 474 M 132 474 L 244 474 M 356 362 L 356 474 M 244 474 L 356 474 M 356 474 L 468 474 M 356 362 L 356 474 M 468 362 L 580 362 M 580 362 L 580 474 M 468 474 L 580 474",
+    "solution_path": "M 300 418 L 300 306 L 300 194 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_mountain",
+    "start_point": {
+      "x": 300,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 194,
+        "emoji": "🐝",
+        "on_solution": true
+      },
+      {
+        "x": 412,
+        "y": 418,
+        "emoji": "🐝",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": [
+      {
+        "x": 300,
+        "y": 306,
+        "emoji": "🐝",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#2A1A08",
+    "decorative_elements": [
+      "giant_roots",
+      "acorns",
+      "ivy",
+      "bark_texture"
+    ]
+  },
+  "audio_instruction": "denny_047_instruction.mp3",
+  "audio_completion": "denny_047_completion.mp3",
+  "item_rule": "avoid",
+  "item_emoji": "🐝"
+}

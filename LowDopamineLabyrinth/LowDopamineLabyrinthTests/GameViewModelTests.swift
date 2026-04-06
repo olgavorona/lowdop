@@ -40,7 +40,8 @@ final class GameViewModelTests: XCTestCase {
                 canvasWidth: 600,
                 canvasHeight: 500,
                 controlPoints: nil,
-                items: nil
+                items: nil,
+                avoidItems: nil
             ),
             visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: ["stars"]),
             location: "coral_reef",
@@ -79,7 +80,8 @@ final class GameViewModelTests: XCTestCase {
                     canvasWidth: 600,
                     canvasHeight: 500,
                     controlPoints: nil,
-                    items: nil
+                    items: nil,
+                avoidItems: nil
                 ),
                 visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: ["stars"]),
                 location: "coral_reef",
@@ -336,6 +338,29 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertFalse(vm.isStoryLocked(5), "Story 5 should be unlocked after purchase")
     }
 
+    func testIsLabyrinthLockedUsesCentralizedFreeStoryThreshold() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = false
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+
+        XCTAssertFalse(vm.isLabyrinthLocked(at: 0))
+        XCTAssertFalse(vm.isLabyrinthLocked(at: 2))
+        XCTAssertTrue(vm.isLabyrinthLocked(at: 3))
+    }
+
+    func testIsLabyrinthLockedPremiumUser() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        sub.isPremium = true
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+
+        XCTAssertFalse(vm.isLabyrinthLocked(at: 3))
+        XCTAssertFalse(vm.isLabyrinthLocked(at: 10))
+    }
+
     func testIsStoryCompleteAllDifficulties() {
         let prefs = UserPreferences()
         let sub = SubscriptionManager()
@@ -475,7 +500,8 @@ final class LabyrinthViewModelItemTests: XCTestCase {
                 canvasWidth: 300,
                 canvasHeight: 300,
                 controlPoints: nil,
-                items: items
+                items: items,
+                avoidItems: nil
             ),
             visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: []),
             location: nil,

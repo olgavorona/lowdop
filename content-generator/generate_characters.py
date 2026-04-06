@@ -17,6 +17,8 @@ Requires:
 import argparse
 import json
 import os
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -56,7 +58,12 @@ STYLE_SUFFIX = (
 
 
 def load_universe(universe: str = "ocean") -> dict:
-    filename = "denny_space_universe.json" if universe == "space" else "denny_universe.json"
+    if universe == "space":
+        filename = "denny_space_universe.json"
+    elif universe == "forest":
+        filename = "denny_forest_universe.json"
+    else:
+        filename = "denny_universe.json"
     path = Path(__file__).parent / "characters" / filename
     with open(path) as f:
         return json.load(f)
@@ -148,13 +155,36 @@ def copy_to_xcassets(name: str, source_png: Path, xcassets_dir: Path):
     print(f"    Updated asset: {imageset_dir}")
 
 
+def remove_background(source_png: Path) -> Path:
+    """Remove image background using rembg when available."""
+    output_path = source_png.with_name(f"{source_png.stem}_transparent.png")
+
+    try:
+        subprocess.run(
+            ["rembg", "i", str(source_png), str(output_path)],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except FileNotFoundError:
+        print("    Warning: rembg is not installed; keeping original PNG")
+        return source_png
+    except subprocess.CalledProcessError as exc:
+        print(f"    Warning: rembg failed for {source_png.name}: {exc.stderr.strip()}")
+        return source_png
+
+    shutil.move(output_path, source_png)
+    print(f"    Background removed: {source_png}")
+    return source_png
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generate character images via DALL-E 3")
     parser.add_argument("--character", type=str, help="Generate only this character (by key)")
     parser.add_argument(
         "--universe",
         type=str,
-        choices=["ocean", "space"],
+        choices=["ocean", "space", "forest"],
         default="ocean",
         help="Character universe to generate (default: ocean)",
     )
@@ -168,6 +198,11 @@ def main():
         "--install",
         action="store_true",
         help="Also copy generated images to Xcode Assets.xcassets",
+    )
+    parser.add_argument(
+        "--remove-background",
+        action="store_true",
+        help="Run rembg on generated images before installing them",
     )
     parser.add_argument(
         "--dry-run",
@@ -189,7 +224,12 @@ def main():
     characters = universe["characters"]
 
     # Space images get a _space suffix to avoid overwriting ocean originals
-    name_suffix = "_space" if args.universe == "space" else ""
+    if args.universe == "space":
+        name_suffix = "_space"
+    elif args.universe == "forest":
+        name_suffix = "_forest"
+    else:
+        name_suffix = ""
 
     output_dir = Path(args.output) if args.output else Path(__file__).parent / "output" / "characters"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -224,6 +264,8 @@ def main():
 
         try:
             png_path = generate_character_image(client, asset_name, prompt, output_dir)
+            if args.remove_background and png_path.exists():
+                png_path = remove_background(png_path)
 
             if args.install and png_path.exists():
                 xcassets = (

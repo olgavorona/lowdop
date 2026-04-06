@@ -9,6 +9,7 @@ struct LabyrinthGameView: View {
 
     /// iPhone landscape = compact, iPad = regular
     private var isCompact: Bool { verticalSizeClass == .compact }
+    private var avoidEmoji: String { viewModel.labyrinth.itemEmoji ?? "🦉" }
 
     var body: some View {
         ZStack {
@@ -29,7 +30,7 @@ struct LabyrinthGameView: View {
                         .foregroundColor(.white.opacity(0.8))
                         .lineLimit(isCompact ? 1 : 2)
 
-                    if viewModel.hasItems {
+                    if viewModel.isCollectType && viewModel.hasItems {
                         Spacer()
                         Text(viewModel.itemHUDText)
                             .font(.system(size: isCompact ? 12 : 16, weight: .bold, design: .rounded))
@@ -38,6 +39,19 @@ struct LabyrinthGameView: View {
                             .padding(.vertical, 2)
                             .background(Color.black.opacity(0.3))
                             .cornerRadius(8)
+                    }
+                    if viewModel.isAvoidType {
+                        Spacer()
+                        HStack(spacing: 3) {
+                            Text("🚫")
+                                .font(.system(size: isCompact ? 11 : 14))
+                            Text(avoidEmoji)
+                                .font(.system(size: isCompact ? 11 : 14))
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 2)
+                        .background(Color.black.opacity(0.35))
+                        .cornerRadius(8)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -86,8 +100,8 @@ struct LabyrinthGameView: View {
                                     lineCap: .round, lineJoin: .round))
                         }
 
-                        // Collect item emoji overlay
-                        if let items = viewModel.labyrinth.pathData.items {
+                        // Collect item emoji overlay (only for collect-type levels)
+                        if viewModel.isCollectType, let items = viewModel.labyrinth.pathData.items {
                             ForEach(Array(items.enumerated()), id: \.offset) { index, item in
                                 if !viewModel.collectedItemIndices.contains(index) {
                                     Text(item.emoji)
@@ -98,21 +112,33 @@ struct LabyrinthGameView: View {
                             }
                         }
 
-                        // Avoid item overlay — owls with danger ring
+                        // Avoid item overlay — use the level's obstacle emoji.
                         if let avoidItems = viewModel.labyrinth.pathData.avoidItems {
-                            ForEach(Array(avoidItems.enumerated()), id: \.offset) { _, item in
+                            ForEach(Array(avoidItems.enumerated()), id: \.offset) { index, item in
+                                let sz = viewModel.itemFontSize * 1.4
+                                let ringSize = sz * 1.7
                                 ZStack {
-                                    Circle()
-                                        .fill(Color.red.opacity(0.25))
-                                        .frame(width: 44 * viewModel.scale,
-                                               height: 44 * viewModel.scale)
-                                    Circle()
-                                        .strokeBorder(Color.red.opacity(0.7),
-                                                      lineWidth: 2 * viewModel.scale)
-                                        .frame(width: 44 * viewModel.scale,
-                                               height: 44 * viewModel.scale)
+                                    if item.onSolution == true {
+                                        Circle()
+                                            .strokeBorder(Color.red.opacity(0.85), lineWidth: max(2, sz * 0.1))
+                                            .frame(width: ringSize, height: ringSize)
+                                    }
                                     Text(item.emoji)
-                                        .font(.system(size: viewModel.itemFontSize * 1.3))
+                                        .font(.system(size: sz))
+                                    if viewModel.hitOwlIndices.contains(index) {
+                                        Canvas { ctx, size in
+                                            let lw: CGFloat = max(3, size.width * 0.12)
+                                            var l1 = Path()
+                                            l1.move(to: CGPoint(x: size.width * 0.1, y: size.height * 0.1))
+                                            l1.addLine(to: CGPoint(x: size.width * 0.9, y: size.height * 0.9))
+                                            var l2 = Path()
+                                            l2.move(to: CGPoint(x: size.width * 0.9, y: size.height * 0.1))
+                                            l2.addLine(to: CGPoint(x: size.width * 0.1, y: size.height * 0.9))
+                                            ctx.stroke(l1, with: .color(.red), style: StrokeStyle(lineWidth: lw, lineCap: .round))
+                                            ctx.stroke(l2, with: .color(.red), style: StrokeStyle(lineWidth: lw, lineCap: .round))
+                                        }
+                                        .frame(width: sz, height: sz)
+                                    }
                                 }
                                 .position(viewModel.avoidItemPoint(item))
                                 .allowsHitTesting(false)
@@ -127,15 +153,6 @@ struct LabyrinthGameView: View {
 
                         // Drawing canvas overlay
                         DrawingCanvas(viewModel: viewModel, tolerance: preferences.pathTolerance)
-
-                        // Owl hit — red flash
-                        if viewModel.showFailFlash {
-                            Color.red.opacity(0.35)
-                                .ignoresSafeArea()
-                                .allowsHitTesting(false)
-                                .transition(.opacity)
-                                .animation(.easeOut(duration: 0.3), value: viewModel.showFailFlash)
-                        }
 
                         // "Collect all items" hint
                         if viewModel.showItemHint {

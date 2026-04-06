@@ -8,7 +8,7 @@ class LabyrinthViewModel: ObservableObject {
     @Published var hasStartedDrawing: Bool = false
     @Published var collectedItemIndices: Set<Int> = []
     @Published var showItemHint: Bool = false
-    @Published var showFailFlash: Bool = false
+    @Published var hitOwlIndices: Set<Int> = []
 
     let labyrinth: Labyrinth
     private var validator: DrawingValidator?
@@ -94,7 +94,7 @@ class LabyrinthViewModel: ObservableObject {
     }
 
     func handleDragPoint(_ point: CGPoint) {
-        guard !isCompleted, !showFailFlash else { return }
+        guard !isCompleted else { return }
         guard let validator = validator else { return }
 
         if !hasStartedDrawing {
@@ -107,10 +107,9 @@ class LabyrinthViewModel: ObservableObject {
         // Check collect item proximity
         checkItemProximity(point)
 
-        // Check avoid item hit (owls)
+        // Check avoid item hit (owls) — mark hit but keep drawing
         if isAvoidType {
             checkAvoidItemHit(point)
-            if showFailFlash { return }
         }
 
         // Completion: reach near the end character (radius matches visible character size)
@@ -123,23 +122,14 @@ class LabyrinthViewModel: ObservableObject {
     private func checkAvoidItemHit(_ point: CGPoint) {
         guard let avoidItems = labyrinth.pathData.avoidItems else { return }
         let radius: CGFloat = 18 * scale
-        for item in avoidItems {
+        for (index, item) in avoidItems.enumerated() {
+            guard !hitOwlIndices.contains(index) else { continue }
             let pos = avoidItemPoint(item)
             let dx = point.x - pos.x
             let dy = point.y - pos.y
             if dx * dx + dy * dy <= radius * radius {
-                triggerOwlHit()
-                return
+                hitOwlIndices.insert(index)
             }
-        }
-    }
-
-    private func triggerOwlHit() {
-        showFailFlash = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
-            guard let self else { return }
-            self.showFailFlash = false
-            self.resetDrawing()
         }
     }
 
@@ -182,8 +172,8 @@ class LabyrinthViewModel: ObservableObject {
         showSolution = false
         hasStartedDrawing = false
         collectedItemIndices = []
+        hitOwlIndices = []
         showItemHint = false
-        showFailFlash = false
     }
 
     var mazePath: Path {

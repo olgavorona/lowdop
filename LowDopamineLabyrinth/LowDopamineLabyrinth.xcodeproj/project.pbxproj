@@ -173,6 +173,54 @@
 		AA204104 /* denny_044_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204104 /* denny_044_medium.json */; };
 		AA204141 /* denny_044_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204141 /* denny_044_easy.json */; };
 		AA204142 /* denny_044_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204142 /* denny_044_hard.json */; };
+		AA204501 /* denny_045_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204501 /* denny_045_medium.json */; };
+		AA204511 /* denny_045_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204511 /* denny_045_easy.json */; };
+		AA204512 /* denny_045_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204512 /* denny_045_hard.json */; };
+		AA204601 /* denny_046_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204601 /* denny_046_medium.json */; };
+		AA204611 /* denny_046_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204611 /* denny_046_easy.json */; };
+		AA204612 /* denny_046_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204612 /* denny_046_hard.json */; };
+		AA204701 /* denny_047_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204701 /* denny_047_medium.json */; };
+		AA204711 /* denny_047_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204711 /* denny_047_easy.json */; };
+		AA204712 /* denny_047_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204712 /* denny_047_hard.json */; };
+		AA204801 /* denny_048_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204801 /* denny_048_medium.json */; };
+		AA204811 /* denny_048_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204811 /* denny_048_easy.json */; };
+		AA204812 /* denny_048_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204812 /* denny_048_hard.json */; };
+		AA204901 /* denny_049_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204901 /* denny_049_medium.json */; };
+		AA204911 /* denny_049_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204911 /* denny_049_easy.json */; };
+		AA204912 /* denny_049_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204912 /* denny_049_hard.json */; };
+		AA205001 /* denny_050_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205001 /* denny_050_medium.json */; };
+		AA205011 /* denny_050_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205011 /* denny_050_easy.json */; };
+		AA205012 /* denny_050_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205012 /* denny_050_hard.json */; };
+		AA205101 /* denny_051_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205101 /* denny_051_medium.json */; };
+		AA205111 /* denny_051_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205111 /* denny_051_easy.json */; };
+		AA205112 /* denny_051_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205112 /* denny_051_hard.json */; };
+		AA205201 /* denny_052_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205201 /* denny_052_medium.json */; };
+		AA205211 /* denny_052_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205211 /* denny_052_easy.json */; };
+		AA205212 /* denny_052_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205212 /* denny_052_hard.json */; };
+		AA205301 /* denny_053_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205301 /* denny_053_medium.json */; };
+		AA205311 /* denny_053_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205311 /* denny_053_easy.json */; };
+		AA205312 /* denny_053_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205312 /* denny_053_hard.json */; };
+		AA205401 /* denny_054_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205401 /* denny_054_medium.json */; };
+		AA205411 /* denny_054_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205411 /* denny_054_easy.json */; };
+		AA205412 /* denny_054_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205412 /* denny_054_hard.json */; };
+		AA205501 /* denny_055_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205501 /* denny_055_medium.json */; };
+		AA205511 /* denny_055_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205511 /* denny_055_easy.json */; };
+		AA205512 /* denny_055_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205512 /* denny_055_hard.json */; };
+		AA205601 /* denny_056_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205601 /* denny_056_medium.json */; };
+		AA205611 /* denny_056_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205611 /* denny_056_easy.json */; };
+		AA205612 /* denny_056_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205612 /* denny_056_hard.json */; };
+		AA205701 /* denny_057_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205701 /* denny_057_medium.json */; };
+		AA205711 /* denny_057_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205711 /* denny_057_easy.json */; };
+		AA205712 /* denny_057_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205712 /* denny_057_hard.json */; };
+		AA205801 /* denny_058_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205801 /* denny_058_medium.json */; };
+		AA205811 /* denny_058_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205811 /* denny_058_easy.json */; };
+		AA205812 /* denny_058_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205812 /* denny_058_hard.json */; };
+		AA205901 /* denny_059_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205901 /* denny_059_medium.json */; };
+		AA205911 /* denny_059_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205911 /* denny_059_easy.json */; };
+		AA205912 /* denny_059_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205912 /* denny_059_hard.json */; };
+		AA206001 /* denny_060_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC206001 /* denny_060_medium.json */; };
+		AA206011 /* denny_060_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC206011 /* denny_060_easy.json */; };
+		AA206012 /* denny_060_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC206012 /* denny_060_hard.json */; };
 		AA300001 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC300001 /* audio */; };
 		AA300002 /* onboarding_draw.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300002 /* onboarding_draw.png */; };
 		AA300003 /* onboarding_maze_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300003 /* onboarding_maze_screenshot.png */; };
@@ -361,6 +409,54 @@
 		AC204104 /* denny_044_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_044_medium.json; sourceTree = "<group>"; };
 		AC204141 /* denny_044_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_044_easy.json; sourceTree = "<group>"; };
 		AC204142 /* denny_044_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_044_hard.json; sourceTree = "<group>"; };
+		AC204501 /* denny_045_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_045_medium.json; sourceTree = "<group>"; };
+		AC204511 /* denny_045_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_045_easy.json; sourceTree = "<group>"; };
+		AC204512 /* denny_045_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_045_hard.json; sourceTree = "<group>"; };
+		AC204601 /* denny_046_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_046_medium.json; sourceTree = "<group>"; };
+		AC204611 /* denny_046_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_046_easy.json; sourceTree = "<group>"; };
+		AC204612 /* denny_046_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_046_hard.json; sourceTree = "<group>"; };
+		AC204701 /* denny_047_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_047_medium.json; sourceTree = "<group>"; };
+		AC204711 /* denny_047_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_047_easy.json; sourceTree = "<group>"; };
+		AC204712 /* denny_047_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_047_hard.json; sourceTree = "<group>"; };
+		AC204801 /* denny_048_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_048_medium.json; sourceTree = "<group>"; };
+		AC204811 /* denny_048_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_048_easy.json; sourceTree = "<group>"; };
+		AC204812 /* denny_048_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_048_hard.json; sourceTree = "<group>"; };
+		AC204901 /* denny_049_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_049_medium.json; sourceTree = "<group>"; };
+		AC204911 /* denny_049_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_049_easy.json; sourceTree = "<group>"; };
+		AC204912 /* denny_049_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_049_hard.json; sourceTree = "<group>"; };
+		AC205001 /* denny_050_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_050_medium.json; sourceTree = "<group>"; };
+		AC205011 /* denny_050_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_050_easy.json; sourceTree = "<group>"; };
+		AC205012 /* denny_050_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_050_hard.json; sourceTree = "<group>"; };
+		AC205101 /* denny_051_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_051_medium.json; sourceTree = "<group>"; };
+		AC205111 /* denny_051_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_051_easy.json; sourceTree = "<group>"; };
+		AC205112 /* denny_051_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_051_hard.json; sourceTree = "<group>"; };
+		AC205201 /* denny_052_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_052_medium.json; sourceTree = "<group>"; };
+		AC205211 /* denny_052_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_052_easy.json; sourceTree = "<group>"; };
+		AC205212 /* denny_052_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_052_hard.json; sourceTree = "<group>"; };
+		AC205301 /* denny_053_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_053_medium.json; sourceTree = "<group>"; };
+		AC205311 /* denny_053_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_053_easy.json; sourceTree = "<group>"; };
+		AC205312 /* denny_053_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_053_hard.json; sourceTree = "<group>"; };
+		AC205401 /* denny_054_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_054_medium.json; sourceTree = "<group>"; };
+		AC205411 /* denny_054_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_054_easy.json; sourceTree = "<group>"; };
+		AC205412 /* denny_054_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_054_hard.json; sourceTree = "<group>"; };
+		AC205501 /* denny_055_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_055_medium.json; sourceTree = "<group>"; };
+		AC205511 /* denny_055_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_055_easy.json; sourceTree = "<group>"; };
+		AC205512 /* denny_055_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_055_hard.json; sourceTree = "<group>"; };
+		AC205601 /* denny_056_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_056_medium.json; sourceTree = "<group>"; };
+		AC205611 /* denny_056_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_056_easy.json; sourceTree = "<group>"; };
+		AC205612 /* denny_056_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_056_hard.json; sourceTree = "<group>"; };
+		AC205701 /* denny_057_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_057_medium.json; sourceTree = "<group>"; };
+		AC205711 /* denny_057_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_057_easy.json; sourceTree = "<group>"; };
+		AC205712 /* denny_057_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_057_hard.json; sourceTree = "<group>"; };
+		AC205801 /* denny_058_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_058_medium.json; sourceTree = "<group>"; };
+		AC205811 /* denny_058_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_058_easy.json; sourceTree = "<group>"; };
+		AC205812 /* denny_058_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_058_hard.json; sourceTree = "<group>"; };
+		AC205901 /* denny_059_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_059_medium.json; sourceTree = "<group>"; };
+		AC205911 /* denny_059_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_059_easy.json; sourceTree = "<group>"; };
+		AC205912 /* denny_059_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_059_hard.json; sourceTree = "<group>"; };
+		AC206001 /* denny_060_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_060_medium.json; sourceTree = "<group>"; };
+		AC206011 /* denny_060_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_060_easy.json; sourceTree = "<group>"; };
+		AC206012 /* denny_060_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_060_hard.json; sourceTree = "<group>"; };
 		AC300001 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 		AC300002 /* onboarding_draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_draw.png; sourceTree = "<group>"; };
 		AC300003 /* onboarding_maze_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_maze_screenshot.png; sourceTree = "<group>"; };
@@ -626,6 +722,54 @@
 				AC204104 /* denny_044_medium.json */,
 				AC204141 /* denny_044_easy.json */,
 				AC204142 /* denny_044_hard.json */,
+				AC204501 /* denny_045_medium.json */,
+				AC204511 /* denny_045_easy.json */,
+				AC204512 /* denny_045_hard.json */,
+				AC204601 /* denny_046_medium.json */,
+				AC204611 /* denny_046_easy.json */,
+				AC204612 /* denny_046_hard.json */,
+				AC204701 /* denny_047_medium.json */,
+				AC204711 /* denny_047_easy.json */,
+				AC204712 /* denny_047_hard.json */,
+				AC204801 /* denny_048_medium.json */,
+				AC204811 /* denny_048_easy.json */,
+				AC204812 /* denny_048_hard.json */,
+				AC204901 /* denny_049_medium.json */,
+				AC204911 /* denny_049_easy.json */,
+				AC204912 /* denny_049_hard.json */,
+				AC205001 /* denny_050_medium.json */,
+				AC205011 /* denny_050_easy.json */,
+				AC205012 /* denny_050_hard.json */,
+				AC205101 /* denny_051_medium.json */,
+				AC205111 /* denny_051_easy.json */,
+				AC205112 /* denny_051_hard.json */,
+				AC205201 /* denny_052_medium.json */,
+				AC205211 /* denny_052_easy.json */,
+				AC205212 /* denny_052_hard.json */,
+				AC205301 /* denny_053_medium.json */,
+				AC205311 /* denny_053_easy.json */,
+				AC205312 /* denny_053_hard.json */,
+				AC205401 /* denny_054_medium.json */,
+				AC205411 /* denny_054_easy.json */,
+				AC205412 /* denny_054_hard.json */,
+				AC205501 /* denny_055_medium.json */,
+				AC205511 /* denny_055_easy.json */,
+				AC205512 /* denny_055_hard.json */,
+				AC205601 /* denny_056_medium.json */,
+				AC205611 /* denny_056_easy.json */,
+				AC205612 /* denny_056_hard.json */,
+				AC205701 /* denny_057_medium.json */,
+				AC205711 /* denny_057_easy.json */,
+				AC205712 /* denny_057_hard.json */,
+				AC205801 /* denny_058_medium.json */,
+				AC205811 /* denny_058_easy.json */,
+				AC205812 /* denny_058_hard.json */,
+				AC205901 /* denny_059_medium.json */,
+				AC205911 /* denny_059_easy.json */,
+				AC205912 /* denny_059_hard.json */,
+				AC206001 /* denny_060_medium.json */,
+				AC206011 /* denny_060_easy.json */,
+				AC206012 /* denny_060_hard.json */,
 				AC201100 /* difficulty_samples.json */,
 				AC100031 /* manifest.json */,
 			);
@@ -873,6 +1017,54 @@
 				AA204104 /* denny_044_medium.json in Resources */,
 				AA204141 /* denny_044_easy.json in Resources */,
 				AA204142 /* denny_044_hard.json in Resources */,
+				AA204501 /* denny_045_medium.json in Resources */,
+				AA204511 /* denny_045_easy.json in Resources */,
+				AA204512 /* denny_045_hard.json in Resources */,
+				AA204601 /* denny_046_medium.json in Resources */,
+				AA204611 /* denny_046_easy.json in Resources */,
+				AA204612 /* denny_046_hard.json in Resources */,
+				AA204701 /* denny_047_medium.json in Resources */,
+				AA204711 /* denny_047_easy.json in Resources */,
+				AA204712 /* denny_047_hard.json in Resources */,
+				AA204801 /* denny_048_medium.json in Resources */,
+				AA204811 /* denny_048_easy.json in Resources */,
+				AA204812 /* denny_048_hard.json in Resources */,
+				AA204901 /* denny_049_medium.json in Resources */,
+				AA204911 /* denny_049_easy.json in Resources */,
+				AA204912 /* denny_049_hard.json in Resources */,
+				AA205001 /* denny_050_medium.json in Resources */,
+				AA205011 /* denny_050_easy.json in Resources */,
+				AA205012 /* denny_050_hard.json in Resources */,
+				AA205101 /* denny_051_medium.json in Resources */,
+				AA205111 /* denny_051_easy.json in Resources */,
+				AA205112 /* denny_051_hard.json in Resources */,
+				AA205201 /* denny_052_medium.json in Resources */,
+				AA205211 /* denny_052_easy.json in Resources */,
+				AA205212 /* denny_052_hard.json in Resources */,
+				AA205301 /* denny_053_medium.json in Resources */,
+				AA205311 /* denny_053_easy.json in Resources */,
+				AA205312 /* denny_053_hard.json in Resources */,
+				AA205401 /* denny_054_medium.json in Resources */,
+				AA205411 /* denny_054_easy.json in Resources */,
+				AA205412 /* denny_054_hard.json in Resources */,
+				AA205501 /* denny_055_medium.json in Resources */,
+				AA205511 /* denny_055_easy.json in Resources */,
+				AA205512 /* denny_055_hard.json in Resources */,
+				AA205601 /* denny_056_medium.json in Resources */,
+				AA205611 /* denny_056_easy.json in Resources */,
+				AA205612 /* denny_056_hard.json in Resources */,
+				AA205701 /* denny_057_medium.json in Resources */,
+				AA205711 /* denny_057_easy.json in Resources */,
+				AA205712 /* denny_057_hard.json in Resources */,
+				AA205801 /* denny_058_medium.json in Resources */,
+				AA205811 /* denny_058_easy.json in Resources */,
+				AA205812 /* denny_058_hard.json in Resources */,
+				AA205901 /* denny_059_medium.json in Resources */,
+				AA205911 /* denny_059_easy.json in Resources */,
+				AA205912 /* denny_059_hard.json in Resources */,
+				AA206001 /* denny_060_medium.json in Resources */,
+				AA206011 /* denny_060_easy.json in Resources */,
+				AA206012 /* denny_060_hard.json in Resources */,
 				AA201100 /* difficulty_samples.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
 				038B80AD2F5990EB00FD9E1C /* StoreKitConfig.storekit in Resources */,

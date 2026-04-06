@@ -40,7 +40,8 @@ final class LabyrinthViewModelTests: XCTestCase {
                 canvasWidth: 300,
                 canvasHeight: 300,
                 controlPoints: nil,
-                items: nil
+                items: nil,
+                avoidItems: nil
             ),
             visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: []),
             location: nil,

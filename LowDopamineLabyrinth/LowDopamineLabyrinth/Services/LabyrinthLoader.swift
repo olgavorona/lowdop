@@ -5,6 +5,10 @@ class LabyrinthLoader {
 
     private var cachedLabyrinths: [Labyrinth] = []
 
+    func packInfo(packId: String) -> PackInfo? {
+        loadManifest()?.packs?.first(where: { $0.id == packId })
+    }
+
     func loadManifest() -> LabyrinthManifest? {
         guard let url = Bundle.main.url(forResource: "manifest", withExtension: "json") else { return nil }
         guard let data = try? Data(contentsOf: url) else { return nil }
@@ -35,8 +39,7 @@ class LabyrinthLoader {
 
     func loadForDifficulty(_ level: DifficultyLevel, packId: String = "ocean_adventures") -> [Labyrinth] {
         let all = loadAll()
-        guard let manifest = loadManifest(),
-              let pack = manifest.packs?.first(where: { $0.id == packId }) else {
+        guard let pack = packInfo(packId: packId) else {
             return []
         }
         let storySet = Set(pack.stories)
@@ -50,31 +53,22 @@ class LabyrinthLoader {
             packLabyrinths.contains { $0.difficulty == d.rawValue }
         } ?? level
 
-        let filtered = packLabyrinths.filter { $0.difficulty == resolvedDifficulty.rawValue }
-
-        // Interleave normal and adventure labyrinths, shifting adventure
-        // by half to avoid pairing stories with the same end character
-        let normal = filtered.filter { $0.itemRule == nil }
-        let adventure = filtered.filter { $0.itemRule != nil }
-        let shift = adventure.count / 2
-
-        var result: [Labyrinth] = []
-        let maxCount = max(normal.count, adventure.count)
-        for i in 0..<maxCount {
-            if i < normal.count { result.append(normal[i]) }
-            if !adventure.isEmpty {
-                let advIndex = (i + shift) % adventure.count
-                if i < adventure.count { result.append(adventure[advIndex]) }
+        return packLabyrinths
+            .filter { $0.difficulty == resolvedDifficulty.rawValue }
+            .sorted { lhs, rhs in
+                if lhs.storyNumber == rhs.storyNumber {
+                    let order = ["easy": 0, "medium": 1, "hard": 2]
+                    return (order[lhs.difficulty] ?? 99) < (order[rhs.difficulty] ?? 99)
+                }
+                return lhs.storyNumber < rhs.storyNumber
             }
-        }
-        return result
     }
 
     /// Load story metadata for all stories in a pack.
     /// Returns `[StoryInfo]` sorted by story number.
     func loadStories(packId: String = "ocean_adventures") -> [StoryInfo] {
         guard let manifest = loadManifest(),
-              let pack = manifest.packs?.first(where: { $0.id == packId }) else { return [] }
+              let pack = packInfo(packId: packId) else { return [] }
 
         let freeStories = pack.freeStories
         let all = loadAll()
@@ -95,6 +89,7 @@ class LabyrinthLoader {
             }
 
             let labyrinthIds = entries.map { $0.id }
+            let isAdventure = all.contains { $0.storyNumber == storyNumber && $0.itemRule != nil }
 
             return StoryInfo(
                 number: storyNumber,
@@ -102,7 +97,7 @@ class LabyrinthLoader {
                 location: firstEntry.location ?? "",
                 characterEnd: characterEnd,
                 isFree: storyNumber <= freeStories,
-                isAdventure: storyNumber >= 11,
+                isAdventure: isAdventure,
                 labyrinthIds: labyrinthIds
             )
         }.sorted { $0.number < $1.number }

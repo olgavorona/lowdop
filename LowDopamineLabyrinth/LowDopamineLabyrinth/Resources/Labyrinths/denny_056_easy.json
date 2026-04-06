@@ -1,0 +1,219 @@
+{
+  "id": "denny_056_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "berry_bush",
+  "title": "Sneak Past the Thorn Bushes",
+  "story_setup": "The safest shortcut to Clover's burrow passes near some prickly thorn bushes. Denny has to move carefully so he does not brush against any sharp thorns on the way.",
+  "instruction": "Avoid the thorn bushes and reach Clover safely!",
+  "tts_instruction": "Prickly thorn bushes are crowding the path. Help Denny find a careful way around them to reach Clover.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little rabbit",
+    "description": "Soft cream-brown rabbit with long ears, bright friendly eyes, and quick little paws",
+    "position": "top_right",
+    "name": "Clover",
+    "image_asset": "rabbit_forest"
+  },
+  "educational_question": "Why do some bushes and plants grow sharp thorns?",
+  "fun_fact": "Thorns can protect plants by making hungry animals think twice before nibbling too much.",
+  "completion_message": "Denny slipped past every thorn bush without a scratch. Clover smiled and thumped one happy foot outside the burrow.",
+  "path_data": {
+    "svg_path": "M 207 64 L 300 64 M 300 64 L 300 157 M 207 64 L 207 157 M 207 157 L 207 250 M 300 157 L 393 157 M 393 157 L 393 250 M 114 250 L 207 250 M 114 250 L 114 343 M 300 250 L 300 343 M 207 343 L 300 343 M 300 343 L 393 343 M 300 250 L 300 343 M 393 250 L 486 250 M 486 250 L 486 343 M 21 343 L 114 343 M 21 436 L 114 436 M 21 343 L 21 436 M 114 436 L 207 436 M 207 343 L 300 343 M 207 436 L 300 436 M 300 343 L 393 343 M 300 436 L 393 436 M 393 436 L 486 436 M 486 343 L 579 343 M 579 343 L 579 436 M 486 436 L 579 436",
+    "solution_path": "M 439 389 L 439 296 L 346 296 L 346 203 L 253 203 L 253 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_triangle",
+    "start_point": {
+      "x": 439,
+      "y": 389
+    },
+    "end_point": {
+      "x": 253,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 253,
+          "y": 110
+        },
+        "end": {
+          "x": 253,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 203
+        },
+        "end": {
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 160,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 439,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 439,
+          "y": 296
+        },
+        "end": {
+          "x": 439,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 67,
+          "y": 389
+        },
+        "end": {
+          "x": 160,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 389
+        },
+        "end": {
+          "x": 253,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 389
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 389
+        },
+        "end": {
+          "x": 439,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 439,
+          "y": 389
+        },
+        "end": {
+          "x": 532,
+          "y": 389
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 346,
+        "y": 203,
+        "emoji": "🌵",
+        "on_solution": true
+      },
+      {
+        "x": 532,
+        "y": 389,
+        "emoji": "🌵",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": [
+      {
+        "x": 439,
+        "y": 296,
+        "emoji": "🌵",
+        "on_solution": true
+      },
+      {
+        "x": 346,
+        "y": 203,
+        "emoji": "🌵",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#1A0F0A",
+    "decorative_elements": [
+      "red_berries",
+      "purple_berries",
+      "thorny_vines",
+      "birds"
+    ]
+  },
+  "audio_instruction": "denny_056_instruction.mp3",
+  "audio_completion": "denny_056_completion.mp3",
+  "item_rule": "avoid",
+  "item_emoji": "🌵"
+}

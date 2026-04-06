@@ -25,7 +25,6 @@ struct BookshelfView: View {
         let title: String
         let gradientColors: [Color]
         let progressBarColor: Color
-        let isFree: Bool
         let unlockText: String
         let icon: PackIcon
         let decoration: PackDecoration
@@ -49,7 +48,6 @@ struct BookshelfView: View {
             title: "Ocean Adventures",
             gradientColors: [Color(hex: "#4FC3F7") ?? .blue, AppColor.linkBlue, Color(hex: "#01579B") ?? .blue],
             progressBarColor: Color(hex: "#4FC3F7") ?? .blue,
-            isFree: true,
             unlockText: "",
             icon: .system("water.waves", .white.opacity(0.9)),
             decoration: .waves,
@@ -60,7 +58,6 @@ struct BookshelfView: View {
             title: "Denny in Space",
             gradientColors: [Color(hex: "#1A1A2E") ?? .black, Color(hex: "#16213E") ?? .indigo, Color(hex: "#0F3460") ?? .blue],
             progressBarColor: Color(hex: "#0F3460") ?? .blue,
-            isFree: false,
             unlockText: "Unlock to explore space!",
             icon: .system("star.fill", .yellow.opacity(0.9)),
             decoration: .stars,
@@ -71,7 +68,6 @@ struct BookshelfView: View {
             title: "Denny in the Forest",
             gradientColors: [Color(hex: "#1A3D1A") ?? .green, Color(hex: "#2D5A27") ?? .green, Color(hex: "#4A7C3F") ?? .green],
             progressBarColor: Color(hex: "#2D5A27") ?? .green,
-            isFree: false,
             unlockText: "Unlock to explore the forest!",
             icon: .emoji("🌲"),
             decoration: .leaves,
@@ -227,7 +223,8 @@ struct BookshelfView: View {
             story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
         }.count
         let totalCount = stories.count
-        let isLocked = !config.isFree && !subscriptionManager.isPremium
+        let freeStoryCount = stories.filter(\.isFree).count
+        let isLocked = freeStoryCount == 0 && !subscriptionManager.isPremium
 
         return Button(action: {
             if isLocked {

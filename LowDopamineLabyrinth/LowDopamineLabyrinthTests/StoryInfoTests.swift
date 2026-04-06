@@ -51,31 +51,27 @@ final class StoryInfoTests: XCTestCase {
     }
 
     func testStoryInfoAdventureStatus() {
-        for storyNum in 1...10 {
-            let story = StoryInfo(
-                number: storyNum,
-                title: "Story \(storyNum)",
-                location: "loc",
-                characterEnd: "char",
-                isFree: false,
-                isAdventure: storyNum >= 11,
-                labyrinthIds: []
-            )
-            XCTAssertFalse(story.isAdventure, "Story \(storyNum) should not be adventure")
-        }
+        let normalStory = StoryInfo(
+            number: 4,
+            title: "Story 4",
+            location: "loc",
+            characterEnd: "char",
+            isFree: false,
+            isAdventure: false,
+            labyrinthIds: []
+        )
+        XCTAssertFalse(normalStory.isAdventure)
 
-        for storyNum in 11...20 {
-            let story = StoryInfo(
-                number: storyNum,
-                title: "Story \(storyNum)",
-                location: "loc",
-                characterEnd: "char",
-                isFree: false,
-                isAdventure: storyNum >= 11,
-                labyrinthIds: []
-            )
-            XCTAssertTrue(story.isAdventure, "Story \(storyNum) should be adventure")
-        }
+        let adventureStory = StoryInfo(
+            number: 41,
+            title: "Story 41",
+            location: "loc",
+            characterEnd: "char",
+            isFree: false,
+            isAdventure: true,
+            labyrinthIds: []
+        )
+        XCTAssertTrue(adventureStory.isAdventure)
     }
 }
 
@@ -108,7 +104,8 @@ final class LabyrinthModelTests: XCTestCase {
                 canvasWidth: 600,
                 canvasHeight: 500,
                 controlPoints: nil,
-                items: nil
+                items: nil,
+                avoidItems: nil
             ),
             visualTheme: VisualTheme(backgroundColor: "#4A90E2", decorativeElements: []),
             location: nil,

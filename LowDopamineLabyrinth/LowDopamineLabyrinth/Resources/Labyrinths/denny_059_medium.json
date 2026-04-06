@@ -1,0 +1,727 @@
+{
+  "id": "denny_059_medium",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "forest",
+  "location": "forest_canopy",
+  "title": "Avoid the Spider Webs",
+  "story_setup": "High under the branches, silver spider webs stretch across the night path. Denny must follow Glow's light without getting caught in any webs.",
+  "instruction": "Avoid the spider webs and follow Glow's path!",
+  "tts_instruction": "Shiny spider webs are stretched across the branches. Help Denny avoid them and keep following Glow.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "firefly",
+    "description": "Tiny golden firefly with glowing wings and a warm lantern-like light",
+    "position": "top_right",
+    "name": "Glow",
+    "image_asset": "firefly_forest"
+  },
+  "educational_question": "Why do spiders build webs?",
+  "fun_fact": "Spider silk is very strong for something so thin. Some webs are sticky so insects get caught inside.",
+  "completion_message": "Denny zigzagged past every web. Glow blinked proudly and led him onward to the last surprise of the night.",
+  "path_data": {
+    "svg_path": "M 254 43 L 300 43 M 300 43 L 300 89 M 254 43 L 254 89 M 300 89 L 300 135 M 254 89 L 254 135 M 208 135 L 254 135 M 208 135 L 208 181 M 254 181 L 300 181 M 300 135 L 346 135 M 346 135 L 346 181 M 208 227 L 254 227 M 208 181 L 208 227 M 254 181 L 300 181 M 254 227 L 300 227 M 300 227 L 346 227 M 346 181 L 392 181 M 392 181 L 392 227 M 162 227 L 208 227 M 162 227 L 162 273 M 208 227 L 254 227 M 254 227 L 300 227 M 300 227 L 346 227 M 346 273 L 392 273 M 392 227 L 438 227 M 438 227 L 438 273 M 116 273 L 162 273 M 116 273 L 116 319 M 208 273 L 208 319 M 254 273 L 254 319 M 208 273 L 208 319 M 254 273 L 254 319 M 300 319 L 346 319 M 346 273 L 392 273 M 346 319 L 392 319 M 438 273 L 438 319 M 70 319 L 116 319 M 70 319 L 70 365 M 162 319 L 162 365 M 162 319 L 162 365 M 208 365 L 254 365 M 254 365 L 300 365 M 300 319 L 346 319 M 300 365 L 346 365 M 346 319 L 392 319 M 392 319 L 392 365 M 392 319 L 392 365 M 438 319 L 484 319 M 484 319 L 484 365 M 116 365 L 116 411 M 70 365 L 70 411 M 116 411 L 162 411 M 116 365 L 116 411 M 208 365 L 208 411 M 162 411 L 208 411 M 208 365 L 254 365 M 208 365 L 208 411 M 254 365 L 300 365 M 254 411 L 300 411 M 300 365 L 346 365 M 346 365 L 346 411 M 346 411 L 392 411 M 346 365 L 346 411 M 392 411 L 438 411 M 438 411 L 484 411 M 484 365 L 530 365 M 530 365 L 530 411 M 24 411 L 70 411 M 24 457 L 70 457 M 24 411 L 24 457 M 70 457 L 116 457 M 116 411 L 162 411 M 116 457 L 162 457 M 162 411 L 208 411 M 162 457 L 208 457 M 208 457 L 254 457 M 254 411 L 300 411 M 254 457 L 300 457 M 300 457 L 346 457 M 346 411 L 392 411 M 346 457 L 392 457 M 392 411 L 438 411 M 392 457 L 438 457 M 438 411 L 484 411 M 438 457 L 484 457 M 484 457 L 530 457 M 530 411 L 576 411 M 576 411 L 576 457 M 530 457 L 576 457",
+    "solution_path": "M 139 434 L 93 434 L 93 388 L 93 342 L 139 342 L 139 296 L 185 296 L 185 250 L 231 250 L 277 250 L 323 250 L 369 250 L 369 204 L 323 204 L 323 158 L 277 158 L 277 112 L 277 66",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "shaped_triangle",
+    "start_point": {
+      "x": 139,
+      "y": 434
+    },
+    "end_point": {
+      "x": 277,
+      "y": 66
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 277,
+          "y": 66
+        },
+        "end": {
+          "x": 277,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 112
+        },
+        "end": {
+          "x": 277,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 158
+        },
+        "end": {
+          "x": 277,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 158
+        },
+        "end": {
+          "x": 231,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 158
+        },
+        "end": {
+          "x": 323,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 158
+        },
+        "end": {
+          "x": 323,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 204
+        },
+        "end": {
+          "x": 277,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 204
+        },
+        "end": {
+          "x": 323,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 204
+        },
+        "end": {
+          "x": 369,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 204
+        },
+        "end": {
+          "x": 369,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 250
+        },
+        "end": {
+          "x": 231,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 250
+        },
+        "end": {
+          "x": 185,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 250
+        },
+        "end": {
+          "x": 277,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 250
+        },
+        "end": {
+          "x": 231,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 250
+        },
+        "end": {
+          "x": 323,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 250
+        },
+        "end": {
+          "x": 277,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 250
+        },
+        "end": {
+          "x": 369,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 250
+        },
+        "end": {
+          "x": 323,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 250
+        },
+        "end": {
+          "x": 415,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 250
+        },
+        "end": {
+          "x": 415,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 296
+        },
+        "end": {
+          "x": 185,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 296
+        },
+        "end": {
+          "x": 139,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 296
+        },
+        "end": {
+          "x": 185,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 296
+        },
+        "end": {
+          "x": 231,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 296
+        },
+        "end": {
+          "x": 323,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 296
+        },
+        "end": {
+          "x": 277,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 296
+        },
+        "end": {
+          "x": 369,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 296
+        },
+        "end": {
+          "x": 415,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 296
+        },
+        "end": {
+          "x": 415,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 342
+        },
+        "end": {
+          "x": 139,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 342
+        },
+        "end": {
+          "x": 93,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 342
+        },
+        "end": {
+          "x": 139,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 342
+        },
+        "end": {
+          "x": 231,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 342
+        },
+        "end": {
+          "x": 185,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 342
+        },
+        "end": {
+          "x": 277,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 342
+        },
+        "end": {
+          "x": 323,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 342
+        },
+        "end": {
+          "x": 369,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 342
+        },
+        "end": {
+          "x": 369,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 342
+        },
+        "end": {
+          "x": 461,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 342
+        },
+        "end": {
+          "x": 415,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 461,
+          "y": 342
+        },
+        "end": {
+          "x": 461,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 388
+        },
+        "end": {
+          "x": 93,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 388
+        },
+        "end": {
+          "x": 185,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 388
+        },
+        "end": {
+          "x": 277,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 388
+        },
+        "end": {
+          "x": 231,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 388
+        },
+        "end": {
+          "x": 323,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 388
+        },
+        "end": {
+          "x": 323,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 388
+        },
+        "end": {
+          "x": 415,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 388
+        },
+        "end": {
+          "x": 461,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 461,
+          "y": 388
+        },
+        "end": {
+          "x": 507,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 507,
+          "y": 388
+        },
+        "end": {
+          "x": 507,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 47,
+          "y": 434
+        },
+        "end": {
+          "x": 93,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 434
+        },
+        "end": {
+          "x": 139,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 434
+        },
+        "end": {
+          "x": 185,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 434
+        },
+        "end": {
+          "x": 231,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 434
+        },
+        "end": {
+          "x": 277,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 434
+        },
+        "end": {
+          "x": 323,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 434
+        },
+        "end": {
+          "x": 369,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 434
+        },
+        "end": {
+          "x": 415,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 434
+        },
+        "end": {
+          "x": 461,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 461,
+          "y": 434
+        },
+        "end": {
+          "x": 507,
+          "y": 434
+        }
+      },
+      {
+        "start": {
+          "x": 507,
+          "y": 434
+        },
+        "end": {
+          "x": 553,
+          "y": 434
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 93,
+        "y": 434,
+        "emoji": "🕸️",
+        "on_solution": true
+      },
+      {
+        "x": 507,
+        "y": 388,
+        "emoji": "🕸️",
+        "on_solution": false
+      },
+      {
+        "x": 277,
+        "y": 204,
+        "emoji": "🕸️",
+        "on_solution": false
+      },
+      {
+        "x": 231,
+        "y": 204,
+        "emoji": "🕸️",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": [
+      {
+        "x": 93,
+        "y": 434,
+        "emoji": "🕸️",
+        "on_solution": true
+      },
+      {
+        "x": 139,
+        "y": 296,
+        "emoji": "🕸️",
+        "on_solution": true
+      },
+      {
+        "x": 277,
+        "y": 250,
+        "emoji": "🕸️",
+        "on_solution": true
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#0A2010",
+    "decorative_elements": [
+      "branches",
+      "leaves",
+      "squirrels",
+      "birds_nests"
+    ]
+  },
+  "audio_instruction": "denny_059_instruction.mp3",
+  "audio_completion": "denny_059_completion.mp3",
+  "item_rule": "avoid",
+  "item_emoji": "🕸️"
+}

@@ -110,6 +110,8 @@ struct LabyrinthListView: View {
                         },
                         collectedCount: vm.collectedItemIndices.count,
                         totalItemCount: vm.totalItemCount,
+                        hitOwlCount: vm.hitOwlIndices.count,
+                        totalAvoidCount: vm.labyrinth.pathData.avoidItems?.count ?? 0,
                         isStoryComplete: isStoryComplete
                     )
                     .transition(.scale.combined(with: .opacity))
@@ -150,8 +152,7 @@ struct LabyrinthListView: View {
         let nextIndex = gameViewModel.currentIndex + 1
         guard nextIndex < gameViewModel.labyrinths.count else { return }
 
-        // Check if the next labyrinth is locked (index >= 3 for free users)
-        if nextIndex >= 3 && !gameViewModel.isPremium {
+        if gameViewModel.isLabyrinthLocked(at: nextIndex) {
             showParentalGate = true
             return
         }

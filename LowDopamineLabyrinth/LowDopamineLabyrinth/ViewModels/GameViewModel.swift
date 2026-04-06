@@ -6,6 +6,9 @@ class GameViewModel: ObservableObject {
     @Published var showPaywall: Bool = false
     @Published var isPlaying: Bool = false
 
+    private(set) var currentPackId: String = "ocean_adventures"
+    private(set) var currentPackFreeStories: Int = 3
+
     let preferences: UserPreferences
     let subscriptionManager: SubscriptionManager
     let progressTracker: ProgressTracker
@@ -28,6 +31,8 @@ class GameViewModel: ObservableObject {
     }
 
     func loadLabyrinths(packId: String = "ocean_adventures") {
+        currentPackId = packId
+        currentPackFreeStories = LabyrinthLoader.shared.packInfo(packId: packId)?.freeStories ?? 0
         labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel, packId: packId)
         currentIndex = 0
         isPlaying = false
@@ -71,9 +76,13 @@ class GameViewModel: ObservableObject {
         return number
     }
 
-    /// Returns true if the story is locked (stories 4+ locked for non-premium users)
+    /// Returns true if the story falls beyond the current pack's free-story allowance.
     func isStoryLocked(_ storyNumber: Int) -> Bool {
-        return storyNumber > 3 && !isPremium
+        return storyNumber > currentPackFreeStories && !isPremium
+    }
+
+    func isLabyrinthLocked(at index: Int) -> Bool {
+        index >= currentPackFreeStories && !isPremium
     }
 
     /// Checks whether all 3 difficulty levels of the current labyrinth's story are completed

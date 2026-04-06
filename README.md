@@ -46,6 +46,11 @@ Each location contains 30 labyrinths across difficulty levels (easy, medium, har
 
 ```
 lowdop/
+├── docs/
+│   ├── handoff.md              # Shared Claude/Codex work state and next steps
+│   ├── privacy.html
+│   └── terms.html
+│
 ├── content-generator/          # Python content generation pipeline
 │   ├── generator.py            # Main generator using Anthropic Claude API
 │   ├── maze_generator.py       # SVG maze generation algorithms
@@ -64,6 +69,19 @@ lowdop/
         ├── Utilities/          # SVGPathParser
         └── Resources/Labyrinths/  # JSON labyrinth bundles per location
 ```
+
+## AI Handoff
+
+Claude and Codex should share working state through `docs/handoff.md`.
+
+Use this workflow:
+
+1. Read `docs/handoff.md` before starting substantial work.
+2. Update `docs/handoff.md` after meaningful changes, investigations, or test runs.
+3. Record only durable context: what changed, current state, open issues, next steps, and useful commands.
+4. Never store secrets, tokens, or private credentials in the handoff file.
+
+This keeps project context inside the repo instead of depending on tool-specific memory.
 
 ## Content Generation
 

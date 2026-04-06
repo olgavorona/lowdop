@@ -119,7 +119,7 @@ struct LabyrinthGridView: View {
                     // Grid — 4 columns for landscape
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(Array(gameViewModel.labyrinths.enumerated()), id: \.element.id) { index, labyrinth in
-                            let isLocked = index >= 3 && !gameViewModel.isPremium
+                            let isLocked = gameViewModel.isLabyrinthLocked(at: index)
                             LabyrinthCard(
                                 labyrinth: labyrinth,
                                 index: index + 1,
@@ -273,11 +273,12 @@ struct LabyrinthCard: View {
 
                 // Item emoji badge (bottom-right corner) for adventure mazes
                 if let emoji = labyrinth.itemEmoji {
+                    let badgeText = labyrinth.itemRule == "avoid" ? "🚫 \(emoji)" : emoji
                     VStack {
                         Spacer()
                         HStack {
                             Spacer()
-                            Text(emoji)
+                            Text(badgeText)
                                 .font(.system(size: 16))
                                 .padding(4)
                                 .background(Color.white.opacity(0.85))

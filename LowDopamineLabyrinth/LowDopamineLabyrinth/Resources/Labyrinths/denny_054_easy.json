@@ -1,0 +1,190 @@
+{
+  "id": "denny_054_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "forest_entrance",
+  "title": "Clover in the Clover Patch",
+  "story_setup": "Past the stream, Denny spots two long ears popping up from a patch of clover. A little rabbit named Clover is nibbling quietly near the meadow edge. Denny follows the winding path to meet Clover for the first time.",
+  "instruction": "Find the path through the clover patch and meet Clover the rabbit!",
+  "tts_instruction": "Two long rabbit ears are peeking from the clover patch. Help Denny find the path to meet Clover the rabbit for the first time.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little rabbit",
+    "description": "Soft cream-brown rabbit with long ears, bright friendly eyes, and quick little paws",
+    "position": "top_right",
+    "name": "Clover",
+    "image_asset": "rabbit_forest"
+  },
+  "educational_question": "Why do rabbits like to stay near grass, clover, and soft hiding places?",
+  "fun_fact": "Rabbits have strong back legs for hopping fast, and their big ears help them hear danger from far away.",
+  "completion_message": "Denny reached the clover patch and met Clover at last. Clover twitched a tiny pink nose and gave Denny a bright, friendly hop of hello.",
+  "path_data": {
+    "svg_path": "M 260 50 L 340 50 M 340 50 L 340 130 M 260 50 L 260 130 M 180 130 L 260 130 M 180 130 L 180 210 M 340 130 L 420 130 M 420 130 L 420 210 M 340 210 L 420 210 M 100 210 L 180 210 M 100 290 L 180 290 M 100 210 L 100 290 M 260 290 L 340 290 M 340 210 L 420 210 M 420 210 L 500 210 M 500 210 L 500 290 M 420 290 L 500 290 M 260 290 L 260 370 M 180 370 L 260 370 M 180 290 L 180 370 M 260 290 L 340 290 M 260 290 L 260 370 M 420 290 L 420 370 M 340 370 L 420 370 M 340 370 L 340 450 M 260 450 L 340 450 M 260 370 L 260 450",
+    "solution_path": "M 300 410 L 300 330 L 380 330 L 380 250 L 300 250 L 300 170 L 300 90",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_circle",
+    "start_point": {
+      "x": 300,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#1A3D1A",
+    "decorative_elements": [
+      "tall_trees",
+      "sunbeams",
+      "wildflowers",
+      "butterflies"
+    ]
+  },
+  "audio_instruction": "denny_054_instruction.mp3",
+  "audio_completion": "denny_054_completion.mp3"
+}

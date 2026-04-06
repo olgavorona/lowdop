@@ -1,0 +1,205 @@
+{
+  "id": "denny_049_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "waterfall",
+  "title": "Pebbles for Pip",
+  "story_setup": "Pip is building a tiny splash pool near the hidden waterfall. Denny gathers smooth pebbles from the winding path to help line the little pool.",
+  "instruction": "Collect all the pebbles and bring them to Pip!",
+  "tts_instruction": "Smooth pebbles are scattered near the waterfall. Help Denny collect every pebble before reaching Pip.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little frog",
+    "description": "Bright green frog with smooth skin, round eyes, and a cheerful smile",
+    "position": "top_right",
+    "name": "Pip",
+    "image_asset": "frog_forest"
+  },
+  "educational_question": "Why are stones in streams often smooth and round?",
+  "fun_fact": "Running water slowly rubs rough stones against each other and makes them smoother over time.",
+  "completion_message": "The pebbles made Pip's little splash pool sparkle. The waterfall mist felt cool and wonderful on Denny's shell.",
+  "path_data": {
+    "svg_path": "M 260 50 L 340 50 M 340 50 L 340 130 M 260 50 L 260 130 M 180 130 L 260 130 M 180 130 L 180 210 M 340 130 L 420 130 M 420 130 L 420 210 M 340 210 L 420 210 M 100 210 L 180 210 M 100 290 L 180 290 M 100 210 L 100 290 M 260 210 L 260 290 M 260 290 L 340 290 M 260 210 L 260 290 M 340 210 L 420 210 M 420 210 L 500 210 M 500 210 L 500 290 M 420 290 L 500 290 M 180 370 L 260 370 M 180 290 L 180 370 M 260 290 L 340 290 M 420 290 L 420 370 M 340 370 L 420 370 M 340 370 L 340 450 M 260 450 L 340 450 M 260 370 L 260 450",
+    "solution_path": "M 300 410 L 300 330 L 220 330 L 220 250 L 220 170 L 300 170 L 300 90",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_circle",
+    "start_point": {
+      "x": 300,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 170,
+        "emoji": "🪨",
+        "on_solution": true
+      },
+      {
+        "x": 300,
+        "y": 250,
+        "emoji": "🪨",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#062020",
+    "decorative_elements": [
+      "waterfall",
+      "ferns",
+      "rainbow_mist",
+      "smooth_stones"
+    ]
+  },
+  "audio_instruction": "denny_049_instruction.mp3",
+  "audio_completion": "denny_049_completion.mp3",
+  "item_rule": "collect",
+  "item_emoji": "🪨"
+}

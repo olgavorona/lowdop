@@ -6,6 +6,8 @@ struct CompletionView: View {
     let onRepeat: () -> Void
     var collectedCount: Int = 0
     var totalItemCount: Int = 0
+    var hitOwlCount: Int = 0
+    var totalAvoidCount: Int = 0
     var isStoryComplete: Bool = false
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
@@ -15,7 +17,15 @@ struct CompletionView: View {
     private var isCompact: Bool { verticalSizeClass == .compact }
 
     private var itemStatsText: String? {
-        guard let _ = labyrinth.itemRule, let emoji = labyrinth.itemEmoji else { return nil }
+        guard let rule = labyrinth.itemRule, let emoji = labyrinth.itemEmoji else { return nil }
+        if rule == "avoid" {
+            let avoided = totalAvoidCount - hitOwlCount
+            if hitOwlCount == 0 {
+                return "You avoided all the \(emoji)! Amazing!"
+            } else {
+                return "You avoided \(avoided) of \(totalAvoidCount) \(emoji)"
+            }
+        }
         return "You collected \(collectedCount)/\(totalItemCount) \(emoji)"
     }
 

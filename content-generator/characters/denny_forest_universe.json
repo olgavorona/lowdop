@@ -7,7 +7,7 @@
       "color": "#E74C3C",
       "personality": "curious, cheerful, brave",
       "emoji": "🦀",
-      "image_prompt": "One cute cartoon baby crab wearing a tiny khaki explorer vest and a small safari hat, orange-red color, two small symmetrical claws, big happy eyes, standing on a mossy forest floor, soft watercolor painting style, white background, centered, no other characters, no writing, no text, no letters, children's book illustration style"
+      "image_prompt": "One cute cartoon baby crab wearing a tiny khaki explorer vest and a small safari hat, orange-red color, round body, two small symmetrical claws, six tiny legs, big happy eyes, cheerful smile, full body visible, centered on a clean white background, no other characters, no writing, no text, no letters"
     },
     "maya": {
       "name": "Maya",
@@ -16,7 +16,52 @@
       "color": "#8B4513",
       "personality": "shy, warm, curious",
       "emoji": "🐭",
-      "image_prompt": "One single cute cartoon tiny field mouse wearing a red polka-dot dress, soft brown fur, big round ears, bright curious eyes, sweet shy smile, standing upright, white background, soft watercolor painting style, children's book illustration style, no text, no writing, ONLY ONE character"
+      "image_prompt": "One single cute cartoon tiny field mouse wearing a red polka-dot dress, soft brown fur, big round ears, bright curious eyes, sweet shy smile, standing upright, full body visible, centered on a clean white background, ONLY ONE character, no text, no writing"
+    },
+    "fox": {
+      "name": "Finn",
+      "type": "fox cub",
+      "description": "Small orange fox cub with a white-tipped tail, bright clever eyes, and soft fluffy fur",
+      "color": "#D2691E",
+      "personality": "playful, clever, adventurous",
+      "emoji": "🦊",
+      "image_prompt": "One single cute cartoon fox cub with soft orange fur, a fluffy white-tipped tail, bright kind eyes, playful smile, full body visible, centered on a clean white background, ONLY ONE character, no text, no writing"
+    },
+    "frog": {
+      "name": "Pip",
+      "type": "little frog",
+      "description": "Bright green frog with smooth skin, round eyes, and a cheerful smile",
+      "color": "#2E8B57",
+      "personality": "bouncy, musical, friendly",
+      "emoji": "🐸",
+      "image_prompt": "One single cute cartoon green frog with round eyes and a happy smile, smooth bright skin, friendly pose, full body visible, centered on a clean white background, ONLY ONE character, no text, no writing"
+    },
+    "beaver": {
+      "name": "Birch",
+      "type": "young beaver",
+      "description": "Round brown beaver with a flat tail, big front teeth, and warm friendly eyes",
+      "color": "#8B5A2B",
+      "personality": "hardworking, patient, thoughtful",
+      "emoji": "🦫",
+      "image_prompt": "One single cute cartoon young beaver with soft brown fur, one large flat tail, gentle eyes, big front teeth, holding one small branch, standing alone, full body visible with generous empty margin on all sides, centered in frame, ONLY ONE character, no duplicate characters, no collage, no extra animals, no text, no writing"
+    },
+    "rabbit": {
+      "name": "Clover",
+      "type": "little rabbit",
+      "description": "Soft cream-brown rabbit with long ears, bright friendly eyes, and quick little paws",
+      "color": "#D7D2C8",
+      "personality": "gentle, quick, playful",
+      "emoji": "🐇",
+      "image_prompt": "One single cute cartoon little rabbit with soft cream-brown fur, long upright ears, bright friendly eyes, a tiny pink nose, playful smile, standing alone, full body visible with extra empty space above both ears and around the whole body, centered in frame, ONLY ONE character, ears fully inside the image, no cropping, no extra animals, no text, no writing"
+    },
+    "firefly": {
+      "name": "Glow",
+      "type": "firefly",
+      "description": "Tiny golden firefly with glowing wings and a warm lantern-like light",
+      "color": "#F4D03F",
+      "personality": "gentle, magical, curious",
+      "emoji": "✨",
+      "image_prompt": "One single cute cartoon firefly with tiny glowing wings, a warm golden lantern-like glow, big gentle eyes, full body visible, centered on a clean white background, ONLY ONE character, no text, no writing"
     }
   },
   "locations": {

@@ -873,15 +873,16 @@ class FullMazeGenerator:
         start: Tuple[int, int],
         end: Tuple[int, int],
         num_owls: int,
+        avoid_emoji: str,
         offset_x: int,
         offset_y: int,
         cell_size: int,
         mask: Optional[set] = None,
     ) -> List[Dict[str, Any]]:
-        """Place owls on junction cells along the solution path.
+        """Place avoid obstacles on junction cells along the solution path.
 
-        Only places an owl where a detour exists (verified by BFS avoiding all
-        placed owls + this candidate).  Owls are spaced at least
+        Only places an obstacle where a detour exists (verified by BFS avoiding
+        all placed obstacles + this candidate). Obstacles are spaced at least
         path_length / (num_owls + 1) steps apart along the solution.
         """
         half = cell_size // 2
@@ -916,7 +917,7 @@ class FullMazeGenerator:
         return [
             {"x": offset_x + c * cell_size + half,
              "y": offset_y + r * cell_size + half,
-             "emoji": "🦉",
+             "emoji": avoid_emoji,
              "on_solution": True}
             for _, (r, c) in selected
         ]
@@ -1192,11 +1193,11 @@ class FullMazeGenerator:
             )
             result["items"] = items
 
-        # Place avoid items (owls) — braided maze with obstacles on the solution path
+        # Place avoid items on the solution path using the level's requested emoji.
         if item_rule == "avoid" and solution:
             num_owls = {"easy": 2, "medium": 3, "hard": 4}.get(difficulty, 2)
             avoid_items = self._place_avoid_items(
-                maze, solution, start, end, num_owls,
+                maze, solution, start, end, num_owls, item_emoji or "🦉",
                 offset_x, offset_y, cell_size, mask,
             )
             result["avoid_items"] = avoid_items

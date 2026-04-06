@@ -5,9 +5,9 @@
   "theme": "forest",
   "location": "forest_entrance",
   "title": "What Is That Noise?",
-  "story_setup": "Denny the explorer has arrived at the edge of Whispering Forest! He hears a mysterious rustling sound coming from inside. Could it be the wind? A wild animal? Denny is curious and a little nervous — but mostly curious.",
-  "instruction": "Collect all the flowers and find Maya hiding in the forest!",
-  "tts_instruction": "Help Denny collect all the flowers in the forest, then find Maya hiding at the top!",
+  "story_setup": "Denny the explorer has arrived at the edge of Whispering Forest. A mysterious rustling sound comes from deep inside the bushes, but he cannot tell what is making it. Help Denny follow the winding path through the forest and discover who is hiding there.",
+  "instruction": "Find the path through the bushes and discover who is making the noise!",
+  "tts_instruction": "Something is rustling in the bushes. Help Denny follow the path through the forest and find out who is making that noise.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
@@ -24,339 +24,147 @@
   },
   "educational_question": "Have you ever heard strange sounds in nature? What do you think makes rustling noises in the forest?",
   "fun_fact": "Forests are full of sounds! Leaves rustling, branches creaking, animals scurrying — a healthy forest is never silent. Scientists can even tell how healthy a forest is by listening to it!",
-  "completion_message": "It was Maya! A tiny shy mouse hiding behind a giant mushroom. She was scared of the wind — but not anymore. Denny and Maya are now best friends!",
-  "item_rule": "collect",
-  "item_emoji": "🌸",
+  "completion_message": "It was Maya. A tiny shy mouse peeked out from behind the bushes and smiled at Denny. So that was the little rustling sound all along.",
   "path_data": {
-    "svg_path": "M 300.0 412.4 Q 336.5 339.3 318.2 294.6 Q 300.0 250.0 251.9 246.5 Q 203.8 242.9 174.7 271.5 Q 145.6 300.2 186.0 306.2 Q 226.3 312.3 263.2 281.1 Q 300.0 250.0 288.5 203.2 Q 277.0 156.3 240.8 137.5 Q 204.6 118.6 211.3 158.9 Q 218.0 199.2 259.0 224.6 Q 300.0 250.0 341.0 224.6 Q 382.0 199.2 388.7 158.9 Q 395.4 118.6 359.2 137.5 Q 323.0 156.3 311.5 203.2 Q 300.0 250.0 336.8 281.1 Q 373.7 312.3 414.0 306.2 Q 454.4 300.2 425.3 271.5 Q 396.2 242.9 348.1 246.5 Q 300.0 250.0 300.0 155.0 Q 300.0 60.0 300.0 50.0 L 300.0 40.0",
-    "solution_path": "",
-    "width": 34,
+    "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 300 40 L 440 40 M 440 40 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 440 40 L 440 180 M 160 180 L 160 320 M 20 180 L 20 320 M 300 180 L 300 320 M 160 180 L 160 320 M 440 180 L 440 320 M 300 180 L 300 320 M 580 180 L 580 320 M 440 180 L 440 320 M 160 320 L 160 460 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 160 320 L 160 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460",
+    "solution_path": "M 90 390 L 90 250 L 90 110 L 230 110 L 230 250 L 230 390 L 370 390 L 510 390 L 510 250 L 510 110",
+    "width": 40,
     "complexity": "easy",
-    "maze_type": "organic",
+    "maze_type": "grid",
     "start_point": {
-      "x": 300.0,
-      "y": 412.4
+      "x": 90,
+      "y": 390
     },
     "end_point": {
-      "x": 300.0,
-      "y": 40.0
+      "x": 510,
+      "y": 110
     },
     "segments": [
       {
         "start": {
-          "x": 300.0,
-          "y": 412.4
+          "x": 90,
+          "y": 110
         },
         "end": {
-          "x": 336.5,
-          "y": 339.3
+          "x": 230,
+          "y": 110
         }
       },
       {
         "start": {
-          "x": 336.5,
-          "y": 339.3
+          "x": 90,
+          "y": 110
         },
         "end": {
-          "x": 300.0,
-          "y": 250.0
+          "x": 90,
+          "y": 250
         }
       },
       {
         "start": {
-          "x": 300.0,
-          "y": 250.0
+          "x": 230,
+          "y": 110
         },
         "end": {
-          "x": 203.8,
-          "y": 242.9
+          "x": 370,
+          "y": 110
         }
       },
       {
         "start": {
-          "x": 203.8,
-          "y": 242.9
+          "x": 230,
+          "y": 110
         },
         "end": {
-          "x": 145.6,
-          "y": 300.2
+          "x": 230,
+          "y": 250
         }
       },
       {
         "start": {
-          "x": 145.6,
-          "y": 300.2
+          "x": 370,
+          "y": 110
         },
         "end": {
-          "x": 226.3,
-          "y": 312.3
+          "x": 370,
+          "y": 250
         }
       },
       {
         "start": {
-          "x": 226.3,
-          "y": 312.3
+          "x": 510,
+          "y": 110
         },
         "end": {
-          "x": 300.0,
-          "y": 250.0
+          "x": 510,
+          "y": 250
         }
       },
       {
         "start": {
-          "x": 300.0,
-          "y": 250.0
+          "x": 90,
+          "y": 250
         },
         "end": {
-          "x": 277.0,
-          "y": 156.3
+          "x": 90,
+          "y": 390
         }
       },
       {
         "start": {
-          "x": 277.0,
-          "y": 156.3
+          "x": 230,
+          "y": 250
         },
         "end": {
-          "x": 204.6,
-          "y": 118.6
+          "x": 230,
+          "y": 390
         }
       },
       {
         "start": {
-          "x": 204.6,
-          "y": 118.6
+          "x": 370,
+          "y": 250
         },
         "end": {
-          "x": 218.0,
-          "y": 199.2
+          "x": 370,
+          "y": 390
         }
       },
       {
         "start": {
-          "x": 218.0,
-          "y": 199.2
+          "x": 510,
+          "y": 250
         },
         "end": {
-          "x": 300.0,
-          "y": 250.0
+          "x": 510,
+          "y": 390
         }
       },
       {
         "start": {
-          "x": 300.0,
-          "y": 250.0
+          "x": 230,
+          "y": 390
         },
         "end": {
-          "x": 382.0,
-          "y": 199.2
+          "x": 370,
+          "y": 390
         }
       },
       {
         "start": {
-          "x": 382.0,
-          "y": 199.2
+          "x": 370,
+          "y": 390
         },
         "end": {
-          "x": 395.4,
-          "y": 118.6
-        }
-      },
-      {
-        "start": {
-          "x": 395.4,
-          "y": 118.6
-        },
-        "end": {
-          "x": 323.0,
-          "y": 156.3
-        }
-      },
-      {
-        "start": {
-          "x": 323.0,
-          "y": 156.3
-        },
-        "end": {
-          "x": 300.0,
-          "y": 250.0
-        }
-      },
-      {
-        "start": {
-          "x": 300.0,
-          "y": 250.0
-        },
-        "end": {
-          "x": 373.7,
-          "y": 312.3
-        }
-      },
-      {
-        "start": {
-          "x": 373.7,
-          "y": 312.3
-        },
-        "end": {
-          "x": 454.4,
-          "y": 300.2
-        }
-      },
-      {
-        "start": {
-          "x": 454.4,
-          "y": 300.2
-        },
-        "end": {
-          "x": 396.2,
-          "y": 242.9
-        }
-      },
-      {
-        "start": {
-          "x": 396.2,
-          "y": 242.9
-        },
-        "end": {
-          "x": 300.0,
-          "y": 250.0
-        }
-      },
-      {
-        "start": {
-          "x": 300.0,
-          "y": 250.0
-        },
-        "end": {
-          "x": 300.0,
-          "y": 60.0
-        }
-      },
-      {
-        "start": {
-          "x": 300.0,
-          "y": 60.0
-        },
-        "end": {
-          "x": 300.0,
-          "y": 40.0
+          "x": 510,
+          "y": 390
         }
       }
     ],
     "canvas_width": 600,
     "canvas_height": 500,
-    "control_points": [
-      {
-        "x": 300.0,
-        "y": 412.4
-      },
-      {
-        "x": 336.5,
-        "y": 339.3
-      },
-      {
-        "x": 300.0,
-        "y": 250.0
-      },
-      {
-        "x": 203.8,
-        "y": 242.9
-      },
-      {
-        "x": 145.6,
-        "y": 300.2
-      },
-      {
-        "x": 226.3,
-        "y": 312.3
-      },
-      {
-        "x": 300.0,
-        "y": 250.0
-      },
-      {
-        "x": 277.0,
-        "y": 156.3
-      },
-      {
-        "x": 204.6,
-        "y": 118.6
-      },
-      {
-        "x": 218.0,
-        "y": 199.2
-      },
-      {
-        "x": 300.0,
-        "y": 250.0
-      },
-      {
-        "x": 382.0,
-        "y": 199.2
-      },
-      {
-        "x": 395.4,
-        "y": 118.6
-      },
-      {
-        "x": 323.0,
-        "y": 156.3
-      },
-      {
-        "x": 300.0,
-        "y": 250.0
-      },
-      {
-        "x": 373.7,
-        "y": 312.3
-      },
-      {
-        "x": 454.4,
-        "y": 300.2
-      },
-      {
-        "x": 396.2,
-        "y": 242.9
-      },
-      {
-        "x": 300.0,
-        "y": 250.0
-      },
-      {
-        "x": 300.0,
-        "y": 60.0
-      },
-      {
-        "x": 300.0,
-        "y": 40.0
-      }
-    ],
-    "items": [
-      {
-        "x": 145.6,
-        "y": 300.2,
-        "emoji": "🌸",
-        "on_solution": true
-      },
-      {
-        "x": 204.6,
-        "y": 118.6,
-        "emoji": "🌸",
-        "on_solution": true
-      },
-      {
-        "x": 395.4,
-        "y": 118.6,
-        "emoji": "🌸",
-        "on_solution": true
-      },
-      {
-        "x": 454.4,
-        "y": 300.2,
-        "emoji": "🌸",
-        "on_solution": true
-      }
-    ]
+    "control_points": [],
+    "items": []
   },
   "visual_theme": {
     "background_color": "#1A3D1A",

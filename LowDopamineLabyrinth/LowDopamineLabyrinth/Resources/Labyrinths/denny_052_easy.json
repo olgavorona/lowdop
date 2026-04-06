@@ -1,0 +1,185 @@
+{
+  "id": "denny_052_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "waterfall",
+  "title": "Sticks for the Dam",
+  "story_setup": "Birch needs sturdy sticks for the new dam. The path near the waterfall is full of bends and little pockets where branches have gathered.",
+  "instruction": "Collect all the sticks and bring them to Birch!",
+  "tts_instruction": "Branches are waiting along the path. Help Denny collect every stick before reaching Birch the beaver.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "young beaver",
+    "description": "Round brown beaver with a flat tail, big front teeth, and warm friendly eyes",
+    "position": "top_right",
+    "name": "Birch",
+    "image_asset": "beaver_forest"
+  },
+  "educational_question": "Why do beavers build dams in moving water?",
+  "fun_fact": "Beavers build dams to make calm ponds where they can build safe homes called lodges.",
+  "completion_message": "With every stick collected, Birch's new dam grew stronger. Denny felt like a real forest builder.",
+  "path_data": {
+    "svg_path": "M 244 26 L 356 26 M 356 26 L 356 138 M 244 26 L 244 138 M 132 138 L 244 138 M 132 138 L 132 250 M 356 138 L 356 250 M 244 250 L 356 250 M 244 250 L 244 362 M 132 250 L 132 362 M 244 250 L 356 250 M 244 250 L 244 362 M 356 250 L 468 250 M 468 250 L 468 362 M 20 362 L 132 362 M 20 474 L 132 474 M 20 362 L 20 474 M 132 474 L 244 474 M 244 474 L 356 474 M 356 474 L 468 474 M 468 362 L 580 362 M 580 362 L 580 474 M 468 474 L 580 474",
+    "solution_path": "M 412 418 L 300 418 L 188 418 L 188 306 L 188 194 L 300 194 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_mountain",
+    "start_point": {
+      "x": 412,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 418
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 188,
+        "y": 306,
+        "emoji": "🪵",
+        "on_solution": true
+      },
+      {
+        "x": 524,
+        "y": 418,
+        "emoji": "🪵",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#062020",
+    "decorative_elements": [
+      "waterfall",
+      "ferns",
+      "rainbow_mist",
+      "smooth_stones"
+    ]
+  },
+  "audio_instruction": "denny_052_instruction.mp3",
+  "audio_completion": "denny_052_completion.mp3",
+  "item_rule": "collect",
+  "item_emoji": "🪵"
+}
