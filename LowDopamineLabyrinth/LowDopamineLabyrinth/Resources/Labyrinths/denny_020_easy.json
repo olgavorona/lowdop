@@ -3,10 +3,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "bubble_lagoon",
-  "title": "Denny's Coin Collection",
-  "story_setup": "Old pirate coins have sunk to the bottom of the lagoon! Denny and Pearl are on a mission to collect them all.",
-  "instruction": "Collect all the coins as you draw a path to reach Pearl!",
-  "tts_instruction": "Pirate treasure! Help Denny pick up every gold coin in the lagoon on the way to Pearl.",
+  "title": "Denny Dodges the Pufferfish",
+  "story_setup": "Round pufferfish are bobbing through Bubble Lagoon and blocking the path to Pearl. Denny needs to swim around them carefully all the way to the end.",
+  "instruction": "Avoid the pufferfish and find the safe path to Pearl!",
+  "tts_instruction": "Pufferfish are floating through the lagoon. Help Denny avoid every pufferfish and swim safely to Pearl.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -21,162 +21,446 @@
     "name": "Pearl",
     "image_asset": "pearl"
   },
-  "educational_question": "If you found pirate treasure, what would you buy with it?",
-  "fun_fact": "Real pirate coins were called pieces of eight! They were made of silver and could be cut into eight pieces to make change.",
-  "completion_message": "Denny collected all the coins! Pearl and Denny are rich!",
-  "item_rule": "collect",
-  "item_emoji": "🪙",
+  "educational_question": "Why do pufferfish puff up when they feel scared?",
+  "fun_fact": "Pufferfish puff up with water to look bigger when they are frightened. That helps warn other animals to stay back.",
+  "completion_message": "Denny swam safely past every pufferfish and reached Pearl at the end of the lagoon. Pearl cheered for his careful swimming!",
+  "item_rule": "avoid",
+  "item_emoji": "🐡",
   "path_data": {
-    "svg_path": "M 90 110 L 230 110 M 90 110 L 90 250 M 230 110 L 370 110 M 370 110 L 510 110 M 370 110 L 370 250 M 90 250 L 230 250 M 90 250 L 90 390 M 230 250 L 230 390 M 370 250 L 510 250 M 370 250 L 370 390 M 510 250 L 510 390 M 230 390 L 370 390 M 90 110 L 90 110 M 230 110 L 230 110 M 370 110 L 370 110 M 510 110 L 510 110 M 90 250 L 90 250 M 230 250 L 230 250 M 370 250 L 370 250 M 510 250 L 510 250 M 90 390 L 90 390 M 230 390 L 230 390 M 370 390 L 370 390 M 510 390 L 510 390",
-    "solution_path": "M 510 390 L 510 250 L 370 250 L 370 110 L 230 110 L 90 110",
-    "width": 40,
+    "svg_path": "M 60 90 L 140 90 M 60 90 L 60 170 M 140 90 L 220 90 M 140 90 L 140 170 M 220 90 L 300 90 M 300 90 L 300 170 M 380 90 L 460 90 M 380 90 L 380 170 M 460 90 L 540 90 M 460 90 L 460 170 M 540 90 L 540 170 M 60 170 L 140 170 M 60 170 L 60 250 M 140 170 L 220 170 M 220 170 L 220 250 M 300 170 L 380 170 M 380 170 L 380 250 M 460 170 L 540 170 M 460 170 L 460 250 M 540 170 L 540 250 M 60 250 L 60 330 M 140 250 L 220 250 M 140 250 L 140 330 M 300 250 L 380 250 M 300 250 L 300 330 M 460 250 L 460 330 M 540 250 L 540 330 M 60 330 L 60 410 M 140 330 L 220 330 M 220 330 L 300 330 M 300 330 L 380 330 M 380 330 L 460 330 M 460 330 L 540 330 M 540 330 L 540 410 M 60 410 L 140 410 M 140 410 L 220 410 M 220 410 L 300 410 M 300 410 L 380 410 M 380 410 L 460 410 M 460 410 L 540 410 M 60 90 L 60 90 M 140 90 L 140 90 M 220 90 L 220 90 M 300 90 L 300 90 M 380 90 L 380 90 M 460 90 L 460 90 M 540 90 L 540 90 M 60 170 L 60 170 M 140 170 L 140 170 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 460 170 L 460 170 M 540 170 L 540 170 M 60 250 L 60 250 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 460 250 L 460 250 M 540 250 L 540 250 M 60 330 L 60 330 M 140 330 L 140 330 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 460 330 L 460 330 M 540 330 L 540 330 M 60 410 L 60 410 M 140 410 L 140 410 M 220 410 L 220 410 M 300 410 L 300 410 M 380 410 L 380 410 M 460 410 L 460 410 M 540 410 L 540 410",
+    "solution_path": "M 540 410 L 460 410 L 380 410 L 300 410 L 220 410 L 140 410 L 60 410 L 60 330 L 60 250 L 60 170 L 60 90",
+    "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_rect",
     "start_point": {
-      "x": 510,
-      "y": 390
+      "x": 540,
+      "y": 410
     },
     "end_point": {
-      "x": 90,
-      "y": 110
+      "x": 60,
+      "y": 90
     },
     "segments": [
       {
         "start": {
-          "x": 90,
-          "y": 110
+          "x": 60,
+          "y": 90
         },
         "end": {
-          "x": 230,
-          "y": 110
+          "x": 140,
+          "y": 90
         }
       },
       {
         "start": {
-          "x": 90,
-          "y": 110
+          "x": 60,
+          "y": 90
         },
         "end": {
-          "x": 90,
+          "x": 60,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 90
+        },
+        "end": {
+          "x": 140,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 90
+        },
+        "end": {
+          "x": 460,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 90
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 90
+        },
+        "end": {
+          "x": 540,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 90
+        },
+        "end": {
+          "x": 460,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 90
+        },
+        "end": {
+          "x": 540,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 170
+        },
+        "end": {
+          "x": 60,
           "y": 250
         }
       },
       {
         "start": {
-          "x": 230,
-          "y": 110
+          "x": 140,
+          "y": 170
         },
         "end": {
-          "x": 370,
-          "y": 110
+          "x": 220,
+          "y": 170
         }
       },
       {
         "start": {
-          "x": 370,
-          "y": 110
+          "x": 220,
+          "y": 170
         },
         "end": {
-          "x": 510,
-          "y": 110
-        }
-      },
-      {
-        "start": {
-          "x": 370,
-          "y": 110
-        },
-        "end": {
-          "x": 370,
+          "x": 220,
           "y": 250
         }
       },
       {
         "start": {
-          "x": 90,
-          "y": 250
+          "x": 300,
+          "y": 170
         },
         "end": {
-          "x": 230,
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
           "y": 250
         }
       },
       {
         "start": {
-          "x": 90,
-          "y": 250
+          "x": 460,
+          "y": 170
         },
         "end": {
-          "x": 90,
-          "y": 390
+          "x": 540,
+          "y": 170
         }
       },
       {
         "start": {
-          "x": 230,
-          "y": 250
+          "x": 460,
+          "y": 170
         },
         "end": {
-          "x": 230,
-          "y": 390
-        }
-      },
-      {
-        "start": {
-          "x": 370,
-          "y": 250
-        },
-        "end": {
-          "x": 510,
+          "x": 460,
           "y": 250
         }
       },
       {
         "start": {
-          "x": 370,
-          "y": 250
+          "x": 540,
+          "y": 170
         },
         "end": {
-          "x": 370,
-          "y": 390
+          "x": 540,
+          "y": 250
         }
       },
       {
         "start": {
-          "x": 510,
+          "x": 60,
           "y": 250
         },
         "end": {
-          "x": 510,
-          "y": 390
+          "x": 60,
+          "y": 330
         }
       },
       {
         "start": {
-          "x": 230,
-          "y": 390
+          "x": 140,
+          "y": 250
         },
         "end": {
-          "x": 370,
-          "y": 390
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 140,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 250
+        },
+        "end": {
+          "x": 540,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 330
+        },
+        "end": {
+          "x": 60,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 460,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 330
+        },
+        "end": {
+          "x": 540,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 330
+        },
+        "end": {
+          "x": 540,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 410
+        },
+        "end": {
+          "x": 140,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 410
+        },
+        "end": {
+          "x": 220,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 410
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 410
+        },
+        "end": {
+          "x": 380,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 410
+        },
+        "end": {
+          "x": 460,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 410
+        },
+        "end": {
+          "x": 540,
+          "y": 410
         }
       }
     ],
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
+    "cell_size": 80,
+    "grid_rows": 5,
+    "grid_cols": 7,
+    "shape": "rect",
+    "avoid_items": [
       {
-        "x": 510,
-        "y": 250,
-        "emoji": "🪙",
+        "x": 460,
+        "y": 410,
+        "emoji": "🐡",
         "on_solution": true
       },
       {
-        "x": 230,
-        "y": 250,
-        "emoji": "🪙",
-        "on_solution": false
+        "x": 220,
+        "y": 410,
+        "emoji": "🐡",
+        "on_solution": true
       }
     ]
   },

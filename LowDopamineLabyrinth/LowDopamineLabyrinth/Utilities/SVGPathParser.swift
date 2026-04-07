@@ -5,7 +5,6 @@ struct SVGPathParser {
         var path = Path()
         let tokens = tokenize(svgPath)
         var i = 0
-        var currentPoint = CGPoint.zero
 
         while i < tokens.count {
             let token = tokens[i]
@@ -17,7 +16,6 @@ struct SVGPathParser {
                 let point = CGPoint(x: CGFloat(x) * scale + offset.x,
                                     y: CGFloat(y) * scale + offset.y)
                 path.move(to: point)
-                currentPoint = point
                 i += 3
 
             case "L":
@@ -27,7 +25,6 @@ struct SVGPathParser {
                 let point = CGPoint(x: CGFloat(x) * scale + offset.x,
                                     y: CGFloat(y) * scale + offset.y)
                 path.addLine(to: point)
-                currentPoint = point
                 i += 3
 
             case "Q":
@@ -41,7 +38,6 @@ struct SVGPathParser {
                 let end = CGPoint(x: CGFloat(x) * scale + offset.x,
                                   y: CGFloat(y) * scale + offset.y)
                 path.addQuadCurve(to: end, control: control)
-                currentPoint = end
                 i += 5
 
             case "C":
@@ -59,7 +55,6 @@ struct SVGPathParser {
                 let end = CGPoint(x: CGFloat(x) * scale + offset.x,
                                   y: CGFloat(y) * scale + offset.y)
                 path.addCurve(to: end, control1: c1, control2: c2)
-                currentPoint = end
                 i += 7
 
             case "Z", "z":

@@ -42,6 +42,7 @@ class LabyrinthLoader {
         guard let pack = packInfo(packId: packId) else {
             return []
         }
+        let storyOrder = Dictionary(uniqueKeysWithValues: pack.stories.enumerated().map { ($0.element, $0.offset) })
         let storySet = Set(pack.stories)
         let packLabyrinths = all.filter { storySet.contains($0.storyNumber) }
 
@@ -56,16 +57,18 @@ class LabyrinthLoader {
         return packLabyrinths
             .filter { $0.difficulty == resolvedDifficulty.rawValue }
             .sorted { lhs, rhs in
-                if lhs.storyNumber == rhs.storyNumber {
-                    let order = ["easy": 0, "medium": 1, "hard": 2]
-                    return (order[lhs.difficulty] ?? 99) < (order[rhs.difficulty] ?? 99)
+                let lhsIndex = storyOrder[lhs.storyNumber] ?? Int.max
+                let rhsIndex = storyOrder[rhs.storyNumber] ?? Int.max
+                if lhsIndex != rhsIndex {
+                    return lhsIndex < rhsIndex
                 }
-                return lhs.storyNumber < rhs.storyNumber
+                let difficultyOrder = ["easy": 0, "medium": 1, "hard": 2]
+                return (difficultyOrder[lhs.difficulty] ?? 99) < (difficultyOrder[rhs.difficulty] ?? 99)
             }
     }
 
     /// Load story metadata for all stories in a pack.
-    /// Returns `[StoryInfo]` sorted by story number.
+    /// Returns `[StoryInfo]` in the manifest-defined pack order.
     func loadStories(packId: String = "ocean_adventures") -> [StoryInfo] {
         guard let manifest = loadManifest(),
               let pack = packInfo(packId: packId) else { return [] }
@@ -76,7 +79,7 @@ class LabyrinthLoader {
         // Group manifest entries by story number
         let entriesByStory = Dictionary(grouping: manifest.labyrinths, by: { $0.story ?? 0 })
 
-        return pack.stories.compactMap { storyNumber -> StoryInfo? in
+        return pack.stories.enumerated().compactMap { index, storyNumber -> StoryInfo? in
             guard let entries = entriesByStory[storyNumber],
                   let firstEntry = entries.first else { return nil }
 
@@ -96,11 +99,11 @@ class LabyrinthLoader {
                 title: firstEntry.title,
                 location: firstEntry.location ?? "",
                 characterEnd: characterEnd,
-                isFree: storyNumber <= freeStories,
+                isFree: index < freeStories,
                 isAdventure: isAdventure,
                 labyrinthIds: labyrinthIds
             )
-        }.sorted { $0.number < $1.number }
+        }
     }
 
     /// Load a single labyrinth matching both story number and difficulty.

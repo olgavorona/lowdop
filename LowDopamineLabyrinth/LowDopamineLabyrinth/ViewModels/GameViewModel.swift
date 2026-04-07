@@ -78,7 +78,10 @@ class GameViewModel: ObservableObject {
 
     /// Returns true if the story falls beyond the current pack's free-story allowance.
     func isStoryLocked(_ storyNumber: Int) -> Bool {
-        return storyNumber > currentPackFreeStories && !isPremium
+        guard !isPremium else { return false }
+        let packStories = LabyrinthLoader.shared.packInfo(packId: currentPackId)?.stories ?? []
+        guard let storyIndex = packStories.firstIndex(of: storyNumber) else { return true }
+        return storyIndex >= currentPackFreeStories
     }
 
     func isLabyrinthLocked(at index: Int) -> Bool {

@@ -6,24 +6,24 @@
       "free_stories": 3,
       "stories": [
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
         11,
+        2,
         12,
+        3,
         13,
+        4,
         14,
+        5,
         15,
+        6,
         16,
+        7,
         17,
+        8,
         18,
+        9,
         19,
+        10,
         20
       ]
     },
@@ -32,26 +32,26 @@
       "title": "Denny in Space",
       "free_stories": 0,
       "stories": [
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
         31,
+        21,
         32,
+        22,
         33,
+        23,
         34,
+        24,
         35,
+        25,
         36,
+        26,
         37,
+        27,
         38,
+        28,
         39,
-        40
+        29,
+        40,
+        30
       ]
     },
     {
@@ -113,7 +113,7 @@
       "story": 2,
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny's Coral Garden Adventure"
+      "title": "Denny's Shell Garden Shortcut"
     },
     {
       "id": "denny_002_medium",
@@ -121,7 +121,7 @@
       "story": 2,
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny's Coral Garden Adventure"
+      "title": "Denny's Shell Garden Shortcut"
     },
     {
       "id": "denny_002_hard",
@@ -129,7 +129,7 @@
       "story": 2,
       "theme": "ocean",
       "location": "coral_garden",
-      "title": "Denny's Coral Garden Adventure"
+      "title": "Denny's Shell Garden Shortcut"
     },
     {
       "id": "denny_003_easy",
@@ -401,7 +401,7 @@
       "story": 14,
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny's Coral Bits"
+      "title": "Denny Avoids the Sharp Coral"
     },
     {
       "id": "denny_014_medium",
@@ -409,7 +409,7 @@
       "story": 14,
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny's Coral Bits"
+      "title": "Denny Avoids the Sharp Coral"
     },
     {
       "id": "denny_014_hard",
@@ -417,7 +417,7 @@
       "story": 14,
       "theme": "ocean",
       "location": "sandy_shore",
-      "title": "Denny's Coral Bits"
+      "title": "Denny Avoids the Sharp Coral"
     },
     {
       "id": "denny_015_easy",
@@ -473,7 +473,7 @@
       "story": 17,
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny's Seaweed Harvest"
+      "title": "Denny's Seaweed Shortcut"
     },
     {
       "id": "denny_017_medium",
@@ -481,7 +481,7 @@
       "story": 17,
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny's Seaweed Harvest"
+      "title": "Denny's Seaweed Shortcut"
     },
     {
       "id": "denny_017_hard",
@@ -489,7 +489,7 @@
       "story": 17,
       "theme": "ocean",
       "location": "kelp_forest",
-      "title": "Denny's Seaweed Harvest"
+      "title": "Denny's Seaweed Shortcut"
     },
     {
       "id": "denny_018_easy",
@@ -545,7 +545,7 @@
       "story": 20,
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny's Coin Collection"
+      "title": "Denny Dodges the Pufferfish"
     },
     {
       "id": "denny_020_medium",
@@ -553,7 +553,7 @@
       "story": 20,
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny's Coin Collection"
+      "title": "Denny Dodges the Pufferfish"
     },
     {
       "id": "denny_020_hard",
@@ -561,7 +561,7 @@
       "story": 20,
       "theme": "ocean",
       "location": "bubble_lagoon",
-      "title": "Denny's Coin Collection"
+      "title": "Denny Dodges the Pufferfish"
     },
     {
       "id": "denny_021_easy",

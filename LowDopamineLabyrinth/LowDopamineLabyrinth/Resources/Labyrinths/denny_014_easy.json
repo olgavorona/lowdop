@@ -3,10 +3,10 @@
   "difficulty": "easy",
   "theme": "ocean",
   "location": "sandy_shore",
-  "title": "Denny's Coral Bits",
-  "story_setup": "Colorful bits of coral have washed up on the shore! Daddy Reef wants Denny to collect them to build a new reef garden.",
-  "instruction": "Collect all the coral pieces as you draw a path to Daddy Reef!",
-  "tts_instruction": "Daddy Reef needs coral pieces! Help Denny pick up every colorful coral bit on the beach on the way to Daddy Reef.",
+  "title": "Denny Avoids the Sharp Coral",
+  "story_setup": "Sharp coral branches are sticking up all across the sandy shore. Denny needs to weave carefully between them to reach Daddy Reef without getting poked.",
+  "instruction": "Avoid the sharp coral branches and reach Daddy Reef safely!",
+  "tts_instruction": "Sharp coral is covering the beach path. Help Denny avoid every coral branch and find the safe way to Daddy Reef.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -21,152 +21,286 @@
     "name": "Daddy Reef",
     "image_asset": "daddy_reef"
   },
-  "educational_question": "Did you know coral is alive? What kind of animal is it?",
-  "fun_fact": "Coral reefs are home to 25% of all ocean life! Tiny animals called polyps build the reef by creating hard skeletons around themselves.",
-  "completion_message": "Denny collected all the coral! Daddy Reef will build an amazing reef garden!",
-  "item_rule": "collect",
+  "educational_question": "Why should ocean animals be careful around broken coral?",
+  "fun_fact": "Coral reefs are home to 25 percent of all ocean life. Tiny animals called polyps build the reef by creating hard skeletons around themselves.",
+  "completion_message": "Denny slipped past every sharp coral branch and reached Daddy Reef safely. What a careful little explorer!",
+  "item_rule": "avoid",
   "item_emoji": "🪸",
   "path_data": {
-    "svg_path": "M 300 82 L 300 194 M 188 194 L 300 194 M 188 194 L 188 306 M 188 306 L 188 418 M 300 306 L 412 306 M 300 306 L 300 418 M 412 306 L 412 418 M 76 418 L 188 418 M 188 418 L 300 418 M 300 418 L 412 418 M 412 418 L 524 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
-    "solution_path": "M 524 418 L 412 418 L 300 418 L 188 418 L 188 306 L 188 194 L 300 194 L 300 82",
-    "width": 40,
+    "svg_path": "M 220 90 L 300 90 M 220 90 L 220 170 M 300 90 L 300 170 M 220 170 L 300 170 M 220 170 L 220 250 M 300 170 L 380 170 M 300 170 L 300 250 M 380 170 L 380 250 M 140 250 L 220 250 M 140 250 L 140 330 M 300 250 L 380 250 M 380 250 L 380 330 M 140 330 L 140 410 M 220 330 L 300 330 M 220 330 L 220 410 M 300 330 L 300 410 M 380 330 L 460 330 M 380 330 L 380 410 M 460 330 L 460 410 M 60 410 L 140 410 M 140 410 L 220 410 M 300 410 L 380 410 M 380 410 L 460 410 M 460 410 L 540 410 M 220 90 L 220 90 M 300 90 L 300 90 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 140 330 L 140 330 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 460 330 L 460 330 M 60 410 L 60 410 M 140 410 L 140 410 M 220 410 L 220 410 M 300 410 L 300 410 M 380 410 L 380 410 M 460 410 L 460 410 M 540 410 L 540 410",
+    "solution_path": "M 540 410 L 460 410 L 460 330 L 380 330 L 380 250 L 380 170 L 300 170 L 300 90 L 220 90",
+    "width": 35,
     "complexity": "easy",
     "maze_type": "corridor_mountain",
     "start_point": {
-      "x": 524,
-      "y": 418
+      "x": 540,
+      "y": 410
     },
     "end_point": {
-      "x": 300,
-      "y": 82
+      "x": 220,
+      "y": 90
     },
     "segments": [
       {
         "start": {
-          "x": 300,
-          "y": 82
+          "x": 220,
+          "y": 90
         },
         "end": {
           "x": 300,
-          "y": 194
+          "y": 90
         }
       },
       {
         "start": {
-          "x": 188,
-          "y": 194
+          "x": 220,
+          "y": 90
         },
         "end": {
-          "x": 300,
-          "y": 194
-        }
-      },
-      {
-        "start": {
-          "x": 188,
-          "y": 194
-        },
-        "end": {
-          "x": 188,
-          "y": 306
-        }
-      },
-      {
-        "start": {
-          "x": 188,
-          "y": 306
-        },
-        "end": {
-          "x": 188,
-          "y": 418
+          "x": 220,
+          "y": 170
         }
       },
       {
         "start": {
           "x": 300,
-          "y": 306
+          "y": 90
         },
         "end": {
-          "x": 412,
-          "y": 306
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
         }
       },
       {
         "start": {
           "x": 300,
-          "y": 306
+          "y": 170
         },
         "end": {
-          "x": 300,
-          "y": 418
-        }
-      },
-      {
-        "start": {
-          "x": 412,
-          "y": 306
-        },
-        "end": {
-          "x": 412,
-          "y": 418
-        }
-      },
-      {
-        "start": {
-          "x": 76,
-          "y": 418
-        },
-        "end": {
-          "x": 188,
-          "y": 418
-        }
-      },
-      {
-        "start": {
-          "x": 188,
-          "y": 418
-        },
-        "end": {
-          "x": 300,
-          "y": 418
+          "x": 380,
+          "y": 170
         }
       },
       {
         "start": {
           "x": 300,
-          "y": 418
+          "y": 170
         },
         "end": {
-          "x": 412,
-          "y": 418
+          "x": 300,
+          "y": 250
         }
       },
       {
         "start": {
-          "x": 412,
-          "y": 418
+          "x": 380,
+          "y": 170
         },
         "end": {
-          "x": 524,
-          "y": 418
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 140,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 330
+        },
+        "end": {
+          "x": 140,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 460,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 330
+        },
+        "end": {
+          "x": 460,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 410
+        },
+        "end": {
+          "x": 140,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 410
+        },
+        "end": {
+          "x": 220,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 410
+        },
+        "end": {
+          "x": 380,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 410
+        },
+        "end": {
+          "x": 460,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 410
+        },
+        "end": {
+          "x": 540,
+          "y": 410
         }
       }
     ],
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
+    "cell_size": 80,
+    "grid_rows": 5,
+    "grid_cols": 7,
+    "shape": "mountain",
+    "avoid_items": [
       {
-        "x": 300,
-        "y": 418,
+        "x": 460,
+        "y": 330,
         "emoji": "🪸",
         "on_solution": true
       },
       {
-        "x": 412,
-        "y": 306,
+        "x": 380,
+        "y": 170,
         "emoji": "🪸",
-        "on_solution": false
+        "on_solution": true
       }
     ]
   },

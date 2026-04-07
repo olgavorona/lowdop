@@ -3,10 +3,10 @@
   "difficulty": "medium",
   "theme": "ocean",
   "location": "bubble_lagoon",
-  "title": "Denny's Coin Collection",
-  "story_setup": "Old pirate coins have sunk to the bottom of the lagoon! Denny and Pearl are on a mission to collect them all.",
-  "instruction": "Collect all the coins as you draw a path to reach Pearl!",
-  "tts_instruction": "Pirate treasure! Help Denny pick up every gold coin in the lagoon on the way to Pearl.",
+  "title": "Denny Dodges the Pufferfish",
+  "story_setup": "Round pufferfish are bobbing through Bubble Lagoon and blocking the path to Pearl. Denny needs to swim around them carefully all the way to the end.",
+  "instruction": "Avoid the pufferfish and find the safe path to Pearl!",
+  "tts_instruction": "Pufferfish are floating through the lagoon. Help Denny avoid every pufferfish and swim safely to Pearl.",
   "character_start": {
     "type": "baby crab",
     "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
@@ -21,15 +21,15 @@
     "name": "Pearl",
     "image_asset": "pearl"
   },
-  "educational_question": "If you found pirate treasure, what would you buy with it?",
-  "fun_fact": "Real pirate coins were called pieces of eight! They were made of silver and could be cut into eight pieces to make change.",
-  "completion_message": "Denny collected all the coins! Pearl and Denny are rich!",
-  "item_rule": "collect",
-  "item_emoji": "🪙",
+  "educational_question": "Why do pufferfish puff up when they feel scared?",
+  "fun_fact": "Pufferfish puff up with water to look bigger when they are frightened. That helps warn other animals to stay back.",
+  "completion_message": "Denny swam safely past every pufferfish and reached Pearl at the end of the lagoon. Pearl cheered for his careful swimming!",
+  "item_rule": "avoid",
+  "item_emoji": "🐡",
   "path_data": {
-    "svg_path": "M 55 75 L 125 75 M 55 75 L 55 145 M 125 75 L 195 75 M 125 75 L 125 145 M 265 75 L 335 75 M 265 75 L 265 145 M 335 75 L 405 75 M 405 75 L 475 75 M 475 75 L 545 75 M 545 75 L 545 145 M 55 145 L 55 215 M 125 145 L 195 145 M 195 145 L 265 145 M 335 145 L 405 145 M 335 145 L 335 215 M 405 145 L 475 145 M 405 145 L 405 215 M 475 145 L 475 215 M 545 145 L 545 215 M 55 215 L 125 215 M 125 215 L 125 285 M 195 215 L 265 215 M 195 215 L 195 285 M 265 215 L 335 215 M 265 215 L 265 285 M 335 215 L 405 215 M 405 215 L 475 215 M 405 215 L 405 285 M 475 215 L 545 215 M 545 215 L 545 285 M 55 285 L 125 285 M 55 285 L 55 355 M 125 285 L 125 355 M 265 285 L 335 285 M 265 285 L 265 355 M 405 285 L 475 285 M 475 285 L 475 355 M 545 285 L 545 355 M 55 355 L 125 355 M 125 355 L 125 425 M 195 355 L 265 355 M 195 355 L 195 425 M 265 355 L 265 425 M 335 355 L 405 355 M 335 355 L 335 425 M 405 355 L 475 355 M 55 425 L 125 425 M 125 425 L 195 425 M 335 425 L 405 425 M 405 425 L 475 425 M 475 425 L 545 425 M 55 75 L 55 75 M 125 75 L 125 75 M 195 75 L 195 75 M 265 75 L 265 75 M 335 75 L 335 75 M 405 75 L 405 75 M 475 75 L 475 75 M 545 75 L 545 75 M 55 145 L 55 145 M 125 145 L 125 145 M 195 145 L 195 145 M 265 145 L 265 145 M 335 145 L 335 145 M 405 145 L 405 145 M 475 145 L 475 145 M 545 145 L 545 145 M 55 215 L 55 215 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 475 215 L 475 215 M 545 215 L 545 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 55 355 L 55 355 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 475 355 L 475 355 M 545 355 L 545 355 M 55 425 L 55 425 M 125 425 L 125 425 M 195 425 L 195 425 M 265 425 L 265 425 M 335 425 L 335 425 M 405 425 L 405 425 M 475 425 L 475 425 M 545 425 L 545 425",
-    "solution_path": "M 545 425 L 475 425 L 405 425 L 335 425 L 335 355 L 405 355 L 475 355 L 475 285 L 405 285 L 405 215 L 335 215 L 265 215 L 265 285 L 265 355 L 195 355 L 195 425 L 125 425 L 125 355 L 125 285 L 125 215 L 55 215 L 55 145 L 55 75",
-    "width": 30,
+    "svg_path": "M 55 75 L 125 75 M 55 75 L 55 145 M 125 75 L 195 75 M 195 75 L 265 75 M 195 75 L 195 145 M 265 75 L 335 75 M 335 75 L 335 145 M 405 75 L 475 75 M 405 75 L 405 145 M 475 75 L 545 75 M 475 75 L 475 145 M 545 75 L 545 145 M 55 145 L 125 145 M 55 145 L 55 215 M 125 145 L 125 215 M 195 145 L 265 145 M 195 145 L 195 215 M 265 145 L 265 215 M 335 145 L 335 215 M 405 145 L 405 215 M 475 145 L 545 145 M 475 145 L 475 215 M 55 215 L 55 285 M 125 215 L 125 285 M 195 215 L 265 215 M 195 215 L 195 285 M 335 215 L 405 215 M 405 215 L 475 215 M 475 215 L 545 215 M 545 215 L 545 285 M 55 285 L 55 355 M 125 285 L 195 285 M 195 285 L 265 285 M 265 285 L 335 285 M 265 285 L 265 355 M 335 285 L 335 355 M 405 285 L 475 285 M 405 285 L 405 355 M 475 285 L 545 285 M 545 285 L 545 355 M 55 355 L 125 355 M 55 355 L 55 425 M 125 355 L 195 355 M 195 355 L 265 355 M 335 355 L 335 425 M 405 355 L 475 355 M 475 355 L 475 425 M 545 355 L 545 425 M 55 425 L 125 425 M 125 425 L 195 425 M 195 425 L 265 425 M 265 425 L 335 425 M 335 425 L 405 425 M 405 425 L 475 425 M 475 425 L 545 425 M 55 75 L 55 75 M 125 75 L 125 75 M 195 75 L 195 75 M 265 75 L 265 75 M 335 75 L 335 75 M 405 75 L 405 75 M 475 75 L 475 75 M 545 75 L 545 75 M 55 145 L 55 145 M 125 145 L 125 145 M 195 145 L 195 145 M 265 145 L 265 145 M 335 145 L 335 145 M 405 145 L 405 145 M 475 145 L 475 145 M 545 145 L 545 145 M 55 215 L 55 215 M 125 215 L 125 215 M 195 215 L 195 215 M 265 215 L 265 215 M 335 215 L 335 215 M 405 215 L 405 215 M 475 215 L 475 215 M 545 215 L 545 215 M 55 285 L 55 285 M 125 285 L 125 285 M 195 285 L 195 285 M 265 285 L 265 285 M 335 285 L 335 285 M 405 285 L 405 285 M 475 285 L 475 285 M 545 285 L 545 285 M 55 355 L 55 355 M 125 355 L 125 355 M 195 355 L 195 355 M 265 355 L 265 355 M 335 355 L 335 355 M 405 355 L 405 355 M 475 355 L 475 355 M 545 355 L 545 355 M 55 425 L 55 425 M 125 425 L 125 425 M 195 425 L 195 425 M 265 425 L 265 425 M 335 425 L 335 425 M 405 425 L 405 425 M 475 425 L 475 425 M 545 425 L 545 425",
+    "solution_path": "M 545 425 L 545 355 L 545 285 L 545 215 L 475 215 L 405 215 L 335 215 L 335 145 L 335 75 L 265 75 L 195 75 L 125 75 L 55 75",
+    "width": 25,
     "complexity": "medium",
     "maze_type": "corridor_rect",
     "start_point": {
@@ -73,88 +73,18 @@
       },
       {
         "start": {
-          "x": 125,
-          "y": 75
-        },
-        "end": {
-          "x": 125,
-          "y": 145
-        }
-      },
-      {
-        "start": {
-          "x": 265,
-          "y": 75
-        },
-        "end": {
-          "x": 335,
-          "y": 75
-        }
-      },
-      {
-        "start": {
-          "x": 265,
+          "x": 195,
           "y": 75
         },
         "end": {
           "x": 265,
-          "y": 145
-        }
-      },
-      {
-        "start": {
-          "x": 335,
-          "y": 75
-        },
-        "end": {
-          "x": 405,
           "y": 75
         }
       },
       {
         "start": {
-          "x": 405,
+          "x": 195,
           "y": 75
-        },
-        "end": {
-          "x": 475,
-          "y": 75
-        }
-      },
-      {
-        "start": {
-          "x": 475,
-          "y": 75
-        },
-        "end": {
-          "x": 545,
-          "y": 75
-        }
-      },
-      {
-        "start": {
-          "x": 545,
-          "y": 75
-        },
-        "end": {
-          "x": 545,
-          "y": 145
-        }
-      },
-      {
-        "start": {
-          "x": 55,
-          "y": 145
-        },
-        "end": {
-          "x": 55,
-          "y": 215
-        }
-      },
-      {
-        "start": {
-          "x": 125,
-          "y": 145
         },
         "end": {
           "x": 195,
@@ -163,6 +93,106 @@
       },
       {
         "start": {
+          "x": 265,
+          "y": 75
+        },
+        "end": {
+          "x": 335,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 75
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 75
+        },
+        "end": {
+          "x": 475,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 75
+        },
+        "end": {
+          "x": 405,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 75
+        },
+        "end": {
+          "x": 545,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 75
+        },
+        "end": {
+          "x": 475,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 75
+        },
+        "end": {
+          "x": 545,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 145
+        },
+        "end": {
+          "x": 125,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 145
+        },
+        "end": {
+          "x": 55,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 145
+        },
+        "end": {
+          "x": 125,
+          "y": 215
+        }
+      },
+      {
+        "start": {
           "x": 195,
           "y": 145
         },
@@ -173,12 +203,22 @@
       },
       {
         "start": {
-          "x": 335,
+          "x": 195,
           "y": 145
         },
         "end": {
-          "x": 405,
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
           "y": 145
+        },
+        "end": {
+          "x": 265,
+          "y": 215
         }
       },
       {
@@ -197,16 +237,6 @@
           "y": 145
         },
         "end": {
-          "x": 475,
-          "y": 145
-        }
-      },
-      {
-        "start": {
-          "x": 405,
-          "y": 145
-        },
-        "end": {
           "x": 405,
           "y": 215
         }
@@ -214,20 +244,20 @@
       {
         "start": {
           "x": 475,
-          "y": 145
-        },
-        "end": {
-          "x": 475,
-          "y": 215
-        }
-      },
-      {
-        "start": {
-          "x": 545,
           "y": 145
         },
         "end": {
           "x": 545,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 145
+        },
+        "end": {
+          "x": 475,
           "y": 215
         }
       },
@@ -237,8 +267,8 @@
           "y": 215
         },
         "end": {
-          "x": 125,
-          "y": 215
+          "x": 55,
+          "y": 285
         }
       },
       {
@@ -273,26 +303,6 @@
       },
       {
         "start": {
-          "x": 265,
-          "y": 215
-        },
-        "end": {
-          "x": 335,
-          "y": 215
-        }
-      },
-      {
-        "start": {
-          "x": 265,
-          "y": 215
-        },
-        "end": {
-          "x": 265,
-          "y": 285
-        }
-      },
-      {
-        "start": {
           "x": 335,
           "y": 215
         },
@@ -309,16 +319,6 @@
         "end": {
           "x": 475,
           "y": 215
-        }
-      },
-      {
-        "start": {
-          "x": 405,
-          "y": 215
-        },
-        "end": {
-          "x": 405,
-          "y": 285
         }
       },
       {
@@ -347,16 +347,6 @@
           "y": 285
         },
         "end": {
-          "x": 125,
-          "y": 285
-        }
-      },
-      {
-        "start": {
-          "x": 55,
-          "y": 285
-        },
-        "end": {
           "x": 55,
           "y": 355
         }
@@ -367,8 +357,18 @@
           "y": 285
         },
         "end": {
-          "x": 125,
-          "y": 355
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 265,
+          "y": 285
         }
       },
       {
@@ -393,6 +393,16 @@
       },
       {
         "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
           "x": 405,
           "y": 285
         },
@@ -403,12 +413,22 @@
       },
       {
         "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 405,
+          "y": 355
+        }
+      },
+      {
+        "start": {
           "x": 475,
           "y": 285
         },
         "end": {
-          "x": 475,
-          "y": 355
+          "x": 545,
+          "y": 285
         }
       },
       {
@@ -433,8 +453,78 @@
       },
       {
         "start": {
+          "x": 55,
+          "y": 355
+        },
+        "end": {
+          "x": 55,
+          "y": 425
+        }
+      },
+      {
+        "start": {
           "x": 125,
           "y": 355
+        },
+        "end": {
+          "x": 195,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 265,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 355
+        },
+        "end": {
+          "x": 545,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 425
         },
         "end": {
           "x": 125,
@@ -443,81 +533,31 @@
       },
       {
         "start": {
-          "x": 195,
-          "y": 355
-        },
-        "end": {
-          "x": 265,
-          "y": 355
-        }
-      },
-      {
-        "start": {
-          "x": 195,
-          "y": 355
-        },
-        "end": {
-          "x": 195,
-          "y": 425
-        }
-      },
-      {
-        "start": {
-          "x": 265,
-          "y": 355
-        },
-        "end": {
-          "x": 265,
-          "y": 425
-        }
-      },
-      {
-        "start": {
-          "x": 335,
-          "y": 355
-        },
-        "end": {
-          "x": 405,
-          "y": 355
-        }
-      },
-      {
-        "start": {
-          "x": 335,
-          "y": 355
-        },
-        "end": {
-          "x": 335,
-          "y": 425
-        }
-      },
-      {
-        "start": {
-          "x": 405,
-          "y": 355
-        },
-        "end": {
-          "x": 475,
-          "y": 355
-        }
-      },
-      {
-        "start": {
-          "x": 55,
-          "y": 425
-        },
-        "end": {
-          "x": 125,
-          "y": 425
-        }
-      },
-      {
-        "start": {
           "x": 125,
           "y": 425
         },
         "end": {
           "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 425
+        },
+        "end": {
+          "x": 265,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 425
+        },
+        "end": {
+          "x": 335,
           "y": 425
         }
       },
@@ -555,30 +595,28 @@
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
+    "cell_size": 70,
+    "grid_rows": 6,
+    "grid_cols": 8,
+    "shape": "rect",
+    "avoid_items": [
       {
-        "x": 55,
-        "y": 145,
-        "emoji": "🪙",
+        "x": 545,
+        "y": 355,
+        "emoji": "🐡",
         "on_solution": true
       },
       {
-        "x": 125,
-        "y": 145,
-        "emoji": "🪙",
-        "on_solution": false
+        "x": 475,
+        "y": 215,
+        "emoji": "🐡",
+        "on_solution": true
       },
       {
-        "x": 265,
-        "y": 425,
-        "emoji": "🪙",
-        "on_solution": false
-      },
-      {
-        "x": 265,
+        "x": 335,
         "y": 145,
-        "emoji": "🪙",
-        "on_solution": false
+        "emoji": "🐡",
+        "on_solution": true
       }
     ]
   },

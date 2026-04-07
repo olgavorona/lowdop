@@ -1,10 +1,11 @@
 import SwiftUI
-import AVFoundation
 
 /// A parental gate that presents a randomized math problem.
 /// Required by Apple Kids Category guidelines (1.3) to guard
 /// external links, IAP, and settings areas.
 struct ParentalGateView: View {
+    @EnvironmentObject var ttsService: TTSService
+
     enum Purpose {
         case paywall
         case settings
@@ -28,6 +29,7 @@ struct ParentalGateView: View {
             case .account: return "person.circle.fill"
             }
         }
+
     }
 
     let purpose: Purpose
@@ -38,7 +40,6 @@ struct ParentalGateView: View {
     @State private var b: Int
     @State private var answer = ""
     @State private var showError = false
-    @State private var audioPlayer: AVAudioPlayer?
 
     init(purpose: Purpose = .settings, onSuccess: @escaping () -> Void, onCancel: @escaping () -> Void) {
         self.purpose = purpose
@@ -103,7 +104,7 @@ struct ParentalGateView: View {
                 .padding(.horizontal, 40)
 
                 Button(action: {
-                    audioPlayer?.stop()
+                    ttsService.stop()
                     onCancel()
                 }) {
                     Text("Go Back")
@@ -119,16 +120,16 @@ struct ParentalGateView: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .onAppear {
-            playVoiceover()
+            ttsService.playAudio("parental_gate.mp3")
         }
         .onDisappear {
-            audioPlayer?.stop()
+            ttsService.stop()
         }
     }
 
     private func checkAnswer() {
         if let entered = Int(answer), entered == a + b {
-            audioPlayer?.stop()
+            ttsService.stop()
             onSuccess()
         } else {
             showError = true
@@ -136,18 +137,6 @@ struct ParentalGateView: View {
             a = Int.random(in: 2...9)
             b = Int.random(in: 2...9)
             answer = ""
-        }
-    }
-
-    private func playVoiceover() {
-        guard let url = Bundle.main.url(forResource: "parental_gate", withExtension: "mp3", subdirectory: "audio") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.play()
-        } catch {
-            print("[ParentalGate] Failed to play voiceover: \(error)")
         }
     }
 }

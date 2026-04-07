@@ -74,6 +74,7 @@ struct RootView: View {
                 }
                 .environmentObject(preferences)
                 .environmentObject(subscriptionManager)
+                .environmentObject(ttsService)
             }
     }
 

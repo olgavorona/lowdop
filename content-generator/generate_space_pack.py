@@ -502,11 +502,16 @@ def generate_space_variants(output_dir: Path):
 
     # Add or replace space_adventures pack entry
     packs = [p for p in manifest.get("packs", []) if p.get("id") != "space_adventures"]
+    alternating_space_stories = [
+        story
+        for pair in zip(range(31, 41), range(21, 31))
+        for story in pair
+    ]
     packs.append({
         "id": "space_adventures",
         "title": "Denny in Space",
         "free_stories": 0,
-        "stories": list(range(21, 41)),
+        "stories": alternating_space_stories,
     })
     manifest["packs"] = packs
 

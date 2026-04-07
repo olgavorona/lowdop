@@ -378,6 +378,25 @@ class ShapeMask:
         return mask
 
     @staticmethod
+    def shell(rows: int, cols: int) -> set:
+        """Scallop shell shape — broad rounded fan with a narrower hinged base."""
+        mask = set()
+        for r in range(rows):
+            progress = r / max(rows - 1, 1)
+            if progress < 0.14:
+                width_ratio = 0.18 + progress * 1.1
+            else:
+                eased = (progress - 0.14) / 0.86
+                width_ratio = 0.94 - 0.58 * (eased ** 0.82)
+            width = max(2, int(cols * width_ratio))
+            center_shift = int((0.5 - progress) * cols * 0.04)
+            start_c = (cols - width) // 2 + center_shift
+            for c in range(start_c, start_c + width):
+                if 0 <= c < cols:
+                    mask.add((r, c))
+        return mask
+
+    @staticmethod
     def rocket(rows: int, cols: int) -> set:
         """Rocket ship — pointed nose cone, rectangular body, flared fins at base."""
         mask = set()
@@ -783,6 +802,7 @@ class FullMazeGenerator:
         "mountain": ShapeMask.mountain,
         "diamond": ShapeMask.diamond,
         "circle": ShapeMask.circle,
+        "shell": ShapeMask.shell,
         "moon": ShapeMask.moon,
         "rocket": ShapeMask.rocket,
     }

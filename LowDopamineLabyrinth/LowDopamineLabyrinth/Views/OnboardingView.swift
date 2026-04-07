@@ -24,6 +24,7 @@ final class OnboardingViewModel: ObservableObject {
 struct OnboardingView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var subscriptionManager: SubscriptionManager
+    @EnvironmentObject var ttsService: TTSService
 
     var onComplete: (() -> Void)? = nil
 
@@ -55,7 +56,7 @@ struct OnboardingView: View {
 
                 // Pages
                 TabView(selection: $viewModel.currentPage) {
-                    OnboardingPage1()
+                    OnboardingPage1(onComplete: advancePage, onSkip: advancePage)
                         .tag(0)
                     OnboardingPage2()
                         .tag(1)
@@ -83,7 +84,7 @@ struct OnboardingView: View {
                 .animation(.easeInOut, value: currentPage)
 
                 // Next button (hidden on last page — it has its own CTAs)
-                if !viewModel.isOnLastPage {
+                if !viewModel.isOnLastPage && currentPage != 0 {
                     Button(action: advancePage) {
                         Text("Next")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -135,32 +136,174 @@ struct OnboardingView: View {
 // MARK: - Screen 1: Draw the Path
 
 private struct OnboardingPage1: View {
-    var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
+    @EnvironmentObject var ttsService: TTSService
 
-            bundleImage("onboarding_draw")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 500)
-                .cornerRadius(20)
-                .padding(.horizontal, 32)
-                .padding(.bottom, 32)
+    let onComplete: () -> Void
+    let onSkip: () -> Void
+
+    @StateObject private var tutorialViewModel = LabyrinthViewModel(labyrinth: onboardingTutorialLabyrinth)
+    @State private var didAdvance = false
+    @State private var didPlayVoiceover = false
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Spacer(minLength: 12)
 
             Text("Draw the Path")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
-                .padding(.bottom, 12)
 
-            Text("Use your finger or Apple Pencil\nto trace the route")
+            Text("Use your finger or Apple Pencil to trace the route.")
                 .font(.system(size: 17, design: .rounded))
                 .foregroundColor(AppColor.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
 
-            Spacer()
+            OnboardingTutorialMazeCard(viewModel: tutorialViewModel)
+                .frame(maxWidth: 620)
+                .frame(height: 360)
+                .padding(.horizontal, 24)
+
+            Spacer(minLength: 8)
+
+            Button(action: onSkip) {
+                Text("Skip for Now")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(AppColor.textSecondary)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 46)
+                    .background(Color.white)
+                    .cornerRadius(14)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                    )
+            }
+            .padding(.horizontal, 40)
+            .padding(.bottom, 28)
         }
         .padding(.horizontal, 24)
+        .onAppear {
+            tutorialViewModel.reset()
+            guard !didPlayVoiceover else { return }
+            didPlayVoiceover = true
+            ttsService.playAudio("onboarding_trace_intro.mp3")
+        }
+        .onDisappear {
+            ttsService.stop()
+        }
+        .onChange(of: tutorialViewModel.isCompleted) { completed in
+            guard completed, !didAdvance else { return }
+            didAdvance = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                onComplete()
+                didAdvance = false
+            }
+        }
+    }
+
+}
+
+private struct OnboardingTutorialMazeCard: View {
+    @ObservedObject var viewModel: LabyrinthViewModel
+
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: "#DFF4FF") ?? .blue.opacity(0.18),
+                                Color.white,
+                                Color(hex: "#E9FFF4") ?? .green.opacity(0.12)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24)
+                            .stroke(Color.white.opacity(0.85), lineWidth: 1.5)
+                    )
+                    .shadow(color: .black.opacity(0.06), radius: 12, y: 4)
+
+                ZStack {
+                    OceanPatternView()
+                        .opacity(0.08)
+
+                    viewModel.mazePath
+                        .stroke(
+                            Color(hex: "#15A6C7") ?? .blue,
+                            style: StrokeStyle(lineWidth: 16 * viewModel.scale, lineCap: .round, lineJoin: .round)
+                        )
+
+                    viewModel.mazePath
+                        .stroke(
+                            Color.white.opacity(0.95),
+                            style: StrokeStyle(lineWidth: 10 * viewModel.scale, lineCap: .round, lineJoin: .round)
+                        )
+
+                    CharacterMarkerView(
+                        character: viewModel.labyrinth.characterStart,
+                        scale: max(viewModel.scale, 1.0),
+                        isStart: true,
+                        clipToCircle: true
+                    )
+                    .position(viewModel.startPoint)
+
+                    CharacterMarkerView(
+                        character: viewModel.labyrinth.characterEnd,
+                        scale: max(viewModel.scale, 1.0),
+                        isStart: false,
+                        clipToCircle: false
+                    )
+                    .position(viewModel.endPoint)
+
+                    if !viewModel.hasStartedDrawing && !viewModel.isCompleted {
+                        OnboardingStartHint()
+                            .position(x: viewModel.startPoint.x + 42, y: viewModel.startPoint.y - 34)
+                    }
+
+                    DrawingCanvas(viewModel: viewModel, tolerance: 1.0)
+
+                }
+                .padding(18)
+            }
+            .onAppear {
+                viewModel.canvasSize = CGSize(width: geo.size.width - 36, height: geo.size.height - 36)
+                viewModel.setupValidator(tolerance: 1.0)
+            }
+            .onChange(of: geo.size) { newSize in
+                viewModel.canvasSize = CGSize(width: newSize.width - 36, height: newSize.height - 36)
+                viewModel.setupValidator(tolerance: 1.0)
+            }
+        }
+    }
+}
+
+private struct OnboardingStartHint: View {
+    @State private var pulse = false
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "hand.point.left.fill")
+                .font(.system(size: 12, weight: .bold))
+            Text("Start here")
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+        }
+        .foregroundColor(.white)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 7)
+        .background(AppColor.accentGreen)
+        .cornerRadius(12)
+        .scaleEffect(pulse ? 1.05 : 0.95)
+        .shadow(color: AppColor.accentGreen.opacity(0.35), radius: pulse ? 10 : 4)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+                pulse = true
+            }
+        }
     }
 }
 
@@ -477,6 +620,71 @@ private func bundleImage(_ name: String) -> Image {
     }
     return Image(systemName: "photo")
 }
+
+private let onboardingTutorialLabyrinth = Labyrinth(
+    id: "onboarding_tutorial_easy",
+    ageRange: "3-6",
+    difficulty: "easy",
+    theme: "ocean",
+    title: "Draw the Path",
+    storySetup: "Denny is ready to show how tracing works.",
+    instruction: "Draw the path with your finger or Apple Pencil.",
+    ttsInstruction: "Draw the path with your finger or Apple Pencil. Start at the green go marker.",
+    characterStart: LabyrinthCharacter(
+        type: "character",
+        description: "Denny the crab at the start",
+        position: "left",
+        name: nil,
+        imageAsset: "denny"
+    ),
+    characterEnd: LabyrinthCharacter(
+        type: "character",
+        description: "Finn cheering at the finish",
+        position: "right",
+        name: "Finn",
+        imageAsset: "finn"
+    ),
+    educationalQuestion: "",
+    funFact: "",
+    completionMessage: "Nice work!",
+    pathData: PathData(
+        svgPath: "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 320 L 160 320 M 20 180 L 20 320 M 160 180 L 300 180 M 300 180 L 300 320 M 300 180 L 440 180 M 300 180 L 300 320 M 580 180 L 580 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 440 320 L 440 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460 M 440 320 L 440 460",
+        solutionPath: "M 90 390 L 230 390 L 370 390 L 370 250 L 510 250 L 510 110",
+        width: 40,
+        complexity: "easy",
+        mazeType: "grid",
+        startPoint: PointData(x: 90, y: 390),
+        endPoint: PointData(x: 510, y: 110),
+        segments: [
+            SegmentData(start: PointData(x: 90, y: 110), end: PointData(x: 230, y: 110)),
+            SegmentData(start: PointData(x: 90, y: 110), end: PointData(x: 90, y: 250)),
+            SegmentData(start: PointData(x: 230, y: 110), end: PointData(x: 370, y: 110)),
+            SegmentData(start: PointData(x: 370, y: 110), end: PointData(x: 510, y: 110)),
+            SegmentData(start: PointData(x: 510, y: 110), end: PointData(x: 510, y: 250)),
+            SegmentData(start: PointData(x: 90, y: 250), end: PointData(x: 230, y: 250)),
+            SegmentData(start: PointData(x: 230, y: 250), end: PointData(x: 230, y: 390)),
+            SegmentData(start: PointData(x: 370, y: 250), end: PointData(x: 510, y: 250)),
+            SegmentData(start: PointData(x: 370, y: 250), end: PointData(x: 370, y: 390)),
+            SegmentData(start: PointData(x: 510, y: 250), end: PointData(x: 510, y: 390)),
+            SegmentData(start: PointData(x: 90, y: 390), end: PointData(x: 230, y: 390)),
+            SegmentData(start: PointData(x: 230, y: 390), end: PointData(x: 370, y: 390)),
+        ],
+        canvasWidth: 600,
+        canvasHeight: 500,
+        controlPoints: [],
+        items: nil,
+        avoidItems: nil
+    ),
+    visualTheme: VisualTheme(
+        backgroundColor: "#6CCFF6",
+        decorativeElements: ["waves", "bubbles"]
+    ),
+    location: "Tutorial Reef",
+    audioInstruction: nil,
+    audioCompletion: nil,
+    itemRule: nil,
+    itemEmoji: nil
+)
 
 // MARK: - DifficultyCard (used by LabyrinthGridView + OnboardingPage4)
 

@@ -297,12 +297,13 @@ final class GameViewModelTests: XCTestCase {
         let progress = ProgressTracker()
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
-        // Stories 1-3 are free
+        // The first 3 ocean stories in manifest order are free: 1, 11, 2.
         XCTAssertFalse(vm.isStoryLocked(1), "Story 1 should be unlocked for free user")
+        XCTAssertFalse(vm.isStoryLocked(11), "Story 11 should be unlocked for free user")
         XCTAssertFalse(vm.isStoryLocked(2), "Story 2 should be unlocked for free user")
-        XCTAssertFalse(vm.isStoryLocked(3), "Story 3 should be unlocked for free user")
 
-        // Stories 4-20 are locked
+        // Later stories in the pack order are locked.
+        XCTAssertTrue(vm.isStoryLocked(3), "Story 3 should be locked for free user")
         XCTAssertTrue(vm.isStoryLocked(4), "Story 4 should be locked for free user")
         XCTAssertTrue(vm.isStoryLocked(10), "Story 10 should be locked for free user")
         XCTAssertTrue(vm.isStoryLocked(20), "Story 20 should be locked for free user")

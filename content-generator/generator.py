@@ -599,15 +599,15 @@ ADVENTURE_STORIES = {
         "title": "Denny's Coral Bits",
         "character_end": "daddy_reef",
         "location": "sandy_shore",
-        "item_rule": "collect",
+        "item_rule": "avoid",
         "item_emoji": "\U0001fab8",
         "shape": "mountain",
-        "story_setup": "Colorful bits of coral have washed up on the shore! Daddy Reef wants Denny to collect them to build a new reef garden.",
-        "instruction": "Collect all the coral pieces as you draw a path to Daddy Reef!",
-        "tts_instruction": "Daddy Reef needs coral pieces! Help Denny pick up every colorful coral bit on the beach on the way to Daddy Reef.",
-        "educational_question": "Did you know coral is alive? What kind of animal is it?",
+        "story_setup": "Sharp coral branches are sticking up all across the sandy shore. Denny needs to weave carefully between them to reach Daddy Reef without getting poked.",
+        "instruction": "Avoid the sharp coral branches and reach Daddy Reef safely!",
+        "tts_instruction": "Sharp coral is covering the beach path. Help Denny avoid every coral branch and find the safe way to Daddy Reef.",
+        "educational_question": "Why should ocean animals be careful around broken coral?",
         "fun_fact": "Coral reefs are home to 25% of all ocean life! Tiny animals called polyps build the reef by creating hard skeletons around themselves.",
-        "completion_message": "Denny collected all the coral! Daddy Reef will build an amazing reef garden!",
+        "completion_message": "Denny slipped past every sharp coral branch and reached Daddy Reef safely. What a careful little explorer!",
     },
     "015": {
         "title": "Denny's Starfish Search",
@@ -638,18 +638,18 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny found all the clams! Bubbles is ready for a feast!",
     },
     "017": {
-        "title": "Denny's Seaweed Harvest",
+        "title": "Denny's Seaweed Shortcut",
         "character_end": "shelly",
         "location": "kelp_forest",
-        "item_rule": "collect",
+        "item_rule": "avoid",
         "item_emoji": "\U0001f33f",
         "shape": "diamond",
-        "story_setup": "Shelly needs seaweed for a special recipe! Denny is helping gather the freshest pieces from the kelp forest.",
-        "instruction": "Collect all the seaweed as you make your way to Shelly!",
-        "tts_instruction": "Shelly needs seaweed for cooking! Help Denny pick up every piece of seaweed in the kelp forest on the way to Shelly.",
+        "story_setup": "Long tangles of seaweed are drifting across the shortcut to Shelly. Denny has to slip around the swaying strands without getting tangled up.",
+        "instruction": "Avoid the drifting seaweed tangles and reach Shelly!",
+        "tts_instruction": "Seaweed is floating across the shortcut. Help Denny avoid the tangles and find the clear path to Shelly.",
         "educational_question": "Do you know any foods that are made with seaweed?",
         "fun_fact": "Seaweed is a superfood! It's used to make sushi wraps, ice cream, and even toothpaste. Kelp can grow up to 2 feet per day!",
-        "completion_message": "Denny gathered all the seaweed! Shelly can make her special recipe now!",
+        "completion_message": "Denny dodged every swaying seaweed tangle and reached Shelly without getting stuck. Shelly gave a proud turtle grin.",
     },
     "018": {
         "title": "Denny's Kelp Harvest",
@@ -680,18 +680,18 @@ ADVENTURE_STORIES = {
         "completion_message": "Denny found all the treasure! What an amazing adventure with Finn!",
     },
     "020": {
-        "title": "Denny's Coin Collection",
+        "title": "Denny Dodges the Pufferfish",
         "character_end": "pearl",
         "location": "bubble_lagoon",
-        "item_rule": "collect",
-        "item_emoji": "\U0001fa99",
+        "item_rule": "avoid",
+        "item_emoji": "\U0001f421",
         "shape": "rect",
-        "story_setup": "Old pirate coins have sunk to the bottom of the lagoon! Denny and Pearl are on a mission to collect them all.",
-        "instruction": "Collect all the coins as you draw a path to reach Pearl!",
-        "tts_instruction": "Pirate treasure! Help Denny pick up every gold coin in the lagoon on the way to Pearl.",
-        "educational_question": "If you found pirate treasure, what would you buy with it?",
-        "fun_fact": "Real pirate coins were called pieces of eight! They were made of silver and could be cut into eight pieces to make change.",
-        "completion_message": "Denny collected all the coins! Pearl and Denny are rich!",
+        "story_setup": "Round pufferfish are bobbing through Bubble Lagoon and blocking the path to Pearl. Denny needs to swim around them carefully all the way to the end.",
+        "instruction": "Avoid the pufferfish and find the safe path to Pearl!",
+        "tts_instruction": "Pufferfish are floating through the lagoon. Help Denny avoid every pufferfish and swim safely to Pearl.",
+        "educational_question": "Why do pufferfish puff up when they feel scared?",
+        "fun_fact": "Pufferfish puff up with water to look bigger when they are frightened. That helps warn other animals to stay back.",
+        "completion_message": "Denny swam safely past every pufferfish and reached Pearl at the end of the lagoon. Pearl cheered for his careful swimming!",
     },
 }
 
@@ -711,6 +711,7 @@ SHAPE_GRID_SCALE = {
     "triangle": 1.5,
     "diamond": 1.5,
     "circle": 1.8,
+    "shell": 1.55,
 }
 
 STORY_POSITIONS = {
@@ -774,6 +775,9 @@ def generate_adventure_variants(output_dir: Path):
             grid_scale = SHAPE_GRID_SCALE.get(shape, 1.0)
             rows = max(base_rows, round(base_rows * grid_scale))
             cols = max(base_cols, round(base_cols * grid_scale))
+            if item_rule == "avoid":
+                rows = max(rows, 5)
+                cols = max(cols, 7)
 
             print(f"  Generating {variant_id} ({diff_name} {rows}x{cols} {item_rule} {item_emoji})...")
 
