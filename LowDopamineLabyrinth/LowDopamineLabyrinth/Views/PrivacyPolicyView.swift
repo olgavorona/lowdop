@@ -11,7 +11,7 @@ struct PrivacyPolicyView: View {
                         Text("Privacy Policy")
                             .font(.system(size: 24, weight: .bold, design: .rounded))
 
-                        Text("Last updated: February 24, 2026")
+                        Text("Last updated: April 14, 2026")
                             .font(.system(size: 13, design: .rounded))
                             .foregroundColor(.secondary)
 
@@ -31,26 +31,29 @@ struct PrivacyPolicyView: View {
                     section("Local Storage") {
                         Text("The App stores a small amount of non-personal data on your device only (never transmitted):")
                         bullet("Selected difficulty level")
-                        bullet("Sound preference (on/off)")
+                        bullet("Narration preference (on/off)")
+                        bullet("Whether onboarding has been completed")
                         bullet("Completed labyrinth progress")
-                        bullet("Subscription status")
-                        Text("This data stays on your device and is never sent to us or any third party.")
+                        Text("This data is stored on your device using local app storage. We do not use it to identify you.")
                     }
 
                     section("Third-Party Services") {
-                        Text("The only third-party service used is TelemetryDeck for anonymous analytics (see below). The App does not contain ads of any kind.")
+                        Text("The App does not contain ads. The App uses:")
+                        bullet("TelemetryDeck for anonymous analytics")
+                        bullet("Apple's App Store / StoreKit for optional purchases, purchase restoration, and subscription management")
                     }
 
                     section("Analytics") {
-                        Text("We use TelemetryDeck to collect anonymous usage statistics (e.g., which mazes are played, which difficulty levels are popular). TelemetryDeck does not collect personal information, IP addresses, or device identifiers. All data is fully anonymous and cannot be linked to any individual user. Learn more at telemetrydeck.com.")
+                        Text("We use TelemetryDeck to collect anonymous usage statistics, such as onboarding steps, gameplay events, difficulty selection, and which paywall entry point was used. We use this information to understand which parts of the App are helpful and which need improvement.")
+                        Text("We do not send names, email addresses, photos, recordings, contacts, or precise location through analytics. Learn more at telemetrydeck.com.")
                     }
 
                     section("In-App Purchases") {
-                        Text("The App offers optional subscriptions processed entirely through Apple's App Store. We do not receive or store any payment information. Purchase decisions are protected by a parental gate.")
+                        Text("The App offers optional subscriptions and a lifetime purchase processed through Apple's App Store. We do not receive or store your full payment information. Purchase decisions are protected by a parental gate.")
                     }
 
                     section("Audio Content") {
-                        Text("Pre-recorded audio narration is bundled with the App. For future content, audio files may be downloaded from our servers. No personal data is sent during these downloads.")
+                        Text("Audio narration used by the App is bundled with the App itself. The App does not record your voice and does not collect audio from your device.")
                     }
 
                     section("Children's Privacy (COPPA)") {
@@ -58,11 +61,11 @@ struct PrivacyPolicyView: View {
                     }
 
                     section("Data Sharing") {
-                        Text("We do not share any data with third parties. Period.")
+                        Text("We do not sell personal data and we do not share personal information for advertising. Limited app activity data is sent to TelemetryDeck for anonymous analytics, and purchase-related information is processed by Apple when you use in-app purchases.")
                     }
 
                     section("Data Retention") {
-                        Text("All App data is stored locally on your device. You can delete all App data at any time by deleting the App from your device.")
+                        Text("Local app data remains on your device until you remove the App or clear the device data. Analytics data is retained by TelemetryDeck according to their service practices. Purchase records are retained by Apple according to App Store policies.")
                     }
 
                     section("Changes to This Policy") {
