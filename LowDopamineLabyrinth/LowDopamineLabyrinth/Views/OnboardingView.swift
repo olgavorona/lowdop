@@ -282,11 +282,6 @@ private struct OnboardingTutorialMazeCard: View {
                     )
                     .position(viewModel.endPoint)
 
-                    if !viewModel.hasStartedDrawing && !viewModel.isCompleted {
-                        OnboardingStartHint()
-                            .position(x: viewModel.startPoint.x + 42, y: viewModel.startPoint.y - 34)
-                    }
-
                     DrawingCanvas(viewModel: viewModel, tolerance: 1.0)
 
                 }

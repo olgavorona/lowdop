@@ -9,15 +9,22 @@ struct CharacterMarkerView: View {
     var clipToCircle: Bool = true
 
     private var markerSize: CGFloat {
-        (isStart ? 32 : 80) * scale
+        80 * scale
     }
 
     var body: some View {
-        VStack(spacing: 2 * scale) {
+        VStack(spacing: 4 * scale) {
+            // Green arrow above start character (replaces circle + GO label)
+            if isStart {
+                Image(systemName: "arrowtriangle.down.fill")
+                    .font(.system(size: max(10, 16 * scale)))
+                    .foregroundColor(AppColor.endMarkerGreen)
+            }
+
             Group {
                 if let imageAsset = character.imageAsset,
                    UIImage(named: imageAsset) != nil {
-                    if clipToCircle {
+                    if clipToCircle && !isStart {
                         Image(imageAsset)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -25,10 +32,7 @@ struct CharacterMarkerView: View {
                             .clipShape(Circle())
                             .overlay(
                                 Circle()
-                                    .strokeBorder(
-                                        isStart ? (AppColor.endMarkerGreen) : Color.white,
-                                        lineWidth: 2 * scale
-                                    )
+                                    .strokeBorder(Color.white, lineWidth: 2 * scale)
                             )
                             .shadow(color: .black.opacity(0.2), radius: 3 * scale, y: 1 * scale)
                     } else {
@@ -43,16 +47,8 @@ struct CharacterMarkerView: View {
                 }
             }
 
-            // Label below marker
-            if isStart {
-                Text("GO")
-                    .font(.system(size: max(9, 10 * scale), weight: .black, design: .rounded))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 4 * scale)
-                    .padding(.vertical, 1 * scale)
-                    .background(AppColor.endMarkerGreen)
-                    .cornerRadius(4 * scale)
-            } else if let name = character.name {
+            // Name label for end character only
+            if !isStart, let name = character.name {
                 Text(name)
                     .font(.system(size: max(10, 13 * scale), weight: .bold, design: .rounded))
                     .foregroundColor(.white)
@@ -76,7 +72,7 @@ struct CharacterMarkerView: View {
                     .overlay(
                         Circle()
                             .strokeBorder(
-                                isStart ? (AppColor.endMarkerGreen) : Color.white,
+                                isStart ? Color.clear : Color.white,
                                 lineWidth: 2 * scale
                             )
                     )
@@ -84,18 +80,9 @@ struct CharacterMarkerView: View {
                     .font(.system(size: markerSize * 0.55))
             }
         } else if isStart {
-            ZStack {
-                Circle()
-                    .fill(Color(hex: "#E74C3C") ?? .red)
-                    .frame(width: 28 * scale, height: 28 * scale)
-                    .overlay(
-                        Circle()
-                            .strokeBorder(AppColor.endMarkerGreen, lineWidth: 2 * scale)
-                    )
-                Triangle()
-                    .fill(Color.white)
-                    .frame(width: 12 * scale, height: 12 * scale)
-            }
+            Circle()
+                .fill(Color(hex: "#E74C3C") ?? .red)
+                .frame(width: markerSize, height: markerSize)
         } else {
             StarShape(points: 5, innerRatio: 0.45)
                 .fill(Color(hex: "#F1C40F") ?? .yellow)
