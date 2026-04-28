@@ -270,7 +270,8 @@ private struct OnboardingTutorialMazeCard: View {
                         character: viewModel.labyrinth.characterStart,
                         scale: max(viewModel.scale, 1.0),
                         isStart: true,
-                        clipToCircle: true
+                        clipToCircle: true,
+                        arrowAngle: viewModel.startArrowAngle
                     )
                     .position(viewModel.startPoint)
 

@@ -195,7 +195,8 @@ struct LabyrinthGameView: View {
             character: viewModel.labyrinth.characterStart,
             scale: viewModel.scale,
             isStart: true,
-            clipToCircle: true
+            clipToCircle: true,
+            arrowAngle: viewModel.startArrowAngle
         )
         .position(viewModel.startPoint)
     }

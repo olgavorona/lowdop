@@ -7,6 +7,8 @@ struct CharacterMarkerView: View {
     let scale: CGFloat
     let isStart: Bool
     var clipToCircle: Bool = true
+    /// Direction arrow shown on start character, pointing toward the maze path.
+    var arrowAngle: Angle? = nil
 
     private var markerSize: CGFloat {
         80 * scale
@@ -14,13 +16,6 @@ struct CharacterMarkerView: View {
 
     var body: some View {
         VStack(spacing: 4 * scale) {
-            // Green flag above start character (replaces circle + GO label)
-            if isStart {
-                Image(systemName: "flag.fill")
-                    .font(.system(size: max(10, 16 * scale)))
-                    .foregroundColor(AppColor.endMarkerGreen)
-            }
-
             Group {
                 if let imageAsset = character.imageAsset,
                    UIImage(named: imageAsset) != nil {
@@ -41,9 +36,11 @@ struct CharacterMarkerView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: markerSize, height: markerSize)
                             .shadow(color: .black.opacity(0.3), radius: 4 * scale, y: 2 * scale)
+                            .overlay(alignment: .center) { directionArrow }
                     }
                 } else {
                     fallbackMarker
+                        .overlay(alignment: .center) { directionArrow }
                 }
             }
 
@@ -57,6 +54,23 @@ struct CharacterMarkerView: View {
                     .background(Color.black.opacity(0.5))
                     .cornerRadius(4 * scale)
             }
+        }
+    }
+
+    /// Green arrow overlaid at the edge of the character, rotated toward the maze path.
+    @ViewBuilder
+    private var directionArrow: some View {
+        if isStart, let angle = arrowAngle {
+            let radius = markerSize / 2 + max(8, 10 * scale)
+            Image(systemName: "arrow.right.circle.fill")
+                .font(.system(size: max(16, 22 * scale), weight: .bold))
+                .foregroundStyle(AppColor.endMarkerGreen, Color.white)
+                .shadow(color: .black.opacity(0.2), radius: 2)
+                .rotationEffect(angle)
+                .offset(
+                    x: CGFloat(cos(angle.radians)) * radius,
+                    y: CGFloat(sin(angle.radians)) * radius
+                )
         }
     }
 

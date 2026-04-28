@@ -79,6 +79,21 @@ class LabyrinthViewModel: ObservableObject {
         return "\(emoji) \(collectedItemIndices.count)/\(totalItemCount)"
     }
 
+    /// Angle from start point toward the first segment of the solution path.
+    /// Used to orient the start-character direction arrow.
+    var startArrowAngle: Angle {
+        let parts = labyrinth.pathData.solutionPath
+            .split(separator: " ").map(String.init)
+        guard parts.count >= 6,
+              parts[0] == "M",
+              let x1 = Double(parts[1]), let y1 = Double(parts[2]),
+              parts[3] == "L",
+              let x2 = Double(parts[4]), let y2 = Double(parts[5]) else {
+            return .degrees(0)
+        }
+        return Angle(radians: atan2(y2 - y1, x2 - x1))
+    }
+
     init(labyrinth: Labyrinth, completionRadiusBase: CGFloat = 30) {
         self.labyrinth = labyrinth
         self.cachedContentBounds = labyrinth.contentBounds
