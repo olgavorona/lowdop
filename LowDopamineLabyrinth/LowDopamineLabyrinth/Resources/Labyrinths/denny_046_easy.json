@@ -26,11 +26,11 @@
   "fun_fact": "Many forest animals eat berries, but some berries are only safe for animals. People should only eat berries when a grown-up knows they are safe.",
   "completion_message": "Every blueberry made it safely to Finn. He shared the berry snack with Maya and Denny under the pine tree.",
   "path_data": {
-    "svg_path": "M 260 50 L 340 50 M 340 50 L 340 130 M 260 50 L 260 130 M 180 130 L 260 130 M 260 130 L 260 210 M 180 130 L 180 210 M 260 130 L 260 210 M 340 130 L 420 130 M 420 130 L 420 210 M 100 210 L 180 210 M 100 290 L 180 290 M 100 210 L 100 290 M 340 210 L 340 290 M 260 290 L 340 290 M 340 210 L 340 290 M 420 210 L 500 210 M 500 210 L 500 290 M 420 290 L 500 290 M 180 370 L 260 370 M 180 290 L 180 370 M 260 290 L 340 290 M 420 290 L 420 370 M 340 370 L 420 370 M 340 370 L 340 450 M 260 450 L 340 450 M 260 370 L 260 450",
+    "svg_path": "M 300 90 L 300 170 M 220 170 L 220 250 M 300 170 L 380 170 M 300 170 L 300 250 M 380 170 L 380 250 M 140 250 L 220 250 M 220 250 L 300 250 M 220 250 L 220 330 M 380 250 L 460 250 M 380 250 L 380 330 M 220 330 L 300 330 M 300 330 L 380 330 M 300 330 L 300 410 M 300 90 L 300 90 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 460 250 L 460 250 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 300 410 L 300 410",
     "solution_path": "M 300 410 L 300 330 L 220 330 L 220 250 L 300 250 L 300 170 L 300 90",
     "width": 40,
     "complexity": "easy",
-    "maze_type": "shaped_circle",
+    "maze_type": "corridor_circle",
     "start_point": {
       "x": 300,
       "y": 410

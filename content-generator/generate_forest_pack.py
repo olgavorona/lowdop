@@ -375,6 +375,15 @@ FOREST_STORY_POSITIONS = {
     "060": {"start": "bottom_left", "end": "top_right"},
 }
 
+FOREST_COLLECT_SHAPES = {
+    "043": "tree",
+    "046": "circle",
+    "049": "triangle",
+    "052": "mountain",
+    "055": "diamond",
+    "058": "tree",
+}
+
 
 def points_to_segments(points: list[tuple[float, float]]) -> list[dict]:
     segments = []
@@ -677,7 +686,42 @@ def generate_forest_variants(output_dir: Path, stories: dict, difficulty_names: 
             try:
                 random.seed(f"forest-{story_num_str}-{diff_name}")
 
-                if maze_style == "organic":
+                if item_rule == "collect" and maze_style != "leaf":
+                    item_count = FOREST_ITEM_COUNTS[diff_name]
+                    collect_shape = FOREST_COLLECT_SHAPES.get(story_num_str, shape)
+                    grid_scale = SHAPE_GRID_SCALE.get(collect_shape, 1.0)
+                    rows = max(base_rows, round(base_rows * grid_scale))
+                    cols = max(base_cols, round(base_cols * grid_scale))
+                    raw = maze_gen.generate_maze(
+                        difficulty=diff_name,
+                        age=4,
+                        shape=collect_shape,
+                        canvas_width=600,
+                        canvas_height=500,
+                        override_rows=rows,
+                        override_cols=cols,
+                        render_style="corridor",
+                        start_position=start_pos,
+                        end_position=end_pos,
+                        item_rule=item_rule,
+                        item_count=item_count,
+                        item_emoji=item_emoji,
+                    )
+                    maze_data = {
+                        "svg_path": raw.get("svg_path", ""),
+                        "solution_path": raw.get("solution_path", ""),
+                        "width": path_width,
+                        "complexity": diff_name,
+                        "maze_type": raw.get("maze_type", "corridor_tree"),
+                        "start_point": raw.get("start_point", {}),
+                        "end_point": raw.get("end_point", {}),
+                        "segments": raw.get("segments", []),
+                        "canvas_width": raw.get("canvas_width", 600),
+                        "canvas_height": raw.get("canvas_height", 500),
+                        "control_points": raw.get("control_points", []),
+                        "items": raw.get("items", []),
+                    }
+                elif maze_style == "organic":
                     maze_data = generate_organic(
                         diff_name,
                         canvas_width=600,

@@ -36,6 +36,39 @@ Update it at the end of any meaningful work session when there is unfinished wor
 
 ## Latest Entry
 
+## 2026-04-28 - Claude
+
+### What Changed
+- Added `PaywallSource` enum to `Analytics.swift` (`onboarding`, `bookshelf`, `levels`, `account`) — paywall analytics now carry a `source` field everywhere.
+- `PaywallView` now requires a `source: PaywallSource` parameter; all call sites updated (`BookshelfView`, `LabyrinthGridView`, `LabyrinthListView`, `AccountView`).
+- Replaced stale `Paywall.shown` events fired on entry tap with `Paywall.entryTapped` (pre-gate) + `Paywall.shown` (on view appear) for accurate funnel tracking.
+- Added onboarding analytics: `Onboarding.tutorialShown`, `Onboarding.tutorialCompleted`, `Onboarding.tutorialSkipped`, `Onboarding.startFreeTapped`.
+- `LabyrinthViewModel.init` now accepts `completionRadiusBase: CGFloat` (default 30); onboarding tutorial uses 80 so the end zone is easier to hit.
+- Updated several forest labyrinth JSON files (043, 049, 058) with improved maze path data.
+- Deleted completed `work/pack-monetization/` feature folder.
+
+### Current State
+- Analytics funnel is fully instrumented: shown → entryTapped → purchaseAttempted → purchaseSucceeded across all sources.
+- All `PaywallView` presentations pass a source; no compile errors expected.
+- Onboarding tutorial completion radius is 80 (was 30) — much easier to trigger.
+- Forest maze content for 043/049/058 regenerated.
+
+### Open Issues
+- `BookshelfView` still has presentational pack metadata (`title`, gradients, icon) hardcoded locally.
+- Space imagesets (`finn_space`, `stella_space`, `pearl_space`, `shelly_space`) still emit actool warnings for extra files.
+- No unit tests for `LabyrinthLoader` manifest decoding or bundle integrity.
+
+### Next Steps
+- Run in simulator to confirm paywall analytics fire correctly and onboarding tutorial is completable.
+- If desired, move pack visual metadata out of `BookshelfView` into manifest.
+- Clean unassigned extra files from space imagesets to remove actool warnings.
+
+### Commands / References
+- `xcodebuild build -project LowDopamineLabyrinth/LowDopamineLabyrinth.xcodeproj -scheme LowDopamineLabyrinth -destination 'platform=iOS Simulator,id=D1CE5302-B5A3-4999-B0FE-FE96E86BA3F1'`
+- `LowDopamineLabyrinth/LowDopamineLabyrinth/Services/Analytics.swift`
+- `LowDopamineLabyrinth/LowDopamineLabyrinth/Views/PaywallView.swift`
+- `LowDopamineLabyrinth/LowDopamineLabyrinth/Views/OnboardingView.swift`
+
 ## 2026-04-05 15:06 +07 - Codex
 
 ### What Changed

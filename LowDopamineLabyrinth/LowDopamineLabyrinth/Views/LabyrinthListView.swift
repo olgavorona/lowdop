@@ -144,7 +144,7 @@ struct LabyrinthListView: View {
             )
         }
         .sheet(isPresented: $showPaywall) {
-            PaywallView()
+            PaywallView(source: .levels)
         }
     }
 
@@ -153,6 +153,7 @@ struct LabyrinthListView: View {
         guard nextIndex < gameViewModel.labyrinths.count else { return }
 
         if gameViewModel.isLabyrinthLocked(at: nextIndex) {
+            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.levels.rawValue])
             showParentalGate = true
             return
         }

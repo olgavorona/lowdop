@@ -16,6 +16,7 @@ class LabyrinthViewModel: ObservableObject {
 
     /// Cached tight bounding box — computed once on init.
     private let cachedContentBounds: CGRect
+    private let completionRadiusBase: CGFloat
 
     var scale: CGFloat {
         guard canvasSize.width > 0 else { return 1.0 }
@@ -78,9 +79,10 @@ class LabyrinthViewModel: ObservableObject {
         return "\(emoji) \(collectedItemIndices.count)/\(totalItemCount)"
     }
 
-    init(labyrinth: Labyrinth) {
+    init(labyrinth: Labyrinth, completionRadiusBase: CGFloat = 30) {
         self.labyrinth = labyrinth
         self.cachedContentBounds = labyrinth.contentBounds
+        self.completionRadiusBase = completionRadiusBase
     }
 
     func setupValidator(tolerance: CGFloat) {
@@ -113,7 +115,7 @@ class LabyrinthViewModel: ObservableObject {
         }
 
         // Completion: reach near the end character (radius matches visible character size)
-        if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: 30 * scale) {
+        if validator.isNearEnd(point, endPoint: labyrinth.pathData.endPoint, radius: completionRadiusBase * scale) {
             isCompleted = true
             showSolution = true
         }

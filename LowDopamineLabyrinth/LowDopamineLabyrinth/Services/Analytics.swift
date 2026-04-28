@@ -1,5 +1,12 @@
 import TelemetryDeck
 
+enum PaywallSource: String {
+    case onboarding
+    case bookshelf
+    case levels
+    case account
+}
+
 enum Analytics {
     static func configure() {
         let config = TelemetryDeck.Config(appID: "738FCE64-D2AE-483A-B5FB-CCCB26BD5E01")

@@ -26,11 +26,11 @@
   "fun_fact": "Beavers build dams to make calm ponds where they can build safe homes called lodges.",
   "completion_message": "With every stick collected, Birch's new dam grew stronger. Denny felt like a real forest builder.",
   "path_data": {
-    "svg_path": "M 244 26 L 356 26 M 356 26 L 356 138 M 244 26 L 244 138 M 132 138 L 244 138 M 132 138 L 132 250 M 356 138 L 356 250 M 244 250 L 356 250 M 244 250 L 244 362 M 132 250 L 132 362 M 244 250 L 356 250 M 244 250 L 244 362 M 356 250 L 468 250 M 468 250 L 468 362 M 20 362 L 132 362 M 20 474 L 132 474 M 20 362 L 20 474 M 132 474 L 244 474 M 244 474 L 356 474 M 356 474 L 468 474 M 468 362 L 580 362 M 580 362 L 580 474 M 468 474 L 580 474",
+    "svg_path": "M 300 82 L 300 194 M 188 194 L 300 194 M 188 194 L 188 306 M 188 306 L 188 418 M 300 306 L 412 306 M 300 306 L 300 418 M 412 306 L 412 418 M 76 418 L 188 418 M 188 418 L 300 418 M 300 418 L 412 418 M 412 418 L 524 418 M 300 82 L 300 82 M 188 194 L 188 194 M 300 194 L 300 194 M 188 306 L 188 306 M 300 306 L 300 306 M 412 306 L 412 306 M 76 418 L 76 418 M 188 418 L 188 418 M 300 418 L 300 418 M 412 418 L 412 418 M 524 418 L 524 418",
     "solution_path": "M 412 418 L 300 418 L 188 418 L 188 306 L 188 194 L 300 194 L 300 82",
     "width": 40,
     "complexity": "easy",
-    "maze_type": "shaped_mountain",
+    "maze_type": "corridor_mountain",
     "start_point": {
       "x": 412,
       "y": 418

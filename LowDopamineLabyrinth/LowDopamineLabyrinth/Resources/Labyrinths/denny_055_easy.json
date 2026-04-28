@@ -26,11 +26,11 @@
   "fun_fact": "Wild rabbits like to eat grasses, clover, leaves, and tender plants they can find close to the ground.",
   "completion_message": "Every clover leaf made Clover's lunch pile bigger. Clover gave Denny a happy hop and shared the shadiest spot in the meadow.",
   "path_data": {
-    "svg_path": "M 207 64 L 300 64 M 300 64 L 300 157 M 207 64 L 207 157 M 114 157 L 207 157 M 114 250 L 207 250 M 114 157 L 114 250 M 207 250 L 300 250 M 300 157 L 393 157 M 393 157 L 393 250 M 21 250 L 114 250 M 21 343 L 114 343 M 21 250 L 21 343 M 114 250 L 207 250 M 207 250 L 300 250 M 393 250 L 486 250 M 393 343 L 486 343 M 486 250 L 579 250 M 579 250 L 579 343 M 486 343 L 579 343 M 114 436 L 207 436 M 114 343 L 114 436 M 300 343 L 300 436 M 207 436 L 300 436 M 393 343 L 393 436 M 300 436 L 393 436 M 300 343 L 300 436",
+    "svg_path": "M 253 110 L 253 203 M 160 203 L 253 203 M 253 203 L 346 203 M 346 203 L 346 296 M 67 296 L 160 296 M 160 296 L 253 296 M 160 296 L 160 389 M 253 296 L 346 296 M 253 296 L 253 389 M 346 296 L 439 296 M 346 296 L 346 389 M 439 296 L 532 296 M 160 389 L 253 389 M 253 110 L 253 110 M 160 203 L 160 203 M 253 203 L 253 203 M 346 203 L 346 203 M 67 296 L 67 296 M 160 296 L 160 296 M 253 296 L 253 296 M 346 296 L 346 296 M 439 296 L 439 296 M 532 296 L 532 296 M 160 389 L 160 389 M 253 389 L 253 389 M 346 389 L 346 389",
     "solution_path": "M 253 389 L 253 296 L 346 296 L 346 203 L 253 203 L 253 110",
     "width": 40,
     "complexity": "easy",
-    "maze_type": "shaped_diamond",
+    "maze_type": "corridor_diamond",
     "start_point": {
       "x": 253,
       "y": 389

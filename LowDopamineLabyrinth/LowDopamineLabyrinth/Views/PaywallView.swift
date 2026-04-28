@@ -4,6 +4,7 @@ import StoreKit
 struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
+    let source: PaywallSource
     @State private var isPurchasing = false
     @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
     @State private var showCancelPrompt = false
@@ -49,7 +50,7 @@ struct PaywallView: View {
 
                 HStack(spacing: 12) {
                     Button("Restore Purchases") {
-                        Analytics.send("Paywall.restoreTapped")
+                        Analytics.send("Paywall.restoreTapped", with: ["source": source.rawValue])
                         Task { await subscriptionManager.restorePurchases() }
                     }
                     Text("|")
@@ -108,7 +109,7 @@ struct PaywallView: View {
                 .padding(.top, 4)
 
                 Button(action: {
-                    Analytics.send("Paywall.dismissed")
+                    Analytics.send("Paywall.dismissed", with: ["source": source.rawValue])
                     dismiss()
                 }) {
                     Text("Maybe Later")
@@ -125,6 +126,9 @@ struct PaywallView: View {
         .background(AppColor.background)
         .task {
             await subscriptionManager.loadProducts()
+        }
+        .onAppear {
+            Analytics.send("Paywall.shown", with: ["source": source.rawValue])
         }
         .overlay {
             if showCancelPrompt {
@@ -156,13 +160,19 @@ struct PaywallView: View {
     private func executePurchase() {
         guard let product = selectedProduct else { return }
         let isLifetime = product.id == "labyrinth_unlimited_lifetime1"
-        Analytics.send("Paywall.purchaseAttempted", with: ["productId": product.id])
+        Analytics.send("Paywall.purchaseAttempted", with: [
+            "productId": product.id,
+            "source": source.rawValue
+        ])
         Task {
             isPurchasing = true
             let success = await subscriptionManager.purchase(product)
             isPurchasing = false
             if success {
-                Analytics.send("Paywall.purchaseSucceeded", with: ["productId": product.id])
+                Analytics.send("Paywall.purchaseSucceeded", with: [
+                    "productId": product.id,
+                    "source": source.rawValue
+                ])
                 if isLifetime && subscriptionManager.activeSubscriptionProductId != nil {
                     showCancelPrompt = true
                 } else {

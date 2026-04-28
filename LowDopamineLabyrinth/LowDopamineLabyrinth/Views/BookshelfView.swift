@@ -127,7 +127,7 @@ struct BookshelfView: View {
             )
         }
         .sheet(isPresented: $showPaywall) {
-            PaywallView()
+            PaywallView(source: .bookshelf)
         }
         .sheet(isPresented: $showAccount) {
             NavigationStack {
@@ -228,9 +228,9 @@ struct BookshelfView: View {
 
         return Button(action: {
             if isLocked {
+                Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.bookshelf.rawValue])
                 parentalGateAction = .paywall
                 showParentalGate = true
-                Analytics.send("Paywall.shown", with: ["trigger": "bookshelf"])
             } else {
                 Analytics.send("Bookshelf.packTapped", with: ["pack": config.id])
                 onPackSelected(config.id)

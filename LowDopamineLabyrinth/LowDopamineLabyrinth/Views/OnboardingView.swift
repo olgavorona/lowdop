@@ -68,13 +68,18 @@ struct OnboardingView: View {
                         selectedProductId: $selectedProductId,
                         isPurchasing: $isPurchasing,
                         onGetFullAccess: {
+                            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.onboarding.rawValue])
                             let product = subscriptionManager.products.first { $0.id == selectedProductId }
                                 ?? subscriptionManager.products.last
                             pendingProduct = product
                             showParentalGate = true
                         },
-                        onStartFree: completeOnboarding,
+                        onStartFree: {
+                            Analytics.send("Onboarding.startFreeTapped")
+                            completeOnboarding()
+                        },
                         onRestore: {
+                            Analytics.send("Paywall.restoreTapped", with: ["source": PaywallSource.onboarding.rawValue])
                             Task { await subscriptionManager.restorePurchases() }
                         }
                     )
@@ -106,9 +111,19 @@ struct OnboardingView: View {
                 guard let product = pendingProduct else { return }
                 Task {
                     isPurchasing = true
+                    Analytics.send("Paywall.purchaseAttempted", with: [
+                        "productId": product.id,
+                        "source": PaywallSource.onboarding.rawValue
+                    ])
                     let success = await subscriptionManager.purchase(product)
                     isPurchasing = false
-                    if success { completeOnboarding() }
+                    if success {
+                        Analytics.send("Paywall.purchaseSucceeded", with: [
+                            "productId": product.id,
+                            "source": PaywallSource.onboarding.rawValue
+                        ])
+                        completeOnboarding()
+                    }
                 }
             } onCancel: {
                 showParentalGate = false
@@ -141,7 +156,10 @@ private struct OnboardingPage1: View {
     let onComplete: () -> Void
     let onSkip: () -> Void
 
-    @StateObject private var tutorialViewModel = LabyrinthViewModel(labyrinth: onboardingTutorialLabyrinth)
+    @StateObject private var tutorialViewModel = LabyrinthViewModel(
+        labyrinth: onboardingTutorialLabyrinth,
+        completionRadiusBase: 80
+    )
     @State private var didAdvance = false
     @State private var didPlayVoiceover = false
 
@@ -166,7 +184,10 @@ private struct OnboardingPage1: View {
 
             Spacer(minLength: 8)
 
-            Button(action: onSkip) {
+            Button(action: {
+                Analytics.send("Onboarding.tutorialSkipped")
+                onSkip()
+            }) {
                 Text("Skip for Now")
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(AppColor.textSecondary)
@@ -185,6 +206,7 @@ private struct OnboardingPage1: View {
         .padding(.horizontal, 24)
         .onAppear {
             tutorialViewModel.reset()
+            Analytics.send("Onboarding.tutorialShown")
             guard !didPlayVoiceover else { return }
             didPlayVoiceover = true
             ttsService.playAudio("onboarding_trace_intro.mp3")
@@ -195,6 +217,7 @@ private struct OnboardingPage1: View {
         .onChange(of: tutorialViewModel.isCompleted) { completed in
             guard completed, !didAdvance else { return }
             didAdvance = true
+            Analytics.send("Onboarding.tutorialCompleted")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                 onComplete()
                 didAdvance = false
@@ -519,6 +542,9 @@ private struct OnboardingPage5: View {
             }
             .frame(height: 36)
             .padding(.bottom, 20)
+        }
+        .onAppear {
+            Analytics.send("Paywall.shown", with: ["source": PaywallSource.onboarding.rawValue])
         }
     }
 }

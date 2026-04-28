@@ -29,6 +29,7 @@ struct AccountView: View {
                             icon: "infinity",
                             color: AppColor.accentYellow
                         ) {
+                            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.account.rawValue])
                             showPaywall = true
                         }
 
@@ -82,7 +83,7 @@ struct AccountView: View {
             }
         }
         .sheet(isPresented: $showPaywall) {
-            PaywallView()
+            PaywallView(source: .account)
         }
     }
 
