@@ -23,7 +23,7 @@
     "image_asset": "maya_forest"
   },
   "educational_question": "Why do owls sleep during the day? Can you name other animals that are awake at night?",
-  "fun_fact": "Owls have special soft feathers that let them fly almost silently. But they have super-sharp hearing — even a tiny sound can wake them! Owls can turn their heads almost all the way around to look for sounds.",
+  "fun_fact": "Owls are nocturnal — they hunt at night because that is when many small animals like mice and voles are most active. Their huge eyes collect lots of light so they can see in the dark. Other nocturnal animals include bats, hedgehogs, and raccoons.",
   "completion_message": "Denny tiptoed all the way through without waking a single owl! Maya claps quietly so she doesn't wake them either. What a clever little crab!",
   "path_data": {
     "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 300 40 L 440 40 M 440 40 L 580 40 M 580 40 L 580 180 M 20 180 L 20 320 M 160 320 L 300 320 M 440 180 L 440 320 M 580 180 L 580 320 M 440 180 L 440 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 320 L 300 320 M 160 460 L 300 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460",

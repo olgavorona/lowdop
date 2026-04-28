@@ -22,7 +22,7 @@
     "image_asset": "ollie"
   },
   "educational_question": "What do you think grows in a kelp forest besides kelp?",
-  "fun_fact": "Kelp can grow up to two feet in just one day, making it one of the fastest-growing plants in the ocean.",
+  "fun_fact": "Besides kelp, many amazing creatures live in a kelp forest! Leopard sharks glide through the fronds, garibaldi fish glow bright orange, and sea otters wrap themselves in kelp to rest without drifting away.",
   "completion_message": "Great job helping Denny reach Ollie in the kelp forest!",
   "path_data": {
     "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 440 180 L 580 180 M 160 180 L 160 320 M 20 180 L 20 320 M 300 180 L 300 320 M 160 180 L 160 320 M 300 180 L 440 180 M 300 180 L 300 320 M 440 180 L 580 180 M 580 180 L 580 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 440 320 L 440 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460 M 440 320 L 440 460",
