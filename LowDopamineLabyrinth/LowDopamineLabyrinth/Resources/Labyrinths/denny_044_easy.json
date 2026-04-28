@@ -211,12 +211,12 @@
     "avoid_items": [
       {
         "x": 90,
-        "y": 250,
+        "y": 310,
         "emoji": "🦉",
         "on_solution": true
       },
       {
-        "x": 230,
+        "x": 430,
         "y": 110,
         "emoji": "🦉",
         "on_solution": true

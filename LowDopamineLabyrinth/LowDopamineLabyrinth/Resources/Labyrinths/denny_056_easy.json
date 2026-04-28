@@ -191,13 +191,13 @@
     "avoid_items": [
       {
         "x": 439,
-        "y": 296,
+        "y": 309,
         "emoji": "🌵",
         "on_solution": true
       },
       {
-        "x": 346,
-        "y": 203,
+        "x": 253,
+        "y": 190,
         "emoji": "🌵",
         "on_solution": true
       }

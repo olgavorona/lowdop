@@ -200,13 +200,13 @@
     ],
     "avoid_items": [
       {
-        "x": 220,
+        "x": 300,
         "y": 330,
         "emoji": "🐶",
         "on_solution": true
       },
       {
-        "x": 220,
+        "x": 300,
         "y": 170,
         "emoji": "🐶",
         "on_solution": true

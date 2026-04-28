@@ -693,19 +693,19 @@
     "avoid_items": [
       {
         "x": 93,
-        "y": 434,
+        "y": 363,
         "emoji": "🕸️",
         "on_solution": true
       },
       {
-        "x": 139,
-        "y": 296,
-        "emoji": "🕸️",
-        "on_solution": true
-      },
-      {
-        "x": 277,
+        "x": 254,
         "y": 250,
+        "emoji": "🕸️",
+        "on_solution": true
+      },
+      {
+        "x": 302,
+        "y": 158,
         "emoji": "🕸️",
         "on_solution": true
       }

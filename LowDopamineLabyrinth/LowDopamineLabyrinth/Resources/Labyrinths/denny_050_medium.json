@@ -682,20 +682,20 @@
     ],
     "avoid_items": [
       {
-        "x": 231,
+        "x": 197,
         "y": 434,
-        "emoji": "🐍",
-        "on_solution": true
-      },
-      {
-        "x": 139,
-        "y": 388,
         "emoji": "🐍",
         "on_solution": true
       },
       {
         "x": 185,
         "y": 296,
+        "emoji": "🐍",
+        "on_solution": true
+      },
+      {
+        "x": 277,
+        "y": 146,
         "emoji": "🐍",
         "on_solution": true
       }

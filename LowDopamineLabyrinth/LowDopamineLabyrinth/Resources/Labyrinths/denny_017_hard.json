@@ -1601,26 +1601,26 @@
     "shape": "diamond",
     "avoid_items": [
       {
-        "x": 286,
-        "y": 390,
+        "x": 258,
+        "y": 370,
         "emoji": "🌿",
         "on_solution": true
       },
       {
-        "x": 202,
-        "y": 334,
+        "x": 146,
+        "y": 312,
         "emoji": "🌿",
         "on_solution": true
       },
       {
-        "x": 118,
-        "y": 250,
+        "x": 146,
+        "y": 199,
         "emoji": "🌿",
         "on_solution": true
       },
       {
-        "x": 174,
-        "y": 166,
+        "x": 230,
+        "y": 113,
         "emoji": "🌿",
         "on_solution": true
       }

@@ -999,26 +999,26 @@
     "shape": "shell",
     "avoid_items": [
       {
-        "x": 280,
+        "x": 210,
         "y": 410,
         "emoji": "🪼",
         "on_solution": true
       },
       {
-        "x": 200,
-        "y": 370,
+        "x": 160,
+        "y": 293,
         "emoji": "🪼",
         "on_solution": true
       },
       {
-        "x": 200,
-        "y": 170,
+        "x": 160,
+        "y": 207,
         "emoji": "🪼",
         "on_solution": true
       },
       {
         "x": 240,
-        "y": 90,
+        "y": 120,
         "emoji": "🪼",
         "on_solution": true
       }

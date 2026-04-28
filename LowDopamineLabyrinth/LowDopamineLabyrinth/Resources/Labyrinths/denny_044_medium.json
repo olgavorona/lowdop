@@ -612,13 +612,13 @@
     ],
     "avoid_items": [
       {
-        "x": 125,
+        "x": 244,
         "y": 425,
         "emoji": "🦉",
         "on_solution": true
       },
       {
-        "x": 335,
+        "x": 426,
         "y": 145,
         "emoji": "🦉",
         "on_solution": true

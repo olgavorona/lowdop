@@ -661,20 +661,20 @@
     "shape": "mountain",
     "avoid_items": [
       {
-        "x": 440,
-        "y": 390,
-        "emoji": "🪸",
-        "on_solution": true
-      },
-      {
         "x": 384,
-        "y": 334,
+        "y": 387,
         "emoji": "🪸",
         "on_solution": true
       },
       {
         "x": 384,
         "y": 222,
+        "emoji": "🪸",
+        "on_solution": true
+      },
+      {
+        "x": 328,
+        "y": 113,
         "emoji": "🪸",
         "on_solution": true
       }

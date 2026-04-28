@@ -219,8 +219,8 @@
     "shape": "shell",
     "avoid_items": [
       {
-        "x": 300,
-        "y": 330,
+        "x": 180,
+        "y": 250,
         "emoji": "🪼",
         "on_solution": true
       }

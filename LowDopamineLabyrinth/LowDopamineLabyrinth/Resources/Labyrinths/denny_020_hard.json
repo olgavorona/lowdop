@@ -1561,26 +1561,26 @@
     "shape": "rect",
     "avoid_items": [
       {
-        "x": 514,
+        "x": 477,
         "y": 443,
         "emoji": "🐡",
         "on_solution": true
       },
       {
-        "x": 342,
-        "y": 400,
-        "emoji": "🐡",
-        "on_solution": true
-      },
-      {
-        "x": 342,
-        "y": 314,
+        "x": 385,
+        "y": 345,
         "emoji": "🐡",
         "on_solution": true
       },
       {
         "x": 299,
-        "y": 185,
+        "y": 154,
+        "emoji": "🐡",
+        "on_solution": true
+      },
+      {
+        "x": 121,
+        "y": 56,
         "emoji": "🐡",
         "on_solution": true
       }

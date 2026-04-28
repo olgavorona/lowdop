@@ -1754,26 +1754,26 @@
     ],
     "avoid_items": [
       {
-        "x": 482,
-        "y": 418,
-        "emoji": "🌵",
-        "on_solution": true
-      },
-      {
-        "x": 314,
+        "x": 391,
         "y": 446,
         "emoji": "🌵",
         "on_solution": true
       },
       {
-        "x": 118,
-        "y": 362,
+        "x": 162,
+        "y": 446,
         "emoji": "🌵",
         "on_solution": true
       },
       {
-        "x": 202,
-        "y": 250,
+        "x": 146,
+        "y": 290,
+        "emoji": "🌵",
+        "on_solution": true
+      },
+      {
+        "x": 251,
+        "y": 166,
         "emoji": "🌵",
         "on_solution": true
       }

@@ -962,20 +962,20 @@
     ],
     "avoid_items": [
       {
-        "x": 200,
+        "x": 270,
         "y": 370,
         "emoji": "🐶",
         "on_solution": true
       },
       {
-        "x": 280,
-        "y": 330,
+        "x": 265,
+        "y": 290,
         "emoji": "🐶",
         "on_solution": true
       },
       {
-        "x": 240,
-        "y": 250,
+        "x": 280,
+        "y": 170,
         "emoji": "🐶",
         "on_solution": true
       }

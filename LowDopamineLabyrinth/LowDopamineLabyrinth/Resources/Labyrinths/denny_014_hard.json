@@ -1392,25 +1392,25 @@
     "avoid_items": [
       {
         "x": 457,
-        "y": 407,
+        "y": 437,
         "emoji": "🪸",
         "on_solution": true
       },
       {
-        "x": 492,
+        "x": 490,
         "y": 302,
         "emoji": "🪸",
         "on_solution": true
       },
       {
         "x": 422,
-        "y": 232,
+        "y": 199,
         "emoji": "🪸",
         "on_solution": true
       },
       {
-        "x": 387,
-        "y": 127,
+        "x": 357,
+        "y": 92,
         "emoji": "🪸",
         "on_solution": true
       }

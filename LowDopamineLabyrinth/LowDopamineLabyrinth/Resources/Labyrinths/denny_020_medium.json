@@ -602,19 +602,19 @@
     "avoid_items": [
       {
         "x": 545,
-        "y": 355,
-        "emoji": "🐡",
-        "on_solution": true
-      },
-      {
-        "x": 475,
-        "y": 215,
+        "y": 345,
         "emoji": "🐡",
         "on_solution": true
       },
       {
         "x": 335,
-        "y": 145,
+        "y": 215,
+        "emoji": "🐡",
+        "on_solution": true
+      },
+      {
+        "x": 135,
+        "y": 75,
         "emoji": "🐡",
         "on_solution": true
       }

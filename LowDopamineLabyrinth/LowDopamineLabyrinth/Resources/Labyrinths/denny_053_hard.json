@@ -2704,26 +2704,26 @@
     ],
     "avoid_items": [
       {
-        "x": 396,
+        "x": 395,
         "y": 430,
         "emoji": "🐶",
         "on_solution": true
       },
       {
         "x": 468,
-        "y": 358,
+        "y": 318,
         "emoji": "🐶",
         "on_solution": true
       },
       {
-        "x": 492,
-        "y": 238,
+        "x": 444,
+        "y": 206,
         "emoji": "🐶",
         "on_solution": true
       },
       {
-        "x": 420,
-        "y": 166,
+        "x": 395,
+        "y": 70,
         "emoji": "🐶",
         "on_solution": true
       }
