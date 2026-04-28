@@ -14,9 +14,9 @@ struct CharacterMarkerView: View {
 
     var body: some View {
         VStack(spacing: 4 * scale) {
-            // Green arrow above start character (replaces circle + GO label)
+            // Green flag above start character (replaces circle + GO label)
             if isStart {
-                Image(systemName: "arrowtriangle.down.fill")
+                Image(systemName: "flag.fill")
                     .font(.system(size: max(10, 16 * scale)))
                     .foregroundColor(AppColor.endMarkerGreen)
             }
