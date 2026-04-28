@@ -30,7 +30,6 @@ struct OnboardingView: View {
 
     @StateObject private var viewModel = OnboardingViewModel()
     @State private var showParentalGate = false
-    @State private var pendingProduct: Product? = nil
     @State private var isPurchasing = false
     @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
 
@@ -62,8 +61,10 @@ struct OnboardingView: View {
                         .tag(1)
                     OnboardingPage3()
                         .tag(2)
-                    OnboardingPage4(onSelect: advancePage)
-                        .tag(3)
+                    OnboardingPage4(onSelect: {
+                        showParentalGate = true
+                    })
+                    .tag(3)
                     OnboardingPage5(
                         selectedProductId: $selectedProductId,
                         isPurchasing: $isPurchasing,
@@ -71,8 +72,23 @@ struct OnboardingView: View {
                             Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.onboarding.rawValue])
                             let product = subscriptionManager.products.first { $0.id == selectedProductId }
                                 ?? subscriptionManager.products.last
-                            pendingProduct = product
-                            showParentalGate = true
+                            guard let product else { return }
+                            Task {
+                                isPurchasing = true
+                                Analytics.send("Paywall.purchaseAttempted", with: [
+                                    "productId": product.id,
+                                    "source": PaywallSource.onboarding.rawValue
+                                ])
+                                let success = await subscriptionManager.purchase(product)
+                                isPurchasing = false
+                                if success {
+                                    Analytics.send("Paywall.purchaseSucceeded", with: [
+                                        "productId": product.id,
+                                        "source": PaywallSource.onboarding.rawValue
+                                    ])
+                                    completeOnboarding()
+                                }
+                            }
                         },
                         onStartFree: {
                             Analytics.send("Onboarding.startFreeTapped")
@@ -108,26 +124,9 @@ struct OnboardingView: View {
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(purpose: .paywall) {
                 showParentalGate = false
-                guard let product = pendingProduct else { return }
-                Task {
-                    isPurchasing = true
-                    Analytics.send("Paywall.purchaseAttempted", with: [
-                        "productId": product.id,
-                        "source": PaywallSource.onboarding.rawValue
-                    ])
-                    let success = await subscriptionManager.purchase(product)
-                    isPurchasing = false
-                    if success {
-                        Analytics.send("Paywall.purchaseSucceeded", with: [
-                            "productId": product.id,
-                            "source": PaywallSource.onboarding.rawValue
-                        ])
-                        completeOnboarding()
-                    }
-                }
+                advancePage()
             } onCancel: {
                 showParentalGate = false
-                pendingProduct = nil
             }
         }
         .task {
@@ -541,6 +540,15 @@ private struct OnboardingPage5: View {
                     .foregroundColor(AppColor.textTertiary)
             }
             .frame(height: 36)
+
+            // Legal links
+            HStack(spacing: 4) {
+                Link("Privacy Policy", destination: URL(string: "https://olgavorona.github.io/lowdop/privacy")!)
+                Text("·")
+                Link("Terms of Use", destination: URL(string: "https://olgavorona.github.io/lowdop/terms")!)
+            }
+            .font(.system(size: 12, design: .rounded))
+            .foregroundColor(AppColor.textTertiary)
             .padding(.bottom, 20)
         }
         .onAppear {
