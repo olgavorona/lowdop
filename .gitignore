@@ -47,6 +47,9 @@ content-generator/output/
 # Temporary
 new/
 
+# Handoff documents
+docs/handoff.md
+
 # API keys
 .env
 *.env

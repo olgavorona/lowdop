@@ -58,12 +58,16 @@ struct AccountView: View {
                 SectionHeader(title: "Legal")
 
                 VStack(spacing: 0) {
+                    Link(destination: URL(string: "https://olgavorona.github.io/lowdop/support")!) {
+                        AccountRow(title: "Support", icon: "questionmark.circle.fill")
+                    }
+                    Divider().padding(.leading, 44)
                     Link(destination: URL(string: "https://olgavorona.github.io/lowdop/privacy")!) {
                         AccountRow(title: "Privacy Policy", icon: "hand.raised.fill")
                     }
                     Divider().padding(.leading, 44)
                     Link(destination: URL(string: "https://olgavorona.github.io/lowdop/terms")!) {
-                        AccountRow(title: "Terms of Service", icon: "doc.text.fill")
+                        AccountRow(title: "Terms of Use", icon: "doc.text.fill")
                     }
                 }
                 .background(Color.white)
