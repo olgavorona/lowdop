@@ -150,4 +150,17 @@ final class OnboardingTests: XCTestCase {
         viewModel.currentPage = OnboardingViewModel.totalPages - 1
         XCTAssertTrue(viewModel.isOnLastPage)
     }
+
+    func testDifficultyPageRequiresParentalGateBeforeAdvance() {
+        let viewModel = OnboardingViewModel()
+
+        viewModel.currentPage = OnboardingViewModel.parentalGatePage
+        XCTAssertTrue(
+            viewModel.requiresParentalGateBeforeAdvance,
+            "Leaving the difficulty page must require the parental gate"
+        )
+
+        viewModel.currentPage = OnboardingViewModel.parentalGatePage - 1
+        XCTAssertFalse(viewModel.requiresParentalGateBeforeAdvance)
+    }
 }

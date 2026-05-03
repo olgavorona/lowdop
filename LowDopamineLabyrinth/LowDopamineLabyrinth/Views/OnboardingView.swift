@@ -7,11 +7,16 @@ import StoreKit
 /// Extracted to allow unit testing without SwiftUI environment.
 final class OnboardingViewModel: ObservableObject {
     static let totalPages: Int = 5
+    static let parentalGatePage: Int = 3
 
     @Published var currentPage: Int = 0
 
     var isOnLastPage: Bool {
         currentPage == Self.totalPages - 1
+    }
+
+    var requiresParentalGateBeforeAdvance: Bool {
+        currentPage == Self.parentalGatePage
     }
 
     func advance() {
@@ -61,9 +66,7 @@ struct OnboardingView: View {
                         .tag(1)
                     OnboardingPage3()
                         .tag(2)
-                    OnboardingPage4(onSelect: {
-                        showParentalGate = true
-                    })
+                    OnboardingPage4(onSelect: advancePage)
                     .tag(3)
                     OnboardingPage5(
                         selectedProductId: $selectedProductId,
@@ -137,6 +140,10 @@ struct OnboardingView: View {
     }
 
     private func advancePage() {
+        guard !viewModel.requiresParentalGateBeforeAdvance else {
+            showParentalGate = true
+            return
+        }
         withAnimation { viewModel.advance() }
     }
 
@@ -342,7 +349,6 @@ private struct OnboardingPage2: View {
                 .padding(.bottom, 12)
 
             VStack(spacing: 14) {
-                OnboardingFeatureRow(icon: "map.fill",       label: "10 unique ocean stories")
                 OnboardingFeatureRow(icon: "dial.low.fill",  label: "3 difficulty levels for every child")
                 OnboardingFeatureRow(icon: "star.fill",      label: "Collect treasures along the way")
                 OnboardingFeatureRow(icon: "arrow.clockwise",label: "New content added regularly")
