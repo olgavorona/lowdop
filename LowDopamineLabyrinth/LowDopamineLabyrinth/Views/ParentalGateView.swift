@@ -120,7 +120,8 @@ struct ParentalGateView: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .onAppear {
-            ttsService.playAudio("parental_gate.mp3")
+            ttsService.stop()
+            _ = ttsService.playAudio("parental_gate.mp3")
         }
         .onDisappear {
             ttsService.stop()

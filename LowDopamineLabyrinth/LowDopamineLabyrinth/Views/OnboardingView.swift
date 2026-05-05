@@ -9,6 +9,12 @@ final class OnboardingViewModel: ObservableObject {
     static let totalPages: Int = 5
     static let parentalGatePage: Int = 3
 
+    enum NavigationResult: Equatable {
+        case changed
+        case blockedByParentalGate
+        case unchanged
+    }
+
     @Published var currentPage: Int = 0
 
     var isOnLastPage: Bool {
@@ -19,8 +25,31 @@ final class OnboardingViewModel: ObservableObject {
         currentPage == Self.parentalGatePage
     }
 
-    func advance() {
+    func attemptAdvance() -> NavigationResult {
+        attemptNavigate(to: currentPage + 1)
+    }
+
+    func attemptNavigate(to requestedPage: Int) -> NavigationResult {
+        let clampedPage = min(max(requestedPage, 0), Self.totalPages - 1)
+
+        guard clampedPage != currentPage else {
+            return .unchanged
+        }
+
+        if currentPage == Self.parentalGatePage && clampedPage > currentPage {
+            return .blockedByParentalGate
+        }
+
+        currentPage = clampedPage
+        return .changed
+    }
+
+    func completeParentalGateAdvance() {
         currentPage = min(currentPage + 1, Self.totalPages - 1)
+    }
+
+    func completeParentalGateNavigation(to requestedPage: Int) {
+        currentPage = min(max(requestedPage, 0), Self.totalPages - 1)
     }
 }
 
@@ -37,9 +66,24 @@ struct OnboardingView: View {
     @State private var showParentalGate = false
     @State private var isPurchasing = false
     @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
+    @State private var tabSelection = 0
+    @State private var pendingPageAfterGate: Int?
+    @State private var tabViewResetToken = UUID()
+    @State private var didPlayTutorialVoiceover = false
 
     private var currentPage: Int { viewModel.currentPage }
     private let totalPages = OnboardingViewModel.totalPages
+    private var pageSelection: Binding<Int> {
+        Binding(
+            get: { tabSelection },
+            set: { requestedPage in
+                handleNavigationResult(
+                    viewModel.attemptNavigate(to: requestedPage),
+                    requestedPage: requestedPage
+                )
+            }
+        )
+    }
 
     var body: some View {
         ZStack {
@@ -59,8 +103,12 @@ struct OnboardingView: View {
                 .padding(.bottom, 8)
 
                 // Pages
-                TabView(selection: $viewModel.currentPage) {
-                    OnboardingPage1(onComplete: advancePage, onSkip: advancePage)
+                TabView(selection: pageSelection) {
+                    OnboardingPage1(
+                        onComplete: advancePage,
+                        onSkip: advancePage,
+                        didPlayVoiceover: $didPlayTutorialVoiceover
+                    )
                         .tag(0)
                     OnboardingPage2()
                         .tag(1)
@@ -104,6 +152,7 @@ struct OnboardingView: View {
                     )
                     .tag(4)
                 }
+                .id(tabViewResetToken)
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: currentPage)
 
@@ -126,11 +175,24 @@ struct OnboardingView: View {
         }
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(purpose: .paywall) {
+                let destination = pendingPageAfterGate ?? min(viewModel.currentPage + 1, totalPages - 1)
+                pendingPageAfterGate = nil
                 showParentalGate = false
-                advancePage()
+                withAnimation {
+                    viewModel.completeParentalGateNavigation(to: destination)
+                }
+                tabSelection = viewModel.currentPage
             } onCancel: {
+                pendingPageAfterGate = nil
                 showParentalGate = false
+                resetTabViewSelection()
             }
+        }
+        .onAppear {
+            tabSelection = viewModel.currentPage
+        }
+        .onChange(of: viewModel.currentPage) { newValue in
+            tabSelection = newValue
         }
         .task {
             if subscriptionManager.products.isEmpty {
@@ -140,11 +202,34 @@ struct OnboardingView: View {
     }
 
     private func advancePage() {
-        guard !viewModel.requiresParentalGateBeforeAdvance else {
+        let requestedPage = min(viewModel.currentPage + 1, totalPages - 1)
+        handleNavigationResult(
+            viewModel.attemptAdvance(),
+            requestedPage: requestedPage
+        )
+    }
+
+    private func handleNavigationResult(
+        _ result: OnboardingViewModel.NavigationResult,
+        requestedPage: Int
+    ) {
+        switch result {
+        case .changed:
+            showParentalGate = false
+            tabSelection = viewModel.currentPage
+        case .blockedByParentalGate:
+            pendingPageAfterGate = min(max(requestedPage, 0), totalPages - 1)
+            resetTabViewSelection()
             showParentalGate = true
-            return
+        case .unchanged:
+            resetTabViewSelection()
+            break
         }
-        withAnimation { viewModel.advance() }
+    }
+
+    private func resetTabViewSelection() {
+        tabSelection = viewModel.currentPage
+        tabViewResetToken = UUID()
     }
 
     private func completeOnboarding() {
@@ -161,13 +246,13 @@ private struct OnboardingPage1: View {
 
     let onComplete: () -> Void
     let onSkip: () -> Void
+    @Binding var didPlayVoiceover: Bool
 
     @StateObject private var tutorialViewModel = LabyrinthViewModel(
         labyrinth: onboardingTutorialLabyrinth,
         completionRadiusBase: 80
     )
     @State private var didAdvance = false
-    @State private var didPlayVoiceover = false
 
     var body: some View {
         VStack(spacing: 16) {

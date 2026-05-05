@@ -111,13 +111,13 @@ final class OnboardingTests: XCTestCase {
         let viewModel = OnboardingViewModel()
         XCTAssertEqual(viewModel.currentPage, 0, "Must start on page 0")
 
-        viewModel.advance()
+        XCTAssertEqual(viewModel.attemptAdvance(), .changed)
         XCTAssertEqual(viewModel.currentPage, 1)
 
-        viewModel.advance()
+        XCTAssertEqual(viewModel.attemptAdvance(), .changed)
         XCTAssertEqual(viewModel.currentPage, 2)
 
-        viewModel.advance()
+        XCTAssertEqual(viewModel.attemptAdvance(), .changed)
         XCTAssertEqual(viewModel.currentPage, 3)
     }
 
@@ -125,7 +125,11 @@ final class OnboardingTests: XCTestCase {
         let viewModel = OnboardingViewModel()
         // Advance past the end
         for _ in 0..<10 {
-            viewModel.advance()
+            if viewModel.currentPage == OnboardingViewModel.parentalGatePage {
+                viewModel.completeParentalGateAdvance()
+            } else {
+                _ = viewModel.attemptAdvance()
+            }
         }
         XCTAssertEqual(
             viewModel.currentPage,
@@ -162,5 +166,47 @@ final class OnboardingTests: XCTestCase {
 
         viewModel.currentPage = OnboardingViewModel.parentalGatePage - 1
         XCTAssertFalse(viewModel.requiresParentalGateBeforeAdvance)
+    }
+
+    func testDifficultyPageBlocksAdvanceUntilParentalGateSucceeds() {
+        let viewModel = OnboardingViewModel()
+        viewModel.currentPage = OnboardingViewModel.parentalGatePage
+
+        XCTAssertEqual(viewModel.attemptAdvance(), .blockedByParentalGate)
+        XCTAssertEqual(viewModel.currentPage, OnboardingViewModel.parentalGatePage)
+
+        viewModel.completeParentalGateNavigation(to: OnboardingViewModel.parentalGatePage + 1)
+        XCTAssertEqual(viewModel.currentPage, OnboardingViewModel.parentalGatePage + 1)
+    }
+
+    func testParentalGateSuccessCanJumpToStoredDestination() {
+        let viewModel = OnboardingViewModel()
+        viewModel.currentPage = OnboardingViewModel.parentalGatePage
+
+        viewModel.completeParentalGateNavigation(to: OnboardingViewModel.totalPages - 1)
+
+        XCTAssertEqual(viewModel.currentPage, OnboardingViewModel.totalPages - 1)
+    }
+
+    func testSwipeForwardFromDifficultyPageIsBlockedByParentalGate() {
+        let viewModel = OnboardingViewModel()
+        viewModel.currentPage = OnboardingViewModel.parentalGatePage
+
+        XCTAssertEqual(
+            viewModel.attemptNavigate(to: OnboardingViewModel.parentalGatePage + 1),
+            .blockedByParentalGate
+        )
+        XCTAssertEqual(viewModel.currentPage, OnboardingViewModel.parentalGatePage)
+    }
+
+    func testSwipeBackFromDifficultyPageDoesNotRequireParentalGate() {
+        let viewModel = OnboardingViewModel()
+        viewModel.currentPage = OnboardingViewModel.parentalGatePage
+
+        XCTAssertEqual(
+            viewModel.attemptNavigate(to: OnboardingViewModel.parentalGatePage - 1),
+            .changed
+        )
+        XCTAssertEqual(viewModel.currentPage, OnboardingViewModel.parentalGatePage - 1)
     }
 }
