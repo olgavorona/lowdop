@@ -631,22 +631,22 @@
     "shape": "diamond",
     "avoid_items": [
       {
-        "x": 231,
-        "y": 365,
+        "x": 95.0,
+        "y": 296.0,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 139,
-        "y": 250,
+        "x": 190.8,
+        "y": 204.0,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 231,
-        "y": 135,
+        "x": 277.0,
+        "y": 153.9,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

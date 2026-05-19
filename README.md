@@ -130,6 +130,27 @@ python generate_characters.py --install
 python validate_content.py
 ```
 
+### Edit avoid-item placement
+
+Use the local avoid editor when you want to manually place avoid items on existing maze branches:
+
+```bash
+python3 content-generator/avoid_editor.py
+```
+
+Then open `http://127.0.0.1:8123` in your browser.
+
+What it does:
+- loads only `item_rule = "avoid"` levels
+- shows the full maze and the solution path
+- lets you place or move only the `avoid_items`
+- saves directly into `LowDopamineLabyrinth/LowDopamineLabyrinth/Resources/Labyrinths/*.json`
+
+Current avoid targets used by the editor:
+- easy: `1`
+- medium: `3`
+- hard: `4`
+
 ### Maze types
 
 | Type | Ages | Description |

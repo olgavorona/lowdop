@@ -20,12 +20,16 @@ class UserPreferences: ObservableObject {
     }
 
     init() {
+        let arguments = ProcessInfo.processInfo.arguments
+        let isUITestCompletionFlow = arguments.contains("-uiTestShowCompletionForLastLevel")
         let savedLevel = defaults.string(forKey: "difficultyLevel") ?? DifficultyLevel.easy.rawValue
-        self.difficultyLevel = DifficultyLevel(rawValue: savedLevel) ?? .easy
-        self.ttsEnabled = defaults.bool(forKey: "ttsEnabled")
-        self.hasCompletedOnboarding = defaults.bool(forKey: "hasCompletedOnboarding")
+        self.difficultyLevel = isUITestCompletionFlow
+            ? .easy
+            : (DifficultyLevel(rawValue: savedLevel) ?? .easy)
+        self.ttsEnabled = isUITestCompletionFlow ? false : defaults.bool(forKey: "ttsEnabled")
+        self.hasCompletedOnboarding = isUITestCompletionFlow ? true : defaults.bool(forKey: "hasCompletedOnboarding")
 
-        if !defaults.bool(forKey: "ttsDefaultSet") {
+        if !isUITestCompletionFlow && !defaults.bool(forKey: "ttsDefaultSet") {
             self.ttsEnabled = true
             defaults.set(true, forKey: "ttsEnabled")
             defaults.set(true, forKey: "ttsDefaultSet")

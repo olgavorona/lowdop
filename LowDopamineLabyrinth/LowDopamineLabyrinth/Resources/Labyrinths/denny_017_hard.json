@@ -1601,28 +1601,28 @@
     "shape": "diamond",
     "avoid_items": [
       {
-        "x": 258,
-        "y": 370,
+        "x": 230.0,
+        "y": 360.5,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 146,
-        "y": 312,
+        "x": 345.0,
+        "y": 278.0,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 146,
-        "y": 199,
+        "x": 177.9,
+        "y": 222.0,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 230,
-        "y": 113,
+        "x": 336.0,
+        "y": 110.0,
         "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

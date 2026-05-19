@@ -174,32 +174,12 @@
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
-      {
-        "x": 346,
-        "y": 203,
-        "emoji": "🌵",
-        "on_solution": true
-      },
-      {
-        "x": 532,
-        "y": 389,
-        "emoji": "🌵",
-        "on_solution": false
-      }
-    ],
     "avoid_items": [
       {
-        "x": 439,
-        "y": 309,
+        "x": 170.0,
+        "y": 296.0,
         "emoji": "🌵",
-        "on_solution": true
-      },
-      {
-        "x": 253,
-        "y": 190,
-        "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

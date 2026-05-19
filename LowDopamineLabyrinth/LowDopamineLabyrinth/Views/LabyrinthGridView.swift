@@ -11,6 +11,7 @@ struct LabyrinthGridView: View {
     @State private var showPaywall = false
     @State private var pendingLabyrinth: Labyrinth? = nil
     @State private var parentalGateAction: ParentalGateAction = .account
+    @State private var didAutoOpenUITestLabyrinth = false
 
     var packId: String = "ocean_adventures"
 
@@ -57,6 +58,7 @@ struct LabyrinthGridView: View {
                             Text("Your Labyrinths")
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
                                 .foregroundColor(AppColor.textPrimary)
+                                .accessibilityIdentifier("grid.title")
                             Text("\(progressTracker.completedCount(in: gameViewModel.labyrinths)) of \(gameViewModel.labyrinths.count) completed")
                                 .font(.system(size: 15, design: .rounded))
                                 .foregroundColor(AppColor.textTertiary)
@@ -152,6 +154,7 @@ struct LabyrinthGridView: View {
         }
         .onAppear {
             gameViewModel.loadLabyrinths(packId: packId)
+            autoOpenUITestLabyrinthIfNeeded()
             Analytics.send("Grid.opened", with: [
                 "difficulty": preferences.difficultyLevel.rawValue,
                 "completedCount": String(progressTracker.completedCount(in: gameViewModel.labyrinths)),
@@ -217,6 +220,19 @@ struct LabyrinthGridView: View {
     private var progressFraction: CGFloat {
         guard !gameViewModel.labyrinths.isEmpty else { return 0 }
         return CGFloat(progressTracker.completedCount(in: gameViewModel.labyrinths)) / CGFloat(gameViewModel.labyrinths.count)
+    }
+
+    private func autoOpenUITestLabyrinthIfNeeded() {
+        guard !didAutoOpenUITestLabyrinth,
+              ProcessInfo.processInfo.arguments.contains("-uiTestShowCompletionForLastLevel"),
+              let lastLabyrinth = gameViewModel.labyrinths.last else {
+            return
+        }
+
+        didAutoOpenUITestLabyrinth = true
+        DispatchQueue.main.async {
+            gameViewModel.selectLabyrinth(lastLabyrinth)
+        }
     }
 }
 

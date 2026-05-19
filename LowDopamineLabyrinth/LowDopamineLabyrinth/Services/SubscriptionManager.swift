@@ -15,8 +15,14 @@ class SubscriptionManager: ObservableObject {
     private var transactionListener: Task<Void, Never>?
 
     init() {
+        let isUITestCompletionFlow = ProcessInfo.processInfo.arguments.contains("-uiTestShowCompletionForLastLevel")
+        if isUITestCompletionFlow {
+            isPremium = true
+        }
         transactionListener = listenForTransactions()
-        Task { await checkEntitlements() }
+        if !isUITestCompletionFlow {
+            Task { await checkEntitlements() }
+        }
     }
 
     deinit {

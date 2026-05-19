@@ -451,16 +451,10 @@
     "shape": "rect",
     "avoid_items": [
       {
-        "x": 460,
-        "y": 410,
+        "x": 302.8,
+        "y": 250.0,
         "emoji": "🐡",
-        "on_solution": true
-      },
-      {
-        "x": 60,
-        "y": 170,
-        "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

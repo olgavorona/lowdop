@@ -41,6 +41,7 @@ struct RootView: View {
     @ObservedObject var progressTracker: ProgressTracker
     @ObservedObject var ttsService: TTSService
     @StateObject private var gameViewModel: GameViewModel
+    @State private var didConfigureUITestEnvironment = false
 
     init(preferences: UserPreferences,
          subscriptionManager: SubscriptionManager,
@@ -64,7 +65,10 @@ struct RootView: View {
             .environmentObject(progressTracker)
             .environmentObject(ttsService)
             .environmentObject(gameViewModel)
-            .onAppear { requestLandscape() }
+            .onAppear {
+                configureUITestEnvironmentIfNeeded()
+                requestLandscape()
+            }
             .fullScreenCover(isPresented: Binding(
                 get: { !preferences.hasCompletedOnboarding },
                 set: { _ in }
@@ -82,5 +86,19 @@ struct RootView: View {
         guard let windowScene = UIApplication.shared.connectedScenes
                 .first(where: { $0 is UIWindowScene }) as? UIWindowScene else { return }
         windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscape))
+    }
+
+    private func configureUITestEnvironmentIfNeeded() {
+        guard !didConfigureUITestEnvironment else { return }
+        didConfigureUITestEnvironment = true
+
+        guard ProcessInfo.processInfo.arguments.contains("-uiTestShowCompletionForLastLevel") else {
+            return
+        }
+
+        preferences.hasCompletedOnboarding = true
+        preferences.ttsEnabled = false
+        preferences.difficultyLevel = .easy
+        subscriptionManager.isPremium = true
     }
 }

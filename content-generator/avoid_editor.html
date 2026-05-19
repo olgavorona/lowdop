@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avoid Editor</title>
+  <style>
+    :root {
+      --bg: #f3efe4;
+      --panel: #fffaf0;
+      --ink: #1f1a14;
+      --muted: #6a6257;
+      --path: #b5aa98;
+      --branch: #8f836f;
+      --solution: #2d7d6d;
+      --accent: #b33a2f;
+      --accent-soft: #f7d7d2;
+      --line: #d8cfbf;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #efe7d7 0%, var(--bg) 100%);
+      color: var(--ink);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      min-height: 100vh;
+    }
+    .panel {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 250, 240, 0.92);
+      backdrop-filter: blur(10px);
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+    .muted, .hint {
+      color: var(--muted);
+    }
+    .hint {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .group {
+      margin-top: 18px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .meta div, .status {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .status {
+      margin-top: 12px;
+      min-height: 46px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+    select, button {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      font: inherit;
+    }
+    select {
+      padding: 10px 12px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 11px 12px;
+      cursor: pointer;
+    }
+    button.primary {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+    button.warning {
+      background: var(--accent-soft);
+      border-color: #e8b4ac;
+    }
+    .canvas-wrap {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .canvas-card {
+      width: min(100%, 1100px);
+      background: rgba(255,255,255,0.6);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 20px 60px rgba(31, 26, 20, 0.08);
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      background: #fbf8f1;
+      display: block;
+      touch-action: none;
+    }
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      margin-top: 12px;
+      color: var(--muted);
+    }
+    .swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .dirty::after {
+      content: " • unsaved";
+      color: var(--accent);
+      font-weight: 600;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="panel">
+      <h1>Avoid Editor</h1>
+      <div class="muted">Place avoid items only on side branches, then save and go next.</div>
+
+      <div class="group">
+        <label for="levelSelect">Level</label>
+        <select id="levelSelect"></select>
+      </div>
+
+      <div class="meta">
+        <div><strong id="storyNumber">-</strong><br><span class="muted">Story</span></div>
+        <div><strong id="difficulty">-</strong><br><span class="muted">Difficulty</span></div>
+        <div><strong id="theme">-</strong><br><span class="muted">Theme</span></div>
+        <div><strong id="count">-</strong><br><span class="muted">Avoid count</span></div>
+      </div>
+
+      <div class="status" id="status">Loading…</div>
+
+      <div class="group hint">
+        Click an empty branch to add the next item. Click an existing red item to select it, then click another branch to move it.
+        <br><br>
+        `Undo` removes the last placed item. `Remove Selected` deletes the selected item.
+      </div>
+
+      <div class="buttons">
+        <button id="prevBtn">Prev</button>
+        <button id="nextBtn">Next</button>
+      </div>
+      <div class="buttons">
+        <button class="primary" id="saveBtn">Save</button>
+        <button class="primary" id="saveNextBtn">Save + Next</button>
+      </div>
+      <div class="buttons">
+        <button id="undoBtn">Undo</button>
+        <button class="warning" id="removeBtn">Remove Selected</button>
+      </div>
+      <div class="buttons">
+        <button id="resetBtn">Reset Level</button>
+        <button class="warning" id="clearBtn">Clear All</button>
+      </div>
+    </aside>
+
+    <main class="canvas-wrap">
+      <div class="canvas-card">
+        <svg id="maze" viewBox="0 0 600 500" aria-label="Avoid editor canvas"></svg>
+        <div class="legend">
+          <span class="swatch"><span class="dot" style="background:#8f836f"></span> valid branch</span>
+          <span class="swatch"><span class="dot" style="background:#2d7d6d"></span> solution path</span>
+          <span class="swatch"><span class="dot" style="background:#b33a2f"></span> avoid item</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const state = {
+      levels: [],
+      currentIndex: 0,
+      level: null,
+      originalAvoidItems: [],
+      avoidItems: [],
+      selectedIndex: null,
+      dirty: false,
+    };
+
+    const levelSelect = document.getElementById('levelSelect');
+    const statusEl = document.getElementById('status');
+    const mazeEl = document.getElementById('maze');
+
+    const storyNumberEl = document.getElementById('storyNumber');
+    const difficultyEl = document.getElementById('difficulty');
+    const themeEl = document.getElementById('theme');
+    const countEl = document.getElementById('count');
+
+    const normSeg = (a, b) => {
+      const left = `${a.x},${a.y}`;
+      const right = `${b.x},${b.y}`;
+      return left < right ? `${left}|${right}` : `${right}|${left}`;
+    };
+
+    const parseSolutionSegments = (path) => {
+      const tokens = path.trim().split(/\s+/);
+      const points = [];
+      for (let i = 0; i < tokens.length; ) {
+        if (tokens[i] === 'M' || tokens[i] === 'L') {
+          points.push({ x: Number(tokens[i + 1]), y: Number(tokens[i + 2]) });
+          i += 3;
+        } else {
+          i += 1;
+        }
+      }
+      const segments = [];
+      for (let i = 0; i < points.length - 1; i += 1) {
+        segments.push({ start: points[i], end: points[i + 1] });
+      }
+      return segments;
+    };
+
+    const nearestPointOnSegment = (point, segment) => {
+      const ax = segment.start.x;
+      const ay = segment.start.y;
+      const bx = segment.end.x;
+      const by = segment.end.y;
+      const dx = bx - ax;
+      const dy = by - ay;
+      const lenSq = dx * dx + dy * dy;
+      if (lenSq === 0) return { x: ax, y: ay, dist: Math.hypot(point.x - ax, point.y - ay) };
+      let t = ((point.x - ax) * dx + (point.y - ay) * dy) / lenSq;
+      t = Math.max(0, Math.min(1, t));
+      const x = ax + t * dx;
+      const y = ay + t * dy;
+      return { x, y, dist: Math.hypot(point.x - x, point.y - y) };
+    };
+
+    const setStatus = (text, isError = false) => {
+      statusEl.textContent = text;
+      statusEl.style.color = isError ? 'var(--accent)' : 'var(--ink)';
+      statusEl.classList.toggle('dirty', state.dirty);
+    };
+
+    const requiredCount = () => state.level?._editor?.required_count ?? 0;
+
+    const refreshMeta = () => {
+      const level = state.level;
+      if (!level) return;
+      storyNumberEl.textContent = level.id.split('_')[1];
+      difficultyEl.textContent = level.difficulty;
+      themeEl.textContent = level.theme;
+      countEl.textContent = `${state.avoidItems.length} / ${requiredCount()}`;
+    };
+
+    const markDirty = (dirty = true) => {
+      state.dirty = dirty;
+      refreshMeta();
+      if (dirty) {
+        setStatus(`Editing ${state.level.id}. Save before moving on.`);
+      } else {
+        setStatus(`Loaded ${state.level.id}.`);
+      }
+    };
+
+    const allowedSegments = () => {
+      const all = state.level.path_data.segments;
+      const solutionKeys = new Set(parseSolutionSegments(state.level.path_data.solution_path).map(seg => normSeg(seg.start, seg.end)));
+      return all.filter(seg => !solutionKeys.has(normSeg(seg.start, seg.end)));
+    };
+
+    const snapToAllowed = (point) => {
+      let best = null;
+      for (const seg of allowedSegments()) {
+        const candidate = nearestPointOnSegment(point, seg);
+        if (!best || candidate.dist < best.dist) {
+          best = candidate;
+        }
+      }
+      return best;
+    };
+
+    const svgPointFromEvent = (event) => {
+      const pt = mazeEl.createSVGPoint();
+      pt.x = event.clientX;
+      pt.y = event.clientY;
+      const local = pt.matrixTransform(mazeEl.getScreenCTM().inverse());
+      return { x: local.x, y: local.y };
+    };
+
+    const draw = () => {
+      if (!state.level) return;
+      const pathData = state.level.path_data;
+      mazeEl.setAttribute('viewBox', `0 0 ${pathData.canvas_width} ${pathData.canvas_height}`);
+      mazeEl.innerHTML = '';
+
+      const add = (name, attrs = {}) => {
+        const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+        for (const [key, value] of Object.entries(attrs)) {
+          el.setAttribute(key, value);
+        }
+        mazeEl.appendChild(el);
+        return el;
+      };
+
+      add('rect', {
+        x: 0, y: 0, width: pathData.canvas_width, height: pathData.canvas_height,
+        fill: '#fbf8f1'
+      });
+
+      for (const seg of allowedSegments()) {
+        add('line', {
+          x1: seg.start.x, y1: seg.start.y, x2: seg.end.x, y2: seg.end.y,
+          stroke: 'var(--branch)', 'stroke-width': pathData.width, 'stroke-linecap': 'round', opacity: '0.8'
+        });
+      }
+
+      add('path', {
+        d: pathData.solution_path,
+        fill: 'none',
+        stroke: 'var(--solution)',
+        'stroke-width': pathData.width,
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round',
+        opacity: '0.95'
+      });
+
+      add('circle', { cx: pathData.start_point.x, cy: pathData.start_point.y, r: 10, fill: '#1a936f' });
+      add('circle', { cx: pathData.end_point.x, cy: pathData.end_point.y, r: 10, fill: '#4f5d75' });
+
+      state.avoidItems.forEach((item, index) => {
+        add('circle', {
+          cx: item.x, cy: item.y, r: index === state.selectedIndex ? 24 : 20,
+          fill: '#fff5f3', stroke: 'var(--accent)', 'stroke-width': index === state.selectedIndex ? 4 : 3
+        });
+        const text = add('text', {
+          x: item.x, y: item.y + 7, 'text-anchor': 'middle', 'font-size': '22'
+        });
+        text.textContent = state.level.item_emoji || '';
+        const idx = add('text', {
+          x: item.x + 20, y: item.y - 16, 'text-anchor': 'middle',
+          'font-size': '13', 'font-weight': '700', fill: 'var(--accent)'
+        });
+        idx.textContent = String(index + 1);
+      });
+    };
+
+    const loadLevel = async (index) => {
+      state.currentIndex = Math.max(0, Math.min(index, state.levels.length - 1));
+      const meta = state.levels[state.currentIndex];
+      levelSelect.value = meta.id;
+      const response = await fetch(`/api/level?id=${encodeURIComponent(meta.id)}`);
+      const level = await response.json();
+      if (!response.ok) {
+        setStatus(level.error || 'Failed to load level', true);
+        return;
+      }
+      state.level = level;
+      state.originalAvoidItems = (level.path_data.avoid_items || []).map(item => ({ x: item.x, y: item.y }));
+      state.avoidItems = state.originalAvoidItems.map(item => ({ ...item }));
+      state.selectedIndex = null;
+      state.dirty = false;
+      refreshMeta();
+      draw();
+      setStatus(`Loaded ${level.id}.`);
+    };
+
+    const saveCurrent = async () => {
+      if (!state.level) return false;
+      if (state.avoidItems.length !== requiredCount()) {
+        setStatus(`Need exactly ${requiredCount()} avoid items before saving.`, true);
+        return false;
+      }
+      const response = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: state.level.id,
+          avoid_items: state.avoidItems,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        setStatus(result.error || 'Save failed', true);
+        return false;
+      }
+      state.originalAvoidItems = state.avoidItems.map(item => ({ ...item }));
+      state.dirty = false;
+      setStatus(`Saved ${state.level.id} to ${result.path}.`);
+      refreshMeta();
+      return true;
+    };
+
+    const tryAdvance = async (delta, saveFirst = false) => {
+      if (saveFirst) {
+        const ok = await saveCurrent();
+        if (!ok) return;
+      } else if (state.dirty) {
+        setStatus('This level has unsaved changes. Save or reset before moving on.', true);
+        return;
+      }
+      const nextIndex = state.currentIndex + delta;
+      if (nextIndex < 0 || nextIndex >= state.levels.length) {
+        setStatus('No more avoid levels in that direction.');
+        return;
+      }
+      await loadLevel(nextIndex);
+    };
+
+    mazeEl.addEventListener('click', (event) => {
+      if (!state.level) return;
+      const point = svgPointFromEvent(event);
+
+      for (let i = 0; i < state.avoidItems.length; i += 1) {
+        const item = state.avoidItems[i];
+        if (Math.hypot(item.x - point.x, item.y - point.y) <= 24) {
+          state.selectedIndex = i;
+          draw();
+          setStatus(`Selected avoid item ${i + 1}. Click another branch to move it.`);
+          return;
+        }
+      }
+
+      const snapped = snapToAllowed(point);
+      if (!snapped) {
+        setStatus('No valid branch found near that click.', true);
+        return;
+      }
+
+      const target = { x: Number(snapped.x.toFixed(1)), y: Number(snapped.y.toFixed(1)) };
+
+      if (state.selectedIndex !== null) {
+        state.avoidItems[state.selectedIndex] = target;
+        state.selectedIndex = null;
+      } else if (state.avoidItems.length < requiredCount()) {
+        state.avoidItems.push(target);
+      } else {
+        setStatus(`Already at ${requiredCount()} items. Select one first if you want to move it.`, true);
+        return;
+      }
+
+      markDirty(true);
+      draw();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => tryAdvance(-1, false));
+    document.getElementById('nextBtn').addEventListener('click', () => tryAdvance(1, false));
+    document.getElementById('saveBtn').addEventListener('click', saveCurrent);
+    document.getElementById('saveNextBtn').addEventListener('click', () => tryAdvance(1, true));
+
+    document.getElementById('undoBtn').addEventListener('click', () => {
+      if (!state.avoidItems.length) return;
+      state.avoidItems.pop();
+      state.selectedIndex = null;
+      markDirty(true);
+      draw();
+    });
+
+    document.getElementById('removeBtn').addEventListener('click', () => {
+      if (state.selectedIndex === null) {
+        setStatus('Select an avoid item first.', true);
+        return;
+      }
+      state.avoidItems.splice(state.selectedIndex, 1);
+      state.selectedIndex = null;
+      markDirty(true);
+      draw();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      state.avoidItems = state.originalAvoidItems.map(item => ({ ...item }));
+      state.selectedIndex = null;
+      state.dirty = false;
+      refreshMeta();
+      draw();
+      setStatus(`Reset ${state.level.id} to last saved positions.`);
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      state.avoidItems = [];
+      state.selectedIndex = null;
+      markDirty(true);
+      draw();
+    });
+
+    levelSelect.addEventListener('change', async (event) => {
+      const nextIndex = state.levels.findIndex(level => level.id === event.target.value);
+      if (nextIndex === -1) return;
+      if (state.dirty) {
+        setStatus('Save or reset the current level before switching.', true);
+        levelSelect.value = state.levels[state.currentIndex].id;
+        return;
+      }
+      await loadLevel(nextIndex);
+    });
+
+    const bootstrap = async () => {
+      const response = await fetch('/api/levels');
+      const payload = await response.json();
+      state.levels = payload.levels || [];
+      for (const level of state.levels) {
+        const option = document.createElement('option');
+        option.value = level.id;
+        option.textContent = `${level.id} · ${level.theme} · ${level.difficulty}`;
+        levelSelect.appendChild(option);
+      }
+      if (!state.levels.length) {
+        setStatus('No avoid levels found.', true);
+        return;
+      }
+      await loadLevel(0);
+    };
+
+    bootstrap();
+  </script>
+</body>
+</html>

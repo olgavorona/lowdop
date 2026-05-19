@@ -999,28 +999,28 @@
     "shape": "shell",
     "avoid_items": [
       {
-        "x": 210,
-        "y": 410,
+        "x": 359.7,
+        "y": 90.0,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 160,
-        "y": 293,
+        "x": 80.0,
+        "y": 166.6,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 160,
-        "y": 207,
+        "x": 200.0,
+        "y": 450.0,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 240,
-        "y": 120,
+        "x": 320.0,
+        "y": 327.0,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

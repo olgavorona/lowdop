@@ -90,6 +90,7 @@ struct BookshelfView: View {
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
                     .padding(.bottom, 24)
+                    .accessibilityIdentifier("bookshelf.title")
 
                 packCardsArea
 
@@ -219,9 +220,7 @@ struct BookshelfView: View {
     // MARK: - Pack Card
 
     private func packCard(config: PackConfig, stories: [StoryInfo]) -> some View {
-        let completedCount = stories.filter { story in
-            story.labyrinthIds.allSatisfy { progressTracker.isCompleted($0) }
-        }.count
+        let completedCount = progressTracker.completedStoryCount(in: stories)
         let totalCount = stories.count
         let freeStoryCount = stories.filter(\.isFree).count
         let isLocked = freeStoryCount == 0 && !subscriptionManager.isPremium

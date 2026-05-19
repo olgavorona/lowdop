@@ -219,10 +219,10 @@
     "shape": "shell",
     "avoid_items": [
       {
-        "x": 180,
-        "y": 250,
+        "x": 300.0,
+        "y": 247.7,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

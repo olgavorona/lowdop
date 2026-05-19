@@ -1561,28 +1561,28 @@
     "shape": "rect",
     "avoid_items": [
       {
-        "x": 477,
-        "y": 443,
+        "x": 557.0,
+        "y": 188.3,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 385,
-        "y": 345,
+        "x": 87.8,
+        "y": 314.0,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 299,
-        "y": 154,
+        "x": 296.6,
+        "y": 185.0,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 121,
-        "y": 56,
+        "x": 126.1,
+        "y": 99.0,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

@@ -291,16 +291,10 @@
     "shape": "mountain",
     "avoid_items": [
       {
-        "x": 460,
-        "y": 410,
+        "x": 380.0,
+        "y": 330.0,
         "emoji": "🪸",
-        "on_solution": true
-      },
-      {
-        "x": 300,
-        "y": 90,
-        "emoji": "🪸",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

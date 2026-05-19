@@ -10,6 +10,9 @@ struct LabyrinthGameView: View {
     /// iPhone landscape = compact, iPad = regular
     private var isCompact: Bool { verticalSizeClass == .compact }
     private var avoidEmoji: String { viewModel.labyrinth.itemEmoji ?? "🦉" }
+    private var showsStartArrow: Bool {
+        !viewModel.isAvoidType && !(viewModel.labyrinth.theme == "forest" && viewModel.labyrinth.storyNumber == 60)
+    }
 
     var body: some View {
         ZStack {
@@ -118,11 +121,9 @@ struct LabyrinthGameView: View {
                                 let sz = viewModel.itemFontSize * 1.4
                                 let ringSize = sz * 1.7
                                 ZStack {
-                                    if item.onSolution == true {
-                                        Circle()
-                                            .strokeBorder(Color.red.opacity(0.85), lineWidth: max(2, sz * 0.1))
-                                            .frame(width: ringSize, height: ringSize)
-                                    }
+                                    Circle()
+                                        .strokeBorder(Color.red.opacity(0.85), lineWidth: max(2, sz * 0.1))
+                                        .frame(width: ringSize, height: ringSize)
                                     Text(item.emoji)
                                         .font(.system(size: sz))
                                     if viewModel.hitOwlIndices.contains(index) {
@@ -196,7 +197,7 @@ struct LabyrinthGameView: View {
             scale: viewModel.scale,
             isStart: true,
             clipToCircle: true,
-            arrowAngle: viewModel.startArrowAngle
+            arrowAngle: showsStartArrow ? viewModel.startArrowAngle : nil
         )
         .position(viewModel.startPoint)
     }

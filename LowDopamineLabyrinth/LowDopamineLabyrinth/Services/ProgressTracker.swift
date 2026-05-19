@@ -20,7 +20,15 @@ class ProgressTracker: ObservableObject {
         completedIds.contains(id)
     }
 
+    func hasCompletedAny(in labyrinthIds: [String]) -> Bool {
+        labyrinthIds.contains { completedIds.contains($0) }
+    }
+
     func completedCount(in labyrinths: [Labyrinth]) -> Int {
         labyrinths.filter { completedIds.contains($0.id) }.count
+    }
+
+    func completedStoryCount(in stories: [StoryInfo]) -> Int {
+        stories.filter { hasCompletedAny(in: $0.labyrinthIds) }.count
     }
 }

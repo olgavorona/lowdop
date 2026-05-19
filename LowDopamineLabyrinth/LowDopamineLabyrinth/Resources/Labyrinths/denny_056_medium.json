@@ -674,50 +674,24 @@
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
-      {
-        "x": 415,
-        "y": 388,
-        "emoji": "🌵",
-        "on_solution": true
-      },
-      {
-        "x": 369,
-        "y": 296,
-        "emoji": "🌵",
-        "on_solution": false
-      },
-      {
-        "x": 553,
-        "y": 434,
-        "emoji": "🌵",
-        "on_solution": false
-      },
-      {
-        "x": 185,
-        "y": 388,
-        "emoji": "🌵",
-        "on_solution": false
-      }
-    ],
     "avoid_items": [
       {
-        "x": 360,
-        "y": 434,
+        "x": 323.0,
+        "y": 388.0,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 414,
-        "y": 250,
+        "x": 277.0,
+        "y": 246.2,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 277,
-        "y": 146,
+        "x": 231.0,
+        "y": 158.0,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

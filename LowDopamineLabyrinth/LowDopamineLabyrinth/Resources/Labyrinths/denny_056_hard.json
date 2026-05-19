@@ -1714,68 +1714,30 @@
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
-      {
-        "x": 202,
-        "y": 222,
-        "emoji": "🌵",
-        "on_solution": true
-      },
-      {
-        "x": 342,
-        "y": 446,
-        "emoji": "🌵",
-        "on_solution": true
-      },
-      {
-        "x": 230,
-        "y": 278,
-        "emoji": "🌵",
-        "on_solution": false
-      },
-      {
-        "x": 398,
-        "y": 334,
-        "emoji": "🌵",
-        "on_solution": false
-      },
-      {
-        "x": 258,
-        "y": 222,
-        "emoji": "🌵",
-        "on_solution": false
-      },
-      {
-        "x": 230,
-        "y": 362,
-        "emoji": "🌵",
-        "on_solution": false
-      }
-    ],
     "avoid_items": [
       {
-        "x": 391,
-        "y": 446,
+        "x": 450.3,
+        "y": 306.0,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 162,
-        "y": 446,
+        "x": 202.0,
+        "y": 359.9,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 146,
-        "y": 290,
+        "x": 314.0,
+        "y": 222.6,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 251,
-        "y": 166,
+        "x": 255.0,
+        "y": 278.0,
         "emoji": "🌵",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

@@ -601,22 +601,22 @@
     "shape": "rect",
     "avoid_items": [
       {
-        "x": 545,
-        "y": 345,
+        "x": 123.3,
+        "y": 425.0,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 335,
-        "y": 215,
+        "x": 195.0,
+        "y": 143.2,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 135,
-        "y": 75,
+        "x": 545.0,
+        "y": 285.0,
         "emoji": "🐡",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

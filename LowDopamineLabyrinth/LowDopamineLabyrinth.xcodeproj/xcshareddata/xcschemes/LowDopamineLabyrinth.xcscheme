@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "2620"
-   version = "1.7">
+   version = "1.8">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -40,6 +40,26 @@
                BlueprintName = "LowDopamineLabyrinthTests"
                ReferencedContainer = "container:LowDopamineLabyrinth.xcodeproj">
             </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CF000001"
+               BuildableName = "LowDopamineLabyrinthUITests.xctest"
+               BlueprintName = "LowDopamineLabyrinthUITests"
+               ReferencedContainer = "container:LowDopamineLabyrinth.xcodeproj">
+            </BuildableReference>
+            <MacroExpansion>
+               <BuildableReference
+                  BuildableIdentifier = "primary"
+                  BlueprintIdentifier = "AF000001"
+                  BuildableName = "LowDopamineLabyrinth.app"
+                  BlueprintName = "LowDopamineLabyrinth"
+                  ReferencedContainer = "container:LowDopamineLabyrinth.xcodeproj">
+               </BuildableReference>
+            </MacroExpansion>
          </TestableReference>
       </Testables>
    </TestAction>

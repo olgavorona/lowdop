@@ -18,6 +18,10 @@ class GameViewModel: ObservableObject {
         return labyrinths[currentIndex]
     }
 
+    var isLastLabyrinthInPack: Bool {
+        !labyrinths.isEmpty && currentIndex >= labyrinths.count - 1
+    }
+
     var isPremium: Bool {
         subscriptionManager.isPremium
     }

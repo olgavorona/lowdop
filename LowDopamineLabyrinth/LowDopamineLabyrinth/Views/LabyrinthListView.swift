@@ -10,6 +10,11 @@ struct LabyrinthListView: View {
     @State private var showParentalGate = false
     @State private var showPaywall = false
     @State private var labyrinthVM: LabyrinthViewModel?
+    @State private var didInjectUITestCompletion = false
+
+    private var shouldReturnToBookshelfAfterCompletion: Bool {
+        isStoryComplete || gameViewModel.isLastLabyrinthInPack
+    }
 
     var body: some View {
         ZStack {
@@ -83,19 +88,17 @@ struct LabyrinthListView: View {
                     CompletionView(
                         labyrinth: lab,
                         onNext: {
-                            if isStoryComplete {
-                                // Story complete: dismiss game and navigate back to bookshelf
+                            if shouldReturnToBookshelfAfterCompletion {
                                 showCompletion = false
                                 ttsService.stop()
-                                Analytics.send("StoryComplete.backToBookshelf", with: [
+                                Analytics.send("Completion.backToBookshelf", with: [
                                     "labyrinthId": lab.id,
-                                    "storyNumber": String(lab.storyNumber)
+                                    "storyNumber": String(lab.storyNumber),
+                                    "reason": isStoryComplete ? "story_complete" : "pack_complete"
                                 ])
                                 gameViewModel.closeGame()
-                                // Notify ContentView to reset to bookshelf
                                 NotificationCenter.default.post(name: .returnToBookshelf, object: nil)
                             } else {
-                                // Normal flow: advance to next labyrinth
                                 showCompletion = false
                                 ttsService.stop()
                                 Analytics.send("Completion.nextTapped", with: ["labyrinthId": lab.id])
@@ -112,7 +115,8 @@ struct LabyrinthListView: View {
                         totalItemCount: vm.totalItemCount,
                         hitOwlCount: vm.hitOwlIndices.count,
                         totalAvoidCount: vm.labyrinth.pathData.avoidItems?.count ?? 0,
-                        isStoryComplete: isStoryComplete
+                        isStoryComplete: isStoryComplete,
+                        showsBackToBookshelf: shouldReturnToBookshelfAfterCompletion
                     )
                     .transition(.scale.combined(with: .opacity))
                 }
@@ -126,6 +130,7 @@ struct LabyrinthListView: View {
         }
         .onAppear {
             updateVM()
+            presentUITestCompletionIfNeeded()
         }
         .onChange(of: preferences.ttsEnabled) { enabled in
             if !enabled { ttsService.stop() }
@@ -190,6 +195,19 @@ struct LabyrinthListView: View {
                 }
             }
         }
+    }
+
+    private func presentUITestCompletionIfNeeded() {
+        guard !didInjectUITestCompletion,
+              ProcessInfo.processInfo.arguments.contains("-uiTestShowCompletionForLastLevel") else {
+            return
+        }
+
+        didInjectUITestCompletion = true
+        gameViewModel.completeCurrentLabyrinth()
+        labyrinthVM?.isCompleted = true
+        labyrinthVM?.showSolution = true
+        showCompletion = true
     }
 
 }

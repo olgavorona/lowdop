@@ -579,22 +579,22 @@
     "shape": "shell",
     "avoid_items": [
       {
-        "x": 272,
-        "y": 366,
+        "x": 384.0,
+        "y": 388.9,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 216,
-        "y": 268,
+        "x": 328.0,
+        "y": 166.0,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 213,
-        "y": 110,
+        "x": 266.2,
+        "y": 278.0,
         "emoji": "🪼",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

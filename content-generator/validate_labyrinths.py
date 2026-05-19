@@ -18,6 +18,8 @@ MIN_START_END_DIST = 150
 
 # Max start Y (to avoid iOS curtain — top of canvas is ~40-80)
 MAX_START_Y_TOP = 100  # if start_y <= this, it's "at the top"
+AVOID_TARGETS = {"easy": 1, "medium": 3, "hard": 4}
+MIN_AVOID_START_DIST = 140
 
 
 def count_svg_segments(svg_path: str) -> int:
@@ -50,6 +52,7 @@ def validate_labyrinth(lab: dict) -> list:
     end = pd["end_point"]
     segments = pd["segments"]
     items = pd.get("items", [])
+    avoid_items = pd.get("avoid_items", [])
 
     # 1. Solution path length (segment count)
     seg_count = len(segments)
@@ -98,11 +101,25 @@ def validate_labyrinth(lab: dict) -> list:
         if item["y"] < 10 or item["y"] > canvas_h - 10:
             issues.append(("ITEM_OUT_OF_BOUNDS", f"Item {i} y={item['y']:.0f} out of canvas"))
 
+    if item_rule == "avoid":
+        target = AVOID_TARGETS.get(difficulty, 2)
+        if len(avoid_items) < target:
+            issues.append(("LOW_AVOID_COUNT",
+                f"avoid: {len(avoid_items)} items (target {target})"))
+
+        for i, item in enumerate(avoid_items):
+            item_dx = item["x"] - start["x"]
+            item_dy = item["y"] - start["y"]
+            item_dist = math.sqrt(item_dx * item_dx + item_dy * item_dy)
+            if item_dist < MIN_AVOID_START_DIST:
+                issues.append(("AVOID_TOO_CLOSE_TO_START",
+                    f"Avoid item {i} is {item_dist:.0f}px from start (min {MIN_AVOID_START_DIST})"))
+
     return issues
 
 
 def main():
-    json_files = sorted(LAB_DIR.glob("denny_*_lv*.json"))
+    json_files = sorted(LAB_DIR.glob("denny_*.json"))
     print(f"Validating {len(json_files)} labyrinth files...\n")
 
     all_issues = {}

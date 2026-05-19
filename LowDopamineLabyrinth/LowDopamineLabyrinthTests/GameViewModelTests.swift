@@ -399,6 +399,20 @@ final class GameViewModelTests: XCTestCase {
         XCTAssertFalse(vm.isStoryComplete, "Story should not be complete with only 2 of 3 difficulties done")
     }
 
+    func testIsLastLabyrinthInPackTracksFinalIndex() {
+        let prefs = UserPreferences()
+        let sub = SubscriptionManager()
+        let progress = ProgressTracker()
+        let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
+        vm.labyrinths = makeSampleLabyrinths(count: 3)
+
+        vm.currentIndex = 1
+        XCTAssertFalse(vm.isLastLabyrinthInPack)
+
+        vm.currentIndex = 2
+        XCTAssertTrue(vm.isLastLabyrinthInPack)
+    }
+
     // MARK: - Sequential Unlock / Progress Tests
 
     func testSequentialUnlockLogic() {
@@ -434,6 +448,34 @@ final class GameViewModelTests: XCTestCase {
         progress.markCompleted(labyrinths[2].id)
 
         XCTAssertEqual(progress.completedCount(in: labyrinths), 2)
+    }
+
+    func testCompletedStoryCountCountsStoryOnceWhenAnyDifficultyCompleted() {
+        let progress = ProgressTracker()
+        let stories = [
+            StoryInfo(
+                number: 1,
+                title: "Story 1",
+                location: "reef",
+                characterEnd: "finn",
+                isFree: true,
+                isAdventure: false,
+                labyrinthIds: ["denny_001_easy", "denny_001_medium", "denny_001_hard"]
+            ),
+            StoryInfo(
+                number: 2,
+                title: "Story 2",
+                location: "reef",
+                characterEnd: "pearl",
+                isFree: true,
+                isAdventure: false,
+                labyrinthIds: ["denny_002_easy", "denny_002_medium", "denny_002_hard"]
+            )
+        ]
+
+        progress.markCompleted("denny_001_medium")
+
+        XCTAssertEqual(progress.completedStoryCount(in: stories), 1)
     }
 
     // MARK: - selectLabyrinth safety

@@ -9,6 +9,7 @@ struct CompletionView: View {
     var hitOwlCount: Int = 0
     var totalAvoidCount: Int = 0
     var isStoryComplete: Bool = false
+    var showsBackToBookshelf: Bool = false
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
     @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -94,7 +95,7 @@ struct CompletionView: View {
                 VStack(spacing: isCompact ? 2 : 12) {
                     Button(action: onNext) {
                         HStack {
-                            if isStoryComplete {
+                            if showsBackToBookshelf {
                                 Image(systemName: "books.vertical")
                                 Text("Back to Bookshelf")
                                     .font(.system(size: isCompact ? 16 : 20, weight: .bold, design: .rounded))
@@ -107,11 +108,12 @@ struct CompletionView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: isCompact ? 34 : 56)
-                        .background(isStoryComplete
+                        .background(showsBackToBookshelf
                             ? (AppColor.accentBlue)
                             : (AppColor.accentGreen))
                         .cornerRadius(isCompact ? 10 : 16)
                     }
+                    .accessibilityIdentifier("completion.primaryButton")
 
                     Button(action: onRepeat) {
                         Text("Try Again")

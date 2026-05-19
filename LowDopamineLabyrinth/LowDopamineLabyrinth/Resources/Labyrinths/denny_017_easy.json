@@ -211,16 +211,10 @@
     "shape": "diamond",
     "avoid_items": [
       {
-        "x": 300,
-        "y": 330,
+        "x": 229.1,
+        "y": 250.0,
         "emoji": "🌿",
-        "on_solution": true
-      },
-      {
-        "x": 300,
-        "y": 170,
-        "emoji": "🌿",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

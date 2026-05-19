@@ -934,50 +934,24 @@
     "canvas_width": 600,
     "canvas_height": 500,
     "control_points": [],
-    "items": [
-      {
-        "x": 280,
-        "y": 290,
-        "emoji": "🐶",
-        "on_solution": true
-      },
-      {
-        "x": 480,
-        "y": 330,
-        "emoji": "🐶",
-        "on_solution": false
-      },
-      {
-        "x": 400,
-        "y": 290,
-        "emoji": "🐶",
-        "on_solution": false
-      },
-      {
-        "x": 240,
-        "y": 90,
-        "emoji": "🐶",
-        "on_solution": false
-      }
-    ],
     "avoid_items": [
       {
-        "x": 270,
-        "y": 370,
+        "x": 278.0,
+        "y": 410.0,
         "emoji": "🐶",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 265,
-        "y": 290,
+        "x": 240.0,
+        "y": 290.0,
         "emoji": "🐶",
-        "on_solution": true
+        "on_solution": false
       },
       {
-        "x": 280,
-        "y": 170,
+        "x": 320.0,
+        "y": 146.3,
         "emoji": "🐶",
-        "on_solution": true
+        "on_solution": false
       }
     ]
   },

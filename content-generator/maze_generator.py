@@ -899,13 +899,16 @@ class FullMazeGenerator:
         cell_size: int,
         mask: Optional[set] = None,
     ) -> List[Dict[str, Any]]:
-        """Place avoid obstacles on junction cells along the solution path.
+        """Place avoid obstacles with enough room to steer around them.
 
-        Only places an obstacle where a detour exists (verified by BFS avoiding
-        all placed obstacles + this candidate). Obstacles are spaced at least
-        path_length / (num_owls + 1) steps apart along the solution.
+        Obstacles are anchored to solution cells that have a verified detour,
+        but the rendered emoji is offset away from the path centerline so the
+        player can pass without needing a perfect detour trace. Early solution
+        cells are skipped to keep the first obstacle away from the start.
         """
         half = cell_size // 2
+        lateral_offset = min(cell_size * 0.2, max(10.0, self.path_width * 0.32))
+        min_start_steps = max(2, len(solution) // 5)
 
         def open_passages(r: int, c: int) -> int:
             cell = maze.grid[r][c]
@@ -916,7 +919,10 @@ class FullMazeGenerator:
         # can have an alternate route if the maze is sufficiently braided.
         candidates = [
             (i, pos) for i, pos in enumerate(solution)
-            if pos != start and pos != end and open_passages(*pos) >= 2
+            if pos != start
+            and pos != end
+            and i >= min_start_steps
+            and open_passages(*pos) >= 2
         ]
 
         min_gap = max(2, len(solution) // max(num_owls + 1, 1))
@@ -934,13 +940,28 @@ class FullMazeGenerator:
             if len(selected) >= num_owls:
                 break
 
-        return [
-            {"x": offset_x + c * cell_size + half,
-             "y": offset_y + r * cell_size + half,
-             "emoji": avoid_emoji,
-             "on_solution": True}
-            for _, (r, c) in selected
-        ]
+        rendered_items: List[Dict[str, Any]] = []
+        for idx, (_, (r, c)) in enumerate(selected):
+            center_x = offset_x + c * cell_size + half
+            center_y = offset_y + r * cell_size + half
+
+            prev_pos = solution[max(0, _ - 1)]
+            next_pos = solution[min(len(solution) - 1, _ + 1)]
+            dir_x = next_pos[1] - prev_pos[1]
+            dir_y = next_pos[0] - prev_pos[0]
+            length = math.hypot(dir_x, dir_y) or 1.0
+            perp_x = -dir_y / length
+            perp_y = dir_x / length
+            direction = -1 if idx % 2 == 0 else 1
+
+            rendered_items.append({
+                "x": round(center_x + direction * perp_x * lateral_offset, 1),
+                "y": round(center_y + direction * perp_y * lateral_offset, 1),
+                "emoji": avoid_emoji,
+                "on_solution": False,
+            })
+
+        return rendered_items
 
     def place_items(
         self,
