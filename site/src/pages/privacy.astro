@@ -1,0 +1,56 @@
+---
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "Privacy | Harmless Apps",
+  description:
+    "Privacy information for Harmless Apps and Denny's Maze.",
+  pathname: "/privacy/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader
+    eyebrow="Privacy"
+    title="Privacy"
+    intro="This page is a web-facing summary. Review the final app policy before release and replace placeholders as needed."
+  />
+
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p><strong>Summary:</strong> the product positioning is privacy-first and no ads.</p>
+      <p>
+        The current app materials indicate that Denny's Maze does not collect
+        personal information from children or adults in the normal play flow,
+        and that gameplay progress is stored locally on device.
+      </p>
+      <p>
+        Before publishing the website, review the final in-app privacy policy,
+        analytics behavior, support email, and any payment-related language so
+        the website and the App Store listing stay aligned.
+      </p>
+      <p>
+        Source file in this repo for review: <code>docs/privacy.html</code>.
+      </p>
+    </div>
+  </section>
+
+  <RelatedLinks
+    links={[
+      { href: "/terms/", title: "Terms", description: "Usage and purchase terms." },
+      {
+        href: "/faq/",
+        title: "FAQ",
+        description: "Questions about the app's design intent and audience."
+      },
+      {
+        href: "/about/",
+        title: "About",
+        description: "The broader Harmless Apps philosophy."
+      }
+    ]}
+  />
+</BaseLayout>

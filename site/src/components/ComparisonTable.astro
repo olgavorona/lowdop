@@ -1,0 +1,43 @@
+---
+type Row = {
+  focus: string;
+  calmOption: string;
+  typicalOption: string;
+};
+
+type Props = {
+  title?: string;
+  intro?: string;
+  rows: Row[];
+};
+
+const { title = "What calmer design can look like", intro, rows } =
+  Astro.props as Props;
+---
+
+<section class="content-block">
+  <div class="shell">
+    <h2>{title}</h2>
+    {intro && <p class="section-intro">{intro}</p>}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Design choice</th>
+            <th>Calmer approach</th>
+            <th>Typical high-stimulation pattern</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr>
+              <td>{row.focus}</td>
+              <td>{row.calmOption}</td>
+              <td>{row.typicalOption}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

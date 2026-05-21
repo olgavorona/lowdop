@@ -1,0 +1,29 @@
+---
+type Item = {
+  question: string;
+  answer: string;
+};
+
+type Props = {
+  title?: string;
+  intro?: string;
+  items: ReadonlyArray<Item>;
+};
+
+const { title = "FAQ", intro, items } = Astro.props as Props;
+---
+
+<section class="content-block">
+  <div class="shell narrow">
+    <h2>{title}</h2>
+    {intro && <p class="section-intro">{intro}</p>}
+    <div class="faq-list">
+      {items.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

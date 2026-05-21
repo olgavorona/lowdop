@@ -1,0 +1,25 @@
+---
+type Props = {
+  eyebrow?: string;
+  title: string;
+  intro: string;
+  tags?: string[];
+};
+
+const { eyebrow, title, intro, tags = [] } = Astro.props as Props;
+---
+
+<section class="page-header">
+  <div class="shell narrow">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    <p class="section-intro">{intro}</p>
+    {tags.length > 0 && (
+      <ul class="stat-list">
+        {tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>

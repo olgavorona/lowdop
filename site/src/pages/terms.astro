@@ -1,0 +1,54 @@
+---
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "Terms | Harmless Apps",
+  description: "Terms information for Harmless Apps and Denny's Maze.",
+  pathname: "/terms/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader
+    eyebrow="Terms"
+    title="Terms"
+    intro="This page is a simple placeholder summary for the website. Replace it with your final legal copy before launch if needed."
+  />
+
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p>
+        Denny's Maze is presented here as an iOS app for young kids with
+        optional App Store distribution and standard Apple-managed purchase
+        handling.
+      </p>
+      <p>
+        Before launch, confirm that the website terms, the app terms, pricing
+        model, refund language, governing law, and support contact all match the
+        current App Store version.
+      </p>
+      <p>
+        Source file in this repo for review: <code>docs/terms.html</code>.
+      </p>
+    </div>
+  </section>
+
+  <RelatedLinks
+    links={[
+      { href: "/privacy/", title: "Privacy", description: "Privacy summary and next review step." },
+      {
+        href: "/apps/dennys-maze/",
+        title: "Denny's Maze",
+        description: "Product page for the featured app."
+      },
+      {
+        href: "/about/",
+        title: "About",
+        description: "Why the brand language stays low-hype."
+      }
+    ]}
+  />
+</BaseLayout>

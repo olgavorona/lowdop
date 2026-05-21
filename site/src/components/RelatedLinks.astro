@@ -1,0 +1,28 @@
+---
+type LinkItem = {
+  href: string;
+  title: string;
+  description: string;
+};
+
+type Props = {
+  title?: string;
+  links: LinkItem[];
+};
+
+const { title = "Keep reading", links } = Astro.props as Props;
+---
+
+<section class="content-block">
+  <div class="shell">
+    <h2>{title}</h2>
+    <div class="cards">
+      {links.map((link) => (
+        <a class="link-card" href={link.href}>
+          <h3>{link.title}</h3>
+          <p>{link.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

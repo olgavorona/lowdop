@@ -1,0 +1,30 @@
+---
+import { footerNav } from "../data/navigation";
+import { siteConfig } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <p class="eyebrow">Harmless Apps</p>
+      <p>
+        Calm-first kids app pages for parents who want screen time to feel less
+        chaotic.
+      </p>
+    </div>
+
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        {footerNav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div>
+      <a class="button secondary" href={siteConfig.appStoreUrl}
+        >View on the App Store</a
+      >
+    </div>
+  </div>
+</footer>

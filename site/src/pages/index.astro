@@ -1,0 +1,202 @@
+---
+import ComparisonTable from "../components/ComparisonTable.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import FaqBlock from "../components/FaqBlock.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { commonFaqs } from "../data/faqs";
+import { siteConfig } from "../data/site";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: siteConfig.defaults.title,
+  description: siteConfig.defaults.description,
+  pathname: "/"
+});
+
+const comparisonRows = [
+  {
+    focus: "Pacing",
+    calmOption: "Room to slow down and finish a maze at your own pace.",
+    typicalOption: "Urgency, countdowns, and pressure to react quickly."
+  },
+  {
+    focus: "Monetization",
+    calmOption: "No ads in the play flow.",
+    typicalOption: "Frequent interruptions and bait to tap through."
+  },
+  {
+    focus: "Feedback",
+    calmOption: "Gentle cues instead of flashing reward loops.",
+    typicalOption: "Rapid fireworks, coins, and noisy celebration screens."
+  },
+  {
+    focus: "Goal",
+    calmOption: "A maze-book feeling on an iPad.",
+    typicalOption: "Retention loops designed to keep the child in the app."
+  }
+];
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Harmless Apps</p>
+        <h1>Screen time can feel a little quieter.</h1>
+        <p>
+          Harmless Apps is a small, calm-first brand idea for parents who want
+          digital play to feel less chaotic. The focus is simple: low-stimulation
+          kids apps designed to be calmer, clearer, and easier to trust.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href={siteConfig.productPath}>Explore Denny's Maze</a>
+          <a class="button secondary" href="/about/">Read the philosophy</a>
+        </div>
+        <ul class="stat-list">
+          <li>no ads</li>
+          <li>no timers</li>
+          <li>no flashing reward loops</li>
+          <li>for parents who want less chaotic screen time</li>
+        </ul>
+      </div>
+
+      <aside class="hero-card">
+        <div class="product-hero">
+          <img
+            src="/images/denny.png"
+            alt="Denny character art from Denny's Maze"
+            width="512"
+            height="512"
+            loading="eager"
+          />
+          <div>
+            <p class="eyebrow">Featured app</p>
+            <h2>Denny's Maze</h2>
+          </div>
+        </div>
+        <p>
+          A calm maze game for young kids that aims for the feeling of a simple
+          maze book on a tablet, not a noisy app built around dopamine spikes.
+        </p>
+        <ul class="inline-links">
+          <li><a href="/apps/dennys-maze/">Product page</a></li>
+          <li>
+            <a href="/maze-games-for-kids-without-ads/">Why no-ads mazes matter</a>
+          </li>
+          <li>
+            <a href="/screen-time-without-overstimulation/"
+              >Screen time without overstimulation</a
+            >
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="content-block">
+    <div class="shell split-grid">
+      <figure class="media-card">
+        <img
+          src="/images/ipad-maze.png"
+          alt="Denny's Maze gameplay on iPad showing a calm maze scene"
+          width="2420"
+          height="1668"
+          loading="lazy"
+        />
+        <figcaption>
+          The core idea is simple and readable: one maze, one task, less visual
+          noise.
+        </figcaption>
+      </figure>
+
+      <figure class="media-card">
+        <img
+          src="/images/iphone-hero.jpeg"
+          alt="Denny's Maze App Store style screenshot on iPhone"
+          width="990"
+          height="2151"
+          loading="lazy"
+        />
+        <figcaption>
+          Product screenshots help explain the feel faster than copy alone.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="content-block">
+    <div class="shell">
+      <div class="cards">
+        <article class="info-card">
+          <h3>Useful content first</h3>
+          <p>
+            These pages are written for real parent questions: low stimulation
+            apps for toddlers, calm iPad games for kids, and how to think about
+            healthier digital play without hype.
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Not anti-screen, not pro-chaos</h3>
+          <p>
+            The site does not claim screens are always bad or always good. It
+            focuses on making occasional app time feel less rushed, less loud,
+            and less manipulative.
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Clear product language</h3>
+          <p>
+            You will not see unsupported claims here. The language stays plain:
+            designed to be calmer, no ads, no timers, and no flashing reward
+            loops.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <ComparisonTable
+    title="What parents often mean by a calmer kids app"
+    intro="Families usually are not asking for magic. They are asking for fewer interruptions, slower pacing, and less pressure."
+    rows={comparisonRows}
+  />
+
+  <RelatedLinks
+    title="Browse by topic"
+    links={[
+      {
+        href: "/best-low-stimulation-apps-for-toddlers/",
+        title: "Best low-stimulation apps for toddlers",
+        description:
+          "How to evaluate calmer apps when your child is still very young."
+      },
+      {
+        href: "/calm-ipad-games-for-kids/",
+        title: "Calm iPad games for kids",
+        description:
+          "What makes an iPad game feel gentle instead of frantic."
+      },
+      {
+        href: "/screen-time-without-overstimulation/",
+        title: "Screen time without overstimulation",
+        description:
+          "Practical ways to make digital play feel less noisy and less sticky."
+      },
+      {
+        href: "/maze-games-for-kids-without-ads/",
+        title: "Maze games for kids without ads",
+        description:
+          "Why maze games can work well when the design stays simple and clean."
+      }
+    ]}
+  />
+
+  <FaqBlock
+    title="Common parent questions"
+    intro="A quick overview of what this site means by calmer app design."
+    items={commonFaqs}
+  />
+
+  <CtaBlock text="If you want one simple example of calm-first design, start with Denny's Maze." />
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import { siteConfig } from "../data/site";
+
+type Props = {
+  title?: string;
+  text: string;
+};
+
+const {
+  title = "Looking for calmer screen time?",
+  text
+} = Astro.props as Props;
+---
+
+<section class="cta-block">
+  <div class="shell cta-inner">
+    <div>
+      <p class="eyebrow">Denny's Maze</p>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+
+    <a class="button" href={siteConfig.appStoreUrl}>View on the App Store</a>
+  </div>
+</section>

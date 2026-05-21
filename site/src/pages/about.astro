@@ -1,0 +1,72 @@
+---
+import CtaBlock from "../components/CtaBlock.astro";
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "About Harmless Apps | A calmer digital world for kids",
+  description:
+    "The philosophy behind Harmless Apps: building kids apps designed to be calmer, clearer, and less chaotic.",
+  pathname: "/about/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader
+    eyebrow="About"
+    title="A calmer digital world for kids"
+    intro="Harmless Apps is a simple brand direction built around one idea: if families use screens sometimes, those experiences can be designed with more restraint."
+    tags={["philosophy", "calm-first", "less chaotic", "kids apps"]}
+  />
+
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p>
+        The phrase harmless apps is intentionally modest. It does not suggest
+        that apps are neutral by default or that one product can solve the whole
+        screen-time problem. It suggests a bar: make digital products that are
+        easier to live with.
+      </p>
+      <p>
+        In practice, that means fewer manipulative loops, fewer interruptions,
+        and a stronger respect for the child, the parent, and the moment after
+        the device is put away.
+      </p>
+      <p>
+        <a href="/apps/dennys-maze/">Denny's Maze</a> is the first concrete
+        example on the site. It uses maze play because mazes naturally support
+        quiet focus and simple completion without requiring fast, flashy reward
+        patterns.
+      </p>
+      <p>
+        This philosophy is not anti-fun and not anti-screen. It is pro-restraint.
+        It assumes that a kids app can be engaging without acting like a casino,
+        a cartoon feed, or a behavior trap.
+      </p>
+    </div>
+  </section>
+
+  <RelatedLinks
+    links={[
+      {
+        href: "/apps/dennys-maze/",
+        title: "Denny's Maze",
+        description: "See the product that anchors this philosophy."
+      },
+      {
+        href: "/screen-time-without-overstimulation/",
+        title: "Screen time without overstimulation",
+        description: "A parent-facing version of the same idea."
+      },
+      {
+        href: "/faq/",
+        title: "FAQ",
+        description: "Short answers about claims, age fit, and intent."
+      }
+    ]}
+  />
+
+  <CtaBlock text="If the philosophy makes sense, Denny's Maze is the easiest place to see it in product form." />
+</BaseLayout>

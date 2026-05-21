@@ -1,0 +1,118 @@
+---
+import ComparisonTable from "../components/ComparisonTable.astro";
+import CtaBlock from "../components/CtaBlock.astro";
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "Maze Games for Kids Without Ads | Why simple mazes can feel calmer",
+  description:
+    "Why maze games for kids without ads can be a strong fit for calmer screen time, and how Denny's Maze approaches the format.",
+  pathname: "/maze-games-for-kids-without-ads/",
+  type: "article"
+});
+
+const rows = [
+  {
+    focus: "Attention",
+    calmOption: "Stay with the maze and finish the path.",
+    typicalOption: "Attention repeatedly pulled outside the activity."
+  },
+  {
+    focus: "Trust",
+    calmOption: "Parents know what the child is actually doing.",
+    typicalOption: "Gameplay constantly interrupted by monetization."
+  },
+  {
+    focus: "Flow",
+    calmOption: "One self-contained puzzle at a time.",
+    typicalOption: "A maze wrapped in extra distractions."
+  },
+  {
+    focus: "Aftereffect",
+    calmOption: "More likely to end with a simple stopping point.",
+    typicalOption: "More likely to end in negotiation or dysregulation."
+  }
+];
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader
+    eyebrow="Guide"
+    title="Maze games for kids without ads"
+    intro="A maze is already a complete activity. When ads are removed and the pacing stays simple, the format can become one of the calmer kinds of digital play."
+    tags={["maze games", "no ads", "kids apps", "calmer screen time"]}
+  />
+
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p>
+        Many kids games overload a simple idea with too many extra layers:
+        rewards, popups, sudden offers, and constant prompts to keep going.
+        Maze games do not need any of that.
+      </p>
+      <p>
+        A maze has a built-in task. Find the route. Stay with it. Reach the
+        end. That clarity can be useful for young children because it keeps the
+        activity understandable without turning it into a high-noise event.
+      </p>
+      <p>
+        <a href="/apps/dennys-maze/">Denny's Maze</a> leans into that strength
+        by keeping the framing calm: no ads, no timers, and no flashing reward
+        loops. The design target is a maze-book feeling on an iPad.
+      </p>
+    </div>
+  </section>
+
+  <ComparisonTable
+    title="Why no-ads matters in maze apps"
+    intro="Ads are not just a monetization detail. They change the emotional texture of the activity."
+    rows={rows}
+  />
+
+  <section class="content-block">
+    <div class="shell split-grid">
+      <article class="page-panel prose">
+        <h2>What parents often want</h2>
+        <p>
+          They want a clear activity, not a funnel. They want a child to follow
+          a path, solve a small problem, and put the tablet down without having
+          to fight through five extra layers of app behavior.
+        </p>
+      </article>
+      <article class="page-panel prose">
+        <h2>Why Denny's Maze fits this topic</h2>
+        <p>
+          It uses a format that already lends itself to quiet focus, then avoids
+          the design choices that usually make kids apps feel louder than they
+          need to be.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <RelatedLinks
+    links={[
+      {
+        href: "/apps/dennys-maze/",
+        title: "Denny's Maze",
+        description: "The product page for the featured app."
+      },
+      {
+        href: "/screen-time-without-overstimulation/",
+        title: "Screen time without overstimulation",
+        description:
+          "A broader look at how calmer digital experiences are designed."
+      },
+      {
+        href: "/calm-ipad-games-for-kids/",
+        title: "Calm iPad games for kids",
+        description: "The same philosophy applied across game categories."
+      }
+    ]}
+  />
+
+  <CtaBlock text="If you specifically want a maze game for kids without ads, Denny's Maze is the clearest fit on this site." />
+</BaseLayout>

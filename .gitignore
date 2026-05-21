@@ -33,6 +33,8 @@ DerivedData/
 # IDE
 .idea/
 .vscode/
+.astro/
+node_modules/
 *.swp
 *.swo
 
@@ -43,6 +45,7 @@ content-generator/output/
 *.PNG
 *.png
 !LowDopamineLabyrinth/**/*.png
+!site/public/**/*.png
 
 # Temporary
 new/

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Harmless Apps</title>
+  <desc id="desc">Calmer kids apps for screen time that feels less chaotic.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffdf9" />
+      <stop offset="50%" stop-color="#f8f1e7" />
+      <stop offset="100%" stop-color="#d8c3a2" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" rx="36" />
+  <circle cx="170" cy="160" r="110" fill="#2f6f73" opacity="0.12" />
+  <circle cx="1030" cy="120" r="90" fill="#2f6f73" opacity="0.12" />
+  <rect x="82" y="72" width="168" height="168" rx="84" fill="#2f6f73" />
+  <text x="166" y="176" text-anchor="middle" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="62" font-weight="700" fill="#ffffff">HA</text>
+  <text x="82" y="328" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#1f2a2c">Harmless Apps</text>
+  <text x="82" y="400" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="34" fill="#425052">A calmer digital world for kids</text>
+  <text x="82" y="474" font-family="Trebuchet MS, Segoe UI, sans-serif" font-size="28" fill="#425052">Low-stimulation app pages for parents who want screen time to feel less chaotic.</text>
+</svg>

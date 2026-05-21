@@ -1,0 +1,182 @@
+---
+import ComparisonTable from "../../components/ComparisonTable.astro";
+import CtaBlock from "../../components/CtaBlock.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../data/site";
+import {
+  buildMeta,
+  organizationSchema,
+  softwareApplicationSchema
+} from "../../lib/seo";
+
+const meta = buildMeta({
+  title:
+    "Denny's Maze | A calmer maze game for kids with no ads or timers",
+  description:
+    "Denny's Maze is a calm iOS maze game for young kids with no ads, no timers, and no flashing reward loops.",
+  pathname: siteConfig.productPath
+});
+
+const rows = [
+  {
+    focus: "Ads",
+    calmOption: "No ads in the core play experience.",
+    typicalOption: "Frequent breaks, banners, or cross-promotion."
+  },
+  {
+    focus: "Pressure",
+    calmOption: "No timers pushing the child to rush.",
+    typicalOption: "Countdowns and fast-fail loops."
+  },
+  {
+    focus: "Rewards",
+    calmOption: "No flashing reward loops.",
+    typicalOption: "Over-the-top visual rewards after every tap."
+  },
+  {
+    focus: "Overall feel",
+    calmOption: "Closer to a maze-book feeling on an iPad.",
+    typicalOption: "Closer to a retention engine disguised as a game."
+  }
+];
+---
+
+<BaseLayout
+  {...meta}
+  schemas={[organizationSchema(), softwareApplicationSchema()]}
+>
+  <PageHeader
+    eyebrow="Product"
+    title="Denny's Maze"
+    intro="A simple maze game for young kids, designed to be calmer. The goal is not to keep children wired into an endless loop. The goal is to make digital play feel more like a quiet maze book on an iPad."
+    tags={["iOS", "no ads", "no timers", "calm-first design"]}
+  />
+
+  <section class="content-block">
+    <div class="shell split-grid">
+      <article class="page-panel prose">
+        <h2>What it is</h2>
+        <p>
+          Denny's Maze is built for parents who want screen time to feel less
+          chaotic. It uses a simple maze format that is easy to understand,
+          repeatable without feeling frantic, and intentionally lighter on
+          stimulation than many mainstream kids apps.
+        </p>
+        <p>
+          The product language is plain on purpose: no ads, no timers, and no
+          flashing reward loops. The app is designed to be calmer, not
+          chemically irresistible.
+        </p>
+      </article>
+
+      <aside class="page-panel prose">
+        <h2>Who it is for</h2>
+        <p>
+          It is aimed at families who still allow some screen time but want a
+          gentler option for early-childhood play. It can fit best when parents
+          are looking for a quieter activity rather than a loud, fast reward
+          machine.
+        </p>
+        <p>
+          Every child is different, so the right fit still depends on age,
+          patience, and fine-motor comfort.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="content-block">
+    <div class="shell shot-grid">
+      <figure class="media-card">
+        <img
+          src="/images/ipad-hero.jpeg"
+          alt="Denny's Maze product screenshot on iPad"
+          width="2064"
+          height="2752"
+          loading="lazy"
+        />
+        <figcaption>
+          App Store-style screen showing the calmer visual direction on a larger
+          display.
+        </figcaption>
+      </figure>
+
+      <figure class="media-card">
+        <img
+          src="/images/onboarding-maze.png"
+          alt="Denny's Maze onboarding or tutorial maze screenshot"
+          width="1148"
+          height="870"
+          loading="lazy"
+        />
+        <figcaption>
+          The app works best when each screen stays focused on a single,
+          understandable action.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <ComparisonTable
+    title="Denny's Maze at a glance"
+    intro="The difference is less about a single feature and more about the overall design posture."
+    rows={rows}
+  />
+
+  <section class="content-block">
+    <div class="shell split-grid">
+      <article class="page-panel prose">
+        <h2>Why maze games can work well</h2>
+        <p>
+          Mazes have a clear beginning, middle, and end. They invite patience,
+          tracing, and simple problem-solving without requiring a child to chase
+          fast moving objects or react to a constant stream of prompts.
+        </p>
+        <p>
+          That makes the format a natural fit for calmer app design when the
+          surrounding interface stays quiet and uncluttered.
+        </p>
+      </article>
+
+      <article class="page-panel prose">
+        <h2>What the app does not promise</h2>
+        <p>
+          This site does not claim the app is therapeutic, scientifically
+          proven, or a replacement for offline play. It is simply designed to
+          be a lower-noise option for families who want healthier-feeling
+          digital choices.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <RelatedLinks
+    links={[
+      {
+        href: "/maze-games-for-kids-without-ads/",
+        title: "Maze games for kids without ads",
+        description:
+          "Why ads change the feel of a maze app more than many parents expect."
+      },
+      {
+        href: "/best-low-stimulation-apps-for-toddlers/",
+        title: "Best low-stimulation apps for toddlers",
+        description:
+          "A parent-focused checklist for judging calmer apps."
+      },
+      {
+        href: "/faq/",
+        title: "FAQ",
+        description:
+          "Short answers about age fit, philosophy, and what the app is trying to do."
+      }
+    ]}
+  />
+
+  <CtaBlock
+    title="Want to try a calmer maze app?"
+    text="Use the App Store link once the final listing is ready. The button is wired to a placeholder URL for now."
+  />
+</BaseLayout>
