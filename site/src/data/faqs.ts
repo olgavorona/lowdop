@@ -27,6 +27,6 @@ export const commonFaqs = [
   {
     question: "Where can I download Denny's Maze?",
     answer:
-      "Use the App Store button on the site. It currently points to a placeholder until the final store URL is confirmed."
+      "Use the App Store button on this page or the product page. The app is available on the App Store for iPhone and iPad."
   }
 ] as const;
