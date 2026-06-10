@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/apps/dennys-maze",
+      "destination": "/dennys-maze/",
+      "permanent": true
+    },
+    {
+      "source": "/apps/dennys-maze/",
+      "destination": "/dennys-maze/",
+      "permanent": true
+    }
+  ]
+}

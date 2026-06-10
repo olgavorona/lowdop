@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../../lib/seo";
+import { blogPosts, formatDate } from "../../data/blog";
+
+const meta = buildMeta({
+  title: "Blog | Harmless Apps — On building calmer kids apps",
+  description:
+    "Behind-the-scenes thinking on calm kids app design, screen time, and building for parents who want less chaotic digital play.",
+  pathname: "/blog/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <section class="page-header">
+    <div class="shell narrow">
+      <p class="eyebrow">Blog</p>
+      <h1>Thinking out loud</h1>
+      <p class="section-intro">
+        Notes on building calmer kids apps, what I'm learning about attention
+        and design, and the occasional honest account of getting things wrong.
+      </p>
+    </div>
+  </section>
+
+  <section class="content-block">
+    <div class="shell narrow">
+      <ul class="post-list">
+        {blogPosts.map((post) => (
+          <li class="post-item">
+            <a href={`/blog/${post.slug}/`} class="post-link">
+              <time class="post-date eyebrow" datetime={post.date}>
+                {formatDate(post.date)}
+              </time>
+              <h2 class="post-title">{post.title}</h2>
+              <p class="post-excerpt">{post.excerpt}</p>
+              <span class="post-read-more" aria-hidden="true">Read →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-list {
+    display: grid;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .post-item {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .post-link {
+    display: block;
+    padding: 2rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 160ms ease;
+  }
+
+  .post-link:hover .post-title {
+    color: var(--accent-strong);
+  }
+
+  .post-link:hover .post-read-more {
+    color: var(--accent-strong);
+  }
+
+  .post-date {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-title {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .post-excerpt {
+    color: var(--muted);
+    margin: 0 0 1rem;
+    max-width: 38rem;
+    line-height: 1.65;
+  }
+
+  .post-read-more {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+</style>

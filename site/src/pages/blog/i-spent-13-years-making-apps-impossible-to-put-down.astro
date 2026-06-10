@@ -1,0 +1,216 @@
+---
+import CtaBlock from "../../components/CtaBlock.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildMeta, blogPostingSchema, organizationSchema } from "../../lib/seo";
+import { formatDate } from "../../data/blog";
+
+const slug = "i-spent-13-years-making-apps-impossible-to-put-down";
+const title =
+  "I Spent 13 Years Making Apps Impossible to Put Down. Now I'm Building the Opposite, for My Son.";
+const description =
+  "An iOS developer with 13 years of building retention-driven apps explains why she's now building the opposite — for her three-year-old son.";
+const date = "2026-06-10";
+const author = "Olga Vorona";
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname: `/blog/${slug}/`,
+  type: "article"
+});
+---
+
+<BaseLayout
+  {...meta}
+  schemas={[
+    organizationSchema(),
+    blogPostingSchema({
+      title,
+      description,
+      datePublished: date,
+      pathname: `/blog/${slug}/`,
+      authorName: author
+    })
+  ]}
+>
+  <article>
+    <header class="page-header article-header">
+      <div class="shell narrow">
+        <a href="/blog/" class="back-link eyebrow">← Blog</a>
+        <h1>{title}</h1>
+        <div class="byline">
+          <span class="author">{author}</span>
+          <span class="byline-sep" aria-hidden="true">·</span>
+          <time datetime={date}>{formatDate(date)}</time>
+        </div>
+      </div>
+    </header>
+
+    <section class="content-block">
+      <div class="shell narrow prose article-body">
+        <p>
+          For thirteen years my job has been to make things hard to put down.
+          I'm an iOS developer, and over that time I've shipped apps at
+          companies whose names you'd recognize, including a few of the ones
+          people love to blame for their screen time. Somewhere along the way I
+          fell for product management too, and I picked up all the vocabulary
+          that comes with it: retention, time spent in app, monthly active
+          users, session length, engagement loops. I can talk about dopamine
+          spikes the way other people talk about the weather.
+        </p>
+
+        <p>
+          Here's the uncomfortable part of all that. A lot of the work isn't
+          really about helping you and then letting you get on with your day.
+          It's about keeping you. The little animation when you tap something,
+          the satisfying sound that rewards you, the streak you don't want to
+          break, the gentle nudge that pulls you back in once you've drifted
+          away. None of that is there by chance. It's designed, carefully, and
+          I know that because designing it was the job.
+        </p>
+
+        <p>
+          Then Leo came along and everything I knew started to look a little
+          different. He's three now, and the last thing in the world I want for
+          my son is to be hooked. I don't want him dependent on a game, and I
+          don't want a tantrum on my hands every time the cartoons stop. I've
+          seen how the sausage gets made, and I really did not want to feed it
+          to my own kid.
+        </p>
+
+        <p>
+          The trouble is that I'm also a mom who travels a lot, and anyone who
+          has flown with a toddler knows exactly how that math works out. You
+          simply cannot carry every toy and picture book and sticker pad and box
+          of crayons through an airport, and so at some point, on some delayed
+          flight with a tired and bored three-year-old, the easy answer ends up
+          sitting right there in your bag. The iPad.
+        </p>
+
+        <p>
+          That was the moment being a developer stopped being a fun fact about
+          me and started being a genuine problem, because I knew too much. I had
+          a very good guess about what was running under the hood of half the
+          so-called kids' apps in the store, which was the same retention
+          machinery I worked with every day, only painted in brighter colors.
+          Handing Leo a tablet felt like handing him the exact thing I'd spent
+          my whole career learning to be wary of.
+        </p>
+
+        <p>
+          So I did what I would do with any product question that worried me,
+          which was to go and research it properly. I went looking for the calm,
+          low-stimulation apps that everyone recommends, the ones that promise
+          no ads and no flashing and no manipulation, and the more of them I
+          opened the more questions I had.
+        </p>
+
+        <p>
+          Plenty of apps wear the word calm on the label, but when you actually
+          open them up the old machinery is usually still in there, just a
+          little quieter. There's a celebration animation every time a task gets
+          finished, a cheerful jingle looping away in the background, a soft
+          little "play again?" the second the child stops tapping. Some of them
+          really are lovely and I don't want to throw them all under the bus,
+          but somewhere along the line "low stimulation" had turned into a
+          marketing phrase, and I couldn't always find much substance behind the
+          claim. When you've spent years building these systems yourself, you
+          start to notice the scaffolding even when someone has draped a nice
+          calm-colored sheet over the top of it.
+        </p>
+
+        <p>
+          What I wanted was something I could actually trust, not a promise on
+          a store page but a build I could look at and understand for myself,
+          and in the end the only way to get that was to start making my own.
+        </p>
+
+        <p>
+          It began as something small and, honestly, a bit selfish, just a few
+          apps I would genuinely feel okay about handing to Leo. No animation
+          for the sake of animation, no noises, no rewards engineered to drag
+          him back in, no flashing lights, just simple and quiet things that a
+          small person can sit with for a while and then walk away from without
+          it turning into a fight. But the further I got into it the more I
+          started to think that I couldn't possibly be the only parent doing
+          this math on a delayed flight somewhere, and that I couldn't be the
+          only developer who knows the whole playbook by heart and quietly
+          wishes someone would build the opposite of it.
+        </p>
+
+        <p>
+          The world our kids are growing up in is already loud, already
+          over-stimulating, already tuned to hold onto their attention for as
+          long as it possibly can. I don't think the answer is to pretend that
+          screens don't exist, because I travel and I'm realistic and the iPad
+          is not going back in the box. But I do believe we can carve out a
+          calmer corner of the digital world, one that treats a child's
+          attention as something to respect rather than something to mine, one
+          that is actually built to be put down.
+        </p>
+
+        <p>
+          That is what this blog is for. I'm going to write here about what I'm
+          making and why, about the design decisions behind it and the things I
+          get wrong along the way, about what I'm slowly learning about kids and
+          attention, and about the strange experience of taking everything I
+          know about hooking people and using it to do the complete opposite.
+        </p>
+
+        <p>
+          I'm really glad you found your way here, and I hope you'll stick
+          around while I figure it out.
+        </p>
+      </div>
+    </section>
+  </article>
+
+  <CtaBlock text="If you want to see what this looks like in practice, Denny's Maze is the first app built on this idea." />
+</BaseLayout>
+
+<style>
+  .article-header {
+    padding-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .back-link:hover {
+    color: var(--text);
+  }
+
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .byline-sep {
+    color: var(--faint);
+  }
+
+  .article-body {
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .article-body p {
+    margin-bottom: 1.6em;
+  }
+
+  .article-body p:last-child {
+    margin-bottom: 0;
+  }
+</style>

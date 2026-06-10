@@ -63,6 +63,38 @@ export function softwareApplicationSchema() {
   };
 }
 
+export function blogPostingSchema({
+  title,
+  description,
+  datePublished,
+  pathname,
+  authorName
+}: {
+  title: string;
+  description: string;
+  datePublished: string;
+  pathname: string;
+  authorName: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished,
+    url: absoluteUrl(pathname),
+    author: {
+      "@type": "Person",
+      name: authorName
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.organization.name,
+      url: siteConfig.organization.url
+    }
+  };
+}
+
 export function faqSchema(
   items: ReadonlyArray<{ question: string; answer: string }>
 ) {

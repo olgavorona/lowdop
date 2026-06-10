@@ -4,7 +4,7 @@ export const siteConfig = {
   siteUrl: "https://harmlessapp.com",
   appStoreUrl: "https://apps.apple.com/ca/app/dennys-maze/id6760107138",
   productName: "Denny's Maze",
-  productPath: "/apps/dennys-maze/",
+  productPath: "/dennys-maze/",
   productTagline: "A calmer maze-book feeling on an iPad.",
   language: "en",
   organization: {

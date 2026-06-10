@@ -4,13 +4,10 @@ import { absoluteUrl } from "../lib/seo";
 
 const paths = [
   "/",
-  "/apps/dennys-maze/",
+  "/dennys-maze/",
   "/best-low-stimulation-apps-for-toddlers/",
-  "/calm-ipad-games-for-kids/",
-  "/screen-time-without-overstimulation/",
-  "/maze-games-for-kids-without-ads/",
-  "/about/",
-  "/faq/",
+  "/blog/",
+  "/blog/i-spent-13-years-making-apps-impossible-to-put-down/",
   "/privacy/",
   "/terms/"
 ];
