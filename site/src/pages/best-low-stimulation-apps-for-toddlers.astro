@@ -21,10 +21,10 @@ type App = {
   url: string;          // empty string = no link (non-digital items)
   icon: string;
   description: string;
-  quiet: number;        // 10 = silent, 1 = constant noise
-  still: number;        // 10 = nothing moves, 1 = constant motion
-  gentle: number;       // 10 = no reward loops, 1 = heavy engagement mechanics
-  muted: number;        // 10 = soft muted palette, 1 = neon / high contrast
+  sounds: number;     // 10 = silent, 1 = constant noise
+  animations: number; // 10 = nothing moves, 1 = constant motion
+  rewards: number;    // 10 = no reward loops, 1 = heavy engagement mechanics
+  brightness: number; // 10 = soft muted palette, 1 = neon / high contrast
   offline: OfflineStatus;
   free: boolean;
 };
@@ -35,7 +35,7 @@ const apps: App[] = [
     url: "",
     icon: "/images/app-icons/paper-book.svg",
     description: "The original calm screen-free format. Silent, still, no rewards engineered in.",
-    quiet: 10, still: 10, gentle: 10, muted: 10,
+    sounds: 10, animations: 10, rewards: 10, brightness: 10,
     offline: "yes",
     free: true
   },
@@ -44,7 +44,7 @@ const apps: App[] = [
     url: "/dennys-maze/",
     icon: "/images/app-icons/dennys-maze.jpg",
     description: "60 guided maze puzzles. Optional story narration; otherwise silent.",
-    quiet: 8, still: 10, gentle: 9, muted: 8,
+    sounds: 8, animations: 10, rewards: 9, brightness: 8,
     offline: "yes",
     free: true
   },
@@ -53,7 +53,7 @@ const apps: App[] = [
     url: "https://apps.apple.com/us/app/sketchy-wetchy-art-studio/id6575345873",
     icon: "/images/app-icons/sketchy-wetchy.jpg",
     description: "Free-draw canvas with playful brushes and interactive sounds.",
-    quiet: 6, still: 10, gentle: 10, muted: 6,
+    sounds: 6, animations: 10, rewards: 10, brightness: 6,
     offline: "yes",
     free: true
   },
@@ -62,7 +62,7 @@ const apps: App[] = [
     url: "https://playpokpok.com/",
     icon: "/images/app-icons/pok-pok.jpg",
     description: "Montessori-inspired open-ended digital toys. Discovery-driven, no goals.",
-    quiet: 7, still: 4, gentle: 9, muted: 8,
+    sounds: 7, animations: 4, rewards: 9, brightness: 8,
     offline: "yes",
     free: false
   },
@@ -71,7 +71,7 @@ const apps: App[] = [
     url: "https://sagomini.com/world/",
     icon: "/images/app-icons/sago-mini.jpg",
     description: "Gentle play scenarios with soft characters. No points or pressure.",
-    quiet: 5, still: 4, gentle: 8, muted: 7,
+    sounds: 5, animations: 4, rewards: 8, brightness: 7,
     offline: "yes",
     free: true
   },
@@ -80,7 +80,7 @@ const apps: App[] = [
     url: "https://pbskids.org/apps/",
     icon: "/images/app-icons/pbs-kids.jpg",
     description: "Free games with Daniel Tiger, Dinosaur Train, and others. Fully ad-free.",
-    quiet: 6, still: 4, gentle: 6, muted: 7,
+    sounds: 6, animations: 4, rewards: 6, brightness: 7,
     offline: "partial",
     free: true
   },
@@ -89,14 +89,14 @@ const apps: App[] = [
     url: "https://www.tocaboca.com/apps",
     icon: "/images/app-icons/toca-life.jpg",
     description: "Enormous open-world sandbox. Highly interactive; lots happening at once.",
-    quiet: 3, still: 3, gentle: 3, muted: 4,
+    sounds: 3, animations: 3, rewards: 3, brightness: 4,
     offline: "no",
     free: true
   }
 ];
 
 function calmScore(app: App): number {
-  const sum = app.quiet + app.still + app.gentle + app.muted;
+  const sum = app.sounds + app.animations + app.rewards + app.brightness;
   return Math.round((sum / 4) * 10) / 10;
 }
 
@@ -145,10 +145,10 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
           <thead>
             <tr>
               <th class="col-app">App</th>
-              <th class="col-score">Quiet</th>
-              <th class="col-score">Still</th>
-              <th class="col-score">Gentle</th>
-              <th class="col-score">Muted</th>
+              <th class="col-score">Sounds</th>
+              <th class="col-score">Animations</th>
+              <th class="col-score">Rewards</th>
+              <th class="col-score">Brightness</th>
               <th class="col-load">Calm<br />score</th>
               <th class="col-extra">Offline /<br />Travel</th>
               <th class="col-extra">Free<br />content</th>
@@ -183,7 +183,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                       </span>
                     )}
                   </td>
-                  {[app.quiet, app.still, app.gentle, app.muted].map((score) => (
+                  {[app.sounds, app.animations, app.rewards, app.brightness].map((score) => (
                     <td class="cell-score">
                       <span class="score-num">{score}</span>
                       <div class="score-track">
@@ -240,7 +240,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
               </div>
               <p class="card-desc">{app.description}</p>
               <div class="card-scores">
-                {(["quiet", "still", "gentle", "muted"] as const).map((dim) => (
+                {(["sounds", "animations", "rewards", "brightness"] as const).map((dim) => (
                   <div class="card-score-item">
                     <span class="card-dim">{dim}</span>
                     <span class="card-score-num">{app[dim]}</span>
@@ -275,27 +275,27 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
       <article class="page-panel prose">
         <h2>What the scores mean</h2>
         <p>
-          <strong>Quiet (10 = silent)</strong> measures how much audio the app
+          <strong>Sounds (10 = silent)</strong> measures how much audio the app
           produces during normal play — not just volume, but frequency and
           surprise. A 10 means the child controls all the sound, or there is none.
         </p>
         <p>
-          <strong>Still (10 = nothing moves)</strong> covers unprompted motion on
-          screen. A calm app sits and waits. A busy one animates constantly
+          <strong>Animations (10 = nothing moves)</strong> covers unprompted motion
+          on screen. A calm app sits and waits. A busy one animates constantly
           whether or not the child is touching it.
         </p>
       </article>
       <article class="page-panel prose">
         <h2>The dimension parents miss most</h2>
         <p>
-          <strong>Gentle (10 = no reward loops)</strong> matters most for
+          <strong>Rewards (10 = no reward loops)</strong> matters most for
           transition behavior — whether the child can put it down without a
           fight. High scores mean natural stopping points; low scores mean
           the app is engineered to make stopping harder.
         </p>
         <p>
-          <strong>Muted (10 = soft palette)</strong> is about color saturation
-          and contrast. Low-muted apps use neon palettes designed to hold
+          <strong>Brightness (10 = soft palette)</strong> is about color saturation
+          and contrast. Low-brightness apps use neon palettes designed to hold
           visual attention. Paper scores a 10 here: reflected light only.
         </p>
       </article>
