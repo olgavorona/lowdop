@@ -324,14 +324,7 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
     margin-bottom: 0.75rem;
   }
 
-  /* ── Responsive visibility: cards hidden on desktop, table hidden on mobile ── */
-  .app-cards  { display: none; }
-  .table-wrap { display: block; }
-
-  @media (max-width: 44rem) {
-    .table-wrap { display: none; }
-    .app-cards  { display: grid; }
-  }
+  /* ── Responsive visibility handled below in each component's rule ── */
 
   /* ══════════════════════════════
      DESKTOP TABLE
@@ -498,7 +491,7 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
      MOBILE CARDS
   ══════════════════════════════ */
   .app-cards {
-    display: grid;
+    display: none; /* shown only on mobile via media query below */
     gap: 0.75rem;
     list-style: none;
     padding: 0;
@@ -627,4 +620,9 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
   .card-tag.offline-yes, .card-tag.free-true   { color: var(--accent-strong); }
   .card-tag.offline-partial                     { color: var(--terracotta); }
   .card-tag.offline-no, .card-tag.free-false    { color: var(--faint); }
+
+  @media (max-width: 44rem) {
+    .table-wrap { display: none; }
+    .app-cards  { display: grid; }
+  }
 </style>
