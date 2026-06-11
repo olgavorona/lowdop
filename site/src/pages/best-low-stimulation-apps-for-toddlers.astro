@@ -14,6 +14,8 @@ const meta = buildMeta({
   type: "article"
 });
 
+type OfflineStatus = "yes" | "partial" | "no";
+
 type App = {
   name: string;
   url: string;
@@ -22,6 +24,8 @@ type App = {
   animations: number;
   rewards: number;
   brightness: number;
+  offline: OfflineStatus;
+  free: boolean;
 };
 
 const apps: App[] = [
@@ -29,61 +33,71 @@ const apps: App[] = [
     name: "Denny's Maze",
     url: "/dennys-maze/",
     description: "60 guided maze puzzles. Optional story narration; otherwise silent.",
-    sounds: 2,
-    animations: 2,
-    rewards: 2,
-    brightness: 3
-  },
-  {
-    name: "Pok Pok",
-    url: "https://playpokpok.com/",
-    description: "Montessori-inspired open-ended digital toys. Discovery-driven, no goals or timers.",
-    sounds: 4,
-    animations: 4,
-    rewards: 3,
-    brightness: 5
-  },
-  {
-    name: "Sago Mini World",
-    url: "https://sagomini.com/world/",
-    description: "Gentle play scenarios with soft characters. Slow-paced, no points or pressure.",
-    sounds: 4,
-    animations: 4,
-    rewards: 3,
-    brightness: 5
+    sounds: 3, animations: 1, rewards: 2, brightness: 3,
+    offline: "yes",
+    free: true
   },
   {
     name: "Sketchy-Wetchy",
     url: "https://apps.apple.com/us/app/sketchy-wetchy-art-studio/id6575345873",
-    description: "Free-draw canvas with playful brushes and intentionally wacky sounds.",
-    sounds: 6,
-    animations: 5,
-    rewards: 3,
-    brightness: 7
+    description: "Free-draw canvas with playful brushes and interactive sounds.",
+    sounds: 5, animations: 1, rewards: 1, brightness: 5,
+    offline: "yes",
+    free: true
+  },
+  {
+    name: "Pok Pok",
+    url: "https://playpokpok.com/",
+    description: "Montessori-inspired open-ended digital toys. Discovery-driven, no goals.",
+    sounds: 4, animations: 7, rewards: 2, brightness: 3,
+    offline: "yes",
+    free: false
+  },
+  {
+    name: "Sago Mini World",
+    url: "https://sagomini.com/world/",
+    description: "Gentle play scenarios with soft characters. No points or pressure.",
+    sounds: 6, animations: 7, rewards: 3, brightness: 4,
+    offline: "yes",
+    free: true
+  },
+  {
+    name: "PBS Kids",
+    url: "https://pbskids.org/apps/",
+    description: "Free games with Daniel Tiger, Dinosaur Train, and others. Fully ad-free.",
+    sounds: 5, animations: 7, rewards: 5, brightness: 4,
+    offline: "partial",
+    free: true
   },
   {
     name: "Toca Life World",
-    url: "https://tocaboca.com/app/toca-life-world/",
-    description: "Enormous open world sandbox. Highly interactive; lots happening at once.",
-    sounds: 7,
-    animations: 7,
-    rewards: 5,
-    brightness: 7
+    url: "https://www.tocaboca.com/apps",
+    description: "Enormous open-world sandbox. Highly interactive; lots happening at once.",
+    sounds: 8, animations: 8, rewards: 8, brightness: 7,
+    offline: "no",
+    free: true
   }
 ];
+
+function rating(app: App): number {
+  const sum = app.sounds + app.animations + app.rewards + app.brightness;
+  return Math.round((sum / 4) * 10) / 10;
+}
 
 function barColor(score: number): string {
   if (score <= 4) return "var(--accent)";
   if (score <= 6) return "var(--terracotta)";
   return "var(--text)";
 }
+
+const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
 ---
 
 <BaseLayout {...meta} schemas={[organizationSchema()]}>
   <PageHeader
     eyebrow="Guide"
     title="Best low-stimulation apps for toddlers"
-    intro="Not just a list of names — a scored look at how five real apps compare on the things that actually make screen time feel calm or chaotic."
+    intro="Not just a list of names — a scored look at how real apps compare on the things that actually make screen time feel calm or chaotic."
     tags={["toddlers", "low stimulation", "no ads", "parent guide"]}
   />
 
@@ -97,16 +111,17 @@ function barColor(score: number): string {
         marketing claim rather than a design principle.
       </p>
       <p>
-        The table below rates five real apps across four sensory dimensions —
+        The table below rates real apps across four sensory dimensions —
         sounds, animations, reward feedback, and brightness — on a scale from
-        1 (barely there) to 10 (constant and intense). Lower scores mean less
-        sensory load. Use it as a starting point, not a verdict.
+        1 (barely there) to 10 (constant and intense). The rating is the
+        average of the four scores. Lower means calmer.
       </p>
     </div>
   </section>
 
-  <section class="content-block app-comparison">
+  <section class="content-block">
     <div class="shell">
+      <p class="table-label eyebrow">App ratings</p>
       <div class="table-wrap">
         <table class="score-table">
           <thead>
@@ -116,39 +131,55 @@ function barColor(score: number): string {
               <th class="col-score">Animations</th>
               <th class="col-score">Rewards</th>
               <th class="col-score">Brightness</th>
+              <th class="col-rating">Rating</th>
+              <th class="col-extra">Offline /<br />Travel friendly</th>
+              <th class="col-extra">Free<br />content</th>
             </tr>
           </thead>
           <tbody>
-            {apps.map((app) => (
-              <tr>
-                <td class="cell-app">
-                  <a
-                    href={app.url}
-                    class="app-name"
-                    target={app.url.startsWith("http") ? "_blank" : undefined}
-                    rel={app.url.startsWith("http") ? "noopener" : undefined}
-                  >
-                    {app.name}
-                  </a>
-                  <span class="app-desc">{app.description}</span>
-                </td>
-                {[app.sounds, app.animations, app.rewards, app.brightness].map((score) => (
-                  <td class="cell-score">
-                    <span class="score-num">{score}</span>
-                    <div class="score-track">
-                      <div
-                        class="score-fill"
-                        style={`width: ${score * 10}%; background: ${barColor(score)}`}
-                      />
-                    </div>
+            {sorted.map((app) => {
+              const r = rating(app);
+              return (
+                <tr>
+                  <td class="cell-app">
+                    <a
+                      href={app.url}
+                      class="app-name"
+                      target={app.url.startsWith("http") ? "_blank" : undefined}
+                      rel={app.url.startsWith("http") ? "noopener" : undefined}
+                    >
+                      {app.name}
+                    </a>
+                    <span class="app-desc">{app.description}</span>
                   </td>
-                ))}
-              </tr>
-            ))}
+                  {[app.sounds, app.animations, app.rewards, app.brightness].map((score) => (
+                    <td class="cell-score">
+                      <span class="score-num">{score}</span>
+                      <div class="score-track">
+                        <div
+                          class="score-fill"
+                          style={`width: ${score * 10}%; background: ${barColor(score)}`}
+                        />
+                      </div>
+                    </td>
+                  ))}
+                  <td class="cell-rating">
+                    <span class="rating-num">{r}</span>
+                    <span class="rating-denom">/10</span>
+                  </td>
+                  <td class={`cell-extra offline-${app.offline}`}>
+                    {app.offline === "yes" ? "Yes" : app.offline === "partial" ? "Partial" : "No"}
+                  </td>
+                  <td class={`cell-extra free-${app.free}`}>
+                    {app.free ? "Yes" : "No"}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
-      <p class="table-note">1 = barely noticeable · 10 = constant and intense. Lower is calmer.</p>
+      <p class="table-note">Scores 1–10 per dimension · Rating = average · Lower is calmer</p>
     </div>
   </section>
 
@@ -159,28 +190,27 @@ function barColor(score: number): string {
         <p>
           <strong>Sounds</strong> measures how much audio the app produces
           during normal play — not just volume, but frequency and surprise.
-          A score of 2 means the child controls most of the sound;
-          a score of 7 means the app is continuously generating it.
+          A 1 means the child controls most of the sound;
+          a 8–10 means the app is continuously generating it.
         </p>
         <p>
           <strong>Animations</strong> covers how much movement happens on
           screen independent of the child's input. A calm app mostly sits
-          still and waits. A busy app never stops moving.
+          still and waits. A busy one never stops moving.
         </p>
       </article>
       <article class="page-panel prose">
         <h2>The dimension parents miss most</h2>
         <p>
-          <strong>Rewards</strong> is the one that matters most for
-          transition behavior — whether the child can put the app down
-          without a fight. Apps with low reward scores tend to have natural
-          stopping points. Apps with higher scores build loops that make
-          stopping harder.
+          <strong>Rewards</strong> matters most for transition behavior —
+          whether the child can put the app down without a fight. Apps with
+          low reward scores tend to have natural stopping points. High scores
+          mean the app builds loops that make stopping harder.
         </p>
         <p>
           <strong>Brightness</strong> is about color saturation and contrast,
-          not just literal screen luminosity. High-brightness apps use neon
-          palettes designed to hold visual attention.
+          not just screen luminosity. High-brightness apps use neon palettes
+          designed to hold visual attention.
         </p>
       </article>
     </div>
@@ -197,7 +227,7 @@ function barColor(score: number): string {
         href: "/blog/i-spent-13-years-making-apps-impossible-to-put-down/",
         title: "Why I built this",
         description:
-          "The maker's background: 13 years building retention-driven apps, then building the opposite for her son."
+          "13 years building retention-driven apps, then building the opposite for her son."
       }
     ]}
   />
@@ -206,39 +236,44 @@ function barColor(score: number): string {
 </BaseLayout>
 
 <style>
+  .table-label {
+    margin-bottom: 0.75rem;
+  }
+
   .score-table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
   }
 
-  .col-app {
-    width: 36%;
-  }
-
-  .col-score {
-    width: 16%;
-  }
+  .col-app   { width: 26%; }
+  .col-score { width: 8%; }
+  .col-rating{ width: 9%; }
+  .col-extra { width: 11%; }
 
   thead th {
-    padding: 0.85rem 1rem;
+    padding: 0.8rem 0.75rem;
     text-align: left;
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
     border-bottom: 1px solid var(--line);
     background: var(--bg-deep);
+    line-height: 1.4;
+    vertical-align: bottom;
   }
 
-  thead th.col-score {
+  thead th.col-score,
+  thead th.col-rating,
+  thead th.col-extra {
     text-align: center;
   }
 
   .cell-app {
-    padding: 1.1rem 1rem;
+    padding: 1rem 0.75rem;
     border-bottom: 1px solid var(--line-faint);
     vertical-align: top;
   }
@@ -246,10 +281,13 @@ function barColor(score: number): string {
   .app-name {
     display: block;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text);
     text-decoration: none;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .app-name:hover {
@@ -258,14 +296,14 @@ function barColor(score: number): string {
 
   .app-desc {
     display: block;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: var(--muted);
-    line-height: 1.5;
+    line-height: 1.45;
     font-family: var(--font-body);
   }
 
   .cell-score {
-    padding: 1.1rem 1rem;
+    padding: 1rem 0.75rem;
     border-bottom: 1px solid var(--line-faint);
     vertical-align: middle;
     text-align: center;
@@ -274,16 +312,16 @@ function barColor(score: number): string {
   .score-num {
     display: block;
     font-family: var(--font-mono);
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 500;
     color: var(--text);
     line-height: 1;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.35rem;
   }
 
   .score-track {
     width: 100%;
-    max-width: 4rem;
+    max-width: 3rem;
     height: 3px;
     background: var(--line);
     border-radius: 2px;
@@ -294,33 +332,69 @@ function barColor(score: number): string {
   .score-fill {
     height: 100%;
     border-radius: 2px;
-    transition: width 0s;
   }
 
-  .table-note {
-    margin-top: 0.85rem;
+  .cell-rating {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid var(--line-faint);
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .rating-num {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .rating-denom {
     font-family: var(--font-mono);
     font-size: 0.65rem;
+    color: var(--faint);
+    margin-left: 1px;
+  }
+
+  .cell-extra {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid var(--line-faint);
+    vertical-align: middle;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .offline-yes, .free-true   { color: var(--accent-strong); }
+  .offline-partial           { color: var(--terracotta); }
+  .offline-no, .free-false   { color: var(--faint); }
+
+  .table-note {
+    margin-top: 0.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
     color: var(--faint);
     text-transform: uppercase;
   }
 
-  @media (max-width: 40rem) {
-    .col-app {
-      width: auto;
-    }
-
-    .col-score {
-      width: auto;
-    }
-
-    .score-num {
-      font-size: 1rem;
-    }
-
+  @media (max-width: 44rem) {
     .app-desc {
       display: none;
+    }
+
+    .col-app   { width: auto; }
+    .col-score { width: auto; }
+    .col-rating{ width: auto; }
+    .col-extra { width: auto; }
+
+    thead th,
+    .cell-app,
+    .cell-score,
+    .cell-rating,
+    .cell-extra {
+      padding: 0.7rem 0.5rem;
     }
   }
 </style>
