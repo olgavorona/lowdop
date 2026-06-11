@@ -1,5 +1,4 @@
 ---
-import ComparisonTable from "../components/ComparisonTable.astro";
 import CtaBlock from "../components/CtaBlock.astro";
 import PageHeader from "../components/PageHeader.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
@@ -10,89 +9,178 @@ const meta = buildMeta({
   title:
     "Best Low-Stimulation Apps for Toddlers | What to look for and what to avoid",
   description:
-    "A practical guide to finding low-stimulation toddler apps, including what calmer design looks like and why Denny's Maze fits that direction.",
+    "A scored comparison of real toddler apps by sounds, animations, rewards, and brightness — so you can see the difference before you hand over the iPad.",
   pathname: "/best-low-stimulation-apps-for-toddlers/",
   type: "article"
 });
 
-const rows = [
+type App = {
+  name: string;
+  url: string;
+  description: string;
+  sounds: number;
+  animations: number;
+  rewards: number;
+  brightness: number;
+};
+
+const apps: App[] = [
   {
-    focus: "Sound and motion",
-    calmOption: "Simple feedback, readable pacing, and no constant bursts.",
-    typicalOption: "Loud reactions and movement layered on movement."
+    name: "Denny's Maze",
+    url: "/dennys-maze/",
+    description: "60 guided maze puzzles. Optional story narration; otherwise silent.",
+    sounds: 2,
+    animations: 2,
+    rewards: 2,
+    brightness: 3
   },
   {
-    focus: "Task structure",
-    calmOption: "One clear task at a time.",
-    typicalOption: "Several prompts fighting for attention."
+    name: "Pok Pok",
+    url: "https://playpokpok.com/",
+    description: "Montessori-inspired open-ended digital toys. Discovery-driven, no goals or timers.",
+    sounds: 4,
+    animations: 4,
+    rewards: 3,
+    brightness: 5
   },
   {
-    focus: "Session pressure",
-    calmOption: "No timers or streak pressure.",
-    typicalOption: "Daily hooks and countdown mechanics."
+    name: "Sago Mini World",
+    url: "https://sagomini.com/world/",
+    description: "Gentle play scenarios with soft characters. Slow-paced, no points or pressure.",
+    sounds: 4,
+    animations: 4,
+    rewards: 3,
+    brightness: 5
   },
   {
-    focus: "Monetization",
-    calmOption: "No ads during play.",
-    typicalOption: "Interruptions that shift attention away from the activity."
+    name: "Sketchy-Wetchy",
+    url: "https://apps.apple.com/us/app/sketchy-wetchy-art-studio/id6575345873",
+    description: "Free-draw canvas with playful brushes and intentionally wacky sounds.",
+    sounds: 6,
+    animations: 5,
+    rewards: 3,
+    brightness: 7
+  },
+  {
+    name: "Toca Life World",
+    url: "https://tocaboca.com/app/toca-life-world/",
+    description: "Enormous open world sandbox. Highly interactive; lots happening at once.",
+    sounds: 7,
+    animations: 7,
+    rewards: 5,
+    brightness: 7
   }
 ];
+
+function barColor(score: number): string {
+  if (score <= 4) return "var(--accent)";
+  if (score <= 6) return "var(--terracotta)";
+  return "var(--text)";
+}
 ---
 
 <BaseLayout {...meta} schemas={[organizationSchema()]}>
   <PageHeader
     eyebrow="Guide"
     title="Best low-stimulation apps for toddlers"
-    intro="A useful answer is not just a list of app names. It is a way to judge whether an app will actually feel calm in your home."
+    intro="Not just a list of names — a scored look at how five real apps compare on the things that actually make screen time feel calm or chaotic."
     tags={["toddlers", "low stimulation", "no ads", "parent guide"]}
   />
 
   <section class="content-block">
     <div class="shell narrow prose">
       <p>
-        When parents search for low stimulation apps for toddlers, they are
-        often describing a feeling. They want fewer interruptions, less noise,
-        slower pacing, and less app behavior that leaves a child agitated after
-        the screen goes away.
+        When parents search for low-stimulation apps, they are usually
+        describing a feeling: fewer interruptions, less noise, slower pacing,
+        and no child who is agitated the moment the screen goes away. The
+        problem is that most app descriptions use the word "calm" as a
+        marketing claim rather than a design principle.
       </p>
       <p>
-        That means the best low-stimulation apps usually share a few patterns:
-        they stay visually simple, avoid time pressure, do not rely on flashy
-        rewards, and keep the child focused on one understandable activity at a
-        time.
-      </p>
-      <p>
-        A maze app like <a href="/dennys-maze/">Denny's Maze</a> can fit
-        that category when it keeps the goal straightforward and the interface
-        quiet. It is not the only possible format, but it is a good example of
-        how a children's app can be designed to be calmer.
+        The table below rates five real apps across four sensory dimensions —
+        sounds, animations, reward feedback, and brightness — on a scale from
+        1 (barely there) to 10 (constant and intense). Lower scores mean less
+        sensory load. Use it as a starting point, not a verdict.
       </p>
     </div>
   </section>
 
-  <ComparisonTable
-    title="A simple toddler-app checklist"
-    intro="Use this to filter apps quickly before you download them."
-    rows={rows}
-  />
+  <section class="content-block app-comparison">
+    <div class="shell">
+      <div class="table-wrap">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th class="col-app">App</th>
+              <th class="col-score">Sounds</th>
+              <th class="col-score">Animations</th>
+              <th class="col-score">Rewards</th>
+              <th class="col-score">Brightness</th>
+            </tr>
+          </thead>
+          <tbody>
+            {apps.map((app) => (
+              <tr>
+                <td class="cell-app">
+                  <a
+                    href={app.url}
+                    class="app-name"
+                    target={app.url.startsWith("http") ? "_blank" : undefined}
+                    rel={app.url.startsWith("http") ? "noopener" : undefined}
+                  >
+                    {app.name}
+                  </a>
+                  <span class="app-desc">{app.description}</span>
+                </td>
+                {[app.sounds, app.animations, app.rewards, app.brightness].map((score) => (
+                  <td class="cell-score">
+                    <span class="score-num">{score}</span>
+                    <div class="score-track">
+                      <div
+                        class="score-fill"
+                        style={`width: ${score * 10}%; background: ${barColor(score)}`}
+                      />
+                    </div>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">1 = barely noticeable · 10 = constant and intense. Lower is calmer.</p>
+    </div>
+  </section>
 
   <section class="content-block">
     <div class="shell split-grid">
       <article class="page-panel prose">
-        <h2>What to look for</h2>
+        <h2>What the scores actually mean</h2>
         <p>
-          Look for apps with one main mechanic, a clear stopping point, and a
-          lower-noise presentation. Good signs include no ads, no timers, and a
-          play style that does not demand rapid-fire tapping.
+          <strong>Sounds</strong> measures how much audio the app produces
+          during normal play — not just volume, but frequency and surprise.
+          A score of 2 means the child controls most of the sound;
+          a score of 7 means the app is continuously generating it.
+        </p>
+        <p>
+          <strong>Animations</strong> covers how much movement happens on
+          screen independent of the child's input. A calm app mostly sits
+          still and waits. A busy app never stops moving.
         </p>
       </article>
       <article class="page-panel prose">
-        <h2>What to avoid</h2>
+        <h2>The dimension parents miss most</h2>
         <p>
-          Be careful with apps that turn every interaction into a reward burst.
-          A child can enjoy something and still come away overstimulated. That
-          distinction matters for families trying to keep screen time steady and
-          manageable.
+          <strong>Rewards</strong> is the one that matters most for
+          transition behavior — whether the child can put the app down
+          without a fight. Apps with low reward scores tend to have natural
+          stopping points. Apps with higher scores build loops that make
+          stopping harder.
+        </p>
+        <p>
+          <strong>Brightness</strong> is about color saturation and contrast,
+          not just literal screen luminosity. High-brightness apps use neon
+          palettes designed to hold visual attention.
         </p>
       </article>
     </div>
@@ -116,3 +204,123 @@ const rows = [
 
   <CtaBlock text="If you want a simple starting point, Denny's Maze was built around the kind of checklist parents often wish more kids apps followed." />
 </BaseLayout>
+
+<style>
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .col-app {
+    width: 36%;
+  }
+
+  .col-score {
+    width: 16%;
+  }
+
+  thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-deep);
+  }
+
+  thead th.col-score {
+    text-align: center;
+  }
+
+  .cell-app {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid var(--line-faint);
+    vertical-align: top;
+  }
+
+  .app-name {
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: 0.25rem;
+  }
+
+  .app-name:hover {
+    color: var(--accent-strong);
+  }
+
+  .app-desc {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    font-family: var(--font-body);
+  }
+
+  .cell-score {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid var(--line-faint);
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .score-num {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .score-track {
+    width: 100%;
+    max-width: 4rem;
+    height: 3px;
+    background: var(--line);
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .score-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0s;
+  }
+
+  .table-note {
+    margin-top: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--faint);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 40rem) {
+    .col-app {
+      width: auto;
+    }
+
+    .col-score {
+      width: auto;
+    }
+
+    .score-num {
+      font-size: 1rem;
+    }
+
+    .app-desc {
+      display: none;
+    }
+  }
+</style>
