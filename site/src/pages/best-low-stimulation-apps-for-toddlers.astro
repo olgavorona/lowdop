@@ -113,7 +113,7 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
       <p>
         The table below rates real apps across four sensory dimensions —
         sounds, animations, reward feedback, and brightness — on a scale from
-        1 (barely there) to 10 (constant and intense). The rating is the
+        1 (barely there) to 10 (constant and intense). The sensory load is the
         average of the four scores. Lower means calmer.
       </p>
     </div>
@@ -121,7 +121,7 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
 
   <section class="content-block">
     <div class="shell">
-      <p class="table-label eyebrow">App ratings</p>
+      <p class="table-label eyebrow">Sensory load comparison</p>
       <div class="table-wrap">
         <table class="score-table">
           <thead>
@@ -131,7 +131,7 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
               <th class="col-score">Animations</th>
               <th class="col-score">Rewards</th>
               <th class="col-score">Brightness</th>
-              <th class="col-rating">Rating</th>
+              <th class="col-rating">Sensory<br />load</th>
               <th class="col-extra">Offline /<br />Travel friendly</th>
               <th class="col-extra">Free<br />content</th>
             </tr>
@@ -148,6 +148,11 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
                       target={app.url.startsWith("http") ? "_blank" : undefined}
                       rel={app.url.startsWith("http") ? "noopener" : undefined}
                     >
+                      <span
+                        class="intensity-dot"
+                        aria-hidden="true"
+                        style={`background: ${barColor(r)}`}
+                      />
                       {app.name}
                     </a>
                     <span class="app-desc">{app.description}</span>
@@ -179,7 +184,7 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
           </tbody>
         </table>
       </div>
-      <p class="table-note">Scores 1–10 per dimension · Rating = average · Lower is calmer</p>
+      <p class="table-note">Scores 1–10 per dimension · Sensory load = average · Lower is calmer</p>
     </div>
   </section>
 
@@ -279,7 +284,9 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
   }
 
   .app-name {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-weight: 500;
     font-size: 0.9rem;
     color: var(--text);
@@ -292,6 +299,15 @@ const sorted = [...apps].sort((a, b) => rating(a) - rating(b));
 
   .app-name:hover {
     color: var(--accent-strong);
+  }
+
+  .intensity-dot {
+    flex-shrink: 0;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0.85;
   }
 
   .app-desc {
