@@ -108,7 +108,7 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
     tags={["toddlers", "low stimulation", "no ads", "parent guide"]}
   />
 
-  <section class="content-block">
+  <section class="intro-section">
     <div class="shell narrow prose">
       <p>
         When parents search for low-stimulation apps, they are usually
@@ -131,7 +131,7 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
       <p class="table-label eyebrow">Sensory load comparison</p>
 
       <!-- Desktop table -->
-      <div class="table-wrap desktop-only">
+      <div class="table-wrap">
         <table class="score-table">
           <thead>
             <tr>
@@ -200,7 +200,7 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
       </div>
 
       <!-- Mobile cards -->
-      <ul class="app-cards mobile-only">
+      <ul class="app-cards">
         {sorted.map((app) => {
           const sl = sensoryLoad(app);
           return (
@@ -312,21 +312,25 @@ const sorted = [...apps].sort((a, b) => sensoryLoad(a) - sensoryLoad(b));
 
 <style>
   /* ── Section spacing ── */
+  .intro-section {
+    padding: 1.5rem 0 1rem;
+  }
+
   .comparison-section {
-    padding: 1.5rem 0 2rem;
+    padding: 1rem 0 2rem;
   }
 
   .table-label {
     margin-bottom: 0.75rem;
   }
 
-  /* ── Responsive visibility ── */
-  .desktop-only { display: block; }
-  .mobile-only  { display: none; }
+  /* ── Responsive visibility: cards hidden on desktop, table hidden on mobile ── */
+  .app-cards  { display: none; }
+  .table-wrap { display: block; }
 
   @media (max-width: 44rem) {
-    .desktop-only { display: none; }
-    .mobile-only  { display: block; }
+    .table-wrap { display: none; }
+    .app-cards  { display: grid; }
   }
 
   /* ══════════════════════════════
