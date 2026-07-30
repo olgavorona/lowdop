@@ -7,6 +7,7 @@ const paths = [
   "/dennys-maze/",
   "/best-low-stimulation-apps-for-toddlers/",
   "/blog/",
+  "/blog/why-i-bring-an-ipad-on-every-flight/",
   "/blog/i-spent-13-years-making-apps-impossible-to-put-down/",
   "/privacy/",
   "/terms/"

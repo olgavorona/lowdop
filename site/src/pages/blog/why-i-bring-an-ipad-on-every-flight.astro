@@ -1,0 +1,225 @@
+---
+import CtaBlock from "../../components/CtaBlock.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildMeta, blogPostingSchema, organizationSchema } from "../../lib/seo";
+import { formatDate } from "../../data/blog";
+
+const slug = "why-i-bring-an-ipad-on-every-flight";
+const title = "Why I Bring an iPad on Every Flight (Even Though I Limit Screen Time)";
+const description =
+  "A parent explains why an iPad can still belong in a toddler travel bag when screen time is limited, and which calm activities feel different on flights.";
+const date = "2026-07-30";
+const author = "Olga Vorona";
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname: `/blog/${slug}/`,
+  type: "article"
+});
+---
+
+<BaseLayout
+  {...meta}
+  schemas={[
+    organizationSchema(),
+    blogPostingSchema({
+      title,
+      description,
+      datePublished: date,
+      pathname: `/blog/${slug}/`,
+      authorName: author
+    })
+  ]}
+>
+  <article>
+    <header class="page-header article-header">
+      <div class="shell narrow">
+        <a href="/blog/" class="back-link eyebrow">← Blog</a>
+        <h1>{title}</h1>
+        <div class="byline">
+          <span class="author">{author}</span>
+          <span class="byline-sep" aria-hidden="true">·</span>
+          <time datetime={date}>{formatDate(date)}</time>
+        </div>
+      </div>
+    </header>
+
+    <section class="content-block">
+      <div class="shell narrow prose article-body">
+        <p>
+          I spend a lot of energy trying to keep Leo away from over-stimulating
+          screens, so it probably sounds strange that I never board a plane
+          without an iPad in my bag. But the contradiction only exists if you
+          assume all screen time is the same, and after years of watching my own
+          son on flights, I'm pretty convinced it isn't.
+        </p>
+
+        <p>
+          The first reason is simply practical. When you travel with a
+          three-year-old, you are already carrying a car seat or a stroller,
+          snacks for delays, spare clothes for the inevitable spill, and your own
+          bag on top of it. There is no room left for the toy bin, the stack of
+          picture books, the coloring set, and the activity workbook you'd
+          normally spread across the living room floor. An iPad replaces all of
+          that in something the size of a paperback, and it can become any one
+          of those things depending on what you open. That compactness alone is
+          why it earns its spot in my carry-on before almost anything else.
+        </p>
+
+        <p>
+          But the real reason I trust it comes down to what he actually does on
+          it, because not everything on that screen behaves the same way in his
+          little nervous system.
+        </p>
+
+        <p>
+          Videos and most games are the ones I watch closely, because they're
+          the ones that get him overstimulated fastest. I don't know exactly how
+          your child reacts, but mine has a pretty consistent pattern: somewhere
+          around thirty minutes into a video, or often much sooner with a game,
+          he starts to get wired in that unmistakable way, quicker to snap,
+          harder to redirect, and almost guaranteed to melt down the moment I
+          try to take the device away. That's the exact dynamic I'm trying to
+          avoid, and it's also exactly what most "kids" apps and channels are
+          built to produce, since a kid who's a little overstimulated is a kid
+          who keeps watching.
+        </p>
+
+        <p>
+          What surprised me is how differently he responds to a handful of other
+          activities on the same device, ones that somehow don't hijack that same
+          dopamine loop.
+        </p>
+
+        <p>
+          Drawing is the one we use most. Almost any simple drawing or sketching
+          app works, and he can sit with it quietly for a long stretch without
+          the frantic energy that videos bring on. There's no score, no timer,
+          no reward popping up to pull him back in, just a blank canvas and his
+          own hand moving across it.
+        </p>
+
+        <p>
+          A guided maze or puzzle app sits in that same quiet category, which is
+          actually why I built <a href="/dennys-maze/">Denny's Maze</a> in the
+          first place. He works through a maze at his own pace, there's no music
+          pushing him along and no celebration screen begging him to start
+          another one, and when he's done, he's just done. No fight, no "one
+          more."
+        </p>
+
+        <p>
+          The camera app has become a favorite too, in a way I didn't expect.
+          Handing him the iPad and letting him take photos of his own feet, the
+          seatback in front of him, or my tired face gives him a sense of control
+          that a passive video never does, and it tires him out in the good way
+          rather than the wired way.
+        </p>
+
+        <p>
+          Music does something similar, just in a different direction. We use a
+          music app to listen to audiobooks and stories, which keeps him settled
+          without a single flashing thing on screen, and on longer flights we
+          sometimes open something like GarageBand so he can bang around on a
+          virtual instrument and just experiment with sound. There's no win
+          condition in either case, so there's nothing pulling him to keep going
+          once he's ready to stop.
+        </p>
+
+        <p>
+          Reading and comic-style apps round it out. They ask for the same slow
+          attention a paper book would, just in a format that fits in the bag
+          along with everything else.
+        </p>
+
+        <p>
+          None of this is about screen time being good or bad in some general,
+          one-size-fits-all way. It's about the fact that a half hour of drawing
+          and a half hour of an algorithm-fed video game are not the same half
+          hour for a three-year-old's nervous system, even though they both
+          technically count as "iPad time." Once I started paying attention to
+          which activities left him calm and which ones left him wired, the
+          packing list got a lot simpler, and so did the flight.
+        </p>
+
+        <p>
+          If you're curious how I actually score apps on sounds, animation,
+          rewards, and brightness, I put together a full
+          <a href="/best-low-stimulation-apps-for-toddlers/">comparison of
+          low-stimulation apps for toddlers</a> that walks through it in more
+          detail. These are the same criteria I use before I let anything new
+          onto his iPad.
+        </p>
+      </div>
+    </section>
+  </article>
+
+  <RelatedLinks
+    title="Related pages"
+    links={[
+      {
+        href: "/dennys-maze/",
+        title: "Denny's Maze",
+        description:
+          "A quiet maze app for young kids, built for flights, waiting rooms, and other in-between moments."
+      },
+      {
+        href: "/best-low-stimulation-apps-for-toddlers/",
+        title: "Low-stimulation app rankings",
+        description:
+          "A scored comparison of toddler apps by sounds, animations, rewards, brightness, and travel use."
+      }
+    ]}
+  />
+
+  <CtaBlock text="Denny's Maze is the calm maze app I built after doing this same screen-time math with my own son." />
+</BaseLayout>
+
+<style>
+  .article-header {
+    padding-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .back-link:hover {
+    color: var(--text);
+  }
+
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .byline-sep {
+    color: var(--faint);
+  }
+
+  .article-body {
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .article-body p {
+    margin-bottom: 1.6em;
+  }
+
+  .article-body p:last-child {
+    margin-bottom: 0;
+  }
+</style>
