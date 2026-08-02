@@ -19,7 +19,9 @@ type OfflineStatus = "yes" | "partial" | "no";
 type App = {
   name: string;
   url: string;          // empty string = no link (non-digital items)
-  icon: string;
+  icon?: string;
+  iconLabel?: string;
+  iconTone?: "blue" | "green" | "pink";
   description: string;
   sounds: number;     // 10 = silent, 1 = constant noise
   animations: number; // 10 = nothing moves, 1 = constant motion
@@ -71,7 +73,27 @@ const apps: App[] = [
     url: "https://sagomini.com/world/",
     icon: "/images/app-icons/sago-mini.jpg",
     description: "Gentle play scenarios with soft characters. No points or pressure.",
-    sounds: 5, animations: 4, rewards: 8, brightness: 7,
+    sounds: 7, animations: 4, rewards: 8, brightness: 7,
+    offline: "yes",
+    free: true
+  },
+  {
+    name: "GarageBand",
+    url: "https://apps.apple.com/us/app/garageband/id408709785?platform=ipad",
+    iconLabel: "GB",
+    iconTone: "blue",
+    description: "Open-ended music creation with child-controlled sound and no reward loop.",
+    sounds: 8, animations: 10, rewards: 10, brightness: 10,
+    offline: "yes",
+    free: true
+  },
+  {
+    name: "Freeform",
+    url: "https://apps.apple.com/us/app/freeform/id6443742539?platform=ipad",
+    iconLabel: "FF",
+    iconTone: "green",
+    description: "Quiet blank-board drawing and arranging, closer to paper than a game.",
+    sounds: 10, animations: 10, rewards: 10, brightness: 10,
     offline: "yes",
     free: true
   },
@@ -81,6 +103,16 @@ const apps: App[] = [
     icon: "/images/app-icons/pbs-kids.jpg",
     description: "Free games with Daniel Tiger, Dinosaur Train, and others. Fully ad-free.",
     sounds: 6, animations: 4, rewards: 6, brightness: 7,
+    offline: "partial",
+    free: true
+  },
+  {
+    name: "Lucas & Friends Coloring Games",
+    url: "https://www.rvappstudios.com/coloring-games-71.html",
+    iconLabel: "LC",
+    iconTone: "pink",
+    description: "Bright coloring and painting modes for toddlers and preschoolers.",
+    sounds: 2, animations: 2, rewards: 4, brightness: 3,
     offline: "partial",
     free: true
   },
@@ -167,7 +199,11 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                         target={app.url.startsWith("http") ? "_blank" : undefined}
                         rel={app.url.startsWith("http") ? "noopener" : undefined}
                       >
-                        <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
+                        {app.icon ? (
+                          <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
+                        ) : (
+                          <span class={`app-icon app-icon-fallback icon-${app.iconTone ?? "blue"}`} aria-hidden="true">{app.iconLabel}</span>
+                        )}
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
                           <span class="app-desc">{app.description}</span>
@@ -175,7 +211,11 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                       </a>
                     ) : (
                       <span class="app-name-link">
-                        <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
+                        {app.icon ? (
+                          <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
+                        ) : (
+                          <span class={`app-icon app-icon-fallback icon-${app.iconTone ?? "blue"}`} aria-hidden="true">{app.iconLabel}</span>
+                        )}
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
                           <span class="app-desc">{app.description}</span>
@@ -225,12 +265,20 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                     target={app.url.startsWith("http") ? "_blank" : undefined}
                     rel={app.url.startsWith("http") ? "noopener" : undefined}
                   >
-                    <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
+                    {app.icon ? (
+                      <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
+                    ) : (
+                      <span class={`card-icon app-icon-fallback icon-${app.iconTone ?? "blue"}`} aria-hidden="true">{app.iconLabel}</span>
+                    )}
                     <span class="card-app-name">{app.name}</span>
                   </a>
                 ) : (
                   <span class="card-app-link">
-                    <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
+                    {app.icon ? (
+                      <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
+                    ) : (
+                      <span class={`card-icon app-icon-fallback icon-${app.iconTone ?? "blue"}`} aria-hidden="true">{app.iconLabel}</span>
+                    )}
                     <span class="card-app-name">{app.name}</span>
                   </span>
                 )}
@@ -399,6 +447,27 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
     object-fit: cover;
   }
 
+  .app-icon-fallback {
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--bg);
+  }
+
+  .icon-blue {
+    background: #4f7fb8;
+  }
+
+  .icon-green {
+    background: #5f9371;
+  }
+
+  .icon-pink {
+    background: #b45a78;
+  }
+
   .app-text {
     display: flex;
     flex-direction: column;
@@ -540,6 +609,10 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
     border-radius: 22%;
     border: 1px solid var(--line);
     object-fit: cover;
+  }
+
+  .card-icon.app-icon-fallback {
+    font-size: 0.82rem;
   }
 
   .card-app-name {
