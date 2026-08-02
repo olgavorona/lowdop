@@ -1,0 +1,506 @@
+---
+import CtaBlock from "../../components/CtaBlock.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  buildMeta,
+  blogPostingSchema,
+  faqSchema,
+  organizationSchema
+} from "../../lib/seo";
+import { formatDate } from "../../data/blog";
+
+const slug = "what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights";
+const title = "What Actually Works on a Plane With a 3-Year-Old After 10+ Flights";
+const description =
+  "After ten-plus flights with a three-year-old, these airplane activities lasted longer than standard busy-bag toys because each one gives the child a simple job.";
+const date = "2026-08-02";
+const author = "Olga Vorona";
+const imageBase = "/images/blog/airplane-activities";
+
+const faqItems = [
+  {
+    question: "How many airplane activities should I pack for a toddler?",
+    answer:
+      "Usually fewer than you think. I bring two or three main activities and rotate them instead of showing everything at once."
+  },
+  {
+    question: "What are the best mess-free airplane activities for a 3-year-old?",
+    answer:
+      "Painter's tape missions, airplane detective, sticker jobs, a camera scavenger hunt, and calm drawing or maze apps are all relatively mess-free."
+  },
+  {
+    question: "Should I bring an iPad on a flight with a toddler?",
+    answer:
+      "I do. The device itself is not the main issue. What matters more is what the child is doing on it."
+  }
+];
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname: `/blog/${slug}/`,
+  image: `${imageBase}/hero-tray-table.jpg`,
+  type: "article"
+});
+---
+
+<BaseLayout
+  {...meta}
+  schemas={[
+    organizationSchema(),
+    blogPostingSchema({
+      title,
+      description,
+      datePublished: date,
+      pathname: `/blog/${slug}/`,
+      authorName: author
+    }),
+    faqSchema(faqItems)
+  ]}
+>
+  <article>
+    <header class="page-header article-header">
+      <div class="shell narrow">
+        <a href="/blog/" class="back-link eyebrow">← Blog</a>
+        <h1>{title}</h1>
+        <div class="byline">
+          <span class="author">{author}</span>
+          <span class="byline-sep" aria-hidden="true">·</span>
+          <time datetime={date}>{formatDate(date)}</time>
+        </div>
+      </div>
+    </header>
+
+    <section class="content-block">
+      <div class="shell narrow prose article-body">
+        <p>
+          This year I've flown with Leo more than ten times, and I've tested
+          more toddler airplane activities than I ever expected.
+        </p>
+
+        <p>
+          The standard busy bag list — Water Wow books, a sheet of stickers, a
+          fidget spinner — usually buys about fifteen quiet minutes before he's
+          done and looking for the next thing.
+        </p>
+
+        <p>What actually holds up over ten-plus flights isn't a toy. It's a job.</p>
+
+        <p>Rescue the animals. Sort the snack cups. Deliver the mail.</p>
+
+        <p>
+          Three-year-olds go all in on purposeful work in a way they rarely do
+          with passive play. These are the airplane activities that earned a
+          permanent spot in my carry-on because of it.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/hero-tray-table.jpg`}
+            alt="Toddler airplane activities on a plane tray table."
+            width="1536"
+            height="1024"
+          />
+        </figure>
+
+        <h2>Airplane Activities That Actually Kept My 3-Year-Old Busy</h2>
+
+        <h3>1. Painter's Tape Missions</h3>
+
+        <p>One roll, three jobs:</p>
+
+        <ul>
+          <li>Tape a road for toy cars.</li>
+          <li>Tape a rough letter on the tray table to trace.</li>
+          <li>Tape down a few animals that need "rescuing."</li>
+        </ul>
+
+        <p>
+          Each mission usually buys another 15-20 quiet minutes, and you can
+          quickly make a new one when he's done.
+        </p>
+
+        <p>
+          Painter's tape is especially useful because it takes almost no space,
+          peels off easily, and can turn the tray table into a new activity
+          every time.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/painters-tape-missions.jpg`}
+            alt="Painter's tape airplane activity for a three-year-old."
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </figure>
+
+        <h3>2. The Snack Treasure Box</h3>
+
+        <p>
+          Hide small amounts of snack inside three or four tiny containers:
+          cupcake liners, a small lidded cup, a silicone container, or even a
+          box inside another box.
+        </p>
+
+        <p>The activity becomes:</p>
+
+        <p>Open. Discover. Sort. Then eat.</p>
+
+        <p>
+          It turns five minutes of snack time into twenty and gives the child
+          something to do before the snack disappears.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/snack-treasure-box.jpg`}
+            alt="Snack treasure box activity for a toddler on a plane."
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </figure>
+
+        <h3>3. Photographer Mission</h3>
+
+        <p>
+          Hand over an old phone in airplane mode or a simple kid's camera,
+          along with a list of five things to find:
+        </p>
+
+        <ul>
+          <li>Something blue</li>
+          <li>The airplane wing</li>
+          <li>My shoes</li>
+          <li>His funniest face</li>
+          <li>A cloud</li>
+        </ul>
+
+        <p>
+          This is usually good for a solid twenty minutes of actual looking
+          instead of asking, "Are we there yet?"
+        </p>
+
+        <p>
+          It also works better than simply handing over a camera because the
+          list gives the activity a clear purpose.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/photographer-mission.jpg`}
+            alt="Toddler photography activity during a flight."
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </figure>
+
+        <h3>4. Airplane Detective</h3>
+
+        <p>This one needs no supplies.</p>
+
+        <p>Ask your child to spot six things using what's already around them:</p>
+
+        <ul>
+          <li>Three seatbelts</li>
+          <li>Someone wearing red</li>
+          <li>A square window</li>
+          <li>A pair of headphones</li>
+          <li>A coffee cup</li>
+          <li>A cloud</li>
+        </ul>
+
+        <p>
+          It turns the plane itself into the activity and works especially well
+          during the parts of the flight when the tray table needs to stay
+          closed.
+        </p>
+
+        <p>
+          A simple printable airplane scavenger hunt can make this even easier.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/airplane-detective.jpg`}
+            alt="Printable airplane scavenger hunt for toddlers."
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </figure>
+
+        <h3>5. Sticker Delivery Service</h3>
+
+        <p>
+          Instead of handing over a sheet of stickers and hoping for the best,
+          give the stickers a job.
+        </p>
+
+        <p>For example:</p>
+
+        <ul>
+          <li>Put a star on every animal.</li>
+          <li>Give every dinosaur a hat.</li>
+          <li>Place one sticker on each finger.</li>
+          <li>Deliver one sticker to every drawing on the page.</li>
+        </ul>
+
+        <p>Same stickers, three times the attention span.</p>
+
+        <p>
+          The difference is that the child is completing a mission rather than
+          just peeling and sticking at random.
+        </p>
+
+        <h3>6. Mystery Bag Rotation</h3>
+
+        <p>Pack eight to ten tiny paper bags with one object inside each one.</p>
+
+        <p>It can be something very simple:</p>
+
+        <ul>
+          <li>A ribbon</li>
+          <li>A small flashlight</li>
+          <li>A toy car</li>
+          <li>A pipe cleaner</li>
+          <li>A spoon</li>
+          <li>A tiny animal</li>
+          <li>A sticky note pad</li>
+        </ul>
+
+        <p>Opening the next bag often matters more than what's inside it.</p>
+
+        <p>
+          You do not have to give all the bags at once. Bring out one only when
+          the previous activity has completely run out of steam. Used slowly, a
+          mystery bag rotation can carry a three-hour flight surprisingly well.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/mystery-bag-rotation.jpg`}
+            alt="Mystery activity bags for a toddler flight."
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </figure>
+
+        <h3>7. Low-Stimulation Apps, Used Deliberately</h3>
+
+        <p>
+          After thirteen years as an iOS developer, I'm careful about what is
+          actually running on the iPad.
+        </p>
+
+        <p>
+          I still bring one on every flight, but I try to use it as another
+          purposeful activity rather than as an endless stream of entertainment.
+        </p>
+
+        <p>
+          A drawing app or a calm, guided maze app lets Leo do something at his
+          own pace, without the constant sounds, animations, rewards, and
+          interruptions used by many children's games.
+        </p>
+
+        <p>
+          It follows the same principle as the physical activities above: give
+          the child a job.
+        </p>
+
+        <p>
+          Draw something. Solve a maze. Trace a path. Finish a simple task.
+        </p>
+
+        <p>Same device, but a very different experience.</p>
+
+        <p>
+          I've written more about
+          <a href="/blog/why-i-bring-an-ipad-on-every-flight/">how I use calm
+          iPad activities on airplanes</a>, and I keep a scored list of
+          <a href="/best-low-stimulation-apps-for-toddlers/">the best
+          low-stimulation apps for young children</a>. If you want the exact
+          kind of calm maze activity I mean, that's also why I built
+          <a href="/dennys-maze/">Denny's Maze</a>.
+        </p>
+
+        <h2>What I'd Pack for Our Next Flight</h2>
+
+        <p>
+          None of these activities cost more than a few dollars, and only the
+          iPad needs charging.
+        </p>
+
+        <p>I also would not pack all seven for every trip.</p>
+
+        <p>
+          For a typical flight, I would choose two or three physical activities,
+          prepare a snack activity, and keep one calm iPad option available for
+          later.
+        </p>
+
+        <p>
+          The activities that last are rarely the flashiest ones. They are the
+          ones that give a child a simple job:
+        </p>
+
+        <p>
+          Build something. Find something. Sort something. Rescue something.
+          Deliver something.
+        </p>
+
+        <p>
+          That sense of purpose keeps Leo engaged much longer than the novelty
+          of another new travel toy.
+        </p>
+
+        <figure>
+          <img
+            src={`${imageBase}/packing-kit.jpg`}
+            alt="Airplane activity kit for a three-year-old."
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </figure>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>How many airplane activities should I pack for a toddler?</h3>
+
+        <p>Usually fewer than you think.</p>
+
+        <p>
+          I bring two or three main activities and rotate them instead of
+          showing everything at once. Novelty matters more than quantity, and
+          giving all the options immediately usually makes each one last less
+          time.
+        </p>
+
+        <h3>What are the best mess-free airplane activities for a 3-year-old?</h3>
+
+        <p>
+          Painter's tape missions, airplane detective, sticker jobs, a camera
+          scavenger hunt, and calm drawing or maze apps are all relatively
+          mess-free.
+        </p>
+
+        <p>
+          For snacks, use small containers that are easy to open but not easy to
+          spill.
+        </p>
+
+        <h3>Should I bring an iPad on a flight with a toddler?</h3>
+
+        <p>I do.</p>
+
+        <p>
+          The device itself is not the main issue. What matters more is what the
+          child is doing on it.
+        </p>
+
+        <p>
+          A calm drawing, tracing, or maze app can work like any other
+          purposeful activity. Fast videos and heavily rewarded games tend to
+          create a very different experience.
+        </p>
+      </div>
+    </section>
+  </article>
+
+  <RelatedLinks
+    title="Related pages"
+    links={[
+      {
+        href: "/blog/why-i-bring-an-ipad-on-every-flight/",
+        title: "Why I bring an iPad on every flight",
+        description:
+          "The difference between passive screen time and calmer iPad activities during travel."
+      },
+      {
+        href: "/best-low-stimulation-apps-for-toddlers/",
+        title: "Low-stimulation app rankings",
+        description:
+          "A scored comparison of toddler apps by sounds, animations, rewards, brightness, and travel use."
+      },
+      {
+        href: "/dennys-maze/",
+        title: "Denny's Maze",
+        description:
+          "A quiet maze app for young kids, built for flights, waiting rooms, and other in-between moments."
+      }
+    ]}
+  />
+
+  <CtaBlock text="Denny's Maze is the calm maze app I built after doing this same travel math with my own son." />
+</BaseLayout>
+
+<style>
+  .article-header {
+    padding-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .back-link:hover {
+    color: var(--text);
+  }
+
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .byline-sep {
+    color: var(--faint);
+  }
+
+  .article-body {
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .article-body p,
+  .article-body ul {
+    margin-bottom: 1.6em;
+  }
+
+  .article-body li + li {
+    margin-top: 0.35rem;
+  }
+
+  .article-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  figure {
+    margin: 2rem 0 2.5rem;
+  }
+
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+  }
+</style>

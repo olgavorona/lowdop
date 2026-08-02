@@ -8,6 +8,15 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights",
+    title: "What Actually Works on a Plane With a 3-Year-Old After 10+ Flights",
+    date: "2026-08-02",
+    description:
+      "After ten-plus flights with a three-year-old, these airplane activities lasted longer than standard busy-bag toys because each one gives the child a simple job.",
+    excerpt:
+      "This year I've flown with Leo more than ten times, and I've tested more toddler airplane activities than I ever expected. What actually holds up over ten-plus flights isn't a toy. It's a job."
+  },
+  {
     slug: "why-i-bring-an-ipad-on-every-flight",
     title: "Why I Bring an iPad on Every Flight (Even Though I Limit Screen Time)",
     date: "2026-07-30",
