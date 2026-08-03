@@ -4,7 +4,10 @@ import { absoluteUrl } from "../lib/seo";
 
 const paths = [
   "/",
+  "/about/",
   "/dennys-maze/",
+  "/faq/",
+  "/screen-time-without-overstimulation/",
   "/best-low-stimulation-apps-for-toddlers/",
   "/blog/",
   "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/",

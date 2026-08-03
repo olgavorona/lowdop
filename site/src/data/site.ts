@@ -1,7 +1,7 @@
 export const siteConfig = {
   brandName: "Harmless Apps",
   siteName: "Harmless Apps",
-  siteUrl: "https://harmlessapp.com",
+  siteUrl: "https://www.harmlessapp.com",
   appStoreUrl: "https://apps.apple.com/ca/app/dennys-maze/id6760107138",
   productName: "Denny's Maze",
   productPath: "/dennys-maze/",
@@ -9,8 +9,8 @@ export const siteConfig = {
   language: "en",
   organization: {
     name: "Harmless Apps",
-    url: "https://harmlessapp.com",
-    logo: "https://harmlessapp.com/og-default.svg",
+    url: "https://www.harmlessapp.com",
+    logo: "https://www.harmlessapp.com/og-default.svg",
     sameAs: []
   },
   social: {

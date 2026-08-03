@@ -10,6 +10,9 @@ export const primaryNav = [
 
 export const footerNav = [
   ...primaryNav,
+  { href: "/screen-time-without-overstimulation/", label: "Screen Time Guide" },
+  { href: "/about/", label: "About" },
+  { href: "/faq/", label: "FAQ" },
   { href: "/privacy/", label: "Privacy" },
   { href: "/terms/", label: "Terms" }
 ];

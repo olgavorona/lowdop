@@ -1,0 +1,101 @@
+---
+import CtaBlock from "../components/CtaBlock.astro";
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "Screen Time Without Overstimulation | Harmless Apps",
+  description:
+    "A practical framework for choosing calmer screen time for young kids: fewer sounds, less motion, fewer reward loops, and simple finite tasks.",
+  pathname: "/screen-time-without-overstimulation/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader
+    eyebrow="Guide"
+    title="Screen time without overstimulation"
+    intro="The question is not only how long a child uses a screen. It is also what the screen is asking them to do."
+    tags={["calm screen time", "toddlers", "travel"]}
+  />
+
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p>
+        For young kids, two screen activities can last the same number of
+        minutes and still feel completely different afterward. A fast video or a
+        reward-heavy game can leave a child wired. A drawing page, quiet maze,
+        or simple tracing task can feel closer to a workbook.
+      </p>
+
+      <p>
+        The difference is usually not magic. Calmer screen time tends to have a
+        few visible traits: fewer surprise sounds, less constant motion, fewer
+        reward loops, softer visual pacing, and a task with a natural stopping
+        point.
+      </p>
+
+      <p>
+        That is the design lens behind Denny's Maze. The app gives a child one
+        concrete job: trace a path through a maze. There is no feed, no timer,
+        no ad break, and no flashing reward sequence trying to stretch one
+        activity into the next.
+      </p>
+
+      <h2>What to look for</h2>
+
+      <ul>
+        <li>A single clear activity instead of an endless stream.</li>
+        <li>Audio that is optional, child-controlled, or minimal.</li>
+        <li>Motion that responds to the child instead of looping constantly.</li>
+        <li>No daily streaks, surprise rewards, or pressure to keep playing.</li>
+        <li>A simple ending that makes putting the device away easier.</li>
+      </ul>
+
+      <h2>What to avoid</h2>
+
+      <ul>
+        <li>Autoplay videos or feeds.</li>
+        <li>Constant music and rapid sound effects.</li>
+        <li>Celebration animations after every tap.</li>
+        <li>Bright, high-contrast screens designed to hold attention.</li>
+        <li>Games that immediately ask for one more round.</li>
+      </ul>
+
+      <p>
+        This does not mean every calm-looking app is automatically good, or
+        every colorful app is automatically bad. It means the design mechanics
+        matter. If the activity gives a child a finite job, it is usually easier
+        to use deliberately and easier to stop.
+      </p>
+    </div>
+  </section>
+
+  <RelatedLinks
+    title="Keep reading"
+    links={[
+      {
+        href: "/best-low-stimulation-apps-for-toddlers/",
+        title: "Best low-stimulation apps for toddlers",
+        description:
+          "A scored comparison of real apps by sounds, animations, rewards, and brightness."
+      },
+      {
+        href: "/blog/why-i-bring-an-ipad-on-every-flight/",
+        title: "Why I bring an iPad on every flight",
+        description:
+          "How calm iPad activities fit into toddler travel without treating all screen time as the same."
+      },
+      {
+        href: "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/",
+        title: "What works on a plane with a 3-year-old",
+        description:
+          "Purposeful airplane activities that lasted across more than ten flights."
+      }
+    ]}
+  />
+
+  <CtaBlock text="Denny's Maze is built around the same idea: a calm, finite task instead of an endless attention loop." />
+</BaseLayout>

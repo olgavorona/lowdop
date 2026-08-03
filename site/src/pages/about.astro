@@ -1,0 +1,72 @@
+---
+import CtaBlock from "../components/CtaBlock.astro";
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "About | Harmless Apps",
+  description:
+    "Harmless Apps is built around calmer digital play for young kids: less noise, fewer reward loops, and screen time that is easier to put down.",
+  pathname: "/about/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader
+    eyebrow="About"
+    title="About Harmless Apps"
+    intro="Harmless Apps is a small project for parents who want digital play to feel quieter, slower, and easier to stop."
+    tags={["calm kids apps", "no ads", "parent-built"]}
+  />
+
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p>
+        Harmless Apps exists because not all screen time feels the same. Some
+        digital activities leave a child wired and hard to redirect. Others
+        feel closer to a quiet workbook, a coloring page, or a maze book.
+      </p>
+
+      <p>
+        The goal is not to make screens more central to childhood. The goal is
+        to make the occasional screen moment less chaotic for families who are
+        already using one on flights, in waiting rooms, or during other
+        in-between parts of real life.
+      </p>
+
+      <p>
+        Denny's Maze is the first app built around that idea: no ads, no timers,
+        no flashing reward loops, and no design pattern that depends on making a
+        child beg for one more round.
+      </p>
+    </div>
+  </section>
+
+  <RelatedLinks
+    title="More context"
+    links={[
+      {
+        href: "/screen-time-without-overstimulation/",
+        title: "Screen time without overstimulation",
+        description:
+          "What calmer screen time can look like when the activity has a clear, finite task."
+      },
+      {
+        href: "/blog/i-spent-13-years-making-apps-impossible-to-put-down/",
+        title: "Why I built this",
+        description:
+          "The developer background behind Harmless Apps and Denny's Maze."
+      },
+      {
+        href: "/faq/",
+        title: "FAQ",
+        description:
+          "Answers about the app, low-stimulation design, privacy, and travel use."
+      }
+    ]}
+  />
+
+  <CtaBlock text="Denny's Maze is the first example of this approach: a simple maze app designed to stay quiet and finite." />
+</BaseLayout>

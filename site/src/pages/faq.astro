@@ -1,0 +1,57 @@
+---
+import CtaBlock from "../components/CtaBlock.astro";
+import FaqBlock from "../components/FaqBlock.astro";
+import PageHeader from "../components/PageHeader.astro";
+import RelatedLinks from "../components/RelatedLinks.astro";
+import { commonFaqs } from "../data/faqs";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, faqSchema, organizationSchema } from "../lib/seo";
+
+const meta = buildMeta({
+  title: "FAQ | Harmless Apps",
+  description:
+    "Questions and answers about Denny's Maze, low-stimulation app design, privacy, and calmer screen time for young kids.",
+  pathname: "/faq/"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema(), faqSchema(commonFaqs)]}>
+  <PageHeader
+    eyebrow="FAQ"
+    title="Frequently asked questions"
+    intro="A short answer set for parents checking whether Denny's Maze and Harmless Apps match the kind of screen time they want."
+    tags={["Denny's Maze", "privacy", "low stimulation"]}
+  />
+
+  <FaqBlock
+    title="Denny's Maze FAQ"
+    intro="The main questions parents tend to ask before trying a calmer kids app."
+    items={commonFaqs}
+  />
+
+  <RelatedLinks
+    title="Related pages"
+    links={[
+      {
+        href: "/dennys-maze/",
+        title: "Denny's Maze",
+        description:
+          "Product page for the quiet maze app described in these answers."
+      },
+      {
+        href: "/best-low-stimulation-apps-for-toddlers/",
+        title: "Low-stimulation app rankings",
+        description:
+          "A scored comparison of kids apps by sounds, animations, rewards, and brightness."
+      },
+      {
+        href: "/privacy/",
+        title: "Privacy",
+        description:
+          "A web-facing privacy summary for Harmless Apps and Denny's Maze."
+      }
+    ]}
+  />
+
+  <CtaBlock text="If your main question is whether a screen activity can feel calmer, Denny's Maze is the practical example." />
+</BaseLayout>
