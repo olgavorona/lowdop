@@ -1,6 +1,5 @@
 ---
 import ComparisonTable from "../components/ComparisonTable.astro";
-import CtaBlock from "../components/CtaBlock.astro";
 import FaqBlock from "../components/FaqBlock.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -9,8 +8,9 @@ import { siteConfig } from "../data/site";
 import { buildMeta, organizationSchema } from "../lib/seo";
 
 const meta = buildMeta({
-  title: siteConfig.defaults.title,
-  description: siteConfig.defaults.description,
+  title: "Harmless Apps | Calm screen time for toddlers",
+  description:
+    "Find calmer toddler screen time options: Denny's Maze, low-stimulation app recommendations, and practical activity ideas for travel and quiet play.",
   pathname: "/"
 });
 
@@ -40,19 +40,15 @@ const comparisonRows = [
 
 <BaseLayout {...meta} schemas={[organizationSchema()]}>
   <section class="hero">
-    <div class="shell hero-grid">
+    <div class="shell home-hero">
       <div class="hero-copy">
         <p class="eyebrow">Harmless Apps</p>
-        <h1>Screen time can feel a little quieter.</h1>
+        <h1>Calmer screen time ideas for toddlers.</h1>
         <p>
-          Harmless Apps is a small, calm-first brand idea for parents who want
-          digital play to feel less chaotic. The focus is simple: low-stimulation
-          kids apps designed to be calmer, clearer, and easier to trust.
+          Start with Denny's Maze, compare low-stimulation apps, or read
+          practical activity ideas for travel, quiet play, and less chaotic
+          screen time.
         </p>
-        <div class="hero-actions">
-          <a class="button" href={siteConfig.productPath}>Explore Denny's Maze</a>
-          <a class="button secondary" href="/blog/">Read the blog</a>
-        </div>
         <ul class="stat-list">
           <li>no ads</li>
           <li>no timers</li>
@@ -61,8 +57,8 @@ const comparisonRows = [
         </ul>
       </div>
 
-      <aside class="hero-card">
-        <div class="product-hero">
+      <div class="home-paths" aria-label="Start here">
+        <article class="home-path featured">
           <img
             src="/images/denny.png"
             alt="Denny character art from Denny's Maze"
@@ -71,52 +67,42 @@ const comparisonRows = [
             loading="eager"
           />
           <div>
-            <p class="eyebrow">Featured app</p>
+            <p class="eyebrow">Our app</p>
             <h2>Denny's Maze</h2>
+            <p>
+              A gentle maze-book feeling on iPhone and iPad, with no ads,
+              timers, or flashing reward loops.
+            </p>
+            <div class="path-actions">
+              <a class="button" href={siteConfig.productPath}>Learn about Denny's Maze</a>
+              <a class="app-store-button ios-install" href={siteConfig.appStoreUrl} hidden>
+                <span>Download on the</span>
+                <strong>App Store</strong>
+              </a>
+            </div>
           </div>
-        </div>
-        <p>
-          60 gentle mazes across 3 different worlds. Designed to feel like
-          a quiet maze book on a tablet, not a noisy app built around dopamine spikes.
-        </p>
-        <ul class="inline-links">
-          <li><a href="/dennys-maze/">Product page</a></li>
-          <li><a href="/best-low-stimulation-apps-for-toddlers/">Low-stimulation apps for toddlers</a></li>
-          <li><a href="/blog/">From the maker</a></li>
-        </ul>
-      </aside>
-    </div>
-  </section>
+        </article>
 
-  <section class="content-block">
-    <div class="shell split-grid">
-      <figure class="media-card">
-        <img
-          src="/images/ipad-hero.jpeg"
-          alt="Denny's Maze App Store style screenshot on iPad"
-          width="2064"
-          height="2752"
-          loading="lazy"
-        />
-        <figcaption>
-          A simple, readable presentation on iPad without the usual visual
-          overload.
-        </figcaption>
-      </figure>
+        <article class="home-path">
+          <p class="eyebrow">App guide</p>
+          <h2>Best Low-Stimulation Apps</h2>
+          <p>
+            A parent-friendly list comparing kids apps by pace, sound,
+            interruption, and independence.
+          </p>
+          <a class="button secondary" href="/best-low-stimulation-apps-for-toddlers/">Compare apps</a>
+        </article>
 
-      <figure class="media-card">
-        <img
-          src="/images/ipad-hero-2.jpeg"
-          alt="Second Denny's Maze App Store style screenshot on iPad"
-          width="2064"
-          height="2752"
-          loading="lazy"
-        />
-        <figcaption>
-          Matching iPad screenshots make the product section feel more coherent
-          and easier to scan.
-        </figcaption>
-      </figure>
+        <article class="home-path">
+          <p class="eyebrow">Activities</p>
+          <h2>Toddler Activity Blog</h2>
+          <p>
+            Practical ideas for flights, quiet time, and moments when you need
+            something calmer than another noisy video.
+          </p>
+          <a class="button secondary" href="/blog/">Read activities</a>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -180,5 +166,119 @@ const comparisonRows = [
     items={commonFaqs}
   />
 
-  <CtaBlock text="If you want one simple example of calm-first design, start with Denny's Maze." />
+  <script is:inline>
+    (() => {
+      const isIos =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+
+      if (!isIos) return;
+
+      document.documentElement.classList.add("is-ios");
+      document.querySelectorAll(".ios-install").forEach((link) => {
+        link.removeAttribute("hidden");
+      });
+    })();
+  </script>
 </BaseLayout>
+
+<style>
+  .home-hero {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .home-hero .hero-copy {
+    max-width: 52rem;
+  }
+
+  .home-paths {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .home-path {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.35rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-deep);
+    box-shadow: var(--shadow);
+  }
+
+  .home-path.featured {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    align-items: center;
+  }
+
+  .home-path img {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .home-path h2,
+  .home-path p {
+    margin: 0;
+  }
+
+  .home-path p:not(.eyebrow) {
+    color: var(--muted);
+  }
+
+  .path-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .app-store-button {
+    display: none;
+    min-height: 3rem;
+    padding: 0.45rem 1rem;
+    border-radius: 0.75rem;
+    background: #050505;
+    color: #fff;
+    line-height: 1.05;
+    text-decoration: none;
+    border: 1px solid #050505;
+  }
+
+  .app-store-button span,
+  .app-store-button strong {
+    display: block;
+  }
+
+  .app-store-button span {
+    font-size: 0.72rem;
+  }
+
+  .app-store-button strong {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  :global(html.is-ios) .app-store-button {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (min-width: 50rem) {
+    .home-paths {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .home-path.featured {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
