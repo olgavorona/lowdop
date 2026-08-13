@@ -12,6 +12,8 @@ type Props = {
   canonical: string;
   image: string;
   type?: "website" | "article";
+  ogTitle?: string;
+  ogDescription?: string;
   schemas?: Schema[];
 };
 
@@ -21,6 +23,8 @@ const {
   canonical,
   image,
   type = "website",
+  ogTitle = title,
+  ogDescription = description,
   schemas = []
 } = Astro.props as Props;
 ---
@@ -33,8 +37,8 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={image} />

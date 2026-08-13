@@ -1,1190 +1,837 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../data/site";
-import {
-  buildMeta,
-  organizationSchema,
-  softwareApplicationSchema
-} from "../lib/seo";
-
-const meta = buildMeta({
-  title: "Denny's Maze | A calmer maze adventure for kids — no ads, no timers",
-  description:
-    "Denny's Maze is a calm iOS maze app for young kids. 60 gentle mazes across 3 worlds. No ads, no timers, no flashing rewards. Made by a parent.",
-  pathname: siteConfig.productPath
-});
+import { absoluteUrl, buildMeta, organizationSchema, faqSchema } from "../lib/seo";
 
 const appUrl = siteConfig.appStoreUrl;
+const subscriptionRemovalLive =
+  import.meta.env.PUBLIC_DENNY_NO_SUBSCRIPTIONS === "true";
+
+const title = "Denny’s Maze: Quiet Offline Toddler Game | Harmless Apps";
+const description = subscriptionRemovalLive
+  ? "Calm, paper-like maze play for toddlers and preschoolers. Works offline with no ads, no subscriptions, no noisy rewards, and simple independent play."
+  : "Calm, paper-like maze play for toddlers and preschoolers. Works offline with no ads, no noisy rewards, and simple independent play.";
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname: siteConfig.productPath,
+  image: "/images/ipad-maze.png"
+});
+
+const trustItems = [
+  ["Works offline", "No Wi-Fi needed"],
+  ["No ads", "Ever"],
+  subscriptionRemovalLive
+    ? ["No subscription", "Unlock once"]
+    : ["Free to try", "Start with 3 mazes"],
+  ["No timers", "No pressure to keep playing"],
+  ["Made for little hands", "Simple, focused interaction"]
+];
+
+const useCases = [
+  {
+    title: "On a flight",
+    text: "Works completely offline, so Denny is ready after airplane mode goes on.",
+    href: "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/"
+  },
+  {
+    title: "At a restaurant",
+    text: "Quiet play with no pieces to drop, crayons to roll away, or public sound required."
+  },
+  {
+    title: "In a waiting room",
+    text: "A simple activity you can open when waiting starts to feel very long."
+  },
+  {
+    title: "At home",
+    text: "A small, focused activity for quiet time, cooking time, or whenever everyone needs a slower moment."
+  }
+];
+
+const productFeatures = [
+  ["Trace a path", "Guide Denny through each maze with a finger."],
+  ["Find the way", "Three difficulty levels give children increasingly challenging paths to solve."],
+  [
+    "Discover something new",
+    "Along the way, Denny meets ocean animals and introduces little facts and stories about marine life."
+  ]
+];
+
+const calmFeatures = [
+  ["No ads or pop-ups", "Nothing interrupts the activity or sends little fingers somewhere unexpected."],
+  ["No noisy reward loop", "No flashing celebration after every tap. The maze itself is the activity."],
+  ["No timers or pressure", "Children can solve each maze at their own pace."],
+  ["A natural stopping point", "Finish a maze, then choose whether to do another. No streak to maintain and no endless feed."]
+];
+
+const pricingItems = subscriptionRemovalLive
+  ? [
+      ["No subscription", "No recurring bill."],
+      ["No ads", "Free mazes are ad-free too."],
+      ["One-time unlock", "Pay once for full access."]
+    ]
+  : [
+      ["Free to try", "Start with 3 mazes."],
+      ["No ads", "Free mazes are ad-free too."],
+      ["Full access available", "Unlock more mazes inside the app."]
+    ];
 
 const faqs = [
   {
-    q: "What age is it really for?",
-    a: "Best for children between three and six. Younger children can solve the easy mazes with a finger; older kids enjoy the harder pages and the short story narration. There is no right speed — every page waits."
+    question: "Does Denny's Maze work without Wi-Fi?",
+    answer:
+      "Yes. Denny's Maze works completely offline once the app is installed, so it can be used on flights, road trips, and anywhere else without internet access."
   },
   {
-    q: "Is there any sound?",
-    a: "Only a soft narrator reading a short story snippet when a maze is finished. No music, no sound effects, no celebratory chimes. Narration can be muted from the corner button and the mazes work exactly the same way without it."
+    question: "Does Denny's Maze have ads?",
+    answer: "No. There are no ads in either the free mazes or the unlocked app."
+  },
+  ...(subscriptionRemovalLive
+    ? [
+        {
+          question: "Is Denny's Maze a subscription?",
+          answer:
+            "No. You can try the first 3 mazes for free and unlock the full app with one purchase. There are no recurring subscription charges."
+        }
+      ]
+    : []),
+  {
+    question: "What age is Denny's Maze for?",
+    answer:
+      "Denny's Maze is designed for young children and preschoolers. Three difficulty levels let children start with simpler paths and move to more challenging mazes when they're ready."
   },
   {
-    q: "Does it work on a phone, or only iPad?",
-    a: "It runs on iPhone and iPad. We designed it on iPad — a small hand drawing a path across a larger page feels closest to a real workbook — but the phone experience is equally calm."
+    question: "Can Denny's Maze be played without sound?",
+    answer:
+      "Yes. The mazes can be played without sound, which makes Denny useful for planes, restaurants, waiting rooms, and other quiet places."
   },
   {
-    q: "What happens when my child finishes all 60 mazes?",
-    a: "They keep working. Three difficulty levels stay interesting for a long time, and many children re-trace mazes for the pleasure of the line itself. New worlds are added with updates at no extra cost for Forever owners."
+    question: "Is Denny's Maze a learning app?",
+    answer:
+      "The main activity is maze solving. While playing, children practice fine-motor control, spatial reasoning, patience, and problem solving, and they can discover little facts about ocean life along the way."
+  }
+];
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": ["SoftwareApplication", "MobileApplication"],
+  name: "Denny's Maze",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "iPadOS 16.0 or later",
+  isFamilyFriendly: true,
+  url: absoluteUrl(siteConfig.productPath),
+  downloadUrl: appUrl,
+  description:
+    "A quiet, offline, paper-like maze activity for toddlers and preschoolers.",
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.organization.name,
+    url: siteConfig.organization.url
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock"
+  }
+};
+
+const relatedLinks = [
+  {
+    href: "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/",
+    title: "What Actually Works on a Plane With a 3-Year-Old",
+    description:
+      "Practical airplane activities that last longer because each one gives a child a simple job."
   },
   {
-    q: "Do you collect anything about my child?",
-    a: "No personal information. The app collects anonymous, aggregated usage (like which maze tends to take longest) to help improve level design. Nothing is tied to your child or your account."
+    href: "/best-low-stimulation-apps-for-toddlers/",
+    title: "Best Low-Stimulation Apps for Toddlers",
+    description:
+      "A parent-friendly comparison of calmer apps by pace, sound, interruptions, and independence."
   }
 ];
 ---
 
 <BaseLayout
   {...meta}
-  schemas={[organizationSchema(), softwareApplicationSchema()]}
+  ogTitle="Denny’s Maze: Quiet Offline Maze Play for Toddlers"
+  ogDescription="A paper-like iPad maze activity for quiet moments. Works offline, with no ads, timers, or noisy rewards."
+  schemas={[organizationSchema(), appSchema, faqSchema(faqs)]}
 >
-  <!-- ==================== HERO ==================== -->
   <section class="dm-hero" id="top">
-    <div class="dm-wrap dm-hero-grid">
+    <div class="dm-shell dm-hero-grid">
       <div class="dm-hero-copy">
-        <div class="dm-eyebrow" style="margin-bottom: 22px;">A calm maze adventure · ages 3–6 · iPad &amp; iPhone</div>
-        <h1 class="dm-h1">
-          A quiet maze book<br />
-          for <em class="dm-accent">an&nbsp;iPad.</em>
-        </h1>
-        <p class="dm-sub">
-          Help Denny and friends trace a path through 60 gentle labyrinths across
-          3 different worlds — no flashing rewards, no timers, no noise.
-          Just the feeling of a workbook your child can hold.
+        <p class="eyebrow">Denny's Maze for iPad</p>
+        <h1>Quiet, offline maze play for toddlers</h1>
+        <p class="dm-lead">
+          A calm, paper-like activity for little hands. Guide Denny through
+          hand-drawn mazes without ads, {subscriptionRemovalLive ? "subscriptions, " : ""}noisy rewards,
+          or distracting pop-ups.
         </p>
-        <div class="dm-cta-row">
-          <a class="dm-btn" href={appUrl}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M11.182 8.41c-.014-1.41 1.151-2.087 1.204-2.122-.656-.96-1.677-1.092-2.04-1.106-.868-.087-1.697.51-2.138.51-.44 0-1.123-.498-1.847-.484-.95.014-1.825.553-2.314 1.402-.987 1.71-.252 4.243.71 5.633.47.68 1.03 1.443 1.766 1.416.71-.029.978-.46 1.836-.46.858 0 1.1.46 1.85.446.764-.014 1.247-.692 1.713-1.376.54-.79.762-1.553.776-1.592-.017-.008-1.486-.57-1.5-2.267zM9.74 4.337c.39-.475.654-1.13.582-1.78-.563.023-1.244.378-1.648.847-.36.413-.677 1.084-.592 1.726.63.048 1.27-.32 1.658-.793z"/>
-            </svg>
-            Download on the App Store
-          </a>
-          <a class="dm-btn dm-btn-ghost" href="#what">
-            See how it feels
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 6.5H11M7.5 3L11 6.5L7.5 10"/></svg>
+        <div class="dm-actions">
+          <a
+            class="button"
+            href={appUrl}
+            data-app-store-cta="hero"
+          >
+            Try Denny's Maze Free
           </a>
         </div>
-        <div class="dm-meta">
-          <span>Ages 4+</span>
-          <i>·</i>
-          <span>Works offline</span>
-          <i>·</i>
-          <span>No ads, ever</span>
-          <i>·</i>
-          <span>COPPA compliant</span>
-        </div>
-      </div>
-
-      <div class="dm-device-wrap">
-        <div class="dm-device">
-          <span class="dm-corner dm-tl"></span>
-          <span class="dm-corner dm-tr"></span>
-          <span class="dm-corner dm-bl"></span>
-          <span class="dm-corner dm-br"></span>
-          <div class="dm-screen">
-            <img
-              src="/images/ipad-maze.png"
-              alt="Denny navigating a labyrinth on iPad"
-              width="1210"
-              height="828"
-              loading="eager"
-            />
-          </div>
-          <span class="dm-caption">Pl. V &middot; &ldquo;Denny Builds the Lunar Base&rdquo; &middot; maze 5 of 20</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="dm-rule" />
-
-  <!-- ==================== LEDE / MANIFESTO ==================== -->
-  <section class="dm-lede" id="what">
-    <div class="dm-wrap dm-side-grid">
-      <div>
-        <div class="dm-eyebrow">§ 01 — What it is</div>
-      </div>
-      <div>
-        <h2 class="dm-h2">
-          Most kids&rsquo; apps are built to <em>capture</em> attention.<br />
-          <span class="dm-punch">This one is built to <em>quiet</em> it.</span>
-        </h2>
-        <p class="dm-body-lg" style="margin-top: 28px;">
-          Denny&rsquo;s Maze feels less like a game and more like a paper workbook
-          on a tablet. Children drag a finger to draw a path. A friendly voice
-          tells them a small story. Nothing flashes. Nothing chirps. Nothing
-          tries to keep them tapping for one more minute.
-        </p>
-        <p class="dm-body-lg dm-quiet" style="margin-top: 18px;">
-          When the maze is finished, the page simply turns. That&rsquo;s the whole reward.
+        <p class="dm-microcopy">
+          3 mazes free · {subscriptionRemovalLive ? "One-time unlock · " : ""}Works offline
         </p>
       </div>
+
+      <figure class="dm-hero-shot">
+        <img
+          src="/images/ipad-maze.png"
+          alt="Denny's Maze offline toddler maze game on iPad"
+          width="2420"
+          height="1668"
+          loading="eager"
+        />
+        <img class="dm-denny" src="/images/denny.png" alt="" width="512" height="512" loading="lazy" />
+      </figure>
     </div>
   </section>
 
-  <hr class="dm-rule" />
-
-  <!-- ==================== THE THREE NOS ==================== -->
-  <section class="dm-nos">
-    <div class="dm-wrap">
-      <div class="dm-side-grid dm-nos-head">
-        <div>
-          <div class="dm-eyebrow">§ 02 — The three quiet rules</div>
+  <section class="dm-trust" aria-label="Denny's Maze parent benefits">
+    <div class="dm-shell dm-trust-grid">
+      {trustItems.map(([title, text]) => (
+        <div class="dm-trust-item">
+          <h2>{title}</h2>
+          <p>{text}</p>
         </div>
-        <div>
-          <h2 class="dm-h2">Three things you will <span class="dm-strikethrough">never</span> find inside.</h2>
-          <p class="dm-quiet" style="margin-top: 14px; font-size: 1.1rem; max-width: 38ch;">
-            The same calm posture, page after page. We chose the absence of features as the feature.
-          </p>
-        </div>
-      </div>
-
-      <div class="dm-nos-cols">
-        <div class="dm-no-item">
-          <div class="dm-no-num">01 — never</div>
-          <h3 class="dm-h3-italic"><span class="dm-x">×</span>Ads or pop-ups</h3>
-          <p class="dm-quiet dm-body-sm">No banners between mazes, no cross-promotion, no &ldquo;watch this video for a coin.&rdquo; The page is the page.</p>
-        </div>
-        <div class="dm-no-item">
-          <div class="dm-no-num">02 — never</div>
-          <h3 class="dm-h3-italic"><span class="dm-x">×</span>Timers or streaks</h3>
-          <p class="dm-quiet dm-body-sm">Nothing counts down. A maze stays open until your child decides they are done. Walk away, come back tomorrow.</p>
-        </div>
-        <div class="dm-no-item">
-          <div class="dm-no-num">03 — never</div>
-          <h3 class="dm-h3-italic"><span class="dm-x">×</span>Confetti rewards</h3>
-          <p class="dm-quiet dm-body-sm">No fanfare animations, no slot-machine sparkles, no addictive feedback loops. A small &ldquo;well done,&rdquo; and the next page.</p>
-        </div>
-      </div>
+      ))}
     </div>
   </section>
 
-  <hr class="dm-rule" />
-
-  <!-- ==================== INSIDE ==================== -->
-  <section class="dm-inside" id="inside">
-    <div class="dm-wrap">
-      <div class="dm-side-grid dm-inside-top">
-        <div>
-          <div class="dm-eyebrow">§ 03 — What is inside</div>
-        </div>
-        <div>
-          <h2 class="dm-h2">Sixty small stories<br />across three different worlds.</h2>
-          <p class="dm-quiet" style="max-width: 36ch; margin-top: 12px;">Each maze is a single page with a single question. Solve it, listen to the story, turn the page.</p>
-        </div>
+  <section class="dm-section" id="quiet-minutes">
+    <div class="dm-shell">
+      <div class="dm-section-head">
+        <p class="eyebrow">Quiet toddler activity</p>
+        <h2>For the moments when you need a few quiet minutes</h2>
+        <p>
+          Denny's Maze is made for the in-between moments: when your child needs
+          something to do, but you don't want another loud, frantic kids game.
+        </p>
       </div>
-
-      <div class="dm-stats">
-        <div class="dm-stat">
-          <div class="dm-stat-label">Stories</div>
-          <div class="dm-stat-fig">60<span class="dm-stat-unit">mazes</span></div>
-          <p class="dm-quiet dm-body-sm">Three worlds, 20 mazes each — the ocean shore, outer space, and more.</p>
-        </div>
-        <div class="dm-stat">
-          <div class="dm-stat-label">Difficulty</div>
-          <div class="dm-stat-fig">3<span class="dm-stat-unit">levels</span></div>
-          <p class="dm-quiet dm-body-sm">Easy, Medium, Hard. Grows with the child, slowly. No skill trees, no unlock chains.</p>
-        </div>
-        <div class="dm-stat">
-          <div class="dm-stat-label">Worlds</div>
-          <div class="dm-stat-fig">3<span class="dm-stat-unit">worlds</span></div>
-          <p class="dm-quiet dm-body-sm">Each world has its own cast of characters and short stories read by a calm, friendly narrator.</p>
-        </div>
-      </div>
-
-      <div class="dm-practice">
-        <div>
-          <h3 class="dm-h3-italic" style="font-size: 1.5rem; line-height: 1.3;">And without making a fuss,<br />your child is quietly practicing&hellip;</h3>
-        </div>
-        <div class="dm-practice-list">
-          <div class="dm-practice-item"><span class="dm-practice-n">i.</span><span>Fine-motor control</span></div>
-          <div class="dm-practice-item"><span class="dm-practice-n">ii.</span><span>Spatial reasoning</span></div>
-          <div class="dm-practice-item"><span class="dm-practice-n">iii.</span><span>Patience and focus</span></div>
-          <div class="dm-practice-item"><span class="dm-practice-n">iv.</span><span>Quiet problem-solving</span></div>
-        </div>
+      <div class="dm-cards">
+        {useCases.map((item) => (
+          item.href ? (
+            <a class="dm-card" href={item.href}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </a>
+          ) : (
+            <article class="dm-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          )
+        ))}
       </div>
     </div>
   </section>
 
-  <hr class="dm-rule" />
-
-  <!-- ==================== LETTER FROM CREATOR ==================== -->
-  <section class="dm-letter">
-    <div class="dm-wrap dm-side-grid">
+  <section class="dm-section dm-split-section" id="maze-book">
+    <div class="dm-shell dm-split">
       <div>
-        <div class="dm-eyebrow">§ 04 — A note from the maker</div>
+        <p class="eyebrow">Paper-like maze play</p>
+        <h2>Like a maze book on an iPad</h2>
+        <p>
+          Denny's Maze is intentionally closer to a paper activity book than a
+          typical kids game. Children guide Denny the crab through illustrated
+          mazes, solve one little challenge at a time, and move on when they're
+          ready.
+        </p>
+        <div class="dm-feature-list">
+          {productFeatures.map(([title, text]) => (
+            <article>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
       </div>
+      <div class="dm-shot-stack">
+        <img
+          src="/images/ipad-hero.jpeg"
+          alt="Denny's Maze maze activity shown on an iPad"
+          width="2064"
+          height="2752"
+          loading="lazy"
+        />
+        <img
+          src="/images/onboarding-maze.png"
+          alt="Denny's Maze simple maze selection and tracing screen"
+          width="1148"
+          height="870"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="dm-section dm-calm" id="calm-design">
+    <div class="dm-shell dm-split">
       <div>
-        <h2 class="dm-h2">
-          I made this for my son.<br />
-          <em>I&nbsp;couldn&rsquo;t find anything calm enough.</em>
-        </h2>
-        <div class="dm-letter-body">
-          <p>
-            <span class="dm-drop">I</span>wanted something my son could open on a long flight, on a slow afternoon,
-            in the back of a taxi — and put down again ten minutes later without a tantrum.
-            Most apps would not let him put them down. Mine had to.
-          </p>
-          <p>
-            So we kept removing things. The score. The stars. The badges. The big bright burst
-            when a level ends. What was left was a maze, a friendly character, and the quiet
-            sound of a voice reading a small story. That turned out to be enough.
-          </p>
-          <p>
-            If you have ever wished a kids&rsquo; app would just&hellip; <em>be quieter</em>, this is for you too.
-          </p>
-        </div>
-        <div class="dm-sign">Olga Vorona — parent, maker of Denny&rsquo;s Maze</div>
+        <p class="eyebrow">Low-stimulation design</p>
+        <h2>Calm by design</h2>
+        <p>
+          Many children's games are built around keeping attention for as long
+          as possible. Denny's Maze takes a different approach.
+        </p>
+      </div>
+      <div class="dm-calm-list">
+        {calmFeatures.map(([title, text]) => (
+          <article>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+        <p class="dm-closing">
+          That's what we mean by low-stimulation play: not less interesting,
+          just less demanding of your child's attention.
+        </p>
       </div>
     </div>
   </section>
 
-  <hr class="dm-rule" />
-
-  <!-- ==================== MOMENTS ==================== -->
-  <section class="dm-moments">
-    <div class="dm-wrap">
-      <div class="dm-eyebrow" style="margin-bottom: 18px;">§ 05 — Where it fits</div>
-      <h2 class="dm-h2 dm-moments-title">Made for the small,<br />in-between moments of a day.</h2>
-      <div class="dm-moments-row">
-        <div class="dm-moment">
-          <div class="dm-moment-num">i. — travel</div>
-          <h3 class="dm-h3-italic dm-moment-h">On a long flight</h3>
-          <p class="dm-quiet dm-body-sm">Works fully offline. Pack it once, open it at 35,000 feet, finish a maze, hand the iPad back.</p>
-        </div>
-        <div class="dm-moment">
-          <div class="dm-moment-num">ii. — waiting</div>
-          <h3 class="dm-h3-italic dm-moment-h">At a restaurant</h3>
-          <p class="dm-quiet dm-body-sm">Soft enough for a quiet table. No sudden sound effects, no music that has to be muted in a hurry.</p>
-        </div>
-        <div class="dm-moment">
-          <div class="dm-moment-num">iii. — winding down</div>
-          <h3 class="dm-h3-italic dm-moment-h">Before bed</h3>
-          <p class="dm-quiet dm-body-sm">A few mazes before lights-out won&rsquo;t spike a small nervous system. The page just turns.</p>
-        </div>
-        <div class="dm-moment">
-          <div class="dm-moment-num">iv. — quiet play</div>
-          <h3 class="dm-h3-italic dm-moment-h">While you cook</h3>
-          <p class="dm-quiet dm-body-sm">Twenty minutes of focused, fine-motor finger-tracing that doesn&rsquo;t pull a parent back into the room.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="dm-rule" />
-
-  <!-- ==================== PROMISES ==================== -->
-  <section class="dm-promises" id="promises">
-    <div class="dm-wrap">
-      <div class="dm-side-grid dm-promises-head">
-        <div>
-          <div class="dm-eyebrow">§ 06 — Promises to parents</div>
-        </div>
-        <div>
-          <h2 class="dm-h2">Small print, in plain language.</h2>
-          <p class="dm-quiet" style="margin-top: 12px; max-width: 38ch;">No paragraphs you have to read twice. The kind of guarantees we wish every kids&rsquo; app made out loud.</p>
-        </div>
-      </div>
-      <div class="dm-promises-list">
-        <div class="dm-promise-item">
-          <div class="dm-promise-n">i.</div>
-          <div>
-            <h3 class="dm-promise-h">No ads. Ever.</h3>
-            <p class="dm-quiet dm-body-sm">Not third-party, not first-party, not &ldquo;a friendly suggestion for our other app.&rdquo; None.</p>
-          </div>
-        </div>
-        <div class="dm-promise-item">
-          <div class="dm-promise-n">ii.</div>
-          <div>
-            <h3 class="dm-promise-h">Works offline.</h3>
-            <p class="dm-quiet dm-body-sm">The whole adventure ships in the download. Airplane mode, basement, cabin — it still opens.</p>
-          </div>
-        </div>
-        <div class="dm-promise-item">
-          <div class="dm-promise-n">iii.</div>
-          <div>
-            <h3 class="dm-promise-h">COPPA compliant.</h3>
-            <p class="dm-quiet dm-body-sm">No analytics tied to your child. Anonymous, aggregated usage only.</p>
-          </div>
-        </div>
-        <div class="dm-promise-item">
-          <div class="dm-promise-n">iv.</div>
-          <div>
-            <h3 class="dm-promise-h">Parental gate.</h3>
-            <p class="dm-quiet dm-body-sm">Settings and purchases sit behind a gesture only an adult can solve. Your child stays inside the mazes.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="dm-rule" />
-
-  <!-- ==================== PRICING ==================== -->
-  <section class="dm-pricing" id="pricing">
-    <div class="dm-wrap">
-      <div class="dm-eyebrow" style="margin-bottom: 12px;">§ 07 — Pricing</div>
-      <h2 class="dm-h2">One purchase.<br />All ten adventures stay open.</h2>
-      <p class="dm-quiet dm-pricing-sub">Start with three free mazes. When you&rsquo;re ready, unlock the rest however suits your family.</p>
-
-      <div class="dm-plans">
-        <!-- Featured: Lifetime -->
-        <div class="dm-plan dm-plan-featured">
-          <span class="dm-ribbon">Most parents choose this</span>
-          <div class="dm-plan-label">Forever</div>
-          <h3 class="dm-plan-h">The whole adventure,<br />for keeps.</h3>
-          <div class="dm-plan-price">$49.99<small>once</small></div>
-          <p class="dm-plan-desc">All 60 mazes across all three worlds, every future adventure we add. Pay once, never see another paywall.</p>
-          <a class="dm-btn dm-btn-light" href={appUrl}>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M11.182 8.41c-.014-1.41 1.151-2.087 1.204-2.122-.656-.96-1.677-1.092-2.04-1.106-.868-.087-1.697.51-2.138.51-.44 0-1.123-.498-1.847-.484-.95.014-1.825.553-2.314 1.402-.987 1.71-.252 4.243.71 5.633.47.68 1.03 1.443 1.766 1.416.71-.029.978-.46 1.836-.46.858 0 1.1.46 1.85.446.764-.014 1.247-.692 1.713-1.376.54-.79.762-1.553.776-1.592-.017-.008-1.486-.57-1.5-2.267zM9.74 4.337c.39-.475.654-1.13.582-1.78-.563.023-1.244.378-1.648.847-.36.413-.677 1.084-.592 1.726.63.048 1.27-.32 1.658-.793z"/>
-            </svg>
-            Download on the App Store
-          </a>
-        </div>
-        <!-- Monthly -->
-        <div class="dm-plan">
-          <div class="dm-plan-label">Monthly</div>
-          <h3 class="dm-plan-h">A month of adventures</h3>
-          <div class="dm-plan-price">$8.99<small>/ mo</small></div>
-          <p class="dm-plan-desc">Full access, billed monthly. Good for a single school break or a long trip. 7-day free trial.</p>
-          <a class="dm-btn dm-btn-ghost" href={appUrl}>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M11.182 8.41c-.014-1.41 1.151-2.087 1.204-2.122-.656-.96-1.677-1.092-2.04-1.106-.868-.087-1.697.51-2.138.51-.44 0-1.123-.498-1.847-.484-.95.014-1.825.553-2.314 1.402-.987 1.71-.252 4.243.71 5.633.47.68 1.03 1.443 1.766 1.416.71-.029.978-.46 1.836-.46.858 0 1.1.46 1.85.446.764-.014 1.247-.692 1.713-1.376.54-.79.762-1.553.776-1.592-.017-.008-1.486-.57-1.5-2.267zM9.74 4.337c.39-.475.654-1.13.582-1.78-.563.023-1.244.378-1.648.847-.36.413-.677 1.084-.592 1.726.63.048 1.27-.32 1.658-.793z"/>
-            </svg>
-            Try free on the App Store
-          </a>
-        </div>
-        <!-- Weekly -->
-        <div class="dm-plan">
-          <div class="dm-plan-label">Weekly</div>
-          <h3 class="dm-plan-h">One week pass</h3>
-          <div class="dm-plan-price">$2.99<small>/ wk</small></div>
-          <p class="dm-plan-desc">The smallest possible try. Just enough for a quiet weekend or a flight there and back. 3-day free trial.</p>
-          <a class="dm-btn dm-btn-ghost" href={appUrl}>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M11.182 8.41c-.014-1.41 1.151-2.087 1.204-2.122-.656-.96-1.677-1.092-2.04-1.106-.868-.087-1.697.51-2.138.51-.44 0-1.123-.498-1.847-.484-.95.014-1.825.553-2.314 1.402-.987 1.71-.252 4.243.71 5.633.47.68 1.03 1.443 1.766 1.416.71-.029.978-.46 1.836-.46.858 0 1.1.46 1.85.446.764-.014 1.247-.692 1.713-1.376.54-.79.762-1.553.776-1.592-.017-.008-1.486-.57-1.5-2.267zM9.74 4.337c.39-.475.654-1.13.582-1.78-.563.023-1.244.378-1.648.847-.36.413-.677 1.084-.592 1.726.63.048 1.27-.32 1.658-.793z"/>
-            </svg>
-            Try free on the App Store
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="dm-rule" />
-
-  <!-- ==================== FAQ ==================== -->
-  <section class="dm-faq" id="faq">
-    <div class="dm-wrap dm-side-grid">
+  <section class="dm-section" id="independent-use">
+    <div class="dm-shell dm-independent">
       <div>
-        <div class="dm-eyebrow">§ 08 — Quiet questions</div>
-        <h2 class="dm-h2" style="margin-top: 16px;">Things parents ask before they download.</h2>
+        <p class="eyebrow">Simple interaction</p>
+        <h2>Made for independent little hands</h2>
+        <p>
+          A kids app isn't very helpful if your child needs you every two
+          minutes. Denny's Maze keeps the interaction deliberately simple, so
+          young children can focus on the maze instead of navigating complicated
+          menus, ads, or pop-ups.
+        </p>
       </div>
-      <div class="dm-faq-qa">
-        {faqs.map((item, i) => (
-          <details class="dm-details" open={i === 0}>
-            <summary class="dm-summary">
-              <span class="dm-faq-n">Q.0{i + 1}</span>
-              {item.q}
-            </summary>
-            <p class="dm-quiet" style="margin-top: 14px; font-size: 1rem; max-width: 60ch;">{item.a}</p>
+      <figure class="dm-sequence">
+        <div class="dm-sequence-steps" aria-label="Open, choose, trace, finish">
+          <span>Open</span>
+          <span>Choose</span>
+          <span>Trace</span>
+          <span>Finish</span>
+        </div>
+        <img
+          src="/images/ipad-hero-2.jpeg"
+          alt="Denny's Maze quiet maze activity on an iPad"
+          width="2064"
+          height="2752"
+          loading="lazy"
+        />
+        <figcaption>Open. Choose. Trace. Finish.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="dm-section dm-offline" id="offline">
+    <div class="dm-shell dm-offline-box">
+      <p class="eyebrow">Offline toddler game</p>
+      <h2>Ready for airplane mode</h2>
+      <p>
+        Denny's Maze works completely offline. Once it's on your iPad, your
+        child can keep playing without Wi-Fi or mobile data.
+      </p>
+      <strong>No Wi-Fi. No pre-flight entertainment panic.</strong>
+      <p>Download Denny before you leave, and the mazes are there when you need them.</p>
+    </div>
+  </section>
+
+  <section class="dm-section" id="pricing">
+    <div class="dm-shell dm-pricing">
+      <div>
+        <p class="eyebrow">App Store</p>
+        <h2>{subscriptionRemovalLive ? "Try it free. Unlock it once." : "Try it free. Unlock more when ready."}</h2>
+        <p>
+          Start with 3 mazes for free. If Denny works for your child,
+          {subscriptionRemovalLive
+            ? " unlock the full app with one purchase."
+            : " continue with more maze play inside the app."}
+        </p>
+      </div>
+      <div class="dm-pricing-card">
+        {pricingItems.map(([title, text]) => (
+          <article>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </article>
+        ))}
+        <a class="button" href={appUrl} data-app-store-cta="pricing">
+          Try Denny's Maze Free
+        </a>
+        <p class="dm-microcopy">Available on the App Store for iPad</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dm-section dm-founder" id="founder">
+    <div class="dm-shell dm-split">
+      <div>
+        <p class="eyebrow">From the creator</p>
+        <h2>Made by a parent who wanted something calmer</h2>
+      </div>
+      <div class="dm-letter">
+        <p>
+          I originally made Denny's Maze for my own child. I wanted an iPad
+          activity that felt more like handing over a maze book than starting
+          another noisy kids game.
+        </p>
+        <p>
+          Something we could use on a flight, while waiting, or during a quiet
+          moment at home. Something with a beginning and an end, without ads,
+          flashing rewards, or an endless stream of "one more" content.
+        </p>
+        <p>Denny grew from that idea.</p>
+        <div class="dm-signature">
+          <strong>Olga</strong>
+          <span>Creator of Harmless Apps</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dm-section" id="faq">
+    <div class="dm-shell dm-split">
+      <div>
+        <p class="eyebrow">FAQ</p>
+        <h2>Questions parents ask before downloading</h2>
+      </div>
+      <div class="dm-faq-list">
+        {faqs.map((item) => (
+          <details class="dm-faq-item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
           </details>
         ))}
       </div>
     </div>
   </section>
 
-  <hr class="dm-rule" />
-
-  <!-- ==================== FINAL CTA ==================== -->
-  <section class="dm-final">
-    <div class="dm-wrap" style="text-align: center; position: relative;">
-      <h2 class="dm-final-h">
-        Start the first maze.<br />
-        <span class="dm-ocean"><em>See how it feels.</em></span>
-      </h2>
-      <p class="dm-quiet dm-final-sub">Then close the iPad, hand it back, and have a quiet ten minutes to yourself.</p>
-      <div class="dm-final-cta">
-        <a class="dm-btn" href={appUrl}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-            <path d="M11.182 8.41c-.014-1.41 1.151-2.087 1.204-2.122-.656-.96-1.677-1.092-2.04-1.106-.868-.087-1.697.51-2.138.51-.44 0-1.123-.498-1.847-.484-.95.014-1.825.553-2.314 1.402-.987 1.71-.252 4.243.71 5.633.47.68 1.03 1.443 1.766 1.416.71-.029.978-.46 1.836-.46.858 0 1.1.46 1.85.446.764-.014 1.247-.692 1.713-1.376.54-.79.762-1.553.776-1.592-.017-.008-1.486-.57-1.5-2.267zM9.74 4.337c.39-.475.654-1.13.582-1.78-.563.023-1.244.378-1.648.847-.36.413-.677 1.084-.592 1.726.63.048 1.27-.32 1.658-.793z"/>
-          </svg>
-          Download on the App Store
-        </a>
-        <a class="dm-btn dm-btn-ghost" href="#top">Back to the top</a>
+  <section class="dm-section" id="related">
+    <div class="dm-shell">
+      <div class="dm-section-head">
+        <p class="eyebrow">More quiet ideas</p>
+        <h2>More ideas for calmer travel with kids</h2>
       </div>
-
-      <!-- decorative maze line -->
-      <svg aria-hidden="true" class="dm-maze-line" viewBox="0 0 900 80" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-        <path d="M10 60 H120 V20 H240 V60 H360 V20 H480 V60 H600 V20 H720 V60 H890" />
-        <circle cx="10" cy="60" r="3" fill="currentColor" stroke="none" />
-        <path d="M884 56 L894 60 L884 64" />
-      </svg>
+      <div class="dm-cards dm-related-cards">
+        {relatedLinks.map((link) => (
+          <a class="dm-card" href={link.href}>
+            <h3>{link.title}</h3>
+            <p>{link.description}</p>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
+
+  <section class="dm-final">
+    <div class="dm-shell">
+      <h2>Try the first maze free.</h2>
+      <p>A quiet, offline maze activity for flights, restaurants, waiting rooms, road trips, and home.</p>
+      <a class="button" href={appUrl} data-app-store-cta="final">
+        Try Denny's Maze Free
+      </a>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      document.querySelectorAll("[data-app-store-cta]").forEach((link) => {
+        link.addEventListener("click", () => {
+          const location = link.getAttribute("data-app-store-cta") || "unknown";
+          window.va?.("event", {
+            name: "dennys_maze_app_store_click",
+            data: { location }
+          });
+        });
+      });
+    })();
+  </script>
 </BaseLayout>
 
 <style>
-  /* ---- layout helpers ---- */
-  .dm-wrap {
-    width: min(calc(100% - 2rem), 72rem);
+  .dm-shell {
+    width: min(calc(100% - 2rem), var(--shell));
     margin: 0 auto;
   }
 
-  .dm-side-grid {
-    display: grid;
-    grid-template-columns: 0.35fr 0.65fr;
-    gap: clamp(24px, 5vw, 80px);
-  }
-
-  /* ---- type ---- */
-  .dm-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    margin: 0;
-  }
-
-  .dm-h1 {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 7vw, 88px);
-    line-height: 1.02;
-    letter-spacing: -0.025em;
-    font-weight: 400;
-    margin: 0 0 0;
-    font-variation-settings: "opsz" 60;
-  }
-
-  .dm-h2 {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 4.4vw, 54px);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    margin: 0;
-    font-style: italic;
-    font-variation-settings: "opsz" 40;
-  }
-
-  .dm-h3-italic {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    line-height: 1.2;
-    font-style: italic;
-    font-weight: 400;
-    margin: 0 0 12px;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .dm-accent {
-    font-style: italic;
-    color: var(--accent-strong);
-    font-variation-settings: "opsz" 72;
-  }
-
-  .dm-punch { color: var(--accent-strong); }
-
-  .dm-sub {
-    font-size: 1.2rem;
-    color: var(--muted);
-    line-height: 1.55;
-    margin: 28px 0 0;
-    max-width: 38ch;
-  }
-
-  .dm-body-lg {
-    font-size: 1.2rem;
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  .dm-body-sm {
-    font-size: 1rem;
-    line-height: 1.55;
-    margin: 0;
-  }
-
-  .dm-quiet { color: var(--muted); }
-
-  /* ---- divider ---- */
-  .dm-rule {
-    border: 0;
-    border-top: 1px dashed var(--line);
-    margin: 0;
-  }
-
-  /* ---- hero ---- */
   .dm-hero {
-    padding: clamp(48px, 8vw, 100px) 0 clamp(36px, 5vw, 64px);
+    padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4.5rem);
   }
 
-  .dm-hero-grid {
+  .dm-hero-grid,
+  .dm-split,
+  .dm-independent,
+  .dm-pricing {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: clamp(32px, 5vw, 72px);
-    align-items: end;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
   }
 
   .dm-hero-copy {
-    padding-top: 8px;
+    max-width: 36rem;
   }
 
-  .dm-cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 20px;
-    margin-top: 32px;
-    align-items: center;
-  }
-
-  .dm-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 20px;
-    margin-top: 24px;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  .dm-lead {
+    margin: 1.25rem 0 0;
     color: var(--muted);
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    line-height: 1.5;
   }
 
-  .dm-meta i { font-style: normal; color: var(--faint); }
+  .dm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.7rem;
+  }
 
-  /* ---- device frame ---- */
-  .dm-device-wrap { position: relative; }
+  .dm-microcopy {
+    margin: 0.9rem 0 0;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
-  .dm-device {
+  .dm-hero-shot {
     position: relative;
-    aspect-ratio: 4 / 3;
-    width: 100%;
-    background: var(--bg-deep);
+    margin: 0;
+    padding: 0.75rem;
     border: 1px solid var(--line);
-    border-radius: 28px;
-    padding: 12px;
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.5) inset,
-      0 30px 60px -30px rgba(40, 32, 14, 0.22),
-      0 8px 18px -10px rgba(40, 32, 14, 0.15);
-    overflow: hidden;
+    border-radius: 1.7rem;
+    background: var(--bg-deep);
+    box-shadow: var(--shadow);
   }
 
-  .dm-device::before {
-    content: "";
-    position: absolute;
-    inset: 6px;
-    border: 1px dashed var(--line);
-    border-radius: 22px;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .dm-screen {
+  .dm-hero-shot > img:first-child {
     width: 100%;
-    height: 100%;
-    border-radius: 18px;
-    overflow: hidden;
-    background: var(--bg-edge);
-  }
-
-  .dm-screen img {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 2420 / 1668;
     object-fit: cover;
-    display: block;
-    filter: saturate(0.85);
+    border-radius: 1.1rem;
+    border: 1px solid var(--line-faint);
   }
 
-  .dm-corner {
+  .dm-denny {
     position: absolute;
-    width: 9px;
-    height: 9px;
-    border: 1px solid var(--faint);
-    z-index: 2;
+    width: clamp(4.5rem, 10vw, 7rem);
+    height: auto;
+    right: -0.8rem;
+    bottom: -1rem;
+    filter: drop-shadow(0 14px 22px rgba(40, 32, 14, 0.14));
   }
 
-  .dm-tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-  .dm-tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
-  .dm-bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
-  .dm-br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-
-  .dm-caption {
-    position: absolute;
-    left: 0;
-    bottom: -30px;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* ---- buttons ---- */
-  .dm-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    border-radius: 999px;
-    border: 1px solid var(--text);
-    background: var(--text);
-    color: var(--bg);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    letter-spacing: -0.005em;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 160ms ease, background 200ms ease;
-  }
-
-  .dm-btn:hover {
-    background: #1c1813;
-    transform: translateY(-1px);
-    color: var(--bg);
-  }
-
-  .dm-btn-ghost {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--line);
-  }
-
-  .dm-btn-ghost:hover {
-    background: var(--bg-deep);
-    color: var(--text);
-  }
-
-  .dm-btn-light {
-    background: var(--bg);
-    color: var(--text);
-    border: 1px solid rgba(244, 235, 216, 0.4);
-  }
-
-  .dm-btn-light:hover {
-    background: var(--bg-soft);
-    color: var(--text);
-    transform: translateY(-1px);
-  }
-
-  /* ---- lede ---- */
-  .dm-lede {
-    padding: clamp(56px, 8vw, 100px) 0;
-  }
-
-  .dm-lede .dm-side-grid { align-items: start; }
-
-  /* ---- three nos ---- */
-  .dm-nos {
-    padding: clamp(56px, 7vw, 96px) 0;
-  }
-
-  .dm-nos-head {
-    margin-bottom: clamp(40px, 5vw, 60px);
-  }
-
-  .dm-nos-cols {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(28px, 4vw, 56px);
-  }
-
-  .dm-no-num {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--faint);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .dm-no-num::after {
-    content: "";
-    flex: 1;
+  .dm-trust {
     border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+    background: rgba(253, 247, 238, 0.32);
   }
 
-  .dm-x {
-    color: var(--terracotta);
-    font-style: normal;
-    display: inline-block;
-    transform: translateY(-2px);
-    margin-right: 4px;
-    font-family: var(--font-mono);
-    font-size: 1.3rem;
-    font-weight: 400;
-  }
-
-  .dm-strikethrough {
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
-    text-decoration-color: var(--terracotta);
-    text-underline-offset: 6px;
-  }
-
-  /* ---- inside ---- */
-  .dm-inside {
-    padding: clamp(56px, 8vw, 100px) 0;
-  }
-
-  .dm-inside-top {
-    margin-bottom: clamp(40px, 5vw, 64px);
-    align-items: end;
-  }
-
-  .dm-stats {
+  .dm-trust-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    grid-template-columns: repeat(5, 1fr);
   }
 
-  .dm-stat {
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
-  }
-
-  .dm-stat-label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .dm-stat-fig {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 6vw, 64px);
-    line-height: 1;
-    margin: 12px 0 8px;
-    letter-spacing: -0.02em;
-    font-variation-settings: "opsz" 72;
-    font-weight: 400;
-  }
-
-  .dm-stat-unit {
-    font-size: 1rem;
-    color: var(--muted);
-    margin-left: 6px;
-    font-style: italic;
-  }
-
-  .dm-practice {
-    display: grid;
-    grid-template-columns: 0.35fr 0.65fr;
-    gap: clamp(24px, 5vw, 80px);
-    padding-top: 36px;
-    margin-top: 24px;
-    border-top: 1px dashed var(--line);
-    align-items: start;
-  }
-
-  .dm-practice-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px 36px;
-  }
-
-  .dm-practice-item {
-    display: flex;
-    gap: 12px;
-    align-items: baseline;
-    padding-bottom: 12px;
-    border-bottom: 1px dotted var(--line);
-    font-size: 1.1rem;
-  }
-
-  .dm-practice-n {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--faint);
-    letter-spacing: 0.14em;
-    flex-shrink: 0;
-  }
-
-  /* ---- letter ---- */
-  .dm-letter {
-    padding: clamp(56px, 8vw, 100px) 0;
-  }
-
-  .dm-letter-body {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    margin-top: 32px;
-  }
-
-  .dm-letter-body p + p {
-    margin-top: 20px;
-  }
-
-  .dm-drop {
-    float: left;
-    font-size: 5rem;
-    line-height: 0.82;
-    padding: 6px 12px 0 0;
-    color: var(--accent-strong);
-    font-style: italic;
-    font-variation-settings: "opsz" 72;
-  }
-
-  .dm-sign {
-    margin-top: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .dm-sign::before {
-    content: "";
-    width: 32px;
-    border-top: 1px solid var(--muted);
-  }
-
-  /* ---- moments ---- */
-  .dm-moments {
-    padding: clamp(56px, 8vw, 100px) 0;
-  }
-
-  .dm-moments-title {
-    max-width: 16ch;
-    margin-bottom: clamp(28px, 4vw, 48px);
-  }
-
-  .dm-moments-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .dm-moment {
-    padding: 28px 22px 28px 0;
+  .dm-trust-item {
+    padding: 1.2rem 1rem 1.25rem;
     border-right: 1px dashed var(--line);
   }
 
-  .dm-moment:last-child { border-right: 0; padding-right: 0; }
-  .dm-moment + .dm-moment { padding-left: 22px; }
-
-  .dm-moment-num {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    color: var(--faint);
-    text-transform: uppercase;
-    margin-bottom: 18px;
+  .dm-trust-item:first-child {
+    border-left: 1px dashed var(--line);
   }
 
-  .dm-moment-h {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
+  .dm-trust-item h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    letter-spacing: 0;
   }
 
-  /* ---- promises ---- */
-  .dm-promises {
-    padding: clamp(56px, 8vw, 100px) 0;
+  .dm-trust-item p,
+  .dm-card p,
+  .dm-feature-list p,
+  .dm-calm-list p,
+  .dm-pricing-card p,
+  .dm-faq-item p {
+    margin: 0;
+    color: var(--muted);
   }
 
-  .dm-promises-head {
-    margin-bottom: clamp(40px, 5vw, 60px);
-  }
-
-  .dm-promises-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 clamp(32px, 5vw, 80px);
-  }
-
-  .dm-promise-item {
-    display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 16px;
-    padding: 20px 0;
-    border-top: 1px dashed var(--line);
-  }
-
-  .dm-promise-item:last-child,
-  .dm-promise-item:nth-last-child(2) {
+  .dm-section {
+    padding: clamp(3.75rem, 8vw, 6rem) 0;
     border-bottom: 1px dashed var(--line);
   }
 
-  .dm-promise-n {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    color: var(--faint);
-    padding-top: 4px;
+  .dm-section-head {
+    max-width: 46rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   }
 
-  .dm-promise-h {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin: 0 0 4px;
-    letter-spacing: -0.005em;
+  .dm-section-head p:not(.eyebrow),
+  .dm-split p:not(.eyebrow),
+  .dm-independent p,
+  .dm-offline-box p,
+  .dm-pricing > div > p,
+  .dm-final p {
+    color: var(--muted);
+    font-size: 1.08rem;
   }
 
-  /* ---- pricing ---- */
-  .dm-pricing {
-    padding: clamp(56px, 8vw, 100px) 0;
-  }
-
-  .dm-pricing-sub {
-    margin-bottom: clamp(36px, 5vw, 56px);
-    font-size: 1.1rem;
-  }
-
-  .dm-plans {
+  .dm-cards,
+  .dm-feature-list,
+  .dm-calm-list,
+  .dm-pricing-card {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: clamp(16px, 2.5vw, 36px);
-    align-items: start;
+    gap: 1rem;
   }
 
-  .dm-plan {
-    padding: 28px 28px 32px;
+  .dm-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .dm-card,
+  .dm-feature-list article,
+  .dm-calm-list article,
+  .dm-pricing-card,
+  .dm-faq-item {
+    padding: 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+
+  a.dm-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.dm-card:hover {
+    background: var(--bg-deep);
+  }
+
+  .dm-card h3,
+  .dm-feature-list h3,
+  .dm-calm-list h3,
+  .dm-pricing-card h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.25rem;
+    letter-spacing: 0;
+  }
+
+  .dm-feature-list {
+    margin-top: 1.5rem;
+  }
+
+  .dm-shot-stack {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr;
+    gap: 1rem;
+    align-items: end;
+  }
+
+  .dm-shot-stack img,
+  .dm-sequence img {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--bg-deep);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    box-shadow: 0 16px 36px rgba(40, 32, 14, 0.08);
   }
 
-  .dm-plan-label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .dm-shot-stack img:first-child {
+    aspect-ratio: 2064 / 2752;
+    object-fit: cover;
   }
 
-  .dm-plan-h {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-style: italic;
-    font-weight: 400;
-    margin: 16px 0 0;
-    line-height: 1.2;
-    font-variation-settings: "opsz" 30;
+  .dm-shot-stack img:last-child {
+    aspect-ratio: 1148 / 870;
+    object-fit: cover;
   }
 
-  .dm-plan-price {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 5vw, 3.5rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin: 16px 0 0;
-    font-variation-settings: "opsz" 72;
-    font-weight: 400;
+  .dm-calm {
+    background: rgba(94, 125, 134, 0.08);
   }
 
-  .dm-plan-price small {
-    font-size: 1rem;
-    color: var(--muted);
-    margin-left: 4px;
+  .dm-closing {
+    padding: 0.2rem 0 0;
     font-style: italic;
   }
 
-  .dm-plan-desc {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin: 14px 0 24px;
-    flex: 1;
+  .dm-sequence {
+    margin: 0;
   }
 
-  .dm-plan-featured {
-    background: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
+  .dm-sequence-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
   }
 
-  .dm-plan-featured .dm-plan-label,
-  .dm-plan-featured .dm-plan-desc,
-  .dm-plan-featured .dm-plan-price small {
-    color: rgba(244, 235, 216, 0.62);
-  }
-
-  .dm-ribbon {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
-    color: var(--bg);
-    text-transform: uppercase;
-    padding: 5px 9px;
-    border: 1px solid rgba(244, 235, 216, 0.35);
+  .dm-sequence-steps span {
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--line);
     border-radius: 999px;
-  }
-
-  /* ---- faq ---- */
-  .dm-faq {
-    padding: clamp(56px, 8vw, 100px) 0;
-  }
-
-  .dm-faq-qa {
-    border-top: 1px solid var(--line);
-  }
-
-  .dm-details {
-    border-bottom: 1px solid var(--line);
-    padding: 20px 0;
-    background: none;
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-  }
-
-  .dm-summary {
-    list-style: none;
-    cursor: pointer;
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    font-size: 1.2rem;
-    letter-spacing: -0.005em;
-    color: var(--text);
-    font-variation-settings: "opsz" 30;
-    font-weight: 400;
-  }
-
-  .dm-summary::-webkit-details-marker { display: none; }
-
-  .dm-summary::after {
-    content: "+";
-    margin-left: auto;
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    color: var(--faint);
-    transition: transform 200ms ease;
-    flex-shrink: 0;
-  }
-
-  details[open] .dm-summary::after { content: "–"; }
-
-  .dm-faq-n {
+    background: var(--bg-deep);
     font-family: var(--font-mono);
     font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    color: var(--faint);
+    letter-spacing: 0.1em;
+    text-align: center;
     text-transform: uppercase;
-    flex-shrink: 0;
   }
 
-  /* ---- final cta ---- */
-  .dm-final {
-    padding: clamp(72px, 10vw, 140px) 0 clamp(56px, 8vw, 100px);
+  .dm-sequence img {
+    max-height: 30rem;
+    width: 100%;
+    object-fit: cover;
   }
 
-  .dm-final-h {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 6.5vw, 80px);
+  .dm-sequence figcaption {
+    margin-top: 0.65rem;
+    color: var(--muted);
+    text-align: center;
     font-style: italic;
-    font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.025em;
-    max-width: 16ch;
-    margin: 0 auto;
-    font-variation-settings: "opsz" 72;
   }
 
-  .dm-ocean { color: var(--accent-strong); }
-
-  .dm-final-sub {
-    margin: 24px auto 0;
-    max-width: 32ch;
-    font-size: 1.1rem;
+  .dm-offline-box {
+    padding: clamp(1.5rem, 5vw, 3rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-deep);
   }
 
-  .dm-final-cta {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
-    margin-top: 36px;
-  }
-
-  .dm-maze-line {
+  .dm-offline-box strong {
     display: block;
-    width: 80%;
-    max-width: 900px;
-    margin: 48px auto 0;
-    color: var(--faint);
-    opacity: 0.6;
+    margin: 1.1rem 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    line-height: 1.1;
   }
 
-  /* ---- responsive ---- */
-  @media (max-width: 960px) {
+  .dm-pricing-card {
+    background: var(--bg-deep);
+  }
+
+  .dm-pricing-card article {
+    padding-bottom: 0.9rem;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .dm-pricing-card .button {
+    margin-top: 0.5rem;
+    width: fit-content;
+  }
+
+  .dm-founder {
+    background: rgba(253, 247, 238, 0.42);
+  }
+
+  .dm-letter {
+    font-size: 1.18rem;
+  }
+
+  .dm-letter p + p {
+    margin-top: 1rem;
+  }
+
+  .dm-signature {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.8rem;
+    align-items: baseline;
+    margin-top: 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .dm-signature strong {
+    color: var(--text);
+  }
+
+  .dm-faq-list {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .dm-faq-item summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  .dm-faq-item p {
+    margin-top: 0.8rem;
+  }
+
+  .dm-related-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dm-final {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+    text-align: center;
+  }
+
+  .dm-final h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .dm-final .button {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
     .dm-hero-grid,
-    .dm-side-grid,
-    .dm-nos-head,
-    .dm-inside-top,
-    .dm-practice,
-    .dm-promises-head,
-    .dm-faq .dm-side-grid {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .dm-nos-cols,
-    .dm-stats {
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-
-    .dm-moments-row {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .dm-moment {
-      border-bottom: 1px dashed var(--line);
-    }
-
-    .dm-moment:nth-child(2) {
-      border-right: 0;
-    }
-
-    .dm-plans {
+    .dm-split,
+    .dm-independent,
+    .dm-pricing {
       grid-template-columns: 1fr;
     }
 
-    .dm-practice-list {
-      grid-template-columns: 1fr;
+    .dm-trust-grid,
+    .dm-cards {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .dm-promises-list {
-      grid-template-columns: 1fr;
+    .dm-trust-item:nth-child(odd) {
+      border-left: 1px dashed var(--line);
     }
   }
 
-  @media (max-width: 560px) {
-    .dm-moments-row {
+  @media (max-width: 620px) {
+    .dm-trust-grid,
+    .dm-cards,
+    .dm-related-cards,
+    .dm-shot-stack {
       grid-template-columns: 1fr;
     }
 
-    .dm-moment,
-    .dm-moment + .dm-moment {
-      padding: 20px 0;
-      border-right: 0;
+    .dm-trust-item,
+    .dm-trust-item:first-child,
+    .dm-trust-item:nth-child(odd) {
+      border-left: 1px dashed var(--line);
+    }
+
+    .dm-sequence-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dm-denny {
+      width: 4.2rem;
+      right: 0.2rem;
+      bottom: -0.8rem;
     }
   }
 </style>
