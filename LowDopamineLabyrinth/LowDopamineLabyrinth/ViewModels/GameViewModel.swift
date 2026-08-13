@@ -65,10 +65,10 @@ class GameViewModel: ObservableObject {
         }
     }
 
-    func completeCurrentLabyrinth() {
-        if let lab = currentLabyrinth {
-            progressTracker.markCompleted(lab.id)
-        }
+    @discardableResult
+    func completeCurrentLabyrinth() -> Bool {
+        guard let lab = currentLabyrinth else { return false }
+        return progressTracker.markCompleted(lab.id)
     }
 
     // MARK: - Story Locking
@@ -90,6 +90,10 @@ class GameViewModel: ObservableObject {
 
     func isLabyrinthLocked(at index: Int) -> Bool {
         index >= currentPackFreeStories && !isPremium
+    }
+
+    func isFreeLabyrinth(at index: Int) -> Bool {
+        index >= 0 && index < currentPackFreeStories
     }
 
     /// Checks whether all 3 difficulty levels of the current labyrinth's story are completed

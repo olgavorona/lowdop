@@ -11,9 +11,11 @@ class ProgressTracker: ObservableObject {
         self.completedIds = Set(saved)
     }
 
-    func markCompleted(_ id: String) {
-        completedIds.insert(id)
+    @discardableResult
+    func markCompleted(_ id: String) -> Bool {
+        let wasInserted = completedIds.insert(id).inserted
         defaults.set(Array(completedIds), forKey: completedKey)
+        return wasInserted
     }
 
     func isCompleted(_ id: String) -> Bool {

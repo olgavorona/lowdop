@@ -24,16 +24,14 @@ struct TermsOfServiceView: View {
                     }
 
                     section("Free and Premium Access") {
-                        Text("The App offers limited free access (3 labyrinths initially, then 1 per day). Premium access unlocks all content and is available through auto-renewable subscriptions or a one-time lifetime purchase via Apple's App Store.")
+                        Text("The App offers limited free access (3 labyrinths initially, then 1 per day). Premium access unlocks all content and is available through a one-time purchase via Apple's App Store.")
                     }
 
-                    section("Subscriptions") {
-                        Text("Subscriptions are billed through your Apple ID account. By subscribing, you agree to the following:")
+                    section("In-App Purchase") {
+                        Text("The one-time purchase is billed through your Apple ID account. By purchasing, you agree to the following:")
                         bullet("Payment is charged to your Apple ID account at confirmation of purchase")
-                        bullet("Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period")
-                        bullet("Your account is charged for renewal within 24 hours before the end of the current period")
-                        bullet("You can manage and cancel subscriptions in your device's Settings > Apple ID > Subscriptions")
-                        bullet("Any unused portion of a free trial is forfeited when you purchase a subscription")
+                        bullet("The purchase unlocks premium access for the current App Store account")
+                        bullet("You can restore purchases using the Restore Purchases button in the App")
                     }
 
                     section("Parental Responsibility") {

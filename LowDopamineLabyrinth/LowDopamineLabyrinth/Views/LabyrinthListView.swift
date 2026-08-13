@@ -9,6 +9,7 @@ struct LabyrinthListView: View {
     @State private var isStoryComplete = false
     @State private var showParentalGate = false
     @State private var showPaywall = false
+    @State private var shouldShowDiscountAfterRegularDismissal = false
     @State private var labyrinthVM: LabyrinthViewModel?
     @State private var didInjectUITestCompletion = false
 
@@ -24,7 +25,7 @@ struct LabyrinthListView: View {
                 GeometryReader { geometry in
                     VStack(spacing: 0) {
                         LabyrinthGameView(viewModel: vm, onComplete: {
-                            gameViewModel.completeCurrentLabyrinth()
+                            let wasNewCompletion = gameViewModel.completeCurrentLabyrinth()
 
                             // Check if all 3 difficulty levels of this story are now completed
                             isStoryComplete = gameViewModel.isStoryComplete
@@ -36,6 +37,11 @@ struct LabyrinthListView: View {
                                 "itemsCollected": String(vm.collectedItemIndices.count),
                                 "totalItems": String(vm.totalItemCount)
                             ])
+
+                            trackFreeMazeCompletionIfNeeded(
+                                labyrinth: lab,
+                                wasNewCompletion: wasNewCompletion
+                            )
 
                             if isStoryComplete {
                                 Analytics.send("StoryComplete.shown", with: [
@@ -148,8 +154,11 @@ struct LabyrinthListView: View {
                 }
             )
         }
-        .sheet(isPresented: $showPaywall) {
-            PaywallView(source: .levels)
+        .sheet(isPresented: $showPaywall, onDismiss: handlePaywallSheetDismissed) {
+            PaywallView(
+                source: .levels,
+                onDismissWithoutPurchase: handlePaywallDismissalWithoutPurchase
+            )
         }
     }
 
@@ -188,6 +197,13 @@ struct LabyrinthListView: View {
                 "labyrinthId": lab.id,
                 "difficulty": lab.difficulty
             ])
+            if let index = gameViewModel.labyrinths.firstIndex(where: { $0.id == lab.id }),
+               gameViewModel.isFreeLabyrinth(at: index) {
+                Analytics.send("free_maze_started", with: [
+                    "maze_id": lab.id,
+                    "free_maze_number": String(index + 1)
+                ])
+            }
             ttsService.prepareAudio(for: lab)
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -204,10 +220,54 @@ struct LabyrinthListView: View {
         }
 
         didInjectUITestCompletion = true
-        gameViewModel.completeCurrentLabyrinth()
+        _ = gameViewModel.completeCurrentLabyrinth()
         labyrinthVM?.isCompleted = true
         labyrinthVM?.showSolution = true
         showCompletion = true
+    }
+
+    private func trackFreeMazeCompletionIfNeeded(labyrinth: Labyrinth, wasNewCompletion: Bool) {
+        guard wasNewCompletion,
+              let completedIndex = gameViewModel.labyrinths.firstIndex(where: { $0.id == labyrinth.id }),
+              gameViewModel.isFreeLabyrinth(at: completedIndex) else {
+            return
+        }
+
+        let freeMazeNumber = subscriptionManager.recordFreeMazeCompletedIfNeeded(mazeId: labyrinth.id)
+
+        Analytics.send("free_maze_completed", with: [
+            "maze_id": labyrinth.id,
+            "free_maze_number": String(freeMazeNumber ?? subscriptionManager.numberOfFreeMazesCompleted)
+        ])
+
+        if freeMazeNumber == 3 {
+            Analytics.send("free_experience_completed")
+            shouldShowDiscountAfterRegularDismissal = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                guard !subscriptionManager.isPremium,
+                      !subscriptionManager.isDiscountEligible else { return }
+                showPaywall = true
+            }
+        }
+    }
+
+    private func handlePaywallDismissalWithoutPurchase() {
+        showDiscountAfterRegularDismissalIfNeeded()
+    }
+
+    private func handlePaywallSheetDismissed() {
+        showDiscountAfterRegularDismissalIfNeeded()
+    }
+
+    private func showDiscountAfterRegularDismissalIfNeeded() {
+        guard shouldShowDiscountAfterRegularDismissal,
+              !subscriptionManager.isPremium else { return }
+
+        shouldShowDiscountAfterRegularDismissal = false
+        subscriptionManager.enableDiscountEligibility()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            showPaywall = true
+        }
     }
 
 }

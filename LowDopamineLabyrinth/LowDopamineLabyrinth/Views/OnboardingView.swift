@@ -1,5 +1,6 @@
 import SwiftUI
 import StoreKit
+import UIKit
 
 // MARK: - OnboardingViewModel
 
@@ -65,7 +66,6 @@ struct OnboardingView: View {
     @StateObject private var viewModel = OnboardingViewModel()
     @State private var showParentalGate = false
     @State private var isPurchasing = false
-    @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
     @State private var tabSelection = 0
     @State private var pendingPageAfterGate: Int?
     @State private var tabViewResetToken = UUID()
@@ -117,27 +117,38 @@ struct OnboardingView: View {
                     OnboardingPage4(onSelect: advancePage)
                     .tag(3)
                     OnboardingPage5(
-                        selectedProductId: $selectedProductId,
                         isPurchasing: $isPurchasing,
                         onGetFullAccess: {
-                            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.onboarding.rawValue])
-                            let product = subscriptionManager.products.first { $0.id == selectedProductId }
-                                ?? subscriptionManager.products.last
+                            let product = subscriptionManager.fullAccessProduct
                             guard let product else { return }
                             Task {
                                 isPurchasing = true
-                                Analytics.send("Paywall.purchaseAttempted", with: [
-                                    "productId": product.id,
-                                    "source": PaywallSource.onboarding.rawValue
+                                Analytics.send("initial_paywall_purchase_started", with: [
+                                    "product_id": product.id,
+                                    "localized_price": product.displayPrice,
+                                    "currency": product.priceFormatStyle.currencyCode,
+                                    "source": PaywallSource.onboarding.rawValue,
+                                    "paywall_type": "regular"
                                 ])
                                 let success = await subscriptionManager.purchase(product)
                                 isPurchasing = false
                                 if success {
-                                    Analytics.send("Paywall.purchaseSucceeded", with: [
-                                        "productId": product.id,
-                                        "source": PaywallSource.onboarding.rawValue
+                                    Analytics.send("initial_paywall_purchase_success", with: [
+                                        "product_id": product.id,
+                                        "localized_price": product.displayPrice,
+                                        "currency": product.priceFormatStyle.currencyCode,
+                                        "source": PaywallSource.onboarding.rawValue,
+                                        "paywall_type": "regular"
                                     ])
                                     completeOnboarding()
+                                } else {
+                                    Analytics.send("initial_paywall_purchase_cancelled", with: [
+                                        "product_id": product.id,
+                                        "localized_price": product.displayPrice,
+                                        "currency": product.priceFormatStyle.currencyCode,
+                                        "source": PaywallSource.onboarding.rawValue,
+                                        "paywall_type": "regular"
+                                    ])
                                 }
                             }
                         },
@@ -146,7 +157,6 @@ struct OnboardingView: View {
                             completeOnboarding()
                         },
                         onRestore: {
-                            Analytics.send("Paywall.restoreTapped", with: ["source": PaywallSource.onboarding.rawValue])
                             Task { await subscriptionManager.restorePurchases() }
                         }
                     )
@@ -255,46 +265,13 @@ private struct OnboardingPage1: View {
     @State private var didAdvance = false
 
     var body: some View {
-        VStack(spacing: 16) {
-            Spacer(minLength: 12)
-
-            Text("Draw the Path")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(AppColor.textPrimary)
-
-            Text("Use your finger or Apple Pencil to trace the route.")
-                .font(.system(size: 17, design: .rounded))
-                .foregroundColor(AppColor.textSecondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
-
-            OnboardingTutorialMazeCard(viewModel: tutorialViewModel)
-                .frame(maxWidth: 620)
-                .frame(height: 360)
-                .padding(.horizontal, 24)
-
-            Spacer(minLength: 8)
-
-            Button(action: {
-                Analytics.send("Onboarding.tutorialSkipped")
-                onSkip()
-            }) {
-                Text("Skip for Now")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                    .foregroundColor(AppColor.textSecondary)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 46)
-                    .background(Color.white)
-                    .cornerRadius(14)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 14)
-                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                    )
+        GeometryReader { geo in
+            if usesPhoneSideInstruction(for: geo.size) {
+                phoneSideInstructionLayout
+            } else {
+                defaultLayout
             }
-            .padding(.horizontal, 40)
-            .padding(.bottom, 28)
         }
-        .padding(.horizontal, 24)
         .onAppear {
             tutorialViewModel.reset()
             Analytics.send("Onboarding.tutorialShown")
@@ -316,6 +293,89 @@ private struct OnboardingPage1: View {
         }
     }
 
+    private var defaultLayout: some View {
+        VStack(spacing: 16) {
+            Spacer(minLength: 12)
+
+            instructionText(alignment: .center)
+                .padding(.horizontal, 40)
+
+            OnboardingTutorialMazeCard(viewModel: tutorialViewModel)
+                .frame(maxWidth: 620)
+                .frame(height: 360)
+                .padding(.horizontal, 24)
+
+            Spacer(minLength: 8)
+
+            Button(action: {
+                Analytics.send("Onboarding.tutorialSkipped")
+                onSkip()
+            }) {
+                skipButtonLabel
+            }
+            .padding(.horizontal, 40)
+            .padding(.bottom, 28)
+        }
+        .padding(.horizontal, 24)
+    }
+
+    private var phoneSideInstructionLayout: some View {
+        HStack(spacing: 14) {
+            OnboardingTutorialMazeCard(viewModel: tutorialViewModel)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            VStack(alignment: .leading, spacing: 12) {
+                Spacer(minLength: 0)
+
+                instructionText(alignment: .leading)
+
+                Button(action: {
+                    Analytics.send("Onboarding.tutorialSkipped")
+                    onSkip()
+                }) {
+                    skipButtonLabel
+                }
+
+                Spacer(minLength: 0)
+            }
+            .frame(width: 220)
+        }
+        .padding(.horizontal, 18)
+        .padding(.vertical, 10)
+    }
+
+    private func usesPhoneSideInstruction(for size: CGSize) -> Bool {
+        UIDevice.current.userInterfaceIdiom == .phone && size.width > size.height
+    }
+
+    private func instructionText(alignment: TextAlignment) -> some View {
+        VStack(alignment: alignment == .leading ? .leading : .center, spacing: 8) {
+            Text("Draw the Path")
+                .font(.system(size: alignment == .leading ? 24 : 28, weight: .bold, design: .rounded))
+                .foregroundColor(AppColor.textPrimary)
+                .multilineTextAlignment(alignment)
+
+            Text("Use your finger or Apple Pencil to trace the route.")
+                .font(.system(size: alignment == .leading ? 15 : 17, design: .rounded))
+                .foregroundColor(AppColor.textSecondary)
+                .multilineTextAlignment(alignment)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private var skipButtonLabel: some View {
+        Text("Skip for Now")
+            .font(.system(size: 16, weight: .semibold, design: .rounded))
+            .foregroundColor(AppColor.textSecondary)
+            .frame(maxWidth: .infinity)
+            .frame(height: 46)
+            .background(Color.white)
+            .cornerRadius(14)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            )
+    }
 }
 
 private struct OnboardingTutorialMazeCard: View {
@@ -539,11 +599,11 @@ private struct OnboardingPage4: View {
 
 private struct OnboardingPage5: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
-    @Binding var selectedProductId: String
     @Binding var isPurchasing: Bool
     let onGetFullAccess: () -> Void
     let onStartFree: () -> Void
     let onRestore: () -> Void
+    private var product: Product? { subscriptionManager.fullAccessProduct }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -561,22 +621,11 @@ private struct OnboardingPage5: View {
                 .padding(.horizontal, 40)
                 .padding(.bottom, 24)
 
-            // Plan cards — tap to select only
-            if subscriptionManager.products.isEmpty {
-                ProgressView().padding(.vertical, 24)
+            if let product {
+                OnboardingPlanCard(product: product)
+                    .padding(.horizontal, 32)
             } else {
-                VStack(spacing: 8) {
-                    ForEach(subscriptionManager.products, id: \.id) { product in
-                        OnboardingPlanCard(
-                            product: product,
-                            isSelected: selectedProductId == product.id,
-                            isBestValue: product.id == "labyrinth_unlimited_lifetime1"
-                        ) {
-                            selectedProductId = product.id
-                        }
-                    }
-                }
-                .padding(.horizontal, 32)
+                ProgressView().padding(.vertical, 24)
             }
 
             Spacer(minLength: 20)
@@ -598,8 +647,8 @@ private struct OnboardingPage5: View {
             }
             .background(AppColor.accentGreen)
             .cornerRadius(14)
-            .disabled(isPurchasing)
-            .opacity(isPurchasing ? 0.6 : 1.0)
+            .disabled(isPurchasing || product == nil)
+            .opacity((isPurchasing || product == nil) ? 0.6 : 1.0)
             .padding(.horizontal, 32)
             .padding(.bottom, 10)
 
@@ -639,7 +688,14 @@ private struct OnboardingPage5: View {
             .padding(.bottom, 20)
         }
         .onAppear {
-            Analytics.send("Paywall.shown", with: ["source": PaywallSource.onboarding.rawValue])
+            Analytics.send("initial_paywall_view", with: [
+                "source": PaywallSource.onboarding.rawValue,
+                "paywall_type": "regular",
+                "product_id": subscriptionManager.fullAccessProduct?.id ?? "",
+                "localized_price": subscriptionManager.fullAccessProduct?.displayPrice ?? "",
+                "currency": subscriptionManager.fullAccessProduct?.priceFormatStyle.currencyCode ?? ""
+            ])
+            subscriptionManager.markInitialPaywallSeen()
         }
     }
 }
@@ -648,69 +704,35 @@ private struct OnboardingPage5: View {
 
 private struct OnboardingPlanCard: View {
     let product: Product
-    let isSelected: Bool
-    let isBestValue: Bool
-    let onTap: () -> Void
-
-    private var trialText: String? {
-        guard let intro = product.subscription?.introductoryOffer,
-              intro.paymentMode == .freeTrial else { return nil }
-        let value = intro.period.value
-        let unit: String
-        switch intro.period.unit {
-        case .day:   unit = value == 1 ? "day"   : "days"
-        case .week:  unit = value == 1 ? "week"  : "weeks"
-        case .month: unit = value == 1 ? "month" : "months"
-        case .year:  unit = value == 1 ? "year"  : "years"
-        @unknown default: unit = "days"
-        }
-        return "\(value)-\(unit) free trial"
-    }
 
     var body: some View {
-        Button(action: onTap) {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(product.displayName)
-                        .font(.system(size: 15, weight: .semibold, design: .rounded))
-                        .foregroundColor(AppColor.textPrimary)
-                    if let trial = trialText {
-                        Text(trial)
-                            .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(AppColor.accentGreen)
-                    }
-                }
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(product.displayName)
+                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .foregroundColor(AppColor.textPrimary)
 
-                Spacer()
-
-                if isBestValue {
-                    Text("Best Value")
-                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(AppColor.accentGreen)
-                        .cornerRadius(8)
-                }
-
-                Text(product.displayPrice)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundColor(isSelected ? AppColor.accentBlue : AppColor.textPrimary)
-                    .padding(.leading, 8)
+                Text("One-time purchase")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(AppColor.accentGreen)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? AppColor.accentBlue.opacity(0.08) : Color.white)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(isSelected ? AppColor.accentBlue : Color.gray.opacity(0.2),
-                            lineWidth: isSelected ? 2 : 1)
-            )
+
+            Spacer()
+
+            Text(product.displayPrice)
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundColor(AppColor.accentBlue)
         }
-        .buttonStyle(.plain)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(AppColor.accentBlue.opacity(0.08))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(AppColor.accentBlue, lineWidth: 2)
+        )
     }
 }
 

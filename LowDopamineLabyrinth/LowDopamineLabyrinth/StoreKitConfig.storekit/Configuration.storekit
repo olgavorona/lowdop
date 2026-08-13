@@ -15,7 +15,7 @@
   ],
   "products" : [
     {
-      "displayPrice" : "59.99",
+      "displayPrice" : "6.99",
       "familyShareable" : false,
       "internalID" : "E09B9D7D",
       "localizations" : [
@@ -28,6 +28,22 @@
       "productID" : "labyrinth_unlimited_lifetime1",
       "promotionalImageID" : "E60A234A",
       "referenceName" : "Forever",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "3.99",
+      "familyShareable" : false,
+      "internalID" : "CBFFEFDC",
+      "localizations" : [
+        {
+          "description" : "Unlock all mazes and stories forever. One-time purchase.",
+          "displayName" : "Special Unlock",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "labyrinth_unlimited_lifetime_discount",
+      "promotionalImageID" : "E60A234A",
+      "referenceName" : "Special Unlock",
       "type" : "NonConsumable"
     }
   ],
@@ -46,79 +62,7 @@
     "_timeRate" : 0
   },
   "subscriptionGroups" : [
-    {
-      "id" : "B1C2D3E4",
-      "localizations" : [
 
-      ],
-      "name" : "All Access",
-      "subscriptions" : [
-        {
-          "adHocOffers" : [
-
-          ],
-          "codeOffers" : [
-
-          ],
-          "displayPrice" : "2.99",
-          "familyShareable" : false,
-          "groupNumber" : 1,
-          "internalID" : "F1A2B3C4",
-          "introductoryOffer" : {
-            "internalID" : "7FFA4F6C",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
-          },
-          "localizations" : [
-            {
-              "description" : "Weekly access to all mazes and stories.",
-              "displayName" : "Weekly",
-              "locale" : "en_US"
-            }
-          ],
-          "productID" : "labyrinth_unlimited_weekly",
-          "recurringSubscriptionPeriod" : "P1W",
-          "referenceName" : "Weekly",
-          "subscriptionGroupID" : "B1C2D3E4",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
-        },
-        {
-          "adHocOffers" : [
-
-          ],
-          "codeOffers" : [
-
-          ],
-          "displayPrice" : "9.99",
-          "familyShareable" : false,
-          "groupNumber" : 2,
-          "internalID" : "F1A2B3C5",
-          "introductoryOffer" : {
-            "internalID" : "ED68E1D1",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P1W"
-          },
-          "localizations" : [
-            {
-              "description" : "Monthly access to all mazes and stories.",
-              "displayName" : "Monthly",
-              "locale" : "en_US"
-            }
-          ],
-          "productID" : "labyrinth_unlimited_monthly",
-          "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "Monthly",
-          "subscriptionGroupID" : "B1C2D3E4",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
-        }
-      ]
-    }
   ],
   "version" : {
     "major" : 4,

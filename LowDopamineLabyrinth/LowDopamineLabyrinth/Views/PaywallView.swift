@@ -5,304 +5,356 @@ struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @Environment(\.dismiss) var dismiss
     let source: PaywallSource
+    var onDismissWithoutPurchase: (() -> Void)? = nil
     @State private var isPurchasing = false
-    @State private var selectedProductId: String = "labyrinth_unlimited_lifetime1"
-    @State private var showCancelPrompt = false
-    private let benefits = [
-        "60 mazes across 20 ocean stories",
-        "Calm, focused screen time",
-        "Educational facts & narration"
-    ]
+    @State private var didTrackView = false
 
-    private var selectedProduct: Product? {
-        subscriptionManager.products.first { $0.id == selectedProductId }
+    private var variant: PaywallVariant {
+        subscriptionManager.isDiscountEligible ? .discount : .regular
     }
 
+    private var product: Product? {
+        switch variant {
+        case .regular:
+            return subscriptionManager.regularFullAccessProduct
+        case .discount:
+            return subscriptionManager.discountFullAccessProduct
+        }
+    }
+
+    private var benefits: [String] { variant.benefits }
+
     var body: some View {
-        HStack(spacing: 0) {
+        ZStack(alignment: .topTrailing) {
+            HStack(spacing: 0) {
             // MARK: - Left Column: Hero + Benefits
-            VStack(spacing: 16) {
-                Spacer()
+                VStack(spacing: 16) {
+                    Spacer()
 
-                Image("denny")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 100)
+                    Image("denny")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
 
-                Text("Unlock All Packs")
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundColor(AppColor.textPrimary)
+                    Text(variant.title)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(AppColor.textPrimary)
+                        .multilineTextAlignment(.center)
 
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(benefits, id: \.self) { benefit in
-                        HStack(alignment: .top, spacing: 8) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(AppColor.accentGreen)
-                                .font(.system(size: 16))
-                            Text(benefit)
-                                .font(.system(size: 14, design: .rounded))
-                                .foregroundColor(AppColor.textPrimary)
-                        }
-                    }
-                }
+                    Text(variant.body)
+                        .font(.system(size: 15, design: .rounded))
+                        .foregroundColor(AppColor.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 16)
 
-                Spacer()
-
-                HStack(spacing: 12) {
-                    Button("Restore Purchases") {
-                        Analytics.send("Paywall.restoreTapped", with: ["source": source.rawValue])
-                        Task { await subscriptionManager.restorePurchases() }
-                    }
-                    Text("|")
-                        .foregroundColor(AppColor.textFaint)
-                    Link("Terms", destination: URL(string: "https://olgavorona.github.io/lowdop/terms")!)
-                    Text("|")
-                        .foregroundColor(AppColor.textFaint)
-                    Link("Privacy", destination: URL(string: "https://olgavorona.github.io/lowdop/privacy")!)
-                }
-                .font(.system(size: 12, design: .rounded))
-                .foregroundColor(AppColor.textTertiary)
-                .padding(.bottom, 16)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal, 24)
-
-            // MARK: - Right Column: Plan Cards + CTA
-            VStack(spacing: 12) {
-                Spacer()
-
-                if subscriptionManager.products.isEmpty {
-                    ProgressView()
-                        .padding()
-                } else {
-                    VStack(spacing: 8) {
-                        ForEach(subscriptionManager.products, id: \.id) { product in
-                            PlanCardView(
-                                product: product,
-                                isSelected: selectedProductId == product.id,
-                                isBestValue: product.id == "labyrinth_unlimited_lifetime1"
-                            ) {
-                                selectedProductId = product.id
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(benefits, id: \.self) { benefit in
+                            HStack(alignment: .top, spacing: 8) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(AppColor.accentGreen)
+                                    .font(.system(size: 16))
+                                Text(benefit)
+                                    .font(.system(size: 14, design: .rounded))
+                                    .foregroundColor(AppColor.textPrimary)
                             }
                         }
                     }
-                }
 
-                Button(action: executePurchase) {
-                    Group {
-                        if isPurchasing {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        } else {
-                            Text(ctaTitle)
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                        }
+                    Spacer()
+
+                    HStack(spacing: 12) {
+                        Link("Terms", destination: URL(string: "https://olgavorona.github.io/lowdop/terms")!)
+                        Text("|")
+                            .foregroundColor(AppColor.textFaint)
+                        Link("Privacy", destination: URL(string: "https://olgavorona.github.io/lowdop/privacy")!)
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 52)
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(AppColor.textTertiary)
+                    .padding(.bottom, 16)
                 }
-                .background(AppColor.accentBlue)
-                .cornerRadius(14)
-                .disabled(isPurchasing || selectedProduct == nil)
-                .opacity(isPurchasing ? 0.6 : 1.0)
-                .padding(.top, 4)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 24)
 
-                Button(action: {
-                    Analytics.send("Paywall.dismissed", with: ["source": source.rawValue])
-                    dismiss()
-                }) {
-                    Text("Maybe Later")
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
+            // MARK: - Right Column: Purchase + CTA
+                VStack(spacing: 12) {
+                    Spacer()
+
+                    if let product {
+                        PlanCardView(
+                            variant: variant,
+                            product: product,
+                            regularProduct: subscriptionManager.regularFullAccessProduct
+                        )
+                    } else {
+                        ProgressView()
+                            .padding()
+                    }
+
+                    Button(action: executePurchase) {
+                        Group {
+                            if isPurchasing {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
+                                Text(ctaTitle)
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .foregroundColor(.white)
+                                    .minimumScaleFactor(0.78)
+                                    .lineLimit(1)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                    }
+                    .background(AppColor.accentBlue)
+                    .cornerRadius(14)
+                    .disabled(isPurchasing || product == nil)
+                    .opacity(isPurchasing ? 0.6 : 1.0)
+                    .padding(.top, 4)
+
+                    Text(variant.supportingLine)
+                        .font(.system(size: 12, design: .rounded))
                         .foregroundColor(AppColor.textTertiary)
-                }
-                .frame(height: 36)
+                        .multilineTextAlignment(.center)
 
-                Spacer()
+                    Button(action: dismissWithoutPurchase) {
+                        Text(variant.secondaryActionTitle)
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(AppColor.textTertiary)
+                    }
+                    .frame(height: 36)
+
+                    Button(action: {
+                        Task { await subscriptionManager.restorePurchases() }
+                    }) {
+                        Text("Restore Purchases")
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                            .foregroundColor(AppColor.textTertiary)
+                    }
+                    .frame(height: 30)
+
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 24)
             }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal, 24)
+            .background(AppColor.background)
+
+            Button(action: dismissWithoutPurchase) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(AppColor.textSecondary)
+                    .frame(width: 36, height: 36)
+                    .background(Color.white.opacity(0.9))
+                    .clipShape(Circle())
+            }
+            .accessibilityLabel("Close")
+            .padding(16)
         }
-        .background(AppColor.background)
         .task {
             await subscriptionManager.loadProducts()
+            trackViewIfNeeded()
         }
         .onAppear {
-            Analytics.send("Paywall.shown", with: ["source": source.rawValue])
-        }
-        .overlay {
-            if showCancelPrompt {
-                CancelSubscriptionPromptView(
-                    subscriptionName: subscriptionDisplayName(subscriptionManager.activeSubscriptionProductId),
-                    onManage: {
-                        Task {
-                            await subscriptionManager.openSubscriptionManagement()
-                            dismiss()
-                        }
-                    },
-                    onSkip: { dismiss() }
-                )
-            }
+            trackViewIfNeeded()
         }
     }
 
     private var ctaTitle: String {
-        guard let product = selectedProduct else { return "Subscribe" }
-        if let intro = product.subscription?.introductoryOffer, intro.paymentMode == .freeTrial {
-            return "Try Free & Subscribe"
-        }
-        if product.id == "labyrinth_unlimited_lifetime1" {
-            return "Buy Once, Play Forever"
-        }
-        return "Subscribe"
+        product == nil ? "Loading..." : "Unlock Everything"
     }
 
     private func executePurchase() {
-        guard let product = selectedProduct else { return }
-        let isLifetime = product.id == "labyrinth_unlimited_lifetime1"
-        Analytics.send("Paywall.purchaseAttempted", with: [
-            "productId": product.id,
-            "source": source.rawValue
-        ])
+        guard let product else { return }
+        Analytics.send(variant.purchaseStartedEvent, with: analyticsProperties(for: product))
         Task {
             isPurchasing = true
             let success = await subscriptionManager.purchase(product)
             isPurchasing = false
             if success {
-                Analytics.send("Paywall.purchaseSucceeded", with: [
-                    "productId": product.id,
-                    "source": source.rawValue
-                ])
-                if isLifetime && subscriptionManager.activeSubscriptionProductId != nil {
-                    showCancelPrompt = true
-                } else {
-                    dismiss()
-                }
+                Analytics.send(variant.purchaseSuccessEvent, with: analyticsProperties(for: product))
+                dismiss()
+            } else {
+                Analytics.send(variant.purchaseCancelledEvent, with: analyticsProperties(for: product))
             }
         }
     }
 
-    private func subscriptionDisplayName(_ productId: String?) -> String {
-        switch productId {
-        case "labyrinth_unlimited_weekly":  return "Weekly"
-        case "labyrinth_unlimited_monthly": return "Monthly"
-        default: return "subscription"
+    private func dismissWithoutPurchase() {
+        Analytics.send(variant.dismissedEvent, with: [
+            "source": source.rawValue,
+            "paywall_type": variant.rawValue
+        ])
+        onDismissWithoutPurchase?()
+        dismiss()
+    }
+
+    private func analyticsProperties(for product: Product) -> [String: String] {
+        [
+            "product_id": product.id,
+            "localized_price": product.displayPrice,
+            "currency": product.priceFormatStyle.currencyCode,
+            "source": source.rawValue,
+            "paywall_type": variant.rawValue
+        ]
+    }
+
+    private func trackViewIfNeeded() {
+        guard !didTrackView else { return }
+        if product == nil && subscriptionManager.products.isEmpty { return }
+        didTrackView = true
+        subscriptionManager.markInitialPaywallSeen()
+        if let product {
+            Analytics.send(variant.shownEvent, with: analyticsProperties(for: product))
+        } else {
+            Analytics.send(variant.shownEvent, with: [
+                "source": source.rawValue,
+                "paywall_type": variant.rawValue
+            ])
         }
     }
 }
 
-private struct CancelSubscriptionPromptView: View {
-    let subscriptionName: String
-    let onManage: () -> Void
-    let onSkip: () -> Void
+private enum PaywallVariant: String {
+    case regular
+    case discount
 
-    var body: some View {
-        ZStack {
-            Color.black.opacity(0.5).ignoresSafeArea()
+    var title: String {
+        switch self {
+        case .regular: return "Unlock all of Denny's Maze"
+        case .discount: return "Keep exploring with Denny"
+        }
+    }
 
-            VStack(spacing: 20) {
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.system(size: 48))
-                    .foregroundColor(AppColor.accentGreen)
+    var body: String {
+        switch self {
+        case .regular:
+            return "Get every maze and difficulty level with one simple purchase."
+        case .discount:
+            return "Unlock every maze with one purchase."
+        }
+    }
 
-                Text("You have forever access!")
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundColor(AppColor.textPrimary)
+    var benefits: [String] {
+        switch self {
+        case .regular:
+            return [
+                "All mazes and difficulty levels",
+                "Works completely offline",
+                "No ads",
+                "No subscription"
+            ]
+        case .discount:
+            return [
+                "Unlock all mazes",
+                "All difficulty levels",
+                "Works offline",
+                "No ads",
+                "No subscription"
+            ]
+        }
+    }
 
-                Text("You still have an active \(subscriptionName) subscription. Cancel it to avoid future charges.")
-                    .font(.system(size: 15, design: .rounded))
-                    .foregroundColor(AppColor.textSecondary)
-                    .multilineTextAlignment(.center)
+    var supportingLine: String {
+        switch self {
+        case .regular:
+            return "One-time purchase. Yours forever."
+        case .discount:
+            return "One-time purchase. No recurring charges."
+        }
+    }
 
-                Button(action: onManage) {
-                    Text("Manage Subscriptions")
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(AppColor.accentBlue)
-                        .cornerRadius(14)
-                }
+    var secondaryActionTitle: String {
+        switch self {
+        case .regular:
+            return "Not now"
+        case .discount:
+            return "Not now"
+        }
+    }
 
-                Button(action: onSkip) {
-                    Text("No Thanks")
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
-                        .foregroundColor(AppColor.textTertiary)
-                }
-                .frame(height: 36)
-            }
-            .padding(32)
-            .background(Color.white)
-            .cornerRadius(24)
-            .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
-            .padding(40)
+    var shownEvent: String {
+        switch self {
+        case .regular: return "initial_paywall_view"
+        case .discount: return "discount_paywall_view"
+        }
+    }
+
+    var purchaseStartedEvent: String {
+        switch self {
+        case .regular: return "initial_paywall_purchase_started"
+        case .discount: return "discount_purchase_started"
+        }
+    }
+
+    var purchaseSuccessEvent: String {
+        switch self {
+        case .regular: return "initial_paywall_purchase_success"
+        case .discount: return "discount_purchase_success"
+        }
+    }
+
+    var purchaseCancelledEvent: String {
+        switch self {
+        case .regular: return "initial_paywall_purchase_cancelled"
+        case .discount: return "discount_purchase_cancelled"
+        }
+    }
+
+    var dismissedEvent: String {
+        switch self {
+        case .regular: return "initial_paywall_dismissed"
+        case .discount: return "discount_paywall_dismissed"
         }
     }
 }
 
 private struct PlanCardView: View {
+    let variant: PaywallVariant
     let product: Product
-    let isSelected: Bool
-    let isBestValue: Bool
-    let onTap: () -> Void
-
-    private var trialText: String? {
-        guard let intro = product.subscription?.introductoryOffer,
-              intro.paymentMode == .freeTrial else { return nil }
-        let value = intro.period.value
-        let unit: String
-        switch intro.period.unit {
-        case .day:   unit = value == 1 ? "day" : "days"
-        case .week:  unit = value == 1 ? "week" : "weeks"
-        case .month: unit = value == 1 ? "month" : "months"
-        case .year:  unit = value == 1 ? "year" : "years"
-        @unknown default: unit = "days"
-        }
-        return "\(value)-\(unit) free trial"
-    }
+    let regularProduct: Product?
 
     var body: some View {
-        Button(action: onTap) {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(product.displayName)
-                        .font(.system(size: 15, weight: .semibold, design: .rounded))
-                        .foregroundColor(AppColor.textPrimary)
-                    if let trial = trialText {
-                        Text(trial)
-                            .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(AppColor.accentGreen)
-                    }
-                }
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(variant == .discount ? "Special unlock price" : product.displayName)
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .foregroundColor(AppColor.textPrimary)
 
-                Spacer()
-
-                if isBestValue {
-                    Text("Best Value")
-                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(AppColor.accentGreen)
-                        .cornerRadius(8)
-                }
-
-                Text(product.displayPrice)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundColor(isSelected ? AppColor.accentBlue : AppColor.textPrimary)
-                    .padding(.leading, 8)
+                Text("One-time purchase")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(AppColor.accentGreen)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(isSelected ? AppColor.accentBlue.opacity(0.08) : Color.white)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(isSelected ? AppColor.accentBlue : Color.gray.opacity(0.2), lineWidth: isSelected ? 2 : 1)
-            )
+
+            Spacer()
+
+            if variant == .discount {
+                VStack(alignment: .trailing, spacing: 3) {
+                    if let regularProduct {
+                        Text(regularProduct.displayPrice)
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .foregroundColor(AppColor.textTertiary)
+                            .strikethrough(true, color: AppColor.textTertiary)
+                    }
+                    Text(product.displayPrice)
+                        .font(.system(size: 26, weight: .bold, design: .rounded))
+                        .foregroundColor(AppColor.accentBlue)
+                }
+            } else {
+                Text(product.displayPrice)
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundColor(AppColor.accentBlue)
+            }
         }
-        .buttonStyle(.plain)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(AppColor.accentBlue.opacity(0.08))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(AppColor.accentBlue, lineWidth: 2)
+        )
     }
 }

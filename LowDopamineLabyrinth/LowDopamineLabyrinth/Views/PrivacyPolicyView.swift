@@ -40,7 +40,7 @@ struct PrivacyPolicyView: View {
                     section("Third-Party Services") {
                         Text("The App does not contain ads. The App uses:")
                         bullet("TelemetryDeck for anonymous analytics")
-                        bullet("Apple's App Store / StoreKit for optional purchases, purchase restoration, and subscription management")
+                        bullet("Apple's App Store / StoreKit for optional purchases and purchase restoration")
                     }
 
                     section("Analytics") {
@@ -49,7 +49,7 @@ struct PrivacyPolicyView: View {
                     }
 
                     section("In-App Purchases") {
-                        Text("The App offers optional subscriptions and a lifetime purchase processed through Apple's App Store. We do not receive or store your full payment information. Purchase decisions are protected by a parental gate.")
+                        Text("The App offers an optional one-time purchase processed through Apple's App Store. We do not receive or store your full payment information. Purchase decisions are protected by a parental gate.")
                     }
 
                     section("Audio Content") {

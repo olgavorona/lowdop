@@ -1,20 +1,55 @@
 import StoreKit
-import UIKit // UIApplication.shared, UIWindowScene
+
+enum PaywallStrategy {
+    case anchorThenDiscount
+    case directLifetime
+}
 
 class SubscriptionManager: ObservableObject {
     @Published var isPremium: Bool = false
     @Published var products: [Product] = []
-    @Published var activeSubscriptionProductId: String? = nil
+    @Published var hasSeenInitialPaywall: Bool {
+        didSet { defaults.set(hasSeenInitialPaywall, forKey: hasSeenInitialPaywallKey) }
+    }
+    @Published var hasCompletedFreeExperience: Bool {
+        didSet { defaults.set(hasCompletedFreeExperience, forKey: hasCompletedFreeExperienceKey) }
+    }
+    @Published var numberOfFreeMazesCompleted: Int {
+        didSet { defaults.set(numberOfFreeMazesCompleted, forKey: numberOfFreeMazesCompletedKey) }
+    }
+    @Published var isDiscountEligible: Bool {
+        didSet { defaults.set(isDiscountEligible, forKey: isDiscountEligibleKey) }
+    }
 
-    private let subscriptionIds = [
-        "labyrinth_unlimited_weekly",
-        "labyrinth_unlimited_monthly"
-    ]
-    private let lifetimeId = "labyrinth_unlimited_lifetime1"
-    private var productIds: [String] { subscriptionIds + [lifetimeId] }
+    let paywallStrategy: PaywallStrategy = .anchorThenDiscount
+    let regularFullAccessProductId = "labyrinth_unlimited_lifetime1"
+    let discountFullAccessProductId = "labyrinth_unlimited_lifetime_discount"
+
+    var fullAccessProductId: String {
+        switch paywallStrategy {
+        case .anchorThenDiscount:
+            return isDiscountEligible ? discountFullAccessProductId : regularFullAccessProductId
+        case .directLifetime:
+            return discountFullAccessProductId
+        }
+    }
+
+    var regularFullAccessProduct: Product? { product(withId: regularFullAccessProductId) }
+    var discountFullAccessProduct: Product? { product(withId: discountFullAccessProductId) }
+    var fullAccessProduct: Product? { product(withId: fullAccessProductId) }
+
     private var transactionListener: Task<Void, Never>?
+    private let defaults = UserDefaults.standard
+    private let hasSeenInitialPaywallKey = "hasSeenInitialPaywall"
+    private let hasCompletedFreeExperienceKey = "hasCompletedFreeExperience"
+    private let numberOfFreeMazesCompletedKey = "numberOfFreeMazesCompleted"
+    private let isDiscountEligibleKey = "isDiscountEligible"
 
     init() {
+        hasSeenInitialPaywall = defaults.bool(forKey: hasSeenInitialPaywallKey)
+        hasCompletedFreeExperience = defaults.bool(forKey: hasCompletedFreeExperienceKey)
+        numberOfFreeMazesCompleted = defaults.integer(forKey: numberOfFreeMazesCompletedKey)
+        isDiscountEligible = defaults.bool(forKey: isDiscountEligibleKey)
         let isUITestCompletionFlow = ProcessInfo.processInfo.arguments.contains("-uiTestShowCompletionForLastLevel")
         if isUITestCompletionFlow {
             isPremium = true
@@ -32,9 +67,10 @@ class SubscriptionManager: ObservableObject {
     @MainActor
     func loadProducts() async {
         do {
-            let loaded = try await Product.products(for: productIds)
-            // Sort in preferred display order: weekly, monthly, lifetime
-            products = productIds.compactMap { id in loaded.first { $0.id == id } }
+            products = try await Product.products(for: [
+                regularFullAccessProductId,
+                discountFullAccessProductId
+            ])
         } catch {
             print("Failed to load products: \(error)")
         }
@@ -63,34 +99,49 @@ class SubscriptionManager: ObservableObject {
 
     @MainActor
     func restorePurchases() async {
+        let hadPremium = isPremium
+        Analytics.send("restore_started")
         try? await AppStore.sync()
         await checkEntitlements()
-    }
-
-    @MainActor
-    func openSubscriptionManagement() async {
-        guard let scene = UIApplication.shared.connectedScenes
-            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
-        else { return }
-        try? await AppStore.showManageSubscriptions(in: scene)
+        Analytics.send(isPremium ? "restore_success" : "restore_failed", with: [
+            "restored_access": String(isPremium),
+            "had_access_before_restore": String(hadPremium)
+        ])
     }
 
     @MainActor
     func checkEntitlements() async {
-        var hasLifetime = false
-        var activeSubId: String? = nil
-
+        var hasFullAccess = false
         for await result in Transaction.currentEntitlements {
             if let transaction = try? checkVerified(result) {
-                if transaction.productID == lifetimeId {
-                    hasLifetime = true
-                } else if subscriptionIds.contains(transaction.productID) {
-                    activeSubId = transaction.productID
+                if isFullAccessProduct(transaction.productID) {
+                    hasFullAccess = true
                 }
             }
         }
-        isPremium = hasLifetime || activeSubId != nil
-        activeSubscriptionProductId = activeSubId
+        isPremium = hasFullAccess
+    }
+
+    func markInitialPaywallSeen() {
+        hasSeenInitialPaywall = true
+    }
+
+    func markFreeExperienceCompleted() {
+        hasCompletedFreeExperience = true
+    }
+
+    func enableDiscountEligibility() {
+        isDiscountEligible = true
+    }
+
+    @discardableResult
+    func recordFreeMazeCompletedIfNeeded(mazeId: String) -> Int? {
+        guard numberOfFreeMazesCompleted < 3 else { return nil }
+        numberOfFreeMazesCompleted += 1
+        if numberOfFreeMazesCompleted >= 3 {
+            markFreeExperienceCompleted()
+        }
+        return numberOfFreeMazesCompleted
     }
 
     private func listenForTransactions() -> Task<Void, Never> {
@@ -111,6 +162,14 @@ class SubscriptionManager: ObservableObject {
         case .verified(let item):
             return item
         }
+    }
+
+    private func product(withId id: String) -> Product? {
+        products.first { $0.id == id }
+    }
+
+    private func isFullAccessProduct(_ productID: String) -> Bool {
+        productID == regularFullAccessProductId || productID == discountFullAccessProductId
     }
 
     enum StoreError: Error {

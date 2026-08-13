@@ -9,8 +9,8 @@ struct AccountView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
 
-                // MARK: - Subscription
-                SectionHeader(title: "Subscription")
+                // MARK: - Purchase
+                SectionHeader(title: "Purchase")
 
                 VStack(spacing: 12) {
                     HStack {
@@ -23,22 +23,14 @@ struct AccountView: View {
                         Spacer()
                     }
 
-                    if subscriptionManager.activeSubscriptionProductId != nil {
+                    if !subscriptionManager.isPremium {
                         AccountButton(
-                            title: "Get Forever Access",
+                            title: "Get Full Access",
                             icon: "infinity",
                             color: AppColor.accentYellow
                         ) {
                             Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.account.rawValue])
                             showPaywall = true
-                        }
-
-                        AccountButton(
-                            title: "Manage Subscription",
-                            icon: "arrow.triangle.2.circlepath",
-                            color: AppColor.accentBlue
-                        ) {
-                            Task { await subscriptionManager.openSubscriptionManagement() }
                         }
                     }
 
@@ -92,14 +84,7 @@ struct AccountView: View {
     }
 
     private var statusText: String {
-        if subscriptionManager.isPremium {
-            switch subscriptionManager.activeSubscriptionProductId {
-            case "labyrinth_unlimited_weekly":  return "Weekly subscription"
-            case "labyrinth_unlimited_monthly": return "Monthly subscription"
-            default: return "Forever access"
-            }
-        }
-        return "No active plan"
+        subscriptionManager.isPremium ? "Full access unlocked" : "No purchase found"
     }
 
     private var statusIcon: String {
