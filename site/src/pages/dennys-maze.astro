@@ -505,6 +505,8 @@ const relatedLinks = [
   .dm-hero-shot {
     position: relative;
     margin: 0;
+    justify-self: end;
+    width: min(100%, 32rem);
     padding: 0.75rem;
     border: 1px solid var(--line);
     border-radius: 1.7rem;
@@ -514,8 +516,10 @@ const relatedLinks = [
 
   .dm-hero-shot > img:first-child {
     width: 100%;
-    aspect-ratio: 2420 / 1668;
+    aspect-ratio: 16 / 9;
+    max-height: 20rem;
     object-fit: cover;
+    object-position: center;
     border-radius: 1.1rem;
     border: 1px solid var(--line-faint);
   }
@@ -633,13 +637,14 @@ const relatedLinks = [
 
   .dm-shot-stack {
     display: grid;
-    grid-template-columns: 0.9fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-    align-items: end;
+    align-items: start;
   }
 
   .dm-shot-stack img,
   .dm-sequence img {
+    width: 100%;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--bg-deep);
@@ -647,13 +652,17 @@ const relatedLinks = [
   }
 
   .dm-shot-stack img:first-child {
-    aspect-ratio: 2064 / 2752;
+    aspect-ratio: 4 / 3;
+    max-height: 20rem;
     object-fit: cover;
+    object-position: center;
   }
 
   .dm-shot-stack img:last-child {
-    aspect-ratio: 1148 / 870;
+    aspect-ratio: 4 / 3;
+    max-height: 20rem;
     object-fit: cover;
+    object-position: center;
   }
 
   .dm-calm {
@@ -689,9 +698,10 @@ const relatedLinks = [
   }
 
   .dm-sequence img {
-    max-height: 30rem;
-    width: 100%;
+    aspect-ratio: 16 / 10;
+    max-height: 20rem;
     object-fit: cover;
+    object-position: center;
   }
 
   .dm-sequence figcaption {
@@ -800,6 +810,11 @@ const relatedLinks = [
       grid-template-columns: 1fr;
     }
 
+    .dm-hero-shot {
+      justify-self: start;
+      width: min(100%, 38rem);
+    }
+
     .dm-trust-grid,
     .dm-cards {
       grid-template-columns: repeat(2, 1fr);
@@ -816,6 +831,12 @@ const relatedLinks = [
     .dm-related-cards,
     .dm-shot-stack {
       grid-template-columns: 1fr;
+    }
+
+    .dm-shot-stack img:first-child,
+    .dm-shot-stack img:last-child,
+    .dm-sequence img {
+      max-height: none;
     }
 
     .dm-trust-item,
