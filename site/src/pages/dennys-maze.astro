@@ -16,7 +16,7 @@ const meta = buildMeta({
   title,
   description,
   pathname: siteConfig.productPath,
-  image: "/images/ipad-maze.png"
+  image: "/images/dennys-maze/maze-ocean.png"
 });
 
 const trustItems = [
@@ -185,7 +185,7 @@ const relatedLinks = [
 
       <figure class="dm-hero-shot">
         <img
-          src="/images/ipad-maze.png"
+          src="/images/dennys-maze/maze-ocean.png"
           alt="Denny's Maze offline toddler maze game on iPad"
           width="2420"
           height="1668"
@@ -255,21 +255,43 @@ const relatedLinks = [
           ))}
         </div>
       </div>
-      <div class="dm-shot-stack">
-        <img
-          src="/images/ipad-hero.jpeg"
-          alt="Denny's Maze maze activity shown on an iPad"
-          width="2064"
-          height="2752"
-          loading="lazy"
-        />
-        <img
-          src="/images/onboarding-maze.png"
-          alt="Denny's Maze simple maze selection and tracing screen"
-          width="1148"
-          height="870"
-          loading="lazy"
-        />
+      <div class="dm-ipad-gallery" aria-label="Denny's Maze iPad screenshots">
+        <figure class="dm-ipad-frame">
+          <img
+            src="/images/dennys-maze/maze-space.png"
+            alt="Denny's Maze space maze activity on an iPad"
+            width="2420"
+            height="1668"
+            loading="lazy"
+          />
+        </figure>
+        <figure class="dm-ipad-frame">
+          <img
+            src="/images/dennys-maze/maze-library.png"
+            alt="Denny's Maze maze library and difficulty selection on an iPad"
+            width="2420"
+            height="1668"
+            loading="lazy"
+          />
+        </figure>
+        <figure class="dm-ipad-frame">
+          <img
+            src="/images/dennys-maze/maze-ocean.png"
+            alt="Denny's Maze ocean maze activity on an iPad"
+            width="2420"
+            height="1668"
+            loading="lazy"
+          />
+        </figure>
+        <figure class="dm-ipad-frame">
+          <img
+            src="/images/dennys-maze/maze-finish.png"
+            alt="Denny's Maze ocean fact and maze completion screen on an iPad"
+            width="2360"
+            height="1640"
+            loading="lazy"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -319,10 +341,10 @@ const relatedLinks = [
           <span>Finish</span>
         </div>
         <img
-          src="/images/ipad-hero-2.jpeg"
+          src="/images/dennys-maze/maze-library.png"
           alt="Denny's Maze quiet maze activity on an iPad"
-          width="2064"
-          height="2752"
+          width="2420"
+          height="1668"
           loading="lazy"
         />
         <figcaption>Open. Choose. Trace. Finish.</figcaption>
@@ -516,8 +538,8 @@ const relatedLinks = [
 
   .dm-hero-shot > img:first-child {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    max-height: 20rem;
+    aspect-ratio: 2420 / 1668;
+    max-height: 22rem;
     object-fit: cover;
     object-position: center;
     border-radius: 1.1rem;
@@ -635,34 +657,30 @@ const relatedLinks = [
     margin-top: 1.5rem;
   }
 
-  .dm-shot-stack {
+  .dm-ipad-gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 0.9rem;
     align-items: start;
   }
 
-  .dm-shot-stack img,
-  .dm-sequence img {
-    width: 100%;
+  .dm-ipad-frame {
+    margin: 0;
+    aspect-ratio: 2420 / 1668;
+    overflow: hidden;
     border: 1px solid var(--line);
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     background: var(--bg-deep);
     box-shadow: 0 16px 36px rgba(40, 32, 14, 0.08);
   }
 
-  .dm-shot-stack img:first-child {
-    aspect-ratio: 4 / 3;
-    max-height: 20rem;
+  .dm-ipad-frame img,
+  .dm-sequence img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-  }
-
-  .dm-shot-stack img:last-child {
-    aspect-ratio: 4 / 3;
-    max-height: 20rem;
-    object-fit: cover;
-    object-position: center;
+    display: block;
   }
 
   .dm-calm {
@@ -698,10 +716,14 @@ const relatedLinks = [
   }
 
   .dm-sequence img {
-    aspect-ratio: 16 / 10;
-    max-height: 20rem;
+    aspect-ratio: 2420 / 1668;
+    max-height: 22rem;
     object-fit: cover;
     object-position: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-deep);
+    box-shadow: 0 16px 36px rgba(40, 32, 14, 0.08);
   }
 
   .dm-sequence figcaption {
@@ -829,12 +851,10 @@ const relatedLinks = [
     .dm-trust-grid,
     .dm-cards,
     .dm-related-cards,
-    .dm-shot-stack {
+    .dm-ipad-gallery {
       grid-template-columns: 1fr;
     }
 
-    .dm-shot-stack img:first-child,
-    .dm-shot-stack img:last-child,
     .dm-sequence img {
       max-height: none;
     }
