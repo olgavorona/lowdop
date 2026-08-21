@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="28" fill="#e8f4ec"/>
-  <circle cx="64" cy="53" r="28" fill="#2f8f5b"/>
-  <path fill="#fdf7ee" d="M45 55c9-18 29-18 38 0-6 5-13 8-19 8s-13-3-19-8Z"/>
-  <path fill="#2f8f5b" d="M38 91c9-18 43-18 52 0H38Z"/>
-  <text x="64" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#225f40">KIDS</text>
-</svg>

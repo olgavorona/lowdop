@@ -291,15 +291,24 @@ const {
   .footer-links {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.85rem 1.2rem;
     padding: 0;
     margin: 0;
     list-style: none;
   }
 
+  .site-header nav li {
+    display: flex;
+    align-items: center;
+  }
+
   .site-header nav a,
   .site-header nav summary,
   .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.6rem;
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -332,6 +341,7 @@ const {
     margin-left: 0.35rem;
     color: var(--faint);
     font-size: 0.68rem;
+    line-height: 1;
   }
 
   .nav-menu-list {

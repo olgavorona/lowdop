@@ -105,7 +105,7 @@ const apps: AppResult[] = [
   {
     name: "Khan Academy Kids",
     url: "https://apps.apple.com/us/app/khan-academy-kids/id1378467217",
-    icon: "/images/app-icons/khan-academy-kids.svg",
+    icon: "/images/app-icons/khan-academy-kids.jpg",
     freshInstall: "❌ Could not complete initial setup",
     afterSetup: "🟡 Dedicated offline section available",
     afterSetupTone: "warn",
@@ -137,7 +137,7 @@ const apps: AppResult[] = [
   {
     name: "Thinkrolls",
     url: "https://apps.apple.com/us/app/thinkrolls-fun-kids-games-2-8/id1530907314",
-    icon: "/images/app-icons/thinkrolls.svg",
+    icon: "/images/app-icons/thinkrolls.jpg",
     freshInstall: "❌ Crashed during our test",
     afterSetup: "❌ Nothing usable in the tested free state",
     afterSetupTone: "bad",
@@ -152,7 +152,7 @@ const apps: AppResult[] = [
   {
     name: "Lingokids",
     url: "https://apps.apple.com/us/app/lingokids-play-and-learn/id1002043426",
-    icon: "/images/app-icons/lingokids.svg",
+    icon: "/images/app-icons/lingokids.jpg",
     freshInstall:
       "❌ Stayed in an endless loading state during our test",
     afterSetup: "❌ Nothing usable",
@@ -186,7 +186,7 @@ const apps: AppResult[] = [
   {
     name: "Bimi Boo Learning Games",
     url: "https://apps.apple.com/us/app/learning-games-for-toddlers-2/id1084997102",
-    icon: "/images/app-icons/bimi-boo-learning-games.svg",
+    icon: "/images/app-icons/bimi-boo-learning-games.jpg",
     freshInstall: "❌ Nothing usable without purchase",
     afterSetup: "❌ Nothing usable in the tested free state",
     afterSetupTone: "bad",
@@ -283,7 +283,7 @@ const articleSchema = blogPostingSchema({
                 <th>Before your flight</th>
                 <th>Free offline content</th>
                 <th>Works well muted?</th>
-                <th>Low stimulation?</th>
+                <th><a class="header-link" href={lowStimLink}>Low stimulation?</a></th>
                 <th>Enough offline content for 10-30 minutes?</th>
                 <th>Price when tested</th>
               </tr>
@@ -697,6 +697,14 @@ const articleSchema = blogPostingSchema({
     padding-bottom: 0.85rem;
   }
 
+  .intro-section .narrow {
+    width: min(100%, 68rem);
+  }
+
+  .intro-section .prose > * {
+    max-width: 46rem;
+  }
+
   .comparison-section {
     padding-top: 0.7rem;
   }
@@ -780,6 +788,13 @@ const articleSchema = blogPostingSchema({
     background: var(--bg-deep);
     border-bottom: 1px solid var(--line);
     vertical-align: bottom;
+  }
+
+  .offline-table th .header-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.16em;
   }
 
   .offline-table td {

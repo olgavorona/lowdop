@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="28" fill="#eaf0ff"/>
-  <circle cx="48" cy="50" r="20" fill="#f2c14e"/>
-  <circle cx="80" cy="50" r="20" fill="#5e7d86"/>
-  <path fill="none" stroke="#2a251c" stroke-width="8" stroke-linecap="round" d="M34 82h60"/>
-  <text x="64" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#2a251c">TR</text>
-</svg>
