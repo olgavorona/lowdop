@@ -1,0 +1,991 @@
+---
+import RelatedLinks from "../components/RelatedLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  buildMeta,
+  blogPostingSchema,
+  organizationSchema
+} from "../lib/seo";
+
+const title = "Best Offline Toddler Apps: 9 Apps Tested Without Wi-Fi";
+const h1 = "9 Offline Toddler Apps Tested: What Actually Works Without Wi-Fi?";
+const description =
+  "We tested 9 toddler apps offline to see what really works without Wi-Fi, what must be downloaded before a flight, how much is free, and what each app costs.";
+const date = "2026-08-21";
+const author = "Olga Vorona";
+const pathname = "/offline-toddler-apps/";
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname,
+  type: "article"
+});
+
+type PrepLevel = "green" | "yellow" | "orange" | "red";
+
+type AppResult = {
+  name: string;
+  label?: string;
+  badge?: string;
+  owned?: boolean;
+  freshInstall: string;
+  afterSetup: string;
+  afterSetupTone: "good" | "warn" | "bad" | "unknown";
+  beforeFlight: string;
+  prepLevel: PrepLevel;
+  freeOffline: string;
+  muted: string;
+  lowStimulation: string;
+  enoughContent: string;
+  price: string;
+};
+
+const lowStimLink = "/best-low-stimulation-apps-for-toddlers/";
+const dennyLink = "/dennys-maze/";
+const planeLink =
+  "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/";
+
+const apps: AppResult[] = [
+  {
+    name: "Denny's Maze",
+    label: "Our app",
+    badge: "Our pick for zero-prep offline use",
+    owned: true,
+    freshInstall: "✅ 3 complete mazes available immediately",
+    afterSetup: "✅ Same 3 mazes available",
+    afterSetupTone: "good",
+    beforeFlight: "🟢 Just download",
+    prepLevel: "green",
+    freeOffline: "3 complete mazes",
+    muted: "◐ Narration is used",
+    lowStimulation: "8.8/10 calm score",
+    enoughContent: "Manual verification needed",
+    price: "$7.99 lifetime"
+  },
+  {
+    name: "Sago Mini World",
+    freshInstall: "Not recorded during the initial fresh-install test",
+    afterSetup:
+      "✅ Around 4 games available without subscribing or manually downloading them first",
+    afterSetupTone: "good",
+    beforeFlight:
+      "🟢 A few games work after setup; more content requires paid access/downloads",
+    prepLevel: "green",
+    freeOffline: "Around 4 games in our test",
+    muted: "✅ Yes",
+    lowStimulation: "6.5/10 calm score",
+    enoughContent: "Manual verification needed",
+    price: "$79.99/year · 1-week trial"
+  },
+  {
+    name: "Pok Pok",
+    freshInstall:
+      "⚠️ Setup worked, but no activities were available without a subscription. Initial setup took approximately 2 minutes in our test.",
+    afterSetup: "❌ Nothing usable",
+    afterSetupTone: "bad",
+    beforeFlight: "🔴 Internet + subscription required for meaningful access",
+    prepLevel: "red",
+    freeOffline: "None",
+    muted: "✅ Yes",
+    lowStimulation: "7/10 calm score",
+    enoughContent: "Manual verification needed",
+    price: "$59.99/year with 1-week trial or $9.99/month"
+  },
+  {
+    name: "Khan Academy Kids",
+    freshInstall: "❌ Could not complete initial setup",
+    afterSetup: "🟡 Dedicated offline section available",
+    afterSetupTone: "warn",
+    beforeFlight: "🟡 Complete initial setup online first",
+    prepLevel: "yellow",
+    freeOffline: "Some",
+    muted: "◐ Narration/instructions are lost",
+    lowStimulation: "Not rated in our low-stimulation comparison",
+    enoughContent: "Manual verification needed",
+    price: "Free"
+  },
+  {
+    name: "PBS KIDS Games",
+    freshInstall: "❌ Nothing available",
+    afterSetup: "✅ Everything we manually downloaded was available",
+    afterSetupTone: "good",
+    beforeFlight:
+      "🟠 Manually download each game you want before leaving Wi-Fi",
+    prepLevel: "orange",
+    freeOffline:
+      "Potentially substantial, but only games downloaded beforehand",
+    muted: "◐ Narration is used",
+    lowStimulation: "5.8/10 calm score",
+    enoughContent: "Manual verification needed",
+    price: "Free"
+  },
+  {
+    name: "Thinkrolls",
+    freshInstall: "❌ Crashed during our test",
+    afterSetup: "❌ Nothing usable in the tested free state",
+    afterSetupTone: "bad",
+    beforeFlight: "🔴 Internet + paid access required",
+    prepLevel: "red",
+    freeOffline: "None in our test",
+    muted: "✅ Yes",
+    lowStimulation: "Not rated in our low-stimulation comparison",
+    enoughContent: "Manual verification needed",
+    price: "$69.99/year · 1-week trial"
+  },
+  {
+    name: "Lingokids",
+    freshInstall:
+      "❌ Stayed in an endless loading state during our test",
+    afterSetup: "❌ Nothing usable",
+    afterSetupTone: "bad",
+    beforeFlight: "🔴 Internet + subscription required",
+    prepLevel: "red",
+    freeOffline: "None in our test",
+    muted: "◐ Narration/instructions are used",
+    lowStimulation: "Not rated in our low-stimulation comparison",
+    enoughContent: "Manual verification needed",
+    price: "$89.99/year · 1-week trial"
+  },
+  {
+    name: "Montessori Preschool",
+    freshInstall:
+      "⚠️ Setup worked, and some free content was visible, but activities were not usable offline",
+    afterSetup:
+      "🟡 Exercises that had previously been opened/downloaded remained available",
+    afterSetupTone: "warn",
+    beforeFlight:
+      "🟠 Open/download individual sections and exercises online first",
+    prepLevel: "orange",
+    freeOffline: "Some, if prepared beforehand",
+    muted: "◐ Narration/instructions are used",
+    lowStimulation: "Not rated in our low-stimulation comparison",
+    enoughContent: "Manual verification needed",
+    price: "$59.99/year · 1-week trial"
+  },
+  {
+    name: "Bimi Boo ABC",
+    freshInstall: "❌ Nothing usable without purchase",
+    afterSetup: "❌ Nothing usable in the tested free state",
+    afterSetupTone: "bad",
+    beforeFlight: "🔴 Internet + purchase + manually download each game",
+    prepLevel: "red",
+    freeOffline: "None",
+    muted: "◐ Narration is used",
+    lowStimulation: "Not rated in our low-stimulation comparison",
+    enoughContent: "Manual verification needed",
+    price: "Paid · Exact price was not recorded during this test"
+  }
+];
+
+const immediateResults = [
+  ["Denny's Maze", "✅ 3 complete mazes worked immediately"],
+  [
+    "Pok Pok",
+    "⚠️ Setup worked, but no activities were available without subscribing"
+  ],
+  [
+    "Khan Academy Kids",
+    "❌ Initial setup could not be completed without internet"
+  ],
+  ["PBS KIDS Games", "❌ No games were available before downloading them online"],
+  ["Thinkrolls", "❌ The app crashed during our fresh-install offline test"],
+  ["Lingokids", "❌ The app remained in a loading state during our test"],
+  [
+    "Montessori Preschool",
+    "⚠️ Setup worked, but activities were not usable offline"
+  ],
+  ["Bimi Boo ABC", "❌ No usable free content"],
+  ["Sago Mini World", "Fresh-install result was not recorded."]
+];
+
+const articleSchema = blogPostingSchema({
+  title,
+  description,
+  datePublished: date,
+  pathname,
+  authorName: author
+});
+---
+
+<BaseLayout
+  {...meta}
+  ogTitle="9 Offline Toddler Apps Tested Without Wi-Fi"
+  ogDescription="Which toddler apps really work in Airplane Mode? We tested setup, offline content, pre-flight downloads, sound and pricing."
+  schemas={[organizationSchema(), articleSchema]}
+>
+  <article>
+    <header class="article-hero">
+      <div class="shell narrow">
+        <p class="eyebrow">Tested comparison</p>
+        <h1>{h1}</h1>
+        <p class="lead">
+          "Works offline" sounds simple until you're already on a plane and
+          discover that the app needed an account, a subscription, or ten
+          individual downloads before takeoff.
+        </p>
+      </div>
+    </header>
+
+    <section class="intro-section">
+      <div class="shell narrow prose">
+        <p>
+          So instead of relying on App Store descriptions, we tested nine
+          popular toddler apps ourselves.
+        </p>
+        <p>
+          We opened each app without internet immediately after downloading it.
+          Then we gave it one online setup, disconnected again, force-quit the
+          app and checked what was actually available.
+        </p>
+        <p>
+          We also recorded what parents need to do before a trip, how much free
+          content remains usable offline, whether the core activities work well
+          without sound, and the price shown during our test.
+        </p>
+        <p class="disclosure">
+          <strong>Denny's Maze is our own app</strong>, so we've clearly
+          labelled it throughout the comparison and used the same testing
+          process for it as every other app.
+        </p>
+      </div>
+    </section>
+
+    <section class="comparison-section" aria-labelledby="comparison-heading">
+      <div class="shell">
+        <div class="section-head compact">
+          <p class="eyebrow">Results first</p>
+          <h2 id="comparison-heading">Offline toddler app comparison</h2>
+        </div>
+
+        <div class="table-wrap" aria-label="Offline toddler app comparison table">
+          <table class="offline-table">
+            <thead>
+              <tr>
+                <th>App</th>
+                <th>Fresh install, no internet</th>
+                <th>Offline after one online setup, no subscription</th>
+                <th>Before your flight</th>
+                <th>Free offline content</th>
+                <th>Works well muted?</th>
+                <th>Low stimulation?</th>
+                <th>Enough offline content for 10-30 minutes?</th>
+                <th>Price when tested</th>
+              </tr>
+            </thead>
+            <tbody>
+              {apps.map((app) => (
+                <tr class={app.owned ? "owned-row" : undefined}>
+                  <td class="app-cell">
+                    <strong>{app.name}</strong>
+                    {app.label && <span class="small-label">{app.label}</span>}
+                    {app.badge && <span class="pick-badge">{app.badge}</span>}
+                  </td>
+                  <td>{app.freshInstall}</td>
+                  <td class={`result-${app.afterSetupTone}`}>{app.afterSetup}</td>
+                  <td><span class={`prep-badge prep-${app.prepLevel}`}>{app.beforeFlight}</span></td>
+                  <td>{app.freeOffline}</td>
+                  <td>{app.muted}</td>
+                  <td>{app.lowStimulation}</td>
+                  <td class="needs-verification">{app.enoughContent}</td>
+                  <td>{app.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="mobile-results">
+          {apps.map((app) => (
+            <li class={app.owned ? "mobile-card owned-card" : "mobile-card"}>
+              <div class="mobile-card-head">
+                <h3>{app.name}</h3>
+                {app.label && <span class="small-label">{app.label}</span>}
+              </div>
+              {app.badge && <span class="pick-badge">{app.badge}</span>}
+              <dl>
+                <div>
+                  <dt>Fresh install, no internet</dt>
+                  <dd>{app.freshInstall}</dd>
+                </div>
+                <div>
+                  <dt>Offline after setup</dt>
+                  <dd>{app.afterSetup}</dd>
+                </div>
+                <div>
+                  <dt>Before your flight</dt>
+                  <dd><span class={`prep-badge prep-${app.prepLevel}`}>{app.beforeFlight}</span></dd>
+                </div>
+                <div>
+                  <dt>Free offline content</dt>
+                  <dd>{app.freeOffline}</dd>
+                </div>
+                <div>
+                  <dt>Muted?</dt>
+                  <dd>{app.muted}</dd>
+                </div>
+                <div>
+                  <dt>Low stimulation?</dt>
+                  <dd>{app.lowStimulation}</dd>
+                </div>
+                <div>
+                  <dt>10-30 minutes?</dt>
+                  <dd class="needs-verification">{app.enoughContent}</dd>
+                </div>
+                <div>
+                  <dt>Price when tested</dt>
+                  <dd>{app.price}</dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ul>
+
+        <div class="table-notes">
+          <p>
+            Prices shown are the USD prices we saw during our August 2026
+            testing. App Store prices can change and may vary by country.
+          </p>
+          <p>
+            <a href={lowStimLink}>How we rate stimulation →</a>
+            Our low-stimulation ratings come from a separate comparison looking
+            at brightness, animation, rewards and sound.
+          </p>
+          <p>
+            The 10-30 minute usefulness field still needs manual verification
+            before publication. We did not add yes/limited/no values without
+            source notes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="method-section" aria-labelledby="method-heading">
+      <div class="shell">
+        <div class="method-box">
+          <p class="eyebrow">Methodology</p>
+          <h2 id="method-heading">How we tested</h2>
+          <p>Each app went through the same basic test:</p>
+
+          <h3>1. Fresh install, no internet</h3>
+          <p>
+            We downloaded the app, disconnected from the internet and opened it
+            for the first time.
+          </p>
+          <p>We recorded:</p>
+          <ul>
+            <li>whether setup could be completed</li>
+            <li>whether any activities worked</li>
+            <li>whether payment was required</li>
+          </ul>
+
+          <h3>2. First online run</h3>
+          <p>
+            We connected to the internet and completed the normal initial setup.
+          </p>
+          <p>We recorded:</p>
+          <ul>
+            <li>subscription or purchase pricing</li>
+            <li>whether an account/setup was required</li>
+            <li>
+              whether individual games or exercises had to be downloaded
+              manually
+            </li>
+          </ul>
+
+          <h3>3. Offline again</h3>
+          <p>
+            We disconnected again, force-quit the app and reopened it.
+          </p>
+          <p>We tested both:</p>
+          <ul>
+            <li>Airplane Mode</li>
+            <li>networking enabled but no usable internet connection</li>
+          </ul>
+          <p>
+            In our testing, apps behaved the same in these two offline states,
+            so the comparison table combines them into one "Offline after
+            setup" result.
+          </p>
+          <p>We recorded:</p>
+          <ul>
+            <li>what content remained available</li>
+            <li>whether content had to be downloaded beforehand</li>
+            <li>how much free offline content existed</li>
+            <li>whether the core activity could be used without sound</li>
+          </ul>
+
+          <h3>4. Short-session usefulness</h3>
+          <p>
+            We also looked at whether the offline content available was
+            realistically enough for a 10-30 minute travel or waiting session.
+          </p>
+          <p>
+            This is a practical judgment, not a claim that every child will stay
+            engaged for the same amount of time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block" aria-labelledby="immediate-heading">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="immediate-heading">What works immediately after download?</h2>
+          <p>
+            We started with the worst-case travel scenario: you download an app
+            at the airport, lose Wi-Fi, and open it for the first time.
+          </p>
+        </div>
+        <div class="result-grid">
+          {immediateResults.map(([name, result]) => (
+            <article class="result-card">
+              <h3>{name}</h3>
+              <p>{result}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block tinted" aria-labelledby="meaning-heading">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="meaning-heading">"Works offline" can mean four different things</h2>
+          <p>
+            That phrase was much less precise than it looked once we tested the
+            apps under real offline conditions.
+          </p>
+        </div>
+        <div class="meaning-grid">
+          <article>
+            <h3>1. Ready immediately</h3>
+            <p>
+              Install the app and usable content works when internet
+              disappears. Example: <a href={dennyLink}>Denny's Maze</a>.
+            </p>
+          </article>
+          <article>
+            <h3>2. Online setup required</h3>
+            <p>
+              The app works offline later, but the first launch/setup needs
+              internet. Example: Khan Academy Kids.
+            </p>
+          </article>
+          <article>
+            <h3>3. Download activities first</h3>
+            <p>
+              Offline mode works only for games or exercises the parent
+              explicitly downloaded beforehand. Examples: PBS KIDS Games and
+              Montessori Preschool.
+            </p>
+          </article>
+          <article>
+            <h3>4. Paid access required</h3>
+            <p>
+              The free version provides little or no useful offline content in
+              our tested state. Examples: Pok Pok, Thinkrolls, Lingokids, and
+              Bimi Boo ABC.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block" aria-labelledby="picks-heading">
+      <div class="shell narrow prose">
+        <h2 id="picks-heading">Our picks by situation</h2>
+
+        <h3>Our pick when you forgot to prepare: Denny's Maze</h3>
+        <p>
+          Denny's Maze is our own app, so take this recommendation with that
+          disclosure in mind. In our test, three complete mazes worked
+          immediately after installation without an account, subscription or
+          extra download.
+        </p>
+        <p>
+          That makes it particularly useful as a small travel backup when you
+          don't want another pre-flight checklist.
+        </p>
+        <div class="inline-cta">
+          <div>
+            <h3>Try Denny's Maze</h3>
+            <p>3 mazes free. Works offline. No ads or subscription.</p>
+          </div>
+          <a class="button" href={dennyLink}>Try Denny's Maze</a>
+        </div>
+
+        <h3>Best free option if you prepare ahead: PBS KIDS Games</h3>
+        <p>
+          PBS can offer a useful amount of free offline content, but parents
+          need to tap and download the individual games they want before leaving
+          Wi-Fi.
+        </p>
+
+        <h3>Best completely free educational option: Khan Academy Kids</h3>
+        <p>
+          Khan Academy Kids is free, but initial setup requires internet and
+          offline access is limited to a dedicated section rather than the whole
+          app.
+        </p>
+
+        <h3>Good free mini-library after setup: Sago Mini World</h3>
+        <p>
+          In our test, around four games remained available without paying or
+          manually downloading them individually.
+        </p>
+
+        <h3>Best for parents willing to prepare downloads</h3>
+        <p>
+          PBS KIDS Games and Montessori Preschool are examples of apps that can
+          work much better offline if content is opened or downloaded before
+          travel.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-block tinted" aria-labelledby="sound-heading">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="sound-heading">Can you use them without sound?</h2>
+          <p>
+            This matters on airplanes, in restaurants, in waiting rooms, and
+            when siblings are sleeping nearby.
+          </p>
+        </div>
+        <div class="sound-grid">
+          <article>
+            <h3>Work well muted</h3>
+            <ul>
+              <li>Pok Pok</li>
+              <li>Thinkrolls</li>
+              <li>Sago Mini World</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Narration / instructions matter</h3>
+            <p>
+              These apps may still be usable muted, but you may lose narration
+              or spoken instructions.
+            </p>
+            <ul>
+              <li>Denny's Maze</li>
+              <li>Khan Academy Kids</li>
+              <li>PBS KIDS Games</li>
+              <li>Lingokids</li>
+              <li>Montessori Preschool</li>
+              <li>Bimi Boo ABC</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block" aria-labelledby="closing-heading">
+      <div class="shell narrow prose">
+        <h2 id="closing-heading">What to do before you lose Wi-Fi</h2>
+        <p>
+          If you only have time for one check, open the app before the trip and
+          turn off internet while you are still at home. If the content you want
+          still opens after a force-quit, you are much less likely to discover a
+          missing account, subscription prompt, or download button on the plane.
+        </p>
+        <p>
+          For more travel-specific ideas, see our field-tested list of
+          <a href={planeLink}>what actually works on a plane with a
+          3-year-old</a>.
+        </p>
+        <div class="inline-cta final-cta">
+          <div>
+            <h3>Try Denny's Maze</h3>
+            <p>3 mazes free. Works offline. No ads or subscription.</p>
+          </div>
+          <a class="button" href={dennyLink}>Try Denny's Maze</a>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <RelatedLinks
+    title="More calm travel ideas"
+    links={[
+      {
+        href: lowStimLink,
+        title: "Best Low-Stimulation Apps for Toddlers",
+        description:
+          "A separate scored comparison by brightness, animation, rewards, sound, and travel use."
+      },
+      {
+        href: planeLink,
+        title: "What Actually Works on a Plane With a 3 Year Old",
+        description:
+          "Practical airplane activities tested over repeated toddler flights."
+      },
+      {
+        href: dennyLink,
+        title: "Denny's Maze",
+        description:
+          "Our own quiet, offline maze app for toddlers and preschoolers."
+      }
+    ]}
+  />
+</BaseLayout>
+
+<style>
+  .article-hero {
+    padding: clamp(3.5rem, 8vw, 6rem) 0 1.5rem;
+  }
+
+  .lead {
+    margin: 1.25rem 0 0;
+    color: var(--muted);
+    font-size: clamp(1.18rem, 2vw, 1.4rem);
+    line-height: 1.5;
+  }
+
+  .intro-section,
+  .comparison-section,
+  .method-section,
+  .content-block {
+    padding: clamp(2rem, 5vw, 4rem) 0;
+  }
+
+  .comparison-section {
+    padding-top: 1rem;
+  }
+
+  .tinted {
+    background: rgba(253, 247, 238, 0.34);
+    border-top: 1px dashed var(--line);
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .prose p,
+  .prose ul {
+    margin: 0 0 1.35rem;
+  }
+
+  .prose h2,
+  .prose h3 {
+    margin-top: 2rem;
+  }
+
+  .prose h2:first-child,
+  .prose h3:first-child {
+    margin-top: 0;
+  }
+
+  .disclosure,
+  .method-box,
+  .table-notes,
+  .inline-cta {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+  }
+
+  .disclosure {
+    padding: 1rem 1.15rem;
+  }
+
+  .section-head {
+    max-width: 46rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-head.compact {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-head p {
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface-strong);
+  }
+
+  .offline-table {
+    width: 100%;
+    min-width: 1180px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .offline-table th {
+    padding: 0.75rem;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--line);
+    vertical-align: bottom;
+  }
+
+  .offline-table td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid var(--line-faint);
+    vertical-align: top;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .offline-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .offline-table th:first-child,
+  .offline-table td:first-child {
+    width: 12rem;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--surface-strong);
+    box-shadow: 1px 0 0 var(--line-faint);
+  }
+
+  .offline-table th:first-child {
+    background: var(--bg-deep);
+    z-index: 2;
+  }
+
+  .owned-row td,
+  .owned-row td:first-child {
+    background: #f7efe0;
+  }
+
+  .app-cell strong,
+  .mobile-card h3 {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.15;
+  }
+
+  .small-label,
+  .pick-badge,
+  .prep-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+  }
+
+  .small-label {
+    margin-top: 0.4rem;
+    padding: 0.18rem 0.45rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pick-badge {
+    margin-top: 0.45rem;
+    padding: 0.32rem 0.55rem;
+    color: var(--accent-strong);
+    background: rgba(94, 125, 134, 0.12);
+    border: 1px solid rgba(94, 125, 134, 0.28);
+    font-size: 0.62rem;
+  }
+
+  .prep-badge {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+    font-size: 0.66rem;
+  }
+
+  .prep-green { color: var(--accent-strong); }
+  .prep-yellow { color: #806c20; }
+  .prep-orange { color: #9c5f39; }
+  .prep-red { color: #8b4236; }
+  .result-good { color: var(--accent-strong); }
+  .result-warn { color: #806c20; }
+  .result-bad { color: #8b4236; }
+
+  .needs-verification {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+  }
+
+  .mobile-results {
+    display: none;
+  }
+
+  .table-notes {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .table-notes p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .table-notes a {
+    margin-right: 0.35rem;
+    font-weight: 600;
+  }
+
+  .method-box {
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .method-box h3 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.15rem;
+  }
+
+  .method-box p,
+  .method-box ul {
+    max-width: 50rem;
+    margin: 0 0 1rem;
+  }
+
+  .result-grid,
+  .meaning-grid,
+  .sound-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .meaning-grid,
+  .sound-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-card,
+  .meaning-grid article,
+  .sound-grid article {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+
+  .result-card h3,
+  .meaning-grid h3,
+  .sound-grid h3,
+  .inline-cta h3 {
+    margin: 0 0 0.45rem;
+    font-size: 1.12rem;
+    letter-spacing: 0;
+  }
+
+  .result-card p,
+  .meaning-grid p,
+  .sound-grid p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .sound-grid ul {
+    margin-bottom: 0;
+  }
+
+  .inline-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.75rem 0 2rem;
+    padding: 1rem;
+  }
+
+  .inline-cta p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .final-cta {
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 860px) {
+    .table-wrap {
+      display: none;
+    }
+
+    .mobile-results {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .mobile-card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface-strong);
+    }
+
+    .owned-card {
+      background: #f7efe0;
+    }
+
+    .mobile-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .mobile-card dl {
+      display: grid;
+      gap: 0.75rem;
+      margin: 1rem 0 0;
+    }
+
+    .mobile-card dl > div {
+      display: grid;
+      gap: 0.18rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--line-faint);
+    }
+
+    .mobile-card dt {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mobile-card dd {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .result-grid,
+    .meaning-grid,
+    .sound-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .inline-cta {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
