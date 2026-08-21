@@ -7,10 +7,10 @@ import {
   organizationSchema
 } from "../lib/seo";
 
-const title = "Best Offline Toddler Apps: 9 Apps Tested Without Wi-Fi";
-const h1 = "9 Offline Toddler Apps Tested: What Actually Works Without Wi-Fi?";
+const title = "Best Offline Apps for Kids: 9 Toddler Apps Tested for Flights";
+const h1 = "Best Offline Apps for Toddlers: 9 Tested in Airplane Mode";
 const description =
-  "We tested 9 toddler apps offline to see what really works without Wi-Fi, what must be downloaded before a flight, how much is free, and what each app costs.";
+  "We tested 9 toddler apps without Wi-Fi to see what really works offline, what needs setup, what to download before a flight, and what each app costs.";
 const date = "2026-08-21";
 const author = "Olga Vorona";
 const pathname = "/offline-toddler-apps/";
@@ -200,27 +200,6 @@ const apps: AppResult[] = [
   }
 ];
 
-const immediateResults = [
-  ["Denny's Maze", "✅ 3 complete mazes worked immediately"],
-  [
-    "Pok Pok",
-    "⚠️ Setup worked, but no activities were available without subscribing"
-  ],
-  [
-    "Khan Academy Kids",
-    "❌ Initial setup could not be completed without internet"
-  ],
-  ["PBS KIDS Games", "❌ No games were available before downloading them online"],
-  ["Thinkrolls", "❌ The app crashed during our fresh-install offline test"],
-  ["Lingokids", "❌ The app remained in a loading state during our test"],
-  [
-    "Montessori Preschool",
-    "⚠️ Setup worked, but activities were not usable offline"
-  ],
-  ["Bimi Boo Learning Games", "❌ No usable free content"],
-  ["Sago Mini World", "❌ Nothing available without setup"]
-];
-
 const articleSchema = blogPostingSchema({
   title,
   description,
@@ -232,8 +211,8 @@ const articleSchema = blogPostingSchema({
 
 <BaseLayout
   {...meta}
-  ogTitle="9 Offline Toddler Apps Tested Without Wi-Fi"
-  ogDescription="Which toddler apps really work in Airplane Mode? We tested setup, offline content, pre-flight downloads, sound and pricing."
+  ogTitle="Best Offline Apps for Toddlers: 9 Tested in Airplane Mode"
+  ogDescription="We disconnected the iPad and tested what really works, what needs Wi-Fi first, and which games must be downloaded before takeoff."
   schemas={[organizationSchema(), articleSchema]}
 >
   <article>
@@ -251,18 +230,22 @@ const articleSchema = blogPostingSchema({
     <section class="intro-section">
       <div class="shell narrow prose">
         <p>
-          So instead of relying on App Store descriptions, we tested nine
-          popular toddler apps ourselves.
+          So we tested nine popular toddler apps ourselves.
         </p>
         <p>
-          We opened each app without internet immediately after downloading it.
-          Then we gave it one online setup, disconnected again, force-quit the
-          app and checked what was actually available.
+          First, we downloaded each app and opened it with no internet at all.
+          Then we gave it one normal online setup, disconnected again,
+          force-quit the app, and checked what was actually available.
         </p>
         <p>
-          We also recorded what parents need to do before a trip, how much free
-          content remains usable offline, whether the core activities work well
-          without sound, and the price shown during our test.
+          The differences were much bigger than we expected. Some apps were
+          ready immediately. Some needed an internet connection just to get
+          through setup. Others worked offline only for games or exercises we'd
+          remembered to download beforehand.
+        </p>
+        <p>
+          If you're loading an iPad before a flight, this is the part that
+          actually matters.
         </p>
       </div>
     </section>
@@ -389,184 +372,247 @@ const articleSchema = blogPostingSchema({
     <section class="method-section" aria-labelledby="method-heading">
       <div class="shell">
         <div class="method-box">
-          <p class="eyebrow">Methodology</p>
           <h2 id="method-heading">How we tested</h2>
-          <p>Each app went through the same basic test:</p>
+          <p>
+            We weren't interested in whether an app technically describes
+            itself as "offline." We wanted to know what happens in the
+            situation parents actually face when traveling.
+          </p>
 
-          <h3>1. Fresh install, no internet</h3>
+          <h3>Fresh install, no internet</h3>
           <p>
-            We downloaded the app, disconnected from the internet and opened it
-            for the first time.
+            We downloaded each app, disconnected completely, and opened it for
+            the first time. We recorded whether setup worked and whether any
+            actual activities were available.
           </p>
-          <p>We recorded:</p>
-          <ul>
-            <li>whether setup could be completed</li>
-            <li>whether any activities worked</li>
-            <li>whether payment was required</li>
-          </ul>
 
-          <h3>2. First online run</h3>
+          <h3>One normal online setup</h3>
           <p>
-            We connected to the internet and completed the normal initial setup.
+            Next, we connected to the internet and completed the app's initial
+            setup. We recorded subscriptions, purchases, and any content that
+            had to be downloaded manually.
           </p>
-          <p>We recorded:</p>
-          <ul>
-            <li>subscription or purchase pricing</li>
-            <li>whether an account/setup was required</li>
-            <li>
-              whether individual games or exercises had to be downloaded
-              manually
-            </li>
-          </ul>
 
-          <h3>3. Offline again</h3>
+          <h3>Offline again</h3>
           <p>
-            We disconnected again, force-quit the app and reopened it.
+            We disconnected, force-quit the app, reopened it, and tried to start
+            activities.
           </p>
-          <p>We tested both:</p>
-          <ul>
-            <li>Airplane Mode</li>
-            <li>networking enabled but no usable internet connection</li>
-          </ul>
           <p>
-            In our testing, apps behaved the same in these two offline states,
-            so the comparison table combines them into one "Offline after
-            setup" result.
+            We tested both Airplane Mode and having networking enabled with no
+            usable internet connection.
           </p>
-          <p>We recorded:</p>
-          <ul>
-            <li>what content remained available</li>
-            <li>whether content had to be downloaded beforehand</li>
-            <li>how much free offline content existed</li>
-            <li>whether the core activity could be used without sound</li>
-          </ul>
+          <p>
+            In our tests the apps behaved the same in both offline states, so
+            the comparison combines them into one "Offline after setup" result.
+          </p>
 
-          <h3>4. Short-session usefulness</h3>
+          <h3>Sound</h3>
           <p>
-            We also looked at whether the offline content available was
-            realistically enough for a 10-30 minute travel or waiting session.
+            We also checked whether the core experience worked without sound,
+            because that's useful on planes, restaurants and other shared
+            spaces.
           </p>
           <p>
-            This is a practical judgment, not a claim that every child will stay
-            engaged for the same amount of time.
+            Prices are the USD prices we saw during our August 2026 testing.
+            App Store prices can change and vary by country.
           </p>
         </div>
       </div>
     </section>
 
     <section class="content-block" aria-labelledby="immediate-heading">
-      <div class="shell">
-        <div class="section-head">
-          <h2 id="immediate-heading">What works immediately after download?</h2>
-          <p>
-            We started with the worst-case travel scenario: you download an app
-            at the airport, lose Wi-Fi, and open it for the first time.
-          </p>
-        </div>
-        <div class="result-grid">
-          {immediateResults.map(([name, result]) => (
-            <article class="result-card">
-              <h3>{name}</h3>
-              <p>{result}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="content-block tinted" aria-labelledby="meaning-heading">
-      <div class="shell">
-        <div class="section-head">
-          <h2 id="meaning-heading">"Works offline" can mean four different things</h2>
-          <p>
-            That phrase was much less precise than it looked once we tested the
-            apps under real offline conditions.
-          </p>
-        </div>
-        <div class="meaning-grid">
-          <article>
-            <h3>1. Ready immediately</h3>
-            <p>
-              Install the app and usable content works when internet
-              disappears. Example: <a href={dennyProductLink}>Denny's Maze</a>.
-            </p>
-          </article>
-          <article>
-            <h3>2. Online setup required</h3>
-            <p>
-              The app works offline later, but the first launch/setup needs
-              internet. Example: Khan Academy Kids.
-            </p>
-          </article>
-          <article>
-            <h3>3. Download activities first</h3>
-            <p>
-              Offline mode works only for games or exercises the parent
-              explicitly downloaded beforehand. Examples: PBS KIDS Games and
-              Montessori Preschool.
-            </p>
-          </article>
-          <article>
-            <h3>4. Paid access required</h3>
-            <p>
-              The free version provides little or no useful offline content in
-              our tested state. Examples: Pok Pok, Thinkrolls, Lingokids, and
-              Bimi Boo Learning Games.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-block" aria-labelledby="picks-heading">
       <div class="shell narrow prose">
-        <h2 id="picks-heading">Our picks by situation</h2>
-
-        <h3>Our pick when you forgot to prepare: Denny's Maze</h3>
+        <h2 id="immediate-heading">What works if you forget to prepare before the flight?</h2>
         <p>
-          Denny's Maze is our own app, so take this recommendation with that
-          disclosure in mind. In our test, three complete mazes worked
-          immediately after installation without an account, subscription or
-          extra download.
+          The biggest surprise wasn't whether apps had offline support. It was
+          how much preparation "offline" sometimes required.
         </p>
         <p>
-          That makes it particularly useful as a small travel backup when you
-          don't want another pre-flight checklist.
+          If you download an app at the airport and immediately lose internet,
+          several popular options give you very little to work with.
+        </p>
+        <p>
+          <strong>Denny's Maze</strong> was usable immediately in our test, with
+          three complete free mazes and no additional download.
+        </p>
+        <p>
+          <strong>Pok Pok</strong> let us complete its roughly two-minute setup
+          offline, but no activities were available without subscribing.
+        </p>
+        <p>
+          <strong>Khan Academy Kids</strong> couldn't complete its initial setup
+          without internet.
+        </p>
+        <p>
+          <strong>PBS KIDS Games</strong> had no games ready offline until we
+          connected and manually downloaded them.
+        </p>
+        <p>
+          <strong>Montessori Preschool</strong> let us get through setup, but
+          activities themselves weren't available offline until we'd
+          opened/downloaded them online.
+        </p>
+        <p>
+          <strong>Thinkrolls</strong> crashed during our fresh-install offline
+          test, while <strong>Lingokids</strong> remained on a loading screen
+          during our test.
+        </p>
+        <p class="tip-box">
+          Before a flight, don't just download an app. Open it, turn on Airplane
+          Mode, force-quit it, reopen it, and try the activities your child will
+          actually use.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-block tinted" aria-labelledby="picks-heading">
+      <div class="shell narrow prose">
+        <h2 id="picks-heading">Best toddler apps for a plane, by situation</h2>
+
+        <h3>Our pick when you didn't prepare: Denny's Maze</h3>
+        <p>
+          Denny's Maze is our app, so we're obviously not a neutral party here.
+        </p>
+        <p>
+          What our test did show objectively is that the three free mazes worked
+          directly after installation without an account, subscription or extra
+          content download.
+        </p>
+        <p>
+          That makes Denny useful as a small, zero-prep travel backup rather
+          than something you need to configure the night before.
         </p>
         <div class="inline-cta">
           <div>
             <h3>Try Denny's Maze</h3>
             <p>3 mazes free. Works offline. No ads or subscription.</p>
           </div>
-          <a class="button" href={dennyAppStoreLink}>Try Denny's Maze</a>
+          <a class="button" href={dennyProductLink}>Try Denny's Maze →</a>
         </div>
 
         <h3>Best free option if you prepare ahead: PBS KIDS Games</h3>
         <p>
-          PBS can offer a useful amount of free offline content, but parents
-          need to tap and download the individual games they want before leaving
-          Wi-Fi.
+          PBS KIDS Games is much more generous than Denny in the sheer amount of
+          free content available. The catch is preparation.
+        </p>
+        <p>
+          In our test, games had to be downloaded individually while online.
+          Once downloaded, those games remained available offline.
+        </p>
+        <p>
+          If you remember to load several games before leaving home, PBS is one
+          of the strongest free travel options we tested.
         </p>
 
-        <h3>Best completely free educational option: Khan Academy Kids</h3>
+        <h3>Best free learning option: Khan Academy Kids</h3>
         <p>
-          Khan Academy Kids is free, but initial setup requires internet and
-          offline access is limited to a dedicated section rather than the whole
-          app.
+          Khan Academy Kids is free, but it isn't a "download it at the gate and
+          forget about Wi-Fi" app.
+        </p>
+        <p>
+          Initial setup required internet in our test. After setup, Khan
+          provides a dedicated offline section rather than making the entire
+          library available offline.
+        </p>
+        <p>
+          If you're happy to prepare it beforehand, that still gives you useful
+          free content for travel.
         </p>
 
         <h3>Good free mini-library after setup: Sago Mini World</h3>
         <p>
-          In our test, around four games remained available without paying or
-          manually downloading them individually.
+          Sago Mini World surprised us by leaving around four games available in
+          our non-subscriber test without requiring us to manually download
+          those games first.
+        </p>
+        <p>
+          That's enough to make it useful as another small travel option,
+          although most of the larger library sits behind paid access.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-block" aria-labelledby="questions-heading">
+      <div class="shell narrow prose">
+        <h2 id="questions-heading">Does each toddler app really work offline?</h2>
+
+        <h3>Does PBS KIDS Games work offline?</h3>
+        <p>
+          Yes, but you need to download the games you want first. In our test,
+          downloaded games remained available after we disconnected and reopened
+          the app.
         </p>
 
-        <h3>Best for parents willing to prepare downloads</h3>
+        <h3>Does Pok Pok work offline?</h3>
         <p>
-          PBS KIDS Games and Montessori Preschool are examples of apps that can
-          work much better offline if content is opened or downloaded before
-          travel.
+          Not in the free state we tested. Pok Pok's setup worked without
+          internet, but no activities were available without a subscription.
         </p>
+
+        <h3>Does Khan Academy Kids work offline?</h3>
+        <p>
+          Partially. Initial setup required internet in our test, then a
+          dedicated offline section became available.
+        </p>
+
+        <h3>Does Lingokids work offline?</h3>
+        <p>
+          We found no usable offline content in the non-subscriber state we
+          tested. A fresh offline launch also remained stuck loading during our
+          test.
+        </p>
+
+        <h3>Does Sago Mini World work offline?</h3>
+        <p>
+          Some content did. After online setup, around four games were available
+          in our test without subscribing or manually downloading them
+          individually.
+        </p>
+      </div>
+    </section>
+
+    <section class="content-block tinted" aria-labelledby="meaning-heading">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="meaning-heading">"Works offline" can mean very different things</h2>
+          <p>
+            None of these categories is automatically good or bad. The point is
+            knowing what has to happen before internet disappears.
+          </p>
+        </div>
+        <div class="meaning-grid">
+          <article>
+            <h3>1. Ready immediately</h3>
+            <p>
+              Useful content is bundled with the app and works after download.
+              Example: <a href={dennyProductLink}>Denny's Maze</a> free mazes.
+            </p>
+          </article>
+          <article>
+            <h3>2. Online setup first</h3>
+            <p>
+              The app requires internet during initial setup but offers some
+              offline functionality afterward. Example: Khan Academy Kids.
+            </p>
+          </article>
+          <article>
+            <h3>3. Download activities first</h3>
+            <p>
+              The app supports offline content, but parents must manually
+              prepare individual games or exercises before leaving Wi-Fi.
+              Examples: PBS KIDS Games and Montessori Preschool.
+            </p>
+          </article>
+          <article>
+            <h3>4. Payment required</h3>
+            <p>
+              There is little or no meaningful free offline experience in the
+              tested state. Examples: Pok Pok, Thinkrolls, Lingokids, and Bimi
+              Boo Learning Games.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -575,8 +621,8 @@ const articleSchema = blogPostingSchema({
         <div class="section-head">
           <h2 id="sound-heading">Can you use them without sound?</h2>
           <p>
-            This matters on airplanes, in restaurants, in waiting rooms, and
-            when siblings are sleeping nearby.
+            This can matter on flights and in shared public places where you
+            may not want an iPad making noise.
           </p>
         </div>
         <div class="sound-grid">
@@ -589,10 +635,10 @@ const articleSchema = blogPostingSchema({
             </ul>
           </article>
           <article>
-            <h3>Narration / instructions matter</h3>
+            <h3>Narration/instructions are part of the experience</h3>
             <p>
-              These apps may still be usable muted, but you may lose narration
-              or spoken instructions.
+              These apps may still be usable muted, but narration or spoken
+              instructions may be lost.
             </p>
             <ul>
               <li>Denny's Maze</li>
@@ -607,17 +653,16 @@ const articleSchema = blogPostingSchema({
       </div>
     </section>
 
-    <section class="content-block" aria-labelledby="closing-heading">
+    <section class="content-block" aria-labelledby="non-app-heading">
       <div class="shell narrow prose">
-        <h2 id="closing-heading">What to do before you lose Wi-Fi</h2>
+        <h2 id="non-app-heading">Looking for non-app airplane activities too?</h2>
         <p>
-          If you only have time for one check, open the app before the trip and
-          turn off internet while you are still at home. If the content you want
-          still opens after a force-quit, you are much less likely to discover a
-          missing account, subscription prompt, or download button on the plane.
+          If you're planning the whole flight rather than just the iPad, we've
+          also put together the activities that have actually worked for us
+          while flying with a young child.
         </p>
         <p>
-          For more travel-specific ideas, see our field-tested list of
+          Read the broader guide:
           <a href={planeLink}>what actually works on a plane with a
           3-year-old</a>.
         </p>
@@ -631,7 +676,7 @@ const articleSchema = blogPostingSchema({
             <h3>Try Denny's Maze</h3>
             <p>3 mazes free. Works offline. No ads or subscription.</p>
           </div>
-          <a class="button" href={dennyAppStoreLink}>Try Denny's Maze</a>
+          <a class="button" href={dennyProductLink}>Try Denny's Maze →</a>
         </div>
       </div>
     </section>
@@ -733,7 +778,8 @@ const articleSchema = blogPostingSchema({
   .disclosure,
   .method-box,
   .table-notes,
-  .inline-cta {
+  .inline-cta,
+  .tip-box {
     border: 1px solid var(--line);
     background: var(--surface);
     border-radius: var(--radius-sm);
@@ -945,11 +991,9 @@ const articleSchema = blogPostingSchema({
     margin: 0 0 1rem;
   }
 
-  .result-grid,
   .meaning-grid,
   .sound-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
   }
 
@@ -958,7 +1002,6 @@ const articleSchema = blogPostingSchema({
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .result-card,
   .meaning-grid article,
   .sound-grid article {
     padding: 1rem;
@@ -967,7 +1010,6 @@ const articleSchema = blogPostingSchema({
     background: var(--surface);
   }
 
-  .result-card h3,
   .meaning-grid h3,
   .sound-grid h3,
   .inline-cta h3 {
@@ -976,11 +1018,15 @@ const articleSchema = blogPostingSchema({
     letter-spacing: 0;
   }
 
-  .result-card p,
   .meaning-grid p,
   .sound-grid p {
     margin: 0;
     color: var(--muted);
+  }
+
+  .tip-box {
+    padding: 1rem 1.15rem;
+    color: var(--text);
   }
 
   .sound-grid ul {
@@ -1067,7 +1113,6 @@ const articleSchema = blogPostingSchema({
       line-height: 1.4;
     }
 
-    .result-grid,
     .meaning-grid,
     .sound-grid {
       grid-template-columns: 1fr;
