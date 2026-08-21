@@ -16,7 +16,20 @@ import { siteConfig } from "../data/site";
     <nav aria-label="Primary">
       <ul>
         {primaryNav.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+          <li>
+            {item.children ? (
+              <details class="nav-menu">
+                <summary>{item.label}</summary>
+                <div class="nav-menu-list">
+                  {(item.children ?? []).map((child) => (
+                    <a href={child.href}>{child.label}</a>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a href={item.href}>{item.label}</a>
+            )}
+          </li>
         ))}
       </ul>
     </nav>

@@ -298,6 +298,7 @@ const {
   }
 
   .site-header nav a,
+  .site-header nav summary,
   .footer-links a {
     color: var(--muted);
     font-family: var(--font-mono);
@@ -308,8 +309,53 @@ const {
   }
 
   .site-header nav a:hover,
+  .site-header nav summary:hover,
   .footer-links a:hover {
     color: var(--text);
+  }
+
+  .site-header nav summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .site-header nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-menu {
+    position: relative;
+  }
+
+  .nav-menu summary::after {
+    content: "▾";
+    margin-left: 0.35rem;
+    color: var(--faint);
+    font-size: 0.68rem;
+  }
+
+  .nav-menu-list {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: 0;
+    display: grid;
+    gap: 0.25rem;
+    min-width: 12rem;
+    padding: 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface-strong);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-menu-list a {
+    display: block;
+    padding: 0.45rem 0.55rem;
+    border-radius: 8px;
+  }
+
+  .nav-menu-list a:hover {
+    background: var(--bg-deep);
   }
 
   .hero,

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#edf7fb"/>
+  <circle cx="64" cy="56" r="31" fill="#79b9d2"/>
+  <circle cx="52" cy="52" r="5" fill="#2a251c"/>
+  <circle cx="76" cy="52" r="5" fill="#2a251c"/>
+  <path fill="none" stroke="#2a251c" stroke-width="6" stroke-linecap="round" d="M52 69c7 6 17 6 24 0"/>
+  <path fill="#f2c14e" d="M34 91h60v16H34z"/>
+  <text x="64" y="103" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2a251c">LEARN</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#fff4db"/>
+  <circle cx="64" cy="58" r="34" fill="#f8b84e"/>
+  <circle cx="52" cy="53" r="5" fill="#2a251c"/>
+  <circle cx="76" cy="53" r="5" fill="#2a251c"/>
+  <path fill="none" stroke="#2a251c" stroke-width="6" stroke-linecap="round" d="M51 72c8 7 18 7 26 0"/>
+  <text x="64" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#2a251c">LK</text>
+</svg>

@@ -26,6 +26,8 @@ type PrepLevel = "green" | "yellow" | "orange" | "red";
 
 type AppResult = {
   name: string;
+  url: string;
+  icon: string;
   label?: string;
   badge?: string;
   owned?: boolean;
@@ -42,13 +44,17 @@ type AppResult = {
 };
 
 const lowStimLink = "/best-low-stimulation-apps-for-toddlers/";
-const dennyLink = "/dennys-maze/";
+const dennyProductLink = "/dennys-maze/";
+const dennyAppStoreLink =
+  "https://apps.apple.com/ca/app/dennys-maze/id6760107138";
 const planeLink =
   "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/";
 
 const apps: AppResult[] = [
   {
     name: "Denny's Maze",
+    url: dennyAppStoreLink,
+    icon: "/images/app-icons/dennys-maze.jpg",
     label: "Our app",
     badge: "Our pick for zero-prep offline use",
     owned: true,
@@ -60,12 +66,14 @@ const apps: AppResult[] = [
     freeOffline: "3 complete mazes",
     muted: "◐ Narration is used",
     lowStimulation: "8.8/10 calm score",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes with full access",
     price: "$7.99 lifetime"
   },
   {
     name: "Sago Mini World",
-    freshInstall: "Not recorded during the initial fresh-install test",
+    url: "https://apps.apple.com/us/app/sago-mini-world-kids-games/id874425722",
+    icon: "/images/app-icons/sago-mini.jpg",
+    freshInstall: "❌ Nothing available without setup",
     afterSetup:
       "✅ Around 4 games available without subscribing or manually downloading them first",
     afterSetupTone: "good",
@@ -75,11 +83,13 @@ const apps: AppResult[] = [
     freeOffline: "Around 4 games in our test",
     muted: "✅ Yes",
     lowStimulation: "6.5/10 calm score",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes",
     price: "$79.99/year · 1-week trial"
   },
   {
     name: "Pok Pok",
+    url: "https://apps.apple.com/us/app/pok-pok-montessori-preschool/id1550204730",
+    icon: "/images/app-icons/pok-pok.jpg",
     freshInstall:
       "⚠️ Setup worked, but no activities were available without a subscription. Initial setup took approximately 2 minutes in our test.",
     afterSetup: "❌ Nothing usable",
@@ -89,24 +99,28 @@ const apps: AppResult[] = [
     freeOffline: "None",
     muted: "✅ Yes",
     lowStimulation: "7/10 calm score",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes if subscribed",
     price: "$59.99/year with 1-week trial or $9.99/month"
   },
   {
     name: "Khan Academy Kids",
+    url: "https://apps.apple.com/us/app/khan-academy-kids/id1378467217",
+    icon: "/images/app-icons/khan-academy-kids.svg",
     freshInstall: "❌ Could not complete initial setup",
     afterSetup: "🟡 Dedicated offline section available",
     afterSetupTone: "warn",
     beforeFlight: "🟡 Complete initial setup online first",
     prepLevel: "yellow",
     freeOffline: "Some",
-    muted: "◐ Narration/instructions are lost",
+    muted: "◐ Narration is used",
     lowStimulation: "Not rated in our low-stimulation comparison",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes",
     price: "Free"
   },
   {
     name: "PBS KIDS Games",
+    url: "https://apps.apple.com/us/app/pbs-kids-games/id1050773989",
+    icon: "/images/app-icons/pbs-kids.jpg",
     freshInstall: "❌ Nothing available",
     afterSetup: "✅ Everything we manually downloaded was available",
     afterSetupTone: "good",
@@ -117,11 +131,13 @@ const apps: AppResult[] = [
       "Potentially substantial, but only games downloaded beforehand",
     muted: "◐ Narration is used",
     lowStimulation: "5.8/10 calm score",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes, but needs to be downloaded",
     price: "Free"
   },
   {
     name: "Thinkrolls",
+    url: "https://apps.apple.com/us/app/thinkrolls-fun-kids-games-2-8/id1530907314",
+    icon: "/images/app-icons/thinkrolls.svg",
     freshInstall: "❌ Crashed during our test",
     afterSetup: "❌ Nothing usable in the tested free state",
     afterSetupTone: "bad",
@@ -130,25 +146,29 @@ const apps: AppResult[] = [
     freeOffline: "None in our test",
     muted: "✅ Yes",
     lowStimulation: "Not rated in our low-stimulation comparison",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes if subscribed and downloaded",
     price: "$69.99/year · 1-week trial"
   },
   {
     name: "Lingokids",
+    url: "https://apps.apple.com/us/app/lingokids-play-and-learn/id1002043426",
+    icon: "/images/app-icons/lingokids.svg",
     freshInstall:
       "❌ Stayed in an endless loading state during our test",
     afterSetup: "❌ Nothing usable",
     afterSetupTone: "bad",
-    beforeFlight: "🔴 Internet + subscription required",
+    beforeFlight: "🔴 Subscription required; download content after purchase",
     prepLevel: "red",
     freeOffline: "None in our test",
-    muted: "◐ Narration/instructions are used",
+    muted: "◐ Narration is used",
     lowStimulation: "Not rated in our low-stimulation comparison",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes if purchased and downloaded",
     price: "$89.99/year · 1-week trial"
   },
   {
     name: "Montessori Preschool",
+    url: "https://apps.apple.com/us/app/montessori-preschool-kids-3-7/id1138436619",
+    icon: "/images/app-icons/montessori-preschool.svg",
     freshInstall:
       "⚠️ Setup worked, and some free content was visible, but activities were not usable offline",
     afterSetup:
@@ -158,13 +178,15 @@ const apps: AppResult[] = [
       "🟠 Open/download individual sections and exercises online first",
     prepLevel: "orange",
     freeOffline: "Some, if prepared beforehand",
-    muted: "◐ Narration/instructions are used",
+    muted: "◐ Narration is used",
     lowStimulation: "Not rated in our low-stimulation comparison",
-    enoughContent: "Manual verification needed",
+    enoughContent: "✅ Yes if subscribed and downloaded",
     price: "$59.99/year · 1-week trial"
   },
   {
-    name: "Bimi Boo ABC",
+    name: "Bimi Boo Learning Games",
+    url: "https://apps.apple.com/us/app/learning-games-for-toddlers-2/id1084997102",
+    icon: "/images/app-icons/bimi-boo-learning-games.svg",
     freshInstall: "❌ Nothing usable without purchase",
     afterSetup: "❌ Nothing usable in the tested free state",
     afterSetupTone: "bad",
@@ -173,8 +195,8 @@ const apps: AppResult[] = [
     freeOffline: "None",
     muted: "◐ Narration is used",
     lowStimulation: "Not rated in our low-stimulation comparison",
-    enoughContent: "Manual verification needed",
-    price: "Paid · Exact price was not recorded during this test"
+    enoughContent: "✅ Yes if subscribed and downloaded",
+    price: "$59.99/year"
   }
 ];
 
@@ -195,8 +217,8 @@ const immediateResults = [
     "Montessori Preschool",
     "⚠️ Setup worked, but activities were not usable offline"
   ],
-  ["Bimi Boo ABC", "❌ No usable free content"],
-  ["Sago Mini World", "Fresh-install result was not recorded."]
+  ["Bimi Boo Learning Games", "❌ No usable free content"],
+  ["Sago Mini World", "❌ Nothing available without setup"]
 ];
 
 const articleSchema = blogPostingSchema({
@@ -217,7 +239,6 @@ const articleSchema = blogPostingSchema({
   <article>
     <header class="article-hero">
       <div class="shell narrow">
-        <p class="eyebrow">Tested comparison</p>
         <h1>{h1}</h1>
         <p class="lead">
           "Works offline" sounds simple until you're already on a plane and
@@ -243,18 +264,12 @@ const articleSchema = blogPostingSchema({
           content remains usable offline, whether the core activities work well
           without sound, and the price shown during our test.
         </p>
-        <p class="disclosure">
-          <strong>Denny's Maze is our own app</strong>, so we've clearly
-          labelled it throughout the comparison and used the same testing
-          process for it as every other app.
-        </p>
       </div>
     </section>
 
     <section class="comparison-section" aria-labelledby="comparison-heading">
       <div class="shell">
         <div class="section-head compact">
-          <p class="eyebrow">Results first</p>
           <h2 id="comparison-heading">Offline toddler app comparison</h2>
         </div>
 
@@ -277,7 +292,15 @@ const articleSchema = blogPostingSchema({
               {apps.map((app) => (
                 <tr class={app.owned ? "owned-row" : undefined}>
                   <td class="app-cell">
-                    <strong>{app.name}</strong>
+                    <a
+                      class="app-link"
+                      href={app.url}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <img src={app.icon} alt="" width="34" height="34" loading="lazy" />
+                      <strong>{app.name}</strong>
+                    </a>
                     {app.label && <span class="small-label">{app.label}</span>}
                     {app.badge && <span class="pick-badge">{app.badge}</span>}
                   </td>
@@ -299,7 +322,15 @@ const articleSchema = blogPostingSchema({
           {apps.map((app) => (
             <li class={app.owned ? "mobile-card owned-card" : "mobile-card"}>
               <div class="mobile-card-head">
-                <h3>{app.name}</h3>
+                <a
+                  class="mobile-app-link"
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img src={app.icon} alt="" width="40" height="40" loading="lazy" />
+                  <h3>{app.name}</h3>
+                </a>
                 {app.label && <span class="small-label">{app.label}</span>}
               </div>
               {app.badge && <span class="pick-badge">{app.badge}</span>}
@@ -350,11 +381,6 @@ const articleSchema = blogPostingSchema({
             <a href={lowStimLink}>How we rate stimulation →</a>
             Our low-stimulation ratings come from a separate comparison looking
             at brightness, animation, rewards and sound.
-          </p>
-          <p>
-            The 10-30 minute usefulness field still needs manual verification
-            before publication. We did not add yes/limited/no values without
-            source notes.
           </p>
         </div>
       </div>
@@ -462,7 +488,7 @@ const articleSchema = blogPostingSchema({
             <h3>1. Ready immediately</h3>
             <p>
               Install the app and usable content works when internet
-              disappears. Example: <a href={dennyLink}>Denny's Maze</a>.
+              disappears. Example: <a href={dennyProductLink}>Denny's Maze</a>.
             </p>
           </article>
           <article>
@@ -485,7 +511,7 @@ const articleSchema = blogPostingSchema({
             <p>
               The free version provides little or no useful offline content in
               our tested state. Examples: Pok Pok, Thinkrolls, Lingokids, and
-              Bimi Boo ABC.
+              Bimi Boo Learning Games.
             </p>
           </article>
         </div>
@@ -512,7 +538,7 @@ const articleSchema = blogPostingSchema({
             <h3>Try Denny's Maze</h3>
             <p>3 mazes free. Works offline. No ads or subscription.</p>
           </div>
-          <a class="button" href={dennyLink}>Try Denny's Maze</a>
+          <a class="button" href={dennyAppStoreLink}>Try Denny's Maze</a>
         </div>
 
         <h3>Best free option if you prepare ahead: PBS KIDS Games</h3>
@@ -574,7 +600,7 @@ const articleSchema = blogPostingSchema({
               <li>PBS KIDS Games</li>
               <li>Lingokids</li>
               <li>Montessori Preschool</li>
-              <li>Bimi Boo ABC</li>
+              <li>Bimi Boo Learning Games</li>
             </ul>
           </article>
         </div>
@@ -595,12 +621,17 @@ const articleSchema = blogPostingSchema({
           <a href={planeLink}>what actually works on a plane with a
           3-year-old</a>.
         </p>
+        <p class="disclosure">
+          <strong>Denny's Maze is our own app</strong>, so we've clearly
+          labelled it throughout the comparison and used the same testing
+          process for it as every other app.
+        </p>
         <div class="inline-cta final-cta">
           <div>
             <h3>Try Denny's Maze</h3>
             <p>3 mazes free. Works offline. No ads or subscription.</p>
           </div>
-          <a class="button" href={dennyLink}>Try Denny's Maze</a>
+          <a class="button" href={dennyAppStoreLink}>Try Denny's Maze</a>
         </div>
       </div>
     </section>
@@ -622,7 +653,7 @@ const articleSchema = blogPostingSchema({
           "Practical airplane activities tested over repeated toddler flights."
       },
       {
-        href: dennyLink,
+        href: dennyProductLink,
         title: "Denny's Maze",
         description:
           "Our own quiet, offline maze app for toddlers and preschoolers."
@@ -633,13 +664,24 @@ const articleSchema = blogPostingSchema({
 
 <style>
   .article-hero {
-    padding: clamp(3.5rem, 8vw, 6rem) 0 1.5rem;
+    padding: clamp(2rem, 5vw, 3.5rem) 0 0.6rem;
+  }
+
+  .article-hero .narrow {
+    width: min(100%, 68rem);
+  }
+
+  .article-hero h1 {
+    max-width: 56rem;
+    font-size: clamp(2rem, 4vw, 3.45rem);
+    line-height: 1.02;
   }
 
   .lead {
-    margin: 1.25rem 0 0;
+    max-width: 46rem;
+    margin: 0.9rem 0 0;
     color: var(--muted);
-    font-size: clamp(1.18rem, 2vw, 1.4rem);
+    font-size: clamp(1.08rem, 1.6vw, 1.26rem);
     line-height: 1.5;
   }
 
@@ -647,11 +689,16 @@ const articleSchema = blogPostingSchema({
   .comparison-section,
   .method-section,
   .content-block {
-    padding: clamp(2rem, 5vw, 4rem) 0;
+    padding: clamp(1.8rem, 4vw, 3.5rem) 0;
+  }
+
+  .intro-section {
+    padding-top: 0.6rem;
+    padding-bottom: 0.85rem;
   }
 
   .comparison-section {
-    padding-top: 1rem;
+    padding-top: 0.7rem;
   }
 
   .tinted {
@@ -694,7 +741,11 @@ const articleSchema = blogPostingSchema({
   }
 
   .section-head.compact {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .section-head.compact h2 {
+    font-size: clamp(1.45rem, 3vw, 2.35rem);
   }
 
   .section-head p {
@@ -770,6 +821,28 @@ const articleSchema = blogPostingSchema({
     line-height: 1.15;
   }
 
+  .app-link,
+  .mobile-app-link {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .app-link:hover strong,
+  .mobile-app-link:hover h3 {
+    color: var(--accent-strong);
+  }
+
+  .app-link img,
+  .mobile-app-link img {
+    flex: 0 0 auto;
+    border-radius: 22%;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+  }
+
   .small-label,
   .pick-badge,
   .prep-badge {
@@ -802,9 +875,7 @@ const articleSchema = blogPostingSchema({
   }
 
   .prep-badge {
-    padding: 0.35rem 0.5rem;
-    border: 1px solid var(--line);
-    background: var(--bg-soft);
+    padding: 0;
     font-size: 0.66rem;
   }
 
@@ -948,6 +1019,10 @@ const articleSchema = blogPostingSchema({
       align-items: flex-start;
       justify-content: space-between;
       gap: 0.75rem;
+    }
+
+    .mobile-app-link {
+      min-width: 0;
     }
 
     .mobile-card dl {
