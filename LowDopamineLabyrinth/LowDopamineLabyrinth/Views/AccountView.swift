@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AccountView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
+    @EnvironmentObject var reviewRequestManager: ReviewRequestManager
     @Environment(\.dismiss) var dismiss
     @State private var showPaywall = false
 
@@ -40,6 +41,14 @@ struct AccountView: View {
                         color: AppColor.accentGreen
                     ) {
                         Task { await subscriptionManager.restorePurchases() }
+                    }
+
+                    AccountButton(
+                        title: "Rate the App",
+                        icon: "star.fill",
+                        color: AppColor.accentBlue
+                    ) {
+                        reviewRequestManager.requestFromAccountButton()
                     }
                 }
                 .padding(16)
@@ -80,6 +89,9 @@ struct AccountView: View {
         }
         .sheet(isPresented: $showPaywall) {
             PaywallView(source: .account)
+        }
+        .onAppear {
+            reviewRequestManager.requestAfterFirstAccountOpen()
         }
     }
 

@@ -3,6 +3,7 @@ import StoreKit
 
 struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
+    @EnvironmentObject var reviewRequestManager: ReviewRequestManager
     @Environment(\.dismiss) var dismiss
     let source: PaywallSource
     var onDismissWithoutPurchase: (() -> Void)? = nil
@@ -174,6 +175,9 @@ struct PaywallView: View {
             if success {
                 Analytics.send(variant.purchaseSuccessEvent, with: analyticsProperties(for: product))
                 dismiss()
+                reviewRequestManager.requestAfterSuccessfulPurchase(
+                    isPremium: subscriptionManager.isPremium
+                )
             } else {
                 Analytics.send(variant.purchaseCancelledEvent, with: analyticsProperties(for: product))
             }

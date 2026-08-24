@@ -60,6 +60,7 @@ struct OnboardingView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @EnvironmentObject var ttsService: TTSService
+    @EnvironmentObject var reviewRequestManager: ReviewRequestManager
 
     var onComplete: (() -> Void)? = nil
 
@@ -141,6 +142,9 @@ struct OnboardingView: View {
                                         "paywall_type": "regular"
                                     ])
                                     completeOnboarding()
+                                    reviewRequestManager.requestAfterSuccessfulOnboardingPurchase(
+                                        isPremium: subscriptionManager.isPremium
+                                    )
                                 } else {
                                     Analytics.send("initial_paywall_purchase_cancelled", with: [
                                         "product_id": product.id,

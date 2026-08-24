@@ -18,6 +18,7 @@ struct LowDopamineLabyrinthApp: App {
     @StateObject private var subscriptionManager = SubscriptionManager()
     @StateObject private var progressTracker = ProgressTracker()
     @StateObject private var ttsService = TTSService()
+    @StateObject private var reviewRequestManager = ReviewRequestManager()
 
     init() {
         Analytics.configure()
@@ -29,7 +30,8 @@ struct LowDopamineLabyrinthApp: App {
                 preferences: preferences,
                 subscriptionManager: subscriptionManager,
                 progressTracker: progressTracker,
-                ttsService: ttsService
+                ttsService: ttsService,
+                reviewRequestManager: reviewRequestManager
             )
         }
     }
@@ -40,17 +42,20 @@ struct RootView: View {
     @ObservedObject var subscriptionManager: SubscriptionManager
     @ObservedObject var progressTracker: ProgressTracker
     @ObservedObject var ttsService: TTSService
+    @ObservedObject var reviewRequestManager: ReviewRequestManager
     @StateObject private var gameViewModel: GameViewModel
     @State private var didConfigureUITestEnvironment = false
 
     init(preferences: UserPreferences,
          subscriptionManager: SubscriptionManager,
          progressTracker: ProgressTracker,
-         ttsService: TTSService) {
+         ttsService: TTSService,
+         reviewRequestManager: ReviewRequestManager) {
         self.preferences = preferences
         self.subscriptionManager = subscriptionManager
         self.progressTracker = progressTracker
         self.ttsService = ttsService
+        self.reviewRequestManager = reviewRequestManager
         _gameViewModel = StateObject(wrappedValue: GameViewModel(
             preferences: preferences,
             subscriptionManager: subscriptionManager,
@@ -64,6 +69,7 @@ struct RootView: View {
             .environmentObject(subscriptionManager)
             .environmentObject(progressTracker)
             .environmentObject(ttsService)
+            .environmentObject(reviewRequestManager)
             .environmentObject(gameViewModel)
             .onAppear {
                 configureUITestEnvironmentIfNeeded()
@@ -79,6 +85,7 @@ struct RootView: View {
                 .environmentObject(preferences)
                 .environmentObject(subscriptionManager)
                 .environmentObject(ttsService)
+                .environmentObject(reviewRequestManager)
             }
     }
 
