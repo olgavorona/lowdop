@@ -6,6 +6,8 @@ const paths = [
   "/",
   "/about/",
   "/dennys-maze/",
+  "/printables/",
+  "/printables/fall/",
   "/faq/",
   "/screen-time-without-overstimulation/",
   "/best-low-stimulation-apps-for-toddlers/",

@@ -397,6 +397,60 @@ class ShapeMask:
         return mask
 
     @staticmethod
+    def corn(rows: int, cols: int) -> set:
+        """Corn cob shape — tall rounded cob with small husk flares near the base."""
+        mask = set()
+        center = (cols - 1) / 2
+        for r in range(rows):
+            progress = r / max(rows - 1, 1)
+            # Tall cob body: rounder at top, tapered toward the bottom.
+            if progress < 0.18:
+                width_ratio = 0.34 + progress * 1.75
+            elif progress < 0.72:
+                width_ratio = 0.64
+            else:
+                tail = (progress - 0.72) / 0.28
+                width_ratio = 0.64 - 0.28 * tail
+            width = max(2, round(cols * width_ratio))
+            start_c = round(center - width / 2)
+            for c in range(start_c, start_c + width):
+                if 0 <= c < cols:
+                    mask.add((r, c))
+
+            # Simple lower husk leaves, visible enough in wall-rendered printables.
+            if progress > 0.58:
+                husk_width = max(1, round(cols * 0.18 * ((progress - 0.58) / 0.42)))
+                left_start = max(0, start_c - husk_width)
+                right_end = min(cols, start_c + width + husk_width)
+                for c in range(left_start, start_c):
+                    mask.add((r, c))
+                for c in range(start_c + width, right_end):
+                    mask.add((r, c))
+        return mask
+
+    @staticmethod
+    def pumpkin(rows: int, cols: int) -> set:
+        """Pumpkin shape — rounded body with a small stem on top."""
+        mask = set()
+        cr = rows / 2 + 0.4
+        cc = cols / 2
+        radius_r = max(1.0, rows * 0.42)
+        radius_c = max(1.0, cols * 0.48)
+        for r in range(rows):
+            for c in range(cols):
+                normalized = ((r - cr + 0.5) / radius_r) ** 2 + ((c - cc + 0.5) / radius_c) ** 2
+                if normalized <= 1.0:
+                    mask.add((r, c))
+
+        stem_width = max(1, cols // 6)
+        stem_start = max(0, cols // 2 - stem_width // 2)
+        stem_rows = max(1, rows // 7)
+        for r in range(stem_rows):
+            for c in range(stem_start, min(cols, stem_start + stem_width)):
+                mask.add((r, c))
+        return mask
+
+    @staticmethod
     def rocket(rows: int, cols: int) -> set:
         """Rocket ship — pointed nose cone, rectangular body, flared fins at base."""
         mask = set()
@@ -803,6 +857,8 @@ class FullMazeGenerator:
         "diamond": ShapeMask.diamond,
         "circle": ShapeMask.circle,
         "shell": ShapeMask.shell,
+        "corn": ShapeMask.corn,
+        "pumpkin": ShapeMask.pumpkin,
         "moon": ShapeMask.moon,
         "rocket": ShapeMask.rocket,
     }
@@ -897,6 +953,7 @@ class FullMazeGenerator:
         offset_x: int,
         offset_y: int,
         cell_size: int,
+        path_width: int,
         mask: Optional[set] = None,
     ) -> List[Dict[str, Any]]:
         """Place avoid obstacles with enough room to steer around them.
@@ -907,7 +964,7 @@ class FullMazeGenerator:
         cells are skipped to keep the first obstacle away from the start.
         """
         half = cell_size // 2
-        lateral_offset = min(cell_size * 0.2, max(10.0, self.path_width * 0.32))
+        lateral_offset = min(cell_size * 0.2, max(10.0, path_width * 0.32))
         min_start_steps = max(2, len(solution) // 5)
 
         def open_passages(r: int, c: int) -> int:
@@ -1007,8 +1064,23 @@ class FullMazeGenerator:
         random.shuffle(solution_cells)
         random.shuffle(branch_cells)
 
-        chosen_solution = solution_cells[:min(on_solution_count, len(solution_cells))]
-        chosen_branch = branch_cells[:min(on_branch_count, len(branch_cells))]
+        def choose_spaced(
+            candidates: List[Tuple[int, int]],
+            count: int,
+            existing: List[Tuple[int, int]],
+        ) -> List[Tuple[int, int]]:
+            min_gap = max(2, min(5, (maze.rows + maze.cols) // 5))
+            for gap in range(min_gap, 0, -1):
+                chosen: List[Tuple[int, int]] = []
+                for cell in candidates:
+                    if all(abs(cell[0] - other[0]) + abs(cell[1] - other[1]) >= gap for other in existing + chosen):
+                        chosen.append(cell)
+                        if len(chosen) >= count:
+                            return chosen
+            return candidates[:count]
+
+        chosen_solution = choose_spaced(solution_cells, min(on_solution_count, len(solution_cells)), [])
+        chosen_branch = choose_spaced(branch_cells, min(on_branch_count, len(branch_cells)), chosen_solution)
 
         items = []
         for r, c in chosen_solution:
@@ -1225,8 +1297,8 @@ class FullMazeGenerator:
             "shape": shape,
         }
 
-        # Place collect items across the maze if requested
-        if item_rule and item_count > 0 and item_emoji and solution:
+        # Place collect items across the maze if requested.
+        if item_rule == "collect" and item_count > 0 and item_emoji and solution:
             items = self.place_items(
                 maze, solution, start, end,
                 item_count, item_emoji,
@@ -1236,10 +1308,10 @@ class FullMazeGenerator:
 
         # Place avoid items on the solution path using the level's requested emoji.
         if item_rule == "avoid" and solution:
-            num_owls = {"easy": 2, "medium": 3, "hard": 4}.get(difficulty, 2)
+            num_owls = item_count if item_count > 0 else {"easy": 2, "medium": 3, "hard": 4}.get(difficulty, 2)
             avoid_items = self._place_avoid_items(
                 maze, solution, start, end, num_owls, item_emoji or "🦉",
-                offset_x, offset_y, cell_size, mask,
+                offset_x, offset_y, cell_size, path_width, mask,
             )
             result["avoid_items"] = avoid_items
 

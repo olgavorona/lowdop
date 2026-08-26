@@ -1,0 +1,608 @@
+---
+import { siteConfig } from "../data/site";
+import type { PrintableMaze, PrintablePack } from "../data/printables/fallMazes";
+
+type Props = {
+  title: string;
+  intro: string;
+  mazes: PrintableMaze[];
+  downloadPacks: PrintablePack[];
+};
+
+const { title, intro, mazes, downloadPacks } = Astro.props as Props;
+const modalMazes = mazes.map((maze) => ({
+  title: maze.title,
+  preview: maze.preview,
+  difficulties: maze.difficulties
+}));
+const printableCount = mazes.length;
+---
+
+<article class="printables-article">
+  <div class="shell narrow">
+    <h1>{title}</h1>
+    <p class="printables-lead">{intro}</p>
+  </div>
+
+  <section class="printables-maze-list" aria-label="Fall maze downloads">
+    <div class="shell">
+      <div class="printables-global-toolbar" aria-label="Choose preview difficulty">
+        <div>
+          <p class="eyebrow">Preview difficulty</p>
+          <h2>Change every maze at once</h2>
+        </div>
+        <div class="difficulty-control global-difficulty-control">
+          {mazes[0]?.difficulties.map((difficulty, index) => (
+            <button
+              type="button"
+              class:list={["difficulty-button", index === 0 && "active"]}
+              data-global-difficulty
+              data-difficulty-index={index}
+              aria-pressed={index === 0 ? "true" : "false"}
+            >
+              {difficulty.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {mazes.map((maze, mazeIndex) => (
+        <section class="printable-row" data-printable-row data-maze-index={mazeIndex}>
+          <button
+            class="printable-preview"
+            type="button"
+            data-preview-open
+            data-maze-index={mazeIndex}
+            aria-label={`Preview ${maze.title}`}
+          >
+            <img
+              src={maze.preview}
+              alt={`${maze.title} printable preview`}
+              loading="lazy"
+              width="210"
+              height="297"
+              data-printable-preview-image
+            />
+          </button>
+
+          <div class="printable-copy">
+            <p class="eyebrow">Printable maze</p>
+            <h2>{maze.title}</h2>
+            <p>{maze.description}</p>
+            <p>{maze.detail}</p>
+
+            <div class="difficulty-control" aria-label={`Choose ${maze.title} difficulty`}>
+              {maze.difficulties.map((difficulty, index) => (
+                <button
+                  type="button"
+                  class:list={["difficulty-button", index === 0 && "active"]}
+                  data-difficulty-button
+                  data-download-href={difficulty.href}
+                  aria-pressed={index === 0 ? "true" : "false"}
+                >
+                  {difficulty.label}
+                </button>
+              ))}
+            </div>
+
+            <a class="button printable-download" href={maze.difficulties[0].href} download data-dynamic-download>
+              Download Easy
+            </a>
+          </div>
+        </section>
+      ))}
+
+      <div class="printables-bulk-download">
+        <div>
+          <p class="eyebrow">Full set</p>
+          <h2>Download all {printableCount} mazes</h2>
+          <p>
+            A single ZIP with the selected difficulty for every fall maze in this set.
+          </p>
+          <div class="difficulty-control pack-difficulty-control" aria-label="Choose pack difficulty">
+            {downloadPacks.map((pack, index) => (
+              <button
+                type="button"
+                class:list={["difficulty-button", index === 2 && "active"]}
+                data-pack-difficulty
+                data-pack-href={pack.href}
+                aria-pressed={index === 2 ? "true" : "false"}
+              >
+                {pack.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <a class="button" href={downloadPacks[2]?.href ?? downloadPacks[0]?.href} download data-pack-download>
+          Download all {printableCount} hard mazes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="printables-app-cta">
+    <div class="shell printables-app-cta-inner">
+      <img src="/images/denny.png" alt="" width="160" height="160" loading="lazy" />
+      <div>
+        <p class="eyebrow">Denny's Maze App</p>
+        <h2>A paper-like maze activity for your iPad</h2>
+        <p>
+          Printables are useful when paper is what you want. The app is for the
+          same quiet maze feeling when you want something ready on the iPad.
+        </p>
+        <div class="printables-actions">
+          <a class="button" href={siteConfig.productPath}>Learn about Denny's Maze</a>
+          <a class="button secondary app-store-cta" href={siteConfig.appStoreUrl}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M16.8 13.1c0-2 1.7-3 1.8-3.1-1-1.4-2.4-1.6-2.9-1.7-1.2-.1-2.4.7-3 0.7-.6 0-1.6-.7-2.6-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.3 1.2-2.4 0 0-2.2-.8-2.2-3.4ZM15 7.1c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.7-1.1 1.7-.9 2.6.9.1 1.9-.5 2.5-1.2Z" fill="currentColor"/>
+            </svg>
+            Download on the App Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="preview-modal" data-preview-modal hidden>
+    <div class="preview-backdrop" data-preview-close></div>
+    <section class="preview-panel" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+      <div class="preview-toolbar">
+        <button type="button" class="preview-nav-button" data-preview-prev aria-label="Previous maze">‹</button>
+        <div>
+          <p class="eyebrow">Printable preview</p>
+          <h2 id="preview-title" data-preview-title></h2>
+        </div>
+        <button type="button" class="preview-nav-button" data-preview-next aria-label="Next maze">›</button>
+        <button type="button" class="preview-close" data-preview-close aria-label="Close preview">×</button>
+      </div>
+
+      <div class="preview-body">
+        <img data-preview-image alt="" />
+      </div>
+
+      <div class="preview-actions">
+        <div class="difficulty-control preview-difficulty" aria-label="Choose preview difficulty">
+          <button type="button" class="difficulty-button active" data-preview-difficulty="0" aria-pressed="true">Easy</button>
+          <button type="button" class="difficulty-button" data-preview-difficulty="1" aria-pressed="false">Medium</button>
+          <button type="button" class="difficulty-button" data-preview-difficulty="2" aria-pressed="false">Hard</button>
+        </div>
+        <a class="button" href="#" download data-preview-download>Download Easy</a>
+      </div>
+    </section>
+  </div>
+</article>
+
+<script is:inline type="application/json" id="printable-modal-data" set:html={JSON.stringify(modalMazes)} />
+
+<script>
+  const modalDataElement = document.getElementById("printable-modal-data");
+  const modalData = modalDataElement?.textContent ? JSON.parse(modalDataElement.textContent) : [];
+  const modal = document.querySelector("[data-preview-modal]");
+  const modalTitle = document.querySelector("[data-preview-title]");
+  const modalImage = document.querySelector("[data-preview-image]");
+  const modalDownload = document.querySelector("[data-preview-download]");
+  const modalDifficultyButtons = Array.from(document.querySelectorAll("[data-preview-difficulty]"));
+  const globalDifficultyButtons = Array.from(document.querySelectorAll("[data-global-difficulty]"));
+  const rowDifficultyButtons = Array.from(document.querySelectorAll("[data-difficulty-button]"));
+  const packDifficultyButtons = Array.from(document.querySelectorAll("[data-pack-difficulty]"));
+  const packDownload = document.querySelector("[data-pack-download]");
+  let activeMazeIndex = 0;
+  let activeDifficultyIndex = 0;
+
+  function setButtonGroupActive(buttons: Element[], index: number, dataAttribute: "difficultyIndex" | "previewDifficulty") {
+    buttons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      const isActive = Number(button.dataset[dataAttribute]) === index;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  function updateAllPrintableRows() {
+    document.querySelectorAll("[data-printable-row]").forEach((row) => {
+      if (!(row instanceof HTMLElement)) return;
+      const mazeIndex = Number(row.dataset.mazeIndex ?? 0);
+      const maze = modalData[mazeIndex];
+      const difficulty = maze?.difficulties?.[activeDifficultyIndex];
+      if (!maze || !difficulty) return;
+
+      const previewImage = row.querySelector("[data-printable-preview-image]");
+      if (previewImage instanceof HTMLImageElement) {
+        previewImage.src = difficulty.href;
+        previewImage.alt = `${maze.title} ${difficulty.label} printable preview`;
+      }
+
+      const download = row.querySelector("[data-dynamic-download]");
+      if (download instanceof HTMLAnchorElement) {
+        download.href = difficulty.href;
+        download.textContent = `Download ${difficulty.label}`;
+      }
+
+      row.querySelectorAll("[data-difficulty-button]").forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const isActive = button.dataset.downloadHref === difficulty.href;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    });
+  }
+
+  function setGlobalDifficulty(index: number) {
+    activeDifficultyIndex = index;
+    setButtonGroupActive(globalDifficultyButtons, index, "difficultyIndex");
+    setButtonGroupActive(modalDifficultyButtons, index, "previewDifficulty");
+    updateAllPrintableRows();
+    updatePreviewModal();
+  }
+
+  function updatePreviewModal() {
+    const maze = modalData[activeMazeIndex];
+    const difficulty = maze?.difficulties?.[activeDifficultyIndex];
+    if (!maze || !difficulty) return;
+
+    if (modalTitle) modalTitle.textContent = maze.title;
+    if (modalImage instanceof HTMLImageElement) {
+      modalImage.src = difficulty.href;
+      modalImage.alt = `${maze.title} ${difficulty.label} printable preview`;
+    }
+    if (modalDownload instanceof HTMLAnchorElement) {
+      modalDownload.href = difficulty.href;
+      modalDownload.textContent = `Download ${difficulty.label}`;
+    }
+
+    modalDifficultyButtons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      const isActive = Number(button.dataset.previewDifficulty) === activeDifficultyIndex;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  function openPreview(index: number) {
+    activeMazeIndex = index;
+    updatePreviewModal();
+    if (modal instanceof HTMLElement) {
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closePreview() {
+    if (modal instanceof HTMLElement) {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    }
+  }
+
+  document.querySelectorAll("[data-preview-open]").forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener("click", () => {
+      openPreview(Number(button.dataset.mazeIndex ?? 0));
+    });
+  });
+
+  document.querySelectorAll("[data-preview-close]").forEach((button) => {
+    button.addEventListener("click", closePreview);
+  });
+
+  document.querySelector("[data-preview-prev]")?.addEventListener("click", () => {
+    activeMazeIndex = (activeMazeIndex - 1 + modalData.length) % modalData.length;
+    updatePreviewModal();
+  });
+
+  document.querySelector("[data-preview-next]")?.addEventListener("click", () => {
+    activeMazeIndex = (activeMazeIndex + 1) % modalData.length;
+    updatePreviewModal();
+  });
+
+  modalDifficultyButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener("click", () => {
+      setGlobalDifficulty(Number(button.dataset.previewDifficulty ?? 0));
+    });
+  });
+
+  globalDifficultyButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener("click", () => {
+      setGlobalDifficulty(Number(button.dataset.difficultyIndex ?? 0));
+    });
+  });
+
+  rowDifficultyButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener("click", () => {
+      const row = button.closest("[data-printable-row]");
+      const index = Array.from(row?.querySelectorAll("[data-difficulty-button]") ?? []).indexOf(button);
+      setGlobalDifficulty(Math.max(0, index));
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!(modal instanceof HTMLElement) || modal.hidden) return;
+    if (event.key === "Escape") closePreview();
+    if (event.key === "ArrowLeft") {
+      activeMazeIndex = (activeMazeIndex - 1 + modalData.length) % modalData.length;
+      updatePreviewModal();
+    }
+    if (event.key === "ArrowRight") {
+      activeMazeIndex = (activeMazeIndex + 1) % modalData.length;
+      updatePreviewModal();
+    }
+  });
+
+  packDifficultyButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener("click", () => {
+      packDifficultyButtons.forEach((other) => {
+        if (!(other instanceof HTMLButtonElement)) return;
+        const isActive = other === button;
+        other.classList.toggle("active", isActive);
+        other.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      const label = button.textContent?.trim() ?? "Selected";
+      const href = button.dataset.packHref;
+      if (packDownload instanceof HTMLAnchorElement) {
+        if (href) packDownload.href = href;
+        packDownload.textContent = `Download all ${modalData.length} ${label.toLowerCase()} mazes`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .printables-article {
+    padding: 3.25rem 0 4rem;
+  }
+
+  .printables-lead {
+    color: var(--muted);
+    max-width: 42rem;
+  }
+
+  .printables-maze-list {
+    padding: 1.5rem 0 0;
+  }
+
+  .printables-global-toolbar {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+    padding: 0 0 1.5rem;
+  }
+
+  .printables-global-toolbar h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.35rem, 2.5vw, 2rem);
+  }
+
+  .global-difficulty-control,
+  .pack-difficulty-control {
+    margin: 0;
+  }
+
+  .printable-row {
+    display: grid;
+    gap: 1.25rem;
+    padding: 2.25rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .printable-row:last-of-type {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .printable-preview {
+    display: block;
+    width: min(100%, 22rem);
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 6px;
+    background: #fffdf7;
+    box-shadow: 0 14px 34px rgba(40, 32, 14, 0.14);
+    cursor: zoom-in;
+  }
+
+  .printable-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 210 / 297;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .printable-copy p {
+    color: var(--muted);
+    max-width: 42rem;
+  }
+
+  .difficulty-control,
+  .printables-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.25rem 0;
+  }
+
+  .difficulty-button {
+    min-height: 2.35rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .difficulty-button.active {
+    background: var(--text);
+    border-color: var(--text);
+    color: var(--bg);
+  }
+
+  .printables-bulk-download {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+    padding: 2rem 0 0;
+  }
+
+  .printables-bulk-download p,
+  .printables-app-cta p {
+    color: var(--muted);
+  }
+
+  .printables-app-cta {
+    padding: 4rem 0 0;
+  }
+
+  .printables-app-cta-inner {
+    display: grid;
+    gap: 1.4rem;
+    align-items: center;
+    padding: 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-deep);
+    box-shadow: var(--shadow);
+  }
+
+  .printables-app-cta img {
+    width: 7rem;
+    height: 7rem;
+    object-fit: contain;
+  }
+
+  .app-store-cta svg {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+  }
+
+  .preview-modal[hidden] {
+    display: none;
+  }
+
+  .preview-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+
+  .preview-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 37, 28, 0.62);
+    backdrop-filter: blur(10px);
+  }
+
+  .preview-panel {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    width: min(100%, 62rem);
+    max-height: min(94vh, 62rem);
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface-strong);
+    box-shadow: var(--shadow);
+  }
+
+  .preview-toolbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .preview-toolbar h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .preview-nav-button,
+  .preview-close {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg-deep);
+    color: var(--text);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .preview-close {
+    font-size: 1.4rem;
+  }
+
+  .preview-body {
+    min-height: 0;
+    display: grid;
+    place-items: center;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+  }
+
+  .preview-body img {
+    width: auto;
+    max-width: 100%;
+    height: min(70vh, 52rem);
+    aspect-ratio: 210 / 297;
+    object-fit: contain;
+    background: var(--bg-soft);
+  }
+
+  .preview-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .preview-difficulty {
+    margin: 0;
+  }
+
+  @media (min-width: 760px) {
+    .printables-global-toolbar {
+      grid-template-columns: 1fr auto;
+      padding-bottom: 2rem;
+    }
+
+    .printable-row {
+      grid-template-columns: minmax(19rem, 24rem) minmax(0, 1fr);
+      align-items: start;
+      gap: 2.5rem;
+      padding: 2.75rem 0;
+    }
+
+    .printables-bulk-download {
+      grid-template-columns: 1fr auto;
+    }
+
+    .printables-app-cta-inner {
+      grid-template-columns: 8rem 1fr;
+    }
+  }
+</style>

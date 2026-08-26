@@ -1,0 +1,189 @@
+{
+  "title": "Fall Mazes with Denny",
+  "website": "www.harmlessapp.com/printables",
+  "format": "A4 SVG printables",
+  "hero": "hero-denny-yellow-raincoat.svg",
+  "hero_image": "assets/hero-denny-yellow-raincoat.png",
+  "total": 18,
+  "mazes": [
+    {
+      "id": "leaf-pile-easy",
+      "title": "Leaf Pile Maze",
+      "difficulty": "easy",
+      "mode": "plain",
+      "shape": "rect",
+      "svg": "svg/leaf-pile-easy.svg",
+      "json": "json/leaf-pile-easy.json"
+    },
+    {
+      "id": "leaf-pile-medium",
+      "title": "Leaf Pile Maze",
+      "difficulty": "medium",
+      "mode": "plain",
+      "shape": "rect",
+      "svg": "svg/leaf-pile-medium.svg",
+      "json": "json/leaf-pile-medium.json"
+    },
+    {
+      "id": "leaf-pile-hard",
+      "title": "Leaf Pile Maze",
+      "difficulty": "hard",
+      "mode": "plain",
+      "shape": "rect",
+      "svg": "svg/leaf-pile-hard.svg",
+      "json": "json/leaf-pile-hard.json"
+    },
+    {
+      "id": "apple-basket-easy",
+      "title": "Apple Basket Maze",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/apple-basket-easy.svg",
+      "json": "json/apple-basket-easy.json"
+    },
+    {
+      "id": "apple-basket-medium",
+      "title": "Apple Basket Maze",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/apple-basket-medium.svg",
+      "json": "json/apple-basket-medium.json"
+    },
+    {
+      "id": "apple-basket-hard",
+      "title": "Apple Basket Maze",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/apple-basket-hard.svg",
+      "json": "json/apple-basket-hard.json"
+    },
+    {
+      "id": "corn-maze-easy",
+      "title": "Corn Maze",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "corn",
+      "svg": "svg/corn-maze-easy.svg",
+      "json": "json/corn-maze-easy.json"
+    },
+    {
+      "id": "corn-maze-medium",
+      "title": "Corn Maze",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "corn",
+      "svg": "svg/corn-maze-medium.svg",
+      "json": "json/corn-maze-medium.json"
+    },
+    {
+      "id": "corn-maze-hard",
+      "title": "Corn Maze",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "corn",
+      "svg": "svg/corn-maze-hard.svg",
+      "json": "json/corn-maze-hard.json"
+    },
+    {
+      "id": "pumpkin-patch-easy",
+      "title": "Pumpkin Patch Maze",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "pumpkin",
+      "svg": "svg/pumpkin-patch-easy.svg",
+      "json": "json/pumpkin-patch-easy.json"
+    },
+    {
+      "id": "pumpkin-patch-medium",
+      "title": "Pumpkin Patch Maze",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "pumpkin",
+      "svg": "svg/pumpkin-patch-medium.svg",
+      "json": "json/pumpkin-patch-medium.json"
+    },
+    {
+      "id": "pumpkin-patch-hard",
+      "title": "Pumpkin Patch Maze",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "pumpkin",
+      "svg": "svg/pumpkin-patch-hard.svg",
+      "json": "json/pumpkin-patch-hard.json"
+    },
+    {
+      "id": "acorn-trail-easy",
+      "title": "Acorn Shell Maze",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "shell",
+      "svg": "svg/acorn-trail-easy.svg",
+      "json": "json/acorn-trail-easy.json"
+    },
+    {
+      "id": "acorn-trail-medium",
+      "title": "Acorn Shell Maze",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "shell",
+      "svg": "svg/acorn-trail-medium.svg",
+      "json": "json/acorn-trail-medium.json"
+    },
+    {
+      "id": "acorn-trail-hard",
+      "title": "Acorn Shell Maze",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "shell",
+      "svg": "svg/acorn-trail-hard.svg",
+      "json": "json/acorn-trail-hard.json"
+    },
+    {
+      "id": "rainy-walk-easy",
+      "title": "Rainy Puddle Maze",
+      "difficulty": "easy",
+      "mode": "avoid",
+      "shape": "rect",
+      "svg": "svg/rainy-walk-easy.svg",
+      "json": "json/rainy-walk-easy.json"
+    },
+    {
+      "id": "rainy-walk-medium",
+      "title": "Rainy Puddle Maze",
+      "difficulty": "medium",
+      "mode": "avoid",
+      "shape": "rect",
+      "svg": "svg/rainy-walk-medium.svg",
+      "json": "json/rainy-walk-medium.json"
+    },
+    {
+      "id": "rainy-walk-hard",
+      "title": "Rainy Puddle Maze",
+      "difficulty": "hard",
+      "mode": "avoid",
+      "shape": "rect",
+      "svg": "svg/rainy-walk-hard.svg",
+      "json": "json/rainy-walk-hard.json"
+    }
+  ],
+  "packs": [
+    {
+      "label": "Easy",
+      "difficulty": "easy",
+      "zip": "fall-mazes-easy.zip"
+    },
+    {
+      "label": "Medium",
+      "difficulty": "medium",
+      "zip": "fall-mazes-medium.zip"
+    },
+    {
+      "label": "Hard",
+      "difficulty": "hard",
+      "zip": "fall-mazes-hard.zip"
+    }
+  ]
+}

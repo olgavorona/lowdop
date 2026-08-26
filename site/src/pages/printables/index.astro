@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { absoluteUrl, buildMeta, organizationSchema } from "../../lib/seo";
+
+const title = "Free Printables for Kids | Denny's Maze";
+const description =
+  "Free printable activities from Denny's Maze, starting with fall maze worksheets in easy, medium and hard versions.";
+const pathname = "/printables/";
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname,
+  image: "/printables/fall-mazes/svg/pumpkin-patch-easy.svg"
+});
+
+const printableArticles = [
+  {
+    href: "/printables/fall/",
+    title: "6 Free Printable Fall Mazes",
+    description:
+      "Leaves, apples, corn, pumpkins, acorns and rainy puddles, with easy, medium and hard downloads.",
+    image: "/printables/fall-mazes/svg/pumpkin-patch-easy.svg"
+  }
+];
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description,
+  url: absoluteUrl(pathname),
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Harmless Apps",
+    url: "https://www.harmlessapp.com"
+  }
+};
+---
+
+<BaseLayout
+  {...meta}
+  ogTitle="Free Printables for Kids"
+  ogDescription="Printable activities from Denny's Maze, starting with free fall maze worksheets."
+  schemas={[organizationSchema(), pageSchema]}
+>
+  <section class="printables-index">
+    <div class="shell narrow">
+      <p class="eyebrow">Printables</p>
+      <h1>Free printables for kids</h1>
+      <p class="section-intro">
+        A growing library of quiet paper activities from Denny's Maze.
+      </p>
+
+      <div class="printables-article-list">
+        {printableArticles.map((article) => (
+          <a class="printables-article-link" href={article.href}>
+            <img src={article.image} alt="" loading="lazy" width="900" height="900" />
+            <span>
+              <strong>{article.title}</strong>
+              <small>{article.description}</small>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .printables-index {
+    padding: 4rem 0;
+  }
+
+  .printables-article-list {
+    display: grid;
+    gap: 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .printables-article-link {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .printables-article-link:hover strong {
+    color: var(--accent-strong);
+  }
+
+  .printables-article-link img {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-soft);
+  }
+
+  .printables-article-link strong,
+  .printables-article-link small {
+    display: block;
+  }
+
+  .printables-article-link strong {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .printables-article-link small {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+</style>

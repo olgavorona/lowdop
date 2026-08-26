@@ -1,6 +1,7 @@
 export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/dennys-maze/", label: "Denny's Maze" },
+  { href: "/printables/", label: "Printables" },
   {
     label: "Ratings",
     children: [
@@ -20,6 +21,7 @@ export const primaryNav = [
 export const footerNav = [
   { href: "/", label: "Home" },
   { href: "/dennys-maze/", label: "Denny's Maze" },
+  { href: "/printables/", label: "Printables" },
   {
     href: "/best-low-stimulation-apps-for-toddlers/",
     label: "Low-Stimulation Apps"

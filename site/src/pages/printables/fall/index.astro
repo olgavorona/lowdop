@@ -1,0 +1,40 @@
+---
+import PrintablesPage from "../../../components/PrintablesPage.astro";
+import { fallMazePrintables } from "../../../data/printables/fallMazes";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { absoluteUrl, buildMeta, organizationSchema } from "../../../lib/seo";
+
+const title = "6 Free Printable Fall Mazes for Kids | Denny's Maze";
+const description =
+  "Download 6 free printable fall mazes for kids, with easy, medium and hard versions for leaves, apples, corn, pumpkins, acorns and rainy puddles.";
+const pathname = "/printables/fall/";
+
+const meta = buildMeta({
+  title,
+  description,
+  pathname,
+  image: "/printables/fall-mazes/svg/pumpkin-patch-easy.svg"
+});
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: absoluteUrl(pathname),
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Harmless Apps",
+    url: "https://www.harmlessapp.com"
+  }
+};
+---
+
+<BaseLayout
+  {...meta}
+  ogTitle="6 Free Printable Fall Mazes for Kids"
+  ogDescription="Download fall maze printables from Denny's Maze: leaves, apples, corn, pumpkins, acorns and rainy puddles."
+  schemas={[organizationSchema(), pageSchema]}
+>
+  <PrintablesPage {...fallMazePrintables} />
+</BaseLayout>
