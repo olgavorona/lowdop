@@ -1,0 +1,1528 @@
+{
+  "packs": [
+    {
+      "id": "ocean_adventures",
+      "title": "Ocean Adventures",
+      "free_stories": 3,
+      "stories": [
+        1,
+        11,
+        2,
+        12,
+        3,
+        13,
+        4,
+        14,
+        5,
+        15,
+        6,
+        16,
+        7,
+        17,
+        8,
+        18,
+        9,
+        19,
+        10,
+        20
+      ]
+    },
+    {
+      "id": "space_adventures",
+      "title": "Denny in Space",
+      "free_stories": 0,
+      "stories": [
+        31,
+        21,
+        32,
+        22,
+        33,
+        23,
+        34,
+        24,
+        35,
+        25,
+        36,
+        26,
+        37,
+        27,
+        38,
+        28,
+        39,
+        29,
+        40,
+        30
+      ]
+    },
+    {
+      "id": "forest_adventures",
+      "title": "Denny in the Forest",
+      "free_stories": 0,
+      "stories": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ]
+    }
+  ],
+  "labyrinths": [
+    {
+      "id": "denny_001_easy",
+      "difficulty": "easy",
+      "story": 1,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Finds Mommy Coral"
+    },
+    {
+      "id": "denny_001_medium",
+      "difficulty": "medium",
+      "story": 1,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Finds Mommy Coral"
+    },
+    {
+      "id": "denny_001_hard",
+      "difficulty": "hard",
+      "story": 1,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Finds Mommy Coral"
+    },
+    {
+      "id": "denny_002_easy",
+      "difficulty": "easy",
+      "story": 2,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Shell Garden Shortcut"
+    },
+    {
+      "id": "denny_002_medium",
+      "difficulty": "medium",
+      "story": 2,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Shell Garden Shortcut"
+    },
+    {
+      "id": "denny_002_hard",
+      "difficulty": "hard",
+      "story": 2,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Shell Garden Shortcut"
+    },
+    {
+      "id": "denny_003_easy",
+      "difficulty": "easy",
+      "story": 3,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Finds Sandy's Bubbles"
+    },
+    {
+      "id": "denny_003_medium",
+      "difficulty": "medium",
+      "story": 3,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Finds Sandy's Bubbles"
+    },
+    {
+      "id": "denny_003_hard",
+      "difficulty": "hard",
+      "story": 3,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Finds Sandy's Bubbles"
+    },
+    {
+      "id": "denny_004_easy",
+      "difficulty": "easy",
+      "story": 4,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Special Shell"
+    },
+    {
+      "id": "denny_004_medium",
+      "difficulty": "medium",
+      "story": 4,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Special Shell"
+    },
+    {
+      "id": "denny_004_hard",
+      "difficulty": "hard",
+      "story": 4,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Special Shell"
+    },
+    {
+      "id": "denny_005_easy",
+      "difficulty": "easy",
+      "story": 5,
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Glowing Rock Mystery"
+    },
+    {
+      "id": "denny_005_medium",
+      "difficulty": "medium",
+      "story": 5,
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Glowing Rock Mystery"
+    },
+    {
+      "id": "denny_005_hard",
+      "difficulty": "hard",
+      "story": 5,
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Glowing Rock Mystery"
+    },
+    {
+      "id": "denny_006_easy",
+      "difficulty": "easy",
+      "story": 6,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny Finds Shy Bubbles"
+    },
+    {
+      "id": "denny_006_medium",
+      "difficulty": "medium",
+      "story": 6,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny Finds Shy Bubbles"
+    },
+    {
+      "id": "denny_006_hard",
+      "difficulty": "hard",
+      "story": 6,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny Finds Shy Bubbles"
+    },
+    {
+      "id": "denny_007_easy",
+      "difficulty": "easy",
+      "story": 7,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Follows Shelly's Trail"
+    },
+    {
+      "id": "denny_007_medium",
+      "difficulty": "medium",
+      "story": 7,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Follows Shelly's Trail"
+    },
+    {
+      "id": "denny_007_hard",
+      "difficulty": "hard",
+      "story": 7,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Follows Shelly's Trail"
+    },
+    {
+      "id": "denny_008_easy",
+      "difficulty": "easy",
+      "story": 8,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Helps Find Ollie's Toy"
+    },
+    {
+      "id": "denny_008_medium",
+      "difficulty": "medium",
+      "story": 8,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Helps Find Ollie's Toy"
+    },
+    {
+      "id": "denny_008_hard",
+      "difficulty": "hard",
+      "story": 8,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny Helps Find Ollie's Toy"
+    },
+    {
+      "id": "denny_009_easy",
+      "difficulty": "easy",
+      "story": 9,
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Shipwreck Adventure"
+    },
+    {
+      "id": "denny_009_medium",
+      "difficulty": "medium",
+      "story": 9,
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Shipwreck Adventure"
+    },
+    {
+      "id": "denny_009_hard",
+      "difficulty": "hard",
+      "story": 9,
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Shipwreck Adventure"
+    },
+    {
+      "id": "denny_010_easy",
+      "difficulty": "easy",
+      "story": 10,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Helps Pearl"
+    },
+    {
+      "id": "denny_010_medium",
+      "difficulty": "medium",
+      "story": 10,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Helps Pearl"
+    },
+    {
+      "id": "denny_010_hard",
+      "difficulty": "hard",
+      "story": 10,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Helps Pearl"
+    },
+    {
+      "id": "denny_011_easy",
+      "difficulty": "easy",
+      "story": 11,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Shell Collection"
+    },
+    {
+      "id": "denny_011_medium",
+      "difficulty": "medium",
+      "story": 11,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Shell Collection"
+    },
+    {
+      "id": "denny_011_hard",
+      "difficulty": "hard",
+      "story": 11,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny's Shell Collection"
+    },
+    {
+      "id": "denny_012_easy",
+      "difficulty": "easy",
+      "story": 12,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Pearl Dive"
+    },
+    {
+      "id": "denny_012_medium",
+      "difficulty": "medium",
+      "story": 12,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Pearl Dive"
+    },
+    {
+      "id": "denny_012_hard",
+      "difficulty": "hard",
+      "story": 12,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Pearl Dive"
+    },
+    {
+      "id": "denny_013_easy",
+      "difficulty": "easy",
+      "story": 13,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny's Bubble Chase"
+    },
+    {
+      "id": "denny_013_medium",
+      "difficulty": "medium",
+      "story": 13,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny's Bubble Chase"
+    },
+    {
+      "id": "denny_013_hard",
+      "difficulty": "hard",
+      "story": 13,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny's Bubble Chase"
+    },
+    {
+      "id": "denny_014_easy",
+      "difficulty": "easy",
+      "story": 14,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Avoids the Sharp Coral"
+    },
+    {
+      "id": "denny_014_medium",
+      "difficulty": "medium",
+      "story": 14,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Avoids the Sharp Coral"
+    },
+    {
+      "id": "denny_014_hard",
+      "difficulty": "hard",
+      "story": 14,
+      "theme": "ocean",
+      "location": "sandy_shore",
+      "title": "Denny Avoids the Sharp Coral"
+    },
+    {
+      "id": "denny_015_easy",
+      "difficulty": "easy",
+      "story": 15,
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Starfish Search"
+    },
+    {
+      "id": "denny_015_medium",
+      "difficulty": "medium",
+      "story": 15,
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Starfish Search"
+    },
+    {
+      "id": "denny_015_hard",
+      "difficulty": "hard",
+      "story": 15,
+      "theme": "ocean",
+      "location": "starfish_cove",
+      "title": "Denny's Starfish Search"
+    },
+    {
+      "id": "denny_016_easy",
+      "difficulty": "easy",
+      "story": 16,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Clam Hunt"
+    },
+    {
+      "id": "denny_016_medium",
+      "difficulty": "medium",
+      "story": 16,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Clam Hunt"
+    },
+    {
+      "id": "denny_016_hard",
+      "difficulty": "hard",
+      "story": 16,
+      "theme": "ocean",
+      "location": "coral_garden",
+      "title": "Denny's Clam Hunt"
+    },
+    {
+      "id": "denny_017_easy",
+      "difficulty": "easy",
+      "story": 17,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny's Seaweed Shortcut"
+    },
+    {
+      "id": "denny_017_medium",
+      "difficulty": "medium",
+      "story": 17,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny's Seaweed Shortcut"
+    },
+    {
+      "id": "denny_017_hard",
+      "difficulty": "hard",
+      "story": 17,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny's Seaweed Shortcut"
+    },
+    {
+      "id": "denny_018_easy",
+      "difficulty": "easy",
+      "story": 18,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny's Kelp Harvest"
+    },
+    {
+      "id": "denny_018_medium",
+      "difficulty": "medium",
+      "story": 18,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny's Kelp Harvest"
+    },
+    {
+      "id": "denny_018_hard",
+      "difficulty": "hard",
+      "story": 18,
+      "theme": "ocean",
+      "location": "kelp_forest",
+      "title": "Denny's Kelp Harvest"
+    },
+    {
+      "id": "denny_019_easy",
+      "difficulty": "easy",
+      "story": 19,
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Treasure Hunt"
+    },
+    {
+      "id": "denny_019_medium",
+      "difficulty": "medium",
+      "story": 19,
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Treasure Hunt"
+    },
+    {
+      "id": "denny_019_hard",
+      "difficulty": "hard",
+      "story": 19,
+      "theme": "ocean",
+      "location": "shipwreck_playground",
+      "title": "Denny's Treasure Hunt"
+    },
+    {
+      "id": "denny_020_easy",
+      "difficulty": "easy",
+      "story": 20,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Dodges the Pufferfish"
+    },
+    {
+      "id": "denny_020_medium",
+      "difficulty": "medium",
+      "story": 20,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Dodges the Pufferfish"
+    },
+    {
+      "id": "denny_020_hard",
+      "difficulty": "hard",
+      "story": 20,
+      "theme": "ocean",
+      "location": "bubble_lagoon",
+      "title": "Denny Dodges the Pufferfish"
+    },
+    {
+      "id": "denny_021_easy",
+      "difficulty": "easy",
+      "story": 21,
+      "theme": "space",
+      "location": "rocket_launch_pad",
+      "title": "Denny's First Launch"
+    },
+    {
+      "id": "denny_021_medium",
+      "difficulty": "medium",
+      "story": 21,
+      "theme": "space",
+      "location": "rocket_launch_pad",
+      "title": "Denny's First Launch"
+    },
+    {
+      "id": "denny_021_hard",
+      "difficulty": "hard",
+      "story": 21,
+      "theme": "space",
+      "location": "rocket_launch_pad",
+      "title": "Denny's First Launch"
+    },
+    {
+      "id": "denny_022_easy",
+      "difficulty": "easy",
+      "story": 22,
+      "theme": "space",
+      "location": "moon_crater",
+      "title": "Denny Walks on the Moon"
+    },
+    {
+      "id": "denny_022_medium",
+      "difficulty": "medium",
+      "story": 22,
+      "theme": "space",
+      "location": "moon_crater",
+      "title": "Denny Walks on the Moon"
+    },
+    {
+      "id": "denny_022_hard",
+      "difficulty": "hard",
+      "story": 22,
+      "theme": "space",
+      "location": "moon_crater",
+      "title": "Denny Walks on the Moon"
+    },
+    {
+      "id": "denny_023_easy",
+      "difficulty": "easy",
+      "story": 23,
+      "theme": "space",
+      "location": "asteroid_belt",
+      "title": "Denny's Asteroid Adventure"
+    },
+    {
+      "id": "denny_023_medium",
+      "difficulty": "medium",
+      "story": 23,
+      "theme": "space",
+      "location": "asteroid_belt",
+      "title": "Denny's Asteroid Adventure"
+    },
+    {
+      "id": "denny_023_hard",
+      "difficulty": "hard",
+      "story": 23,
+      "theme": "space",
+      "location": "asteroid_belt",
+      "title": "Denny's Asteroid Adventure"
+    },
+    {
+      "id": "denny_024_easy",
+      "difficulty": "easy",
+      "story": 24,
+      "theme": "space",
+      "location": "alien_planet",
+      "title": "Denny Meets Aliens"
+    },
+    {
+      "id": "denny_024_medium",
+      "difficulty": "medium",
+      "story": 24,
+      "theme": "space",
+      "location": "alien_planet",
+      "title": "Denny Meets Aliens"
+    },
+    {
+      "id": "denny_024_hard",
+      "difficulty": "hard",
+      "story": 24,
+      "theme": "space",
+      "location": "alien_planet",
+      "title": "Denny Meets Aliens"
+    },
+    {
+      "id": "denny_025_easy",
+      "difficulty": "easy",
+      "story": 25,
+      "theme": "space",
+      "location": "space_station",
+      "title": "Denny at the Space Station"
+    },
+    {
+      "id": "denny_025_medium",
+      "difficulty": "medium",
+      "story": 25,
+      "theme": "space",
+      "location": "space_station",
+      "title": "Denny at the Space Station"
+    },
+    {
+      "id": "denny_025_hard",
+      "difficulty": "hard",
+      "story": 25,
+      "theme": "space",
+      "location": "space_station",
+      "title": "Denny at the Space Station"
+    },
+    {
+      "id": "denny_026_easy",
+      "difficulty": "easy",
+      "story": 26,
+      "theme": "space",
+      "location": "nebula_cloud",
+      "title": "Denny in the Nebula"
+    },
+    {
+      "id": "denny_026_medium",
+      "difficulty": "medium",
+      "story": 26,
+      "theme": "space",
+      "location": "nebula_cloud",
+      "title": "Denny in the Nebula"
+    },
+    {
+      "id": "denny_026_hard",
+      "difficulty": "hard",
+      "story": 26,
+      "theme": "space",
+      "location": "nebula_cloud",
+      "title": "Denny in the Nebula"
+    },
+    {
+      "id": "denny_027_easy",
+      "difficulty": "easy",
+      "story": 27,
+      "theme": "space",
+      "location": "comet_tail",
+      "title": "Denny Rides a Comet"
+    },
+    {
+      "id": "denny_027_medium",
+      "difficulty": "medium",
+      "story": 27,
+      "theme": "space",
+      "location": "comet_tail",
+      "title": "Denny Rides a Comet"
+    },
+    {
+      "id": "denny_027_hard",
+      "difficulty": "hard",
+      "story": 27,
+      "theme": "space",
+      "location": "comet_tail",
+      "title": "Denny Rides a Comet"
+    },
+    {
+      "id": "denny_028_easy",
+      "difficulty": "easy",
+      "story": 28,
+      "theme": "space",
+      "location": "black_hole_edge",
+      "title": "Denny at the Black Hole"
+    },
+    {
+      "id": "denny_028_medium",
+      "difficulty": "medium",
+      "story": 28,
+      "theme": "space",
+      "location": "black_hole_edge",
+      "title": "Denny at the Black Hole"
+    },
+    {
+      "id": "denny_028_hard",
+      "difficulty": "hard",
+      "story": 28,
+      "theme": "space",
+      "location": "black_hole_edge",
+      "title": "Denny at the Black Hole"
+    },
+    {
+      "id": "denny_029_easy",
+      "difficulty": "easy",
+      "story": 29,
+      "theme": "space",
+      "location": "saturn_rings",
+      "title": "Denny and Saturn's Rings"
+    },
+    {
+      "id": "denny_029_medium",
+      "difficulty": "medium",
+      "story": 29,
+      "theme": "space",
+      "location": "saturn_rings",
+      "title": "Denny and Saturn's Rings"
+    },
+    {
+      "id": "denny_029_hard",
+      "difficulty": "hard",
+      "story": 29,
+      "theme": "space",
+      "location": "saturn_rings",
+      "title": "Denny and Saturn's Rings"
+    },
+    {
+      "id": "denny_030_easy",
+      "difficulty": "easy",
+      "story": 30,
+      "theme": "space",
+      "location": "starfield",
+      "title": "Denny's Starfield Journey"
+    },
+    {
+      "id": "denny_030_medium",
+      "difficulty": "medium",
+      "story": 30,
+      "theme": "space",
+      "location": "starfield",
+      "title": "Denny's Starfield Journey"
+    },
+    {
+      "id": "denny_030_hard",
+      "difficulty": "hard",
+      "story": 30,
+      "theme": "space",
+      "location": "starfield",
+      "title": "Denny's Starfield Journey"
+    },
+    {
+      "id": "denny_031_easy",
+      "difficulty": "easy",
+      "story": 31,
+      "theme": "space",
+      "location": "mars_surface",
+      "title": "Denny Lands on Mars"
+    },
+    {
+      "id": "denny_031_medium",
+      "difficulty": "medium",
+      "story": 31,
+      "theme": "space",
+      "location": "mars_surface",
+      "title": "Denny Lands on Mars"
+    },
+    {
+      "id": "denny_031_hard",
+      "difficulty": "hard",
+      "story": 31,
+      "theme": "space",
+      "location": "mars_surface",
+      "title": "Denny Lands on Mars"
+    },
+    {
+      "id": "denny_032_easy",
+      "difficulty": "easy",
+      "story": 32,
+      "theme": "space",
+      "location": "jupiter_storm",
+      "title": "Denny Inside Jupiter's Storm"
+    },
+    {
+      "id": "denny_032_medium",
+      "difficulty": "medium",
+      "story": 32,
+      "theme": "space",
+      "location": "jupiter_storm",
+      "title": "Denny Inside Jupiter's Storm"
+    },
+    {
+      "id": "denny_032_hard",
+      "difficulty": "hard",
+      "story": 32,
+      "theme": "space",
+      "location": "jupiter_storm",
+      "title": "Denny Inside Jupiter's Storm"
+    },
+    {
+      "id": "denny_033_easy",
+      "difficulty": "easy",
+      "story": 33,
+      "theme": "space",
+      "location": "lunar_base",
+      "title": "Denny Builds the Lunar Base"
+    },
+    {
+      "id": "denny_033_medium",
+      "difficulty": "medium",
+      "story": 33,
+      "theme": "space",
+      "location": "lunar_base",
+      "title": "Denny Builds the Lunar Base"
+    },
+    {
+      "id": "denny_033_hard",
+      "difficulty": "hard",
+      "story": 33,
+      "theme": "space",
+      "location": "lunar_base",
+      "title": "Denny Builds the Lunar Base"
+    },
+    {
+      "id": "denny_034_easy",
+      "difficulty": "easy",
+      "story": 34,
+      "theme": "space",
+      "location": "wormhole",
+      "title": "Denny and the Wormhole"
+    },
+    {
+      "id": "denny_034_medium",
+      "difficulty": "medium",
+      "story": 34,
+      "theme": "space",
+      "location": "wormhole",
+      "title": "Denny and the Wormhole"
+    },
+    {
+      "id": "denny_034_hard",
+      "difficulty": "hard",
+      "story": 34,
+      "theme": "space",
+      "location": "wormhole",
+      "title": "Denny and the Wormhole"
+    },
+    {
+      "id": "denny_035_easy",
+      "difficulty": "easy",
+      "story": 35,
+      "theme": "space",
+      "location": "alien_jungle",
+      "title": "Denny in the Alien Jungle"
+    },
+    {
+      "id": "denny_035_medium",
+      "difficulty": "medium",
+      "story": 35,
+      "theme": "space",
+      "location": "alien_jungle",
+      "title": "Denny in the Alien Jungle"
+    },
+    {
+      "id": "denny_035_hard",
+      "difficulty": "hard",
+      "story": 35,
+      "theme": "space",
+      "location": "alien_jungle",
+      "title": "Denny in the Alien Jungle"
+    },
+    {
+      "id": "denny_036_easy",
+      "difficulty": "easy",
+      "story": 36,
+      "theme": "space",
+      "location": "ice_planet",
+      "title": "Denny on the Ice Planet"
+    },
+    {
+      "id": "denny_036_medium",
+      "difficulty": "medium",
+      "story": 36,
+      "theme": "space",
+      "location": "ice_planet",
+      "title": "Denny on the Ice Planet"
+    },
+    {
+      "id": "denny_036_hard",
+      "difficulty": "hard",
+      "story": 36,
+      "theme": "space",
+      "location": "ice_planet",
+      "title": "Denny on the Ice Planet"
+    },
+    {
+      "id": "denny_037_easy",
+      "difficulty": "easy",
+      "story": 37,
+      "theme": "space",
+      "location": "space_race",
+      "title": "Denny's Space Race"
+    },
+    {
+      "id": "denny_037_medium",
+      "difficulty": "medium",
+      "story": 37,
+      "theme": "space",
+      "location": "space_race",
+      "title": "Denny's Space Race"
+    },
+    {
+      "id": "denny_037_hard",
+      "difficulty": "hard",
+      "story": 37,
+      "theme": "space",
+      "location": "space_race",
+      "title": "Denny's Space Race"
+    },
+    {
+      "id": "denny_038_easy",
+      "difficulty": "easy",
+      "story": 38,
+      "theme": "space",
+      "location": "robot_planet",
+      "title": "Denny Visits the Robot Planet"
+    },
+    {
+      "id": "denny_038_medium",
+      "difficulty": "medium",
+      "story": 38,
+      "theme": "space",
+      "location": "robot_planet",
+      "title": "Denny Visits the Robot Planet"
+    },
+    {
+      "id": "denny_038_hard",
+      "difficulty": "hard",
+      "story": 38,
+      "theme": "space",
+      "location": "robot_planet",
+      "title": "Denny Visits the Robot Planet"
+    },
+    {
+      "id": "denny_039_easy",
+      "difficulty": "easy",
+      "story": 39,
+      "theme": "space",
+      "location": "galaxy_center",
+      "title": "Denny at the Galaxy Center"
+    },
+    {
+      "id": "denny_039_medium",
+      "difficulty": "medium",
+      "story": 39,
+      "theme": "space",
+      "location": "galaxy_center",
+      "title": "Denny at the Galaxy Center"
+    },
+    {
+      "id": "denny_039_hard",
+      "difficulty": "hard",
+      "story": 39,
+      "theme": "space",
+      "location": "galaxy_center",
+      "title": "Denny at the Galaxy Center"
+    },
+    {
+      "id": "denny_040_easy",
+      "difficulty": "easy",
+      "story": 40,
+      "theme": "space",
+      "location": "earth_orbit",
+      "title": "Denny Returns Home"
+    },
+    {
+      "id": "denny_040_medium",
+      "difficulty": "medium",
+      "story": 40,
+      "theme": "space",
+      "location": "earth_orbit",
+      "title": "Denny Returns Home"
+    },
+    {
+      "id": "denny_040_hard",
+      "difficulty": "hard",
+      "story": 40,
+      "theme": "space",
+      "location": "earth_orbit",
+      "title": "Denny Returns Home"
+    },
+    {
+      "id": "denny_041_easy",
+      "difficulty": "easy",
+      "story": 41,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "What Is That Noise?"
+    },
+    {
+      "id": "denny_041_medium",
+      "difficulty": "medium",
+      "story": 41,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "What Is That Noise?"
+    },
+    {
+      "id": "denny_041_hard",
+      "difficulty": "hard",
+      "story": 41,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "What Is That Noise?"
+    },
+    {
+      "id": "denny_042_easy",
+      "difficulty": "easy",
+      "story": 42,
+      "theme": "forest",
+      "location": "mushroom_clearing",
+      "title": "Maya's Secret Path"
+    },
+    {
+      "id": "denny_042_medium",
+      "difficulty": "medium",
+      "story": 42,
+      "theme": "forest",
+      "location": "mushroom_clearing",
+      "title": "Maya's Secret Path"
+    },
+    {
+      "id": "denny_042_hard",
+      "difficulty": "hard",
+      "story": 42,
+      "theme": "forest",
+      "location": "mushroom_clearing",
+      "title": "Maya's Secret Path"
+    },
+    {
+      "id": "denny_043_easy",
+      "difficulty": "easy",
+      "story": 43,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Flowers for Maya"
+    },
+    {
+      "id": "denny_043_medium",
+      "difficulty": "medium",
+      "story": 43,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Flowers for Maya"
+    },
+    {
+      "id": "denny_043_hard",
+      "difficulty": "hard",
+      "story": 43,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Flowers for Maya"
+    },
+    {
+      "id": "denny_044_easy",
+      "difficulty": "easy",
+      "story": 44,
+      "theme": "forest",
+      "location": "owl_hollow",
+      "title": "Watch Out for the Owls!"
+    },
+    {
+      "id": "denny_044_medium",
+      "difficulty": "medium",
+      "story": 44,
+      "theme": "forest",
+      "location": "owl_hollow",
+      "title": "Watch Out for the Owls!"
+    },
+    {
+      "id": "denny_044_hard",
+      "difficulty": "hard",
+      "story": 44,
+      "theme": "forest",
+      "location": "owl_hollow",
+      "title": "Watch Out for the Owls!"
+    },
+    {
+      "id": "denny_045_easy",
+      "difficulty": "easy",
+      "story": 45,
+      "theme": "forest",
+      "location": "fox_den",
+      "title": "Tracks to the Fox Den"
+    },
+    {
+      "id": "denny_045_medium",
+      "difficulty": "medium",
+      "story": 45,
+      "theme": "forest",
+      "location": "fox_den",
+      "title": "Tracks to the Fox Den"
+    },
+    {
+      "id": "denny_045_hard",
+      "difficulty": "hard",
+      "story": 45,
+      "theme": "forest",
+      "location": "fox_den",
+      "title": "Tracks to the Fox Den"
+    },
+    {
+      "id": "denny_046_easy",
+      "difficulty": "easy",
+      "story": 46,
+      "theme": "forest",
+      "location": "berry_bush",
+      "title": "Blueberries for Finn"
+    },
+    {
+      "id": "denny_046_medium",
+      "difficulty": "medium",
+      "story": 46,
+      "theme": "forest",
+      "location": "berry_bush",
+      "title": "Blueberries for Finn"
+    },
+    {
+      "id": "denny_046_hard",
+      "difficulty": "hard",
+      "story": 46,
+      "theme": "forest",
+      "location": "berry_bush",
+      "title": "Blueberries for Finn"
+    },
+    {
+      "id": "denny_047_easy",
+      "difficulty": "easy",
+      "story": 47,
+      "theme": "forest",
+      "location": "oak_tree",
+      "title": "Sneak Past the Bees"
+    },
+    {
+      "id": "denny_047_medium",
+      "difficulty": "medium",
+      "story": 47,
+      "theme": "forest",
+      "location": "oak_tree",
+      "title": "Sneak Past the Bees"
+    },
+    {
+      "id": "denny_047_hard",
+      "difficulty": "hard",
+      "story": 47,
+      "theme": "forest",
+      "location": "oak_tree",
+      "title": "Sneak Past the Bees"
+    },
+    {
+      "id": "denny_048_easy",
+      "difficulty": "easy",
+      "story": 48,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Ribbits by the Brook"
+    },
+    {
+      "id": "denny_048_medium",
+      "difficulty": "medium",
+      "story": 48,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Ribbits by the Brook"
+    },
+    {
+      "id": "denny_048_hard",
+      "difficulty": "hard",
+      "story": 48,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Ribbits by the Brook"
+    },
+    {
+      "id": "denny_049_easy",
+      "difficulty": "easy",
+      "story": 49,
+      "theme": "forest",
+      "location": "waterfall",
+      "title": "Pebbles for Pip"
+    },
+    {
+      "id": "denny_049_medium",
+      "difficulty": "medium",
+      "story": 49,
+      "theme": "forest",
+      "location": "waterfall",
+      "title": "Pebbles for Pip"
+    },
+    {
+      "id": "denny_049_hard",
+      "difficulty": "hard",
+      "story": 49,
+      "theme": "forest",
+      "location": "waterfall",
+      "title": "Pebbles for Pip"
+    },
+    {
+      "id": "denny_050_easy",
+      "difficulty": "easy",
+      "story": 50,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Watch Out for the Snakes"
+    },
+    {
+      "id": "denny_050_medium",
+      "difficulty": "medium",
+      "story": 50,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Watch Out for the Snakes"
+    },
+    {
+      "id": "denny_050_hard",
+      "difficulty": "hard",
+      "story": 50,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Watch Out for the Snakes"
+    },
+    {
+      "id": "denny_051_easy",
+      "difficulty": "easy",
+      "story": 51,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Branches Across the Stream"
+    },
+    {
+      "id": "denny_051_medium",
+      "difficulty": "medium",
+      "story": 51,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Branches Across the Stream"
+    },
+    {
+      "id": "denny_051_hard",
+      "difficulty": "hard",
+      "story": 51,
+      "theme": "forest",
+      "location": "babbling_brook",
+      "title": "Branches Across the Stream"
+    },
+    {
+      "id": "denny_052_easy",
+      "difficulty": "easy",
+      "story": 52,
+      "theme": "forest",
+      "location": "waterfall",
+      "title": "Sticks for the Dam"
+    },
+    {
+      "id": "denny_052_medium",
+      "difficulty": "medium",
+      "story": 52,
+      "theme": "forest",
+      "location": "waterfall",
+      "title": "Sticks for the Dam"
+    },
+    {
+      "id": "denny_052_hard",
+      "difficulty": "hard",
+      "story": 52,
+      "theme": "forest",
+      "location": "waterfall",
+      "title": "Sticks for the Dam"
+    },
+    {
+      "id": "denny_053_easy",
+      "difficulty": "easy",
+      "story": 53,
+      "theme": "forest",
+      "location": "fox_den",
+      "title": "Don't Wake the Dog"
+    },
+    {
+      "id": "denny_053_medium",
+      "difficulty": "medium",
+      "story": 53,
+      "theme": "forest",
+      "location": "fox_den",
+      "title": "Don't Wake the Dog"
+    },
+    {
+      "id": "denny_053_hard",
+      "difficulty": "hard",
+      "story": 53,
+      "theme": "forest",
+      "location": "fox_den",
+      "title": "Don't Wake the Dog"
+    },
+    {
+      "id": "denny_054_easy",
+      "difficulty": "easy",
+      "story": 54,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "Clover in the Clover Patch"
+    },
+    {
+      "id": "denny_054_medium",
+      "difficulty": "medium",
+      "story": 54,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "Clover in the Clover Patch"
+    },
+    {
+      "id": "denny_054_hard",
+      "difficulty": "hard",
+      "story": 54,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "Clover in the Clover Patch"
+    },
+    {
+      "id": "denny_055_easy",
+      "difficulty": "easy",
+      "story": 55,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "Clover Leaves for Clover"
+    },
+    {
+      "id": "denny_055_medium",
+      "difficulty": "medium",
+      "story": 55,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "Clover Leaves for Clover"
+    },
+    {
+      "id": "denny_055_hard",
+      "difficulty": "hard",
+      "story": 55,
+      "theme": "forest",
+      "location": "forest_entrance",
+      "title": "Clover Leaves for Clover"
+    },
+    {
+      "id": "denny_056_easy",
+      "difficulty": "easy",
+      "story": 56,
+      "theme": "forest",
+      "location": "berry_bush",
+      "title": "Sneak Past the Thorn Bushes"
+    },
+    {
+      "id": "denny_056_medium",
+      "difficulty": "medium",
+      "story": 56,
+      "theme": "forest",
+      "location": "berry_bush",
+      "title": "Sneak Past the Thorn Bushes"
+    },
+    {
+      "id": "denny_056_hard",
+      "difficulty": "hard",
+      "story": 56,
+      "theme": "forest",
+      "location": "berry_bush",
+      "title": "Sneak Past the Thorn Bushes"
+    },
+    {
+      "id": "denny_057_easy",
+      "difficulty": "easy",
+      "story": 57,
+      "theme": "forest",
+      "location": "firefly_meadow",
+      "title": "Lights in the Meadow"
+    },
+    {
+      "id": "denny_057_medium",
+      "difficulty": "medium",
+      "story": 57,
+      "theme": "forest",
+      "location": "firefly_meadow",
+      "title": "Lights in the Meadow"
+    },
+    {
+      "id": "denny_057_hard",
+      "difficulty": "hard",
+      "story": 57,
+      "theme": "forest",
+      "location": "firefly_meadow",
+      "title": "Lights in the Meadow"
+    },
+    {
+      "id": "denny_058_easy",
+      "difficulty": "easy",
+      "story": 58,
+      "theme": "forest",
+      "location": "firefly_meadow",
+      "title": "Golden Lights to Gather"
+    },
+    {
+      "id": "denny_058_medium",
+      "difficulty": "medium",
+      "story": 58,
+      "theme": "forest",
+      "location": "firefly_meadow",
+      "title": "Golden Lights to Gather"
+    },
+    {
+      "id": "denny_058_hard",
+      "difficulty": "hard",
+      "story": 58,
+      "theme": "forest",
+      "location": "firefly_meadow",
+      "title": "Golden Lights to Gather"
+    },
+    {
+      "id": "denny_059_easy",
+      "difficulty": "easy",
+      "story": 59,
+      "theme": "forest",
+      "location": "forest_canopy",
+      "title": "Avoid the Spider Webs"
+    },
+    {
+      "id": "denny_059_medium",
+      "difficulty": "medium",
+      "story": 59,
+      "theme": "forest",
+      "location": "forest_canopy",
+      "title": "Avoid the Spider Webs"
+    },
+    {
+      "id": "denny_059_hard",
+      "difficulty": "hard",
+      "story": 59,
+      "theme": "forest",
+      "location": "forest_canopy",
+      "title": "Avoid the Spider Webs"
+    },
+    {
+      "id": "denny_060_easy",
+      "difficulty": "easy",
+      "story": 60,
+      "theme": "forest",
+      "location": "forest_canopy",
+      "title": "The Leaf Lantern Path"
+    },
+    {
+      "id": "denny_060_medium",
+      "difficulty": "medium",
+      "story": 60,
+      "theme": "forest",
+      "location": "forest_canopy",
+      "title": "The Leaf Lantern Path"
+    },
+    {
+      "id": "denny_060_hard",
+      "difficulty": "hard",
+      "story": 60,
+      "theme": "forest",
+      "location": "forest_canopy",
+      "title": "The Leaf Lantern Path"
+    }
+  ],
+  "total": 180
+}

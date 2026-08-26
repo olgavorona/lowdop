@@ -1,0 +1,609 @@
+{
+  "id": "denny_033_medium",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "space",
+  "location": "lunar_base",
+  "title": "Denny Builds the Lunar Base",
+  "story_setup": "Stella is building a cozy base on the Moon! Denny must bounce across the winding lunar surface paths to help her.",
+  "instruction": "Bounce across the Moon and reach Stella at the lunar base!",
+  "tts_instruction": "Base building time! Help Denny bounce across the winding Moon paths to reach Stella at the lunar base.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish in a star-shaped space suit, wise and kind",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella_space"
+  },
+  "educational_question": "Could people really live on the Moon one day? What would they need?",
+  "fun_fact": "Scientists are working on plans for a real Moon base! People living there would need air, water, food, and protection from the Sun's radiation. They might even grow plants underground!",
+  "completion_message": "Denny arrived! Together, they finish building the lunar base!",
+  "path_data": {
+    "svg_path": "M 244 26 L 300 26 M 244 26 L 244 82 M 300 26 L 356 26 M 356 26 L 356 82 M 356 26 L 412 26 M 412 26 L 412 82 M 356 26 L 356 82 M 188 82 L 244 82 M 188 82 L 188 138 M 300 82 L 300 138 M 300 138 L 356 138 M 300 82 L 300 138 M 412 82 L 412 138 M 244 138 L 244 194 M 188 194 L 244 194 M 188 138 L 188 194 M 300 138 L 300 194 M 244 138 L 244 194 M 300 138 L 356 138 M 356 138 L 356 194 M 300 138 L 300 194 M 356 194 L 412 194 M 356 138 L 356 194 M 412 138 L 468 138 M 468 138 L 468 194 M 132 194 L 188 194 M 132 194 L 132 250 M 188 194 L 244 194 M 188 250 L 244 250 M 244 250 L 300 250 M 300 250 L 356 250 M 356 194 L 412 194 M 356 250 L 412 250 M 468 194 L 468 250 M 412 250 L 468 250 M 188 250 L 188 306 M 132 250 L 132 306 M 188 250 L 244 250 M 188 250 L 188 306 M 244 250 L 300 250 M 244 306 L 300 306 M 300 250 L 356 250 M 300 306 L 356 306 M 356 250 L 412 250 M 356 306 L 412 306 M 412 250 L 468 250 M 468 250 L 524 250 M 524 250 L 524 306 M 468 306 L 524 306 M 76 306 L 132 306 M 76 306 L 76 362 M 188 306 L 188 362 M 132 362 L 188 362 M 244 306 L 244 362 M 188 306 L 188 362 M 244 306 L 300 306 M 244 362 L 300 362 M 244 306 L 244 362 M 300 306 L 356 306 M 356 306 L 412 306 M 412 306 L 412 362 M 356 362 L 412 362 M 412 362 L 468 362 M 412 306 L 412 362 M 468 306 L 524 306 M 524 306 L 524 362 M 76 362 L 76 418 M 132 362 L 188 362 M 188 362 L 188 418 M 188 418 L 244 418 M 188 362 L 188 418 M 244 362 L 300 362 M 356 362 L 412 362 M 412 362 L 468 362 M 412 418 L 468 418 M 524 362 L 580 362 M 580 362 L 580 418 M 20 418 L 76 418 M 20 474 L 76 474 M 20 418 L 20 474 M 132 418 L 132 474 M 76 474 L 132 474 M 132 474 L 188 474 M 132 418 L 132 474 M 188 418 L 244 418 M 188 474 L 244 474 M 244 474 L 300 474 M 356 418 L 356 474 M 300 474 L 356 474 M 412 418 L 412 474 M 356 474 L 412 474 M 356 418 L 356 474 M 412 418 L 468 418 M 412 474 L 468 474 M 412 418 L 412 474 M 468 474 L 524 474 M 580 418 L 580 474 M 524 474 L 580 474",
+    "solution_path": "M 384 446 L 384 390 L 328 390 L 328 446 L 272 446 L 216 446 L 160 446 L 160 390 L 104 390 L 104 334 L 160 334 L 160 278 L 160 222 L 216 222 L 272 222 L 272 166 L 272 110 L 272 54 L 328 54 L 328 110 L 384 110 L 384 54",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "shaped_mountain",
+    "start_point": {
+      "x": 384,
+      "y": 446
+    },
+    "end_point": {
+      "x": 384,
+      "y": 54
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 272,
+          "y": 54
+        },
+        "end": {
+          "x": 328,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 54
+        },
+        "end": {
+          "x": 272,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 54
+        },
+        "end": {
+          "x": 328,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 54
+        },
+        "end": {
+          "x": 384,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 110
+        },
+        "end": {
+          "x": 216,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 110
+        },
+        "end": {
+          "x": 384,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 110
+        },
+        "end": {
+          "x": 384,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 166
+        },
+        "end": {
+          "x": 272,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 166
+        },
+        "end": {
+          "x": 328,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 166
+        },
+        "end": {
+          "x": 440,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 166
+        },
+        "end": {
+          "x": 440,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 222
+        },
+        "end": {
+          "x": 216,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 222
+        },
+        "end": {
+          "x": 160,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 222
+        },
+        "end": {
+          "x": 272,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 222
+        },
+        "end": {
+          "x": 328,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 222
+        },
+        "end": {
+          "x": 384,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 222
+        },
+        "end": {
+          "x": 440,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 278
+        },
+        "end": {
+          "x": 160,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 278
+        },
+        "end": {
+          "x": 272,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 278
+        },
+        "end": {
+          "x": 216,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 278
+        },
+        "end": {
+          "x": 328,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 278
+        },
+        "end": {
+          "x": 384,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 278
+        },
+        "end": {
+          "x": 496,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 334
+        },
+        "end": {
+          "x": 160,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 334
+        },
+        "end": {
+          "x": 104,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 334
+        },
+        "end": {
+          "x": 216,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 334
+        },
+        "end": {
+          "x": 328,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 334
+        },
+        "end": {
+          "x": 384,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 334
+        },
+        "end": {
+          "x": 328,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 334
+        },
+        "end": {
+          "x": 496,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 334
+        },
+        "end": {
+          "x": 496,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 390
+        },
+        "end": {
+          "x": 160,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 390
+        },
+        "end": {
+          "x": 104,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 390
+        },
+        "end": {
+          "x": 160,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 390
+        },
+        "end": {
+          "x": 272,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 390
+        },
+        "end": {
+          "x": 328,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 390
+        },
+        "end": {
+          "x": 272,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 390
+        },
+        "end": {
+          "x": 384,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 390
+        },
+        "end": {
+          "x": 328,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 390
+        },
+        "end": {
+          "x": 440,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 390
+        },
+        "end": {
+          "x": 384,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 390
+        },
+        "end": {
+          "x": 496,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 390
+        },
+        "end": {
+          "x": 552,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 390
+        },
+        "end": {
+          "x": 496,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 552,
+          "y": 390
+        },
+        "end": {
+          "x": 552,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 48,
+          "y": 446
+        },
+        "end": {
+          "x": 104,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 446
+        },
+        "end": {
+          "x": 216,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 446
+        },
+        "end": {
+          "x": 272,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 446
+        },
+        "end": {
+          "x": 328,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 446
+        },
+        "end": {
+          "x": 496,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 446
+        },
+        "end": {
+          "x": 552,
+          "y": 446
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#2D3561",
+    "decorative_elements": [
+      "dome_habitats",
+      "earth_rise",
+      "lunar_rover"
+    ]
+  },
+  "audio_instruction": "denny_033_instruction.mp3",
+  "audio_completion": "denny_033_completion.mp3"
+}

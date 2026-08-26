@@ -1,0 +1,169 @@
+{
+  "id": "denny_033_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "lunar_base",
+  "title": "Denny Builds the Lunar Base",
+  "story_setup": "Stella is building a cozy base on the Moon! Denny must bounce across the winding lunar surface paths to help her.",
+  "instruction": "Bounce across the Moon and reach Stella at the lunar base!",
+  "tts_instruction": "Base building time! Help Denny bounce across the winding Moon paths to reach Stella at the lunar base.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish in a star-shaped space suit, wise and kind",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella_space"
+  },
+  "educational_question": "Could people really live on the Moon one day? What would they need?",
+  "fun_fact": "Scientists are working on plans for a real Moon base! People living there would need air, water, food, and protection from the Sun's radiation. They might even grow plants underground!",
+  "completion_message": "Denny arrived! Together, they finish building the lunar base!",
+  "path_data": {
+    "svg_path": "M 244 26 L 356 26 M 356 26 L 356 138 M 244 26 L 244 138 M 132 138 L 244 138 M 132 138 L 132 250 M 356 138 L 356 250 M 244 250 L 244 362 M 132 250 L 132 362 M 244 250 L 244 362 M 356 250 L 468 250 M 468 250 L 468 362 M 20 362 L 132 362 M 20 474 L 132 474 M 20 362 L 20 474 M 132 474 L 244 474 M 356 362 L 356 474 M 244 474 L 356 474 M 356 474 L 468 474 M 356 362 L 356 474 M 468 362 L 580 362 M 580 362 L 580 474 M 468 474 L 580 474",
+    "solution_path": "M 524 418 L 412 418 L 412 306 L 300 306 L 300 194 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "shaped_mountain",
+    "start_point": {
+      "x": 524,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 306
+        },
+        "end": {
+          "x": 412,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 418
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 418
+        },
+        "end": {
+          "x": 524,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": []
+  },
+  "visual_theme": {
+    "background_color": "#2D3561",
+    "decorative_elements": [
+      "dome_habitats",
+      "earth_rise",
+      "lunar_rover"
+    ]
+  },
+  "audio_instruction": "denny_033_instruction.mp3",
+  "audio_completion": "denny_033_completion.mp3"
+}

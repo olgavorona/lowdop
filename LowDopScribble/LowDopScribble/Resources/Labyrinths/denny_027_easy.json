@@ -1,0 +1,194 @@
+{
+  "id": "denny_027_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "space",
+  "location": "comet_tail",
+  "title": "Denny Rides a Comet",
+  "story_setup": "Shelly is telling stories from the tail of a speeding comet! Denny is racing to reach Shelly while collecting chunks of glowing space ice along the way.",
+  "instruction": "Collect all the ice chunks and race to Shelly at the comet's tip!",
+  "tts_instruction": "Zooming on a comet! Help Denny pick up every glowing ice chunk in the comet's tail before reaching Shelly.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "sea turtle",
+    "description": "Green sea turtle with a space-decorated shell, slow but steady, wearing a space helmet",
+    "position": "top_right",
+    "name": "Shelly",
+    "image_asset": "shelly_space"
+  },
+  "educational_question": "What is a comet made of? Why does it have a glowing tail?",
+  "fun_fact": "Comets are giant balls of ice and rock! As they get close to the Sun, the ice melts and creates a glowing tail that can stretch millions of kilometers.",
+  "completion_message": "Denny caught the comet and reached Shelly! What a wild space ride!",
+  "item_rule": "collect",
+  "item_emoji": "🧊",
+  "path_data": {
+    "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 320 L 160 320 M 20 180 L 20 320 M 160 180 L 300 180 M 300 180 L 440 180 M 440 180 L 440 320 M 580 180 L 580 320 M 440 180 L 440 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 440 320 L 440 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460 M 440 320 L 440 460",
+    "solution_path": "M 90 390 L 230 390 L 230 250 L 90 250 L 90 110 L 230 110 L 370 110 L 510 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 90,
+      "y": 390
+    },
+    "end_point": {
+      "x": 510,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 90,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 390
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 390
+        },
+        "end": {
+          "x": 370,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 90,
+        "y": 110,
+        "emoji": "🧊",
+        "on_solution": true
+      },
+      {
+        "x": 510,
+        "y": 250,
+        "emoji": "🧊",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#050510",
+    "decorative_elements": [
+      "ice_chunks",
+      "blazing_trail",
+      "streaking_stars"
+    ]
+  },
+  "audio_instruction": "denny_027_instruction.mp3",
+  "audio_completion": "denny_027_completion.mp3"
+}

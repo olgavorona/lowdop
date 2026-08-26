@@ -1,0 +1,1518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001 /* LowDopScribbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000001 /* LowDopScribbleApp.swift */; };
+		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000002 /* ContentView.swift */; };
+		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB000003 /* Assets.xcassets */; };
+		AA000004 /* Labyrinth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000004 /* Labyrinth.swift */; };
+		AA000005 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000005 /* UserPreferences.swift */; };
+		AA000006 /* SVGPathParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000006 /* SVGPathParser.swift */; };
+		AA000007 /* LabyrinthLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000007 /* LabyrinthLoader.swift */; };
+		AA000008 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000008 /* TTSService.swift */; };
+		AA000009 /* DrawingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000009 /* DrawingValidator.swift */; };
+		AA000010 /* ProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000010 /* ProgressTracker.swift */; };
+		AA000011 /* LabyrinthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000011 /* LabyrinthViewModel.swift */; };
+		AA000012 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000012 /* GameViewModel.swift */; };
+		AA000013 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000013 /* OnboardingView.swift */; };
+		AA000014 /* LabyrinthListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000014 /* LabyrinthListView.swift */; };
+		AA000015 /* DrawingCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000015 /* DrawingCanvas.swift */; };
+		AA000016 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000016 /* CompletionView.swift */; };
+		AA000019 /* NavigationControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000019 /* NavigationControls.swift */; };
+		AA000020 /* LabyrinthGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000020 /* LabyrinthGameView.swift */; };
+		AA000021 /* LabyrinthGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000021 /* LabyrinthGridView.swift */; };
+		AA000022 /* CharacterMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000022 /* CharacterMarkerView.swift */; };
+		AA000023 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000023 /* ParentalGateView.swift */; };
+		AA000024 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000024 /* PrivacyPolicyView.swift */; };
+		AA000025 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AB000025 /* PrivacyInfo.xcprivacy */; };
+		AA000026 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000026 /* TermsOfServiceView.swift */; };
+		AA000027 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000027 /* Analytics.swift */; };
+		AA000028 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = AD000002 /* TelemetryDeck */; };
+		AA000029 /* BookshelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000029 /* BookshelfView.swift */; };
+		AA000030 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000030 /* Theme.swift */; };
+		AA000031 /* LetterTracingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000031 /* LetterTracingView.swift */; };
+		AA100031 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = AC100031 /* manifest.json */; };
+		AA200101 /* denny_001_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200101 /* denny_001_easy.json */; };
+		AA200102 /* denny_001_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200102 /* denny_001_medium.json */; };
+		AA200103 /* denny_001_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200103 /* denny_001_hard.json */; };
+		AA200201 /* denny_002_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200201 /* denny_002_easy.json */; };
+		AA200202 /* denny_002_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200202 /* denny_002_medium.json */; };
+		AA200203 /* denny_002_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200203 /* denny_002_hard.json */; };
+		AA200301 /* denny_003_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200301 /* denny_003_easy.json */; };
+		AA200302 /* denny_003_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200302 /* denny_003_medium.json */; };
+		AA200303 /* denny_003_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200303 /* denny_003_hard.json */; };
+		AA200401 /* denny_004_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200401 /* denny_004_easy.json */; };
+		AA200402 /* denny_004_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200402 /* denny_004_medium.json */; };
+		AA200403 /* denny_004_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200403 /* denny_004_hard.json */; };
+		AA200501 /* denny_005_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200501 /* denny_005_easy.json */; };
+		AA200502 /* denny_005_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200502 /* denny_005_medium.json */; };
+		AA200503 /* denny_005_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200503 /* denny_005_hard.json */; };
+		AA200601 /* denny_006_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200601 /* denny_006_easy.json */; };
+		AA200602 /* denny_006_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200602 /* denny_006_medium.json */; };
+		AA200603 /* denny_006_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200603 /* denny_006_hard.json */; };
+		AA200701 /* denny_007_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200701 /* denny_007_easy.json */; };
+		AA200702 /* denny_007_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200702 /* denny_007_medium.json */; };
+		AA200703 /* denny_007_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200703 /* denny_007_hard.json */; };
+		AA200801 /* denny_008_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200801 /* denny_008_easy.json */; };
+		AA200802 /* denny_008_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200802 /* denny_008_medium.json */; };
+		AA200803 /* denny_008_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200803 /* denny_008_hard.json */; };
+		AA200901 /* denny_009_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200901 /* denny_009_easy.json */; };
+		AA200902 /* denny_009_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200902 /* denny_009_medium.json */; };
+		AA200903 /* denny_009_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC200903 /* denny_009_hard.json */; };
+		AA201001 /* denny_010_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201001 /* denny_010_easy.json */; };
+		AA201002 /* denny_010_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201002 /* denny_010_medium.json */; };
+		AA201003 /* denny_010_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201003 /* denny_010_hard.json */; };
+		AA201100 /* difficulty_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201100 /* difficulty_samples.json */; };
+		AA201101 /* denny_011_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201101 /* denny_011_easy.json */; };
+		AA201102 /* denny_011_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201102 /* denny_011_medium.json */; };
+		AA201103 /* denny_011_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201103 /* denny_011_hard.json */; };
+		AA201201 /* denny_012_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201201 /* denny_012_easy.json */; };
+		AA201202 /* denny_012_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201202 /* denny_012_medium.json */; };
+		AA201203 /* denny_012_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201203 /* denny_012_hard.json */; };
+		AA201301 /* denny_013_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201301 /* denny_013_easy.json */; };
+		AA201302 /* denny_013_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201302 /* denny_013_medium.json */; };
+		AA201303 /* denny_013_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201303 /* denny_013_hard.json */; };
+		AA201401 /* denny_014_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201401 /* denny_014_easy.json */; };
+		AA201402 /* denny_014_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201402 /* denny_014_medium.json */; };
+		AA201403 /* denny_014_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201403 /* denny_014_hard.json */; };
+		AA201501 /* denny_015_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201501 /* denny_015_easy.json */; };
+		AA201502 /* denny_015_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201502 /* denny_015_medium.json */; };
+		AA201503 /* denny_015_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201503 /* denny_015_hard.json */; };
+		AA201601 /* denny_016_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201601 /* denny_016_easy.json */; };
+		AA201602 /* denny_016_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201602 /* denny_016_medium.json */; };
+		AA201603 /* denny_016_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201603 /* denny_016_hard.json */; };
+		AA201701 /* denny_017_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201701 /* denny_017_easy.json */; };
+		AA201702 /* denny_017_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201702 /* denny_017_medium.json */; };
+		AA201703 /* denny_017_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201703 /* denny_017_hard.json */; };
+		AA201801 /* denny_018_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201801 /* denny_018_easy.json */; };
+		AA201802 /* denny_018_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201802 /* denny_018_medium.json */; };
+		AA201803 /* denny_018_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201803 /* denny_018_hard.json */; };
+		AA201901 /* denny_019_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201901 /* denny_019_easy.json */; };
+		AA201902 /* denny_019_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201902 /* denny_019_medium.json */; };
+		AA201903 /* denny_019_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC201903 /* denny_019_hard.json */; };
+		AA202001 /* denny_020_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202001 /* denny_020_easy.json */; };
+		AA202002 /* denny_020_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202002 /* denny_020_medium.json */; };
+		AA202003 /* denny_020_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202003 /* denny_020_hard.json */; };
+		AA202101 /* denny_021_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202101 /* denny_021_easy.json */; };
+		AA202102 /* denny_021_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202102 /* denny_021_medium.json */; };
+		AA202103 /* denny_021_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202103 /* denny_021_hard.json */; };
+		AA202201 /* denny_022_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202201 /* denny_022_easy.json */; };
+		AA202202 /* denny_022_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202202 /* denny_022_medium.json */; };
+		AA202203 /* denny_022_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202203 /* denny_022_hard.json */; };
+		AA202301 /* denny_023_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202301 /* denny_023_easy.json */; };
+		AA202302 /* denny_023_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202302 /* denny_023_medium.json */; };
+		AA202303 /* denny_023_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202303 /* denny_023_hard.json */; };
+		AA202401 /* denny_024_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202401 /* denny_024_easy.json */; };
+		AA202402 /* denny_024_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202402 /* denny_024_medium.json */; };
+		AA202403 /* denny_024_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202403 /* denny_024_hard.json */; };
+		AA202501 /* denny_025_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202501 /* denny_025_easy.json */; };
+		AA202502 /* denny_025_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202502 /* denny_025_medium.json */; };
+		AA202503 /* denny_025_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202503 /* denny_025_hard.json */; };
+		AA202601 /* denny_026_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202601 /* denny_026_easy.json */; };
+		AA202602 /* denny_026_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202602 /* denny_026_medium.json */; };
+		AA202603 /* denny_026_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202603 /* denny_026_hard.json */; };
+		AA202701 /* denny_027_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202701 /* denny_027_easy.json */; };
+		AA202702 /* denny_027_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202702 /* denny_027_medium.json */; };
+		AA202703 /* denny_027_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202703 /* denny_027_hard.json */; };
+		AA202801 /* denny_028_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202801 /* denny_028_easy.json */; };
+		AA202802 /* denny_028_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202802 /* denny_028_medium.json */; };
+		AA202803 /* denny_028_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202803 /* denny_028_hard.json */; };
+		AA202901 /* denny_029_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202901 /* denny_029_easy.json */; };
+		AA202902 /* denny_029_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202902 /* denny_029_medium.json */; };
+		AA202903 /* denny_029_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC202903 /* denny_029_hard.json */; };
+		AA203001 /* denny_030_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203001 /* denny_030_easy.json */; };
+		AA203002 /* denny_030_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203002 /* denny_030_medium.json */; };
+		AA203003 /* denny_030_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203003 /* denny_030_hard.json */; };
+		AA203101 /* denny_031_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203101 /* denny_031_easy.json */; };
+		AA203102 /* denny_031_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203102 /* denny_031_medium.json */; };
+		AA203103 /* denny_031_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203103 /* denny_031_hard.json */; };
+		AA203201 /* denny_032_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203201 /* denny_032_easy.json */; };
+		AA203202 /* denny_032_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203202 /* denny_032_medium.json */; };
+		AA203203 /* denny_032_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203203 /* denny_032_hard.json */; };
+		AA203301 /* denny_033_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203301 /* denny_033_easy.json */; };
+		AA203302 /* denny_033_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203302 /* denny_033_medium.json */; };
+		AA203303 /* denny_033_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203303 /* denny_033_hard.json */; };
+		AA203401 /* denny_034_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203401 /* denny_034_easy.json */; };
+		AA203402 /* denny_034_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203402 /* denny_034_medium.json */; };
+		AA203403 /* denny_034_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203403 /* denny_034_hard.json */; };
+		AA203501 /* denny_035_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203501 /* denny_035_easy.json */; };
+		AA203502 /* denny_035_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203502 /* denny_035_medium.json */; };
+		AA203503 /* denny_035_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203503 /* denny_035_hard.json */; };
+		AA203601 /* denny_036_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203601 /* denny_036_easy.json */; };
+		AA203602 /* denny_036_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203602 /* denny_036_medium.json */; };
+		AA203603 /* denny_036_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203603 /* denny_036_hard.json */; };
+		AA203701 /* denny_037_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203701 /* denny_037_easy.json */; };
+		AA203702 /* denny_037_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203702 /* denny_037_medium.json */; };
+		AA203703 /* denny_037_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203703 /* denny_037_hard.json */; };
+		AA203801 /* denny_038_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203801 /* denny_038_easy.json */; };
+		AA203802 /* denny_038_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203802 /* denny_038_medium.json */; };
+		AA203803 /* denny_038_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203803 /* denny_038_hard.json */; };
+		AA203901 /* denny_039_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203901 /* denny_039_easy.json */; };
+		AA203902 /* denny_039_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203902 /* denny_039_medium.json */; };
+		AA203903 /* denny_039_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC203903 /* denny_039_hard.json */; };
+		AA204001 /* denny_040_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204001 /* denny_040_easy.json */; };
+		AA204002 /* denny_040_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204002 /* denny_040_medium.json */; };
+		AA204003 /* denny_040_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204003 /* denny_040_hard.json */; };
+		AA204101 /* denny_041_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204101 /* denny_041_medium.json */; };
+		AA204102 /* denny_042_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204102 /* denny_042_medium.json */; };
+		AA204103 /* denny_043_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204103 /* denny_043_medium.json */; };
+		AA204104 /* denny_044_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204104 /* denny_044_medium.json */; };
+		AA204111 /* denny_041_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204111 /* denny_041_easy.json */; };
+		AA204112 /* denny_041_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204112 /* denny_041_hard.json */; };
+		AA204121 /* denny_042_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204121 /* denny_042_easy.json */; };
+		AA204122 /* denny_042_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204122 /* denny_042_hard.json */; };
+		AA204131 /* denny_043_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204131 /* denny_043_easy.json */; };
+		AA204132 /* denny_043_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204132 /* denny_043_hard.json */; };
+		AA204141 /* denny_044_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204141 /* denny_044_easy.json */; };
+		AA204142 /* denny_044_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204142 /* denny_044_hard.json */; };
+		AA204501 /* denny_045_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204501 /* denny_045_medium.json */; };
+		AA204511 /* denny_045_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204511 /* denny_045_easy.json */; };
+		AA204512 /* denny_045_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204512 /* denny_045_hard.json */; };
+		AA204601 /* denny_046_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204601 /* denny_046_medium.json */; };
+		AA204611 /* denny_046_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204611 /* denny_046_easy.json */; };
+		AA204612 /* denny_046_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204612 /* denny_046_hard.json */; };
+		AA204701 /* denny_047_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204701 /* denny_047_medium.json */; };
+		AA204711 /* denny_047_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204711 /* denny_047_easy.json */; };
+		AA204712 /* denny_047_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204712 /* denny_047_hard.json */; };
+		AA204801 /* denny_048_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204801 /* denny_048_medium.json */; };
+		AA204811 /* denny_048_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204811 /* denny_048_easy.json */; };
+		AA204812 /* denny_048_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204812 /* denny_048_hard.json */; };
+		AA204901 /* denny_049_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204901 /* denny_049_medium.json */; };
+		AA204911 /* denny_049_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204911 /* denny_049_easy.json */; };
+		AA204912 /* denny_049_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC204912 /* denny_049_hard.json */; };
+		AA205001 /* denny_050_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205001 /* denny_050_medium.json */; };
+		AA205011 /* denny_050_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205011 /* denny_050_easy.json */; };
+		AA205012 /* denny_050_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205012 /* denny_050_hard.json */; };
+		AA205101 /* denny_051_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205101 /* denny_051_medium.json */; };
+		AA205111 /* denny_051_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205111 /* denny_051_easy.json */; };
+		AA205112 /* denny_051_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205112 /* denny_051_hard.json */; };
+		AA205201 /* denny_052_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205201 /* denny_052_medium.json */; };
+		AA205211 /* denny_052_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205211 /* denny_052_easy.json */; };
+		AA205212 /* denny_052_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205212 /* denny_052_hard.json */; };
+		AA205301 /* denny_053_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205301 /* denny_053_medium.json */; };
+		AA205311 /* denny_053_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205311 /* denny_053_easy.json */; };
+		AA205312 /* denny_053_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205312 /* denny_053_hard.json */; };
+		AA205401 /* denny_054_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205401 /* denny_054_medium.json */; };
+		AA205411 /* denny_054_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205411 /* denny_054_easy.json */; };
+		AA205412 /* denny_054_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205412 /* denny_054_hard.json */; };
+		AA205501 /* denny_055_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205501 /* denny_055_medium.json */; };
+		AA205511 /* denny_055_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205511 /* denny_055_easy.json */; };
+		AA205512 /* denny_055_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205512 /* denny_055_hard.json */; };
+		AA205601 /* denny_056_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205601 /* denny_056_medium.json */; };
+		AA205611 /* denny_056_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205611 /* denny_056_easy.json */; };
+		AA205612 /* denny_056_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205612 /* denny_056_hard.json */; };
+		AA205701 /* denny_057_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205701 /* denny_057_medium.json */; };
+		AA205711 /* denny_057_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205711 /* denny_057_easy.json */; };
+		AA205712 /* denny_057_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205712 /* denny_057_hard.json */; };
+		AA205801 /* denny_058_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205801 /* denny_058_medium.json */; };
+		AA205811 /* denny_058_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205811 /* denny_058_easy.json */; };
+		AA205812 /* denny_058_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205812 /* denny_058_hard.json */; };
+		AA205901 /* denny_059_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205901 /* denny_059_medium.json */; };
+		AA205911 /* denny_059_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205911 /* denny_059_easy.json */; };
+		AA205912 /* denny_059_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC205912 /* denny_059_hard.json */; };
+		AA206001 /* denny_060_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = AC206001 /* denny_060_medium.json */; };
+		AA206011 /* denny_060_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = AC206011 /* denny_060_easy.json */; };
+		AA206012 /* denny_060_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = AC206012 /* denny_060_hard.json */; };
+		AA300001 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = AC300001 /* audio */; };
+		AA300002 /* onboarding_draw.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300002 /* onboarding_draw.png */; };
+		AA300003 /* onboarding_maze_screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = AC300003 /* onboarding_maze_screenshot.png */; };
+		BA000001 /* GameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001 /* GameViewModelTests.swift */; };
+		BA000002 /* DrawingValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000002 /* DrawingValidatorTests.swift */; };
+		BA000003 /* LabyrinthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000003 /* LabyrinthViewModelTests.swift */; };
+		BA000004 /* UserPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000004 /* UserPreferencesTests.swift */; };
+		BA000005 /* StoryInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000005 /* StoryInfoTests.swift */; };
+		BA000006 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000006 /* OnboardingTests.swift */; };
+		CA000001 /* LowDopScribbleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB000001 /* LowDopScribbleUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF000001;
+			remoteInfo = LowDopScribble;
+		};
+		CD000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF000001;
+			remoteInfo = LowDopScribble;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AB000000 /* LowDopScribble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LowDopScribble.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB000001 /* LowDopScribbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowDopScribbleApp.swift; sourceTree = "<group>"; };
+		AB000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB000004 /* Labyrinth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labyrinth.swift; sourceTree = "<group>"; };
+		AB000005 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		AB000006 /* SVGPathParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGPathParser.swift; sourceTree = "<group>"; };
+		AB000007 /* LabyrinthLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthLoader.swift; sourceTree = "<group>"; };
+		AB000008 /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
+		AB000009 /* DrawingValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingValidator.swift; sourceTree = "<group>"; };
+		AB000010 /* ProgressTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTracker.swift; sourceTree = "<group>"; };
+		AB000011 /* LabyrinthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthViewModel.swift; sourceTree = "<group>"; };
+		AB000012 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		AB000013 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AB000014 /* LabyrinthListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthListView.swift; sourceTree = "<group>"; };
+		AB000015 /* DrawingCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvas.swift; sourceTree = "<group>"; };
+		AB000016 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
+		AB000019 /* NavigationControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControls.swift; sourceTree = "<group>"; };
+		AB000020 /* LabyrinthGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGameView.swift; sourceTree = "<group>"; };
+		AB000021 /* LabyrinthGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthGridView.swift; sourceTree = "<group>"; };
+		AB000022 /* CharacterMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMarkerView.swift; sourceTree = "<group>"; };
+		AB000023 /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
+		AB000024 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		AB000025 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		AB000026 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
+		AB000027 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		AB000029 /* BookshelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfView.swift; sourceTree = "<group>"; };
+		AB000030 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		AB000031 /* LetterTracingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterTracingView.swift; sourceTree = "<group>"; };
+		AC100031 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		AC200101 /* denny_001_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001_easy.json; sourceTree = "<group>"; };
+		AC200102 /* denny_001_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001_medium.json; sourceTree = "<group>"; };
+		AC200103 /* denny_001_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_001_hard.json; sourceTree = "<group>"; };
+		AC200201 /* denny_002_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_002_easy.json; sourceTree = "<group>"; };
+		AC200202 /* denny_002_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_002_medium.json; sourceTree = "<group>"; };
+		AC200203 /* denny_002_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_002_hard.json; sourceTree = "<group>"; };
+		AC200301 /* denny_003_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_003_easy.json; sourceTree = "<group>"; };
+		AC200302 /* denny_003_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_003_medium.json; sourceTree = "<group>"; };
+		AC200303 /* denny_003_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_003_hard.json; sourceTree = "<group>"; };
+		AC200401 /* denny_004_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_004_easy.json; sourceTree = "<group>"; };
+		AC200402 /* denny_004_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_004_medium.json; sourceTree = "<group>"; };
+		AC200403 /* denny_004_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_004_hard.json; sourceTree = "<group>"; };
+		AC200501 /* denny_005_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_005_easy.json; sourceTree = "<group>"; };
+		AC200502 /* denny_005_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_005_medium.json; sourceTree = "<group>"; };
+		AC200503 /* denny_005_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_005_hard.json; sourceTree = "<group>"; };
+		AC200601 /* denny_006_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_006_easy.json; sourceTree = "<group>"; };
+		AC200602 /* denny_006_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_006_medium.json; sourceTree = "<group>"; };
+		AC200603 /* denny_006_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_006_hard.json; sourceTree = "<group>"; };
+		AC200701 /* denny_007_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_007_easy.json; sourceTree = "<group>"; };
+		AC200702 /* denny_007_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_007_medium.json; sourceTree = "<group>"; };
+		AC200703 /* denny_007_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_007_hard.json; sourceTree = "<group>"; };
+		AC200801 /* denny_008_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_008_easy.json; sourceTree = "<group>"; };
+		AC200802 /* denny_008_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_008_medium.json; sourceTree = "<group>"; };
+		AC200803 /* denny_008_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_008_hard.json; sourceTree = "<group>"; };
+		AC200901 /* denny_009_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_009_easy.json; sourceTree = "<group>"; };
+		AC200902 /* denny_009_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_009_medium.json; sourceTree = "<group>"; };
+		AC200903 /* denny_009_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_009_hard.json; sourceTree = "<group>"; };
+		AC201001 /* denny_010_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_010_easy.json; sourceTree = "<group>"; };
+		AC201002 /* denny_010_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_010_medium.json; sourceTree = "<group>"; };
+		AC201003 /* denny_010_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_010_hard.json; sourceTree = "<group>"; };
+		AC201100 /* difficulty_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = difficulty_samples.json; sourceTree = "<group>"; };
+		AC201101 /* denny_011_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_011_easy.json; sourceTree = "<group>"; };
+		AC201102 /* denny_011_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_011_medium.json; sourceTree = "<group>"; };
+		AC201103 /* denny_011_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_011_hard.json; sourceTree = "<group>"; };
+		AC201201 /* denny_012_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_012_easy.json; sourceTree = "<group>"; };
+		AC201202 /* denny_012_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_012_medium.json; sourceTree = "<group>"; };
+		AC201203 /* denny_012_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_012_hard.json; sourceTree = "<group>"; };
+		AC201301 /* denny_013_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_013_easy.json; sourceTree = "<group>"; };
+		AC201302 /* denny_013_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_013_medium.json; sourceTree = "<group>"; };
+		AC201303 /* denny_013_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_013_hard.json; sourceTree = "<group>"; };
+		AC201401 /* denny_014_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_014_easy.json; sourceTree = "<group>"; };
+		AC201402 /* denny_014_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_014_medium.json; sourceTree = "<group>"; };
+		AC201403 /* denny_014_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_014_hard.json; sourceTree = "<group>"; };
+		AC201501 /* denny_015_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_015_easy.json; sourceTree = "<group>"; };
+		AC201502 /* denny_015_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_015_medium.json; sourceTree = "<group>"; };
+		AC201503 /* denny_015_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_015_hard.json; sourceTree = "<group>"; };
+		AC201601 /* denny_016_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_016_easy.json; sourceTree = "<group>"; };
+		AC201602 /* denny_016_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_016_medium.json; sourceTree = "<group>"; };
+		AC201603 /* denny_016_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_016_hard.json; sourceTree = "<group>"; };
+		AC201701 /* denny_017_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_017_easy.json; sourceTree = "<group>"; };
+		AC201702 /* denny_017_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_017_medium.json; sourceTree = "<group>"; };
+		AC201703 /* denny_017_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_017_hard.json; sourceTree = "<group>"; };
+		AC201801 /* denny_018_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_018_easy.json; sourceTree = "<group>"; };
+		AC201802 /* denny_018_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_018_medium.json; sourceTree = "<group>"; };
+		AC201803 /* denny_018_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_018_hard.json; sourceTree = "<group>"; };
+		AC201901 /* denny_019_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_019_easy.json; sourceTree = "<group>"; };
+		AC201902 /* denny_019_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_019_medium.json; sourceTree = "<group>"; };
+		AC201903 /* denny_019_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_019_hard.json; sourceTree = "<group>"; };
+		AC202001 /* denny_020_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020_easy.json; sourceTree = "<group>"; };
+		AC202002 /* denny_020_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020_medium.json; sourceTree = "<group>"; };
+		AC202003 /* denny_020_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_020_hard.json; sourceTree = "<group>"; };
+		AC202101 /* denny_021_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_021_easy.json; sourceTree = "<group>"; };
+		AC202102 /* denny_021_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_021_medium.json; sourceTree = "<group>"; };
+		AC202103 /* denny_021_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_021_hard.json; sourceTree = "<group>"; };
+		AC202201 /* denny_022_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_022_easy.json; sourceTree = "<group>"; };
+		AC202202 /* denny_022_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_022_medium.json; sourceTree = "<group>"; };
+		AC202203 /* denny_022_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_022_hard.json; sourceTree = "<group>"; };
+		AC202301 /* denny_023_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_023_easy.json; sourceTree = "<group>"; };
+		AC202302 /* denny_023_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_023_medium.json; sourceTree = "<group>"; };
+		AC202303 /* denny_023_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_023_hard.json; sourceTree = "<group>"; };
+		AC202401 /* denny_024_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_024_easy.json; sourceTree = "<group>"; };
+		AC202402 /* denny_024_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_024_medium.json; sourceTree = "<group>"; };
+		AC202403 /* denny_024_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_024_hard.json; sourceTree = "<group>"; };
+		AC202501 /* denny_025_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_025_easy.json; sourceTree = "<group>"; };
+		AC202502 /* denny_025_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_025_medium.json; sourceTree = "<group>"; };
+		AC202503 /* denny_025_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_025_hard.json; sourceTree = "<group>"; };
+		AC202601 /* denny_026_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_026_easy.json; sourceTree = "<group>"; };
+		AC202602 /* denny_026_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_026_medium.json; sourceTree = "<group>"; };
+		AC202603 /* denny_026_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_026_hard.json; sourceTree = "<group>"; };
+		AC202701 /* denny_027_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_027_easy.json; sourceTree = "<group>"; };
+		AC202702 /* denny_027_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_027_medium.json; sourceTree = "<group>"; };
+		AC202703 /* denny_027_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_027_hard.json; sourceTree = "<group>"; };
+		AC202801 /* denny_028_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_028_easy.json; sourceTree = "<group>"; };
+		AC202802 /* denny_028_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_028_medium.json; sourceTree = "<group>"; };
+		AC202803 /* denny_028_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_028_hard.json; sourceTree = "<group>"; };
+		AC202901 /* denny_029_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_029_easy.json; sourceTree = "<group>"; };
+		AC202902 /* denny_029_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_029_medium.json; sourceTree = "<group>"; };
+		AC202903 /* denny_029_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_029_hard.json; sourceTree = "<group>"; };
+		AC203001 /* denny_030_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_030_easy.json; sourceTree = "<group>"; };
+		AC203002 /* denny_030_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_030_medium.json; sourceTree = "<group>"; };
+		AC203003 /* denny_030_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_030_hard.json; sourceTree = "<group>"; };
+		AC203101 /* denny_031_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_031_easy.json; sourceTree = "<group>"; };
+		AC203102 /* denny_031_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_031_medium.json; sourceTree = "<group>"; };
+		AC203103 /* denny_031_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_031_hard.json; sourceTree = "<group>"; };
+		AC203201 /* denny_032_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_032_easy.json; sourceTree = "<group>"; };
+		AC203202 /* denny_032_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_032_medium.json; sourceTree = "<group>"; };
+		AC203203 /* denny_032_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_032_hard.json; sourceTree = "<group>"; };
+		AC203301 /* denny_033_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_033_easy.json; sourceTree = "<group>"; };
+		AC203302 /* denny_033_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_033_medium.json; sourceTree = "<group>"; };
+		AC203303 /* denny_033_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_033_hard.json; sourceTree = "<group>"; };
+		AC203401 /* denny_034_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_034_easy.json; sourceTree = "<group>"; };
+		AC203402 /* denny_034_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_034_medium.json; sourceTree = "<group>"; };
+		AC203403 /* denny_034_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_034_hard.json; sourceTree = "<group>"; };
+		AC203501 /* denny_035_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_035_easy.json; sourceTree = "<group>"; };
+		AC203502 /* denny_035_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_035_medium.json; sourceTree = "<group>"; };
+		AC203503 /* denny_035_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_035_hard.json; sourceTree = "<group>"; };
+		AC203601 /* denny_036_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_036_easy.json; sourceTree = "<group>"; };
+		AC203602 /* denny_036_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_036_medium.json; sourceTree = "<group>"; };
+		AC203603 /* denny_036_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_036_hard.json; sourceTree = "<group>"; };
+		AC203701 /* denny_037_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_037_easy.json; sourceTree = "<group>"; };
+		AC203702 /* denny_037_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_037_medium.json; sourceTree = "<group>"; };
+		AC203703 /* denny_037_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_037_hard.json; sourceTree = "<group>"; };
+		AC203801 /* denny_038_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_038_easy.json; sourceTree = "<group>"; };
+		AC203802 /* denny_038_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_038_medium.json; sourceTree = "<group>"; };
+		AC203803 /* denny_038_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_038_hard.json; sourceTree = "<group>"; };
+		AC203901 /* denny_039_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_039_easy.json; sourceTree = "<group>"; };
+		AC203902 /* denny_039_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_039_medium.json; sourceTree = "<group>"; };
+		AC203903 /* denny_039_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_039_hard.json; sourceTree = "<group>"; };
+		AC204001 /* denny_040_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_040_easy.json; sourceTree = "<group>"; };
+		AC204002 /* denny_040_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_040_medium.json; sourceTree = "<group>"; };
+		AC204003 /* denny_040_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_040_hard.json; sourceTree = "<group>"; };
+		AC204101 /* denny_041_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_041_medium.json; sourceTree = "<group>"; };
+		AC204102 /* denny_042_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_042_medium.json; sourceTree = "<group>"; };
+		AC204103 /* denny_043_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_043_medium.json; sourceTree = "<group>"; };
+		AC204104 /* denny_044_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_044_medium.json; sourceTree = "<group>"; };
+		AC204111 /* denny_041_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_041_easy.json; sourceTree = "<group>"; };
+		AC204112 /* denny_041_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_041_hard.json; sourceTree = "<group>"; };
+		AC204121 /* denny_042_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_042_easy.json; sourceTree = "<group>"; };
+		AC204122 /* denny_042_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_042_hard.json; sourceTree = "<group>"; };
+		AC204131 /* denny_043_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_043_easy.json; sourceTree = "<group>"; };
+		AC204132 /* denny_043_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_043_hard.json; sourceTree = "<group>"; };
+		AC204141 /* denny_044_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_044_easy.json; sourceTree = "<group>"; };
+		AC204142 /* denny_044_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_044_hard.json; sourceTree = "<group>"; };
+		AC204501 /* denny_045_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_045_medium.json; sourceTree = "<group>"; };
+		AC204511 /* denny_045_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_045_easy.json; sourceTree = "<group>"; };
+		AC204512 /* denny_045_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_045_hard.json; sourceTree = "<group>"; };
+		AC204601 /* denny_046_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_046_medium.json; sourceTree = "<group>"; };
+		AC204611 /* denny_046_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_046_easy.json; sourceTree = "<group>"; };
+		AC204612 /* denny_046_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_046_hard.json; sourceTree = "<group>"; };
+		AC204701 /* denny_047_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_047_medium.json; sourceTree = "<group>"; };
+		AC204711 /* denny_047_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_047_easy.json; sourceTree = "<group>"; };
+		AC204712 /* denny_047_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_047_hard.json; sourceTree = "<group>"; };
+		AC204801 /* denny_048_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_048_medium.json; sourceTree = "<group>"; };
+		AC204811 /* denny_048_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_048_easy.json; sourceTree = "<group>"; };
+		AC204812 /* denny_048_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_048_hard.json; sourceTree = "<group>"; };
+		AC204901 /* denny_049_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_049_medium.json; sourceTree = "<group>"; };
+		AC204911 /* denny_049_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_049_easy.json; sourceTree = "<group>"; };
+		AC204912 /* denny_049_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_049_hard.json; sourceTree = "<group>"; };
+		AC205001 /* denny_050_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_050_medium.json; sourceTree = "<group>"; };
+		AC205011 /* denny_050_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_050_easy.json; sourceTree = "<group>"; };
+		AC205012 /* denny_050_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_050_hard.json; sourceTree = "<group>"; };
+		AC205101 /* denny_051_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_051_medium.json; sourceTree = "<group>"; };
+		AC205111 /* denny_051_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_051_easy.json; sourceTree = "<group>"; };
+		AC205112 /* denny_051_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_051_hard.json; sourceTree = "<group>"; };
+		AC205201 /* denny_052_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_052_medium.json; sourceTree = "<group>"; };
+		AC205211 /* denny_052_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_052_easy.json; sourceTree = "<group>"; };
+		AC205212 /* denny_052_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_052_hard.json; sourceTree = "<group>"; };
+		AC205301 /* denny_053_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_053_medium.json; sourceTree = "<group>"; };
+		AC205311 /* denny_053_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_053_easy.json; sourceTree = "<group>"; };
+		AC205312 /* denny_053_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_053_hard.json; sourceTree = "<group>"; };
+		AC205401 /* denny_054_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_054_medium.json; sourceTree = "<group>"; };
+		AC205411 /* denny_054_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_054_easy.json; sourceTree = "<group>"; };
+		AC205412 /* denny_054_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_054_hard.json; sourceTree = "<group>"; };
+		AC205501 /* denny_055_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_055_medium.json; sourceTree = "<group>"; };
+		AC205511 /* denny_055_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_055_easy.json; sourceTree = "<group>"; };
+		AC205512 /* denny_055_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_055_hard.json; sourceTree = "<group>"; };
+		AC205601 /* denny_056_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_056_medium.json; sourceTree = "<group>"; };
+		AC205611 /* denny_056_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_056_easy.json; sourceTree = "<group>"; };
+		AC205612 /* denny_056_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_056_hard.json; sourceTree = "<group>"; };
+		AC205701 /* denny_057_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_057_medium.json; sourceTree = "<group>"; };
+		AC205711 /* denny_057_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_057_easy.json; sourceTree = "<group>"; };
+		AC205712 /* denny_057_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_057_hard.json; sourceTree = "<group>"; };
+		AC205801 /* denny_058_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_058_medium.json; sourceTree = "<group>"; };
+		AC205811 /* denny_058_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_058_easy.json; sourceTree = "<group>"; };
+		AC205812 /* denny_058_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_058_hard.json; sourceTree = "<group>"; };
+		AC205901 /* denny_059_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_059_medium.json; sourceTree = "<group>"; };
+		AC205911 /* denny_059_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_059_easy.json; sourceTree = "<group>"; };
+		AC205912 /* denny_059_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_059_hard.json; sourceTree = "<group>"; };
+		AC206001 /* denny_060_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_060_medium.json; sourceTree = "<group>"; };
+		AC206011 /* denny_060_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_060_easy.json; sourceTree = "<group>"; };
+		AC206012 /* denny_060_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_060_hard.json; sourceTree = "<group>"; };
+		AC300001 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
+		AC300002 /* onboarding_draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_draw.png; sourceTree = "<group>"; };
+		AC300003 /* onboarding_maze_screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboarding_maze_screenshot.png; sourceTree = "<group>"; };
+		BB000000 /* LowDopScribbleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LowDopScribbleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB000001 /* GameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModelTests.swift; sourceTree = "<group>"; };
+		BB000002 /* DrawingValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingValidatorTests.swift; sourceTree = "<group>"; };
+		BB000003 /* LabyrinthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabyrinthViewModelTests.swift; sourceTree = "<group>"; };
+		BB000004 /* UserPreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesTests.swift; sourceTree = "<group>"; };
+		BB000005 /* StoryInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryInfoTests.swift; sourceTree = "<group>"; };
+		BB000006 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
+		CA000000 /* LowDopScribbleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LowDopScribbleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB000001 /* LowDopScribbleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowDopScribbleUITests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000028 /* TelemetryDeck in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD000010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE000010 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE000000 = {
+			isa = PBXGroup;
+			children = (
+				AE000001 /* LowDopScribble */,
+				BE000001 /* LowDopScribbleTests */,
+				CE000001 /* LowDopScribbleUITests */,
+				AE000099 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE000001 /* LowDopScribble */ = {
+			isa = PBXGroup;
+			children = (
+				AB000001 /* LowDopScribbleApp.swift */,
+				AB000002 /* ContentView.swift */,
+				AE000002 /* Models */,
+				AE000003 /* Views */,
+				AE000004 /* ViewModels */,
+				AE000005 /* Services */,
+				AE000006 /* Utilities */,
+				AE000007 /* Resources */,
+				AB000003 /* Assets.xcassets */,
+				AB000025 /* PrivacyInfo.xcprivacy */,
+				AB000030 /* Theme.swift */,
+			);
+			path = LowDopScribble;
+			sourceTree = "<group>";
+		};
+		AE000002 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AB000004 /* Labyrinth.swift */,
+				AB000005 /* UserPreferences.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AE000003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB000013 /* OnboardingView.swift */,
+				AB000014 /* LabyrinthListView.swift */,
+				AB000020 /* LabyrinthGameView.swift */,
+				AB000021 /* LabyrinthGridView.swift */,
+				AB000015 /* DrawingCanvas.swift */,
+				AB000019 /* NavigationControls.swift */,
+				AB000016 /* CompletionView.swift */,
+				AB000022 /* CharacterMarkerView.swift */,
+				AB000023 /* ParentalGateView.swift */,
+				AB000024 /* PrivacyPolicyView.swift */,
+				AB000026 /* TermsOfServiceView.swift */,
+				AB000029 /* BookshelfView.swift */,
+				AB000031 /* LetterTracingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AE000004 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AB000011 /* LabyrinthViewModel.swift */,
+				AB000012 /* GameViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AE000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AB000007 /* LabyrinthLoader.swift */,
+				AB000008 /* TTSService.swift */,
+				AB000009 /* DrawingValidator.swift */,
+				AB000010 /* ProgressTracker.swift */,
+				AB000027 /* Analytics.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AE000006 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB000006 /* SVGPathParser.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AE000007 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE000008 /* Labyrinths */,
+				AC300002 /* onboarding_draw.png */,
+				AC300003 /* onboarding_maze_screenshot.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AE000008 /* Labyrinths */ = {
+			isa = PBXGroup;
+			children = (
+				AC300001 /* audio */,
+				AC200101 /* denny_001_easy.json */,
+				AC200102 /* denny_001_medium.json */,
+				AC200103 /* denny_001_hard.json */,
+				AC200201 /* denny_002_easy.json */,
+				AC200202 /* denny_002_medium.json */,
+				AC200203 /* denny_002_hard.json */,
+				AC200301 /* denny_003_easy.json */,
+				AC200302 /* denny_003_medium.json */,
+				AC200303 /* denny_003_hard.json */,
+				AC200401 /* denny_004_easy.json */,
+				AC200402 /* denny_004_medium.json */,
+				AC200403 /* denny_004_hard.json */,
+				AC200501 /* denny_005_easy.json */,
+				AC200502 /* denny_005_medium.json */,
+				AC200503 /* denny_005_hard.json */,
+				AC200601 /* denny_006_easy.json */,
+				AC200602 /* denny_006_medium.json */,
+				AC200603 /* denny_006_hard.json */,
+				AC200701 /* denny_007_easy.json */,
+				AC200702 /* denny_007_medium.json */,
+				AC200703 /* denny_007_hard.json */,
+				AC200801 /* denny_008_easy.json */,
+				AC200802 /* denny_008_medium.json */,
+				AC200803 /* denny_008_hard.json */,
+				AC200901 /* denny_009_easy.json */,
+				AC200902 /* denny_009_medium.json */,
+				AC200903 /* denny_009_hard.json */,
+				AC201001 /* denny_010_easy.json */,
+				AC201002 /* denny_010_medium.json */,
+				AC201003 /* denny_010_hard.json */,
+				AC201101 /* denny_011_easy.json */,
+				AC201102 /* denny_011_medium.json */,
+				AC201103 /* denny_011_hard.json */,
+				AC201201 /* denny_012_easy.json */,
+				AC201202 /* denny_012_medium.json */,
+				AC201203 /* denny_012_hard.json */,
+				AC201301 /* denny_013_easy.json */,
+				AC201302 /* denny_013_medium.json */,
+				AC201303 /* denny_013_hard.json */,
+				AC201401 /* denny_014_easy.json */,
+				AC201402 /* denny_014_medium.json */,
+				AC201403 /* denny_014_hard.json */,
+				AC201501 /* denny_015_easy.json */,
+				AC201502 /* denny_015_medium.json */,
+				AC201503 /* denny_015_hard.json */,
+				AC201601 /* denny_016_easy.json */,
+				AC201602 /* denny_016_medium.json */,
+				AC201603 /* denny_016_hard.json */,
+				AC201701 /* denny_017_easy.json */,
+				AC201702 /* denny_017_medium.json */,
+				AC201703 /* denny_017_hard.json */,
+				AC201801 /* denny_018_easy.json */,
+				AC201802 /* denny_018_medium.json */,
+				AC201803 /* denny_018_hard.json */,
+				AC201901 /* denny_019_easy.json */,
+				AC201902 /* denny_019_medium.json */,
+				AC201903 /* denny_019_hard.json */,
+				AC202001 /* denny_020_easy.json */,
+				AC202002 /* denny_020_medium.json */,
+				AC202003 /* denny_020_hard.json */,
+				AC202101 /* denny_021_easy.json */,
+				AC202102 /* denny_021_medium.json */,
+				AC202103 /* denny_021_hard.json */,
+				AC202201 /* denny_022_easy.json */,
+				AC202202 /* denny_022_medium.json */,
+				AC202203 /* denny_022_hard.json */,
+				AC202301 /* denny_023_easy.json */,
+				AC202302 /* denny_023_medium.json */,
+				AC202303 /* denny_023_hard.json */,
+				AC202401 /* denny_024_easy.json */,
+				AC202402 /* denny_024_medium.json */,
+				AC202403 /* denny_024_hard.json */,
+				AC202501 /* denny_025_easy.json */,
+				AC202502 /* denny_025_medium.json */,
+				AC202503 /* denny_025_hard.json */,
+				AC202601 /* denny_026_easy.json */,
+				AC202602 /* denny_026_medium.json */,
+				AC202603 /* denny_026_hard.json */,
+				AC202701 /* denny_027_easy.json */,
+				AC202702 /* denny_027_medium.json */,
+				AC202703 /* denny_027_hard.json */,
+				AC202801 /* denny_028_easy.json */,
+				AC202802 /* denny_028_medium.json */,
+				AC202803 /* denny_028_hard.json */,
+				AC202901 /* denny_029_easy.json */,
+				AC202902 /* denny_029_medium.json */,
+				AC202903 /* denny_029_hard.json */,
+				AC203001 /* denny_030_easy.json */,
+				AC203002 /* denny_030_medium.json */,
+				AC203003 /* denny_030_hard.json */,
+				AC203101 /* denny_031_easy.json */,
+				AC203102 /* denny_031_medium.json */,
+				AC203103 /* denny_031_hard.json */,
+				AC203201 /* denny_032_easy.json */,
+				AC203202 /* denny_032_medium.json */,
+				AC203203 /* denny_032_hard.json */,
+				AC203301 /* denny_033_easy.json */,
+				AC203302 /* denny_033_medium.json */,
+				AC203303 /* denny_033_hard.json */,
+				AC203401 /* denny_034_easy.json */,
+				AC203402 /* denny_034_medium.json */,
+				AC203403 /* denny_034_hard.json */,
+				AC203501 /* denny_035_easy.json */,
+				AC203502 /* denny_035_medium.json */,
+				AC203503 /* denny_035_hard.json */,
+				AC203601 /* denny_036_easy.json */,
+				AC203602 /* denny_036_medium.json */,
+				AC203603 /* denny_036_hard.json */,
+				AC203701 /* denny_037_easy.json */,
+				AC203702 /* denny_037_medium.json */,
+				AC203703 /* denny_037_hard.json */,
+				AC203801 /* denny_038_easy.json */,
+				AC203802 /* denny_038_medium.json */,
+				AC203803 /* denny_038_hard.json */,
+				AC203901 /* denny_039_easy.json */,
+				AC203902 /* denny_039_medium.json */,
+				AC203903 /* denny_039_hard.json */,
+				AC204001 /* denny_040_easy.json */,
+				AC204002 /* denny_040_medium.json */,
+				AC204003 /* denny_040_hard.json */,
+				AC204101 /* denny_041_medium.json */,
+				AC204111 /* denny_041_easy.json */,
+				AC204112 /* denny_041_hard.json */,
+				AC204102 /* denny_042_medium.json */,
+				AC204121 /* denny_042_easy.json */,
+				AC204122 /* denny_042_hard.json */,
+				AC204103 /* denny_043_medium.json */,
+				AC204131 /* denny_043_easy.json */,
+				AC204132 /* denny_043_hard.json */,
+				AC204104 /* denny_044_medium.json */,
+				AC204141 /* denny_044_easy.json */,
+				AC204142 /* denny_044_hard.json */,
+				AC204501 /* denny_045_medium.json */,
+				AC204511 /* denny_045_easy.json */,
+				AC204512 /* denny_045_hard.json */,
+				AC204601 /* denny_046_medium.json */,
+				AC204611 /* denny_046_easy.json */,
+				AC204612 /* denny_046_hard.json */,
+				AC204701 /* denny_047_medium.json */,
+				AC204711 /* denny_047_easy.json */,
+				AC204712 /* denny_047_hard.json */,
+				AC204801 /* denny_048_medium.json */,
+				AC204811 /* denny_048_easy.json */,
+				AC204812 /* denny_048_hard.json */,
+				AC204901 /* denny_049_medium.json */,
+				AC204911 /* denny_049_easy.json */,
+				AC204912 /* denny_049_hard.json */,
+				AC205001 /* denny_050_medium.json */,
+				AC205011 /* denny_050_easy.json */,
+				AC205012 /* denny_050_hard.json */,
+				AC205101 /* denny_051_medium.json */,
+				AC205111 /* denny_051_easy.json */,
+				AC205112 /* denny_051_hard.json */,
+				AC205201 /* denny_052_medium.json */,
+				AC205211 /* denny_052_easy.json */,
+				AC205212 /* denny_052_hard.json */,
+				AC205301 /* denny_053_medium.json */,
+				AC205311 /* denny_053_easy.json */,
+				AC205312 /* denny_053_hard.json */,
+				AC205401 /* denny_054_medium.json */,
+				AC205411 /* denny_054_easy.json */,
+				AC205412 /* denny_054_hard.json */,
+				AC205501 /* denny_055_medium.json */,
+				AC205511 /* denny_055_easy.json */,
+				AC205512 /* denny_055_hard.json */,
+				AC205601 /* denny_056_medium.json */,
+				AC205611 /* denny_056_easy.json */,
+				AC205612 /* denny_056_hard.json */,
+				AC205701 /* denny_057_medium.json */,
+				AC205711 /* denny_057_easy.json */,
+				AC205712 /* denny_057_hard.json */,
+				AC205801 /* denny_058_medium.json */,
+				AC205811 /* denny_058_easy.json */,
+				AC205812 /* denny_058_hard.json */,
+				AC205901 /* denny_059_medium.json */,
+				AC205911 /* denny_059_easy.json */,
+				AC205912 /* denny_059_hard.json */,
+				AC206001 /* denny_060_medium.json */,
+				AC206011 /* denny_060_easy.json */,
+				AC206012 /* denny_060_hard.json */,
+				AC201100 /* difficulty_samples.json */,
+				AC100031 /* manifest.json */,
+			);
+			path = Labyrinths;
+			sourceTree = "<group>";
+		};
+		AE000099 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB000000 /* LowDopScribble.app */,
+				BB000000 /* LowDopScribbleTests.xctest */,
+				CA000000 /* LowDopScribbleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE000001 /* LowDopScribbleTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB000001 /* GameViewModelTests.swift */,
+				BB000002 /* DrawingValidatorTests.swift */,
+				BB000003 /* LabyrinthViewModelTests.swift */,
+				BB000004 /* UserPreferencesTests.swift */,
+				BB000005 /* StoryInfoTests.swift */,
+				BB000006 /* OnboardingTests.swift */,
+			);
+			path = LowDopScribbleTests;
+			sourceTree = "<group>";
+		};
+		CE000001 /* LowDopScribbleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CB000001 /* LowDopScribbleUITests.swift */,
+			);
+			path = LowDopScribbleUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF000001 /* LowDopScribble */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF000010 /* Build configuration list for PBXNativeTarget "LowDopScribble" */;
+			buildPhases = (
+				AF000002 /* Sources */,
+				AD000001 /* Frameworks */,
+				AF000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LowDopScribble;
+			packageProductDependencies = (
+				AD000002 /* TelemetryDeck */,
+			);
+			productName = LowDopScribble;
+			productReference = AB000000 /* LowDopScribble.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF000001 /* LowDopScribbleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF000010 /* Build configuration list for PBXNativeTarget "LowDopScribbleTests" */;
+			buildPhases = (
+				BF000002 /* Sources */,
+				BD000010 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD000001 /* PBXTargetDependency */,
+			);
+			name = LowDopScribbleTests;
+			productName = LowDopScribbleTests;
+			productReference = BB000000 /* LowDopScribbleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CF000001 /* LowDopScribbleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF000010 /* Build configuration list for PBXNativeTarget "LowDopScribbleUITests" */;
+			buildPhases = (
+				CF000002 /* Sources */,
+				CE000010 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE000002 /* PBXTargetDependency */,
+			);
+			name = LowDopScribbleUITests;
+			productName = LowDopScribbleUITests;
+			productReference = CA000000 /* LowDopScribbleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AF000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					BF000001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AF000001;
+					};
+					CF000001 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AF000001;
+					};
+				};
+			};
+			buildConfigurationList = AF000020 /* Build configuration list for PBXProject "LowDopScribble" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AE000000;
+			packageReferences = (
+				03644A3E2F4E7FBF00148A8E /* XCRemoteSwiftPackageReference "SwiftSDK" */,
+			);
+			productRefGroup = AE000099 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF000001 /* LowDopScribble */,
+				BF000001 /* LowDopScribbleTests */,
+				CF000001 /* LowDopScribbleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000003 /* Assets.xcassets in Resources */,
+				AA200101 /* denny_001_easy.json in Resources */,
+				AA200102 /* denny_001_medium.json in Resources */,
+				AA200103 /* denny_001_hard.json in Resources */,
+				AA200201 /* denny_002_easy.json in Resources */,
+				AA200202 /* denny_002_medium.json in Resources */,
+				AA200203 /* denny_002_hard.json in Resources */,
+				AA200301 /* denny_003_easy.json in Resources */,
+				AA200302 /* denny_003_medium.json in Resources */,
+				AA200303 /* denny_003_hard.json in Resources */,
+				AA200401 /* denny_004_easy.json in Resources */,
+				AA200402 /* denny_004_medium.json in Resources */,
+				AA200403 /* denny_004_hard.json in Resources */,
+				AA200501 /* denny_005_easy.json in Resources */,
+				AA200502 /* denny_005_medium.json in Resources */,
+				AA200503 /* denny_005_hard.json in Resources */,
+				AA200601 /* denny_006_easy.json in Resources */,
+				AA200602 /* denny_006_medium.json in Resources */,
+				AA200603 /* denny_006_hard.json in Resources */,
+				AA200701 /* denny_007_easy.json in Resources */,
+				AA200702 /* denny_007_medium.json in Resources */,
+				AA200703 /* denny_007_hard.json in Resources */,
+				AA200801 /* denny_008_easy.json in Resources */,
+				AA200802 /* denny_008_medium.json in Resources */,
+				AA200803 /* denny_008_hard.json in Resources */,
+				AA200901 /* denny_009_easy.json in Resources */,
+				AA200902 /* denny_009_medium.json in Resources */,
+				AA200903 /* denny_009_hard.json in Resources */,
+				AA201001 /* denny_010_easy.json in Resources */,
+				AA201002 /* denny_010_medium.json in Resources */,
+				AA201003 /* denny_010_hard.json in Resources */,
+				AA201101 /* denny_011_easy.json in Resources */,
+				AA201102 /* denny_011_medium.json in Resources */,
+				AA201103 /* denny_011_hard.json in Resources */,
+				AA201201 /* denny_012_easy.json in Resources */,
+				AA201202 /* denny_012_medium.json in Resources */,
+				AA201203 /* denny_012_hard.json in Resources */,
+				AA201301 /* denny_013_easy.json in Resources */,
+				AA201302 /* denny_013_medium.json in Resources */,
+				AA201303 /* denny_013_hard.json in Resources */,
+				AA201401 /* denny_014_easy.json in Resources */,
+				AA201402 /* denny_014_medium.json in Resources */,
+				AA201403 /* denny_014_hard.json in Resources */,
+				AA201501 /* denny_015_easy.json in Resources */,
+				AA201502 /* denny_015_medium.json in Resources */,
+				AA201503 /* denny_015_hard.json in Resources */,
+				AA201601 /* denny_016_easy.json in Resources */,
+				AA201602 /* denny_016_medium.json in Resources */,
+				AA201603 /* denny_016_hard.json in Resources */,
+				AA201701 /* denny_017_easy.json in Resources */,
+				AA201702 /* denny_017_medium.json in Resources */,
+				AA201703 /* denny_017_hard.json in Resources */,
+				AA201801 /* denny_018_easy.json in Resources */,
+				AA201802 /* denny_018_medium.json in Resources */,
+				AA201803 /* denny_018_hard.json in Resources */,
+				AA201901 /* denny_019_easy.json in Resources */,
+				AA201902 /* denny_019_medium.json in Resources */,
+				AA201903 /* denny_019_hard.json in Resources */,
+				AA202001 /* denny_020_easy.json in Resources */,
+				AA202002 /* denny_020_medium.json in Resources */,
+				AA202003 /* denny_020_hard.json in Resources */,
+				AA202101 /* denny_021_easy.json in Resources */,
+				AA202102 /* denny_021_medium.json in Resources */,
+				AA202103 /* denny_021_hard.json in Resources */,
+				AA202201 /* denny_022_easy.json in Resources */,
+				AA202202 /* denny_022_medium.json in Resources */,
+				AA202203 /* denny_022_hard.json in Resources */,
+				AA202301 /* denny_023_easy.json in Resources */,
+				AA202302 /* denny_023_medium.json in Resources */,
+				AA202303 /* denny_023_hard.json in Resources */,
+				AA202401 /* denny_024_easy.json in Resources */,
+				AA202402 /* denny_024_medium.json in Resources */,
+				AA202403 /* denny_024_hard.json in Resources */,
+				AA202501 /* denny_025_easy.json in Resources */,
+				AA202502 /* denny_025_medium.json in Resources */,
+				AA202503 /* denny_025_hard.json in Resources */,
+				AA202601 /* denny_026_easy.json in Resources */,
+				AA202602 /* denny_026_medium.json in Resources */,
+				AA202603 /* denny_026_hard.json in Resources */,
+				AA202701 /* denny_027_easy.json in Resources */,
+				AA202702 /* denny_027_medium.json in Resources */,
+				AA202703 /* denny_027_hard.json in Resources */,
+				AA202801 /* denny_028_easy.json in Resources */,
+				AA202802 /* denny_028_medium.json in Resources */,
+				AA202803 /* denny_028_hard.json in Resources */,
+				AA202901 /* denny_029_easy.json in Resources */,
+				AA202902 /* denny_029_medium.json in Resources */,
+				AA202903 /* denny_029_hard.json in Resources */,
+				AA203001 /* denny_030_easy.json in Resources */,
+				AA203002 /* denny_030_medium.json in Resources */,
+				AA203003 /* denny_030_hard.json in Resources */,
+				AA203101 /* denny_031_easy.json in Resources */,
+				AA203102 /* denny_031_medium.json in Resources */,
+				AA203103 /* denny_031_hard.json in Resources */,
+				AA203201 /* denny_032_easy.json in Resources */,
+				AA203202 /* denny_032_medium.json in Resources */,
+				AA203203 /* denny_032_hard.json in Resources */,
+				AA203301 /* denny_033_easy.json in Resources */,
+				AA203302 /* denny_033_medium.json in Resources */,
+				AA203303 /* denny_033_hard.json in Resources */,
+				AA203401 /* denny_034_easy.json in Resources */,
+				AA203402 /* denny_034_medium.json in Resources */,
+				AA203403 /* denny_034_hard.json in Resources */,
+				AA203501 /* denny_035_easy.json in Resources */,
+				AA203502 /* denny_035_medium.json in Resources */,
+				AA203503 /* denny_035_hard.json in Resources */,
+				AA203601 /* denny_036_easy.json in Resources */,
+				AA203602 /* denny_036_medium.json in Resources */,
+				AA203603 /* denny_036_hard.json in Resources */,
+				AA203701 /* denny_037_easy.json in Resources */,
+				AA203702 /* denny_037_medium.json in Resources */,
+				AA203703 /* denny_037_hard.json in Resources */,
+				AA203801 /* denny_038_easy.json in Resources */,
+				AA203802 /* denny_038_medium.json in Resources */,
+				AA203803 /* denny_038_hard.json in Resources */,
+				AA203901 /* denny_039_easy.json in Resources */,
+				AA203902 /* denny_039_medium.json in Resources */,
+				AA203903 /* denny_039_hard.json in Resources */,
+				AA204001 /* denny_040_easy.json in Resources */,
+				AA204002 /* denny_040_medium.json in Resources */,
+				AA204003 /* denny_040_hard.json in Resources */,
+				AA204101 /* denny_041_medium.json in Resources */,
+				AA204111 /* denny_041_easy.json in Resources */,
+				AA204112 /* denny_041_hard.json in Resources */,
+				AA204102 /* denny_042_medium.json in Resources */,
+				AA204121 /* denny_042_easy.json in Resources */,
+				AA204122 /* denny_042_hard.json in Resources */,
+				AA204103 /* denny_043_medium.json in Resources */,
+				AA204131 /* denny_043_easy.json in Resources */,
+				AA204132 /* denny_043_hard.json in Resources */,
+				AA204104 /* denny_044_medium.json in Resources */,
+				AA204141 /* denny_044_easy.json in Resources */,
+				AA204142 /* denny_044_hard.json in Resources */,
+				AA204501 /* denny_045_medium.json in Resources */,
+				AA204511 /* denny_045_easy.json in Resources */,
+				AA204512 /* denny_045_hard.json in Resources */,
+				AA204601 /* denny_046_medium.json in Resources */,
+				AA204611 /* denny_046_easy.json in Resources */,
+				AA204612 /* denny_046_hard.json in Resources */,
+				AA204701 /* denny_047_medium.json in Resources */,
+				AA204711 /* denny_047_easy.json in Resources */,
+				AA204712 /* denny_047_hard.json in Resources */,
+				AA204801 /* denny_048_medium.json in Resources */,
+				AA204811 /* denny_048_easy.json in Resources */,
+				AA204812 /* denny_048_hard.json in Resources */,
+				AA204901 /* denny_049_medium.json in Resources */,
+				AA204911 /* denny_049_easy.json in Resources */,
+				AA204912 /* denny_049_hard.json in Resources */,
+				AA205001 /* denny_050_medium.json in Resources */,
+				AA205011 /* denny_050_easy.json in Resources */,
+				AA205012 /* denny_050_hard.json in Resources */,
+				AA205101 /* denny_051_medium.json in Resources */,
+				AA205111 /* denny_051_easy.json in Resources */,
+				AA205112 /* denny_051_hard.json in Resources */,
+				AA205201 /* denny_052_medium.json in Resources */,
+				AA205211 /* denny_052_easy.json in Resources */,
+				AA205212 /* denny_052_hard.json in Resources */,
+				AA205301 /* denny_053_medium.json in Resources */,
+				AA205311 /* denny_053_easy.json in Resources */,
+				AA205312 /* denny_053_hard.json in Resources */,
+				AA205401 /* denny_054_medium.json in Resources */,
+				AA205411 /* denny_054_easy.json in Resources */,
+				AA205412 /* denny_054_hard.json in Resources */,
+				AA205501 /* denny_055_medium.json in Resources */,
+				AA205511 /* denny_055_easy.json in Resources */,
+				AA205512 /* denny_055_hard.json in Resources */,
+				AA205601 /* denny_056_medium.json in Resources */,
+				AA205611 /* denny_056_easy.json in Resources */,
+				AA205612 /* denny_056_hard.json in Resources */,
+				AA205701 /* denny_057_medium.json in Resources */,
+				AA205711 /* denny_057_easy.json in Resources */,
+				AA205712 /* denny_057_hard.json in Resources */,
+				AA205801 /* denny_058_medium.json in Resources */,
+				AA205811 /* denny_058_easy.json in Resources */,
+				AA205812 /* denny_058_hard.json in Resources */,
+				AA205901 /* denny_059_medium.json in Resources */,
+				AA205911 /* denny_059_easy.json in Resources */,
+				AA205912 /* denny_059_hard.json in Resources */,
+				AA206001 /* denny_060_medium.json in Resources */,
+				AA206011 /* denny_060_easy.json in Resources */,
+				AA206012 /* denny_060_hard.json in Resources */,
+				AA201100 /* difficulty_samples.json in Resources */,
+				AA100031 /* manifest.json in Resources */,
+				AA300001 /* audio in Resources */,
+				AA300002 /* onboarding_draw.png in Resources */,
+				AA300003 /* onboarding_maze_screenshot.png in Resources */,
+				AA000025 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001 /* LowDopScribbleApp.swift in Sources */,
+				AA000002 /* ContentView.swift in Sources */,
+				AA000004 /* Labyrinth.swift in Sources */,
+				AA000005 /* UserPreferences.swift in Sources */,
+				AA000006 /* SVGPathParser.swift in Sources */,
+				AA000007 /* LabyrinthLoader.swift in Sources */,
+				AA000008 /* TTSService.swift in Sources */,
+				AA000009 /* DrawingValidator.swift in Sources */,
+				AA000010 /* ProgressTracker.swift in Sources */,
+				AA000011 /* LabyrinthViewModel.swift in Sources */,
+				AA000012 /* GameViewModel.swift in Sources */,
+				AA000013 /* OnboardingView.swift in Sources */,
+				AA000014 /* LabyrinthListView.swift in Sources */,
+				AA000015 /* DrawingCanvas.swift in Sources */,
+				AA000016 /* CompletionView.swift in Sources */,
+				AA000019 /* NavigationControls.swift in Sources */,
+				AA000020 /* LabyrinthGameView.swift in Sources */,
+				AA000021 /* LabyrinthGridView.swift in Sources */,
+				AA000022 /* CharacterMarkerView.swift in Sources */,
+				AA000023 /* ParentalGateView.swift in Sources */,
+				AA000024 /* PrivacyPolicyView.swift in Sources */,
+				AA000026 /* TermsOfServiceView.swift in Sources */,
+				AA000027 /* Analytics.swift in Sources */,
+				AA000029 /* BookshelfView.swift in Sources */,
+				AA000030 /* Theme.swift in Sources */,
+				AA000031 /* LetterTracingView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA000001 /* GameViewModelTests.swift in Sources */,
+				BA000002 /* DrawingValidatorTests.swift in Sources */,
+				BA000003 /* LabyrinthViewModelTests.swift in Sources */,
+				BA000004 /* UserPreferencesTests.swift in Sources */,
+				BA000005 /* StoryInfoTests.swift in Sources */,
+				BA000006 /* OnboardingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA000001 /* LowDopScribbleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BD000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF000001 /* LowDopScribble */;
+			targetProxy = BC000001 /* PBXContainerItemProxy */;
+		};
+		CE000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF000001 /* LowDopScribble */;
+			targetProxy = CD000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AF000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Denny's Maze";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olgavorona.LowDopScribble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Denny's Maze";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olgavorona.LowDopScribble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AF000021 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AF000022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olgavorona.LowDopScribble.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LowDopScribble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LowDopScribble";
+			};
+			name = Debug;
+		};
+		BF000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olgavorona.LowDopScribble.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LowDopScribble.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LowDopScribble";
+			};
+			name = Release;
+		};
+		CF000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olgavorona.LowDopScribble.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LowDopScribble;
+			};
+			name = Debug;
+		};
+		CF000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SC8JJ92TL6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.olgavorona.LowDopScribble.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LowDopScribble;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF000010 /* Build configuration list for PBXNativeTarget "LowDopScribble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF000011 /* Debug */,
+				AF000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF000020 /* Build configuration list for PBXProject "LowDopScribble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF000021 /* Debug */,
+				AF000022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF000010 /* Build configuration list for PBXNativeTarget "LowDopScribbleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF000011 /* Debug */,
+				BF000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF000010 /* Build configuration list for PBXNativeTarget "LowDopScribbleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF000011 /* Debug */,
+				CF000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03644A3E2F4E7FBF00148A8E /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD000002 /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03644A3E2F4E7FBF00148A8E /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AF000000 /* Project object */;
+}

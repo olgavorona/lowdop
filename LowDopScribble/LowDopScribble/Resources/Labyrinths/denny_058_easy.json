@@ -1,0 +1,185 @@
+{
+  "id": "denny_058_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "firefly_meadow",
+  "title": "Golden Lights to Gather",
+  "story_setup": "Glow asks Denny to gather twinkling light-specks scattered along the meadow path so the night trail will shine even brighter.",
+  "instruction": "Collect all the glowing lights and bring them to Glow!",
+  "tts_instruction": "Twinkling lights are floating all along the trail. Help Denny collect every glowing spark before reaching Glow.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "firefly",
+    "description": "Tiny golden firefly with glowing wings and a warm lantern-like light",
+    "position": "top_right",
+    "name": "Glow",
+    "image_asset": "firefly_forest"
+  },
+  "educational_question": "What other things in nature glow or sparkle at night?",
+  "fun_fact": "Moonlight, fireflies, and even some mushrooms can make a forest glow at night in magical ways.",
+  "completion_message": "Every golden sparkle made the meadow brighter. Glow whirled around Denny in a happy ring of light.",
+  "path_data": {
+    "svg_path": "M 188 82 L 300 82 M 188 82 L 188 194 M 76 194 L 188 194 M 188 194 L 300 194 M 300 194 L 412 194 M 300 194 L 300 306 M 412 194 L 524 194 M 188 306 L 300 306 M 188 306 L 188 418 M 300 306 L 300 418 M 188 418 L 300 418 M 188 82 L 188 82 M 300 82 L 300 82 M 76 194 L 76 194 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 524 194 L 524 194 M 188 306 L 188 306 M 300 306 L 300 306 M 188 418 L 188 418 M 300 418 L 300 418",
+    "solution_path": "M 188 418 L 188 306 L 300 306 L 300 194 L 188 194 L 188 82 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 188,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 194
+        },
+        "end": {
+          "x": 524,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 418
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 188,
+        "y": 306,
+        "emoji": "✨",
+        "on_solution": true
+      },
+      {
+        "x": 76,
+        "y": 194,
+        "emoji": "✨",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#0A1A08",
+    "decorative_elements": [
+      "fireflies",
+      "tall_grass",
+      "moon",
+      "dewdrops"
+    ]
+  },
+  "audio_instruction": "denny_058_instruction.mp3",
+  "audio_completion": "denny_058_completion.mp3",
+  "item_rule": "collect",
+  "item_emoji": "✨"
+}

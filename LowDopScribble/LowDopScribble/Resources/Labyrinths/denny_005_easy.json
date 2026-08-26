@@ -1,0 +1,177 @@
+{
+  "id": "denny_005_easy",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "starfish_cove",
+  "title": "Denny's Glowing Rock Mystery",
+  "story_setup": "Denny the baby crab found some pretty rocks that glow in the dark at Starfish Cove. He wants to ask wise Stella the starfish what makes them sparkle so brightly.",
+  "instruction": "Draw a line to help Denny reach Stella.",
+  "tts_instruction": "Can you help Denny reach Stella by drawing a line through the maze? Take your time and guide Denny safely to his wise friend.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "starfish",
+    "description": "Purple-pink starfish, wise and kind, gives good advice",
+    "position": "top_right",
+    "name": "Stella",
+    "image_asset": "stella"
+  },
+  "educational_question": "What other things in the ocean do you think might glow or sparkle?",
+  "fun_fact": "Some sea creatures like jellyfish and plankton can make their own light to glow in the dark ocean.",
+  "completion_message": "Denny made it to Stella and learned that tiny sea creatures make the rocks glow!",
+  "path_data": {
+    "svg_path": "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 440 40 L 580 40 M 580 40 L 580 180 M 160 180 L 160 320 M 20 320 L 160 320 M 20 180 L 20 320 M 160 180 L 300 180 M 160 180 L 160 320 M 300 320 L 440 320 M 580 180 L 580 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 300 320 L 300 460 M 160 460 L 300 460 M 300 320 L 440 320 M 300 460 L 440 460 M 300 320 L 300 460 M 580 320 L 580 460 M 440 460 L 580 460",
+    "solution_path": "M 90 390 L 230 390 L 230 250 L 370 250 L 370 110 L 510 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 90,
+      "y": 390
+    },
+    "end_point": {
+      "x": 510,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 230,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 110
+        },
+        "end": {
+          "x": 90,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 110
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 110
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 370,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 230,
+          "y": 250
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 510,
+          "y": 250
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 90,
+          "y": 390
+        },
+        "end": {
+          "x": 230,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 370,
+          "y": 390
+        },
+        "end": {
+          "x": 510,
+          "y": 390
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": []
+  },
+  "visual_theme": {
+    "background_color": "#8E44AD",
+    "decorative_elements": [
+      "rocks",
+      "starfish",
+      "sea_urchins"
+    ]
+  },
+  "audio_instruction": "denny_005_instruction.mp3",
+  "audio_completion": "denny_005_completion.mp3"
+}

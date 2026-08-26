@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stroke Cue Editor</title>
+  <style>
+    :root {
+      --bg: #eef2e8;
+      --panel: #fffdf6;
+      --ink: #20242a;
+      --muted: #687071;
+      --line: #cfd8cf;
+      --field: #fffaf0;
+      --accent: #126f52;
+      --blue: #116d9c;
+      --rust: #bf552f;
+      --purple: #7d4aa3;
+      --danger: #b33a2f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      min-height: 100vh;
+    }
+    .panel {
+      padding: 20px;
+      background: rgba(255, 253, 246, 0.95);
+      border-right: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+    .muted, .hint {
+      color: var(--muted);
+    }
+    .hint {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .group {
+      margin-top: 18px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    select, button {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      font: inherit;
+    }
+    select {
+      padding: 10px 12px;
+    }
+    button {
+      padding: 11px 12px;
+      cursor: pointer;
+    }
+    button.primary {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+    button.warning {
+      background: #fae3df;
+      border-color: #edbdb5;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .meta div, .status {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .status {
+      margin-top: 12px;
+      min-height: 46px;
+    }
+    .dirty::after {
+      content: " • unsaved";
+      color: var(--danger);
+      font-weight: 700;
+    }
+    .canvas-wrap {
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .canvas-card {
+      width: min(100%, 760px);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 20px 60px rgba(32, 36, 42, 0.08);
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--field);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      touch-action: none;
+      user-select: none;
+    }
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 99px;
+      display: inline-block;
+    }
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="panel">
+      <h1>Stroke Cue Editor</h1>
+      <div class="muted">Place the numbered arrows over the first capital letter cue.</div>
+
+      <div class="group">
+        <label for="letterSelect">Letter</label>
+        <select id="letterSelect"></select>
+      </div>
+
+      <div class="meta">
+        <div><strong id="letterLabel">-</strong><br><span class="muted">Letter</span></div>
+        <div><strong id="strokeCount">-</strong><br><span class="muted">Strokes</span></div>
+      </div>
+
+      <div class="status" id="status">Loading...</div>
+
+      <div class="group hint">
+        Drag numbered circles to set stroke starts. Drag the two square handles to shape curves. Drag arrowheads to set direction and end point.
+        <br><br>
+        Save updates the cue JSON and the generated Swift section in `LetterTracingView.swift`.
+      </div>
+
+      <div class="buttons">
+        <button id="prevBtn">Prev</button>
+        <button id="nextBtn">Next</button>
+      </div>
+      <div class="buttons">
+        <button class="primary" id="saveBtn">Save</button>
+        <button class="primary" id="saveNextBtn">Save + Next</button>
+      </div>
+      <div class="buttons">
+        <button id="addStrokeBtn">Add Stroke</button>
+        <button class="warning" id="removeStrokeBtn">Remove Stroke</button>
+      </div>
+      <div class="buttons">
+        <button id="undoBtn">Undo</button>
+        <button id="resetBtn">Reset Letter</button>
+      </div>
+    </aside>
+
+    <main class="canvas-wrap">
+      <div class="canvas-card">
+        <svg id="canvas" viewBox="0 0 170 210" aria-label="Stroke cue editor canvas"></svg>
+        <div class="legend">
+          <span class="swatch"><span class="dot" style="background:var(--accent)"></span> start</span>
+          <span class="swatch"><span class="dot" style="background:var(--blue)"></span> stroke 2</span>
+          <span class="swatch"><span class="dot" style="background:var(--rust)"></span> stroke 3</span>
+          <span class="swatch"><span class="dot" style="background:var(--purple)"></span> stroke 4+</span>
+          <span class="swatch"><span class="dot" style="background:#20242a"></span> bend handle</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const WIDTH = 170;
+    const HEIGHT = 210;
+    const COLORS = ['var(--accent)', 'var(--blue)', 'var(--rust)', 'var(--purple)'];
+
+    const state = {
+      letters: [],
+      currentIndex: 0,
+      letter: null,
+      strokes: [],
+      originalStrokes: [],
+      history: [],
+      dirty: false,
+      drag: null,
+    };
+
+    const canvas = document.getElementById('canvas');
+    const letterSelect = document.getElementById('letterSelect');
+    const statusEl = document.getElementById('status');
+    const letterLabel = document.getElementById('letterLabel');
+    const strokeCount = document.getElementById('strokeCount');
+
+    const cloneStrokes = (strokes) => JSON.parse(JSON.stringify(strokes));
+    const colorFor = (index) => COLORS[Math.min(index, COLORS.length - 1)];
+    const toSvg = (point) => ({ x: point.x * WIDTH, y: point.y * HEIGHT });
+    const fromSvg = (point) => ({
+      x: Number(Math.max(0, Math.min(1, point.x / WIDTH)).toFixed(3)),
+      y: Number(Math.max(0, Math.min(1, point.y / HEIGHT)).toFixed(3)),
+    });
+
+    const setStatus = (text, isError = false) => {
+      statusEl.textContent = text;
+      statusEl.style.color = isError ? 'var(--danger)' : 'var(--ink)';
+      statusEl.classList.toggle('dirty', state.dirty);
+    };
+
+    const refreshMeta = () => {
+      letterLabel.textContent = state.letter || '-';
+      strokeCount.textContent = String(state.strokes.length || 0);
+    };
+
+    const markDirty = () => {
+      state.dirty = true;
+      refreshMeta();
+      setStatus(`Editing ${state.letter}. Save before switching letters.`);
+    };
+
+    const pushHistory = () => {
+      state.history.push(cloneStrokes(state.strokes));
+      if (state.history.length > 30) state.history.shift();
+    };
+
+    const svgPointFromEvent = (event) => {
+      const pt = canvas.createSVGPoint();
+      pt.x = event.clientX;
+      pt.y = event.clientY;
+      const local = pt.matrixTransform(canvas.getScreenCTM().inverse());
+      return { x: local.x, y: local.y };
+    };
+
+    const arrowPoints = (start, end) => {
+      const angle = Math.atan2(end.y - start.y, end.x - start.x);
+      const size = 18;
+      const spread = 0.72;
+      const p1 = { x: end.x + Math.cos(angle) * size, y: end.y + Math.sin(angle) * size };
+      const p2 = { x: end.x + Math.cos(angle + Math.PI - spread) * size, y: end.y + Math.sin(angle + Math.PI - spread) * size };
+      const p3 = { x: end.x + Math.cos(angle + Math.PI + spread) * size, y: end.y + Math.sin(angle + Math.PI + spread) * size };
+      return `${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y}`;
+    };
+
+    const add = (name, attrs = {}, parent = canvas) => {
+      const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+      for (const [key, value] of Object.entries(attrs)) {
+        el.setAttribute(key, value);
+      }
+      parent.appendChild(el);
+      return el;
+    };
+
+    const draw = () => {
+      canvas.innerHTML = '';
+      add('rect', { x: 0, y: 0, width: WIDTH, height: HEIGHT, fill: '#fffaf0' });
+
+      const letter = add('text', {
+        x: WIDTH / 2,
+        y: 178,
+        'text-anchor': 'middle',
+        'font-size': 240,
+        'font-weight': 900,
+        'font-family': '"SF Pro Rounded", "SF Compact Rounded", ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI Rounded", sans-serif',
+        fill: '#20242a',
+        opacity: 0.13,
+      });
+      letter.textContent = state.letter || 'A';
+
+      state.strokes.forEach((stroke, index) => {
+        const start = toSvg(stroke.start);
+        const control1 = toSvg(stroke.control1);
+        const control2 = toSvg(stroke.control2);
+        const end = toSvg(stroke.end);
+        const color = colorFor(index);
+        const selected = state.drag?.strokeIndex === index;
+
+        add('path', {
+          d: `M ${start.x} ${start.y} C ${control1.x} ${control1.y} ${control2.x} ${control2.y} ${end.x} ${end.y}`,
+          fill: 'none',
+          stroke: color,
+          'stroke-width': selected ? 10 : 8,
+          'stroke-linecap': 'round',
+          opacity: 0.92,
+        });
+
+        add('line', {
+          x1: start.x, y1: start.y, x2: control1.x, y2: control1.y,
+          stroke: '#20242a', 'stroke-width': 2, 'stroke-dasharray': '5 7', opacity: 0.28,
+        });
+        add('line', {
+          x1: control2.x, y1: control2.y, x2: end.x, y2: end.y,
+          stroke: '#20242a', 'stroke-width': 2, 'stroke-dasharray': '5 7', opacity: 0.28,
+        });
+
+        const arrow = add('polygon', {
+          points: arrowPoints(start, end),
+          fill: color,
+          opacity: 0.95,
+          'data-stroke': index,
+          'data-kind': 'end',
+        });
+        arrow.style.cursor = 'grab';
+
+        const startCircle = add('circle', {
+          cx: start.x, cy: start.y, r: 20,
+          fill: color,
+          stroke: 'white',
+          'stroke-width': 3,
+          'data-stroke': index,
+          'data-kind': 'start',
+        });
+        startCircle.style.cursor = 'grab';
+
+        const number = add('text', {
+          x: start.x,
+          y: start.y + 7,
+          'text-anchor': 'middle',
+          'font-size': 22,
+          'font-weight': 900,
+          fill: 'white',
+          'data-stroke': index,
+          'data-kind': 'start',
+        });
+        number.textContent = String(index + 1);
+        number.style.cursor = 'grab';
+
+        const control1Handle = add('rect', {
+          x: control1.x - 13,
+          y: control1.y - 13,
+          width: 26,
+          height: 26,
+          rx: 5,
+          fill: '#20242a',
+          opacity: 0.82,
+          'data-stroke': index,
+          'data-kind': 'control1',
+        });
+        control1Handle.style.cursor = 'grab';
+
+        const control2Handle = add('rect', {
+          x: control2.x - 13,
+          y: control2.y - 13,
+          width: 26,
+          height: 26,
+          rx: 5,
+          fill: '#20242a',
+          opacity: 0.58,
+          'data-stroke': index,
+          'data-kind': 'control2',
+        });
+        control2Handle.style.cursor = 'grab';
+      });
+    };
+
+    const loadLetter = async (index) => {
+      state.currentIndex = Math.max(0, Math.min(index, state.letters.length - 1));
+      const meta = state.letters[state.currentIndex];
+      state.letter = meta.letter;
+      letterSelect.value = state.letter;
+      const response = await fetch(`/api/cues?letter=${encodeURIComponent(state.letter)}`);
+      const payload = await response.json();
+      if (!response.ok) {
+        setStatus(payload.error || 'Failed to load letter', true);
+        return;
+      }
+      state.strokes = cloneStrokes(payload.strokes);
+      state.originalStrokes = cloneStrokes(payload.strokes);
+      state.history = [];
+      state.dirty = false;
+      state.drag = null;
+      refreshMeta();
+      draw();
+      setStatus(`Loaded ${state.letter}.`);
+    };
+
+    const saveCurrent = async () => {
+      if (!state.letter) return false;
+      const response = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ letter: state.letter, strokes: state.strokes }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        setStatus(result.error || 'Save failed', true);
+        return false;
+      }
+      state.originalStrokes = cloneStrokes(state.strokes);
+      state.dirty = false;
+      refreshMeta();
+      setStatus(`Saved ${state.letter}: ${result.stroke_count} stroke(s).`);
+      return true;
+    };
+
+    const tryAdvance = async (delta, saveFirst = false) => {
+      if (saveFirst) {
+        const ok = await saveCurrent();
+        if (!ok) return;
+      } else if (state.dirty) {
+        setStatus('Save, Save + Next, or Reset before switching letters.', true);
+        return;
+      }
+      const nextIndex = state.currentIndex + delta;
+      if (nextIndex < 0 || nextIndex >= state.letters.length) {
+        setStatus('No more letters in that direction.');
+        return;
+      }
+      await loadLetter(nextIndex);
+    };
+
+    canvas.addEventListener('pointerdown', (event) => {
+      const target = event.target;
+      const strokeIndex = Number(target.getAttribute('data-stroke'));
+      const kind = target.getAttribute('data-kind');
+      if (!Number.isInteger(strokeIndex) || !kind) return;
+      pushHistory();
+      state.drag = { strokeIndex, kind };
+      canvas.setPointerCapture(event.pointerId);
+      draw();
+    });
+
+    canvas.addEventListener('pointermove', (event) => {
+      if (!state.drag) return;
+      const stroke = state.strokes[state.drag.strokeIndex];
+      if (!stroke) return;
+      const point = fromSvg(svgPointFromEvent(event));
+      stroke[state.drag.kind] = point;
+      markDirty();
+      draw();
+    });
+
+    canvas.addEventListener('pointerup', () => {
+      state.drag = null;
+      draw();
+    });
+
+    canvas.addEventListener('pointercancel', () => {
+      state.drag = null;
+      draw();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => tryAdvance(-1, false));
+    document.getElementById('nextBtn').addEventListener('click', () => tryAdvance(1, false));
+    document.getElementById('saveBtn').addEventListener('click', saveCurrent);
+    document.getElementById('saveNextBtn').addEventListener('click', () => tryAdvance(1, true));
+
+    document.getElementById('addStrokeBtn').addEventListener('click', () => {
+      pushHistory();
+      const offset = Math.min(0.12, state.strokes.length * 0.03);
+      state.strokes.push({
+        order: state.strokes.length + 1,
+        start: { x: 0.28 + offset, y: 0.18 },
+        control1: { x: 0.38 + offset, y: 0.34 },
+        control2: { x: 0.62 - offset, y: 0.58 + offset },
+        end: { x: 0.72 - offset, y: 0.76 },
+      });
+      markDirty();
+      draw();
+    });
+
+    document.getElementById('removeStrokeBtn').addEventListener('click', () => {
+      if (state.strokes.length <= 1) {
+        setStatus('Keep at least one stroke for each letter.', true);
+        return;
+      }
+      pushHistory();
+      state.strokes.pop();
+      state.strokes.forEach((stroke, index) => { stroke.order = index + 1; });
+      markDirty();
+      draw();
+    });
+
+    document.getElementById('undoBtn').addEventListener('click', () => {
+      const previous = state.history.pop();
+      if (!previous) return;
+      state.strokes = previous;
+      markDirty();
+      draw();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      state.strokes = cloneStrokes(state.originalStrokes);
+      state.history = [];
+      state.dirty = false;
+      refreshMeta();
+      draw();
+      setStatus(`Reset ${state.letter} to last saved positions.`);
+    });
+
+    letterSelect.addEventListener('change', async (event) => {
+      const nextIndex = state.letters.findIndex(item => item.letter === event.target.value);
+      if (nextIndex === -1) return;
+      if (state.dirty) {
+        setStatus('Save or reset the current letter before switching.', true);
+        letterSelect.value = state.letter;
+        return;
+      }
+      await loadLetter(nextIndex);
+    });
+
+    const bootstrap = async () => {
+      const response = await fetch('/api/letters');
+      const payload = await response.json();
+      if (!response.ok) {
+        setStatus(payload.error || 'Failed to list letters', true);
+        return;
+      }
+      state.letters = payload.letters || [];
+      for (const letter of state.letters) {
+        const option = document.createElement('option');
+        option.value = letter.letter;
+        option.textContent = `${letter.letter} · ${letter.stroke_count} stroke(s)`;
+        letterSelect.appendChild(option);
+      }
+      if (!state.letters.length) {
+        setStatus('No letters found.', true);
+        return;
+      }
+      await loadLetter(0);
+    };
+
+    bootstrap();
+  </script>
+</body>
+</html>

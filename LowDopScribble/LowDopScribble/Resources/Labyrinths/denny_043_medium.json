@@ -1,0 +1,527 @@
+{
+  "id": "denny_043_medium",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "forest",
+  "location": "babbling_brook",
+  "title": "Flowers for Maya",
+  "story_setup": "Maya spots bright wildflowers growing beside the babbling brook and wants to gather a pretty little bouquet. The brookside path twists through the trees, and Denny helps collect the flowers along the way.",
+  "instruction": "Collect all the flowers and bring them to Maya by the brook!",
+  "tts_instruction": "Bright flowers are blooming beside the brook. Help Denny collect every flower and bring them to Maya.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little mouse",
+    "description": "Tiny brown field mouse in a red polka-dot dress, shy but warm, round ears, bright curious eyes",
+    "position": "top_right",
+    "name": "Maya",
+    "image_asset": "maya_forest"
+  },
+  "educational_question": "Why do flowers grow well near streams and sunny forest edges?",
+  "fun_fact": "Flowers need sunlight, water, and healthy soil to grow. Near streams, the ground often stays damp enough to help many plants bloom.",
+  "completion_message": "Denny gathered every flower and brought them safely to Maya. The little bouquet looked beautiful beside the sparkling brook.",
+  "path_data": {
+    "svg_path": "M 216 54 L 272 54 M 216 54 L 216 110 M 272 54 L 328 54 M 216 110 L 272 110 M 272 110 L 328 110 M 272 110 L 272 166 M 328 110 L 384 110 M 384 110 L 384 166 M 160 166 L 216 166 M 160 166 L 160 222 M 216 166 L 216 222 M 272 166 L 328 166 M 328 166 L 384 166 M 384 166 L 384 222 M 104 222 L 160 222 M 104 222 L 104 278 M 160 222 L 216 222 M 160 222 L 160 278 M 216 222 L 272 222 M 272 222 L 328 222 M 328 222 L 384 222 M 384 222 L 440 222 M 440 222 L 440 278 M 104 278 L 160 278 M 104 278 L 104 334 M 160 278 L 216 278 M 160 278 L 160 334 M 216 278 L 216 334 M 272 278 L 328 278 M 328 278 L 328 334 M 384 278 L 440 278 M 384 278 L 384 334 M 496 278 L 496 334 M 48 334 L 104 334 M 104 334 L 160 334 M 216 334 L 272 334 M 272 334 L 272 390 M 328 334 L 384 334 M 328 334 L 328 390 M 384 334 L 440 334 M 440 334 L 496 334 M 496 334 L 552 334 M 272 390 L 272 446 M 328 390 L 328 446 M 216 54 L 216 54 M 272 54 L 272 54 M 328 54 L 328 54 M 216 110 L 216 110 M 272 110 L 272 110 M 328 110 L 328 110 M 384 110 L 384 110 M 160 166 L 160 166 M 216 166 L 216 166 M 272 166 L 272 166 M 328 166 L 328 166 M 384 166 L 384 166 M 104 222 L 104 222 M 160 222 L 160 222 M 216 222 L 216 222 M 272 222 L 272 222 M 328 222 L 328 222 M 384 222 L 384 222 M 440 222 L 440 222 M 104 278 L 104 278 M 160 278 L 160 278 M 216 278 L 216 278 M 272 278 L 272 278 M 328 278 L 328 278 M 384 278 L 384 278 M 440 278 L 440 278 M 496 278 L 496 278 M 48 334 L 48 334 M 104 334 L 104 334 M 160 334 L 160 334 M 216 334 L 216 334 M 272 334 L 272 334 M 328 334 L 328 334 M 384 334 L 384 334 M 440 334 L 440 334 M 496 334 L 496 334 M 552 334 L 552 334 M 272 390 L 272 390 M 328 390 L 328 390 M 272 446 L 272 446 M 328 446 L 328 446",
+    "solution_path": "M 272 446 L 272 390 L 272 334 L 216 334 L 216 278 L 160 278 L 160 222 L 216 222 L 272 222 L 328 222 L 384 222 L 384 166 L 384 110 L 328 110 L 272 110 L 216 110 L 216 54 L 272 54",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 272,
+      "y": 446
+    },
+    "end_point": {
+      "x": 272,
+      "y": 54
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 216,
+          "y": 54
+        },
+        "end": {
+          "x": 272,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 54
+        },
+        "end": {
+          "x": 216,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 54
+        },
+        "end": {
+          "x": 328,
+          "y": 54
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 110
+        },
+        "end": {
+          "x": 328,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 110
+        },
+        "end": {
+          "x": 272,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 110
+        },
+        "end": {
+          "x": 384,
+          "y": 110
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 110
+        },
+        "end": {
+          "x": 384,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 166
+        },
+        "end": {
+          "x": 216,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 166
+        },
+        "end": {
+          "x": 160,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 166
+        },
+        "end": {
+          "x": 216,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 166
+        },
+        "end": {
+          "x": 328,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 166
+        },
+        "end": {
+          "x": 384,
+          "y": 166
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 166
+        },
+        "end": {
+          "x": 384,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 222
+        },
+        "end": {
+          "x": 160,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 222
+        },
+        "end": {
+          "x": 104,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 222
+        },
+        "end": {
+          "x": 216,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 222
+        },
+        "end": {
+          "x": 160,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 222
+        },
+        "end": {
+          "x": 272,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 222
+        },
+        "end": {
+          "x": 328,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 222
+        },
+        "end": {
+          "x": 384,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 222
+        },
+        "end": {
+          "x": 440,
+          "y": 222
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 222
+        },
+        "end": {
+          "x": 440,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 278
+        },
+        "end": {
+          "x": 160,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 278
+        },
+        "end": {
+          "x": 104,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 278
+        },
+        "end": {
+          "x": 216,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 278
+        },
+        "end": {
+          "x": 160,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 278
+        },
+        "end": {
+          "x": 216,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 278
+        },
+        "end": {
+          "x": 328,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 278
+        },
+        "end": {
+          "x": 328,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 278
+        },
+        "end": {
+          "x": 440,
+          "y": 278
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 278
+        },
+        "end": {
+          "x": 384,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 278
+        },
+        "end": {
+          "x": 496,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 48,
+          "y": 334
+        },
+        "end": {
+          "x": 104,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 104,
+          "y": 334
+        },
+        "end": {
+          "x": 160,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 216,
+          "y": 334
+        },
+        "end": {
+          "x": 272,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 334
+        },
+        "end": {
+          "x": 272,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 334
+        },
+        "end": {
+          "x": 384,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 334
+        },
+        "end": {
+          "x": 328,
+          "y": 390
+        }
+      },
+      {
+        "start": {
+          "x": 384,
+          "y": 334
+        },
+        "end": {
+          "x": 440,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 440,
+          "y": 334
+        },
+        "end": {
+          "x": 496,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 496,
+          "y": 334
+        },
+        "end": {
+          "x": 552,
+          "y": 334
+        }
+      },
+      {
+        "start": {
+          "x": 272,
+          "y": 390
+        },
+        "end": {
+          "x": 272,
+          "y": 446
+        }
+      },
+      {
+        "start": {
+          "x": 328,
+          "y": 390
+        },
+        "end": {
+          "x": 328,
+          "y": 446
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 384,
+        "y": 222,
+        "emoji": "🌸",
+        "on_solution": true
+      },
+      {
+        "x": 272,
+        "y": 166,
+        "emoji": "🌸",
+        "on_solution": false
+      },
+      {
+        "x": 496,
+        "y": 278,
+        "emoji": "🌸",
+        "on_solution": false
+      },
+      {
+        "x": 328,
+        "y": 278,
+        "emoji": "🌸",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#0D2B2B",
+    "decorative_elements": [
+      "stepping_stones",
+      "frogs",
+      "lily_pads",
+      "willow_branches"
+    ]
+  },
+  "audio_instruction": "denny_043_instruction.mp3",
+  "audio_completion": "denny_043_completion.mp3",
+  "item_rule": "collect",
+  "item_emoji": "🌸"
+}

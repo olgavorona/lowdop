@@ -1,0 +1,185 @@
+{
+  "id": "denny_043_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "babbling_brook",
+  "title": "Flowers for Maya",
+  "story_setup": "Maya spots bright wildflowers growing beside the babbling brook and wants to gather a pretty little bouquet. The brookside path twists through the trees, and Denny helps collect the flowers along the way.",
+  "instruction": "Collect all the flowers and bring them to Maya by the brook!",
+  "tts_instruction": "Bright flowers are blooming beside the brook. Help Denny collect every flower and bring them to Maya.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "little mouse",
+    "description": "Tiny brown field mouse in a red polka-dot dress, shy but warm, round ears, bright curious eyes",
+    "position": "top_right",
+    "name": "Maya",
+    "image_asset": "maya_forest"
+  },
+  "educational_question": "Why do flowers grow well near streams and sunny forest edges?",
+  "fun_fact": "Flowers need sunlight, water, and healthy soil to grow. Near streams, the ground often stays damp enough to help many plants bloom.",
+  "completion_message": "Denny gathered every flower and brought them safely to Maya. The little bouquet looked beautiful beside the sparkling brook.",
+  "path_data": {
+    "svg_path": "M 188 82 L 300 82 M 188 82 L 188 194 M 76 194 L 188 194 M 188 194 L 300 194 M 188 194 L 188 306 M 300 194 L 412 194 M 300 194 L 300 306 M 412 194 L 524 194 M 188 306 L 300 306 M 188 306 L 188 418 M 300 306 L 300 418 M 188 82 L 188 82 M 300 82 L 300 82 M 76 194 L 76 194 M 188 194 L 188 194 M 300 194 L 300 194 M 412 194 L 412 194 M 524 194 L 524 194 M 188 306 L 188 306 M 300 306 L 300 306 M 188 418 L 188 418 M 300 418 L 300 418",
+    "solution_path": "M 300 418 L 300 306 L 300 194 L 188 194 L 188 82 L 300 82",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_tree",
+    "start_point": {
+      "x": 300,
+      "y": 418
+    },
+    "end_point": {
+      "x": 300,
+      "y": 82
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 300,
+          "y": 82
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 82
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 76,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 194
+        },
+        "end": {
+          "x": 188,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 412,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 194
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 412,
+          "y": 194
+        },
+        "end": {
+          "x": 524,
+          "y": 194
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 306
+        }
+      },
+      {
+        "start": {
+          "x": 188,
+          "y": 306
+        },
+        "end": {
+          "x": 188,
+          "y": 418
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 306
+        },
+        "end": {
+          "x": 300,
+          "y": 418
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 194,
+        "emoji": "🌸",
+        "on_solution": true
+      },
+      {
+        "x": 188,
+        "y": 418,
+        "emoji": "🌸",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#0D2B2B",
+    "decorative_elements": [
+      "stepping_stones",
+      "frogs",
+      "lily_pads",
+      "willow_branches"
+    ]
+  },
+  "audio_instruction": "denny_043_instruction.mp3",
+  "audio_completion": "denny_043_completion.mp3",
+  "item_rule": "collect",
+  "item_emoji": "🌸"
+}

@@ -1,0 +1,203 @@
+{
+  "id": "denny_011_easy",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "sandy_shore",
+  "title": "Denny's Shell Collection",
+  "story_setup": "Mommy Coral asked Denny to collect beautiful shells scattered along the sandy shore. Can you help Denny find them all?",
+  "instruction": "Draw a path and collect all the shells along the way to reach Mommy Coral!",
+  "tts_instruction": "Help Denny collect all the shells on the beach! Draw a path through the maze and pick up every shell before reaching Mommy Coral.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "mother crab",
+    "description": "Warm coral-pink mother crab, nurturing, slightly larger with a pearl necklace",
+    "position": "top_right",
+    "name": "Mommy Coral",
+    "image_asset": "mama_coral"
+  },
+  "educational_question": "How many shells did Denny collect? Can you count them?",
+  "fun_fact": "Seashells are the homes of soft-bodied animals called mollusks. When the animal grows too big, it makes a bigger shell!",
+  "completion_message": "Denny collected all the shells! Mommy Coral is so proud!",
+  "item_rule": "collect",
+  "item_emoji": "🐚",
+  "path_data": {
+    "svg_path": "M 253 110 L 253 203 M 253 203 L 346 203 M 253 203 L 253 296 M 346 203 L 346 296 M 160 296 L 253 296 M 160 296 L 160 389 M 346 296 L 439 296 M 346 296 L 346 389 M 439 296 L 439 389 M 67 389 L 160 389 M 253 389 L 346 389 M 346 389 L 439 389 M 439 389 L 532 389 M 253 110 L 253 110 M 253 203 L 253 203 M 346 203 L 346 203 M 160 296 L 160 296 M 253 296 L 253 296 M 346 296 L 346 296 M 439 296 L 439 296 M 67 389 L 67 389 M 160 389 L 160 389 M 253 389 L 253 389 M 346 389 L 346 389 M 439 389 L 439 389 M 532 389 L 532 389",
+    "solution_path": "M 67 389 L 160 389 L 160 296 L 253 296 L 253 203 L 253 110",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_triangle",
+    "start_point": {
+      "x": 67,
+      "y": 389
+    },
+    "end_point": {
+      "x": 253,
+      "y": 110
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 253,
+          "y": 110
+        },
+        "end": {
+          "x": 253,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 203
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 203
+        },
+        "end": {
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 203
+        },
+        "end": {
+          "x": 346,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 253,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 160,
+          "y": 296
+        },
+        "end": {
+          "x": 160,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 439,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 296
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 439,
+          "y": 296
+        },
+        "end": {
+          "x": 439,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 67,
+          "y": 389
+        },
+        "end": {
+          "x": 160,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 253,
+          "y": 389
+        },
+        "end": {
+          "x": 346,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 346,
+          "y": 389
+        },
+        "end": {
+          "x": 439,
+          "y": 389
+        }
+      },
+      {
+        "start": {
+          "x": 439,
+          "y": 389
+        },
+        "end": {
+          "x": 532,
+          "y": 389
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 160,
+        "y": 296,
+        "emoji": "🐚",
+        "on_solution": true
+      },
+      {
+        "x": 532,
+        "y": 389,
+        "emoji": "🐚",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#F4D03F",
+    "decorative_elements": [
+      "shells",
+      "tide_pools",
+      "sand"
+    ]
+  },
+  "audio_instruction": "denny_011_instruction.mp3",
+  "audio_completion": "denny_011_completion.mp3"
+}

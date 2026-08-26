@@ -1,0 +1,205 @@
+{
+  "id": "denny_046_easy",
+  "age_range": "3-6",
+  "difficulty": "easy",
+  "theme": "forest",
+  "location": "berry_bush",
+  "title": "Blueberries for Finn",
+  "story_setup": "Finn wants to make a berry snack to share with Maya and Denny. The berry patch is full of twisting paths and ripe blueberries waiting to be gathered.",
+  "instruction": "Collect all the blueberries and bring them to Finn!",
+  "tts_instruction": "Blueberries are hiding all along the path. Help Denny collect every berry before reaching Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny explorer outfit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "fox cub",
+    "description": "Small orange fox cub with a white-tipped tail, bright clever eyes, and soft fluffy fur",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "fox_forest"
+  },
+  "educational_question": "Which animals in the forest like berries? Can people and animals eat the same berries?",
+  "fun_fact": "Many forest animals eat berries, but some berries are only safe for animals. People should only eat berries when a grown-up knows they are safe.",
+  "completion_message": "Every blueberry made it safely to Finn. He shared the berry snack with Maya and Denny under the pine tree.",
+  "path_data": {
+    "svg_path": "M 300 90 L 300 170 M 220 170 L 220 250 M 300 170 L 380 170 M 300 170 L 300 250 M 380 170 L 380 250 M 140 250 L 220 250 M 220 250 L 300 250 M 220 250 L 220 330 M 380 250 L 460 250 M 380 250 L 380 330 M 220 330 L 300 330 M 300 330 L 380 330 M 300 330 L 300 410 M 300 90 L 300 90 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 460 250 L 460 250 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 300 410 L 300 410",
+    "solution_path": "M 300 410 L 300 330 L 220 330 L 220 250 L 300 250 L 300 170 L 300 90",
+    "width": 40,
+    "complexity": "easy",
+    "maze_type": "corridor_circle",
+    "start_point": {
+      "x": 300,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 300,
+        "y": 170,
+        "emoji": "🫐",
+        "on_solution": true
+      },
+      {
+        "x": 220,
+        "y": 170,
+        "emoji": "🫐",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#1A0F0A",
+    "decorative_elements": [
+      "red_berries",
+      "purple_berries",
+      "thorny_vines",
+      "birds"
+    ]
+  },
+  "audio_instruction": "denny_046_instruction.mp3",
+  "audio_completion": "denny_046_completion.mp3",
+  "item_rule": "collect",
+  "item_emoji": "🫐"
+}

@@ -1,0 +1,241 @@
+{
+  "id": "denny_002_easy",
+  "difficulty": "easy",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny's Shell Garden Shortcut",
+  "story_setup": "Finn has found a winding shortcut through a giant seashell-shaped coral garden. Gentle jellyfish are drifting across the path, so Denny must trace carefully around them to reach Finn.",
+  "instruction": "Avoid the jellyfish and follow the seashell path to Finn!",
+  "tts_instruction": "A giant shell path winds through the coral garden. Help Denny avoid every jellyfish and trace the safe path to Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "Why is it smart to give jellyfish lots of space in the ocean?",
+  "fun_fact": "Jellyfish do not have bones or brains. Their soft bodies drift with the currents, and many jellyfish use stinging tentacles to protect themselves.",
+  "completion_message": "Denny traced the shell path perfectly and slipped past every jellyfish to reach Finn. Finn cheered at the end of the shell garden.",
+  "path_data": {
+    "svg_path": "M 180 50 L 260 50 M 180 50 L 180 130 M 260 50 L 340 50 M 340 50 L 340 130 M 100 130 L 180 130 M 100 130 L 100 210 M 260 130 L 260 210 M 180 210 L 260 210 M 340 130 L 340 210 M 260 130 L 260 210 M 340 130 L 420 130 M 340 130 L 340 210 M 420 130 L 500 130 M 500 130 L 500 210 M 420 210 L 500 210 M 100 290 L 180 290 M 100 210 L 100 290 M 180 210 L 260 210 M 260 210 L 260 290 M 260 290 L 340 290 M 260 210 L 260 290 M 420 210 L 420 290 M 180 290 L 180 370 M 260 290 L 340 290 M 420 290 L 420 370 M 340 370 L 420 370 M 180 450 L 260 450 M 180 370 L 180 450 M 340 370 L 340 450 M 260 450 L 340 450",
+    "solution_path": "M 300 410 L 300 330 L 220 330 L 220 250 L 140 250 L 140 170 L 220 170 L 220 90",
+    "width": 35,
+    "complexity": "easy",
+    "maze_type": "shaped_shell",
+    "start_point": {
+      "x": 300,
+      "y": 410
+    },
+    "end_point": {
+      "x": 220,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 410
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "cell_size": 80,
+    "grid_rows": 5,
+    "grid_cols": 7,
+    "shape": "shell",
+    "avoid_items": [
+      {
+        "x": 300.0,
+        "y": 247.7,
+        "emoji": "🪼",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#0097A7",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_002_instruction.mp3",
+  "audio_completion": "denny_002_completion.mp3",
+  "item_rule": "avoid",
+  "item_emoji": "🪼"
+}

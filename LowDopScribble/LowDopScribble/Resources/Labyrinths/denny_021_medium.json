@@ -1,0 +1,596 @@
+{
+  "id": "denny_021_medium",
+  "age_range": "3-6",
+  "difficulty": "medium",
+  "theme": "space",
+  "location": "rocket_launch_pad",
+  "title": "Denny's First Launch",
+  "story_setup": "Denny is blasting off into space for the very first time! Mommy Coral is waiting at the launch pad control room. Collect all the guiding stars on the way!",
+  "instruction": "Collect all the stars and reach Mommy Coral at the control room!",
+  "tts_instruction": "Blast off! Help Denny collect every guiding star on the launch pad before reaching Mommy Coral at the control room.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab in a tiny space suit, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_space"
+  },
+  "character_end": {
+    "type": "mother crab",
+    "description": "Warm coral-pink mother crab in a pink space suit, nurturing, slightly larger with a pearl necklace on the helmet",
+    "position": "top_right",
+    "name": "Mommy Coral",
+    "image_asset": "mama_coral_space"
+  },
+  "educational_question": "How fast does a rocket need to go to leave Earth? Do you know?",
+  "fun_fact": "A rocket needs to travel at 40,000 kilometers per hour to escape Earth's gravity. That's fast enough to go around the world in less than an hour!",
+  "completion_message": "Denny launched into space! Mommy Coral is so proud!",
+  "item_rule": "collect",
+  "item_emoji": "⭐",
+  "path_data": {
+    "svg_path": "M 20 40 L 90 40 M 20 40 L 20 110 M 90 40 L 160 40 M 160 40 L 160 110 M 160 40 L 230 40 M 160 110 L 230 110 M 160 40 L 160 110 M 230 40 L 300 40 M 230 110 L 300 110 M 300 40 L 370 40 M 300 110 L 370 110 M 370 40 L 440 40 M 440 40 L 510 40 M 440 110 L 510 110 M 510 40 L 580 40 M 580 40 L 580 110 M 90 110 L 90 180 M 20 110 L 20 180 M 90 180 L 160 180 M 90 110 L 90 180 M 160 110 L 230 110 M 160 180 L 230 180 M 230 110 L 300 110 M 230 180 L 300 180 M 300 110 L 370 110 M 370 110 L 370 180 M 440 110 L 440 180 M 370 180 L 440 180 M 370 110 L 370 180 M 440 110 L 510 110 M 440 110 L 440 180 M 580 110 L 580 180 M 90 180 L 90 250 M 20 180 L 20 250 M 90 180 L 160 180 M 90 180 L 90 250 M 160 180 L 230 180 M 230 180 L 300 180 M 370 180 L 370 250 M 370 180 L 440 180 M 370 180 L 370 250 M 510 180 L 510 250 M 440 250 L 510 250 M 580 180 L 580 250 M 510 180 L 510 250 M 90 250 L 90 320 M 20 250 L 20 320 M 160 250 L 160 320 M 90 250 L 90 320 M 160 320 L 230 320 M 160 250 L 160 320 M 300 250 L 300 320 M 230 320 L 300 320 M 370 250 L 370 320 M 300 250 L 300 320 M 370 320 L 440 320 M 370 250 L 370 320 M 440 250 L 510 250 M 580 250 L 580 320 M 90 320 L 90 390 M 20 320 L 20 390 M 160 320 L 160 390 M 90 320 L 90 390 M 160 320 L 230 320 M 160 320 L 160 390 M 230 320 L 300 320 M 300 320 L 300 390 M 300 390 L 370 390 M 300 320 L 300 390 M 370 320 L 440 320 M 440 320 L 440 390 M 510 320 L 510 390 M 440 320 L 440 390 M 580 320 L 580 390 M 510 320 L 510 390 M 90 390 L 90 460 M 20 460 L 90 460 M 20 390 L 20 460 M 90 460 L 160 460 M 90 390 L 90 460 M 160 460 L 230 460 M 230 460 L 300 460 M 300 390 L 370 390 M 300 460 L 370 460 M 370 460 L 440 460 M 510 390 L 510 460 M 440 460 L 510 460 M 580 390 L 580 460 M 510 460 L 580 460 M 510 390 L 510 460",
+    "solution_path": "M 55 425 L 55 355 L 55 285 L 55 215 L 55 145 L 55 75 L 125 75 L 125 145 L 195 145 L 265 145 L 335 145 L 335 215 L 335 285 L 335 355 L 405 355 L 405 425 L 475 425 L 475 355 L 475 285 L 545 285 L 545 215 L 545 145 L 545 75",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 55,
+      "y": 425
+    },
+    "end_point": {
+      "x": 545,
+      "y": 75
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 55,
+          "y": 75
+        },
+        "end": {
+          "x": 125,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 75
+        },
+        "end": {
+          "x": 55,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 75
+        },
+        "end": {
+          "x": 125,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 75
+        },
+        "end": {
+          "x": 265,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 75
+        },
+        "end": {
+          "x": 335,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 75
+        },
+        "end": {
+          "x": 405,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 75
+        },
+        "end": {
+          "x": 475,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 75
+        },
+        "end": {
+          "x": 405,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 75
+        },
+        "end": {
+          "x": 545,
+          "y": 75
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 75
+        },
+        "end": {
+          "x": 545,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 145
+        },
+        "end": {
+          "x": 55,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 145
+        },
+        "end": {
+          "x": 195,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 145
+        },
+        "end": {
+          "x": 265,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 145
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 145
+        },
+        "end": {
+          "x": 545,
+          "y": 145
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 145
+        },
+        "end": {
+          "x": 475,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 145
+        },
+        "end": {
+          "x": 545,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 215
+        },
+        "end": {
+          "x": 55,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 215
+        },
+        "end": {
+          "x": 125,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 215
+        },
+        "end": {
+          "x": 195,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 215
+        },
+        "end": {
+          "x": 265,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 215
+        },
+        "end": {
+          "x": 335,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 215
+        },
+        "end": {
+          "x": 475,
+          "y": 215
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 215
+        },
+        "end": {
+          "x": 405,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 215
+        },
+        "end": {
+          "x": 545,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 285
+        },
+        "end": {
+          "x": 55,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 285
+        },
+        "end": {
+          "x": 125,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 285
+        },
+        "end": {
+          "x": 265,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 285
+        },
+        "end": {
+          "x": 335,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 285
+        },
+        "end": {
+          "x": 475,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 285
+        },
+        "end": {
+          "x": 545,
+          "y": 285
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 285
+        },
+        "end": {
+          "x": 475,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 285
+        },
+        "end": {
+          "x": 545,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 55,
+          "y": 355
+        },
+        "end": {
+          "x": 55,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 355
+        },
+        "end": {
+          "x": 125,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 265,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 355
+        },
+        "end": {
+          "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 355
+        },
+        "end": {
+          "x": 265,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 355
+        },
+        "end": {
+          "x": 405,
+          "y": 355
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 355
+        },
+        "end": {
+          "x": 405,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 475,
+          "y": 355
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 545,
+          "y": 355
+        },
+        "end": {
+          "x": 545,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 125,
+          "y": 425
+        },
+        "end": {
+          "x": 195,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 195,
+          "y": 425
+        },
+        "end": {
+          "x": 265,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 265,
+          "y": 425
+        },
+        "end": {
+          "x": 335,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 335,
+          "y": 425
+        },
+        "end": {
+          "x": 405,
+          "y": 425
+        }
+      },
+      {
+        "start": {
+          "x": 405,
+          "y": 425
+        },
+        "end": {
+          "x": 475,
+          "y": 425
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 475,
+        "y": 355,
+        "emoji": "⭐",
+        "on_solution": true
+      },
+      {
+        "x": 405,
+        "y": 145,
+        "emoji": "⭐",
+        "on_solution": false
+      },
+      {
+        "x": 335,
+        "y": 425,
+        "emoji": "⭐",
+        "on_solution": false
+      },
+      {
+        "x": 545,
+        "y": 425,
+        "emoji": "⭐",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#050510",
+    "decorative_elements": [
+      "rockets",
+      "countdown_clock",
+      "launch_flames"
+    ]
+  },
+  "audio_instruction": "denny_021_instruction.mp3",
+  "audio_completion": "denny_021_completion.mp3"
+}

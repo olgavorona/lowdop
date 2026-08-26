@@ -1,0 +1,615 @@
+{
+  "id": "denny_012_medium",
+  "difficulty": "medium",
+  "theme": "ocean",
+  "location": "coral_garden",
+  "title": "Denny's Pearl Dive",
+  "story_setup": "Shiny pearls are hidden all around the coral garden! Denny and Finn want to collect them all before the tide comes in.",
+  "instruction": "Collect all the pearls as you draw a path to reach Finn!",
+  "tts_instruction": "Look at all those pearls! Help Denny explore the coral garden and collect every pearl before reaching Finn.",
+  "character_start": {
+    "type": "baby crab",
+    "description": "Bright orange-red baby crab, curious and cheerful, small claws, big expressive eyes",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny"
+  },
+  "character_end": {
+    "type": "clownfish",
+    "description": "Orange clownfish with white stripes, brave and adventurous",
+    "position": "top_right",
+    "name": "Finn",
+    "image_asset": "finn"
+  },
+  "educational_question": "Where do pearls come from? Which animal makes them?",
+  "fun_fact": "Pearls are made by oysters! When a tiny grain of sand gets inside, the oyster covers it with smooth layers until it becomes a pearl.",
+  "completion_message": "Denny found all the pearls! Finn is amazed!",
+  "item_rule": "collect",
+  "item_emoji": "🦪",
+  "path_data": {
+    "svg_path": "M 277 66 L 277 112 M 231 112 L 277 112 M 277 112 L 323 112 M 323 112 L 323 158 M 185 158 L 231 158 M 185 158 L 185 204 M 231 158 L 277 158 M 277 158 L 277 204 M 323 158 L 369 158 M 369 158 L 415 158 M 415 158 L 415 204 M 93 204 L 139 204 M 93 204 L 93 250 M 139 204 L 185 204 M 139 204 L 139 250 M 231 204 L 277 204 M 277 204 L 323 204 M 323 204 L 369 204 M 369 204 L 369 250 M 415 204 L 461 204 M 461 204 L 461 250 M 47 250 L 93 250 M 93 250 L 93 296 M 185 250 L 231 250 M 185 250 L 185 296 M 231 250 L 277 250 M 231 250 L 231 296 M 277 250 L 323 250 M 323 250 L 323 296 M 369 250 L 415 250 M 415 250 L 461 250 M 461 250 L 507 250 M 461 250 L 461 296 M 507 250 L 553 250 M 93 296 L 139 296 M 139 296 L 185 296 M 185 296 L 231 296 M 231 296 L 231 342 M 277 296 L 323 296 M 277 296 L 277 342 M 323 296 L 369 296 M 369 296 L 369 342 M 415 296 L 461 296 M 415 296 L 415 342 M 185 342 L 231 342 M 231 342 L 277 342 M 231 342 L 231 388 M 277 342 L 323 342 M 277 342 L 277 388 M 323 342 L 369 342 M 323 342 L 323 388 M 277 388 L 323 388 M 277 388 L 277 434 M 277 66 L 277 66 M 231 112 L 231 112 M 277 112 L 277 112 M 323 112 L 323 112 M 185 158 L 185 158 M 231 158 L 231 158 M 277 158 L 277 158 M 323 158 L 323 158 M 369 158 L 369 158 M 415 158 L 415 158 M 93 204 L 93 204 M 139 204 L 139 204 M 185 204 L 185 204 M 231 204 L 231 204 M 277 204 L 277 204 M 323 204 L 323 204 M 369 204 L 369 204 M 415 204 L 415 204 M 461 204 L 461 204 M 47 250 L 47 250 M 93 250 L 93 250 M 139 250 L 139 250 M 185 250 L 185 250 M 231 250 L 231 250 M 277 250 L 277 250 M 323 250 L 323 250 M 369 250 L 369 250 M 415 250 L 415 250 M 461 250 L 461 250 M 507 250 L 507 250 M 553 250 L 553 250 M 93 296 L 93 296 M 139 296 L 139 296 M 185 296 L 185 296 M 231 296 L 231 296 M 277 296 L 277 296 M 323 296 L 323 296 M 369 296 L 369 296 M 415 296 L 415 296 M 461 296 L 461 296 M 185 342 L 185 342 M 231 342 L 231 342 M 277 342 L 277 342 M 323 342 L 323 342 M 369 342 L 369 342 M 415 342 L 415 342 M 231 388 L 231 388 M 277 388 L 277 388 M 323 388 L 323 388 M 277 434 L 277 434",
+    "solution_path": "M 277 434 L 277 388 L 277 342 L 231 342 L 231 296 L 185 296 L 139 296 L 93 296 L 93 250 L 93 204 L 139 204 L 185 204 L 185 158 L 231 158 L 277 158 L 277 204 L 323 204 L 369 204 L 369 250 L 415 250 L 461 250 L 461 204 L 415 204 L 415 158 L 369 158 L 323 158 L 323 112 L 277 112 L 277 66",
+    "width": 30,
+    "complexity": "medium",
+    "maze_type": "corridor_diamond",
+    "start_point": {
+      "x": 277,
+      "y": 434
+    },
+    "end_point": {
+      "x": 277,
+      "y": 66
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 277,
+          "y": 66
+        },
+        "end": {
+          "x": 277,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 112
+        },
+        "end": {
+          "x": 277,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 112
+        },
+        "end": {
+          "x": 323,
+          "y": 112
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 112
+        },
+        "end": {
+          "x": 323,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 158
+        },
+        "end": {
+          "x": 231,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 158
+        },
+        "end": {
+          "x": 185,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 158
+        },
+        "end": {
+          "x": 277,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 158
+        },
+        "end": {
+          "x": 277,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 158
+        },
+        "end": {
+          "x": 369,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 158
+        },
+        "end": {
+          "x": 415,
+          "y": 158
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 158
+        },
+        "end": {
+          "x": 415,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 204
+        },
+        "end": {
+          "x": 139,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 204
+        },
+        "end": {
+          "x": 93,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 204
+        },
+        "end": {
+          "x": 185,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 204
+        },
+        "end": {
+          "x": 139,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 204
+        },
+        "end": {
+          "x": 277,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 204
+        },
+        "end": {
+          "x": 323,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 204
+        },
+        "end": {
+          "x": 369,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 204
+        },
+        "end": {
+          "x": 369,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 204
+        },
+        "end": {
+          "x": 461,
+          "y": 204
+        }
+      },
+      {
+        "start": {
+          "x": 461,
+          "y": 204
+        },
+        "end": {
+          "x": 461,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 47,
+          "y": 250
+        },
+        "end": {
+          "x": 93,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 250
+        },
+        "end": {
+          "x": 93,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 250
+        },
+        "end": {
+          "x": 231,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 250
+        },
+        "end": {
+          "x": 185,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 250
+        },
+        "end": {
+          "x": 277,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 250
+        },
+        "end": {
+          "x": 231,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 250
+        },
+        "end": {
+          "x": 323,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 250
+        },
+        "end": {
+          "x": 323,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 250
+        },
+        "end": {
+          "x": 415,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 250
+        },
+        "end": {
+          "x": 461,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 461,
+          "y": 250
+        },
+        "end": {
+          "x": 507,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 461,
+          "y": 250
+        },
+        "end": {
+          "x": 461,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 507,
+          "y": 250
+        },
+        "end": {
+          "x": 553,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 93,
+          "y": 296
+        },
+        "end": {
+          "x": 139,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 139,
+          "y": 296
+        },
+        "end": {
+          "x": 185,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 296
+        },
+        "end": {
+          "x": 231,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 296
+        },
+        "end": {
+          "x": 231,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 296
+        },
+        "end": {
+          "x": 323,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 296
+        },
+        "end": {
+          "x": 277,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 296
+        },
+        "end": {
+          "x": 369,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 369,
+          "y": 296
+        },
+        "end": {
+          "x": 369,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 296
+        },
+        "end": {
+          "x": 461,
+          "y": 296
+        }
+      },
+      {
+        "start": {
+          "x": 415,
+          "y": 296
+        },
+        "end": {
+          "x": 415,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 185,
+          "y": 342
+        },
+        "end": {
+          "x": 231,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 342
+        },
+        "end": {
+          "x": 277,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 231,
+          "y": 342
+        },
+        "end": {
+          "x": 231,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 342
+        },
+        "end": {
+          "x": 323,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 342
+        },
+        "end": {
+          "x": 277,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 342
+        },
+        "end": {
+          "x": 369,
+          "y": 342
+        }
+      },
+      {
+        "start": {
+          "x": 323,
+          "y": 342
+        },
+        "end": {
+          "x": 323,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 388
+        },
+        "end": {
+          "x": 323,
+          "y": 388
+        }
+      },
+      {
+        "start": {
+          "x": 277,
+          "y": 388
+        },
+        "end": {
+          "x": 277,
+          "y": 434
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "control_points": [],
+    "items": [
+      {
+        "x": 415,
+        "y": 204,
+        "emoji": "🦪",
+        "on_solution": true
+      },
+      {
+        "x": 369,
+        "y": 342,
+        "emoji": "🦪",
+        "on_solution": false
+      },
+      {
+        "x": 461,
+        "y": 296,
+        "emoji": "🦪",
+        "on_solution": false
+      },
+      {
+        "x": 415,
+        "y": 342,
+        "emoji": "🦪",
+        "on_solution": false
+      }
+    ]
+  },
+  "visual_theme": {
+    "background_color": "#0097A7",
+    "decorative_elements": [
+      "coral",
+      "anemones",
+      "small_fish"
+    ]
+  },
+  "audio_instruction": "denny_012_instruction.mp3",
+  "audio_completion": "denny_012_completion.mp3"
+}
