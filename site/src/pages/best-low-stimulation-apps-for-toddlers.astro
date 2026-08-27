@@ -6,10 +6,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { buildMeta, organizationSchema } from "../lib/seo";
 
 const meta = buildMeta({
-  title:
-    "Best Low-Stimulation Apps for Toddlers | What to look for and what to avoid",
+  title: "Best Low-Stimulation Apps for Toddlers: 14 Apps Compared",
   description:
-    "A scored comparison of real toddler apps by sounds, animations, rewards, and brightness — so you can see the difference before you hand over the iPad.",
+    "Looking for calm toddler apps? We compared 14 popular kids apps for sounds, animation, rewards and brightness, including Pok Pok, Khan Academy Kids and more.",
   pathname: "/best-low-stimulation-apps-for-toddlers/",
   type: "article"
 });
@@ -184,20 +183,13 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
 <BaseLayout {...meta} schemas={[organizationSchema()]}>
   <PageHeader
     eyebrow="Guide"
-    title="Best low-stimulation apps for toddlers"
-    intro="Not just a list of names — a scored look at how real apps compare on the things that actually make screen time feel calm or chaotic."
+    title="Best Low-Stimulation Apps for Toddlers"
+    intro="Looking for the best low-stimulation apps for toddlers? We compared 14 popular kids apps based on sounds, animations, rewards and visual brightness. Each app gets a Calm Score from 1–10, so you can quickly find quieter, less overstimulating options for your child."
     tags={["toddlers", "low stimulation", "no ads", "parent guide"]}
   />
 
   <section class="intro-section">
     <div class="shell narrow prose">
-      <p>
-        When parents search for low-stimulation apps, they are usually
-        describing a feeling: fewer interruptions, less noise, slower pacing,
-        and no child who is agitated the moment the screen goes away. The
-        problem is that most app descriptions use the word "calm" as a
-        marketing claim rather than a design principle.
-      </p>
       <p>
         The table below scores real apps — and one non-digital benchmark —
         across four dimensions: Sounds, Animations, Rewards, and Brightness. Each goes
