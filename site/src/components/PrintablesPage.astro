@@ -4,32 +4,78 @@ import type { PrintableMaze, PrintablePack } from "../data/printables/fallMazes"
 
 type Props = {
   title: string;
+  supportLine: string;
   intro: string;
   mazes: PrintableMaze[];
   downloadPacks: PrintablePack[];
 };
 
-const { title, intro, mazes, downloadPacks } = Astro.props as Props;
+const { title, supportLine, intro, mazes, downloadPacks } = Astro.props as Props;
 const modalMazes = mazes.map((maze) => ({
   title: maze.title,
   preview: maze.preview,
+  alt: maze.alt,
   difficulties: maze.difficulties
 }));
 const printableCount = mazes.length;
+const includedMazes = [
+  "Fall Leaf Maze",
+  "Apple Maze",
+  "Corn Maze",
+  "Pumpkin Maze",
+  "Acorn Maze",
+  "Rainy Puddle Maze"
+];
+const faqItems = [
+  {
+    question: "Are these fall mazes free to print?",
+    answer: "Yes. You can download and print all six fall maze designs for free."
+  },
+  {
+    question: "What ages are these printable mazes for?",
+    answer:
+      "They are designed roughly for children ages 2-6. Easy is best for beginners, while Medium and Hard provide progressively more challenging paths."
+  },
+  {
+    question: "Can I use these fall mazes for preschool or kindergarten?",
+    answer:
+      "Yes. The simpler versions work well as quiet preschool and kindergarten activities, fine-motor practice, early-finisher activities and no-prep play at home."
+  },
+  {
+    question: "Can I print all the fall mazes at once?",
+    answer: "Yes. Choose a difficulty and use the full-set download option to get all six fall mazes together."
+  }
+];
 ---
 
 <article class="printables-article">
-  <div class="shell narrow">
+  <div class="shell printables-shell">
     <h1>{title}</h1>
-    <p class="printables-lead">{intro}</p>
+    <p class="printables-support">{supportLine}</p>
+    <div class="printables-lead">
+      {intro.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}
+    </div>
   </div>
 
   <section class="printables-maze-list" aria-label="Fall maze downloads">
-    <div class="shell">
+    <div class="shell printables-shell">
+      <section class="printables-included" aria-labelledby="included-heading">
+        <h2 id="included-heading">What's Included in These Printable Fall Mazes?</h2>
+        <p>The free set includes six fall-themed maze puzzles:</p>
+        <ul>
+          {includedMazes.map((item) => <li>{item}</li>)}
+        </ul>
+        <p>
+          Each design is available in Easy, Medium and Hard difficulty, giving
+          families different challenge levels while keeping the same fall theme.
+        </p>
+      </section>
+
       <div class="printables-global-toolbar" aria-label="Choose preview difficulty">
         <div>
           <p class="eyebrow">Preview difficulty</p>
-          <h2>Change every maze at once</h2>
+          <h2>Choose a Difficulty for All {printableCount} Mazes</h2>
+          <p>Switch the whole printable set between Easy, Medium and Hard.</p>
         </div>
         <div class="difficulty-control global-difficulty-control">
           {mazes[0]?.difficulties.map((difficulty, index) => (
@@ -46,6 +92,31 @@ const printableCount = mazes.length;
         </div>
       </div>
 
+      <section class="printables-app-cta">
+        <div class="printables-app-cta-inner">
+          <img src="/images/denny.png" alt="" width="160" height="160" loading="lazy" />
+          <div>
+            <p class="eyebrow">Denny's Maze App</p>
+            <h2>Want More Mazes? Try Denny's Maze on iPad</h2>
+            <p>
+              These free printable mazes are for times when you want a simple
+              paper activity. Denny's Maze brings the same calm, paper-like
+              maze experience to iPad, with 180 mazes across three difficulty
+              levels.
+            </p>
+            <div class="printables-actions">
+              <a class="button" href={siteConfig.productPath}>Denny's Maze for iPad</a>
+              <a class="button secondary app-store-cta" href={siteConfig.appStoreUrl}>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M16.8 13.1c0-2 1.7-3 1.8-3.1-1-1.4-2.4-1.6-2.9-1.7-1.2-.1-2.4.7-3 0.7-.6 0-1.6-.7-2.6-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.3 1.2-2.4 0 0-2.2-.8-2.2-3.4ZM15 7.1c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.7-1.1 1.7-.9 2.6.9.1 1.9-.5 2.5-1.2Z" fill="currentColor"/>
+                </svg>
+                Download on the App Store
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {mazes.map((maze, mazeIndex) => (
         <section class="printable-row" data-printable-row data-maze-index={mazeIndex}>
           <button
@@ -57,7 +128,7 @@ const printableCount = mazes.length;
           >
             <img
               src={maze.preview}
-              alt={`${maze.title} printable preview`}
+              alt={maze.alt}
               loading="lazy"
               width="210"
               height="297"
@@ -69,7 +140,6 @@ const printableCount = mazes.length;
             <p class="eyebrow">Printable maze</p>
             <h2>{maze.title}</h2>
             <p>{maze.description}</p>
-            <p>{maze.detail}</p>
 
             <div class="difficulty-control" aria-label={`Choose ${maze.title} difficulty`}>
               {maze.difficulties.map((difficulty, index) => (
@@ -92,12 +162,39 @@ const printableCount = mazes.length;
         </section>
       ))}
 
+      <section class="printables-app-cta printables-app-cta-after-mazes">
+        <div class="printables-app-cta-inner">
+          <img src="/images/denny.png" alt="" width="160" height="160" loading="lazy" />
+          <div>
+            <p class="eyebrow">Denny's Maze App</p>
+            <h2>Want More Mazes? Try Denny's Maze on iPad</h2>
+            <p>
+              These free printable mazes are for times when you want a simple
+              paper activity. Denny's Maze brings the same calm, paper-like
+              maze experience to iPad, with 180 mazes across three difficulty
+              levels.
+            </p>
+            <div class="printables-actions">
+              <a class="button" href={siteConfig.productPath}>Denny's Maze for iPad</a>
+              <a class="button secondary app-store-cta" href={siteConfig.appStoreUrl}>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M16.8 13.1c0-2 1.7-3 1.8-3.1-1-1.4-2.4-1.6-2.9-1.7-1.2-.1-2.4.7-3 0.7-.6 0-1.6-.7-2.6-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.3 1.2-2.4 0 0-2.2-.8-2.2-3.4ZM15 7.1c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.7-1.1 1.7-.9 2.6.9.1 1.9-.5 2.5-1.2Z" fill="currentColor"/>
+                </svg>
+                Download on the App Store
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div class="printables-bulk-download">
         <div>
           <p class="eyebrow">Full set</p>
-          <h2>Download all {printableCount} mazes</h2>
+          <h2>Download All {printableCount} Free Fall Mazes</h2>
           <p>
-            A single ZIP with the selected difficulty for every fall maze in this set.
+            Get the complete set of printable fall mazes in your chosen
+            difficulty. The set includes the leaf, apple, corn, pumpkin, acorn
+            and rainy puddle mazes.
           </p>
           <div class="difficulty-control pack-difficulty-control" aria-label="Choose pack difficulty">
             {downloadPacks.map((pack, index) => (
@@ -120,26 +217,56 @@ const printableCount = mazes.length;
     </div>
   </section>
 
-  <section class="printables-app-cta">
-    <div class="shell printables-app-cta-inner">
-      <img src="/images/denny.png" alt="" width="160" height="160" loading="lazy" />
-      <div>
-        <p class="eyebrow">Denny's Maze App</p>
-        <h2>A paper-like maze activity for your iPad</h2>
-        <p>
-          Printables are useful when paper is what you want. The app is for the
-          same quiet maze feeling when you want something ready on the iPad.
-        </p>
-        <div class="printables-actions">
-          <a class="button" href={siteConfig.productPath}>Learn about Denny's Maze</a>
-          <a class="button secondary app-store-cta" href={siteConfig.appStoreUrl}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M16.8 13.1c0-2 1.7-3 1.8-3.1-1-1.4-2.4-1.6-2.9-1.7-1.2-.1-2.4.7-3 0.7-.6 0-1.6-.7-2.6-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1 2.6-2.1.8-1.2 1.2-2.3 1.2-2.4 0 0-2.2-.8-2.2-3.4ZM15 7.1c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.7-1.1 1.7-.9 2.6.9.1 1.9-.5 2.5-1.2Z" fill="currentColor"/>
-            </svg>
-            Download on the App Store
-          </a>
+  <section class="printables-info">
+    <div class="shell printables-shell">
+      <h2>Which Maze Difficulty Should I Choose?</h2>
+      <dl class="difficulty-guide">
+        <div>
+          <dt>Easy</dt>
+          <dd>Best for younger children, beginners and kids learning how to follow maze paths.</dd>
         </div>
+        <div>
+          <dt>Medium</dt>
+          <dd>A good next step for children who already solve simple mazes comfortably.</dd>
+        </div>
+        <div>
+          <dt>Hard</dt>
+          <dd>More turns and decisions for children who want a bigger challenge.</dd>
+        </div>
+      </dl>
+      <p>
+        These fall mazes are designed roughly for ages 2-6, but maze
+        experience matters more than exact age. If you're unsure, start with
+        Easy and move up.
+      </p>
+
+      <h2>How to Print the Fall Mazes</h2>
+      <ol>
+        <li>Choose Easy, Medium or Hard.</li>
+        <li>Open or download the printable maze.</li>
+        <li>Print on regular US Letter or A4 paper using "Fit to page" if needed.</li>
+        <li>Let your child solve it with a pencil, crayon or marker.</li>
+      </ol>
+      <p>You can print one maze at a time or download the complete fall maze set.</p>
+    </div>
+  </section>
+
+  <section class="printables-info">
+    <div class="shell printables-shell">
+      <h2>Frequently Asked Questions</h2>
+      <div class="printables-faq">
+        {faqItems.map((item) => (
+          <section>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </section>
+        ))}
       </div>
+
+      <h2>More Free Printable Mazes for Kids</h2>
+      <p>
+        <a href="/printables/">Browse all free printable mazes for kids</a>.
+      </p>
     </div>
   </section>
 
@@ -209,7 +336,7 @@ const printableCount = mazes.length;
       const previewImage = row.querySelector("[data-printable-preview-image]");
       if (previewImage instanceof HTMLImageElement) {
         previewImage.src = difficulty.href;
-        previewImage.alt = `${maze.title} ${difficulty.label} printable preview`;
+        previewImage.alt = `${maze.alt} - ${difficulty.label}`;
       }
 
       const download = row.querySelector("[data-dynamic-download]");
@@ -243,7 +370,7 @@ const printableCount = mazes.length;
     if (modalTitle) modalTitle.textContent = maze.title;
     if (modalImage instanceof HTMLImageElement) {
       modalImage.src = difficulty.href;
-      modalImage.alt = `${maze.title} ${difficulty.label} printable preview`;
+      modalImage.alt = `${maze.alt} - ${difficulty.label}`;
     }
     if (modalDownload instanceof HTMLAnchorElement) {
       modalDownload.href = difficulty.href;
@@ -356,13 +483,52 @@ const printableCount = mazes.length;
     padding: 3.25rem 0 4rem;
   }
 
+  .printables-shell {
+    max-width: 58rem;
+  }
+
   .printables-lead {
     color: var(--muted);
-    max-width: 42rem;
+  }
+
+  .printables-lead p {
+    margin: 0 0 1rem;
+  }
+
+  .printables-support {
+    margin: 0 0 1.25rem;
+    color: var(--accent-strong);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
   }
 
   .printables-maze-list {
     padding: 1.5rem 0 0;
+  }
+
+  .printables-included,
+  .printables-info {
+    padding: 2rem 0;
+  }
+
+  .printables-included {
+    border-top: 1px solid var(--line);
+  }
+
+  .printables-included p,
+  .printables-info p,
+  .printables-info li,
+  .difficulty-guide dd,
+  .printables-faq p {
+    color: var(--muted);
+  }
+
+  .printables-included ul {
+    display: grid;
+    gap: 0.35rem 1.5rem;
+    margin: 1rem 0;
+    padding-left: 1.2rem;
   }
 
   .printables-global-toolbar {
@@ -375,6 +541,11 @@ const printableCount = mazes.length;
   .printables-global-toolbar h2 {
     margin-bottom: 0;
     font-size: clamp(1.35rem, 2.5vw, 2rem);
+  }
+
+  .printables-global-toolbar p:not(.eyebrow) {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
   }
 
   .global-difficulty-control,
@@ -416,7 +587,46 @@ const printableCount = mazes.length;
 
   .printable-copy p {
     color: var(--muted);
-    max-width: 42rem;
+  }
+
+  .difficulty-guide {
+    display: grid;
+    gap: 0.85rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .difficulty-guide div {
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line-faint);
+  }
+
+  .difficulty-guide dt {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .difficulty-guide dd {
+    margin: 0.2rem 0 0;
+  }
+
+  .printables-info ol {
+    padding-left: 1.2rem;
+  }
+
+  .printables-faq {
+    display: grid;
+    gap: 1.25rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .printables-faq section {
+    padding-top: 1rem;
+    border-top: 1px solid var(--line-faint);
+  }
+
+  .printables-faq h3 {
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
   }
 
   .difficulty-control,
@@ -461,6 +671,14 @@ const printableCount = mazes.length;
 
   .printables-app-cta {
     padding: 4rem 0 0;
+  }
+
+  .printables-maze-list .printables-app-cta {
+    padding: 0 0 2.25rem;
+  }
+
+  .printables-app-cta-after-mazes {
+    padding: 2rem 0 0;
   }
 
   .printables-app-cta-inner {
@@ -585,6 +803,10 @@ const printableCount = mazes.length;
   }
 
   @media (min-width: 760px) {
+    .printables-included ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .printables-global-toolbar {
       grid-template-columns: 1fr auto;
       padding-bottom: 2rem;

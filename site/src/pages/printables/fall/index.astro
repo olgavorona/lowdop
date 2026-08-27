@@ -2,12 +2,32 @@
 import PrintablesPage from "../../../components/PrintablesPage.astro";
 import { fallMazePrintables } from "../../../data/printables/fallMazes";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { absoluteUrl, buildMeta, organizationSchema } from "../../../lib/seo";
+import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
 
-const title = "6 Free Printable Fall Mazes for Kids | Denny's Maze";
+const title = "6 Free Printable Fall Mazes for Kids | Easy, Medium & Hard";
 const description =
-  "Download 6 free printable fall mazes for kids, with easy, medium and hard versions for leaves, apples, corn, pumpkins, acorns and rainy puddles.";
+  "Download 6 free printable fall mazes for kids ages 2-6. Choose Easy, Medium or Hard leaf, apple, corn, pumpkin, acorn and rainy-day mazes.";
 const pathname = "/printables/fall/";
+const faqItems = [
+  {
+    question: "Are these fall mazes free to print?",
+    answer: "Yes. You can download and print all six fall maze designs for free."
+  },
+  {
+    question: "What ages are these printable mazes for?",
+    answer:
+      "They are designed roughly for children ages 2-6. Easy is best for beginners, while Medium and Hard provide progressively more challenging paths."
+  },
+  {
+    question: "Can I use these fall mazes for preschool or kindergarten?",
+    answer:
+      "Yes. The simpler versions work well as quiet preschool and kindergarten activities, fine-motor practice, early-finisher activities and no-prep play at home."
+  },
+  {
+    question: "Can I print all the fall mazes at once?",
+    answer: "Yes. Choose a difficulty and use the full-set download option to get all six fall mazes together."
+  }
+];
 
 const meta = buildMeta({
   title,
@@ -33,8 +53,8 @@ const pageSchema = {
 <BaseLayout
   {...meta}
   ogTitle="6 Free Printable Fall Mazes for Kids"
-  ogDescription="Download fall maze printables from Denny's Maze: leaves, apples, corn, pumpkins, acorns and rainy puddles."
-  schemas={[organizationSchema(), pageSchema]}
+  ogDescription="Download free fall maze printables for kids ages 2-6, with Easy, Medium and Hard leaf, apple, corn, pumpkin, acorn and rainy-day mazes."
+  schemas={[organizationSchema(), pageSchema, faqSchema(faqItems)]}
 >
   <PrintablesPage {...fallMazePrintables} />
 </BaseLayout>

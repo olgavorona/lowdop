@@ -5,9 +5,10 @@ export type PrintableDifficulty = {
 
 export type PrintableMaze = {
   title: string;
+  originalTitle: string;
   slug: string;
+  alt: string;
   description: string;
-  detail: string;
   preview: string;
   difficulties: PrintableDifficulty[];
 };
@@ -15,10 +16,11 @@ export type PrintableMaze = {
 export type PrintablePack = PrintableDifficulty;
 
 export const fallMazePrintables = {
-  title: "6 Free Printable Fall Mazes",
+  title: "6 Free Printable Fall Mazes for Kids",
+  supportLine: "Ages 2-6 · 6 designs · Easy, Medium & Hard · Free to print",
   eyebrow: "Denny's Maze printables",
   intro:
-    "Printable fall mazes for quiet paper play: leaves, apples, corn, pumpkins, acorns and rainy puddles.",
+    "Looking for free printable fall mazes for kids? This set includes six autumn-themed maze worksheets featuring leaves, apples, corn, pumpkins, acorns and rainy puddles. The mazes are designed for children around ages 2-6 and are available in Easy, Medium and Hard difficulty, so parents can choose a simple maze for a beginner or a more challenging path for a child who already enjoys maze puzzles.\n\nDownload individual mazes below or print the complete fall maze set. They are simple, no-prep activities for quiet time at home, preschool or kindergarten, travel, restaurants, waiting rooms and rainy fall afternoons.",
   heroImage: "/printables/fall-mazes/hero-denny-yellow-raincoat.svg",
   assetBase: "/printables/fall-mazes",
   downloadPacks: ["easy", "medium", "hard"].map((difficulty) => ({
@@ -27,57 +29,57 @@ export const fallMazePrintables = {
   })),
   mazes: [
     {
-      title: "Leaf Pile Maze",
+      title: "Fall Leaf Maze Printable",
+      originalTitle: "Leaf Pile Maze",
       slug: "leaf-pile",
+      alt: "Printable fall leaf maze for kids",
       description:
-        "A simple path maze where Denny follows the windy park trail to a leaf pile.",
-      detail:
-        "This one has no collectibles, so it is a good first page for kids who just want to trace the route.",
+        "Help Denny follow the autumn trail to the leaf pile in this free printable fall leaf maze. The simpler version works well for younger children and first-time maze solvers, while Medium and Hard add more challenge.",
       preview: "/printables/fall-mazes/svg/leaf-pile-easy.svg"
     },
     {
-      title: "Apple Basket Maze",
+      title: "Apple Maze Printable",
+      originalTitle: "Apple Basket Maze",
       slug: "apple-basket",
+      alt: "Printable apple maze for kids",
       description:
-        "Denny finds apples along the orchard path and brings them to the basket.",
-      detail:
-        "A classic collect-and-finish maze with a clear fall task on every difficulty.",
+        "Help Denny collect the apples and find the basket in this free printable apple maze for kids. Choose Easy, Medium or Hard depending on how comfortable your child is with maze puzzles.",
       preview: "/printables/fall-mazes/svg/apple-basket-easy.svg"
     },
     {
-      title: "Corn Maze",
+      title: "Corn Maze Printable",
+      originalTitle: "Corn Maze",
       slug: "corn-maze",
+      alt: "Printable corn maze for kids",
       description:
-        "A corn-shaped walled maze with ears of corn tucked inside the path.",
-      detail:
-        "This is the printable version for parents looking specifically for a corn maze activity.",
+        "Turn a classic fall corn maze into a quiet paper activity. Children guide Denny through the maze while following the path and finding the corn along the way.",
       preview: "/printables/fall-mazes/svg/corn-maze-easy.svg"
     },
     {
-      title: "Pumpkin Patch Maze",
+      title: "Pumpkin Maze Printable",
+      originalTitle: "Pumpkin Patch Maze",
       slug: "pumpkin-patch",
+      alt: "Printable pumpkin maze for kids",
       description:
-        "A pumpkin-shaped walled maze where Denny collects pumpkins in the patch.",
-      detail:
-        "Good for autumn, Halloween-adjacent, or harvest-themed printable pages without making it spooky.",
+        "Guide Denny through this printable pumpkin maze and collect pumpkins along the way. It works well as a fall, harvest or gentle non-spooky Halloween maze activity for young children.",
       preview: "/printables/fall-mazes/svg/pumpkin-patch-easy.svg"
     },
     {
-      title: "Acorn Shell Maze",
+      title: "Acorn Maze Printable",
+      originalTitle: "Acorn Shell Maze",
       slug: "acorn-trail",
+      alt: "Printable acorn maze for kids",
       description:
-        "A wider corridor maze inspired by the in-app shell-style levels, with acorns to collect.",
-      detail:
-        "This one feels different from the standard wall mazes and gives the set more variety.",
+        "Follow the paths through this acorn-themed autumn maze and collect the acorns along the way. Choose a difficulty level to make the puzzle simpler or more challenging.",
       preview: "/printables/fall-mazes/svg/acorn-trail-easy.svg"
     },
     {
-      title: "Rainy Puddle Maze",
+      title: "Rainy Puddle Maze Printable",
+      originalTitle: "Rainy Puddle Maze",
       slug: "rainy-walk",
+      alt: "Printable rainy puddle maze for kids",
       description:
-        "It starts to rain, and Denny needs to get home dry while avoiding puddles.",
-      detail:
-        "An avoid-style maze instead of a collection maze, useful when you want a slightly different task.",
+        "Help Denny find the way home while avoiding the puddles. This fall maze adds a different problem-solving task instead of asking children to collect objects.",
       preview: "/printables/fall-mazes/svg/rainy-walk-easy.svg"
     }
   ].map((maze) => ({
@@ -89,6 +91,7 @@ export const fallMazePrintables = {
   }))
 } satisfies {
   title: string;
+  supportLine: string;
   eyebrow: string;
   intro: string;
   heroImage: string;
