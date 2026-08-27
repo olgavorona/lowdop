@@ -1,6 +1,7 @@
 export type PrintableDifficulty = {
   label: string;
   href: string;
+  preview: string;
 };
 
 export type PrintableMaze = {
@@ -13,7 +14,10 @@ export type PrintableMaze = {
   difficulties: PrintableDifficulty[];
 };
 
-export type PrintablePack = PrintableDifficulty;
+export type PrintablePack = {
+  label: string;
+  href: string;
+};
 
 export const fallMazePrintables = {
   title: "6 Free Printable Fall Mazes for Kids",
@@ -86,7 +90,8 @@ export const fallMazePrintables = {
     ...maze,
     difficulties: ["easy", "medium", "hard"].map((difficulty) => ({
       label: difficulty[0].toUpperCase() + difficulty.slice(1),
-      href: `/printables/fall-mazes/svg/${maze.slug}-${difficulty}.svg`
+      href: `/printables/fall-mazes/pdf/${maze.slug}-${difficulty}.pdf`,
+      preview: `/printables/fall-mazes/svg/${maze.slug}-${difficulty}.svg`
     }))
   }))
 } satisfies {

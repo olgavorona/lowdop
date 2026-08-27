@@ -1,7 +1,7 @@
 {
   "title": "Fall Mazes with Denny",
   "website": "www.harmlessapp.com/printables",
-  "format": "A4 SVG printables",
+  "format": "A4 PDF printables with SVG previews",
   "hero": "hero-denny-yellow-raincoat.svg",
   "hero_image": "assets/hero-denny-yellow-raincoat.png",
   "total": 18,
@@ -13,6 +13,7 @@
       "mode": "plain",
       "shape": "rect",
       "svg": "svg/leaf-pile-easy.svg",
+      "pdf": "pdf/leaf-pile-easy.pdf",
       "json": "json/leaf-pile-easy.json"
     },
     {
@@ -22,6 +23,7 @@
       "mode": "plain",
       "shape": "rect",
       "svg": "svg/leaf-pile-medium.svg",
+      "pdf": "pdf/leaf-pile-medium.pdf",
       "json": "json/leaf-pile-medium.json"
     },
     {
@@ -31,6 +33,7 @@
       "mode": "plain",
       "shape": "rect",
       "svg": "svg/leaf-pile-hard.svg",
+      "pdf": "pdf/leaf-pile-hard.pdf",
       "json": "json/leaf-pile-hard.json"
     },
     {
@@ -40,6 +43,7 @@
       "mode": "collect",
       "shape": "rect",
       "svg": "svg/apple-basket-easy.svg",
+      "pdf": "pdf/apple-basket-easy.pdf",
       "json": "json/apple-basket-easy.json"
     },
     {
@@ -49,6 +53,7 @@
       "mode": "collect",
       "shape": "rect",
       "svg": "svg/apple-basket-medium.svg",
+      "pdf": "pdf/apple-basket-medium.pdf",
       "json": "json/apple-basket-medium.json"
     },
     {
@@ -58,6 +63,7 @@
       "mode": "collect",
       "shape": "rect",
       "svg": "svg/apple-basket-hard.svg",
+      "pdf": "pdf/apple-basket-hard.pdf",
       "json": "json/apple-basket-hard.json"
     },
     {
@@ -67,6 +73,7 @@
       "mode": "collect",
       "shape": "corn",
       "svg": "svg/corn-maze-easy.svg",
+      "pdf": "pdf/corn-maze-easy.pdf",
       "json": "json/corn-maze-easy.json"
     },
     {
@@ -76,6 +83,7 @@
       "mode": "collect",
       "shape": "corn",
       "svg": "svg/corn-maze-medium.svg",
+      "pdf": "pdf/corn-maze-medium.pdf",
       "json": "json/corn-maze-medium.json"
     },
     {
@@ -85,6 +93,7 @@
       "mode": "collect",
       "shape": "corn",
       "svg": "svg/corn-maze-hard.svg",
+      "pdf": "pdf/corn-maze-hard.pdf",
       "json": "json/corn-maze-hard.json"
     },
     {
@@ -94,6 +103,7 @@
       "mode": "collect",
       "shape": "pumpkin",
       "svg": "svg/pumpkin-patch-easy.svg",
+      "pdf": "pdf/pumpkin-patch-easy.pdf",
       "json": "json/pumpkin-patch-easy.json"
     },
     {
@@ -103,6 +113,7 @@
       "mode": "collect",
       "shape": "pumpkin",
       "svg": "svg/pumpkin-patch-medium.svg",
+      "pdf": "pdf/pumpkin-patch-medium.pdf",
       "json": "json/pumpkin-patch-medium.json"
     },
     {
@@ -112,6 +123,7 @@
       "mode": "collect",
       "shape": "pumpkin",
       "svg": "svg/pumpkin-patch-hard.svg",
+      "pdf": "pdf/pumpkin-patch-hard.pdf",
       "json": "json/pumpkin-patch-hard.json"
     },
     {
@@ -121,6 +133,7 @@
       "mode": "collect",
       "shape": "shell",
       "svg": "svg/acorn-trail-easy.svg",
+      "pdf": "pdf/acorn-trail-easy.pdf",
       "json": "json/acorn-trail-easy.json"
     },
     {
@@ -130,6 +143,7 @@
       "mode": "collect",
       "shape": "shell",
       "svg": "svg/acorn-trail-medium.svg",
+      "pdf": "pdf/acorn-trail-medium.pdf",
       "json": "json/acorn-trail-medium.json"
     },
     {
@@ -139,6 +153,7 @@
       "mode": "collect",
       "shape": "shell",
       "svg": "svg/acorn-trail-hard.svg",
+      "pdf": "pdf/acorn-trail-hard.pdf",
       "json": "json/acorn-trail-hard.json"
     },
     {
@@ -148,6 +163,7 @@
       "mode": "avoid",
       "shape": "rect",
       "svg": "svg/rainy-walk-easy.svg",
+      "pdf": "pdf/rainy-walk-easy.pdf",
       "json": "json/rainy-walk-easy.json"
     },
     {
@@ -157,6 +173,7 @@
       "mode": "avoid",
       "shape": "rect",
       "svg": "svg/rainy-walk-medium.svg",
+      "pdf": "pdf/rainy-walk-medium.pdf",
       "json": "json/rainy-walk-medium.json"
     },
     {
@@ -166,6 +183,7 @@
       "mode": "avoid",
       "shape": "rect",
       "svg": "svg/rainy-walk-hard.svg",
+      "pdf": "pdf/rainy-walk-hard.pdf",
       "json": "json/rainy-walk-hard.json"
     }
   ],

@@ -12,6 +12,8 @@ import html
 import json
 import base64
 import random
+import subprocess
+import tempfile
 import zipfile
 from pathlib import Path
 from typing import Any
@@ -21,6 +23,7 @@ from maze_generator import FullMazeGenerator
 
 OUTPUT_DIR = Path(__file__).resolve().parents[1] / "content" / "printables" / "fall-mazes"
 ASSET_DIR = OUTPUT_DIR / "assets"
+DEFAULT_CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 WEBSITE = "www.harmlessapp.com/printables"
 _ASSET_DATA_CACHE: dict[str, str] = {}
 
@@ -462,21 +465,75 @@ def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> st
 """
 
 
+def chrome_binary() -> Path | None:
+    if DEFAULT_CHROME.exists():
+        return DEFAULT_CHROME
+    return None
+
+
+def svg_to_pdf(svg_path: Path, pdf_path: Path) -> None:
+    chrome = chrome_binary()
+    if chrome is None:
+        raise RuntimeError(
+            "Google Chrome is required to generate printable PDFs. "
+            f"Expected binary at {DEFAULT_CHROME}."
+        )
+
+    html_markup = f"""<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @page {{ size: A4; margin: 0; }}
+      html, body {{ margin: 0; width: 210mm; height: 297mm; }}
+      object {{ display: block; width: 210mm; height: 297mm; }}
+    </style>
+  </head>
+  <body>
+    <object type="image/svg+xml" data="{svg_path.resolve().as_uri()}"></object>
+  </body>
+</html>
+"""
+    with tempfile.NamedTemporaryFile("w", suffix=".html", encoding="utf-8", delete=False) as wrapper:
+        wrapper.write(html_markup)
+        wrapper_path = Path(wrapper.name)
+
+    try:
+        subprocess.run(
+            [
+                str(chrome),
+                "--headless",
+                "--disable-gpu",
+                "--no-sandbox",
+                "--print-to-pdf-no-header",
+                f"--print-to-pdf={pdf_path}",
+                wrapper_path.as_uri(),
+            ],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    finally:
+        wrapper_path.unlink(missing_ok=True)
+
+
 def generate() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     svg_dir = OUTPUT_DIR / "svg"
+    pdf_dir = OUTPUT_DIR / "pdf"
     json_dir = OUTPUT_DIR / "json"
     svg_dir.mkdir(exist_ok=True)
+    pdf_dir.mkdir(exist_ok=True)
     json_dir.mkdir(exist_ok=True)
     ASSET_DIR.mkdir(exist_ok=True)
-    for stale in [*svg_dir.glob("*.svg"), *json_dir.glob("*.json")]:
+    for stale in [*svg_dir.glob("*.svg"), *pdf_dir.glob("*.pdf"), *json_dir.glob("*.json")]:
         stale.unlink()
 
     maze_generator = FullMazeGenerator()
     manifest: dict[str, Any] = {
         "title": "Fall Mazes with Denny",
         "website": WEBSITE,
-        "format": "A4 SVG printables",
+        "format": "A4 PDF printables with SVG previews",
         "hero": "hero-denny-yellow-raincoat.svg",
         "hero_image": "assets/hero-denny-yellow-raincoat.png",
         "total": 0,
@@ -516,9 +573,11 @@ def generate() -> None:
             )
             slug = f"{theme['slug']}-{difficulty}"
             svg_path = svg_dir / f"{slug}.svg"
+            pdf_path = pdf_dir / f"{slug}.pdf"
             json_path = json_dir / f"{slug}.json"
 
             svg_path.write_text(page_svg(theme, difficulty, maze), encoding="utf-8")
+            svg_to_pdf(svg_path, pdf_path)
             json_path.write_text(
                 json.dumps(
                     {
@@ -547,6 +606,7 @@ def generate() -> None:
                 "mode": theme["mode"],
                 "shape": theme["shape"],
                 "svg": f"svg/{slug}.svg",
+                "pdf": f"pdf/{slug}.pdf",
                 "json": f"json/{slug}.json",
             })
 
@@ -556,7 +616,7 @@ def generate() -> None:
         with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
             for theme in THEMES:
                 slug = f"{theme['slug']}-{difficulty}"
-                archive.write(svg_dir / f"{slug}.svg", arcname=f"{slug}.svg")
+                archive.write(pdf_dir / f"{slug}.pdf", arcname=f"{slug}.pdf")
         manifest.setdefault("packs", []).append({
             "label": diff["label"],
             "difficulty": difficulty,
@@ -569,9 +629,10 @@ def generate() -> None:
     )
     (OUTPUT_DIR / "README.md").write_text(
         "# Fall Mazes with Denny\n\n"
-        "Generated A4 SVG printables for Harmless Apps website content.\n\n"
+        "Generated A4 PDF printables for Harmless Apps website content.\n\n"
         "- 6 fall themes\n"
         "- 3 difficulty levels per theme\n"
+        "- Individual worksheets are PDFs, with SVG files kept for web previews\n"
         "- Includes plain, collect, shaped-shell and avoid maze variants\n"
         "- Footer includes `www.harmlessapp.com`\n"
         "- `json/` files keep maze metadata and solution paths for future web pages\n",

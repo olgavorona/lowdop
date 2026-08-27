@@ -243,7 +243,7 @@ const faqItems = [
       <h2>How to Print the Fall Mazes</h2>
       <ol>
         <li>Choose Easy, Medium or Hard.</li>
-        <li>Open or download the printable maze.</li>
+        <li>Download the printable PDF.</li>
         <li>Print on regular US Letter or A4 paper using "Fit to page" if needed.</li>
         <li>Let your child solve it with a pencil, crayon or marker.</li>
       </ol>
@@ -335,7 +335,7 @@ const faqItems = [
 
       const previewImage = row.querySelector("[data-printable-preview-image]");
       if (previewImage instanceof HTMLImageElement) {
-        previewImage.src = difficulty.href;
+        previewImage.src = difficulty.preview;
         previewImage.alt = `${maze.alt} - ${difficulty.label}`;
       }
 
@@ -369,7 +369,7 @@ const faqItems = [
 
     if (modalTitle) modalTitle.textContent = maze.title;
     if (modalImage instanceof HTMLImageElement) {
-      modalImage.src = difficulty.href;
+      modalImage.src = difficulty.preview;
       modalImage.alt = `${maze.alt} - ${difficulty.label}`;
     }
     if (modalDownload instanceof HTMLAnchorElement) {
