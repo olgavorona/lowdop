@@ -14,6 +14,7 @@ import base64
 import random
 import subprocess
 import tempfile
+import time
 import zipfile
 from pathlib import Path
 from typing import Any
@@ -23,6 +24,7 @@ from maze_generator import FullMazeGenerator
 
 OUTPUT_DIR = Path(__file__).resolve().parents[1] / "content" / "printables" / "fall-mazes"
 ASSET_DIR = OUTPUT_DIR / "assets"
+BW_ASSET_DIR = OUTPUT_DIR / "assets-bw"
 DEFAULT_CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 WEBSITE = "www.harmlessapp.com/printables"
 _ASSET_DATA_CACHE: dict[str, str] = {}
@@ -116,7 +118,7 @@ THEMES: list[dict[str, Any]] = [
         "fun_fact": "Each strand of corn silk connects to one corn kernel.",
         "completion_message": "Denny collected the corn and found the exit between the tall rows.",
         "task": "Collect the corn and find the way out of the cob-shaped maze.",
-        "goal": "corn",
+        "goal": "exit",
         "mode": "collect",
         "shape": "corn",
         "start": "bottom_left",
@@ -247,9 +249,9 @@ def asset_href(kind: str) -> str:
     if kind in _ASSET_DATA_CACHE:
         return _ASSET_DATA_CACHE[kind]
 
-    asset_path = ASSET_DIR / f"{kind}.png"
+    asset_path = BW_ASSET_DIR / f"{kind}.png"
     if not asset_path.exists():
-        return f"../assets/{kind}.png"
+        return f"../assets-bw/{kind}.png"
 
     encoded = base64.b64encode(asset_path.read_bytes()).decode("ascii")
     href = f"data:image/png;base64,{encoded}"
@@ -258,7 +260,6 @@ def asset_href(kind: str) -> str:
 
 
 def asset_svg(kind: str, x: float, y: float, size: float, palette: dict[str, str], badge: bool = True) -> str:
-    radius = size * 0.52
     image = (
         f'<image href="{asset_href(kind)}" x="{x - size / 2:.2f}" y="{y - size / 2:.2f}" '
         f'width="{size:.2f}" height="{size:.2f}" preserveAspectRatio="xMidYMid meet"/>'
@@ -267,13 +268,12 @@ def asset_svg(kind: str, x: float, y: float, size: float, palette: dict[str, str
         return image
     return f"""
   <g>
-    <circle cx="{x:.2f}" cy="{y:.2f}" r="{radius:.2f}" fill="#FFFDF7" stroke="{palette['soft']}" stroke-width="{size * 0.055:.2f}"/>
     {image}
   </g>"""
 
 
 def denny_asset_svg(x: float, y: float, size: float, palette: dict[str, str]) -> str:
-    if not (ASSET_DIR / "denny-raincoat.png").exists():
+    if not (BW_ASSET_DIR / "denny-raincoat.png").exists():
         return denny_svg(x, y, size / 72, True)
     return asset_svg("denny-raincoat", x, y, size, palette)
 
@@ -364,6 +364,15 @@ def denny_svg(x: float, y: float, scale: float = 1.0, raincoat: bool = False) ->
   </g>"""
 
 
+def exit_svg(x: float, y: float, size: float) -> str:
+    stroke = size * 0.075
+    return f"""
+  <g transform="translate({x:.2f} {y:.2f})">
+    <path d="M {-size * 0.34:.2f} {size * 0.34:.2f} L {-size * 0.34:.2f} {-size * 0.34:.2f} L {size * 0.32:.2f} {-size * 0.34:.2f} L {size * 0.32:.2f} {size * 0.34:.2f}" fill="none" stroke="#000000" stroke-width="{stroke:.2f}" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M {-size * 0.12:.2f} 0 L {size * 0.42:.2f} 0 M {size * 0.22:.2f} {-size * 0.18:.2f} L {size * 0.42:.2f} 0 L {size * 0.22:.2f} {size * 0.18:.2f}" fill="none" stroke="#000000" stroke-width="{stroke:.2f}" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>"""
+
+
 def hero_svg() -> str:
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Denny wearing a yellow raincoat and holding an umbrella">
   <rect width="1200" height="700" fill="#FFF4D8"/>
@@ -392,8 +401,15 @@ def hero_image_svg() -> str:
 
 
 def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> str:
-    palette = theme["palette"]
     diff = DIFFICULTIES[difficulty]
+    palette = {
+        "bg": "#FFFFFF",
+        "panel": "#FFFFFF",
+        "maze_bg": "#FFFFFF",
+        "line": "#000000",
+        "accent": "#000000",
+        "soft": "#000000",
+    }
     transform = scale_path(
         maze["svg_path"],
         float(maze.get("canvas_width", 600)),
@@ -409,55 +425,59 @@ def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> st
     fact_box_y = 262 - fact_box_height
     fact_label_y = fact_box_y + 6.2
     fact_text_y = fact_box_y + 12.6
-
-    decorations = "\n".join([
-        asset_svg("leaf", 20, 34, 17, palette),
-        asset_svg("apple", 188, 31, 16, palette),
-    ])
+    wall_stroke = diff["stroke"] * 2.1
+    item_sizes = {"easy": 68, "medium": 44, "hard": 34}
+    item_size = item_sizes[difficulty]
+    goal_size = 66
+    if theme["slug"] == "pumpkin-patch":
+        goal_size = 86
+    if theme["slug"] == "corn-maze":
+        goal_size = 62
+    denny_size = item_sizes[difficulty]
 
     item_svgs = []
     for item in maze.get("items", []) if item_kind else []:
         item_svgs.append(
-            f'<g transform="{item_transform}">{asset_svg(item_kind, item["x"], item["y"], 46, palette, badge=False)}</g>'
+            f'<g transform="{item_transform}">{asset_svg(item_kind, item["x"], item["y"], item_size, palette, badge=False)}</g>'
         )
     for item in maze.get("avoid_items", []):
         item_svgs.append(
-            f'<g transform="{item_transform}">{asset_svg(item_kind or "puddle", item["x"], item["y"], 52, palette, badge=False)}</g>'
+            f'<g transform="{item_transform}">{asset_svg(item_kind or "puddle", item["x"], item["y"], item_size, palette, badge=False)}</g>'
         )
     is_corridor = str(maze.get("maze_type", "")).startswith("corridor")
     maze_path_svg = (
-        f'<path d="{esc(maze["svg_path"])}" fill="none" stroke="#FFFDF7" stroke-width="{maze.get("path_width", 25)}" stroke-linecap="round" stroke-linejoin="round"/>'
-        f'<path d="{esc(maze["svg_path"])}" fill="none" stroke="{palette["line"]}" stroke-width="{diff["stroke"] * 0.55:.2f}" stroke-linecap="round" stroke-linejoin="round" opacity="0.28"/>'
+        f'<path d="{esc(maze["svg_path"])}" fill="none" stroke="{palette["line"]}" stroke-width="{float(maze.get("path_width", 25)) + 9:.2f}" stroke-linecap="round" stroke-linejoin="round"/>'
+        f'<path d="{esc(maze["svg_path"])}" fill="none" stroke="#FFFFFF" stroke-width="{float(maze.get("path_width", 25)):.2f}" stroke-linecap="round" stroke-linejoin="round"/>'
         if is_corridor
-        else f'<path d="{esc(maze["svg_path"])}" fill="none" stroke="{palette["line"]}" stroke-width="{diff["stroke"]}" stroke-linecap="round" stroke-linejoin="round"/>'
+        else f'<path d="{esc(maze["svg_path"])}" fill="none" stroke="{palette["line"]}" stroke-width="{wall_stroke:.2f}" stroke-linecap="round" stroke-linejoin="round"/>'
+    )
+    goal_markup = (
+        exit_svg(maze["end_point"]["x"], maze["end_point"]["y"], goal_size)
+        if goal_kind == "exit"
+        else asset_svg(goal_kind, maze["end_point"]["x"], maze["end_point"]["y"], goal_size, palette)
     )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297" role="img" aria-label="{esc(theme['title'])}, {esc(diff['label'])}">
   <rect width="210" height="297" fill="{palette['bg']}"/>
-  <rect x="11" y="11" width="188" height="275" rx="6" fill="{palette['panel']}" stroke="{palette['soft']}" stroke-width="0.8"/>
-  {decorations}
+  <rect x="11" y="11" width="188" height="275" rx="6" fill="{palette['panel']}" stroke="{palette['line']}" stroke-width="0.8"/>
   <text x="105" y="27" text-anchor="middle" font-family="Arial, sans-serif" font-size="11.5" font-weight="700" fill="{palette['line']}">{esc(theme['title'])}</text>
   <text x="105" y="39" text-anchor="middle" font-family="Arial, sans-serif" font-size="5.5" font-weight="700" fill="{palette['accent']}">{esc(diff['label'])}</text>
 {text_lines(story_lines, 105, 51, 4.5, palette['line'])}
 {text_lines(instruction_lines, 105, 65, 4.9, palette['accent'], '700')}
 
-  <rect x="{MAZE_X - 5}" y="{MAZE_Y - 5}" width="{MAZE_WIDTH + 10}" height="{MAZE_HEIGHT + 10}" rx="5" fill="{palette['maze_bg']}" stroke="{palette['soft']}" stroke-width="0.7"/>
+  <rect x="{MAZE_X - 5}" y="{MAZE_Y - 5}" width="{MAZE_WIDTH + 10}" height="{MAZE_HEIGHT + 10}" rx="5" fill="{palette['maze_bg']}" stroke="{palette['line']}" stroke-width="0.9"/>
   <g transform="{transform}">
     {maze_path_svg}
   </g>
   {''.join(item_svgs)}
   <g transform="{transform}">
-    <circle cx="{maze['start_point']['x']}" cy="{maze['start_point']['y']}" r="18" fill="#FFFDF7" stroke="{palette['accent']}" stroke-width="2"/>
+    {denny_asset_svg(maze['start_point']['x'], maze['start_point']['y'], denny_size, palette)}
   </g>
   <g transform="{transform}">
-    {denny_asset_svg(maze['start_point']['x'], maze['start_point']['y'], 52, palette)}
-  </g>
-  <g transform="{transform}">
-    <circle cx="{maze['end_point']['x']}" cy="{maze['end_point']['y']}" r="17" fill="#FFFDF7" stroke="{palette['accent']}" stroke-width="2"/>
-    {asset_svg(goal_kind, maze['end_point']['x'], maze['end_point']['y'], 42, palette)}
+    {goal_markup}
   </g>
 
-  <rect x="29" y="{fact_box_y:.1f}" width="152" height="{fact_box_height:.1f}" rx="4" fill="{palette['bg']}" stroke="{palette['soft']}" stroke-width="0.8"/>
+  <rect x="29" y="{fact_box_y:.1f}" width="152" height="{fact_box_height:.1f}" rx="4" fill="#FFFFFF" stroke="{palette['line']}" stroke-width="0.8"/>
   <text x="105" y="{fact_label_y:.1f}" text-anchor="middle" font-family="Arial, sans-serif" font-size="4.2" font-weight="700" fill="{palette['accent']}">Fun fact</text>
 {text_lines(fact_lines, 105, fact_text_y, 3.75, palette['line'])}
   <text x="105" y="274" text-anchor="middle" font-family="Arial, sans-serif" font-size="4.4" fill="{palette['line']}">Free printable maze from Denny's Maze App - {WEBSITE}</text>
@@ -498,23 +518,49 @@ def svg_to_pdf(svg_path: Path, pdf_path: Path) -> None:
         wrapper.write(html_markup)
         wrapper_path = Path(wrapper.name)
 
-    try:
-        subprocess.run(
-            [
-                str(chrome),
-                "--headless",
-                "--disable-gpu",
-                "--no-sandbox",
-                "--print-to-pdf-no-header",
-                f"--print-to-pdf={pdf_path}",
-                wrapper_path.as_uri(),
-            ],
-            check=True,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-    finally:
-        wrapper_path.unlink(missing_ok=True)
+    with tempfile.TemporaryDirectory() as profile_dir:
+        try:
+            process = subprocess.Popen(
+                [
+                    str(chrome),
+                    "--headless=new",
+                    "--disable-gpu",
+                    "--disable-extensions",
+                    "--disable-background-networking",
+                    "--disable-sync",
+                    "--disable-dev-shm-usage",
+                    "--no-sandbox",
+                    "--no-first-run",
+                    "--no-default-browser-check",
+                    f"--user-data-dir={profile_dir}",
+                    "--print-to-pdf-no-header",
+                    f"--print-to-pdf={pdf_path}",
+                    wrapper_path.as_uri(),
+                ],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            deadline = time.monotonic() + 20
+            while time.monotonic() < deadline:
+                if pdf_path.exists() and pdf_path.stat().st_size > 0:
+                    process.terminate()
+                    try:
+                        process.wait(timeout=5)
+                    except subprocess.TimeoutExpired:
+                        process.kill()
+                        process.wait(timeout=5)
+                    return
+                if process.poll() is not None:
+                    break
+                time.sleep(0.25)
+            returncode = process.poll()
+            if returncode is None:
+                process.kill()
+                process.wait(timeout=5)
+                raise RuntimeError(f"Timed out generating PDF for {svg_path.name}")
+            raise RuntimeError(f"Chrome failed generating PDF for {svg_path.name} with exit code {returncode}")
+        finally:
+            wrapper_path.unlink(missing_ok=True)
 
 
 def generate() -> None:
@@ -533,7 +579,7 @@ def generate() -> None:
     manifest: dict[str, Any] = {
         "title": "Fall Mazes with Denny",
         "website": WEBSITE,
-        "format": "A4 PDF printables with SVG previews",
+        "format": "Black-and-white A4 PDF printables with SVG previews",
         "hero": "hero-denny-yellow-raincoat.svg",
         "hero_image": "assets/hero-denny-yellow-raincoat.png",
         "total": 0,
@@ -632,6 +678,7 @@ def generate() -> None:
         "Generated A4 PDF printables for Harmless Apps website content.\n\n"
         "- 6 fall themes\n"
         "- 3 difficulty levels per theme\n"
+        "- Black-and-white worksheet design with no background colors\n"
         "- Individual worksheets are PDFs, with SVG files kept for web previews\n"
         "- Includes plain, collect, shaped-shell and avoid maze variants\n"
         "- Footer includes `www.harmlessapp.com`\n"

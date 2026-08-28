@@ -21,10 +21,10 @@ export type PrintablePack = {
 
 export const fallMazePrintables = {
   title: "6 Free Printable Fall Mazes for Kids",
-  supportLine: "Ages 2-6 · 6 designs · Easy, Medium & Hard · Free to print",
+  supportLine: "Ages 2-6 · 6 designs · Easy, Medium & Hard · Black-and-white PDFs",
   eyebrow: "Denny's Maze printables",
   intro:
-    "Looking for free printable fall mazes for kids? This set includes six autumn-themed maze worksheets featuring leaves, apples, corn, pumpkins, acorns and rainy puddles. The mazes are designed for children around ages 2-6 and are available in Easy, Medium and Hard difficulty, so parents can choose a simple maze for a beginner or a more challenging path for a child who already enjoys maze puzzles.\n\nDownload individual mazes below or print the complete fall maze set. They are simple, no-prep activities for quiet time at home, preschool or kindergarten, travel, restaurants, waiting rooms and rainy fall afternoons.",
+    "Looking for free printable fall mazes for kids? This black-and-white PDF set includes six autumn-themed maze worksheets featuring leaves, apples, corn, pumpkins, acorns and rainy puddles. The mazes are designed for children around ages 2-6 and are available in Easy, Medium and Hard difficulty, so parents can choose a simple maze for a beginner or a more challenging path for a child who already enjoys maze puzzles.\n\nDownload individual mazes below or print the complete fall maze set. The thick maze lines and larger coloring-style illustrations make them simple, no-prep activities for quiet time at home, preschool or kindergarten, travel, restaurants, waiting rooms and rainy fall afternoons.",
   heroImage: "/printables/fall-mazes/hero-denny-yellow-raincoat.svg",
   assetBase: "/printables/fall-mazes",
   downloadPacks: ["easy", "medium", "hard"].map((difficulty) => ({
