@@ -217,6 +217,54 @@ def scale_path(path: str, source_width: float, source_height: float) -> str:
     return f'translate({offset_x:.2f} {offset_y:.2f}) scale({scale:.4f})'
 
 
+def scale_path_to_box(
+    source_width: float,
+    source_height: float,
+    x: float,
+    y: float,
+    width: float,
+    height: float,
+) -> str:
+    scale = min(width / source_width, height / source_height)
+    rendered_width = source_width * scale
+    rendered_height = source_height * scale
+    offset_x = x + (width - rendered_width) / 2
+    offset_y = y + (height - rendered_height) / 2
+    return f'translate({offset_x:.2f} {offset_y:.2f}) scale({scale:.4f})'
+
+
+def maze_point_to_page(point: dict[str, float], source_width: float, source_height: float) -> dict[str, float]:
+    scale = min(MAZE_WIDTH / source_width, MAZE_HEIGHT / source_height)
+    width = source_width * scale
+    height = source_height * scale
+    offset_x = MAZE_X + (MAZE_WIDTH - width) / 2
+    offset_y = MAZE_Y + (MAZE_HEIGHT - height) / 2
+    return {
+        "x": offset_x + point["x"] * scale,
+        "y": offset_y + point["y"] * scale,
+    }
+
+
+def maze_point_to_box(
+    point: dict[str, float],
+    source_width: float,
+    source_height: float,
+    x: float,
+    y: float,
+    width: float,
+    height: float,
+) -> dict[str, float]:
+    scale = min(width / source_width, height / source_height)
+    rendered_width = source_width * scale
+    rendered_height = source_height * scale
+    offset_x = x + (width - rendered_width) / 2
+    offset_y = y + (height - rendered_height) / 2
+    return {
+        "x": offset_x + point["x"] * scale,
+        "y": offset_y + point["y"] * scale,
+    }
+
+
 def esc(value: str) -> str:
     return html.escape(value, quote=True)
 
@@ -410,11 +458,11 @@ def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> st
         "accent": "#000000",
         "soft": "#000000",
     }
-    transform = scale_path(
-        maze["svg_path"],
-        float(maze.get("canvas_width", 600)),
-        float(maze.get("canvas_height", 500)),
-    )
+    source_width = float(maze.get("canvas_width", 600))
+    source_height = float(maze.get("canvas_height", 500))
+    transform = scale_path(maze["svg_path"], source_width, source_height)
+    if theme["slug"] == "acorn-trail":
+        transform = scale_path_to_box(source_width, source_height, 28, 90, 154, 118)
     item_transform = transform
     item_kind = theme.get("item")
     goal_kind = theme["goal"].replace("leaf pile", "leaf-pile")
@@ -428,6 +476,8 @@ def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> st
     wall_stroke = diff["stroke"] * 2.1
     item_sizes = {"easy": 68, "medium": 44, "hard": 34}
     item_size = item_sizes[difficulty]
+    if theme["slug"] == "acorn-trail" and difficulty == "easy":
+        item_size = item_sizes["medium"]
     goal_size = 66
     if theme["slug"] == "pumpkin-patch":
         goal_size = 86
@@ -456,6 +506,32 @@ def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> st
         if goal_kind == "exit"
         else asset_svg(goal_kind, maze["end_point"]["x"], maze["end_point"]["y"], goal_size, palette)
     )
+    denny_markup = f"""
+  <g transform="{transform}">
+    {denny_asset_svg(maze['start_point']['x'], maze['start_point']['y'], denny_size, palette)}
+  </g>"""
+    goal_group_markup = f"""
+  <g transform="{transform}">
+    {goal_markup}
+  </g>"""
+    if theme["slug"] == "acorn-trail":
+        acorn_denny_size = {"easy": 46, "medium": 44, "hard": 40}[difficulty]
+        acorn_goal_size = {"easy": 54, "medium": 50, "hard": 46}[difficulty]
+        start_page = maze_point_to_box(maze["start_point"], source_width, source_height, 28, 90, 154, 118)
+        end_page = maze_point_to_box(maze["end_point"], source_width, source_height, 28, 90, 154, 118)
+        denny_markup = denny_asset_svg(
+            max(MAZE_X + 20, start_page["x"] - 40),
+            min(MAZE_Y + MAZE_HEIGHT - 24, start_page["y"] + 14),
+            acorn_denny_size,
+            palette,
+        )
+        goal_group_markup = asset_svg(
+            goal_kind,
+            min(MAZE_X + MAZE_WIDTH - 20, end_page["x"] + 28),
+            max(MAZE_Y + 18, end_page["y"] - 22),
+            acorn_goal_size,
+            palette,
+        )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297" role="img" aria-label="{esc(theme['title'])}, {esc(diff['label'])}">
   <rect width="210" height="297" fill="{palette['bg']}"/>
@@ -470,12 +546,8 @@ def page_svg(theme: dict[str, Any], difficulty: str, maze: dict[str, Any]) -> st
     {maze_path_svg}
   </g>
   {''.join(item_svgs)}
-  <g transform="{transform}">
-    {denny_asset_svg(maze['start_point']['x'], maze['start_point']['y'], denny_size, palette)}
-  </g>
-  <g transform="{transform}">
-    {goal_markup}
-  </g>
+  {denny_markup}
+  {goal_group_markup}
 
   <rect x="29" y="{fact_box_y:.1f}" width="152" height="{fact_box_height:.1f}" rx="4" fill="#FFFFFF" stroke="{palette['line']}" stroke-width="0.8"/>
   <text x="105" y="{fact_label_y:.1f}" text-anchor="middle" font-family="Arial, sans-serif" font-size="4.2" font-weight="700" fill="{palette['accent']}">Fun fact</text>
