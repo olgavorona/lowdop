@@ -304,6 +304,8 @@ const faqItems = [
 <script is:inline type="application/json" id="printable-modal-data" set:html={JSON.stringify(modalMazes)} />
 
 <script>
+  import { track } from "@vercel/analytics";
+
   const modalDataElement = document.getElementById("printable-modal-data");
   const modalData = modalDataElement?.textContent ? JSON.parse(modalDataElement.textContent) : [];
   const modal = document.querySelector("[data-preview-modal]");
@@ -317,6 +319,29 @@ const faqItems = [
   const packDownload = document.querySelector("[data-pack-download]");
   let activeMazeIndex = 0;
   let activeDifficultyIndex = 0;
+
+  document.querySelectorAll("[data-dynamic-download], [data-preview-download], [data-pack-download]").forEach((link) => {
+    if (!(link instanceof HTMLAnchorElement)) return;
+    link.addEventListener("click", () => {
+      // Read the current URL so changes to difficulty and preview maze are reflected.
+      const file = new URL(link.href).pathname;
+      const match = file.match(/\/([^/]+)-(easy|medium|hard)\.(pdf|zip)$/);
+      if (!match) return;
+
+      const [, maze, difficulty, format] = match;
+      const location = link.hasAttribute("data-pack-download")
+        ? "pack"
+        : link.hasAttribute("data-preview-download") ? "preview" : "list";
+
+      track("printable_maze_download", {
+        maze: format === "zip" ? "all" : maze,
+        difficulty,
+        format,
+        location,
+        file
+      });
+    });
+  });
 
   function setButtonGroupActive(buttons: Element[], index: number, dataAttribute: "difficultyIndex" | "previewDifficulty") {
     buttons.forEach((button) => {
