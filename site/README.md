@@ -49,10 +49,7 @@ npm run check
 - `src/pages/apps/dennys-maze.astro`
 - `src/pages/best-low-stimulation-apps-for-toddlers.astro`
 - `src/pages/calm-ipad-games-for-kids.astro`
-- `src/pages/screen-time-without-overstimulation.astro`
 - `src/pages/maze-games-for-kids-without-ads.astro`
-- `src/pages/about.astro`
-- `src/pages/faq.astro`
 - `src/pages/privacy.astro`
 - `src/pages/terms.astro`
 

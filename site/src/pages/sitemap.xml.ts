@@ -5,12 +5,9 @@ import { appReviews } from "../data/appReviews";
 
 const paths = [
   "/",
-  "/about/",
   "/dennys-maze/",
   "/printables/",
   "/printables/fall/",
-  "/faq/",
-  "/screen-time-without-overstimulation/",
   "/best-low-stimulation-apps-for-toddlers/",
   "/offline-toddler-apps/",
   "/ratings/methodology/",
