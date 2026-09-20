@@ -4,6 +4,7 @@ import PageHeader from "../components/PageHeader.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { buildMeta, organizationSchema } from "../lib/seo";
+import { appReviews } from "../data/appReviews";
 
 const meta = buildMeta({
   title: "Best Low-Stimulation Apps for Toddlers: 14 Apps Compared",
@@ -40,7 +41,7 @@ const apps: App[] = [
   },
   {
     name: "Denny's Maze",
-    url: "/dennys-maze/",
+    url: "https://apps.apple.com/ca/app/dennys-maze/id6760107138",
     icon: "/images/app-icons/dennys-maze.jpg",
     description: "60 guided maze puzzles. Optional story narration; otherwise silent.",
     sounds: 8, animations: 10, rewards: 9, brightness: 8,
@@ -58,7 +59,7 @@ const apps: App[] = [
   },
   {
     name: "Pok Pok",
-    url: "https://playpokpok.com/",
+    url: "/ratings/apps/pok-pok/",
     icon: "/images/app-icons/pok-pok.jpg",
     description: "Montessori-inspired open-ended digital toys. Discovery-driven, no goals.",
     sounds: 7, animations: 4, rewards: 9, brightness: 8,
@@ -67,7 +68,7 @@ const apps: App[] = [
   },
   {
     name: "Sago Mini World",
-    url: "https://sagomini.com/world/",
+    url: "/ratings/apps/sago-mini-world/",
     icon: "/images/app-icons/sago-mini.jpg",
     description: "Gentle play scenarios with soft characters. No points or pressure.",
     sounds: 7, animations: 4, rewards: 8, brightness: 7,
@@ -76,7 +77,7 @@ const apps: App[] = [
   },
   {
     name: "Khan Academy Kids",
-    url: "https://apps.apple.com/us/app/khan-academy-kids/id1378467217",
+    url: "/ratings/apps/khan-academy-kids/",
     icon: "/images/app-icons/khan-academy-kids.jpg",
     description: "Free learning app with a prepared offline section after setup.",
     sounds: 7, animations: 6, rewards: 7, brightness: 8,
@@ -103,7 +104,7 @@ const apps: App[] = [
   },
   {
     name: "PBS Kids",
-    url: "https://pbskids.org/apps/",
+    url: "https://apps.apple.com/us/app/pbs-kids-games/id1050773989",
     icon: "/images/app-icons/pbs-kids.jpg",
     description: "Free games with Daniel Tiger, Dinosaur Train, and others. Fully ad-free.",
     sounds: 6, animations: 4, rewards: 6, brightness: 7,
@@ -112,7 +113,7 @@ const apps: App[] = [
   },
   {
     name: "Montessori Preschool",
-    url: "https://apps.apple.com/us/app/montessori-preschool-kids-3-7/id1138436619",
+    url: "/ratings/apps/montessori-preschool/",
     icon: "/images/app-icons/montessori-preschool.svg",
     description: "Preschool exercises that can be calmer when sections are prepared.",
     sounds: 7, animations: 7, rewards: 6, brightness: 7,
@@ -121,7 +122,7 @@ const apps: App[] = [
   },
   {
     name: "Lingokids",
-    url: "https://apps.apple.com/us/app/lingokids-games-shows/id1002043426",
+    url: "/ratings/apps/lingo/",
     icon: "/images/app-icons/lingokids.jpg",
     description: "Learning games and shows with spoken guidance and active feedback.",
     sounds: 6, animations: 4, rewards: 4, brightness: 4,
@@ -139,7 +140,7 @@ const apps: App[] = [
   },
   {
     name: "Thinkrolls",
-    url: "https://apps.apple.com/us/app/thinkrolls-fun-kids-games-2-8/id1530907314",
+    url: "/ratings/apps/thinkrolls/",
     icon: "/images/app-icons/thinkrolls.jpg",
     description: "Puzzle and logic games with more movement and reward feedback.",
     sounds: 4, animations: 4, rewards: 3, brightness: 3,
@@ -148,7 +149,7 @@ const apps: App[] = [
   },
   {
     name: "Lucas & Friends Coloring Games",
-    url: "https://www.rvappstudios.com/coloring-games-71.html",
+    url: "https://apps.apple.com/us/app/coloring-games-painting-glow/id1480696573",
     icon: "/images/app-icons/lucas-coloring-games.png",
     description: "Bright coloring and painting modes for toddlers and preschoolers.",
     sounds: 2, animations: 2, rewards: 4, brightness: 3,
@@ -157,7 +158,7 @@ const apps: App[] = [
   },
   {
     name: "Toca Life World",
-    url: "https://www.tocaboca.com/apps",
+    url: "https://apps.apple.com/us/app/toca-boca-world-game-play/id1208138685",
     icon: "/images/app-icons/toca-life.jpg",
     description: "Enormous open-world sandbox. Highly interactive; lots happening at once.",
     sounds: 3, animations: 3, rewards: 3, brightness: 4,
@@ -166,7 +167,14 @@ const apps: App[] = [
   }
 ];
 
+function methodologyReview(app: App) {
+  const aliases: Record<string, string> = { Lingokids: "lingo" };
+  return appReviews.find((review) => review.slug === aliases[app.name] || review.name === app.name);
+}
+
 function calmScore(app: App): number {
+  const tested = methodologyReview(app);
+  if (tested) return Math.round(tested.scores.calmness * 10) / 10;
   const sum = app.sounds + app.animations + app.rewards + app.brightness;
   return Math.round((sum / 4) * 10) / 10;
 }
@@ -192,9 +200,10 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
     <div class="shell narrow prose">
       <p>
         The table below scores real apps — and one non-digital benchmark —
-        across four dimensions: Sounds, Animations, Rewards, and Brightness. Each goes
-        from 1 (worst) to 10 (best). The calm score is the average of the four.
-        A paper activity book scores 10. Higher means calmer.
+        across sounds, animation, rewards, and brightness. Apps completed in our
+        testing lab use the newer methodology v0.1 Calmness score, calculated from
+        recorded visual, audio, reward, and interruption data. Untested entries retain
+        the original four-part editorial estimate. Higher always means calmer.
       </p>
     </div>
   </section>
@@ -234,6 +243,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                         <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
+                          {methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}
                           <span class="app-desc">{app.description}</span>
                         </span>
                       </a>
@@ -242,6 +252,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                         <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
+                          {methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}
                           <span class="app-desc">{app.description}</span>
                         </span>
                       </span>
@@ -290,12 +301,12 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                     rel={app.url.startsWith("http") ? "noopener" : undefined}
                   >
                     <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
-                    <span class="card-app-name">{app.name}</span>
+                    <span class="card-app-name">{app.name}{methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}</span>
                   </a>
                 ) : (
                   <span class="card-app-link">
                     <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
-                    <span class="card-app-name">{app.name}</span>
+                    <span class="card-app-name">{app.name}{methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}</span>
                   </span>
                 )}
                 <span class="card-load" style={`color: ${barColor(cs)}`}>
@@ -330,7 +341,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
         })}
       </ul>
 
-      <p class="table-note">Scores 1–10 per dimension · Calm score = average · 10 = calmest · Higher is better</p>
+      <p class="table-note">Tested apps use methodology v0.1 Calmness · Other entries retain the original editorial estimate · 10 = calmest · Higher is better · Open a tested app for its complete calculation</p>
     </div>
   </section>
 
@@ -485,6 +496,20 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
     text-overflow: ellipsis;
   }
 
+  .methodology-badge {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.18rem 0.42rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--bg-soft);
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
   .app-desc {
     font-size: 0.75rem;
     color: var(--muted);
@@ -613,6 +638,10 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
   }
 
   .card-app-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
     font-weight: 500;
     font-size: 1rem;
   }

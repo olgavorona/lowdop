@@ -1,0 +1,1285 @@
+{
+  "sago-mini-school": {
+    "calmness": {
+      "score": 4.2408,
+      "complete": true,
+      "internalAttentionIntensity": 5.7592,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 2.1875,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 1.8107,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 8,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 7.5833,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 2,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 5.8333,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 7.7,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 8.5714,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 1,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 3.25,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "Sago Mini School mixed educational activities",
+          "activity_type": "mixed explicit practice and shallow reactive interaction",
+          "score": 3.25,
+          "components": {
+            "skill_demand_score": 0.8,
+            "agency_score": 0.6,
+            "depth_score": 0.4,
+            "transferability_score": 0.8
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": [
+            "185.869-208.909s: games, books/reading, exercise, drawing mentioned",
+            "311.898-353.898s: letter tracing activity reviewed",
+            "366.898-380.898s: clothes, video, music, drawing, emotions mentioned",
+            "user supplied component rationale on 2026-09-03"
+          ]
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 8.25,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 5,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 5,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "lingo": {
+    "calmness": {
+      "score": 5.6034,
+      "complete": true,
+      "internalAttentionIntensity": 4.3966,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 6.6441,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 0,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 6,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 0,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 6.9333,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 2,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 1,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 8.3333,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 9.2,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 6,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 3.25,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "LingoKids representative activity",
+          "activity_type": "guided narrated lesson/workbook/game activity",
+          "score": 3.25,
+          "components": {
+            "skill_demand_score": 0.8,
+            "agency_score": 0.5,
+            "depth_score": 0.4,
+            "transferability_score": 0.9
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": []
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 5.95,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 1,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 5,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "thinkrolls": {
+    "calmness": {
+      "score": 4.1502,
+      "complete": true,
+      "internalAttentionIntensity": 5.8498,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 1.4978,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 0,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 6,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 8,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 7.9,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 1,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 10,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 9.2,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 6,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 6.875,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "Thinkrolls logic, math, coding, and spatial puzzle activities",
+          "activity_type": "constructive cognitive play and guided logic/math puzzles",
+          "score": 6.875,
+          "components": {
+            "skill_demand_score": 1.2,
+            "agency_score": 1.6,
+            "depth_score": 1.7,
+            "transferability_score": 1
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": [
+            "Reviewer-supplied transcript text on 2026-09-04: logic/spatial puzzles, number ordering, missing-number tasks, balancing, coding/scene-building, increasing difficulty, mistakes and revision."
+          ]
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 5.95,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 1,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 5,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "montessori-preschool": {
+    "calmness": {
+      "score": 5.5832,
+      "complete": true,
+      "internalAttentionIntensity": 4.4168,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 4.4746,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 2.0625,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0.3623,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 6,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 0,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 6.7667,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 2,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 1,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 6.6667,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 9.2,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 6,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 7.875,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "Montessori Preschool representative academic and coding activities",
+          "activity_type": "broad guided academic practice with coding, art, music, and practical-life activities",
+          "score": 7.875,
+          "components": {
+            "skill_demand_score": 1.6,
+            "agency_score": 1.4,
+            "depth_score": 1.5,
+            "transferability_score": 1.8
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": [
+            "Reviewer-supplied transcript text on 2026-09-07: coding, literacy, math, podcasts, nursery rhymes, music, art, difficulty levels, and 100+ interactive activities."
+          ]
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 5.95,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 1,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 5,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "sago-mini-world": {
+    "calmness": {
+      "score": 4.2368,
+      "complete": true,
+      "internalAttentionIntensity": 5.7632,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 1.6875,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0.1004,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 0,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 7.2333,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 1,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 3.3333,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 9.2,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 6,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 0.625,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "Sago Mini World representative free play activity",
+          "activity_type": "pretend/free play activity",
+          "score": 0.625,
+          "components": {
+            "skill_demand_score": 0,
+            "agency_score": 0.5,
+            "depth_score": 0,
+            "transferability_score": 0
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": []
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 5.95,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 1,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 5,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "pok-pok": {
+    "calmness": {
+      "score": 6.6067,
+      "complete": true,
+      "internalAttentionIntensity": 3.3933,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 5.9556,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 0,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 0,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 0,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 10,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 10,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 7.1189,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 5.6757,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 1,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 4.25,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "Pok Pok representative open-ended play activity",
+          "activity_type": "open-ended pretend/play interaction",
+          "score": 4.25,
+          "components": {
+            "skill_demand_score": 0.9,
+            "agency_score": 1.3,
+            "depth_score": 0.4,
+            "transferability_score": 0.8
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": []
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 9,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 5,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 10,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "abc-mouse": {
+    "calmness": {
+      "score": 3.1282,
+      "complete": true,
+      "internalAttentionIntensity": 6.8718,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0.3184,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0.8993,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 8,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 3.9,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 4,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 5,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 2,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 1,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 10,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 9.2,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 6,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 4.25,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "ABC Mouse representative preschool learning activities",
+          "activity_type": "mixed explicit academic practice, videos, music, games, and coloring",
+          "score": 4.25,
+          "components": {
+            "skill_demand_score": 0.9,
+            "agency_score": 0.8,
+            "depth_score": 0.9,
+            "transferability_score": 0.8
+          },
+          "experience_weight": 1,
+          "confidence": "medium",
+          "evidence_timestamps": [
+            "Reviewer-supplied transcript text on 2026-09-03: reading/math preschool, alphabet, counting, coloring, classroom learning path, videos/music/games, and 20+ activity types."
+          ]
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 5.95,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 1,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 5,
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  "khan-academy-kids": {
+    "calmness": {
+      "score": 6.4029,
+      "complete": true,
+      "internalAttentionIntensity": 3.5971,
+      "components": [
+        {
+          "key": "visual_motion",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "visual_change_frequency",
+          "value": 1.8721,
+          "weight": 0.15
+        },
+        {
+          "key": "brightness_variability",
+          "value": 0,
+          "weight": 0.1
+        },
+        {
+          "key": "audio_intensity",
+          "value": 1.9893,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_event_frequency",
+          "value": 0.6792,
+          "weight": 0.1
+        },
+        {
+          "key": "reward_activity",
+          "value": 3,
+          "weight": 0.15
+        },
+        {
+          "key": "attention_prompts_interruptions",
+          "value": 0,
+          "weight": 0.1
+        }
+      ]
+    },
+    "travel": {
+      "score": 7.3333,
+      "complete": true,
+      "components": [
+        {
+          "key": "offline_functionality",
+          "value": 10,
+          "weight": 0.45
+        },
+        {
+          "key": "offline_reliability",
+          "value": 5,
+          "weight": 0.1
+        },
+        {
+          "key": "offline_preparation_burden",
+          "value": 2,
+          "weight": 0.15
+        },
+        {
+          "key": "audio_independence",
+          "value": 2,
+          "weight": 0.1
+        },
+        {
+          "key": "child_flow_commercial_interruptions",
+          "value": 10,
+          "weight": 0.1
+        },
+        {
+          "key": "accessible_content_breadth",
+          "value": 8.3333,
+          "weight": 0.1
+        }
+      ]
+    },
+    "contentValue": {
+      "score": 10,
+      "complete": true,
+      "components": [
+        {
+          "key": "content_breadth",
+          "value": 10,
+          "weight": 0.35
+        },
+        {
+          "key": "content_depth",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "meaningful_variety",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "free_access_value",
+          "value": 10,
+          "weight": 0.2
+        }
+      ]
+    },
+    "learningValue": {
+      "score": 8,
+      "complete": true,
+      "formula": "(skill_demand + agency + depth + transferability) / 8 * 10",
+      "appFormula": "weighted_mean_by_accessible_experience_share",
+      "activities": [
+        {
+          "activity_name": "Khan Academy Kids representative learning activities",
+          "activity_type": "explicit academic and guided skill practice",
+          "score": 8,
+          "components": {
+            "skill_demand_score": 1.8,
+            "agency_score": 1.2,
+            "depth_score": 1.5,
+            "transferability_score": 1.9
+          },
+          "experience_weight": 1,
+          "confidence": "high",
+          "evidence_timestamps": []
+        }
+      ]
+    },
+    "commercialExperience": {
+      "score": 10,
+      "complete": true,
+      "components": [
+        {
+          "key": "third_party_advertising",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "child_flow_purchase_pressure",
+          "value": 10,
+          "weight": 0.25
+        },
+        {
+          "key": "locked_content_exposure",
+          "value": 10,
+          "weight": 0.15
+        },
+        {
+          "key": "pricing_transparency",
+          "value": 10,
+          "weight": 0.2
+        },
+        {
+          "key": "purchase_model_friction",
+          "value": 10,
+          "weight": 0.15
+        }
+      ]
+    }
+  }
+}

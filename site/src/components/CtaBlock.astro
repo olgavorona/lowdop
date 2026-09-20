@@ -15,7 +15,7 @@ const {
 <section class="cta-block">
   <div class="shell cta-inner">
     <div>
-      <p class="eyebrow">Denny's Maze</p>
+      <div class="cta-product"><img src="/images/app-icons/dennys-maze.jpg" alt="Denny's Maze icon" width="56" height="56" /><p class="eyebrow">Denny's Maze</p></div>
       <h2>{title}</h2>
       <p>{text}</p>
     </div>
@@ -23,3 +23,9 @@ const {
     <a class="button" href={siteConfig.appStoreUrl}>View on the App Store</a>
   </div>
 </section>
+
+<style>
+  .cta-product { display: flex; align-items: center; gap: .85rem; margin-bottom: .65rem; }
+  .cta-product img { width: 56px; height: 56px; border-radius: 13px; object-fit: cover; }
+  .cta-product .eyebrow { margin: 0; }
+</style>

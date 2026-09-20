@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { siteConfig } from "../data/site";
 import { absoluteUrl } from "../lib/seo";
+import { appReviews } from "../data/appReviews";
 
 const paths = [
   "/",
@@ -12,6 +13,9 @@ const paths = [
   "/screen-time-without-overstimulation/",
   "/best-low-stimulation-apps-for-toddlers/",
   "/offline-toddler-apps/",
+  "/ratings/methodology/",
+  "/ratings/apps/",
+  ...appReviews.map((review) => `/ratings/apps/${review.slug}/`),
   "/blog/",
   "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/",
   "/blog/why-i-bring-an-ipad-on-every-flight/",

@@ -12,6 +12,14 @@ export const primaryNav = [
       {
         href: "/offline-toddler-apps/",
         label: "Offline Apps"
+      },
+      {
+        href: "/ratings/apps/",
+        label: "App Reviews"
+      },
+      {
+        href: "/ratings/methodology/",
+        label: "Methodology"
       }
     ]
   },
@@ -27,6 +35,8 @@ export const footerNav = [
     label: "Low-Stimulation Apps"
   },
   { href: "/offline-toddler-apps/", label: "Offline Apps" },
+  { href: "/ratings/apps/", label: "App Reviews" },
+  { href: "/ratings/methodology/", label: "Ratings Methodology" },
   { href: "/blog/", label: "Blog" },
   { href: "/screen-time-without-overstimulation/", label: "Screen Time Guide" },
   { href: "/about/", label: "About" },

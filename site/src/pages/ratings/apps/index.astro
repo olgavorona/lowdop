@@ -1,0 +1,22 @@
+---
+import AppScorecard from "../../../components/AppScorecard.astro";
+import CtaBlock from "../../../components/CtaBlock.astro";
+import PageHeader from "../../../components/PageHeader.astro";
+import { appReviews } from "../../../data/appReviews";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../../../lib/seo";
+const meta = buildMeta({ title: "Kids App Reviews and Ratings | Harmless Apps", description: "Browse tested kids apps scored for calmness, travel, content value, learning value, and commercial experience.", pathname: "/ratings/apps/" });
+const icons: Record<string, string> = { "khan-academy-kids": "/images/app-icons/khan-academy-kids.jpg", "pok-pok": "/images/app-icons/pok-pok.jpg", "montessori-preschool": "/images/app-icons/montessori-preschool.svg", thinkrolls: "/images/app-icons/thinkrolls.jpg", lingo: "/images/app-icons/lingokids.jpg", "sago-mini-school": "/images/app-icons/sago-mini.jpg", "sago-mini-world": "/images/app-icons/sago-mini.jpg", "abc-mouse": "/images/app-icons/abc-mouse.svg" };
+---
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader eyebrow="Ratings · Tested apps" title="Kids app reviews" intro="One score cannot answer every family’s question. Compare five separate dimensions, then open an app to see what each score means." tags={[`${appReviews.length} apps tested`, "0–10 scores", "higher is better"]} />
+  <section class="apps-section"><div class="shell"><div class="method-note"><span>All reviews use methodology v0.1.</span><a href="/ratings/methodology/">Read how testing works →</a></div><div class="app-grid">{appReviews.map((review) => <article class="app-card"><a class="app-heading" href={`/ratings/apps/${review.slug}/`} style="display:flex;align-items:center;gap:1rem;text-decoration:none"><img src={icons[review.slug]} alt={`${review.name} icon`} width="64" height="64" loading="lazy" style="width:64px;height:64px;flex:0 0 64px;border-radius:16px;clip-path:inset(0 round 16px);object-fit:cover" /><span class="app-name-copy"><span class="tested-badge">Methodology tested</span><h2>{review.name}</h2></span></a><p>{review.summary}</p><AppScorecard review={review} compact /><a class="review-link" href={`/ratings/apps/${review.slug}/`}>Read the scorecard →</a></article>)}</div></div></section>
+  <CtaBlock title="The app I built around these priorities" text="I built Denny's Maze to be optimized for calmness, reliable offline play, and educational value through focused maze-solving. It is my practical attempt to bring those priorities together in one simple app." />
+</BaseLayout>
+<style>
+  .apps-section { padding: 2.5rem 0 4rem; } .method-note { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--line); color: var(--muted); }
+  .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; } .app-card { padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .app-heading { margin-bottom: 1rem; color: var(--text); } .app-name-copy { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; gap: .3rem; } .app-heading h2 { margin: 0; font-size: 1.8rem; } .app-heading img { box-shadow: 0 3px 10px rgba(42, 37, 28, .12); } .tested-badge { display: inline-flex; padding: .22rem .55rem; border-radius: 999px; background: var(--accent); color: var(--bg-soft); font-family: var(--font-mono); font-size: .58rem; line-height: 1.2; letter-spacing: .06em; text-transform: uppercase; } .app-card > p:not(.eyebrow) { min-height: 3.2em; color: var(--muted); }
+  .review-link { display: inline-block; margin-top: 1.25rem; font-family: var(--font-mono); font-size: .75rem; }
+  @media (max-width: 720px) { .app-grid { grid-template-columns: 1fr; } .method-note { flex-direction: column; } }
+</style>

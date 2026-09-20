@@ -8,9 +8,10 @@ type Props = {
   intro: string;
   mazes: PrintableMaze[];
   downloadPacks: PrintablePack[];
+  colorDownloadPacks: PrintablePack[];
 };
 
-const { title, supportLine, intro, mazes, downloadPacks } = Astro.props as Props;
+const { title, supportLine, intro, mazes, downloadPacks, colorDownloadPacks } = Astro.props as Props;
 const modalMazes = mazes.map((maze) => ({
   title: maze.title,
   preview: maze.preview,
@@ -61,15 +62,15 @@ const faqItems = [
     <div class="shell printables-shell">
       <section class="printables-included" aria-labelledby="included-heading">
         <h2 id="included-heading">What's Included in These Printable Fall Mazes?</h2>
-        <p>The free black-and-white PDF set includes six fall-themed maze puzzles:</p>
+        <p>The free PDF set includes six fall-themed maze puzzles in both full color and black and white:</p>
         <ul>
           {includedMazes.map((item) => <li>{item}</li>)}
         </ul>
         <p>
           Each design is available in Easy, Medium and Hard difficulty, giving
           families different challenge levels while keeping the same fall theme.
-          The illustrations are outlined for coloring, and the maze walls are
-          drawn with thicker black lines.
+          Choose full color for a ready-to-play activity or black and white for
+          lower-ink printing and extra coloring.
         </p>
       </section>
 
@@ -91,6 +92,10 @@ const faqItems = [
               {difficulty.label}
             </button>
           ))}
+        </div>
+        <div class="format-control" aria-label="Choose printable color style">
+          <button type="button" class="difficulty-button active" data-global-format="bw" aria-pressed="true">Black &amp; white</button>
+          <button type="button" class="difficulty-button" data-global-format="color" aria-pressed="false">Full color</button>
         </div>
       </div>
 
@@ -158,7 +163,7 @@ const faqItems = [
             </div>
 
             <a class="button printable-download" href={maze.difficulties[0].href} download data-dynamic-download>
-              Download Easy
+              Download Easy B&amp;W
             </a>
           </div>
         </section>
@@ -205,6 +210,7 @@ const faqItems = [
                 class:list={["difficulty-button", index === 2 && "active"]}
                 data-pack-difficulty
                 data-pack-href={pack.href}
+                data-color-pack-href={colorDownloadPacks[index]?.href}
                 aria-pressed={index === 2 ? "true" : "false"}
               >
                 {pack.label}
@@ -212,9 +218,10 @@ const faqItems = [
             ))}
           </div>
         </div>
-        <a class="button" href={downloadPacks[2]?.href ?? downloadPacks[0]?.href} download data-pack-download>
-          Download all {printableCount} hard mazes
-        </a>
+        <div class="pack-download-actions">
+          <a class="button" href={downloadPacks[2]?.href ?? downloadPacks[0]?.href} download data-pack-download>Download B&amp;W ZIP</a>
+          <a class="button secondary" href={colorDownloadPacks[2]?.href ?? colorDownloadPacks[0]?.href} download data-color-pack-download>Download Color ZIP</a>
+        </div>
       </div>
     </div>
   </section>
@@ -304,8 +311,6 @@ const faqItems = [
 <script is:inline type="application/json" id="printable-modal-data" set:html={JSON.stringify(modalMazes)} />
 
 <script>
-  import { track } from "@vercel/analytics";
-
   const modalDataElement = document.getElementById("printable-modal-data");
   const modalData = modalDataElement?.textContent ? JSON.parse(modalDataElement.textContent) : [];
   const modal = document.querySelector("[data-preview-modal]");
@@ -314,13 +319,16 @@ const faqItems = [
   const modalDownload = document.querySelector("[data-preview-download]");
   const modalDifficultyButtons = Array.from(document.querySelectorAll("[data-preview-difficulty]"));
   const globalDifficultyButtons = Array.from(document.querySelectorAll("[data-global-difficulty]"));
+  const globalFormatButtons = Array.from(document.querySelectorAll("[data-global-format]"));
   const rowDifficultyButtons = Array.from(document.querySelectorAll("[data-difficulty-button]"));
   const packDifficultyButtons = Array.from(document.querySelectorAll("[data-pack-difficulty]"));
   const packDownload = document.querySelector("[data-pack-download]");
+  const colorPackDownload = document.querySelector("[data-color-pack-download]");
   let activeMazeIndex = 0;
   let activeDifficultyIndex = 0;
+  let activeFormat = "bw";
 
-  document.querySelectorAll("[data-dynamic-download], [data-preview-download], [data-pack-download]").forEach((link) => {
+  document.querySelectorAll("[data-dynamic-download], [data-preview-download], [data-pack-download], [data-color-pack-download]").forEach((link) => {
     if (!(link instanceof HTMLAnchorElement)) return;
     link.addEventListener("click", () => {
       // Read the current URL so changes to difficulty and preview maze are reflected.
@@ -329,17 +337,13 @@ const faqItems = [
       if (!match) return;
 
       const [, maze, difficulty, format] = match;
-      const location = link.hasAttribute("data-pack-download")
+      const location = link.hasAttribute("data-pack-download") || link.hasAttribute("data-color-pack-download")
         ? "pack"
         : link.hasAttribute("data-preview-download") ? "preview" : "list";
 
-      track("printable_maze_download", {
-        maze: format === "zip" ? "all" : maze,
-        difficulty,
-        format,
-        location,
-        file
-      });
+      window.dispatchEvent(new CustomEvent("printable_maze_download", {
+        detail: { maze: format === "zip" ? "all" : maze, difficulty, format, location, file }
+      }));
     });
   });
 
@@ -362,14 +366,14 @@ const faqItems = [
 
       const previewImage = row.querySelector("[data-printable-preview-image]");
       if (previewImage instanceof HTMLImageElement) {
-        previewImage.src = difficulty.preview;
-        previewImage.alt = `${maze.alt} - ${difficulty.label}`;
+        previewImage.src = activeFormat === "color" ? difficulty.colorPreview : difficulty.preview;
+        previewImage.alt = `${maze.alt} - ${difficulty.label} - ${activeFormat === "color" ? "full color" : "black and white"}`;
       }
 
       const download = row.querySelector("[data-dynamic-download]");
       if (download instanceof HTMLAnchorElement) {
-        download.href = difficulty.href;
-        download.textContent = `Download ${difficulty.label}`;
+        download.href = activeFormat === "color" ? difficulty.colorHref : difficulty.href;
+        download.textContent = `Download ${difficulty.label} ${activeFormat === "color" ? "Color" : "B&W"}`;
       }
 
       row.querySelectorAll("[data-difficulty-button]").forEach((button) => {
@@ -389,6 +393,18 @@ const faqItems = [
     updatePreviewModal();
   }
 
+  function setGlobalFormat(format: string) {
+    activeFormat = format === "color" ? "color" : "bw";
+    globalFormatButtons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      const isActive = button.dataset.globalFormat === activeFormat;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+    updateAllPrintableRows();
+    updatePreviewModal();
+  }
+
   function updatePreviewModal() {
     const maze = modalData[activeMazeIndex];
     const difficulty = maze?.difficulties?.[activeDifficultyIndex];
@@ -396,12 +412,12 @@ const faqItems = [
 
     if (modalTitle) modalTitle.textContent = maze.title;
     if (modalImage instanceof HTMLImageElement) {
-      modalImage.src = difficulty.preview;
-      modalImage.alt = `${maze.alt} - ${difficulty.label}`;
+      modalImage.src = activeFormat === "color" ? difficulty.colorPreview : difficulty.preview;
+      modalImage.alt = `${maze.alt} - ${difficulty.label} - ${activeFormat === "color" ? "full color" : "black and white"}`;
     }
     if (modalDownload instanceof HTMLAnchorElement) {
-      modalDownload.href = difficulty.href;
-      modalDownload.textContent = `Download ${difficulty.label}`;
+      modalDownload.href = activeFormat === "color" ? difficulty.colorHref : difficulty.href;
+      modalDownload.textContent = `Download ${difficulty.label} ${activeFormat === "color" ? "Color" : "B&W"}`;
     }
 
     modalDifficultyButtons.forEach((button) => {
@@ -463,6 +479,11 @@ const faqItems = [
     });
   });
 
+  globalFormatButtons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
+    button.addEventListener("click", () => setGlobalFormat(button.dataset.globalFormat ?? "bw"));
+  });
+
   rowDifficultyButtons.forEach((button) => {
     if (!(button instanceof HTMLButtonElement)) return;
     button.addEventListener("click", () => {
@@ -499,7 +520,12 @@ const faqItems = [
       const href = button.dataset.packHref;
       if (packDownload instanceof HTMLAnchorElement) {
         if (href) packDownload.href = href;
-        packDownload.textContent = `Download all ${modalData.length} ${label.toLowerCase()} mazes`;
+        packDownload.textContent = `Download ${label} B&W ZIP`;
+      }
+      const colorHref = button.dataset.colorPackHref;
+      if (colorPackDownload instanceof HTMLAnchorElement) {
+        if (colorHref) colorPackDownload.href = colorHref;
+        colorPackDownload.textContent = `Download ${label} Color ZIP`;
       }
     });
   });
@@ -576,8 +602,16 @@ const faqItems = [
   }
 
   .global-difficulty-control,
-  .pack-difficulty-control {
+  .pack-difficulty-control,
+  .format-control {
     margin: 0;
+  }
+
+  .format-control,
+  .pack-download-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
   }
 
   .printable-row {

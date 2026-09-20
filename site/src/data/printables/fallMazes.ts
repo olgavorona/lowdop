@@ -2,6 +2,8 @@ export type PrintableDifficulty = {
   label: string;
   href: string;
   preview: string;
+  colorHref: string;
+  colorPreview: string;
 };
 
 export type PrintableMaze = {
@@ -21,15 +23,19 @@ export type PrintablePack = {
 
 export const fallMazePrintables = {
   title: "6 Free Printable Fall Mazes for Kids",
-  supportLine: "Ages 2-6 · 6 designs · Easy, Medium & Hard · Black-and-white PDFs",
+  supportLine: "Ages 2-6 · 6 designs · Easy, Medium & Hard · Color and black-and-white PDFs",
   eyebrow: "Denny's Maze printables",
   intro:
-    "Looking for free printable fall mazes for kids? This black-and-white PDF set includes six autumn-themed maze worksheets featuring leaves, apples, corn, pumpkins, acorns and rainy puddles. The mazes are designed for children around ages 2-6 and are available in Easy, Medium and Hard difficulty, so parents can choose a simple maze for a beginner or a more challenging path for a child who already enjoys maze puzzles.\n\nDownload individual mazes below or print the complete fall maze set. The thick maze lines and larger coloring-style illustrations make them simple, no-prep activities for quiet time at home, preschool or kindergarten, travel, restaurants, waiting rooms and rainy fall afternoons.",
+    "Looking for free printable fall mazes for kids? This PDF set includes six autumn-themed maze worksheets featuring leaves, apples, corn, pumpkins, acorns and rainy puddles. Every maze is available in full color and printer-friendly black and white, plus Easy, Medium and Hard difficulty.\n\nUse the B&W/Color switch to change every preview and individual PDF download. For the complete set, choose a difficulty and download either the separate black-and-white ZIP or color ZIP.",
   heroImage: "/printables/fall-mazes/hero-denny-yellow-raincoat.svg",
   assetBase: "/printables/fall-mazes",
   downloadPacks: ["easy", "medium", "hard"].map((difficulty) => ({
     label: difficulty[0].toUpperCase() + difficulty.slice(1),
     href: `/printables/fall-mazes/fall-mazes-${difficulty}.zip`
+  })),
+  colorDownloadPacks: ["easy", "medium", "hard"].map((difficulty) => ({
+    label: difficulty[0].toUpperCase() + difficulty.slice(1),
+    href: `/printables/fall-mazes/fall-mazes-color-${difficulty}.zip`
   })),
   mazes: [
     {
@@ -91,7 +97,9 @@ export const fallMazePrintables = {
     difficulties: ["easy", "medium", "hard"].map((difficulty) => ({
       label: difficulty[0].toUpperCase() + difficulty.slice(1),
       href: `/printables/fall-mazes/pdf/${maze.slug}-${difficulty}.pdf`,
-      preview: `/printables/fall-mazes/svg/${maze.slug}-${difficulty}.svg`
+      preview: `/printables/fall-mazes/svg/${maze.slug}-${difficulty}.svg`,
+      colorHref: `/printables/fall-mazes/color/pdf/${maze.slug}-${difficulty}.pdf`,
+      colorPreview: `/printables/fall-mazes/color/svg/${maze.slug}-${difficulty}.svg`
     }))
   }))
 } satisfies {
@@ -102,5 +110,6 @@ export const fallMazePrintables = {
   heroImage: string;
   assetBase: string;
   downloadPacks: PrintablePack[];
+  colorDownloadPacks: PrintablePack[];
   mazes: PrintableMaze[];
 };

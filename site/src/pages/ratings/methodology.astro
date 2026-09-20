@@ -1,0 +1,55 @@
+---
+import PageHeader from "../../components/PageHeader.astro";
+import CtaBlock from "../../components/CtaBlock.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../../lib/seo";
+const meta = buildMeta({ title: "How We Test Kids Apps | Harmless Apps", description: "The versioned Harmless Apps methodology for measuring calmness, travel use, content value, learning value, and commercial experience.", pathname: "/ratings/methodology/", type: "article" });
+const dimensions = [
+  ["Calmness", "Gameplay recordings measure motion, visual change, brightness variation, audio intensity and frequency. We also record reward activity and attention prompts. The public score reverses attention intensity: 10 means calmer."],
+  ["Travel", "We test offline function and reliability, preparation burden, dependence on audio, commercial interruptions, and how much content remains accessible."],
+  ["Content value", "We combine content breadth, depth, meaningful variety, and the amount of useful content available without payment."],
+  ["Learning value", "Representative activities are scored for skill demand, agency, depth, and transferability. This measures the interaction—not educational marketing—and does not claim proven learning outcomes."],
+  ["Commercial experience", "We document advertising, purchase pressure in the child flow, visible locked content, pricing transparency, and purchase-model friction."]
+];
+const scoreFormulas = [
+  { name: "Calmness", formula: "10 − Attention Intensity", components: [["Visual motion", "25%"], ["Visual change frequency", "15%"], ["Brightness variability", "10%"], ["Audio intensity", "15%"], ["Audio event frequency", "10%"], ["Reward activity", "15%"], ["Attention prompts / interruptions", "10%"]] },
+  { name: "Travel", formula: "Σ(normalized component × weight)", components: [["Offline functionality", "45%"], ["Offline reliability", "10%"], ["Offline preparation burden", "15%"], ["Audio independence", "10%"], ["Child-flow commercial interruptions", "10%"], ["Accessible content breadth", "10%"]] },
+  { name: "Content value", formula: "Σ(normalized component × weight)", components: [["Content breadth", "35%"], ["Content depth", "25%"], ["Meaningful variety", "20%"], ["Free-access value", "20%"]] },
+  { name: "Learning value", formula: "Per activity: (skill demand + agency + depth + transferability) ÷ 8 × 10. App: mean weighted by accessible-experience share.", components: [["Skill demand", "25%"], ["Agency", "25%"], ["Depth", "25%"], ["Transferability", "25%"]] },
+  { name: "Commercial experience", formula: "Σ(normalized component × weight)", components: [["Third-party advertising", "25%"], ["Child-flow purchase pressure", "25%"], ["Locked-content exposure", "15%"], ["Pricing transparency", "20%"], ["Purchase-model friction", "15%"]] }
+];
+const measurementParameters = [
+  ["Video sampling", "2 frames/second"], ["Analysis width", "320 px"], ["Changed-pixel luma threshold", "24"], ["Motion magnitude threshold", "1.25"], ["Brightness-change threshold", "18.0"], ["Large visual-change fraction", "0.28"], ["Silence threshold", "−45 dB"], ["Audio-event threshold", "−22 dB"], ["Audio outlier margin", "8 dB"], ["Audio-event window", "0.5 seconds"], ["Evidence screenshots", "3 per category"]
+];
+const normalization = [
+  ["Visual motion", "≤ 0.015", "≥ 0.18", "Mean optical-flow motion fraction"], ["Visual changes", "≤ 2/min", "≥ 18/min", "Large frame-change events"], ["Brightness variability", "≤ 18", "≥ 65", "Luminance standard deviation"], ["Audio intensity", "≤ −28 LUFS", "≥ −12 LUFS", "Less negative is louder"], ["Audio events", "≤ 4/min", "≥ 35/min", "High-energy audio events"]
+];
+const rubricRows = [
+  ["Reward activity", "none 0 · light 3 · moderate 6 · heavy 10"], ["Attention prompts", "no 0 · yes 8"], ["Offline functionality", "yes 10 · partial/unreliable 4 · no 0"], ["Offline reliability", "reliable 10 · sometimes fails 5 · always fails 0"], ["Offline preparation burden", "no 10 · partial 4 · yes 2"], ["Audio independence", "yes 10 · no 2"], ["Commercial interruptions", "no 10 · yes 1"], ["Third-party advertising", "no 10 · yes 0"], ["Purchase pressure", "no 10 · yes 1"], ["Locked-content exposure", "no 10 · yes 3"], ["Pricing transparency", "yes 10 · partially hidden option 5 · no 2"], ["Purchase model", "one-time/lifetime 10 · subscription 5 · hidden lifetime/subscription front 4"], ["Free access", "genuinely free 10 · meaningful tier 6 · limited demo 4 · trial 3 · effectively paid 1"], ["Meaningful variety", "low 3 · moderate 6 · high 8 · excellent 10"]
+];
+---
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <PageHeader eyebrow="Ratings · Methodology v0.1" title="How we test kids apps" intro="A repeatable framework built from recorded gameplay, a structured review, automated measurements, and human confirmation. Every public score runs from 0 to 10; higher is better." tags={["versioned", "evidence-based", "five scores"]} />
+  <section class="section"><div class="shell narrow prose">
+    <p class="lede">A score starts with two records: clean child-facing gameplay with system audio, and a guided review covering access, pricing, offline use, permissions, rewards, and representative learning activities.</p>
+    <h2>The testing process</h2>
+    <ol class="steps"><li><strong>Sample representative play.</strong> We aim for 60–120 seconds per materially different activity and at least three activity types when they exist.</li><li><strong>Measure the recording.</strong> Deterministic video and audio analysis produces raw metrics; the structured review supplies facts that cannot be read reliably from pixels alone.</li><li><strong>Confirm the observations.</strong> Draft findings are checked and corrected by a human before scores become canonical.</li><li><strong>Calculate versioned scores.</strong> Raw evidence, normalized components, formula version, and final scores remain separate so a future calibration can be rerun without re-recording.</li></ol>
+  </div></section>
+  <section class="section tinted"><div class="shell"><p class="eyebrow">The five public scores</p><div class="dimension-grid">{dimensions.map(([title, text]) => <article><h2>{title}</h2><p>{text}</p></article>)}</div></div></section>
+  <section class="section"><div class="shell"><p class="eyebrow">Exact score formulas</p><div class="formula-grid">{scoreFormulas.map((score) => <article class="formula-card"><h2>{score.name}</h2><code>{score.formula}</code><table><thead><tr><th>Component</th><th>Weight</th></tr></thead><tbody>{score.components.map(([name, weight]) => <tr><td>{name}</td><td>{weight}</td></tr>)}</tbody></table></article>)}</div></div></section>
+  <section class="section tinted"><div class="shell"><p class="eyebrow">Measurement and normalization</p><div class="technical-grid"><article><h2>Capture parameters</h2><table><tbody>{measurementParameters.map(([name, value]) => <tr><th>{name}</th><td>{value}</td></tr>)}</tbody></table></article><article><h2>Raw metric → 0–10</h2><div class="table-scroll"><table><thead><tr><th>Metric</th><th>Good</th><th>Poor</th><th>Meaning</th></tr></thead><tbody>{normalization.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody></table></div><p class="technical-note">Values between the good and poor anchors are linearly normalized. These thresholds are provisional for the first ten-app calibration pass.</p></article></div></div></section>
+  <section class="section"><div class="shell"><p class="eyebrow">Observation rubric</p><h2>How observed answers become component values</h2><div class="table-scroll"><table class="rubric-table"><thead><tr><th>Component</th><th>Mapping to 0–10</th></tr></thead><tbody>{rubricRows.map(([name, mapping]) => <tr><td>{name}</td><td>{mapping}</td></tr>)}</tbody></table></div><p class="technical-note">For accessible content breadth, 0 items maps to 0 and 12+ maps to 10. Content breadth maps from 1 to 8 activity types; content depth from 3 to 40 items. Unknown always remains null and makes the affected score incomplete.</p></div></section>
+  <section class="section"><div class="shell narrow prose"><h2>What the scores do not say</h2><p>The framework does not label an app addictive, non-addictive, globally safe, unsafe, developmentally beneficial, or proven to produce learning outcomes. Permissions and privacy observations are factual indicators, not a single safety score.</p><p>Missing evidence stays unknown. It is never silently converted into “no” or a zero. An incomplete score remains incomplete until the required evidence exists.</p><p><a class="button" href="/ratings/apps/">See tested apps</a></p></div></section>
+  <CtaBlock title="The app I built around these priorities" text="I built Denny's Maze to be optimized for calmness, reliable offline play, and educational value through focused maze-solving. It is my practical attempt to apply the same principles this methodology measures." />
+</BaseLayout>
+<style>
+  .section { padding: 3rem 0; } .tinted { background: var(--bg-deep); border-block: 1px dashed var(--line); }
+  .lede { font-size: 1.25rem; } .steps { display: grid; gap: 1rem; padding-left: 1.25rem; }
+  .dimension-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .dimension-grid article { padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .dimension-grid h2 { font-size: 1.5rem; } .dimension-grid p { margin: 0; color: var(--muted); }
+  .formula-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; } .formula-card { padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); } .formula-card h2 { font-size: 1.6rem; } code { display: block; margin-bottom: 1rem; color: var(--accent-strong); white-space: normal; }
+  table { width: 100%; border-collapse: collapse; } th, td { padding: .6rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; } th { font-family: var(--font-mono); font-size: .7rem; } td:last-child { font-family: var(--font-mono); font-size: .78rem; }
+  .technical-grid { display: grid; grid-template-columns: .8fr 1.4fr; gap: 2rem; } .technical-grid h2 { font-size: 1.6rem; } .technical-note { color: var(--muted); font-size: .9rem; } .table-scroll { overflow-x: auto; } .rubric-table td:last-child { font-family: var(--font-body); font-size: 1rem; }
+  @media (max-width: 700px) { .dimension-grid, .formula-grid, .technical-grid { grid-template-columns: 1fr; } }
+</style>

@@ -4,15 +4,20 @@ type Props = {
   title: string;
   intro: string;
   tags?: string[];
+  icon?: string;
+  iconAlt?: string;
 };
 
-const { eyebrow, title, intro, tags = [] } = Astro.props as Props;
+const { eyebrow, title, intro, tags = [], icon, iconAlt = "" } = Astro.props as Props;
 ---
 
 <section class="page-header">
   <div class="shell narrow">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1>{title}</h1>
+    <div class:list={["page-title-row", { "has-icon": icon }]}>
+      {icon && <img class="page-title-icon" src={icon} alt={iconAlt} width="88" height="88" />}
+      <h1>{title}</h1>
+    </div>
     <p class="section-intro">{intro}</p>
     {tags.length > 0 && (
       <ul class="stat-list">
@@ -23,3 +28,41 @@ const { eyebrow, title, intro, tags = [] } = Astro.props as Props;
     )}
   </div>
 </section>
+
+<style>
+  .page-title-row.has-icon {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-title-row.has-icon h1 {
+    margin: 0;
+  }
+
+  .page-title-icon {
+    width: 88px;
+    height: 88px;
+    display: block;
+    object-fit: cover;
+    border-radius: 22px;
+    clip-path: inset(0 round 22px);
+    box-shadow: 0 5px 16px rgba(42, 37, 28, 0.16);
+  }
+
+  @media (max-width: 520px) {
+    .page-title-row.has-icon {
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .page-title-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 17px;
+      clip-path: inset(0 round 17px);
+    }
+  }
+</style>
