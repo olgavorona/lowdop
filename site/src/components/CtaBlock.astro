@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from "../data/site";
+import { appStoreUrl } from "../lib/analytics";
 
 type Props = {
   title?: string;
@@ -10,6 +10,7 @@ const {
   title = "Looking for calmer screen time?",
   text
 } = Astro.props as Props;
+const campaign = "website_content_cta";
 ---
 
 <section class="cta-block">
@@ -20,7 +21,12 @@ const {
       <p>{text}</p>
     </div>
 
-    <a class="button" href={siteConfig.appStoreUrl}>View on the App Store</a>
+    <a
+      class="button"
+      href={appStoreUrl(campaign)}
+      data-app-store-cta="content"
+      data-app-store-campaign={campaign}
+    >View on the App Store</a>
   </div>
 </section>
 

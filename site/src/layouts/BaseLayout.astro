@@ -4,6 +4,8 @@ import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { siteConfig } from "../data/site";
 
+const telemetryDeckWebAppID = import.meta.env.PUBLIC_TELEMETRYDECK_WEB_APP_ID?.trim();
+
 type Schema = Record<string, unknown>;
 
 type Props = {
@@ -54,9 +56,13 @@ const {
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    {telemetryDeckWebAppID && (
+      <script
+        is:inline
+        src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js"
+        data-app-id={telemetryDeckWebAppID}
+      />
+    )}
 
     {schemas.map((schema) => (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -70,32 +76,39 @@ const {
     </main>
     <Footer />
     <Analytics />
+    <script>
+      import "../scripts/analytics";
+    </script>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --bg: #f4ebd8;
-    --bg-deep: #ecdfc4;
-    --bg-edge: #e3d3b3;
-    --bg-soft: #fdf7ee;
-    --surface: rgba(253, 247, 238, 0.9);
-    --surface-strong: #fdf7ee;
-    --text: #2a251c;
-    --muted: #6e6353;
-    --faint: #b8a988;
-    --line: #d8c8a8;
-    --line-faint: #e6d8ba;
-    --accent: #5e7d86;
-    --accent-strong: #46656e;
-    --terracotta: #c89175;
-    --shadow: 0 24px 56px rgba(40, 32, 14, 0.1);
-    --radius: 18px;
-    --radius-sm: 12px;
-    --shell: 72rem;
-    --font-body: "Newsreader", "Georgia", serif;
-    --font-display: "Newsreader", "Georgia", serif;
-    --font-mono: "JetBrains Mono", ui-monospace, "Menlo", monospace;
+    --bg: #f2f3ef;
+    --bg-deep: #e4e5e0;
+    --bg-edge: #d7d9d4;
+    --bg-soft: #ffffff;
+    --surface: rgba(242, 243, 239, 0.92);
+    --surface-strong: #ffffff;
+    --text: #121833;
+    --navy: #121833;
+    --muted: #5e6273;
+    --faint: #92969f;
+    --line: rgba(18, 24, 51, 0.2);
+    --line-faint: rgba(18, 24, 51, 0.1);
+    --accent: #2026f2;
+    --accent-strong: #2026f2;
+    --blue: #2026f2;
+    --lime: #b9f600;
+    --pale-lime: #e7f7ae;
+    --terracotta: #2026f2;
+    --shadow: none;
+    --radius: 0;
+    --radius-sm: 0;
+    --shell: 76rem;
+    --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
   }
 
   * {
@@ -114,28 +127,8 @@ const {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "kern", "liga", "onum";
+    font-feature-settings: "kern", "liga";
     overflow-x: hidden;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.3;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.17  0 0 0 0 0.15  0 0 0 0 0.11  0 0 0 0.07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background: radial-gradient(120% 90% at 50% 30%, transparent 55%, rgba(99, 81, 50, 0.08) 100%);
   }
 
   a {
@@ -172,7 +165,7 @@ const {
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
@@ -183,19 +176,19 @@ const {
     margin: 0 0 1rem;
     font-family: var(--font-display);
     line-height: 1.08;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
   }
 
   h1 {
-    font-size: clamp(2.6rem, 8vw, 5rem);
+    font-size: clamp(2.6rem, 6vw, 5.1rem);
   }
 
   h2 {
-    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
   }
 
   h3 {
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
   }
 
   p,
@@ -212,11 +205,11 @@ const {
     gap: 8px;
     min-height: 3rem;
     padding: 0.8rem 1.4rem;
-    border-radius: 999px;
+    border-radius: 0;
     background: var(--text);
     color: var(--bg);
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 750;
     font-size: 1rem;
     text-decoration: none;
     border: 1px solid var(--text);
@@ -224,7 +217,7 @@ const {
   }
 
   .button:hover {
-    background: #1c1813;
+    background: var(--blue);
     transform: translateY(-1px);
     color: var(--bg);
   }
@@ -245,8 +238,8 @@ const {
     top: 0;
     z-index: 20;
     backdrop-filter: blur(18px);
-    background: rgba(244, 235, 216, 0.85);
-    border-bottom: 1px dashed var(--line);
+    background: rgba(242, 243, 239, 0.92);
+    border-bottom: 1px solid var(--line);
   }
 
   .site-header .shell {
@@ -278,10 +271,10 @@ const {
     place-items: center;
     width: 2.2rem;
     height: 2.2rem;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--bg-deep);
-    color: var(--text);
+    border-radius: 0;
+    border: 0;
+    background: var(--text);
+    color: var(--lime);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     font-weight: 500;
@@ -375,6 +368,34 @@ const {
     padding: 4rem 0;
   }
 
+  .page-header {
+    background: var(--navy);
+    color: white;
+  }
+
+  .page-header .eyebrow {
+    color: var(--lime);
+  }
+
+  .page-header .section-intro {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .page-header .stat-list li {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: transparent;
+    color: white;
+  }
+
+  .content-block > .shell > h2::before {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 0.4rem;
+    margin-bottom: 0.85rem;
+    background: var(--lime);
+  }
+
   .hero-grid,
   .split-grid,
   .footer-grid,
@@ -393,6 +414,12 @@ const {
     border-radius: var(--radius);
     background: var(--bg-deep);
     box-shadow: var(--shadow);
+  }
+
+  .link-card,
+  .info-card,
+  .media-card {
+    border-top: 0.4rem solid var(--blue);
   }
 
   .hero-copy p,
@@ -422,7 +449,7 @@ const {
   .inline-links li,
   .tag {
     padding: 0.5rem 0.8rem;
-    border-radius: 999px;
+    border-radius: 0;
     border: 1px solid var(--line);
     background: var(--bg-deep);
     font-family: var(--font-mono);
@@ -526,9 +553,24 @@ const {
   }
 
   .cta-block {
-    border-top: 1px dashed var(--line);
-    border-bottom: 1px dashed var(--line);
-    background: var(--bg-deep);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--navy);
+    color: white;
+  }
+
+  .cta-block .eyebrow {
+    color: var(--lime);
+  }
+
+  .cta-block p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .cta-block .button {
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--navy);
   }
 
   .cta-inner {
@@ -540,6 +582,32 @@ const {
 
   .prose > * + * {
     margin-top: 1rem;
+  }
+
+  .button.lime {
+    background: var(--lime);
+    color: var(--navy);
+    border-color: var(--lime);
+  }
+
+  .button.lime:hover {
+    background: var(--pale-lime);
+    color: var(--navy);
+  }
+
+  @media (max-width: 40rem) {
+    .site-header nav {
+      width: 100%;
+    }
+
+    .site-header nav ul {
+      gap: 0.45rem 0.9rem;
+    }
+
+    .site-header nav a,
+    .site-header nav summary {
+      font-size: 0.64rem;
+    }
   }
 
   @media (min-width: 50rem) {

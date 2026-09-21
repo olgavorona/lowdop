@@ -6,6 +6,7 @@ import {
   blogPostingSchema,
   organizationSchema
 } from "../lib/seo";
+import { appStoreUrl } from "../lib/analytics";
 
 const title = "Best Offline Apps for Kids: 9 Toddler Apps Tested for Flights";
 const h1 = "Best Offline Apps for Toddlers: 9 Tested in Airplane Mode";
@@ -46,8 +47,8 @@ type AppResult = {
 
 const lowStimLink = "/ratings/methodology/";
 const dennyProductLink = "/dennys-maze/";
-const dennyAppStoreLink =
-  "https://apps.apple.com/ca/app/dennys-maze/id6760107138";
+const dennyCampaign = "website_offline_guide";
+const dennyAppStoreLink = appStoreUrl(dennyCampaign);
 const planeLink =
   "/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/";
 
@@ -288,6 +289,8 @@ const articleSchema = blogPostingSchema({
                     <a
                       class="app-link"
                       href={app.url}
+                      data-app-store-cta={app.owned ? "comparison-table" : undefined}
+                      data-app-store-campaign={app.owned ? dennyCampaign : undefined}
                       target={app.url.startsWith("http") ? "_blank" : undefined}
                       rel={app.url.startsWith("http") ? "noopener" : undefined}
                     >
@@ -320,6 +323,8 @@ const articleSchema = blogPostingSchema({
                 <a
                   class="mobile-app-link"
                   href={app.url}
+                  data-app-store-cta={app.owned ? "comparison-card" : undefined}
+                  data-app-store-campaign={app.owned ? dennyCampaign : undefined}
                   target={app.url.startsWith("http") ? "_blank" : undefined}
                   rel={app.url.startsWith("http") ? "noopener" : undefined}
                 >

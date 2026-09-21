@@ -1,6 +1,8 @@
 ---
 import { footerNav } from "../data/navigation";
-import { siteConfig } from "../data/site";
+import { appStoreUrl } from "../lib/analytics";
+
+const campaign = "website_footer";
 ---
 
 <footer class="site-footer">
@@ -22,7 +24,7 @@ import { siteConfig } from "../data/site";
     </nav>
 
     <div>
-      <a class="button secondary" href={siteConfig.appStoreUrl}
+      <a class="button secondary" href={appStoreUrl(campaign)} data-app-store-cta="footer" data-app-store-campaign={campaign}
         >View on the App Store</a
       >
     </div>

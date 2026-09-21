@@ -5,6 +5,9 @@ import RelatedLinks from "../components/RelatedLinks.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { buildMeta, organizationSchema } from "../lib/seo";
 import { appReviews } from "../data/appReviews";
+import { appStoreUrl } from "../lib/analytics";
+
+const dennyCampaign = "website_low_stim_guide";
 
 const meta = buildMeta({
   title: "Best Low-Stimulation Apps for Toddlers: 14 Apps Compared",
@@ -41,7 +44,7 @@ const apps: App[] = [
   },
   {
     name: "Denny's Maze",
-    url: "https://apps.apple.com/ca/app/dennys-maze/id6760107138",
+    url: appStoreUrl(dennyCampaign),
     icon: "/images/app-icons/dennys-maze.jpg",
     description: "60 guided maze puzzles. Optional story narration; otherwise silent.",
     sounds: 8, animations: 10, rewards: 9, brightness: 8,
@@ -236,6 +239,8 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                     {app.url ? (
                       <a
                         href={app.url}
+                        data-app-store-cta={app.name === "Denny's Maze" ? "comparison-table" : undefined}
+                        data-app-store-campaign={app.name === "Denny's Maze" ? dennyCampaign : undefined}
                         class="app-name-link"
                         target={app.url.startsWith("http") ? "_blank" : undefined}
                         rel={app.url.startsWith("http") ? "noopener" : undefined}
@@ -296,6 +301,8 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                 {app.url ? (
                   <a
                     href={app.url}
+                    data-app-store-cta={app.name === "Denny's Maze" ? "comparison-card" : undefined}
+                    data-app-store-campaign={app.name === "Denny's Maze" ? dennyCampaign : undefined}
                     class="card-app-link"
                     target={app.url.startsWith("http") ? "_blank" : undefined}
                     rel={app.url.startsWith("http") ? "noopener" : undefined}

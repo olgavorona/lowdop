@@ -28,6 +28,36 @@ cd site
 npm run check
 ```
 
+## Аналитика источников трафика
+
+Сайт использует три совместимых источника аналитики:
+
+- Vercel Web Analytics — просмотры страниц и базовые рефереры.
+- TelemetryDeck Web — просмотры, UTM-параметры и клики по ссылкам App Store.
+- App Store Connect — просмотры карточки, загрузки, продажи и удержание по Apple campaign link.
+
+Создайте в TelemetryDeck отдельное приложение для сайта. Затем добавьте в локальный
+`site/.env` и в Environment Variables проекта Vercel:
+
+```dotenv
+PUBLIC_TELEMETRYDECK_WEB_APP_ID=your-website-app-id
+PUBLIC_TELEMETRYDECK_NAMESPACE=your-organization-namespace
+PUBLIC_APPLE_PROVIDER_TOKEN=your-apple-provider-token
+```
+
+Оба значения публичные: они попадают в HTML или URL и не являются секретными API-ключами.
+Не используйте здесь приватные ключи TelemetryDeck или App Store Connect.
+
+Apple provider token берется из campaign link, созданного в App Store Connect:
+`Analytics` → `Acquisition` → `Campaigns` → `+`. Скопируйте числовое значение параметра
+`pt` из созданной ссылки. Сайт сам добавляет `pt`, `ct` и `mt=8` ко всем ссылкам Denny's Maze.
+
+Если переменная не задана, сайт продолжает работать безопасно: TelemetryDeck Web не
+загружается, а ссылки App Store остаются обычными ссылками без campaign attribution.
+
+Сигнал клика в TelemetryDeck называется `website.appStoreClicked`. Полезные поля:
+`path`, `placement`, `campaign`, `utm_source`, `utm_medium`, `utm_campaign`.
+
 ## Где редактировать SEO-метаданные
 
 Основные глобальные настройки:

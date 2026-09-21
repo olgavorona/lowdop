@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../data/site";
+import { appStoreUrl } from "../lib/analytics";
 import { absoluteUrl, buildMeta, organizationSchema, faqSchema } from "../lib/seo";
 
-const appUrl = siteConfig.appStoreUrl;
+const appUrl = appStoreUrl("website_dennys_page");
 const subscriptionRemovalLive =
   import.meta.env.PUBLIC_DENNY_NO_SUBSCRIPTIONS === "true";
 
@@ -186,6 +187,7 @@ const relatedLinks = [
             class="button"
             href={appUrl}
             data-app-store-cta="hero"
+            data-app-store-campaign="website_dennys_page"
           >
             Try Denny's Maze Free
           </a>
@@ -400,7 +402,7 @@ const relatedLinks = [
             <p>{text}</p>
           </article>
         ))}
-        <a class="button" href={appUrl} data-app-store-cta="pricing">
+        <a class="button" href={appUrl} data-app-store-cta="pricing" data-app-store-campaign="website_dennys_page">
           Try Denny's Maze Free
         </a>
         <p class="dm-microcopy">Available on the App Store for iPad</p>
@@ -472,25 +474,12 @@ const relatedLinks = [
     <div class="dm-shell">
       <h2>Try the first maze free.</h2>
       <p>A quiet, offline maze activity for flights, restaurants, waiting rooms, road trips, and home.</p>
-      <a class="button" href={appUrl} data-app-store-cta="final">
+      <a class="button" href={appUrl} data-app-store-cta="final" data-app-store-campaign="website_dennys_page">
         Try Denny's Maze Free
       </a>
     </div>
   </section>
 
-  <script is:inline>
-    (() => {
-      document.querySelectorAll("[data-app-store-cta]").forEach((link) => {
-        link.addEventListener("click", () => {
-          const location = link.getAttribute("data-app-store-cta") || "unknown";
-          window.va?.("event", {
-            name: "dennys_maze_app_store_click",
-            data: { location }
-          });
-        });
-      });
-    })();
-  </script>
 </BaseLayout>
 
 <style>
