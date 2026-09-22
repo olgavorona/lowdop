@@ -1,0 +1,22 @@
+---
+import PrintablesPage from "../../../components/PrintablesPage.astro";
+import { halloweenMazePrintables } from "../../../data/printables/halloweenMazes";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
+
+const title = "6 Free Printable Halloween Mazes for Kids | Color & B&W";
+const description = "Download 6 friendly Halloween maze PDFs for kids ages 2-6 in color or black and white, with Easy, Medium and Hard versions.";
+const pathname = "/printables/halloween/";
+const faqItems = [
+  { question: "Are these Halloween mazes free?", answer: "Yes. All six designs and all three difficulty levels are free to download and print." },
+  { question: "Are the Halloween pictures scary?", answer: "No. Denny wears a playful black-cat costume, and the ghosts, bats, pumpkins and spooky house are designed to feel friendly for young children." },
+  { question: "What ages are these mazes for?", answer: "They are designed roughly for ages 2-6, with Easy, Medium and Hard options for different maze experience levels." },
+  { question: "Are color and black-and-white versions included?", answer: "Yes. Every maze is available as a full-color PDF and a printer-friendly black-and-white PDF." }
+];
+const meta = buildMeta({ title, description, pathname, image: "/printables/halloween-mazes/color/svg/pumpkin-patch-easy.svg" });
+const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name: title, description, url: absoluteUrl(pathname) };
+---
+
+<BaseLayout {...meta} ogTitle="6 Free Printable Halloween Mazes for Kids" ogDescription={description} schemas={[organizationSchema(), pageSchema, faqSchema(faqItems)]}>
+  <PrintablesPage {...halloweenMazePrintables} />
+</BaseLayout>

@@ -451,6 +451,33 @@ class ShapeMask:
         return mask
 
     @staticmethod
+    def house(rows: int, cols: int) -> set:
+        """Cozy house shape — pitched roof over a broad rectangular body."""
+        mask = set()
+        roof_rows = max(2, rows // 3)
+        center = (cols - 1) / 2
+
+        for r in range(roof_rows):
+            progress = (r + 1) / roof_rows
+            width = max(2, round(cols * (0.18 + 0.82 * progress)))
+            start_c = round(center - (width - 1) / 2)
+            for c in range(start_c, start_c + width):
+                if 0 <= c < cols:
+                    mask.add((r, c))
+
+        for r in range(roof_rows, rows):
+            for c in range(cols):
+                mask.add((r, c))
+
+        # A small chimney keeps the silhouette readable without fragmenting it.
+        chimney_width = max(1, cols // 7)
+        chimney_start = max(0, cols - max(2, cols // 4))
+        for r in range(max(1, roof_rows // 2)):
+            for c in range(chimney_start, min(cols, chimney_start + chimney_width)):
+                mask.add((r, c))
+        return mask
+
+    @staticmethod
     def rocket(rows: int, cols: int) -> set:
         """Rocket ship — pointed nose cone, rectangular body, flared fins at base."""
         mask = set()
@@ -859,6 +886,7 @@ class FullMazeGenerator:
         "shell": ShapeMask.shell,
         "corn": ShapeMask.corn,
         "pumpkin": ShapeMask.pumpkin,
+        "house": ShapeMask.house,
         "moon": ShapeMask.moon,
         "rocket": ShapeMask.rocket,
     }

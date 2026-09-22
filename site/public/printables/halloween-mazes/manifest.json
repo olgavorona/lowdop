@@ -1,0 +1,246 @@
+{
+  "title": "Halloween Mazes with Denny",
+  "website": "www.harmlessapp.com/printables/halloween",
+  "format": "Color and black-and-white A4 PDF printables with SVG previews",
+  "hero": "hero-denny-black-cat.svg",
+  "hero_image": "assets/denny-black-cat.png",
+  "total": 18,
+  "mazes": [
+    {
+      "id": "pumpkin-patch-easy",
+      "title": "Pumpkin Patch Maze",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/pumpkin-patch-easy.svg",
+      "pdf": "pdf/pumpkin-patch-easy.pdf",
+      "json": "json/pumpkin-patch-easy.json",
+      "color_svg": "color/svg/pumpkin-patch-easy.svg",
+      "color_pdf": "color/pdf/pumpkin-patch-easy.pdf"
+    },
+    {
+      "id": "pumpkin-patch-medium",
+      "title": "Pumpkin Patch Maze",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/pumpkin-patch-medium.svg",
+      "pdf": "pdf/pumpkin-patch-medium.pdf",
+      "json": "json/pumpkin-patch-medium.json",
+      "color_svg": "color/svg/pumpkin-patch-medium.svg",
+      "color_pdf": "color/pdf/pumpkin-patch-medium.pdf"
+    },
+    {
+      "id": "pumpkin-patch-hard",
+      "title": "Pumpkin Patch Maze",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/pumpkin-patch-hard.svg",
+      "pdf": "pdf/pumpkin-patch-hard.pdf",
+      "json": "json/pumpkin-patch-hard.json",
+      "color_svg": "color/svg/pumpkin-patch-hard.svg",
+      "color_pdf": "color/pdf/pumpkin-patch-hard.pdf"
+    },
+    {
+      "id": "jack-o-lantern-easy",
+      "title": "Jack-o'-Lantern Maze",
+      "difficulty": "easy",
+      "mode": "plain",
+      "shape": "pumpkin",
+      "svg": "svg/jack-o-lantern-easy.svg",
+      "pdf": "pdf/jack-o-lantern-easy.pdf",
+      "json": "json/jack-o-lantern-easy.json",
+      "color_svg": "color/svg/jack-o-lantern-easy.svg",
+      "color_pdf": "color/pdf/jack-o-lantern-easy.pdf"
+    },
+    {
+      "id": "jack-o-lantern-medium",
+      "title": "Jack-o'-Lantern Maze",
+      "difficulty": "medium",
+      "mode": "plain",
+      "shape": "pumpkin",
+      "svg": "svg/jack-o-lantern-medium.svg",
+      "pdf": "pdf/jack-o-lantern-medium.pdf",
+      "json": "json/jack-o-lantern-medium.json",
+      "color_svg": "color/svg/jack-o-lantern-medium.svg",
+      "color_pdf": "color/pdf/jack-o-lantern-medium.pdf"
+    },
+    {
+      "id": "jack-o-lantern-hard",
+      "title": "Jack-o'-Lantern Maze",
+      "difficulty": "hard",
+      "mode": "plain",
+      "shape": "pumpkin",
+      "svg": "svg/jack-o-lantern-hard.svg",
+      "pdf": "pdf/jack-o-lantern-hard.pdf",
+      "json": "json/jack-o-lantern-hard.json",
+      "color_svg": "color/svg/jack-o-lantern-hard.svg",
+      "color_pdf": "color/pdf/jack-o-lantern-hard.pdf"
+    },
+    {
+      "id": "spooky-house-easy",
+      "title": "Spooky House Maze",
+      "difficulty": "easy",
+      "mode": "plain",
+      "shape": "house",
+      "svg": "svg/spooky-house-easy.svg",
+      "pdf": "pdf/spooky-house-easy.pdf",
+      "json": "json/spooky-house-easy.json",
+      "color_svg": "color/svg/spooky-house-easy.svg",
+      "color_pdf": "color/pdf/spooky-house-easy.pdf"
+    },
+    {
+      "id": "spooky-house-medium",
+      "title": "Spooky House Maze",
+      "difficulty": "medium",
+      "mode": "plain",
+      "shape": "house",
+      "svg": "svg/spooky-house-medium.svg",
+      "pdf": "pdf/spooky-house-medium.pdf",
+      "json": "json/spooky-house-medium.json",
+      "color_svg": "color/svg/spooky-house-medium.svg",
+      "color_pdf": "color/pdf/spooky-house-medium.pdf"
+    },
+    {
+      "id": "spooky-house-hard",
+      "title": "Spooky House Maze",
+      "difficulty": "hard",
+      "mode": "plain",
+      "shape": "house",
+      "svg": "svg/spooky-house-hard.svg",
+      "pdf": "pdf/spooky-house-hard.pdf",
+      "json": "json/spooky-house-hard.json",
+      "color_svg": "color/svg/spooky-house-hard.svg",
+      "color_pdf": "color/pdf/spooky-house-hard.pdf"
+    },
+    {
+      "id": "candy-corn-easy",
+      "title": "Candy Corn Trail",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/candy-corn-easy.svg",
+      "pdf": "pdf/candy-corn-easy.pdf",
+      "json": "json/candy-corn-easy.json",
+      "color_svg": "color/svg/candy-corn-easy.svg",
+      "color_pdf": "color/pdf/candy-corn-easy.pdf"
+    },
+    {
+      "id": "candy-corn-medium",
+      "title": "Candy Corn Trail",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/candy-corn-medium.svg",
+      "pdf": "pdf/candy-corn-medium.pdf",
+      "json": "json/candy-corn-medium.json",
+      "color_svg": "color/svg/candy-corn-medium.svg",
+      "color_pdf": "color/pdf/candy-corn-medium.pdf"
+    },
+    {
+      "id": "candy-corn-hard",
+      "title": "Candy Corn Trail",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "rect",
+      "svg": "svg/candy-corn-hard.svg",
+      "pdf": "pdf/candy-corn-hard.pdf",
+      "json": "json/candy-corn-hard.json",
+      "color_svg": "color/svg/candy-corn-hard.svg",
+      "color_pdf": "color/pdf/candy-corn-hard.pdf"
+    },
+    {
+      "id": "moonlight-easy",
+      "title": "Moonlight Cat Maze",
+      "difficulty": "easy",
+      "mode": "collect",
+      "shape": "shell",
+      "svg": "svg/moonlight-easy.svg",
+      "pdf": "pdf/moonlight-easy.pdf",
+      "json": "json/moonlight-easy.json",
+      "color_svg": "color/svg/moonlight-easy.svg",
+      "color_pdf": "color/pdf/moonlight-easy.pdf"
+    },
+    {
+      "id": "moonlight-medium",
+      "title": "Moonlight Cat Maze",
+      "difficulty": "medium",
+      "mode": "collect",
+      "shape": "shell",
+      "svg": "svg/moonlight-medium.svg",
+      "pdf": "pdf/moonlight-medium.pdf",
+      "json": "json/moonlight-medium.json",
+      "color_svg": "color/svg/moonlight-medium.svg",
+      "color_pdf": "color/pdf/moonlight-medium.pdf"
+    },
+    {
+      "id": "moonlight-hard",
+      "title": "Moonlight Cat Maze",
+      "difficulty": "hard",
+      "mode": "collect",
+      "shape": "shell",
+      "svg": "svg/moonlight-hard.svg",
+      "pdf": "pdf/moonlight-hard.pdf",
+      "json": "json/moonlight-hard.json",
+      "color_svg": "color/svg/moonlight-hard.svg",
+      "color_pdf": "color/pdf/moonlight-hard.pdf"
+    },
+    {
+      "id": "ghost-bat-dodge-easy",
+      "title": "Ghost and Bat Dodge",
+      "difficulty": "easy",
+      "mode": "avoid",
+      "shape": "rect",
+      "svg": "svg/ghost-bat-dodge-easy.svg",
+      "pdf": "pdf/ghost-bat-dodge-easy.pdf",
+      "json": "json/ghost-bat-dodge-easy.json",
+      "color_svg": "color/svg/ghost-bat-dodge-easy.svg",
+      "color_pdf": "color/pdf/ghost-bat-dodge-easy.pdf"
+    },
+    {
+      "id": "ghost-bat-dodge-medium",
+      "title": "Ghost and Bat Dodge",
+      "difficulty": "medium",
+      "mode": "avoid",
+      "shape": "rect",
+      "svg": "svg/ghost-bat-dodge-medium.svg",
+      "pdf": "pdf/ghost-bat-dodge-medium.pdf",
+      "json": "json/ghost-bat-dodge-medium.json",
+      "color_svg": "color/svg/ghost-bat-dodge-medium.svg",
+      "color_pdf": "color/pdf/ghost-bat-dodge-medium.pdf"
+    },
+    {
+      "id": "ghost-bat-dodge-hard",
+      "title": "Ghost and Bat Dodge",
+      "difficulty": "hard",
+      "mode": "avoid",
+      "shape": "rect",
+      "svg": "svg/ghost-bat-dodge-hard.svg",
+      "pdf": "pdf/ghost-bat-dodge-hard.pdf",
+      "json": "json/ghost-bat-dodge-hard.json",
+      "color_svg": "color/svg/ghost-bat-dodge-hard.svg",
+      "color_pdf": "color/pdf/ghost-bat-dodge-hard.pdf"
+    }
+  ],
+  "packs": [
+    {
+      "label": "Easy",
+      "difficulty": "easy",
+      "zip": "halloween-mazes-easy.zip",
+      "color_zip": "halloween-mazes-color-easy.zip"
+    },
+    {
+      "label": "Medium",
+      "difficulty": "medium",
+      "zip": "halloween-mazes-medium.zip",
+      "color_zip": "halloween-mazes-color-medium.zip"
+    },
+    {
+      "label": "Hard",
+      "difficulty": "hard",
+      "zip": "halloween-mazes-hard.zip",
+      "color_zip": "halloween-mazes-color-hard.zip"
+    }
+  ]
+}

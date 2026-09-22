@@ -8,6 +8,7 @@ const paths = [
   "/dennys-maze/",
   "/printables/",
   "/printables/fall/",
+  "/printables/halloween/",
   "/best-low-stimulation-apps-for-toddlers/",
   "/offline-toddler-apps/",
   "/ratings/methodology/",

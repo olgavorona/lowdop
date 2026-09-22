@@ -1,0 +1,4 @@
+interface:
+  display_name: "Printable Maze Creator"
+  short_description: "Build Denny seasonal printable maze packs"
+  default_prompt: "Create or revise a seasonal Denny's Maze printable collection, including artwork, PDFs, downloads, website behavior, and Pinterest copy."

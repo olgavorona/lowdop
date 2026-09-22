@@ -1,0 +1,210 @@
+{
+  "id": "moonlight-easy",
+  "title": "Moonlight Cat Maze",
+  "difficulty": "easy",
+  "task": "Follow the wide path, collect the stars and reach the moonlit hill.",
+  "story_setup": "A quiet trail curled across the Halloween sky like a shell. Denny spotted golden stars leading toward the moonlit hill.",
+  "instruction": "Follow the wide path, collect the stars and reach the moonlit hill.",
+  "fun_fact": "The Moon does not make its own light; it reflects light from the Sun.",
+  "completion_message": "Denny followed the stars and reached the moonlit hill.",
+  "mode": "collect",
+  "shape": "shell",
+  "website": "www.harmlessapp.com/printables/halloween",
+  "maze": {
+    "maze_type": "corridor_shell",
+    "svg_path": "M 220 90 L 300 90 M 220 90 L 220 170 M 300 90 L 300 170 M 140 170 L 140 250 M 220 170 L 220 250 M 300 170 L 380 170 M 380 170 L 460 170 M 380 170 L 380 250 M 140 250 L 220 250 M 220 250 L 300 250 M 220 250 L 220 330 M 300 250 L 380 250 M 380 250 L 380 330 M 300 330 L 380 330 M 300 330 L 300 410 M 220 410 L 300 410 M 220 90 L 220 90 M 300 90 L 300 90 M 140 170 L 140 170 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 460 170 L 460 170 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 220 410 L 220 410 M 300 410 L 300 410",
+    "solution_path": "M 220 410 L 300 410 L 300 330 L 380 330 L 380 250 L 380 170 L 300 170 L 300 90",
+    "path_width": 25,
+    "cell_size": 80,
+    "grid_rows": 5,
+    "grid_cols": 7,
+    "start_point": {
+      "x": 220,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 410
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "complexity": "easy",
+    "shape": "shell",
+    "items": [
+      {
+        "x": 380,
+        "y": 330,
+        "emoji": "star",
+        "on_solution": true
+      },
+      {
+        "x": 220,
+        "y": 90,
+        "emoji": "star",
+        "on_solution": false
+      }
+    ]
+  }
+}

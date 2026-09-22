@@ -12,9 +12,20 @@ type Props = {
   mazes: PrintableMaze[];
   downloadPacks: PrintablePack[];
   colorDownloadPacks: PrintablePack[];
+  themeName?: string;
+  includedMazes?: string[];
 };
 
-const { title, supportLine, intro, mazes, downloadPacks, colorDownloadPacks } = Astro.props as Props;
+const {
+  title,
+  supportLine,
+  intro,
+  mazes,
+  downloadPacks,
+  colorDownloadPacks,
+  themeName = "Fall",
+  includedMazes = ["Fall Leaf Maze", "Apple Maze", "Corn Maze", "Pumpkin Maze", "Acorn Maze", "Rainy Puddle Maze"]
+} = Astro.props as Props;
 const modalMazes = mazes.map((maze) => ({
   title: maze.title,
   preview: maze.preview,
@@ -22,18 +33,11 @@ const modalMazes = mazes.map((maze) => ({
   difficulties: maze.difficulties
 }));
 const printableCount = mazes.length;
-const includedMazes = [
-  "Fall Leaf Maze",
-  "Apple Maze",
-  "Corn Maze",
-  "Pumpkin Maze",
-  "Acorn Maze",
-  "Rainy Puddle Maze"
-];
+const themeLower = themeName.toLowerCase();
 const faqItems = [
   {
-    question: "Are these fall mazes free to print?",
-    answer: "Yes. You can download and print all six fall maze designs for free."
+    question: `Are these ${themeLower} mazes free to print?`,
+    answer: `Yes. You can download and print all ${printableCount} ${themeLower} maze designs for free.`
   },
   {
     question: "What ages are these printable mazes for?",
@@ -41,13 +45,13 @@ const faqItems = [
       "They are designed roughly for children ages 2-6. Easy is best for beginners, while Medium and Hard provide progressively more challenging paths."
   },
   {
-    question: "Can I use these fall mazes for preschool or kindergarten?",
+    question: `Can I use these ${themeLower} mazes for preschool or kindergarten?`,
     answer:
       "Yes. The simpler versions work well as quiet preschool and kindergarten activities, fine-motor practice, early-finisher activities and no-prep play at home."
   },
   {
-    question: "Can I print all the fall mazes at once?",
-    answer: "Yes. Choose a difficulty and use the full-set download option to get all six fall mazes together."
+    question: `Can I print all the ${themeLower} mazes at once?`,
+    answer: `Yes. Choose a difficulty and use the full-set download option to get all ${printableCount} ${themeLower} mazes together.`
   }
 ];
 ---
@@ -61,17 +65,17 @@ const faqItems = [
     </div>
   </div>
 
-  <section class="printables-maze-list" aria-label="Fall maze downloads">
+  <section class="printables-maze-list" aria-label={`${themeName} maze downloads`}>
     <div class="shell printables-shell">
       <section class="printables-included" aria-labelledby="included-heading">
-        <h2 id="included-heading">What's Included in These Printable Fall Mazes?</h2>
-        <p>The free PDF set includes six fall-themed maze puzzles in both full color and black and white:</p>
+        <h2 id="included-heading">What's Included in These Printable {themeName} Mazes?</h2>
+        <p>The free PDF set includes {printableCount} {themeLower}-themed maze puzzles in both full color and black and white:</p>
         <ul>
           {includedMazes.map((item) => <li>{item}</li>)}
         </ul>
         <p>
           Each design is available in Easy, Medium and Hard difficulty, giving
-          families different challenge levels while keeping the same fall theme.
+          families different challenge levels while keeping the same {themeLower} theme.
           Choose full color for a ready-to-play activity or black and white for
           lower-ink printing and extra coloring.
         </p>
@@ -97,8 +101,8 @@ const faqItems = [
           ))}
         </div>
         <div class="format-control" aria-label="Choose printable color style">
-          <button type="button" class="difficulty-button active" data-global-format="bw" aria-pressed="true">Black &amp; white</button>
-          <button type="button" class="difficulty-button" data-global-format="color" aria-pressed="false">Full color</button>
+          <button type="button" class="difficulty-button" data-format-button data-format-choice="bw" aria-pressed="false">Black &amp; white</button>
+          <button type="button" class="difficulty-button active" data-format-button data-format-choice="color" aria-pressed="true">Full color</button>
         </div>
       </div>
 
@@ -137,8 +141,8 @@ const faqItems = [
             aria-label={`Preview ${maze.title}`}
           >
             <img
-              src={maze.preview}
-              alt={maze.alt}
+              src={maze.difficulties[0]?.colorPreview ?? maze.preview}
+              alt={`${maze.alt} - Easy - full color`}
               loading="lazy"
               width="210"
               height="297"
@@ -165,8 +169,13 @@ const faqItems = [
               ))}
             </div>
 
-            <a class="button printable-download" href={maze.difficulties[0].href} download data-dynamic-download>
-              Download Easy B&amp;W
+            <div class="format-control row-format-control" aria-label={`Choose ${maze.title} color style`}>
+              <button type="button" class="difficulty-button" data-format-button data-format-choice="bw" aria-pressed="false">Black &amp; white</button>
+              <button type="button" class="difficulty-button active" data-format-button data-format-choice="color" aria-pressed="true">Full color</button>
+            </div>
+
+            <a class="button printable-download" href={maze.difficulties[0].colorHref} download data-dynamic-download>
+              Download Easy Color
             </a>
           </div>
         </section>
@@ -200,9 +209,9 @@ const faqItems = [
       <div class="printables-bulk-download">
         <div>
           <p class="eyebrow">Full set</p>
-          <h2>Download All {printableCount} Free Fall Mazes</h2>
+          <h2>Download All {printableCount} Free {themeName} Mazes</h2>
           <p>
-            Get the complete set of printable fall mazes in your chosen
+            Get the complete set of printable {themeLower} mazes in your chosen
             difficulty. The set includes the leaf, apple, corn, pumpkin, acorn
             and rainy puddle mazes.
           </p>
@@ -220,10 +229,13 @@ const faqItems = [
               </button>
             ))}
           </div>
+          <div class="format-control pack-format-control" aria-label="Choose pack color style">
+            <button type="button" class="difficulty-button" data-format-button data-format-choice="bw" aria-pressed="false">Black &amp; white</button>
+            <button type="button" class="difficulty-button active" data-format-button data-format-choice="color" aria-pressed="true">Full color</button>
+          </div>
         </div>
         <div class="pack-download-actions">
-          <a class="button" href={downloadPacks[2]?.href ?? downloadPacks[0]?.href} download data-pack-download>Download B&amp;W ZIP</a>
-          <a class="button secondary" href={colorDownloadPacks[2]?.href ?? colorDownloadPacks[0]?.href} download data-color-pack-download>Download Color ZIP</a>
+          <a class="button" href={colorDownloadPacks[2]?.href ?? colorDownloadPacks[0]?.href} download data-pack-download>Download Hard Color ZIP</a>
         </div>
       </div>
     </div>
@@ -247,19 +259,19 @@ const faqItems = [
         </div>
       </dl>
       <p>
-        These fall mazes are designed roughly for ages 2-6, but maze
+        These {themeLower} mazes are designed roughly for ages 2-6, but maze
         experience matters more than exact age. If you're unsure, start with
         Easy and move up.
       </p>
 
-      <h2>How to Print the Fall Mazes</h2>
+      <h2>How to Print the {themeName} Mazes</h2>
       <ol>
         <li>Choose Easy, Medium or Hard.</li>
         <li>Download the printable PDF.</li>
         <li>Print on regular US Letter or A4 paper using "Fit to page" if needed.</li>
         <li>Let your child solve it with a pencil, crayon or marker.</li>
       </ol>
-      <p>You can print one maze at a time or download the complete fall maze set.</p>
+      <p>You can print one maze at a time or download the complete {themeLower} maze set.</p>
     </div>
   </section>
 
@@ -305,6 +317,10 @@ const faqItems = [
           <button type="button" class="difficulty-button" data-preview-difficulty="1" aria-pressed="false">Medium</button>
           <button type="button" class="difficulty-button" data-preview-difficulty="2" aria-pressed="false">Hard</button>
         </div>
+        <div class="format-control preview-format" aria-label="Choose preview color style">
+          <button type="button" class="difficulty-button" data-format-button data-format-choice="bw" aria-pressed="false">Black &amp; white</button>
+          <button type="button" class="difficulty-button active" data-format-button data-format-choice="color" aria-pressed="true">Full color</button>
+        </div>
         <a class="button" href="#" download data-preview-download>Download Easy</a>
       </div>
     </section>
@@ -322,16 +338,15 @@ const faqItems = [
   const modalDownload = document.querySelector("[data-preview-download]");
   const modalDifficultyButtons = Array.from(document.querySelectorAll("[data-preview-difficulty]"));
   const globalDifficultyButtons = Array.from(document.querySelectorAll("[data-global-difficulty]"));
-  const globalFormatButtons = Array.from(document.querySelectorAll("[data-global-format]"));
+  const formatButtons = Array.from(document.querySelectorAll("[data-format-button]"));
   const rowDifficultyButtons = Array.from(document.querySelectorAll("[data-difficulty-button]"));
   const packDifficultyButtons = Array.from(document.querySelectorAll("[data-pack-difficulty]"));
   const packDownload = document.querySelector("[data-pack-download]");
-  const colorPackDownload = document.querySelector("[data-color-pack-download]");
   let activeMazeIndex = 0;
   let activeDifficultyIndex = 0;
-  let activeFormat = "bw";
+  let activeFormat = "color";
 
-  document.querySelectorAll("[data-dynamic-download], [data-preview-download], [data-pack-download], [data-color-pack-download]").forEach((link) => {
+  document.querySelectorAll("[data-dynamic-download], [data-preview-download], [data-pack-download]").forEach((link) => {
     if (!(link instanceof HTMLAnchorElement)) return;
     link.addEventListener("click", () => {
       // Read the current URL so changes to difficulty and preview maze are reflected.
@@ -340,7 +355,7 @@ const faqItems = [
       if (!match) return;
 
       const [, maze, difficulty, format] = match;
-      const location = link.hasAttribute("data-pack-download") || link.hasAttribute("data-color-pack-download")
+      const location = link.hasAttribute("data-pack-download")
         ? "pack"
         : link.hasAttribute("data-preview-download") ? "preview" : "list";
 
@@ -398,14 +413,15 @@ const faqItems = [
 
   function setGlobalFormat(format: string) {
     activeFormat = format === "color" ? "color" : "bw";
-    globalFormatButtons.forEach((button) => {
+    formatButtons.forEach((button) => {
       if (!(button instanceof HTMLButtonElement)) return;
-      const isActive = button.dataset.globalFormat === activeFormat;
+      const isActive = button.dataset.formatChoice === activeFormat;
       button.classList.toggle("active", isActive);
       button.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
     updateAllPrintableRows();
     updatePreviewModal();
+    updatePackDownload();
   }
 
   function updatePreviewModal() {
@@ -482,9 +498,9 @@ const faqItems = [
     });
   });
 
-  globalFormatButtons.forEach((button) => {
+  formatButtons.forEach((button) => {
     if (!(button instanceof HTMLButtonElement)) return;
-    button.addEventListener("click", () => setGlobalFormat(button.dataset.globalFormat ?? "bw"));
+    button.addEventListener("click", () => setGlobalFormat(button.dataset.formatChoice ?? "bw"));
   });
 
   rowDifficultyButtons.forEach((button) => {
@@ -519,19 +535,18 @@ const faqItems = [
         other.setAttribute("aria-pressed", isActive ? "true" : "false");
       });
 
-      const label = button.textContent?.trim() ?? "Selected";
-      const href = button.dataset.packHref;
-      if (packDownload instanceof HTMLAnchorElement) {
-        if (href) packDownload.href = href;
-        packDownload.textContent = `Download ${label} B&W ZIP`;
-      }
-      const colorHref = button.dataset.colorPackHref;
-      if (colorPackDownload instanceof HTMLAnchorElement) {
-        if (colorHref) colorPackDownload.href = colorHref;
-        colorPackDownload.textContent = `Download ${label} Color ZIP`;
-      }
+      updatePackDownload();
     });
   });
+
+  function updatePackDownload() {
+    const selected = packDifficultyButtons.find((button) => button.classList.contains("active"));
+    if (!(selected instanceof HTMLButtonElement) || !(packDownload instanceof HTMLAnchorElement)) return;
+    const label = selected.textContent?.trim() ?? "Selected";
+    const href = activeFormat === "color" ? selected.dataset.colorPackHref : selected.dataset.packHref;
+    if (href) packDownload.href = href;
+    packDownload.textContent = `Download ${label} ${activeFormat === "color" ? "Color" : "B&W"} ZIP`;
+  }
 </script>
 
 <style>
@@ -653,6 +668,12 @@ const faqItems = [
     color: var(--muted);
   }
 
+  .printable-download {
+    display: flex;
+    width: fit-content;
+    margin-top: 1.25rem;
+  }
+
   .difficulty-guide {
     display: grid;
     gap: 0.85rem;
@@ -724,8 +745,11 @@ const faqItems = [
   .printables-bulk-download {
     display: grid;
     gap: 1rem;
-    align-items: center;
     padding: 2rem 0 0;
+  }
+
+  .pack-download-actions {
+    margin-top: 0.25rem;
   }
 
   .printables-bulk-download p,
@@ -856,10 +880,9 @@ const faqItems = [
 
   .preview-actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.75rem;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
   }
 
   .preview-difficulty {
@@ -881,10 +904,6 @@ const faqItems = [
       align-items: start;
       gap: 2.5rem;
       padding: 2.75rem 0;
-    }
-
-    .printables-bulk-download {
-      grid-template-columns: 1fr auto;
     }
 
     .printables-app-cta-inner {

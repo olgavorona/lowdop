@@ -4,7 +4,7 @@ import { absoluteUrl, buildMeta, organizationSchema } from "../../lib/seo";
 
 const title = "Free Printables for Kids | Denny's Maze";
 const description =
-  "Free printable activities from Denny's Maze, starting with fall maze worksheets in easy, medium and hard versions.";
+  "Free printable maze activities from Denny's Maze, including Halloween and fall collections in easy, medium and hard versions.";
 const pathname = "/printables/";
 
 const meta = buildMeta({
@@ -15,6 +15,13 @@ const meta = buildMeta({
 });
 
 const printableArticles = [
+  {
+    href: "/printables/halloween/",
+    title: "6 Free Printable Halloween Mazes",
+    description:
+      "Pumpkins, a jack-o'-lantern, candy corn, a spooky house, ghosts and bats—with Denny dressed as a black cat.",
+    image: "/printables/halloween-mazes/color/svg/pumpkin-patch-easy.svg"
+  },
   {
     href: "/printables/fall/",
     title: "6 Free Printable Fall Mazes",
@@ -41,7 +48,7 @@ const pageSchema = {
 <BaseLayout
   {...meta}
   ogTitle="Free Printables for Kids"
-  ogDescription="Printable activities from Denny's Maze, starting with free fall maze worksheets."
+  ogDescription="Free seasonal maze activities from Denny's Maze in color and printer-friendly black and white."
   schemas={[organizationSchema(), pageSchema]}
 >
   <section class="printables-index">
