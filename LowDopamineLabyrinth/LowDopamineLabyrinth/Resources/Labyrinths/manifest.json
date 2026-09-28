@@ -80,6 +80,19 @@
         59,
         60
       ]
+    },
+    {
+      "id": "fall_adventures",
+      "title": "Fall Adventures",
+      "free_stories": 3,
+      "stories": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ]
     }
   ],
   "labyrinths": [
@@ -1522,7 +1535,151 @@
       "theme": "forest",
       "location": "forest_canopy",
       "title": "The Leaf Lantern Path"
+    },
+    {
+      "id": "denny_061_easy",
+      "difficulty": "easy",
+      "story": 61,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Leaf Pile Maze"
+    },
+    {
+      "id": "denny_061_medium",
+      "difficulty": "medium",
+      "story": 61,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Leaf Pile Maze"
+    },
+    {
+      "id": "denny_061_hard",
+      "difficulty": "hard",
+      "story": 61,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Leaf Pile Maze"
+    },
+    {
+      "id": "denny_062_easy",
+      "difficulty": "easy",
+      "story": 62,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Apple Basket Maze"
+    },
+    {
+      "id": "denny_062_medium",
+      "difficulty": "medium",
+      "story": 62,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Apple Basket Maze"
+    },
+    {
+      "id": "denny_062_hard",
+      "difficulty": "hard",
+      "story": 62,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Apple Basket Maze"
+    },
+    {
+      "id": "denny_063_easy",
+      "difficulty": "easy",
+      "story": 63,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Corn Maze"
+    },
+    {
+      "id": "denny_063_medium",
+      "difficulty": "medium",
+      "story": 63,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Corn Maze"
+    },
+    {
+      "id": "denny_063_hard",
+      "difficulty": "hard",
+      "story": 63,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Corn Maze"
+    },
+    {
+      "id": "denny_064_easy",
+      "difficulty": "easy",
+      "story": 64,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Pumpkin Patch Maze"
+    },
+    {
+      "id": "denny_064_medium",
+      "difficulty": "medium",
+      "story": 64,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Pumpkin Patch Maze"
+    },
+    {
+      "id": "denny_064_hard",
+      "difficulty": "hard",
+      "story": 64,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Pumpkin Patch Maze"
+    },
+    {
+      "id": "denny_065_easy",
+      "difficulty": "easy",
+      "story": 65,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Acorn Shell Maze"
+    },
+    {
+      "id": "denny_065_medium",
+      "difficulty": "medium",
+      "story": 65,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Acorn Shell Maze"
+    },
+    {
+      "id": "denny_065_hard",
+      "difficulty": "hard",
+      "story": 65,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Acorn Shell Maze"
+    },
+    {
+      "id": "denny_066_easy",
+      "difficulty": "easy",
+      "story": 66,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Rainy Puddle Maze"
+    },
+    {
+      "id": "denny_066_medium",
+      "difficulty": "medium",
+      "story": 66,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Rainy Puddle Maze"
+    },
+    {
+      "id": "denny_066_hard",
+      "difficulty": "hard",
+      "story": 66,
+      "theme": "fall",
+      "location": "autumn_night",
+      "title": "Rainy Puddle Maze"
     }
   ],
-  "total": 180
+  "total": 198
 }

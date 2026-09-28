@@ -1,0 +1,283 @@
+{
+  "id": "denny_063_easy",
+  "age_range": "2-6",
+  "difficulty": "easy",
+  "theme": "fall",
+  "location": "autumn_night",
+  "title": "Corn Maze",
+  "story_setup": "Denny steps into the tall corn maze and hears a soft whisper between the rows. The corn is ready to gather, but the way out is hidden.",
+  "instruction": "Help Denny collect the corn and find the gate out of the tall maze.",
+  "tts_instruction": "Denny hears a whisper in the corn. Help him collect the corn and find the maze exit.",
+  "character_start": {
+    "type": "baby crab explorer",
+    "description": "Denny dressed for an autumn walk",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "corn maze exit",
+    "description": "Maze Exit",
+    "position": "top_right",
+    "name": "Maze Exit"
+  },
+  "educational_question": "What does each strand of corn silk grow into?",
+  "fun_fact": "Every strand of corn silk connects to one kernel on the cob. Pollen travels down the silk to help that kernel grow, which is why a cob has so many silky threads.",
+  "completion_message": "The whisper was the autumn wind brushing the dry corn leaves. Denny collected the corn and found the gate!",
+  "path_data": {
+    "svg_path": "M 180 50 L 260 50 M 180 50 L 180 130 M 260 50 L 340 50 M 340 50 L 340 130 M 260 130 L 340 130 M 100 130 L 180 130 M 100 130 L 100 210 M 180 210 L 260 210 M 260 130 L 340 130 M 260 210 L 340 210 M 340 130 L 420 130 M 420 130 L 420 210 M 180 210 L 180 290 M 100 290 L 180 290 M 100 210 L 100 290 M 180 210 L 260 210 M 180 210 L 180 290 M 260 210 L 340 210 M 420 210 L 420 290 M 20 290 L 100 290 M 20 370 L 100 370 M 20 290 L 20 370 M 100 290 L 180 290 M 260 290 L 260 370 M 180 370 L 260 370 M 340 290 L 340 370 M 260 290 L 260 370 M 420 290 L 420 370 M 340 290 L 340 370 M 420 290 L 500 290 M 500 290 L 500 370 M 420 290 L 420 370 M 180 370 L 180 450 M 100 450 L 180 450 M 100 370 L 100 450 M 180 370 L 260 370 M 180 450 L 260 450 M 180 370 L 180 450 M 260 450 L 340 450 M 340 450 L 420 450 M 500 370 L 500 450 M 420 450 L 500 450",
+    "solution_path": "M 140 410 L 140 330 L 220 330 L 220 250 L 300 250 L 380 250 L 380 170 L 300 170 L 220 170 L 220 90",
+    "width": 25,
+    "complexity": "easy",
+    "maze_type": "shaped_corn",
+    "start_point": {
+      "x": 140,
+      "y": 410
+    },
+    "end_point": {
+      "x": 220,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 330
+        },
+        "end": {
+          "x": 140,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 330
+        },
+        "end": {
+          "x": 140,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 330
+        },
+        "end": {
+          "x": 460,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 410
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 410
+        },
+        "end": {
+          "x": 380,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 410
+        },
+        "end": {
+          "x": 460,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "items": [
+      {
+        "x": 220,
+        "y": 330,
+        "emoji": "🌽",
+        "on_solution": true
+      },
+      {
+        "x": 140,
+        "y": 170,
+        "emoji": "🌽",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": null
+  },
+  "visual_theme": {
+    "background_color": "#6B5A22",
+    "decorative_elements": [
+      "leaves",
+      "wind"
+    ]
+  },
+  "item_rule": "collect",
+  "item_emoji": "🌽",
+  "audio_instruction": "denny_063_instruction.mp3",
+  "audio_completion": "denny_063_completion.mp3",
+  "audio_answer": "denny_063_answer.mp3"
+}

@@ -52,68 +52,20 @@ struct ParentalGateView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                Spacer(minLength: 24)
-
-                Image(systemName: purpose.icon)
-                    .font(.system(size: 36))
-                    .foregroundColor(AppColor.textTertiary)
-
-                Text("Grown-Up Check")
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundColor(AppColor.textPrimary)
-
-                Text(purpose.subtitle)
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .foregroundColor(AppColor.textSecondary)
-
-                Text("Please ask a grown-up to answer this question:")
-                    .font(.system(size: 16, design: .rounded))
-                    .foregroundColor(AppColor.textTertiary)
-                    .multilineTextAlignment(.center)
-
-                Text("What is \(a) + \(b)?")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(AppColor.textPrimary)
-                    .padding(.top, 8)
-
-                TextField("Answer", text: $answer)
-                    .keyboardType(.numberPad)
-                    .font(.system(size: 24, weight: .medium, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .frame(width: 120, height: 56)
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(12)
-
-                if showError {
-                    Text("That's not right. Try again!")
-                        .font(.system(size: 14, design: .rounded))
-                        .foregroundColor(.red)
-                }
-
-                Button(action: checkAnswer) {
-                    Text("Continue")
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
+        Group {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                GeometryReader { geometry in
+                    parentalGateContent(isCompact: true)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(AppColor.accentGreen)
-                        .cornerRadius(14)
+                        .frame(minHeight: geometry.size.height, alignment: .center)
+                        .padding(.horizontal, 24)
                 }
-                .padding(.horizontal, 40)
-
-                Button(action: {
-                    ttsService.stop()
-                    onCancel()
-                }) {
-                    Text("Go Back")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundColor(AppColor.textTertiary)
+            } else {
+                ScrollView {
+                    parentalGateContent(isCompact: false)
+                        .padding()
                 }
-                .padding(.bottom, 24)
             }
-            .padding()
         }
         .background(AppColor.background)
         .onTapGesture {
@@ -125,6 +77,72 @@ struct ParentalGateView: View {
         }
         .onDisappear {
             ttsService.stop()
+        }
+    }
+
+    private func parentalGateContent(isCompact: Bool) -> some View {
+        VStack(spacing: isCompact ? 12 : 20) {
+            if !isCompact {
+                Spacer(minLength: 24)
+            }
+
+            Image(systemName: purpose.icon)
+                .font(.system(size: isCompact ? 30 : 36))
+                .foregroundColor(AppColor.textTertiary)
+
+            Text("Grown-Up Check")
+                .font(.system(size: isCompact ? 22 : 24, weight: .bold, design: .rounded))
+                .foregroundColor(AppColor.textPrimary)
+
+            Text(purpose.subtitle)
+                .font(.system(size: isCompact ? 15 : 16, weight: .medium, design: .rounded))
+                .foregroundColor(AppColor.textSecondary)
+
+            Text("Please ask a grown-up to answer this question:")
+                .font(.system(size: isCompact ? 15 : 16, design: .rounded))
+                .foregroundColor(AppColor.textTertiary)
+                .multilineTextAlignment(.center)
+
+            Text("What is \(a) + \(b)?")
+                .font(.system(size: isCompact ? 28 : 32, weight: .bold, design: .rounded))
+                .foregroundColor(AppColor.textPrimary)
+                .padding(.top, isCompact ? 2 : 8)
+
+            TextField("Answer", text: $answer)
+                .keyboardType(.numberPad)
+                .font(.system(size: 24, weight: .medium, design: .rounded))
+                .multilineTextAlignment(.center)
+                .frame(width: 120, height: isCompact ? 50 : 56)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(12)
+
+            if showError {
+                Text("That's not right. Try again!")
+                    .font(.system(size: 14, design: .rounded))
+                    .foregroundColor(.red)
+            }
+
+            Button(action: checkAnswer) {
+                Text("Continue")
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(AppColor.accentGreen)
+                    .cornerRadius(14)
+            }
+            .padding(.horizontal, isCompact ? 16 : 40)
+
+            Button(action: {
+                ttsService.stop()
+                onCancel()
+            }) {
+                Text("Go Back")
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .foregroundColor(AppColor.textTertiary)
+                    .frame(minHeight: isCompact ? 44 : nil)
+            }
+            .padding(.bottom, isCompact ? 0 : 24)
         }
     }
 

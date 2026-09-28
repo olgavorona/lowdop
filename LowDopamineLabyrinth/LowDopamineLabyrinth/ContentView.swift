@@ -24,7 +24,11 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if let packId = selectedPack {
+            if selectedPack == "letter_tracing" {
+                LetterGridView(onBackToBookshelf: {
+                    selectedPack = nil
+                })
+            } else if let packId = selectedPack {
                 LabyrinthGridView(packId: packId, onBackToBookshelf: {
                     selectedPack = nil
                 })

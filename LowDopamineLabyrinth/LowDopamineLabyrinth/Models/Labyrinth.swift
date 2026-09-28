@@ -32,6 +32,7 @@ struct Labyrinth: Codable, Identifiable {
     let location: String?
     let audioInstruction: String?
     let audioCompletion: String?
+    var audioAnswer: String? = nil
     let itemRule: String?
     let itemEmoji: String?
 
@@ -52,8 +53,16 @@ struct Labyrinth: Codable, Identifiable {
         case location
         case audioInstruction = "audio_instruction"
         case audioCompletion = "audio_completion"
+        case audioAnswer = "audio_answer"
         case itemRule = "item_rule"
         case itemEmoji = "item_emoji"
+    }
+}
+
+extension Labyrinth {
+    /// Answer narration is shared by every difficulty variant of a story.
+    var answerAudioFilename: String {
+        audioAnswer ?? String(format: "denny_%03d_answer.mp3", storyNumber)
     }
 }
 

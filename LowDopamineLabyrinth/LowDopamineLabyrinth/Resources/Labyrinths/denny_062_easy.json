@@ -1,0 +1,423 @@
+{
+  "id": "denny_062_easy",
+  "age_range": "2-6",
+  "difficulty": "easy",
+  "theme": "fall",
+  "location": "autumn_night",
+  "title": "Apple Basket Maze",
+  "story_setup": "A gust of autumn wind has rolled the orchard apples far from their basket. Denny can see them shining between the trees.",
+  "instruction": "Help Denny collect the shiny apples and carry them to the basket.",
+  "tts_instruction": "The apples rolled away in the wind. Help Denny collect them and bring them back to the basket.",
+  "character_start": {
+    "type": "baby crab explorer",
+    "description": "Denny dressed for an autumn walk",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "apple basket",
+    "description": "Apple Basket",
+    "position": "top_right",
+    "name": "Apple Basket"
+  },
+  "educational_question": "Why can an apple float in water?",
+  "fun_fact": "An apple floats because about one quarter of it is made of tiny air pockets. Those pockets make the whole apple less dense than water, so it stays at the surface.",
+  "completion_message": "Denny gathered every apple and tucked them safely into the basket!",
+  "path_data": {
+    "svg_path": "M 20 50 L 100 50 M 20 50 L 20 130 M 100 50 L 180 50 M 100 130 L 180 130 M 180 50 L 260 50 M 180 130 L 260 130 M 260 50 L 340 50 M 260 130 L 340 130 M 340 50 L 420 50 M 340 130 L 420 130 M 420 50 L 500 50 M 420 130 L 500 130 M 500 50 L 580 50 M 580 50 L 580 130 M 20 130 L 20 210 M 100 130 L 180 130 M 180 130 L 180 210 M 180 130 L 260 130 M 180 130 L 180 210 M 260 130 L 340 130 M 340 130 L 340 210 M 260 210 L 340 210 M 340 130 L 420 130 M 340 130 L 340 210 M 420 130 L 500 130 M 500 130 L 500 210 M 580 130 L 580 210 M 500 130 L 500 210 M 100 210 L 100 290 M 20 210 L 20 290 M 180 210 L 180 290 M 100 210 L 100 290 M 180 210 L 180 290 M 260 210 L 340 210 M 260 290 L 340 290 M 420 210 L 420 290 M 340 290 L 420 290 M 500 210 L 500 290 M 420 210 L 420 290 M 580 210 L 580 290 M 500 210 L 500 290 M 100 290 L 100 370 M 20 370 L 100 370 M 20 290 L 20 370 M 180 290 L 180 370 M 100 290 L 100 370 M 180 290 L 180 370 M 260 290 L 340 290 M 340 290 L 340 370 M 340 290 L 420 290 M 340 290 L 340 370 M 500 290 L 500 370 M 420 370 L 500 370 M 580 290 L 580 370 M 500 290 L 500 370 M 20 370 L 100 370 M 20 450 L 100 450 M 20 370 L 20 450 M 180 370 L 180 450 M 100 450 L 180 450 M 180 450 L 260 450 M 180 370 L 180 450 M 340 370 L 340 450 M 260 450 L 340 450 M 340 450 L 420 450 M 340 370 L 340 450 M 420 370 L 500 370 M 420 450 L 500 450 M 580 370 L 580 450 M 500 450 L 580 450",
+    "solution_path": "M 60 410 L 140 410 L 140 330 L 140 250 L 140 170 L 60 170 L 60 90 L 140 90 L 220 90 L 300 90 L 380 90 L 460 90 L 540 90",
+    "width": 25,
+    "complexity": "easy",
+    "maze_type": "grid",
+    "start_point": {
+      "x": 60,
+      "y": 410
+    },
+    "end_point": {
+      "x": 540,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 60,
+          "y": 90
+        },
+        "end": {
+          "x": 140,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 90
+        },
+        "end": {
+          "x": 60,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 90
+        },
+        "end": {
+          "x": 380,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 90
+        },
+        "end": {
+          "x": 460,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 90
+        },
+        "end": {
+          "x": 540,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 90
+        },
+        "end": {
+          "x": 540,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 170
+        },
+        "end": {
+          "x": 60,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 170
+        },
+        "end": {
+          "x": 540,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 250
+        },
+        "end": {
+          "x": 60,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 250
+        },
+        "end": {
+          "x": 140,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 250
+        },
+        "end": {
+          "x": 460,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 250
+        },
+        "end": {
+          "x": 540,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 330
+        },
+        "end": {
+          "x": 140,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 460,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 540,
+          "y": 330
+        },
+        "end": {
+          "x": 540,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 60,
+          "y": 410
+        },
+        "end": {
+          "x": 140,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 410
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 410
+        },
+        "end": {
+          "x": 460,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 460,
+          "y": 410
+        },
+        "end": {
+          "x": 540,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "items": [
+      {
+        "x": 60,
+        "y": 90,
+        "emoji": "🍎",
+        "on_solution": true
+      },
+      {
+        "x": 300,
+        "y": 410,
+        "emoji": "🍎",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": null
+  },
+  "visual_theme": {
+    "background_color": "#7A3D1D",
+    "decorative_elements": [
+      "leaves",
+      "wind"
+    ]
+  },
+  "item_rule": "collect",
+  "item_emoji": "🍎",
+  "audio_instruction": "denny_062_instruction.mp3",
+  "audio_completion": "denny_062_completion.mp3",
+  "audio_answer": "denny_062_answer.mp3"
+}

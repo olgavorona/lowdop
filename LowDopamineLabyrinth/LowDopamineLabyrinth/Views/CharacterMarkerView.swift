@@ -139,10 +139,22 @@ struct CharacterMarkerView: View {
             "firefly_forest": "\u{2728}",
             "wolf_forest": "\u{1F43A}",
         ]
-        if let asset = character.imageAsset {
-            return emojiMap[asset] ?? ""
+        if let asset = character.imageAsset, let emoji = emojiMap[asset] {
+            return emoji
         }
-        return ""
+        let typeEmoji: [String: String] = [
+            "jack-o-lantern": "🎃",
+            "candy bucket": "🍬",
+            "spooky house": "🏚️",
+            "moonlit hill": "🌙",
+            "leaf pile": "🍂",
+            "apple basket": "🧺",
+            "corn maze exit": "🌾",
+            "big pumpkin": "🎃",
+            "umbrella": "☂️",
+            "squirrel": "🐿️"
+        ]
+        return typeEmoji[character.type] ?? ""
     }
 
     private var characterColor: Color {

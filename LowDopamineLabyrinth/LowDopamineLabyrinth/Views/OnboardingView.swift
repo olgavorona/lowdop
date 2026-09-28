@@ -499,7 +499,7 @@ private struct OnboardingPage2: View {
 
             VStack(spacing: 14) {
                 OnboardingFeatureRow(icon: "dial.low.fill",  label: "3 difficulty levels for every child")
-                OnboardingFeatureRow(icon: "star.fill",      label: "Collect treasures along the way")
+                OnboardingFeatureRow(icon: "pencil.line",    label: "Develop pre-writing skills")
                 OnboardingFeatureRow(icon: "arrow.clockwise",label: "New content added regularly")
             }
             .padding(.horizontal, 48)
@@ -618,7 +618,7 @@ private struct OnboardingPage5: View {
                 .foregroundColor(AppColor.textPrimary)
                 .padding(.bottom, 8)
 
-            Text("First 3 mazes are free.\nUnlock everything for your child.")
+            Text("First 6 mazes are free.\nUnlock everything for your child.")
                 .font(.system(size: 17, design: .rounded))
                 .foregroundColor(AppColor.textSecondary)
                 .multilineTextAlignment(.center)

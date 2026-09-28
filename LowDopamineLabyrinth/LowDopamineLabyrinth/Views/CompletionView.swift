@@ -79,8 +79,18 @@ struct CompletionView: View {
                         .multilineTextAlignment(.center)
 
                     HStack(spacing: 8) {
-                        Image(systemName: "lightbulb.fill")
-                            .foregroundColor(AppColor.accentYellow)
+                        Button {
+                            ttsService.playAudio(labyrinth.answerAudioFilename)
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.system(size: isCompact ? 16 : 20, weight: .semibold))
+                                .foregroundColor(.white)
+                                .frame(width: isCompact ? 32 : 40, height: isCompact ? 32 : 40)
+                                .background(AppColor.accentGreen)
+                                .clipShape(Circle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Read the answer aloud")
                         Text(labyrinth.funFact)
                             .font(.system(size: isCompact ? 13 : 14, design: .rounded))
                             .foregroundColor(AppColor.textSecondary)

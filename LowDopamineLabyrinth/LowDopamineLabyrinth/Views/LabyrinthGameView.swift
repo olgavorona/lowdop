@@ -72,6 +72,9 @@ struct LabyrinthGameView: View {
                         } else if viewModel.labyrinth.theme == "forest" {
                             ForestPatternView()
                                 .opacity(0.18)
+                        } else if viewModel.labyrinth.theme == "fall" {
+                            FallPatternView()
+                                .opacity(0.16)
                         } else {
                             OceanPatternView()
                                 .opacity(0.15)
@@ -211,6 +214,26 @@ struct LabyrinthGameView: View {
         )
         .allowsHitTesting(false)
         .position(viewModel.endPoint)
+    }
+}
+
+struct FallPatternView: View {
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                ForEach(0..<18, id: \.self) { index in
+                    Image(systemName: "leaf.fill")
+                        .font(.system(size: CGFloat(12 + (index % 4) * 5)))
+                        .foregroundColor(.white)
+                        .rotationEffect(.degrees(Double((index * 47) % 360)))
+                        .position(
+                            x: geometry.size.width * CGFloat((index * 37) % 100) / 100,
+                            y: geometry.size.height * CGFloat((index * 61 + 13) % 100) / 100
+                        )
+                }
+            }
+        }
+        .allowsHitTesting(false)
     }
 }
 

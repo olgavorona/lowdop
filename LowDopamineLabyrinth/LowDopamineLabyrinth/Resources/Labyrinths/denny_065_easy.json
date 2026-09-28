@@ -1,0 +1,234 @@
+{
+  "id": "denny_065_easy",
+  "age_range": "2-6",
+  "difficulty": "easy",
+  "theme": "fall",
+  "location": "autumn_night",
+  "title": "Acorn Shell Maze",
+  "story_setup": "Tap, tap, tap! Denny hears acorns dropping through the quiet autumn woods. At the end of the curled trail, Hazel the squirrel is waiting for help gathering food for winter.",
+  "instruction": "Help Denny collect the acorns and carry them along the curled trail to Hazel.",
+  "tts_instruction": "Hazel the squirrel needs acorns for winter. Help Denny collect them and follow the trail to her.",
+  "character_start": {
+    "type": "baby crab explorer",
+    "description": "Denny dressed for an autumn walk",
+    "position": "bottom_left",
+    "name": "Denny",
+    "image_asset": "denny_forest"
+  },
+  "character_end": {
+    "type": "squirrel",
+    "description": "Hazel",
+    "position": "top_right",
+    "name": "Hazel",
+    "image_asset": "squirrel_forest"
+  },
+  "educational_question": "Why do squirrels collect and hide acorns in autumn?",
+  "fun_fact": "Squirrels hide acorns in many small places so they have food during winter. They do not find every hidden acorn, and some forgotten ones can sprout into new oak trees.",
+  "completion_message": "Denny brought every acorn to Hazel. She tucked them into her hiding places and thanked Denny with a happy little tail wiggle!",
+  "path_data": {
+    "svg_path": "M 220 90 L 300 90 M 220 90 L 220 170 M 140 170 L 220 170 M 140 170 L 140 250 M 220 170 L 300 170 M 300 170 L 380 170 M 300 170 L 300 250 M 380 170 L 460 170 M 380 170 L 380 250 M 220 250 L 300 250 M 220 250 L 220 330 M 380 250 L 380 330 M 220 330 L 220 410 M 300 330 L 380 330 M 300 330 L 300 410 M 220 410 L 300 410 M 220 90 L 220 90 M 300 90 L 300 90 M 140 170 L 140 170 M 220 170 L 220 170 M 300 170 L 300 170 M 380 170 L 380 170 M 460 170 L 460 170 M 140 250 L 140 250 M 220 250 L 220 250 M 300 250 L 300 250 M 380 250 L 380 250 M 220 330 L 220 330 M 300 330 L 300 330 M 380 330 L 380 330 M 220 410 L 220 410 M 300 410 L 300 410",
+    "solution_path": "M 220 410 L 220 330 L 220 250 L 300 250 L 300 170 L 220 170 L 220 90 L 300 90",
+    "width": 25,
+    "complexity": "easy",
+    "maze_type": "corridor_shell",
+    "start_point": {
+      "x": 220,
+      "y": 410
+    },
+    "end_point": {
+      "x": 300,
+      "y": 90
+    },
+    "segments": [
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 300,
+          "y": 90
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 90
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 220,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 140,
+          "y": 170
+        },
+        "end": {
+          "x": 140,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 170
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 460,
+          "y": 170
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 170
+        },
+        "end": {
+          "x": 380,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 300,
+          "y": 250
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 250
+        },
+        "end": {
+          "x": 220,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 380,
+          "y": 250
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 330
+        },
+        "end": {
+          "x": 220,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 380,
+          "y": 330
+        }
+      },
+      {
+        "start": {
+          "x": 300,
+          "y": 330
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      },
+      {
+        "start": {
+          "x": 220,
+          "y": 410
+        },
+        "end": {
+          "x": 300,
+          "y": 410
+        }
+      }
+    ],
+    "canvas_width": 600,
+    "canvas_height": 500,
+    "items": [
+      {
+        "x": 220,
+        "y": 90,
+        "emoji": "🌰",
+        "on_solution": true
+      },
+      {
+        "x": 300,
+        "y": 330,
+        "emoji": "🌰",
+        "on_solution": false
+      }
+    ],
+    "avoid_items": null
+  },
+  "visual_theme": {
+    "background_color": "#5B432A",
+    "decorative_elements": [
+      "leaves",
+      "wind"
+    ]
+  },
+  "item_rule": "collect",
+  "item_emoji": "🌰",
+  "audio_instruction": "denny_065_instruction.mp3",
+  "audio_completion": "denny_065_completion.mp3",
+  "audio_answer": "denny_065_answer.mp3"
+}

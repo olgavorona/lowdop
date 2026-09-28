@@ -14,6 +14,10 @@ struct BookshelfView: View {
     @State private var showPaywall = false
     @State private var parentalGateAction: BookshelfParentalGateAction = .account
 
+    private var isPhone: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }
+
     private enum BookshelfParentalGateAction {
         case account, difficultyPicker, paywall
     }
@@ -54,6 +58,26 @@ struct BookshelfView: View {
             alwaysShow: true
         ),
         PackConfig(
+            id: "fall_adventures",
+            title: "Fall Adventures",
+            gradientColors: [Color(hex: "#5B321D") ?? .brown, Color(hex: "#8D4D2A") ?? .orange, Color(hex: "#C87835") ?? .orange],
+            progressBarColor: Color(hex: "#C87835") ?? .orange,
+            unlockText: "",
+            icon: .emoji("🍂"),
+            decoration: .leaves,
+            alwaysShow: true
+        ),
+        PackConfig(
+            id: "letter_tracing",
+            title: "Trace Letters",
+            gradientColors: [Color(hex: "#164E63") ?? .blue, Color(hex: "#0F766E") ?? .green, Color(hex: "#15803D") ?? .green],
+            progressBarColor: AppColor.accentGreen,
+            unlockText: "",
+            icon: .system("character.book.closed.fill", .white.opacity(0.95)),
+            decoration: .waves,
+            alwaysShow: true
+        ),
+        PackConfig(
             id: "space_adventures",
             title: "Denny in Space",
             gradientColors: [Color(hex: "#1A1A2E") ?? .black, Color(hex: "#16213E") ?? .indigo, Color(hex: "#0F3460") ?? .blue],
@@ -82,19 +106,21 @@ struct BookshelfView: View {
 
             VStack(spacing: 0) {
                 topBar
-                    .padding(.horizontal, 24)
-                    .padding(.top, 16)
-                    .padding(.bottom, 12)
+                    .padding(.horizontal, isPhone ? 16 : 24)
+                    .padding(.top, isPhone ? 8 : 16)
+                    .padding(.bottom, isPhone ? 4 : 12)
 
                 Text("Your Adventures")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .font(.system(size: isPhone ? 27 : 32, weight: .bold, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
-                    .padding(.bottom, 24)
+                    .padding(.bottom, isPhone ? 10 : 24)
                     .accessibilityIdentifier("bookshelf.title")
 
                 packCardsArea
 
-                Spacer()
+                if !isPhone {
+                    Spacer()
+                }
             }
         }
         .onAppear {
@@ -187,19 +213,48 @@ struct BookshelfView: View {
         let visiblePacks = Self.packs.filter { config in
             config.alwaysShow || !(storiesByPack[config.id]?.isEmpty ?? true)
         }
+        let freePackIDs = Set(["ocean_adventures", "fall_adventures", "letter_tracing"])
+        let freePacks = visiblePacks.filter { freePackIDs.contains($0.id) }
+        let premiumPacks = visiblePacks.filter { !freePackIDs.contains($0.id) }
         let allEmpty = storiesByPack.isEmpty || storiesByPack.values.allSatisfy { $0.isEmpty }
 
         return Group {
             if allEmpty {
                 emptyState
+            } else if isPhone {
+                ScrollView(.vertical, showsIndicators: true) {
+                    LazyVGrid(
+                        columns: [GridItem(.adaptive(minimum: 150, maximum: 220), spacing: 12)],
+                        spacing: 12
+                    ) {
+                        ForEach(visiblePacks) { config in
+                            packCard(
+                                config: config,
+                                stories: storiesByPack[config.id] ?? [],
+                                isCompact: true
+                            )
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 4)
+                    .padding(.bottom, 24)
+                }
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 24) {
-                        ForEach(visiblePacks) { config in
-                            packCard(config: config, stories: storiesByPack[config.id] ?? [])
+                    VStack(alignment: .leading, spacing: 20) {
+                        HStack(spacing: 24) {
+                            ForEach(freePacks) { config in
+                                packCard(config: config, stories: storiesByPack[config.id] ?? [])
+                            }
+                        }
+                        HStack(spacing: 24) {
+                            ForEach(premiumPacks) { config in
+                                packCard(config: config, stories: storiesByPack[config.id] ?? [])
+                            }
                         }
                     }
                     .padding(.horizontal, 40)
+                    .padding(.vertical, 8)
                 }
             }
         }
@@ -219,11 +274,12 @@ struct BookshelfView: View {
 
     // MARK: - Pack Card
 
-    private func packCard(config: PackConfig, stories: [StoryInfo]) -> some View {
+    private func packCard(config: PackConfig, stories: [StoryInfo], isCompact: Bool = false) -> some View {
         let completedCount = progressTracker.completedStoryCount(in: stories)
-        let totalCount = stories.count
+        let isLetterTracing = config.id == "letter_tracing"
+        let totalCount = isLetterTracing ? 26 : stories.count
         let freeStoryCount = stories.filter(\.isFree).count
-        let isLocked = freeStoryCount == 0 && !subscriptionManager.isPremium
+        let isLocked = !isLetterTracing && freeStoryCount == 0 && !subscriptionManager.isPremium
 
         return Button(action: {
             if isLocked {
@@ -236,19 +292,27 @@ struct BookshelfView: View {
             }
         }) {
             VStack(spacing: 0) {
-                packCover(config: config, totalCount: totalCount, isLocked: isLocked)
-                    .frame(height: 200)
-                packBottom(config: config, completedCount: completedCount, totalCount: totalCount, isLocked: isLocked)
+                packCover(config: config, totalCount: totalCount, isLocked: isLocked, isCompact: isCompact)
+                    .frame(height: isCompact ? 108 : 200)
+                packBottom(
+                    config: config,
+                    completedCount: completedCount,
+                    totalCount: totalCount,
+                    isLocked: isLocked,
+                    isLetterTracing: isLetterTracing,
+                    isCompact: isCompact
+                )
             }
-            .frame(width: 280)
-            .cornerRadius(18)
-            .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
+            .frame(width: isCompact ? nil : 280)
+            .frame(maxWidth: isCompact ? .infinity : nil)
+            .cornerRadius(isCompact ? 14 : 18)
+            .shadow(color: .black.opacity(0.1), radius: isCompact ? 6 : 12, y: isCompact ? 3 : 6)
             .opacity(isLocked ? 0.85 : 1.0)
         }
         .buttonStyle(PlainButtonStyle())
     }
 
-    private func packCover(config: PackConfig, totalCount: Int, isLocked: Bool) -> some View {
+    private func packCover(config: PackConfig, totalCount: Int, isLocked: Bool, isCompact: Bool) -> some View {
         ZStack {
             LinearGradient(colors: config.gradientColors, startPoint: .topLeading, endPoint: .bottomTrailing)
 
@@ -258,24 +322,33 @@ struct BookshelfView: View {
                 premiumBadge
             }
 
-            VStack(spacing: 8) {
-                packIconView(config.icon)
+            VStack(spacing: isCompact ? 3 : 8) {
+                packIconView(config.icon, isCompact: isCompact)
                 Text(config.title)
-                    .font(.system(size: config.title.count > 16 ? 22 : 24, weight: .bold, design: .rounded))
+                    .font(.system(
+                        size: isCompact ? (config.title.count > 16 ? 15 : 17) : (config.title.count > 16 ? 22 : 24),
+                        weight: .bold,
+                        design: .rounded
+                    ))
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.85)
                 Text("\(totalCount) stories")
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .font(.system(size: isCompact ? 11 : 14, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.8))
             }
         }
     }
 
-    private func packBottom(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool) -> some View {
-        VStack(spacing: 10) {
+    private func packBottom(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isLetterTracing: Bool = false, isCompact: Bool = false) -> some View {
+        VStack(spacing: isCompact ? 7 : 10) {
             HStack {
-                Text(isLocked ? config.unlockText : "\(completedCount) of \(totalCount) stories completed")
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                Text(isLocked ? config.unlockText : (isLetterTracing ? "Free · 26 letters" : (isCompact ? "\(completedCount) / \(totalCount) completed" : "\(completedCount) of \(totalCount) stories completed")))
+                    .font(.system(size: isCompact ? 10 : 14, weight: .medium, design: .rounded))
                     .foregroundColor(AppColor.textSecondary)
+                    .lineLimit(isCompact ? 2 : 1)
+                    .frame(minHeight: isCompact ? 24 : nil, alignment: .topLeading)
                 Spacer()
             }
 
@@ -299,14 +372,14 @@ struct BookshelfView: View {
             HStack {
                 Spacer()
                 Text(isLocked ? "Tap to unlock" : "Tap to play")
-                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    .font(.system(size: isCompact ? 11 : 13, weight: .semibold, design: .rounded))
                     .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
                 Image(systemName: isLocked ? "lock.fill" : "chevron.right")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
             }
         }
-        .padding(16)
+        .padding(isCompact ? 10 : 16)
         .background(Color.white)
     }
 
@@ -346,15 +419,15 @@ struct BookshelfView: View {
     }
 
     @ViewBuilder
-    private func packIconView(_ icon: PackConfig.PackIcon) -> some View {
+    private func packIconView(_ icon: PackConfig.PackIcon, isCompact: Bool) -> some View {
         switch icon {
         case .system(let name, let color):
             Image(systemName: name)
-                .font(.system(size: 40))
+                .font(.system(size: isCompact ? 24 : 40))
                 .foregroundColor(color)
         case .emoji(let char):
             Text(char)
-                .font(.system(size: 40))
+                .font(.system(size: isCompact ? 24 : 40))
         }
     }
 
