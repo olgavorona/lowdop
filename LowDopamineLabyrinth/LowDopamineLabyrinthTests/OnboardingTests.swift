@@ -23,6 +23,16 @@ final class OnboardingTests: XCTestCase {
         }
     }
 
+    func testFallDeepLinkRoutesToFallAdventures() throws {
+        let url = try XCTUnwrap(URL(string: "dennysmazes://fall"))
+        XCTAssertEqual(AppDeepLink.packID(for: url), "fall_adventures")
+    }
+
+    func testUnsupportedDeepLinkIsIgnored() throws {
+        let url = try XCTUnwrap(URL(string: "dennysmazes://ocean"))
+        XCTAssertNil(AppDeepLink.packID(for: url))
+    }
+
     // MARK: - hasCompletedOnboarding persistence
 
     func testCompletingOnboardingSetsUserDefaultsKey() {

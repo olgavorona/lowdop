@@ -6,6 +6,17 @@ extension Notification.Name {
     static let returnToBookshelf = Notification.Name("returnToBookshelf")
 }
 
+enum AppDeepLink {
+    static func packID(for url: URL) -> String? {
+        guard url.scheme?.lowercased() == "dennysmazes" else { return nil }
+
+        switch url.host?.lowercased() {
+        case "fall": return "fall_adventures"
+        default: return nil
+        }
+    }
+}
+
 struct ContentView: View {
     /// Tracks which pack the user selected from the bookshelf.
     /// `nil` means no pack is selected (show bookshelf).
@@ -40,6 +51,14 @@ struct ContentView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .returnToBookshelf)) { _ in
             selectedPack = nil
+        }
+        .onOpenURL { url in
+            guard let packID = AppDeepLink.packID(for: url) else { return }
+            selectedPack = packID
+            Analytics.send("DeepLink.opened", with: [
+                "url": url.absoluteString,
+                "pack": packID
+            ])
         }
     }
 }
