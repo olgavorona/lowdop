@@ -1,0 +1,395 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteConfig } from "../data/site";
+import { appStoreUrl } from "../lib/analytics";
+import { buildMeta, faqSchema, organizationSchema } from "../lib/seo";
+
+type Props = {
+  campaign: string;
+  pathname: string;
+};
+
+const { campaign, pathname } = Astro.props as Props;
+const appUrl = appStoreUrl(campaign);
+const faqs = [
+  {
+    question: "Do we need the book to use the app?",
+    answer: "No. The book and the app work on their own, and they're better together."
+  },
+  {
+    question: "Is there a subscription?",
+    answer: "No. Start with 3 free mazes, then unlock more inside the app with a one-time purchase."
+  },
+  {
+    question: "Do we need Wi-Fi?",
+    answer: "No. Once Denny is installed, he works completely offline, including the audio facts."
+  },
+  {
+    question: "Can we turn the narration off?",
+    answer: "Yes. Narration is optional, so Denny still works in quiet places."
+  },
+  {
+    question: "What devices does it run on?",
+    answer: "Denny's Maze is available for iPhone and iPad."
+  },
+  {
+    question: "Is there an Android version?",
+    answer: "Not yet. We're starting with iOS."
+  }
+];
+
+const meta = buildMeta({
+  title: "Denny's Maze Book, Now in Your Pocket | Harmless Apps",
+  description: "The calm maze play you know from Denny's book, with more levels, offline audio facts, no ads, and no subscription.",
+  pathname,
+  image: "/images/dennys-maze/maze-ocean.png"
+});
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema(), faqSchema(faqs)]}>
+  <section class="book-hero">
+    <div class="book-shell book-hero-grid">
+      <div class="book-hero-copy">
+        <p class="eyebrow">From the page to your pocket</p>
+        <h1>Denny's maze book, now in your pocket.</h1>
+        <p class="book-lead">
+          The quiet, unhurried maze play you know from the book, with more levels,
+          ocean facts to listen to, and no subscription.
+        </p>
+        <a
+          class="button book-primary"
+          href={appUrl}
+          data-app-store-cta="book-hero"
+          data-app-store-campaign={campaign}
+        >
+          Get Denny's Maze on iOS
+        </a>
+        <p class="book-microcopy">3 mazes free · No ads · No subscription · Works offline</p>
+      </div>
+
+      <figure class="book-visual">
+        <div class="book-screen">
+          <img
+            src="/images/dennys-maze/maze-ocean.png"
+            alt="Denny's Maze ocean adventure running on an iPad"
+            width="2420"
+            height="1668"
+            loading="eager"
+          />
+        </div>
+        <img class="book-denny" src="/images/denny.png" alt="" width="512" height="512" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="book-section book-thanks">
+    <div class="book-shell book-reading">
+      <p class="eyebrow">Thank you for having the book</p>
+      <h2>Thank you for bringing Denny home.</h2>
+      <p>
+        If your little one has already followed him through the book, they know how
+        this goes: pick up a pencil, find the way, finish, and put it down when
+        they're ready.
+      </p>
+      <p>
+        The app is that same experience, made for the moments when paper isn't
+        handy. It's the same Denny and the same calm pace, with a little more to
+        explore.
+      </p>
+    </div>
+  </section>
+
+  <section class="book-section">
+    <div class="book-shell">
+      <div class="book-heading">
+        <p class="eyebrow">What stays the same</p>
+        <h2>Everything you liked about the book is still here.</h2>
+      </div>
+      <div class="book-grid book-grid-five">
+        <article><h3>One maze at a time</h3><p>No clutter and no hurry.</p></article>
+        <article><h3>A natural stopping point</h3><p>Finish a maze, then choose whether to do another. No streaks and no endless feed.</p></article>
+        <article><h3>No ads or pop-ups</h3><p>Nothing interrupts and nothing sends little fingers somewhere unexpected.</p></article>
+        <article><h3>No timers or noisy rewards</h3><p>The maze itself is the activity.</p></article>
+        <article><h3>Works offline</h3><p>No Wi-Fi needed on flights, in restaurants, or in waiting rooms.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="book-section book-new">
+    <div class="book-shell">
+      <div class="book-heading">
+        <p class="eyebrow">What's new</p>
+        <h2>A little more to explore</h2>
+      </div>
+      <div class="book-grid book-grid-three">
+        <article>
+          <span aria-hidden="true">✦</span>
+          <h3>More levels with Denny</h3>
+          <p>The book ends. The app keeps going, with more mazes and more levels as your child grows. They can start with simple paths and move on when they're ready.</p>
+        </article>
+        <article>
+          <span aria-hidden="true">◉</span>
+          <h3>Ocean facts, read aloud</h3>
+          <p>Along the way, Denny meets ocean animals. Each one comes with a short, curious fact and audio narration, so your child can listen and learn without reading a word.</p>
+        </article>
+        <article>
+          <span aria-hidden="true">✓</span>
+          <h3>No subscription</h3>
+          <p>No recurring charge and no trial that quietly turns into one. Start with 3 free mazes, and unlock more only if Denny works for your family.</p>
+        </article>
+      </div>
+      <!-- Add a verified parent quote here when one is available. -->
+    </div>
+  </section>
+
+  <section class="book-section book-faq">
+    <div class="book-shell book-reading">
+      <p class="eyebrow">Questions from parents</p>
+      <h2>FAQ</h2>
+      <div class="book-faq-list">
+        {faqs.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="book-final">
+    <div class="book-shell book-reading">
+      <p class="eyebrow">Keep exploring</p>
+      <h2>Ready for Denny's next adventure?</h2>
+      <p class="book-final-lead">Try the first 3 mazes free.</p>
+      <a
+        class="button book-primary"
+        href={appUrl}
+        data-app-store-cta="book-final"
+        data-app-store-campaign={campaign}
+      >
+        Get Denny's Maze on iOS
+      </a>
+      <p class="book-microcopy">Available on the App Store. Android isn't available yet.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .book-shell {
+    width: min(calc(100% - 2rem), 72rem);
+    margin: 0 auto;
+  }
+
+  .book-reading {
+    max-width: 48rem;
+  }
+
+  .book-hero {
+    padding: clamp(3rem, 8vw, 7rem) 0;
+    overflow: hidden;
+    background: #f4ebd8;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .book-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+
+  .book-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 7vw, 6rem);
+  }
+
+  .book-lead {
+    max-width: 39rem;
+    margin: 0 0 1.75rem;
+    color: var(--muted);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+  }
+
+  .book-primary {
+    background: #2026f2;
+    border-color: #2026f2;
+    color: white;
+  }
+
+  .book-microcopy {
+    margin: 0.75rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .book-visual {
+    position: relative;
+    margin: 0;
+    padding: 2rem 0 2rem 2rem;
+  }
+
+  .book-screen {
+    overflow: hidden;
+    border: 10px solid #121833;
+    border-radius: 2rem;
+    background: #121833;
+    box-shadow: 1.5rem 1.5rem 0 #e6a94f;
+    transform: rotate(2deg);
+  }
+
+  .book-screen img {
+    width: 100%;
+    aspect-ratio: 1.45;
+    object-fit: cover;
+  }
+
+  .book-denny {
+    position: absolute;
+    width: clamp(7rem, 16vw, 11rem);
+    right: -1rem;
+    bottom: -1rem;
+    filter: drop-shadow(0 0.8rem 0.8rem rgb(18 24 51 / 18%));
+  }
+
+  .book-section {
+    padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .book-thanks {
+    background: white;
+  }
+
+  .book-thanks p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: clamp(1.08rem, 2vw, 1.25rem);
+  }
+
+  .book-heading {
+    max-width: 46rem;
+    margin-bottom: 2rem;
+  }
+
+  .book-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .book-grid-five {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .book-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .book-grid article {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: white;
+  }
+
+  .book-grid h3 {
+    font-size: 1.15rem;
+  }
+
+  .book-grid p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .book-grid span {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: #2026f2;
+    font-size: 2rem;
+  }
+
+  .book-new {
+    background: #e7f7ae;
+  }
+
+  .book-faq {
+    background: white;
+  }
+
+  .book-faq-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .book-faq details {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .book-faq summary {
+    cursor: pointer;
+    padding: 1.25rem 2rem 1.25rem 0;
+    font-weight: 750;
+  }
+
+  .book-faq details p {
+    max-width: 42rem;
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+  }
+
+  .book-final {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    color: white;
+    text-align: center;
+    background: #121833;
+  }
+
+  .book-final .eyebrow,
+  .book-final .book-microcopy {
+    color: rgb(255 255 255 / 72%);
+  }
+
+  .book-final-lead {
+    margin: -0.25rem 0 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .book-hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .book-visual {
+      max-width: 42rem;
+      padding-left: 0;
+    }
+
+    .book-grid-five {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .book-hero {
+      padding-top: 2.5rem;
+    }
+
+    .book-hero h1 {
+      font-size: clamp(2.7rem, 13vw, 4rem);
+    }
+
+    .book-grid-five,
+    .book-grid-three {
+      grid-template-columns: 1fr;
+    }
+
+    .book-primary {
+      width: 100%;
+    }
+
+    .book-screen {
+      border-width: 6px;
+      border-radius: 1.2rem;
+      box-shadow: 0.8rem 0.8rem 0 #e6a94f;
+    }
+  }
+</style>
