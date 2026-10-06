@@ -42,7 +42,7 @@ const meta = buildMeta({
   title: "Denny's Maze Book, Now in Your Pocket | Harmless Apps",
   description: "The calm maze play you know from Denny's book, with more levels, offline audio facts, no ads, and no subscription.",
   pathname,
-  image: "/images/dennys-maze/maze-ocean.png"
+  image: "/images/ipad-hero-2.jpeg"
 });
 ---
 
@@ -70,14 +70,13 @@ const meta = buildMeta({
       <figure class="book-visual">
         <div class="book-screen">
           <img
-            src="/images/dennys-maze/maze-ocean.png"
-            alt="Denny's Maze ocean adventure running on an iPad"
-            width="2420"
-            height="1668"
+            src="/images/ipad-hero-2.jpeg"
+            alt="Denny's Maze level library displayed on an iPad"
+            width="2064"
+            height="2752"
             loading="eager"
           />
         </div>
-        <img class="book-denny" src="/images/denny.png" alt="" width="512" height="512" />
       </figure>
     </div>
   </section>
@@ -188,7 +187,7 @@ const meta = buildMeta({
   .book-hero {
     padding: clamp(3rem, 8vw, 7rem) 0;
     overflow: hidden;
-    background: #f4ebd8;
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
   }
 
@@ -224,32 +223,21 @@ const meta = buildMeta({
   }
 
   .book-visual {
-    position: relative;
     margin: 0;
-    padding: 2rem 0 2rem 2rem;
   }
 
   .book-screen {
     overflow: hidden;
-    border: 10px solid #121833;
-    border-radius: 2rem;
-    background: #121833;
-    box-shadow: 1.5rem 1.5rem 0 #e6a94f;
-    transform: rotate(2deg);
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--line);
+    background: #4565b1;
   }
 
   .book-screen img {
     width: 100%;
-    aspect-ratio: 1.45;
+    height: 100%;
     object-fit: cover;
-  }
-
-  .book-denny {
-    position: absolute;
-    width: clamp(7rem, 16vw, 11rem);
-    right: -1rem;
-    bottom: -1rem;
-    filter: drop-shadow(0 0.8rem 0.8rem rgb(18 24 51 / 18%));
+    object-position: center 78%;
   }
 
   .book-section {
@@ -386,10 +374,5 @@ const meta = buildMeta({
       width: 100%;
     }
 
-    .book-screen {
-      border-width: 6px;
-      border-radius: 1.2rem;
-      box-shadow: 0.8rem 0.8rem 0 #e6a94f;
-    }
   }
 </style>
