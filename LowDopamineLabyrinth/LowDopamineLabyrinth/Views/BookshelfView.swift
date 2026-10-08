@@ -12,6 +12,7 @@ struct BookshelfView: View {
     @State private var showDifficultyPicker = false
     @State private var showAccount = false
     @State private var showPaywall = false
+    @State private var paywallSource: PaywallSource = .shelf
     @State private var parentalGateAction: BookshelfParentalGateAction = .account
 
     private var isPhone: Bool {
@@ -154,7 +155,7 @@ struct BookshelfView: View {
             )
         }
         .sheet(isPresented: $showPaywall) {
-            PaywallView(source: .bookshelf)
+            PaywallView(source: paywallSource)
         }
         .sheet(isPresented: $showAccount) {
             NavigationStack {
@@ -283,7 +284,8 @@ struct BookshelfView: View {
 
         return Button(action: {
             if isLocked {
-                Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.bookshelf.rawValue])
+                paywallSource = PaywallSource.lockedPack(config.id)
+                Analytics.send("Paywall.entryTapped", with: ["source": paywallSource.rawValue])
                 parentalGateAction = .paywall
                 showParentalGate = true
             } else {

@@ -135,7 +135,7 @@ struct LabyrinthGridView: View {
                                     "isLocked": String(isLocked)
                                 ])
                                 if isLocked {
-                                    Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.levels.rawValue])
+                                    Analytics.send("Paywall.entryTapped", with: ["source": paywallSource.rawValue])
                                     pendingLabyrinth = labyrinth
                                     parentalGateAction = .paywall
                                     showParentalGate = true
@@ -205,8 +205,12 @@ struct LabyrinthGridView: View {
                 pendingLabyrinth = nil
             }
         }) {
-            PaywallView(source: .levels)
+            PaywallView(source: paywallSource)
         }
+    }
+
+    private var paywallSource: PaywallSource {
+        PaywallSource.lockedLevel(in: packId)
     }
 
     private var parentalGatePurpose: ParentalGateView.Purpose {

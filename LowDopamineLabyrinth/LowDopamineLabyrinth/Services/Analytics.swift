@@ -4,9 +4,22 @@ import UIKit
 
 enum PaywallSource: String {
     case onboarding
-    case bookshelf
-    case levels
-    case account
+    case freeLevels = "free_levels"
+    case seasonal
+    case shelf
+    case settings
+
+    private static let seasonalPackIDs: Set<String> = [
+        "fall_adventures"
+    ]
+
+    static func lockedLevel(in packID: String) -> PaywallSource {
+        seasonalPackIDs.contains(packID) ? .seasonal : .freeLevels
+    }
+
+    static func lockedPack(_ packID: String) -> PaywallSource {
+        seasonalPackIDs.contains(packID) ? .seasonal : .shelf
+    }
 }
 
 enum Analytics {

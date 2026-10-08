@@ -30,7 +30,7 @@ struct AccountView: View {
                             icon: "infinity",
                             color: AppColor.accentYellow
                         ) {
-                            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.account.rawValue])
+                            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.settings.rawValue])
                             showPaywall = true
                         }
                     }
@@ -88,7 +88,7 @@ struct AccountView: View {
             }
         }
         .sheet(isPresented: $showPaywall) {
-            PaywallView(source: .account)
+            PaywallView(source: .settings)
         }
         .onAppear {
             reviewRequestManager.requestAfterFirstAccountOpen()

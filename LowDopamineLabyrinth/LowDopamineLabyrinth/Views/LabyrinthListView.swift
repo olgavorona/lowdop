@@ -10,6 +10,7 @@ struct LabyrinthListView: View {
     @State private var showParentalGate = false
     @State private var showPaywall = false
     @State private var shouldShowDiscountAfterRegularDismissal = false
+    @State private var paywallSource: PaywallSource = .freeLevels
     @State private var labyrinthVM: LabyrinthViewModel?
     @State private var didInjectUITestCompletion = false
 
@@ -156,7 +157,7 @@ struct LabyrinthListView: View {
         }
         .sheet(isPresented: $showPaywall, onDismiss: handlePaywallSheetDismissed) {
             PaywallView(
-                source: .levels,
+                source: paywallSource,
                 onDismissWithoutPurchase: handlePaywallDismissalWithoutPurchase
             )
         }
@@ -167,7 +168,8 @@ struct LabyrinthListView: View {
         guard nextIndex < gameViewModel.labyrinths.count else { return }
 
         if gameViewModel.isLabyrinthLocked(at: nextIndex) {
-            Analytics.send("Paywall.entryTapped", with: ["source": PaywallSource.levels.rawValue])
+            paywallSource = PaywallSource.lockedLevel(in: gameViewModel.currentPackId)
+            Analytics.send("Paywall.entryTapped", with: ["source": paywallSource.rawValue])
             showParentalGate = true
             return
         }
@@ -242,6 +244,7 @@ struct LabyrinthListView: View {
 
         if freeMazeNumber == 3 {
             Analytics.send("free_experience_completed")
+            paywallSource = PaywallSource.lockedLevel(in: gameViewModel.currentPackId)
             shouldShowDiscountAfterRegularDismissal = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 guard !subscriptionManager.isPremium,
