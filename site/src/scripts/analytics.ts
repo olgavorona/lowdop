@@ -34,17 +34,29 @@ if (appID && namespace) {
     const target = event.target;
     if (!(target instanceof Element)) return;
 
-    const link = target.closest<HTMLAnchorElement>("a[data-app-store-cta]");
-    if (!link) return;
-
     const pageUrl = new URL(window.location.href);
-    void telemetry.signal("website.appStoreClicked", {
+    const attribution = {
       path: pageUrl.pathname,
-      placement: link.dataset.appStoreCta || "unknown",
-      campaign: link.dataset.appStoreCampaign || "unconfigured",
       utm_source: pageUrl.searchParams.get("utm_source") || "",
       utm_medium: pageUrl.searchParams.get("utm_medium") || "",
       utm_campaign: pageUrl.searchParams.get("utm_campaign") || ""
-    });
+    };
+
+    const appStoreLink = target.closest<HTMLAnchorElement>("a[data-app-store-cta]");
+    if (appStoreLink) {
+      void telemetry.signal("website.appStoreClicked", {
+        ...attribution,
+        placement: appStoreLink.dataset.appStoreCta || "unknown",
+        campaign: appStoreLink.dataset.appStoreCampaign || "unconfigured"
+      });
+    }
+
+    const amazonLink = target.closest<HTMLAnchorElement>("a[data-amazon-cta]");
+    if (amazonLink) {
+      void telemetry.signal("website.amazonClicked", {
+        ...attribution,
+        placement: amazonLink.dataset.amazonCta || "unknown"
+      });
+    }
   });
 }
