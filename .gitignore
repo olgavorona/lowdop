@@ -65,6 +65,8 @@ fastlane/Preview.html
 local.properties
 /*_KDP.pdf
 /*_KDP_*.pdf
+content-generator/localized-audio/translation-files/
+content-generator/localized-audio/translation-files.zip
 
 # Claude Code local settings
 .claude/
