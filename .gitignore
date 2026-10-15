@@ -63,6 +63,8 @@ fastlane/report.xml
 fastlane/Preview.html
 **/.gradle/
 local.properties
+/*_KDP.pdf
+/*_KDP_*.pdf
 
 # Claude Code local settings
 .claude/
