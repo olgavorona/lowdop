@@ -1,0 +1,10 @@
+{
+  "assetPackID": "audio-de",
+  "downloadPolicy": {
+    "onDemand": {}
+  },
+  "fileSelectors": [
+    { "directory": "de/audio" }
+  ],
+  "platforms": ["iOS"]
+}

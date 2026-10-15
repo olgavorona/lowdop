@@ -59,7 +59,13 @@ struct LabyrinthGridView: View {
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
                                 .foregroundColor(AppColor.textPrimary)
                                 .accessibilityIdentifier("grid.title")
-                            Text("\(progressTracker.completedCount(in: gameViewModel.labyrinths)) of \(gameViewModel.labyrinths.count) completed")
+                            Text(AppLocalization.text(
+                                #"\(progressTracker.completedCount(in: gameViewModel.labyrinths)) of \(gameViewModel.labyrinths.count) completed"#,
+                                replacing: [
+                                    #"\(progressTracker.completedCount(in: gameViewModel.labyrinths))"#: String(progressTracker.completedCount(in: gameViewModel.labyrinths)),
+                                    #"\(gameViewModel.labyrinths.count)"#: String(gameViewModel.labyrinths.count)
+                                ]
+                            ))
                                 .font(.system(size: 15, design: .rounded))
                                 .foregroundColor(AppColor.textTertiary)
                         }
@@ -70,7 +76,7 @@ struct LabyrinthGridView: View {
                             showParentalGate = true
                         }) {
                             HStack(spacing: 4) {
-                                Text(preferences.difficultyLevel.displayName)
+                                Text(LocalizedStringKey(preferences.difficultyLevel.displayName))
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                                 Image(systemName: "chevron.down")
                                     .font(.system(size: 10, weight: .bold))

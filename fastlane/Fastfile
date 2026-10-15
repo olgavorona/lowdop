@@ -1,0 +1,54 @@
+default_platform(:ios)
+
+def app_store_connect_key
+  app_store_connect_api_key(
+    key_id: ENV.fetch("ASC_KEY_ID"),
+    issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+    key_filepath: File.expand_path(ENV.fetch("ASC_PRIVATE_KEY_PATH")),
+    duration: 900,
+    in_house: false
+  )
+end
+
+platform :ios do
+  desc "Build and upload the app binary without submitting it for review"
+  lane :upload_build do
+    build_app(
+      project: "LowDopamineLabyrinth/LowDopamineLabyrinth.xcodeproj",
+      scheme: "LowDopamineLabyrinth",
+      configuration: "Release",
+      export_method: "app-store"
+    )
+    upload_to_app_store(
+      api_key: app_store_connect_key,
+      skip_metadata: true,
+      skip_screenshots: true,
+      submit_for_review: false
+    )
+  end
+
+  desc "Upload prepared App Store descriptions, What's New text, and screenshots"
+  lane :upload_store_listing do
+    deliver(
+      api_key: app_store_connect_key,
+      skip_binary_upload: true,
+      skip_app_version_update: true,
+      submit_for_review: false
+    )
+  end
+
+  desc "Run the UI screenshot suite configured in Snapfile"
+  lane :capture_screenshots do
+    snapshot
+  end
+
+  desc "Package and upload German and Spanish Apple-hosted narration packs"
+  lane :upload_localized_audio do
+    if File.file?("build/appstore/audio-de.aar") && File.file?("build/appstore/audio-es.aar")
+      sh("python3 scripts/package_localized_audio.py --use-existing")
+    else
+      sh("python3 scripts/package_localized_audio.py")
+    end
+    sh("python3 scripts/upload_background_assets.py build/appstore/audio-de.aar build/appstore/audio-es.aar")
+  end
+end

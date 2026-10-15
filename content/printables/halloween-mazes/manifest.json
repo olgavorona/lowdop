@@ -14,9 +14,11 @@
       "shape": "rect",
       "svg": "svg/pumpkin-patch-easy.svg",
       "pdf": "pdf/pumpkin-patch-easy.pdf",
+      "png": "png/pumpkin-patch-easy.png",
       "json": "json/pumpkin-patch-easy.json",
       "color_svg": "color/svg/pumpkin-patch-easy.svg",
-      "color_pdf": "color/pdf/pumpkin-patch-easy.pdf"
+      "color_pdf": "color/pdf/pumpkin-patch-easy.pdf",
+      "color_png": "color/png/pumpkin-patch-easy.png"
     },
     {
       "id": "pumpkin-patch-medium",
@@ -26,9 +28,11 @@
       "shape": "rect",
       "svg": "svg/pumpkin-patch-medium.svg",
       "pdf": "pdf/pumpkin-patch-medium.pdf",
+      "png": "png/pumpkin-patch-medium.png",
       "json": "json/pumpkin-patch-medium.json",
       "color_svg": "color/svg/pumpkin-patch-medium.svg",
-      "color_pdf": "color/pdf/pumpkin-patch-medium.pdf"
+      "color_pdf": "color/pdf/pumpkin-patch-medium.pdf",
+      "color_png": "color/png/pumpkin-patch-medium.png"
     },
     {
       "id": "pumpkin-patch-hard",
@@ -38,9 +42,11 @@
       "shape": "rect",
       "svg": "svg/pumpkin-patch-hard.svg",
       "pdf": "pdf/pumpkin-patch-hard.pdf",
+      "png": "png/pumpkin-patch-hard.png",
       "json": "json/pumpkin-patch-hard.json",
       "color_svg": "color/svg/pumpkin-patch-hard.svg",
-      "color_pdf": "color/pdf/pumpkin-patch-hard.pdf"
+      "color_pdf": "color/pdf/pumpkin-patch-hard.pdf",
+      "color_png": "color/png/pumpkin-patch-hard.png"
     },
     {
       "id": "jack-o-lantern-easy",
@@ -50,9 +56,11 @@
       "shape": "pumpkin",
       "svg": "svg/jack-o-lantern-easy.svg",
       "pdf": "pdf/jack-o-lantern-easy.pdf",
+      "png": "png/jack-o-lantern-easy.png",
       "json": "json/jack-o-lantern-easy.json",
       "color_svg": "color/svg/jack-o-lantern-easy.svg",
-      "color_pdf": "color/pdf/jack-o-lantern-easy.pdf"
+      "color_pdf": "color/pdf/jack-o-lantern-easy.pdf",
+      "color_png": "color/png/jack-o-lantern-easy.png"
     },
     {
       "id": "jack-o-lantern-medium",
@@ -62,9 +70,11 @@
       "shape": "pumpkin",
       "svg": "svg/jack-o-lantern-medium.svg",
       "pdf": "pdf/jack-o-lantern-medium.pdf",
+      "png": "png/jack-o-lantern-medium.png",
       "json": "json/jack-o-lantern-medium.json",
       "color_svg": "color/svg/jack-o-lantern-medium.svg",
-      "color_pdf": "color/pdf/jack-o-lantern-medium.pdf"
+      "color_pdf": "color/pdf/jack-o-lantern-medium.pdf",
+      "color_png": "color/png/jack-o-lantern-medium.png"
     },
     {
       "id": "jack-o-lantern-hard",
@@ -74,9 +84,11 @@
       "shape": "pumpkin",
       "svg": "svg/jack-o-lantern-hard.svg",
       "pdf": "pdf/jack-o-lantern-hard.pdf",
+      "png": "png/jack-o-lantern-hard.png",
       "json": "json/jack-o-lantern-hard.json",
       "color_svg": "color/svg/jack-o-lantern-hard.svg",
-      "color_pdf": "color/pdf/jack-o-lantern-hard.pdf"
+      "color_pdf": "color/pdf/jack-o-lantern-hard.pdf",
+      "color_png": "color/png/jack-o-lantern-hard.png"
     },
     {
       "id": "spooky-house-easy",
@@ -86,9 +98,11 @@
       "shape": "house",
       "svg": "svg/spooky-house-easy.svg",
       "pdf": "pdf/spooky-house-easy.pdf",
+      "png": "png/spooky-house-easy.png",
       "json": "json/spooky-house-easy.json",
       "color_svg": "color/svg/spooky-house-easy.svg",
-      "color_pdf": "color/pdf/spooky-house-easy.pdf"
+      "color_pdf": "color/pdf/spooky-house-easy.pdf",
+      "color_png": "color/png/spooky-house-easy.png"
     },
     {
       "id": "spooky-house-medium",
@@ -98,9 +112,11 @@
       "shape": "house",
       "svg": "svg/spooky-house-medium.svg",
       "pdf": "pdf/spooky-house-medium.pdf",
+      "png": "png/spooky-house-medium.png",
       "json": "json/spooky-house-medium.json",
       "color_svg": "color/svg/spooky-house-medium.svg",
-      "color_pdf": "color/pdf/spooky-house-medium.pdf"
+      "color_pdf": "color/pdf/spooky-house-medium.pdf",
+      "color_png": "color/png/spooky-house-medium.png"
     },
     {
       "id": "spooky-house-hard",
@@ -110,9 +126,11 @@
       "shape": "house",
       "svg": "svg/spooky-house-hard.svg",
       "pdf": "pdf/spooky-house-hard.pdf",
+      "png": "png/spooky-house-hard.png",
       "json": "json/spooky-house-hard.json",
       "color_svg": "color/svg/spooky-house-hard.svg",
-      "color_pdf": "color/pdf/spooky-house-hard.pdf"
+      "color_pdf": "color/pdf/spooky-house-hard.pdf",
+      "color_png": "color/png/spooky-house-hard.png"
     },
     {
       "id": "candy-corn-easy",
@@ -122,9 +140,11 @@
       "shape": "rect",
       "svg": "svg/candy-corn-easy.svg",
       "pdf": "pdf/candy-corn-easy.pdf",
+      "png": "png/candy-corn-easy.png",
       "json": "json/candy-corn-easy.json",
       "color_svg": "color/svg/candy-corn-easy.svg",
-      "color_pdf": "color/pdf/candy-corn-easy.pdf"
+      "color_pdf": "color/pdf/candy-corn-easy.pdf",
+      "color_png": "color/png/candy-corn-easy.png"
     },
     {
       "id": "candy-corn-medium",
@@ -134,9 +154,11 @@
       "shape": "rect",
       "svg": "svg/candy-corn-medium.svg",
       "pdf": "pdf/candy-corn-medium.pdf",
+      "png": "png/candy-corn-medium.png",
       "json": "json/candy-corn-medium.json",
       "color_svg": "color/svg/candy-corn-medium.svg",
-      "color_pdf": "color/pdf/candy-corn-medium.pdf"
+      "color_pdf": "color/pdf/candy-corn-medium.pdf",
+      "color_png": "color/png/candy-corn-medium.png"
     },
     {
       "id": "candy-corn-hard",
@@ -146,9 +168,11 @@
       "shape": "rect",
       "svg": "svg/candy-corn-hard.svg",
       "pdf": "pdf/candy-corn-hard.pdf",
+      "png": "png/candy-corn-hard.png",
       "json": "json/candy-corn-hard.json",
       "color_svg": "color/svg/candy-corn-hard.svg",
-      "color_pdf": "color/pdf/candy-corn-hard.pdf"
+      "color_pdf": "color/pdf/candy-corn-hard.pdf",
+      "color_png": "color/png/candy-corn-hard.png"
     },
     {
       "id": "moonlight-easy",
@@ -158,9 +182,11 @@
       "shape": "shell",
       "svg": "svg/moonlight-easy.svg",
       "pdf": "pdf/moonlight-easy.pdf",
+      "png": "png/moonlight-easy.png",
       "json": "json/moonlight-easy.json",
       "color_svg": "color/svg/moonlight-easy.svg",
-      "color_pdf": "color/pdf/moonlight-easy.pdf"
+      "color_pdf": "color/pdf/moonlight-easy.pdf",
+      "color_png": "color/png/moonlight-easy.png"
     },
     {
       "id": "moonlight-medium",
@@ -170,9 +196,11 @@
       "shape": "shell",
       "svg": "svg/moonlight-medium.svg",
       "pdf": "pdf/moonlight-medium.pdf",
+      "png": "png/moonlight-medium.png",
       "json": "json/moonlight-medium.json",
       "color_svg": "color/svg/moonlight-medium.svg",
-      "color_pdf": "color/pdf/moonlight-medium.pdf"
+      "color_pdf": "color/pdf/moonlight-medium.pdf",
+      "color_png": "color/png/moonlight-medium.png"
     },
     {
       "id": "moonlight-hard",
@@ -182,9 +210,11 @@
       "shape": "shell",
       "svg": "svg/moonlight-hard.svg",
       "pdf": "pdf/moonlight-hard.pdf",
+      "png": "png/moonlight-hard.png",
       "json": "json/moonlight-hard.json",
       "color_svg": "color/svg/moonlight-hard.svg",
-      "color_pdf": "color/pdf/moonlight-hard.pdf"
+      "color_pdf": "color/pdf/moonlight-hard.pdf",
+      "color_png": "color/png/moonlight-hard.png"
     },
     {
       "id": "ghost-bat-dodge-easy",
@@ -194,9 +224,11 @@
       "shape": "rect",
       "svg": "svg/ghost-bat-dodge-easy.svg",
       "pdf": "pdf/ghost-bat-dodge-easy.pdf",
+      "png": "png/ghost-bat-dodge-easy.png",
       "json": "json/ghost-bat-dodge-easy.json",
       "color_svg": "color/svg/ghost-bat-dodge-easy.svg",
-      "color_pdf": "color/pdf/ghost-bat-dodge-easy.pdf"
+      "color_pdf": "color/pdf/ghost-bat-dodge-easy.pdf",
+      "color_png": "color/png/ghost-bat-dodge-easy.png"
     },
     {
       "id": "ghost-bat-dodge-medium",
@@ -206,9 +238,11 @@
       "shape": "rect",
       "svg": "svg/ghost-bat-dodge-medium.svg",
       "pdf": "pdf/ghost-bat-dodge-medium.pdf",
+      "png": "png/ghost-bat-dodge-medium.png",
       "json": "json/ghost-bat-dodge-medium.json",
       "color_svg": "color/svg/ghost-bat-dodge-medium.svg",
-      "color_pdf": "color/pdf/ghost-bat-dodge-medium.pdf"
+      "color_pdf": "color/pdf/ghost-bat-dodge-medium.pdf",
+      "color_png": "color/png/ghost-bat-dodge-medium.png"
     },
     {
       "id": "ghost-bat-dodge-hard",
@@ -218,9 +252,11 @@
       "shape": "rect",
       "svg": "svg/ghost-bat-dodge-hard.svg",
       "pdf": "pdf/ghost-bat-dodge-hard.pdf",
+      "png": "png/ghost-bat-dodge-hard.png",
       "json": "json/ghost-bat-dodge-hard.json",
       "color_svg": "color/svg/ghost-bat-dodge-hard.svg",
-      "color_pdf": "color/pdf/ghost-bat-dodge-hard.pdf"
+      "color_pdf": "color/pdf/ghost-bat-dodge-hard.pdf",
+      "color_png": "color/png/ghost-bat-dodge-hard.png"
     }
   ],
   "packs": [

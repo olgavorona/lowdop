@@ -22,12 +22,18 @@ struct CompletionView: View {
         if rule == "avoid" {
             let avoided = totalAvoidCount - hitOwlCount
             if hitOwlCount == 0 {
-                return "You avoided all the \(emoji)! Amazing!"
+                return AppLocalization.text(#"You avoided all the \(emoji)! Amazing!"#, replacing: [#"\(emoji)"#: emoji])
             } else {
-                return "You avoided \(avoided) of \(totalAvoidCount) \(emoji)"
+                return AppLocalization.text(
+                    #"You avoided \(avoided) of \(totalAvoidCount) \(emoji)"#,
+                    replacing: [#"\(avoided)"#: String(avoided), #"\(totalAvoidCount)"#: String(totalAvoidCount), #"\(emoji)"#: emoji]
+                )
             }
         }
-        return "You collected \(collectedCount)/\(totalItemCount) \(emoji)"
+        return AppLocalization.text(
+            #"You collected \(collectedCount)/\(totalItemCount) \(emoji)"#,
+            replacing: [#"\(collectedCount)"#: String(collectedCount), #"\(totalItemCount)"#: String(totalItemCount), #"\(emoji)"#: emoji]
+        )
     }
 
     var body: some View {

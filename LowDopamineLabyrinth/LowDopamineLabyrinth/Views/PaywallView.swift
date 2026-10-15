@@ -4,6 +4,7 @@ import StoreKit
 struct PaywallView: View {
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @EnvironmentObject var reviewRequestManager: ReviewRequestManager
+    @EnvironmentObject var preferences: UserPreferences
     @Environment(\.dismiss) var dismiss
     let source: PaywallSource
     var onDismissWithoutPurchase: (() -> Void)? = nil
@@ -37,12 +38,12 @@ struct PaywallView: View {
                         .scaledToFit()
                         .frame(height: 100)
 
-                    Text(variant.title)
+                    Text(LocalizedStringKey(variant.title))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(AppColor.textPrimary)
                         .multilineTextAlignment(.center)
 
-                    Text(variant.body)
+                    Text(LocalizedStringKey(variant.body))
                         .font(.system(size: 15, design: .rounded))
                         .foregroundColor(AppColor.textSecondary)
                         .multilineTextAlignment(.center)
@@ -54,7 +55,7 @@ struct PaywallView: View {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(AppColor.accentGreen)
                                     .font(.system(size: 16))
-                                Text(benefit)
+                                Text(LocalizedStringKey(benefit))
                                     .font(.system(size: 14, design: .rounded))
                                     .foregroundColor(AppColor.textPrimary)
                             }
@@ -97,7 +98,7 @@ struct PaywallView: View {
                                 ProgressView()
                                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                             } else {
-                                Text(ctaTitle)
+                                Text(LocalizedStringKey(ctaTitle))
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                     .minimumScaleFactor(0.78)
@@ -113,13 +114,13 @@ struct PaywallView: View {
                     .opacity(isPurchasing ? 0.6 : 1.0)
                     .padding(.top, 4)
 
-                    Text(variant.supportingLine)
+                    Text(LocalizedStringKey(variant.supportingLine))
                         .font(.system(size: 12, design: .rounded))
                         .foregroundColor(AppColor.textTertiary)
                         .multilineTextAlignment(.center)
 
                     Button(action: dismissWithoutPurchase) {
-                        Text(variant.secondaryActionTitle)
+                        Text(LocalizedStringKey(variant.secondaryActionTitle))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundColor(AppColor.textTertiary)
                     }
@@ -199,7 +200,9 @@ struct PaywallView: View {
             "localized_price": product.displayPrice,
             "currency": product.priceFormatStyle.currencyCode,
             "source": source.rawValue,
-            "paywall_type": variant.rawValue
+            "paywall_type": variant.rawValue,
+            "difficulty": preferences.difficultyLevel.rawValue,
+            "app_locale": preferences.appLanguage.rawValue
         ]
     }
 
@@ -321,7 +324,13 @@ private struct PlanCardView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(variant == .discount ? "Special unlock price" : product.displayName)
+                Group {
+                    if variant == .discount {
+                        Text("Special unlock price")
+                    } else {
+                        Text(product.displayName)
+                    }
+                }
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
 

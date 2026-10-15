@@ -2,13 +2,25 @@ import SwiftUI
 import StoreKit
 import UIKit
 
+private enum OnboardingLanguageConfiguration {
+    static var audioPackCanBeSkipped: Bool {
+#if targetEnvironment(simulator) && DEBUG
+        !ProcessInfo.processInfo.arguments.contains("-useLocalAudioMockServer")
+#elseif targetEnvironment(simulator)
+        true
+#else
+        false
+#endif
+    }
+}
+
 // MARK: - OnboardingViewModel
 
 /// Lightweight state model for onboarding page navigation.
 /// Extracted to allow unit testing without SwiftUI environment.
 final class OnboardingViewModel: ObservableObject {
-    static let totalPages: Int = 5
-    static let parentalGatePage: Int = 3
+    static let totalPages: Int = 6
+    static let parentalGatePage: Int = 4
 
     enum NavigationResult: Equatable {
         case changed
@@ -60,6 +72,7 @@ struct OnboardingView: View {
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var subscriptionManager: SubscriptionManager
     @EnvironmentObject var ttsService: TTSService
+    @EnvironmentObject var languageAudioPackManager: LanguageAudioPackManager
     @EnvironmentObject var reviewRequestManager: ReviewRequestManager
 
     var onComplete: (() -> Void)? = nil
@@ -74,10 +87,19 @@ struct OnboardingView: View {
 
     private var currentPage: Int { viewModel.currentPage }
     private let totalPages = OnboardingViewModel.totalPages
+    private var canContinueFromLanguagePage: Bool {
+        OnboardingLanguageConfiguration.audioPackCanBeSkipped
+            || preferences.appLanguage == .english
+            || languageAudioPackManager.downloadedLanguages.contains(preferences.appLanguage)
+    }
     private var pageSelection: Binding<Int> {
         Binding(
             get: { tabSelection },
             set: { requestedPage in
+                guard currentPage != 0 || requestedPage <= 0 || canContinueFromLanguagePage else {
+                    resetTabViewSelection()
+                    return
+                }
                 handleNavigationResult(
                     viewModel.attemptNavigate(to: requestedPage),
                     requestedPage: requestedPage
@@ -105,18 +127,21 @@ struct OnboardingView: View {
 
                 // Pages
                 TabView(selection: pageSelection) {
+                    OnboardingLanguagePage(onContinue: advancePage)
+                        .tag(0)
                     OnboardingPage1(
+                        isActive: currentPage == 1,
                         onComplete: advancePage,
                         onSkip: advancePage,
                         didPlayVoiceover: $didPlayTutorialVoiceover
                     )
-                        .tag(0)
-                    OnboardingPage2()
                         .tag(1)
-                    OnboardingPage3()
+                    OnboardingPage2()
                         .tag(2)
+                    OnboardingPage3()
+                        .tag(3)
                     OnboardingPage4(onSelect: advancePage)
-                    .tag(3)
+                    .tag(4)
                     OnboardingPage5(
                         isPurchasing: $isPurchasing,
                         onGetFullAccess: {
@@ -129,7 +154,9 @@ struct OnboardingView: View {
                                     "localized_price": product.displayPrice,
                                     "currency": product.priceFormatStyle.currencyCode,
                                     "source": PaywallSource.onboarding.rawValue,
-                                    "paywall_type": "regular"
+                                    "paywall_type": "regular",
+                                    "difficulty": preferences.difficultyLevel.rawValue,
+                                    "app_locale": preferences.appLanguage.rawValue
                                 ])
                                 let success = await subscriptionManager.purchase(product)
                                 isPurchasing = false
@@ -139,7 +166,9 @@ struct OnboardingView: View {
                                         "localized_price": product.displayPrice,
                                         "currency": product.priceFormatStyle.currencyCode,
                                         "source": PaywallSource.onboarding.rawValue,
-                                        "paywall_type": "regular"
+                                        "paywall_type": "regular",
+                                        "difficulty": preferences.difficultyLevel.rawValue,
+                                        "app_locale": preferences.appLanguage.rawValue
                                     ])
                                     completeOnboarding()
                                     reviewRequestManager.requestAfterSuccessfulOnboardingPurchase(
@@ -151,7 +180,9 @@ struct OnboardingView: View {
                                         "localized_price": product.displayPrice,
                                         "currency": product.priceFormatStyle.currencyCode,
                                         "source": PaywallSource.onboarding.rawValue,
-                                        "paywall_type": "regular"
+                                        "paywall_type": "regular",
+                                        "difficulty": preferences.difficultyLevel.rawValue,
+                                        "app_locale": preferences.appLanguage.rawValue
                                     ])
                                 }
                             }
@@ -164,14 +195,14 @@ struct OnboardingView: View {
                             Task { await subscriptionManager.restorePurchases() }
                         }
                     )
-                    .tag(4)
+                    .tag(5)
                 }
                 .id(tabViewResetToken)
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .animation(.easeInOut, value: currentPage)
 
                 // Next button (hidden on last page — it has its own CTAs)
-                if !viewModel.isOnLastPage && currentPage != 0 {
+                if !viewModel.isOnLastPage && currentPage != 0 && currentPage != 1 {
                     Button(action: advancePage) {
                         Text("Next")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -231,6 +262,15 @@ struct OnboardingView: View {
         case .changed:
             showParentalGate = false
             tabSelection = viewModel.currentPage
+            if requestedPage == 1,
+               OnboardingLanguageConfiguration.audioPackCanBeSkipped,
+               preferences.appLanguage != .english {
+                Analytics.send("Language.audioPackBypassed", with: [
+                    "language": preferences.appLanguage.rawValue,
+                    "app_locale": preferences.appLanguage.rawValue,
+                    "source": "simulator"
+                ])
+            }
         case .blockedByParentalGate:
             pendingPageAfterGate = min(max(requestedPage, 0), totalPages - 1)
             resetTabViewSelection()
@@ -253,11 +293,224 @@ struct OnboardingView: View {
     }
 }
 
-// MARK: - Screen 1: Draw the Path
+// MARK: - Screen 1: Choose Language
+
+private struct OnboardingLanguagePage: View {
+    @EnvironmentObject var preferences: UserPreferences
+    @EnvironmentObject var languageAudioPackManager: LanguageAudioPackManager
+    let onContinue: () -> Void
+
+    @State private var isPreparingLanguage = false
+
+    var body: some View {
+        GeometryReader { geometry in
+            Group {
+                if geometry.size.width > geometry.size.height {
+                    wideLayout(size: geometry.size)
+                } else {
+                    compactLayout(size: geometry.size)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, 28)
+        }
+    }
+
+    private func wideLayout(size: CGSize) -> some View {
+        HStack(spacing: 36) {
+            languageIllustration
+                .frame(maxWidth: size.width * 0.48)
+                .frame(maxHeight: size.height * 0.72)
+
+            VStack(alignment: .leading, spacing: 18) {
+                Spacer(minLength: 0)
+                heading(alignment: .leading)
+                languagePicker
+                languageAction
+                Spacer(minLength: 0)
+            }
+            .frame(maxWidth: 520, alignment: .leading)
+        }
+        .frame(maxWidth: 1100, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func compactLayout(size: CGSize) -> some View {
+        VStack(spacing: 14) {
+            Spacer(minLength: 0)
+            heading(alignment: .center)
+            languageIllustration
+                .frame(maxWidth: 560)
+                .frame(height: min(size.height * 0.38, 300))
+            languagePicker
+            languageAction
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var languageIllustration: some View {
+        Image("language_selection")
+            .resizable()
+            .scaledToFit()
+            .accessibilityLabel(Text(AppLocalization.text("Denny welcomes you to choose a language")))
+    }
+
+    private func heading(alignment: HorizontalAlignment) -> some View {
+        VStack(alignment: alignment, spacing: 10) {
+            Text(AppLocalization.text("Choose your language"))
+                .font(.system(size: 30, weight: .bold, design: .rounded))
+                .foregroundColor(AppColor.textPrimary)
+                .multilineTextAlignment(alignment == .leading ? .leading : .center)
+
+            Text(AppLocalization.text(
+                "Choose the language for menus, stories, and narration. You can change it anytime in Settings."
+            ))
+            .font(.system(size: 17, design: .rounded))
+            .foregroundColor(AppColor.textSecondary)
+            .multilineTextAlignment(alignment == .leading ? .leading : .center)
+            .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: alignment == .leading ? .leading : .center)
+    }
+
+    private var languagePicker: some View {
+        Menu {
+            ForEach(AppLanguage.allCases) { language in
+                Button {
+                    preferences.appLanguage = language
+                    Analytics.send("Language.selected", with: [
+                        "language": language.rawValue,
+                        "app_locale": language.rawValue,
+                        "source": "onboarding"
+                    ])
+                } label: {
+                    if preferences.appLanguage == language {
+                        Label {
+                            Text(verbatim: language.displayName)
+                        } icon: {
+                            Image(systemName: "checkmark")
+                        }
+                    } else {
+                        Text(verbatim: language.displayName)
+                    }
+                }
+            }
+        } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "globe")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundColor(AppColor.accentBlue)
+                    .frame(width: 34)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(AppLocalization.text("App language"))
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundColor(AppColor.textSecondary)
+                    Text(verbatim: preferences.appLanguage.displayName)
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundColor(AppColor.textPrimary)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(AppColor.textSecondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+            .padding(.horizontal, 18)
+            .padding(.vertical, 14)
+            .background(Color.white.opacity(0.92))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray.opacity(0.16), lineWidth: 1))
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(AppLocalization.text("App language") + ": " + preferences.appLanguage.displayName))
+    }
+
+    private var languageAction: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Button(action: handleLanguageAction) {
+                HStack(spacing: 10) {
+                    if isPreparingLanguage,
+                       languageAudioPackManager.progress[preferences.appLanguage] == nil {
+                        ProgressView()
+                            .tint(.white)
+                    } else if let progress = languageAudioPackManager.progress[preferences.appLanguage] {
+                        ProgressView(value: progress)
+                            .tint(.white)
+                    }
+
+                    Text(languageActionTitle)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                }
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 52)
+                .background(AppColor.accentGreen)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+            .buttonStyle(.plain)
+            .disabled(isPreparingLanguage || languageAudioPackManager.progress[preferences.appLanguage] != nil)
+
+            if let error = languageAudioPackManager.errors[preferences.appLanguage] {
+                Text(AppLocalization.text(error))
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundColor(.red)
+            }
+        }
+    }
+
+    private var languageActionTitle: String {
+        if OnboardingLanguageConfiguration.audioPackCanBeSkipped {
+            return AppLocalization.text("Continue")
+        }
+        if isPreparingLanguage || languageAudioPackManager.progress[preferences.appLanguage] != nil {
+            return AppLocalization.text("Downloading narration…")
+        }
+        if preferences.appLanguage == .english
+            || languageAudioPackManager.downloadedLanguages.contains(preferences.appLanguage) {
+            return AppLocalization.text("Continue")
+        }
+        return AppLocalization.text(
+            #"Download \(language.displayName) narration"#,
+            replacing: [
+                #"\(language.displayName)"#: AppLocalization.text(preferences.appLanguage.displayName)
+            ]
+        )
+    }
+
+    private func handleLanguageAction() {
+        let language = preferences.appLanguage
+        if OnboardingLanguageConfiguration.audioPackCanBeSkipped {
+            onContinue()
+            return
+        }
+
+        guard language != .english,
+              !languageAudioPackManager.downloadedLanguages.contains(language) else {
+            onContinue()
+            return
+        }
+
+        guard !isPreparingLanguage else { return }
+        isPreparingLanguage = true
+        Task {
+            await languageAudioPackManager.download(language)
+            isPreparingLanguage = false
+        }
+    }
+}
+
+// MARK: - Screen 2: Draw the Path
 
 private struct OnboardingPage1: View {
+    @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var ttsService: TTSService
 
+    let isActive: Bool
     let onComplete: () -> Void
     let onSkip: () -> Void
     @Binding var didPlayVoiceover: Bool
@@ -276,12 +529,13 @@ private struct OnboardingPage1: View {
                 defaultLayout
             }
         }
-        .onAppear {
-            tutorialViewModel.reset()
-            Analytics.send("Onboarding.tutorialShown")
-            guard !didPlayVoiceover else { return }
-            didPlayVoiceover = true
-            ttsService.playAudio("onboarding_trace_intro.mp3")
+        .onAppear(perform: activateTutorialIfNeeded)
+        .onChange(of: isActive) { active in
+            if active {
+                activateTutorialIfNeeded()
+            } else {
+                ttsService.stop()
+            }
         }
         .onDisappear {
             ttsService.stop()
@@ -295,6 +549,21 @@ private struct OnboardingPage1: View {
                 didAdvance = false
             }
         }
+    }
+
+    private func activateTutorialIfNeeded() {
+        guard isActive else { return }
+        tutorialViewModel.reset()
+        Analytics.send("Onboarding.tutorialShown")
+        guard !didPlayVoiceover else { return }
+
+        ttsService.setLanguage(preferences.appLanguage)
+        didPlayVoiceover = true
+        let didStartAudio = ttsService.playAudio("onboarding_trace_intro.mp3")
+        Analytics.send("Onboarding.tutorialAudioStarted", with: [
+            "app_locale": preferences.appLanguage.rawValue,
+            "started": String(didStartAudio)
+        ])
     }
 
     private var defaultLayout: some View {
@@ -752,7 +1021,7 @@ private struct OnboardingFeatureRow: View {
                 .font(.system(size: 16))
                 .foregroundColor(AppColor.accentGreen)
                 .frame(width: 24)
-            Text(label)
+            Text(LocalizedStringKey(label))
                 .font(.system(size: 16, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
         }
@@ -884,7 +1153,7 @@ struct DifficultyCard: View {
                     }
                 }
 
-                Text(level.displayName)
+                Text(LocalizedStringKey(level.displayName))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
 

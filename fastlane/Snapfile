@@ -1,0 +1,9 @@
+scheme("LowDopamineLabyrinth")
+project("LowDopamineLabyrinth/LowDopamineLabyrinth.xcodeproj")
+output_directory("fastlane/screenshots")
+clear_previous_screenshots(true)
+languages(["en-US", "de-DE", "es-ES"])
+devices([
+  "iPhone 17 Pro Max",
+  "iPad Pro 13-inch (M5)"
+])

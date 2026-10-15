@@ -12,6 +12,7 @@ import html
 import json
 import base64
 import random
+import shutil
 import subprocess
 import tempfile
 import time
@@ -631,21 +632,53 @@ def svg_to_pdf(svg_path: Path, pdf_path: Path) -> None:
             wrapper_path.unlink(missing_ok=True)
 
 
+def pdfs_to_png(pdf_dir: Path, png_dir: Path) -> None:
+    """Render every PDF first page as a high-resolution Pinterest-ready PNG."""
+    pdf_paths = sorted(pdf_dir.glob("*.pdf"))
+    if not pdf_paths:
+        return
+
+    png_dir.mkdir(parents=True, exist_ok=True)
+    for stale in png_dir.glob("*.png"):
+        stale.unlink()
+
+    with tempfile.TemporaryDirectory() as preview_dir:
+        result = subprocess.run(
+            ["qlmanage", "-t", "-s", "1800", "-o", preview_dir, *map(str, pdf_paths)],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=90,
+        )
+        if result.returncode != 0:
+            raise RuntimeError(f"Quick Look failed generating PNG files: {result.stderr.strip()}")
+
+        for pdf_path in pdf_paths:
+            rendered = Path(preview_dir) / f"{pdf_path.name}.png"
+            if not rendered.exists():
+                raise RuntimeError(f"Quick Look did not generate a PNG for {pdf_path.name}")
+            shutil.copy2(rendered, png_dir / f"{pdf_path.stem}.png")
+
+
 def generate() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     svg_dir = OUTPUT_DIR / "svg"
     pdf_dir = OUTPUT_DIR / "pdf"
+    png_dir = OUTPUT_DIR / "png"
     json_dir = OUTPUT_DIR / "json"
     color_svg_dir = OUTPUT_DIR / "color" / "svg"
     color_pdf_dir = OUTPUT_DIR / "color" / "pdf"
+    color_png_dir = OUTPUT_DIR / "color" / "png"
     svg_dir.mkdir(exist_ok=True)
     pdf_dir.mkdir(exist_ok=True)
+    png_dir.mkdir(exist_ok=True)
     json_dir.mkdir(exist_ok=True)
     color_svg_dir.mkdir(parents=True, exist_ok=True)
     color_pdf_dir.mkdir(parents=True, exist_ok=True)
+    color_png_dir.mkdir(parents=True, exist_ok=True)
     ASSET_DIR.mkdir(exist_ok=True)
     BW_ASSET_DIR.mkdir(exist_ok=True)
-    for stale in [*svg_dir.glob("*.svg"), *pdf_dir.glob("*.pdf"), *json_dir.glob("*.json"), *color_svg_dir.glob("*.svg"), *color_pdf_dir.glob("*.pdf")]:
+    for stale in [*svg_dir.glob("*.svg"), *pdf_dir.glob("*.pdf"), *png_dir.glob("*.png"), *json_dir.glob("*.json"), *color_svg_dir.glob("*.svg"), *color_pdf_dir.glob("*.pdf"), *color_png_dir.glob("*.png")]:
         stale.unlink()
 
     maze_generator = FullMazeGenerator()
@@ -731,12 +764,16 @@ def generate() -> None:
                 "shape": theme["shape"],
                 "svg": f"svg/{slug}.svg",
                 "pdf": f"pdf/{slug}.pdf",
+                "png": f"png/{slug}.png",
                 "json": f"json/{slug}.json",
                 "color_svg": f"color/svg/{slug}.svg",
                 "color_pdf": f"color/pdf/{slug}.pdf",
+                "color_png": f"color/png/{slug}.png",
             })
 
     manifest["total"] = len(manifest["mazes"])
+    pdfs_to_png(pdf_dir, png_dir)
+    pdfs_to_png(color_pdf_dir, color_png_dir)
     for difficulty, diff in DIFFICULTIES.items():
         zip_path = OUTPUT_DIR / f"halloween-mazes-{difficulty}.zip"
         color_zip_path = OUTPUT_DIR / f"halloween-mazes-color-{difficulty}.zip"
@@ -766,6 +803,7 @@ def generate() -> None:
         "- 3 difficulty levels per theme\n"
         "- Color and printer-friendly black-and-white versions\n"
         "- Individual worksheets are PDFs, with SVG files kept for web previews\n"
+        "- `png/` and `color/png/` contain high-resolution images for Pinterest\n"
         "- Includes plain, collect, shaped and avoid maze variants\n"
         "- Footer includes `www.harmlessapp.com`\n"
         "- `json/` files keep maze metadata and solution paths for future web pages\n",

@@ -1,23 +1,12 @@
 import SwiftUI
-import UIKit
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(
-        _ application: UIApplication,
-        supportedInterfaceOrientationsFor window: UIWindow?
-    ) -> UIInterfaceOrientationMask {
-        return .landscape
-    }
-}
 
 @main
 struct LowDopamineLabyrinthApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
     @StateObject private var preferences = UserPreferences()
     @StateObject private var subscriptionManager = SubscriptionManager()
     @StateObject private var progressTracker = ProgressTracker()
     @StateObject private var ttsService = TTSService()
+    @StateObject private var languageAudioPackManager = LanguageAudioPackManager.shared
     @StateObject private var reviewRequestManager = ReviewRequestManager()
 
     init() {
@@ -31,8 +20,10 @@ struct LowDopamineLabyrinthApp: App {
                 subscriptionManager: subscriptionManager,
                 progressTracker: progressTracker,
                 ttsService: ttsService,
+                languageAudioPackManager: languageAudioPackManager,
                 reviewRequestManager: reviewRequestManager
             )
+            .environment(\.locale, preferences.appLanguage.locale)
         }
     }
 }
@@ -42,6 +33,7 @@ struct RootView: View {
     @ObservedObject var subscriptionManager: SubscriptionManager
     @ObservedObject var progressTracker: ProgressTracker
     @ObservedObject var ttsService: TTSService
+    @ObservedObject var languageAudioPackManager: LanguageAudioPackManager
     @ObservedObject var reviewRequestManager: ReviewRequestManager
     @StateObject private var gameViewModel: GameViewModel
     @State private var didConfigureUITestEnvironment = false
@@ -50,12 +42,15 @@ struct RootView: View {
          subscriptionManager: SubscriptionManager,
          progressTracker: ProgressTracker,
          ttsService: TTSService,
+         languageAudioPackManager: LanguageAudioPackManager,
          reviewRequestManager: ReviewRequestManager) {
         self.preferences = preferences
         self.subscriptionManager = subscriptionManager
         self.progressTracker = progressTracker
         self.ttsService = ttsService
+        self.languageAudioPackManager = languageAudioPackManager
         self.reviewRequestManager = reviewRequestManager
+        LabyrinthLoader.shared.setLanguage(preferences.appLanguage)
         _gameViewModel = StateObject(wrappedValue: GameViewModel(
             preferences: preferences,
             subscriptionManager: subscriptionManager,
@@ -69,11 +64,17 @@ struct RootView: View {
             .environmentObject(subscriptionManager)
             .environmentObject(progressTracker)
             .environmentObject(ttsService)
+            .environmentObject(languageAudioPackManager)
             .environmentObject(reviewRequestManager)
             .environmentObject(gameViewModel)
             .onAppear {
+                ttsService.setLanguage(preferences.appLanguage)
                 configureUITestEnvironmentIfNeeded()
-                requestLandscape()
+            }
+            .onChange(of: preferences.appLanguage) { language in
+                ttsService.setLanguage(language)
+                LabyrinthLoader.shared.setLanguage(language)
+                gameViewModel.reloadForLanguageChange()
             }
             .fullScreenCover(isPresented: Binding(
                 get: { !preferences.hasCompletedOnboarding },
@@ -85,14 +86,9 @@ struct RootView: View {
                 .environmentObject(preferences)
                 .environmentObject(subscriptionManager)
                 .environmentObject(ttsService)
+                .environmentObject(languageAudioPackManager)
                 .environmentObject(reviewRequestManager)
             }
-    }
-
-    private func requestLandscape() {
-        guard let windowScene = UIApplication.shared.connectedScenes
-                .first(where: { $0 is UIWindowScene }) as? UIWindowScene else { return }
-        windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscape))
     }
 
     private func configureUITestEnvironmentIfNeeded() {

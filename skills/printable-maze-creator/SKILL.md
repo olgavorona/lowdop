@@ -23,6 +23,7 @@ Create one Pinterest title and description for every maze and difficulty and sav
 - Title pattern: `<Difficulty> <Theme> Maze Printable for Kids`.
 - Description: naturally include free printable, difficulty and theme, ages 2–6, preschool or kindergarten, quiet-use contexts, and pencil or crayon.
 - Mention the actual task or distinctive structure. Keep entries readable and distinct instead of mechanically stacking keywords.
+- Export a high-resolution PNG for every B&W and color maze. Store them in `png/` and `color/png/`; Pinterest cannot use the printable PDFs as pin images.
 
 ## Artwork
 
@@ -59,7 +60,7 @@ Create one Pinterest title and description for every maze and difficulty and sav
 
 - Generate under `content/printables/<collection>/`, then copy the complete result to `site/public/printables/<collection>/` after every regeneration.
 - Update collection data, Astro route, printables index, and sitemap.
-- Build separate B&W and color ZIPs for every difficulty and verify their contents.
+- Build separate B&W and color ZIPs for every difficulty and verify their contents. Also verify the B&W and color PNG folders contain one image per maze and difficulty.
 - Inspect Easy/Hard and color/B&W PDFs, plus a color SVG directly in Chrome.
 - Verify silhouette, endpoint, image scale, obstacle count/type, copy wrapping, source/public inventory, and unexpectedly large files.
 - Run Python compilation, Astro check, production build, and `git diff --check`.

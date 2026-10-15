@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Maze Editor</title>
+  <style>
+    :root { --bg:#f3efe4; --panel:#fffaf0; --ink:#211b15; --muted:#70675b; --line:#d8cfbf; --green:#14805f; --blue:#315fa8; --red:#b33a2f; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
+    .layout { min-height:100vh; display:grid; grid-template-columns:340px 1fr; }
+    aside { padding:20px; background:var(--panel); border-right:1px solid var(--line); overflow:auto; }
+    main { display:flex; align-items:center; justify-content:center; padding:24px; }
+    h1 { margin:0 0 6px; font-size:24px; }
+    p { color:var(--muted); line-height:1.45; }
+    .group { margin-top:18px; }
+    label { display:block; margin-bottom:6px; color:var(--muted); font-size:13px; }
+    input, button { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:white; font:inherit; }
+    button { cursor:pointer; }
+    button.active { color:white; background:var(--ink); border-color:var(--ink); }
+    button.primary { color:white; background:var(--green); border-color:var(--green); }
+    button.danger { color:var(--red); }
+    .modes, .buttons { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+    .modes { grid-template-columns:1fr 1fr 1fr; }
+    .emoji-row { display:grid; grid-template-columns:1fr 54px; gap:8px; }
+    #emoji { text-align:center; font-size:24px; }
+    #status { margin-top:16px; padding:10px 12px; min-height:44px; border:1px solid var(--line); border-radius:10px; background:white; font-size:13px; }
+    .card { width:min(100%,1000px); padding:14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.65); box-shadow:0 18px 50px rgba(30,20,10,.1); }
+    canvas { display:block; width:100%; height:auto; aspect-ratio:6/5; border-radius:12px; background:white; touch-action:none; cursor:crosshair; }
+    .legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; color:var(--muted); font-size:13px; }
+    .dot { display:inline-block; width:10px; height:10px; margin-right:5px; border-radius:50%; }
+    @media(max-width:850px) { .layout { grid-template-columns:1fr; } aside { border-right:0; border-bottom:1px solid var(--line); } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h1>Image Maze Editor</h1>
+      <p>Import an image, place the start, finish, and any number of collectibles, then export the normalized app files.</p>
+
+      <div class="group">
+        <label for="imageInput">Maze image (PNG, JPEG, or WebP)</label>
+        <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp">
+      </div>
+
+      <div class="group">
+        <label for="baseName">Export name</label>
+        <input id="baseName" value="custom_maze" spellcheck="false">
+      </div>
+
+      <div class="group">
+        <label>Placement mode</label>
+        <div class="modes">
+          <button id="startMode">Start</button>
+          <button id="finishMode">Finish</button>
+          <button id="itemMode">Collect</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <label for="emoji">Collectible emoji</label>
+        <div class="emoji-row">
+          <input id="emoji" value="⭐" maxlength="8">
+          <button id="applyEmoji" title="Apply to selected collectible">Apply</button>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="undoBtn">Undo</button>
+        <button id="removeBtn" class="danger">Remove selected</button>
+      </div>
+      <div class="buttons">
+        <button id="clearItemsBtn">Clear items</button>
+        <button id="resetBtn">Reset all</button>
+      </div>
+
+      <div id="status">Choose an image to begin.</div>
+
+      <div class="group">
+        <button id="exportImageBtn" class="primary">1. Export 600×500 PNG</button>
+        <button id="exportJsonBtn" class="primary" style="margin-top:8px">2. Export maze JSON</button>
+      </div>
+      <p>The PNG contains only the maze artwork. Start, finish, and collectibles stay editable in JSON and are rendered by the app.</p>
+    </aside>
+
+    <main>
+      <div class="card">
+        <canvas id="canvas" width="600" height="500" aria-label="Maze annotation canvas"></canvas>
+        <div class="legend">
+          <span><i class="dot" style="background:var(--green)"></i>start</span>
+          <span><i class="dot" style="background:var(--blue)"></i>finish</span>
+          <span><i class="dot" style="background:var(--red)"></i>selected collectible</span>
+          <span>Click a marker to select it; drag to reposition.</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const WIDTH = 600;
+    const HEIGHT = 500;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const imageInput = document.getElementById('imageInput');
+    const statusEl = document.getElementById('status');
+    const emojiInput = document.getElementById('emoji');
+    const modeButtons = {
+      start: document.getElementById('startMode'),
+      finish: document.getElementById('finishMode'),
+      item: document.getElementById('itemMode'),
+    };
+
+    const state = {
+      image: null,
+      mode: 'start',
+      start: null,
+      finish: null,
+      items: [],
+      selected: null,
+      dragging: false,
+      history: [],
+    };
+
+    const cloneAnnotations = () => JSON.parse(JSON.stringify({
+      start: state.start, finish: state.finish, items: state.items,
+    }));
+
+    const saveHistory = () => {
+      state.history.push(cloneAnnotations());
+      if (state.history.length > 100) state.history.shift();
+    };
+
+    const setStatus = (message, error = false) => {
+      statusEl.textContent = message;
+      statusEl.style.color = error ? 'var(--red)' : 'var(--ink)';
+    };
+
+    const setMode = (mode) => {
+      state.mode = mode;
+      state.selected = null;
+      Object.entries(modeButtons).forEach(([name, button]) => button.classList.toggle('active', name === mode));
+      setStatus(mode === 'item' ? 'Click to add collectibles. Click or drag an existing one to edit it.' : `Click to place the ${mode}.`);
+      draw();
+    };
+
+    const pointFromEvent = (event) => {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: Math.max(0, Math.min(WIDTH, (event.clientX - rect.left) * WIDTH / rect.width)),
+        y: Math.max(0, Math.min(HEIGHT, (event.clientY - rect.top) * HEIGHT / rect.height)),
+      };
+    };
+
+    const drawBaseImage = () => {
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+      if (!state.image) return;
+      const scale = Math.min(WIDTH / state.image.width, HEIGHT / state.image.height);
+      const width = state.image.width * scale;
+      const height = state.image.height * scale;
+      ctx.drawImage(state.image, (WIDTH - width) / 2, (HEIGHT - height) / 2, width, height);
+    };
+
+    const marker = (point, color, label) => {
+      if (!point) return;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, 15, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,.92)';
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+      ctx.fillStyle = color;
+      ctx.font = 'bold 12px -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(label, point.x, point.y);
+      ctx.restore();
+    };
+
+    const draw = () => {
+      drawBaseImage();
+      marker(state.start, '#14805f', 'S');
+      marker(state.finish, '#315fa8', 'F');
+      state.items.forEach((item, index) => {
+        ctx.save();
+        ctx.font = '28px Apple Color Emoji, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        if (state.selected?.type === 'item' && state.selected.index === index) {
+          ctx.beginPath();
+          ctx.arc(item.x, item.y, 21, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,.85)';
+          ctx.fill();
+          ctx.lineWidth = 3;
+          ctx.strokeStyle = '#b33a2f';
+          ctx.stroke();
+        }
+        ctx.fillText(item.emoji, item.x, item.y + 1);
+        ctx.restore();
+      });
+    };
+
+    const hitTest = (point) => {
+      for (let index = state.items.length - 1; index >= 0; index -= 1) {
+        if (Math.hypot(state.items[index].x - point.x, state.items[index].y - point.y) <= 25) return { type:'item', index };
+      }
+      if (state.start && Math.hypot(state.start.x - point.x, state.start.y - point.y) <= 22) return { type:'start' };
+      if (state.finish && Math.hypot(state.finish.x - point.x, state.finish.y - point.y) <= 22) return { type:'finish' };
+      return null;
+    };
+
+    const moveSelected = (point) => {
+      if (!state.selected) return;
+      const target = { x:Number(point.x.toFixed(1)), y:Number(point.y.toFixed(1)) };
+      if (state.selected.type === 'item') state.items[state.selected.index] = { ...state.items[state.selected.index], ...target };
+      else state[state.selected.type] = target;
+      draw();
+    };
+
+    canvas.addEventListener('pointerdown', (event) => {
+      if (!state.image) return setStatus('Choose an image first.', true);
+      const point = pointFromEvent(event);
+      const hit = hitTest(point);
+      if (hit) {
+        saveHistory();
+        state.selected = hit;
+        state.dragging = true;
+        canvas.setPointerCapture(event.pointerId);
+        draw();
+        return;
+      }
+      saveHistory();
+      const target = { x:Number(point.x.toFixed(1)), y:Number(point.y.toFixed(1)) };
+      if (state.mode === 'start') state.start = target;
+      if (state.mode === 'finish') state.finish = target;
+      if (state.mode === 'item') {
+        state.items.push({ ...target, emoji:emojiInput.value.trim() || '⭐', on_solution:false });
+        state.selected = { type:'item', index:state.items.length - 1 };
+      }
+      draw();
+      setStatus(`${state.items.length} collectible${state.items.length === 1 ? '' : 's'} placed.`);
+    });
+
+    canvas.addEventListener('pointermove', (event) => {
+      if (state.dragging) moveSelected(pointFromEvent(event));
+    });
+    canvas.addEventListener('pointerup', (event) => {
+      state.dragging = false;
+      if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+    });
+
+    imageInput.addEventListener('change', () => {
+      const file = imageInput.files?.[0];
+      if (!file) return;
+      const image = new Image();
+      image.onload = () => {
+        state.image = image;
+        state.start = null;
+        state.finish = null;
+        state.items = [];
+        state.history = [];
+        document.getElementById('baseName').value = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]+/g, '_');
+        URL.revokeObjectURL(image.src);
+        setMode('start');
+        draw();
+      };
+      image.src = URL.createObjectURL(file);
+    });
+
+    Object.entries(modeButtons).forEach(([mode, button]) => button.addEventListener('click', () => setMode(mode)));
+
+    document.getElementById('applyEmoji').addEventListener('click', () => {
+      if (state.selected?.type !== 'item') return setStatus('Select a collectible first.', true);
+      saveHistory();
+      state.items[state.selected.index].emoji = emojiInput.value.trim() || '⭐';
+      draw();
+    });
+
+    document.getElementById('undoBtn').addEventListener('click', () => {
+      const previous = state.history.pop();
+      if (!previous) return;
+      state.start = previous.start;
+      state.finish = previous.finish;
+      state.items = previous.items;
+      state.selected = null;
+      draw();
+    });
+
+    document.getElementById('removeBtn').addEventListener('click', () => {
+      if (!state.selected) return setStatus('Select a marker first.', true);
+      saveHistory();
+      if (state.selected.type === 'item') state.items.splice(state.selected.index, 1);
+      else state[state.selected.type] = null;
+      state.selected = null;
+      draw();
+    });
+
+    document.getElementById('clearItemsBtn').addEventListener('click', () => {
+      saveHistory(); state.items = []; state.selected = null; draw();
+    });
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      saveHistory(); state.start = null; state.finish = null; state.items = []; state.selected = null; setMode('start'); draw();
+    });
+
+    const download = (blob, filename) => {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    };
+    const baseName = () => document.getElementById('baseName').value.trim().replace(/[^a-zA-Z0-9_-]+/g, '_') || 'custom_maze';
+
+    document.getElementById('exportImageBtn').addEventListener('click', () => {
+      if (!state.image) return setStatus('Choose an image first.', true);
+      drawBaseImage();
+      canvas.toBlob(blob => { download(blob, `${baseName()}.png`); draw(); }, 'image/png');
+    });
+
+    document.getElementById('exportJsonBtn').addEventListener('click', () => {
+      if (!state.image || !state.start || !state.finish) return setStatus('Place both start and finish before exporting.', true);
+      const emoji = state.items[0]?.emoji || emojiInput.value.trim() || '⭐';
+      const result = {
+        item_rule: state.items.length ? 'collect' : null,
+        item_emoji: state.items.length ? emoji : null,
+        path_data: {
+          svg_path: '', solution_path: '', background_image: `${baseName()}.png`,
+          width: 0, complexity: 'custom', maze_type: 'image',
+          start_point: state.start, end_point: state.finish, segments: [],
+          canvas_width: WIDTH, canvas_height: HEIGHT, control_points: null,
+          items: state.items.length ? state.items : null, avoid_items: null,
+        },
+      };
+      download(new Blob([JSON.stringify(result, null, 2) + '\n'], { type:'application/json' }), `${baseName()}.json`);
+      setStatus(`Exported metadata with ${state.items.length} collectible${state.items.length === 1 ? '' : 's'}.`);
+    });
+
+    setMode('start');
+    draw();
+  </script>
+</body>
+</html>

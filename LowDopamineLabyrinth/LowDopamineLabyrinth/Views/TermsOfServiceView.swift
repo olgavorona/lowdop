@@ -79,7 +79,7 @@ struct TermsOfServiceView: View {
 
     private func section(_ title: String, @ViewBuilder content: () -> some View) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
             content()
@@ -91,7 +91,7 @@ struct TermsOfServiceView: View {
     private func bullet(_ text: String) -> some View {
         HStack(alignment: .top, spacing: 8) {
             Text("\u{2022}")
-            Text(text)
+            Text(LocalizedStringKey(text))
         }
         .font(.system(size: 15, design: .rounded))
         .foregroundColor(AppColor.textPrimary.opacity(0.85))

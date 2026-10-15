@@ -18,22 +18,22 @@ struct Labyrinth: Codable, Identifiable {
     let ageRange: String?
     let difficulty: String
     let theme: String
-    let title: String
-    let storySetup: String
-    let instruction: String
-    let ttsInstruction: String
-    let characterStart: LabyrinthCharacter
-    let characterEnd: LabyrinthCharacter
-    let educationalQuestion: String
-    let funFact: String
-    let completionMessage: String
+    var title: String
+    var storySetup: String
+    var instruction: String
+    var ttsInstruction: String
+    var characterStart: LabyrinthCharacter
+    var characterEnd: LabyrinthCharacter
+    var educationalQuestion: String
+    var funFact: String
+    var completionMessage: String
     let pathData: PathData
     let visualTheme: VisualTheme
-    let location: String?
+    var location: String?
     let audioInstruction: String?
     let audioCompletion: String?
     var audioAnswer: String? = nil
-    let itemRule: String?
+    var itemRule: String?
     let itemEmoji: String?
 
     enum CodingKeys: String, CodingKey {
@@ -70,7 +70,7 @@ struct LabyrinthCharacter: Codable {
     let type: String
     let description: String
     let position: String
-    let name: String?
+    var name: String?
     let imageAsset: String?
 
     enum CodingKeys: String, CodingKey {
@@ -82,6 +82,7 @@ struct LabyrinthCharacter: Codable {
 struct PathData: Codable {
     let svgPath: String
     let solutionPath: String
+    var backgroundImage: String? = nil
     let width: Double
     let complexity: String
     let mazeType: String
@@ -97,6 +98,7 @@ struct PathData: Codable {
     enum CodingKeys: String, CodingKey {
         case svgPath = "svg_path"
         case solutionPath = "solution_path"
+        case backgroundImage = "background_image"
         case width, complexity
         case mazeType = "maze_type"
         case startPoint = "start_point"

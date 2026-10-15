@@ -100,12 +100,13 @@ class SubscriptionManager: ObservableObject {
     @MainActor
     func restorePurchases() async {
         let hadPremium = isPremium
-        Analytics.send("restore_started")
+        Analytics.send("restore_started", with: ["app_locale": Analytics.currentLocale])
         try? await AppStore.sync()
         await checkEntitlements()
         Analytics.send(isPremium ? "restore_success" : "restore_failed", with: [
             "restored_access": String(isPremium),
-            "had_access_before_restore": String(hadPremium)
+            "had_access_before_restore": String(hadPremium),
+            "app_locale": Analytics.currentLocale
         ])
     }
 

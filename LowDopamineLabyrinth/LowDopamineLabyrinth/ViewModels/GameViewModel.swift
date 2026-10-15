@@ -42,6 +42,17 @@ class GameViewModel: ObservableObject {
         isPlaying = false
     }
 
+    func reloadForLanguageChange() {
+        let selectedID = currentLabyrinth?.id
+        currentPackFreeStories = LabyrinthLoader.shared.packInfo(packId: currentPackId)?.freeStories ?? 0
+        labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel, packId: currentPackId)
+        if let selectedID, let newIndex = labyrinths.firstIndex(where: { $0.id == selectedID }) {
+            currentIndex = newIndex
+        } else {
+            currentIndex = 0
+        }
+    }
+
     func selectLabyrinth(_ labyrinth: Labyrinth) {
         if let idx = labyrinths.firstIndex(where: { $0.id == labyrinth.id }) {
             currentIndex = idx

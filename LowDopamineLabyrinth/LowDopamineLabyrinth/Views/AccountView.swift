@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct AccountView: View {
+    @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var subscriptionManager: SubscriptionManager
+    @EnvironmentObject var languageAudioPackManager: LanguageAudioPackManager
     @EnvironmentObject var reviewRequestManager: ReviewRequestManager
     @Environment(\.dismiss) var dismiss
     @State private var showPaywall = false
@@ -9,6 +11,29 @@ struct AccountView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
+
+                // MARK: - Language
+                SectionHeader(title: "Language")
+
+                VStack(alignment: .leading, spacing: 14) {
+                    Picker("App language", selection: $preferences.appLanguage) {
+                        ForEach(AppLanguage.allCases) { language in
+                            Text(AppLocalization.text(language.displayName)).tag(language)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+
+                    if preferences.appLanguage == .english {
+                        Text("English narration is included with the app.")
+                            .font(.system(size: 13, design: .rounded))
+                            .foregroundColor(AppColor.textSecondary)
+                    } else {
+                        languagePackControls(for: preferences.appLanguage)
+                    }
+                }
+                .padding(16)
+                .background(Color.white)
+                .cornerRadius(16)
 
                 // MARK: - Purchase
                 SectionHeader(title: "Purchase")
@@ -18,7 +43,7 @@ struct AccountView: View {
                         Image(systemName: statusIcon)
                             .foregroundColor(statusColor)
                             .font(.system(size: 18))
-                        Text(statusText)
+                        Text(AppLocalization.text(statusText))
                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                             .foregroundColor(AppColor.textPrimary)
                         Spacer()
@@ -93,6 +118,61 @@ struct AccountView: View {
         .onAppear {
             reviewRequestManager.requestAfterFirstAccountOpen()
         }
+        .task {
+            await languageAudioPackManager.refreshStatus(for: preferences.appLanguage)
+        }
+        .onChange(of: preferences.appLanguage) { language in
+            Analytics.send("Language.selected", with: [
+                "language": language.rawValue,
+                "app_locale": language.rawValue,
+                "source": "settings"
+            ])
+            Task { await languageAudioPackManager.refreshStatus(for: language) }
+        }
+    }
+
+    @ViewBuilder
+    private func languagePackControls(for language: AppLanguage) -> some View {
+        if languageAudioPackManager.downloadedLanguages.contains(language) {
+            HStack {
+                Label("Narration downloaded for offline use", systemImage: "checkmark.circle.fill")
+                    .font(.system(size: 13, design: .rounded))
+                    .foregroundColor(AppColor.accentGreen)
+                Spacer()
+                Button("Remove") {
+                    Task { await languageAudioPackManager.remove(language) }
+                }
+                .font(.system(size: 13, weight: .semibold, design: .rounded))
+            }
+        } else {
+            Button {
+                Task { await languageAudioPackManager.download(language) }
+            } label: {
+                HStack(spacing: 10) {
+                    if let progress = languageAudioPackManager.progress[language] {
+                        ProgressView(value: progress)
+                            .tint(.white)
+                        Text("Downloading narration…")
+                    } else {
+                        Label("Download \(language.displayName) narration", systemImage: "arrow.down.circle")
+                    }
+                }
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 44)
+                .background(AppColor.accentBlue)
+                .cornerRadius(12)
+            }
+            .buttonStyle(.plain)
+            .disabled(languageAudioPackManager.progress[language] != nil)
+        }
+
+        if let error = languageAudioPackManager.errors[language] {
+            Text(AppLocalization.text(error))
+                .font(.system(size: 12, design: .rounded))
+                .foregroundColor(.red)
+        }
     }
 
     private var statusText: String {
@@ -113,7 +193,8 @@ struct AccountView: View {
 private struct SectionHeader: View {
     let title: String
     var body: some View {
-        Text(title.uppercased())
+        Text(LocalizedStringKey(title))
+            .textCase(.uppercase)
             .font(.system(size: 12, weight: .semibold, design: .rounded))
             .foregroundColor(AppColor.textTertiary)
             .padding(.horizontal, 4)
@@ -135,7 +216,7 @@ private struct AccountButton: View {
                     .frame(width: 28, height: 28)
                     .background(color)
                     .cornerRadius(8)
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.system(size: 15, weight: .medium, design: .rounded))
                     .foregroundColor(AppColor.textPrimary)
                 Spacer()
@@ -155,7 +236,7 @@ private struct AccountRow: View {
                 .foregroundColor(AppColor.textTertiary)
                 .font(.system(size: 14))
                 .frame(width: 28)
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.system(size: 15, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
             Spacer()

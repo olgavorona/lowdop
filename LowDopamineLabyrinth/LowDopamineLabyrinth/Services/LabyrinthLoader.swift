@@ -4,6 +4,29 @@ class LabyrinthLoader {
     static let shared = LabyrinthLoader()
 
     private var cachedLabyrinths: [Labyrinth] = []
+    private var language: AppLanguage = .english
+    private lazy var localizedCopy: [String: [String: [String: String]]] = {
+        guard let url = Bundle.main.url(forResource: "story-localizations", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let decoded = try? JSONDecoder().decode([String: [String: [String: String]]].self, from: data) else {
+            return [:]
+        }
+        return decoded
+    }()
+
+    func setLanguage(_ language: AppLanguage) {
+        guard self.language != language else { return }
+        self.language = language
+        cachedLabyrinths = []
+    }
+
+    private func localized(_ source: String, category: String) -> String {
+        localizedCopy[language.rawValue]?[category]?[source] ?? source
+    }
+
+    func localizedNarration(_ source: String) -> String {
+        localized(source, category: "shared.narration")
+    }
 
     func packInfo(packId: String) -> PackInfo? {
         loadManifest()?.packs?.first(where: { $0.id == packId })
@@ -22,7 +45,18 @@ class LabyrinthLoader {
         }
         do {
             let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode(Labyrinth.self, from: data)
+            guard var labyrinth = try? JSONDecoder().decode(Labyrinth.self, from: data) else { return nil }
+            labyrinth.title = localized(labyrinth.title, category: "story.title")
+            labyrinth.storySetup = localized(labyrinth.storySetup, category: "story.setup")
+            labyrinth.instruction = localized(labyrinth.instruction, category: "story.instruction")
+            labyrinth.ttsInstruction = localized(labyrinth.ttsInstruction, category: "story.narration_instruction")
+            labyrinth.educationalQuestion = localized(labyrinth.educationalQuestion, category: "story.question")
+            labyrinth.funFact = localized(labyrinth.funFact, category: "story.narration_answer")
+            labyrinth.completionMessage = localized(labyrinth.completionMessage, category: "story.narration_completion")
+            labyrinth.location = labyrinth.location.map { localized($0, category: "story.location") }
+            labyrinth.characterStart.name = labyrinth.characterStart.name.map { localized($0, category: "story.character_name") }
+            labyrinth.characterEnd.name = labyrinth.characterEnd.name.map { localized($0, category: "story.character_name") }
+            return labyrinth
         } catch {
             print("[LabyrinthLoader] Failed to decode \(id).json: \(error)")
             return nil
@@ -96,8 +130,8 @@ class LabyrinthLoader {
 
             return StoryInfo(
                 number: storyNumber,
-                title: firstEntry.title,
-                location: firstEntry.location ?? "",
+                title: localized(firstEntry.title, category: "story.title"),
+                location: firstEntry.location.map { localized($0, category: "story.location") } ?? "",
                 characterEnd: characterEnd,
                 isFree: index < freeStories,
                 isAdventure: isAdventure,

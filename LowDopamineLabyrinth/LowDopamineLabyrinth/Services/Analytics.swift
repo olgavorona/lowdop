@@ -1,6 +1,7 @@
 import StoreKit
 import TelemetryDeck
 import UIKit
+import MetricKit
 
 enum PaywallSource: String {
     case onboarding
@@ -23,13 +24,56 @@ enum PaywallSource: String {
 }
 
 enum Analytics {
+    static var currentLocale: String {
+        UserDefaults.standard.string(forKey: "appLanguage") ?? "en"
+    }
+
     static func configure() {
         let config = TelemetryDeck.Config(appID: "738FCE64-D2AE-483A-B5FB-CCCB26BD5E01")
         TelemetryDeck.initialize(config: config)
+        CrashDiagnosticsReporter.shared.start()
     }
 
     static func send(_ event: String, with params: [String: String] = [:]) {
         TelemetryDeck.signal(event, parameters: params)
+    }
+
+    static func error(_ id: String, message: String? = nil, parameters: [String: String] = [:]) {
+        var context = parameters
+        context["app_locale"] = context["app_locale"] ?? currentLocale
+        TelemetryDeck.errorOccurred(
+            id: id,
+            category: .thrownException,
+            message: message,
+            parameters: context
+        )
+    }
+}
+
+private final class CrashDiagnosticsReporter: NSObject, MXMetricManagerSubscriber {
+    static let shared = CrashDiagnosticsReporter()
+    private var isStarted = false
+
+    func start() {
+        guard !isStarted else { return }
+        isStarted = true
+        MXMetricManager.shared.add(self)
+    }
+
+    func didReceive(_ payloads: [MXDiagnosticPayload]) {
+        for payload in payloads {
+            let crashCount = payload.crashDiagnostics?.count ?? 0
+            guard crashCount > 0 else { continue }
+            Analytics.error(
+                "App.crashDiagnostic",
+                message: "MetricKit delivered crash diagnostics.",
+                parameters: [
+                    "diagnostic_count": String(crashCount),
+                    "app_version": Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown",
+                    "build_number": Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
+                ]
+            )
+        }
     }
 }
 

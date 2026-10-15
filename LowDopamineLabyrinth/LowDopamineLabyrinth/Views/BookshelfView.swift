@@ -125,14 +125,15 @@ struct BookshelfView: View {
             }
         }
         .onAppear {
-            for config in Self.packs {
-                storiesByPack[config.id] = LabyrinthLoader.shared.loadStories(packId: config.id)
-            }
+            refreshLocalizedStories()
             let totalLoaded = storiesByPack.values.reduce(0) { $0 + $1.count }
             Analytics.send("Bookshelf.opened", with: [
                 "difficulty": preferences.difficultyLevel.rawValue,
                 "storyCount": String(totalLoaded)
             ])
+        }
+        .onChange(of: preferences.appLanguage) { _ in
+            refreshLocalizedStories()
         }
         .fullScreenCover(isPresented: $showParentalGate) {
             ParentalGateView(
@@ -175,6 +176,12 @@ struct BookshelfView: View {
         }
     }
 
+    private func refreshLocalizedStories() {
+        for config in Self.packs {
+            storiesByPack[config.id] = LabyrinthLoader.shared.loadStories(packId: config.id)
+        }
+    }
+
     // MARK: - Top Bar
 
     private var topBar: some View {
@@ -185,7 +192,7 @@ struct BookshelfView: View {
                 showParentalGate = true
             }) {
                 HStack(spacing: 4) {
-                    Text(preferences.difficultyLevel.displayName)
+                    Text(LocalizedStringKey(preferences.difficultyLevel.displayName))
                         .font(.system(size: 13, weight: .semibold, design: .rounded))
                     Image(systemName: "chevron.down")
                         .font(.system(size: 10, weight: .bold))
@@ -326,7 +333,7 @@ struct BookshelfView: View {
 
             VStack(spacing: isCompact ? 3 : 8) {
                 packIconView(config.icon, isCompact: isCompact)
-                Text(config.title)
+                Text(AppLocalization.text(config.title))
                     .font(.system(
                         size: isCompact ? (config.title.count > 16 ? 15 : 17) : (config.title.count > 16 ? 22 : 24),
                         weight: .bold,
@@ -336,7 +343,7 @@ struct BookshelfView: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.85)
-                Text("\(totalCount) stories")
+                Text(AppLocalization.text(#"\(totalCount) stories"#, replacing: [#"\(totalCount)"#: String(totalCount)]))
                     .font(.system(size: isCompact ? 11 : 14, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.8))
             }
@@ -346,7 +353,7 @@ struct BookshelfView: View {
     private func packBottom(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isLetterTracing: Bool = false, isCompact: Bool = false) -> some View {
         VStack(spacing: isCompact ? 7 : 10) {
             HStack {
-                Text(isLocked ? config.unlockText : (isLetterTracing ? "Free · 26 letters" : (isCompact ? "\(completedCount) / \(totalCount) completed" : "\(completedCount) of \(totalCount) stories completed")))
+                Text(packBottomStatus(config: config, completedCount: completedCount, totalCount: totalCount, isLocked: isLocked, isLetterTracing: isLetterTracing, isCompact: isCompact))
                     .font(.system(size: isCompact ? 10 : 14, weight: .medium, design: .rounded))
                     .foregroundColor(AppColor.textSecondary)
                     .lineLimit(isCompact ? 2 : 1)
@@ -373,7 +380,7 @@ struct BookshelfView: View {
 
             HStack {
                 Spacer()
-                Text(isLocked ? "Tap to unlock" : "Tap to play")
+                Text(AppLocalization.text(isLocked ? "Tap to unlock" : "Tap to play"))
                     .font(.system(size: isCompact ? 11 : 13, weight: .semibold, design: .rounded))
                     .foregroundColor(isLocked ? AppColor.accentGreen : AppColor.linkBlue)
                 Image(systemName: isLocked ? "lock.fill" : "chevron.right")
@@ -383,6 +390,21 @@ struct BookshelfView: View {
         }
         .padding(isCompact ? 10 : 16)
         .background(Color.white)
+    }
+
+    private func packBottomStatus(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isLetterTracing: Bool, isCompact: Bool) -> String {
+        if isLocked { return AppLocalization.text(config.unlockText) }
+        if isLetterTracing { return AppLocalization.text("Free · 26 letters") }
+        if isCompact {
+            return AppLocalization.text(
+                #"\(completedCount) / \(totalCount) completed"#,
+                replacing: [#"\(completedCount)"#: String(completedCount), #"\(totalCount)"#: String(totalCount)]
+            )
+        }
+        return AppLocalization.text(
+            #"\(completedCount) of \(totalCount) stories completed"#,
+            replacing: [#"\(completedCount)"#: String(completedCount), #"\(totalCount)"#: String(totalCount)]
+        )
     }
 
     @ViewBuilder

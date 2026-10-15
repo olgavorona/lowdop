@@ -65,8 +65,25 @@ struct LabyrinthGameView: View {
                 // Full-width maze
                 GeometryReader { mazeGeo in
                     ZStack {
+                        if let backgroundImage = viewModel.labyrinth.pathData.backgroundImage {
+                            mazeBackgroundImage(named: backgroundImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(
+                                    width: CGFloat(viewModel.labyrinth.pathData.canvasWidth) * viewModel.scale,
+                                    height: CGFloat(viewModel.labyrinth.pathData.canvasHeight) * viewModel.scale
+                                )
+                                .position(
+                                    x: CGFloat(viewModel.labyrinth.pathData.canvasWidth) * 0.5 * viewModel.scale + viewModel.offset.x,
+                                    y: CGFloat(viewModel.labyrinth.pathData.canvasHeight) * 0.5 * viewModel.scale + viewModel.offset.y
+                                )
+                                .allowsHitTesting(false)
+                        }
+
                         // Background pattern — theme-aware
-                        if viewModel.labyrinth.theme == "space" {
+                        if viewModel.labyrinth.pathData.backgroundImage != nil {
+                            EmptyView()
+                        } else if viewModel.labyrinth.theme == "space" {
                             SpacePatternView()
                                 .opacity(viewModel.hasItems ? 0.55 : 0.18)
                         } else if viewModel.labyrinth.theme == "forest" {
@@ -188,10 +205,24 @@ struct LabyrinthGameView: View {
         }
     }
 
+    private func mazeBackgroundImage(named name: String) -> Image {
+        let path = name as NSString
+        let resource = path.deletingPathExtension
+        let extensionName = path.pathExtension.isEmpty ? "png" : path.pathExtension
+        if let url = Bundle.main.url(forResource: resource, withExtension: extensionName),
+           let image = UIImage(contentsOfFile: url.path) {
+            return Image(uiImage: image)
+        }
+        return Image(name)
+    }
+
     private var collectHintText: String {
         let emoji = viewModel.labyrinth.itemEmoji ?? ""
         let remaining = viewModel.totalItemCount - viewModel.collectedItemIndices.count
-        return "Find all \(remaining) \(emoji) first!"
+        return AppLocalization.text(
+            #"Find all \(remaining) \(emoji) first!"#,
+            replacing: [#"\(remaining)"#: String(remaining), #"\(emoji)"#: emoji]
+        )
     }
 
     private var startMarker: some View {

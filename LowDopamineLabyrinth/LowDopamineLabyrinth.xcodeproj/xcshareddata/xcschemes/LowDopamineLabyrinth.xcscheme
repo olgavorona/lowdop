@@ -73,6 +73,9 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <CommandLineArguments>
+         <CommandLineArgument argument = "-useLocalAudioMockServer" isEnabled = "YES"/>
+      </CommandLineArguments>
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference

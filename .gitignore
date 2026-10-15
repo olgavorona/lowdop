@@ -56,6 +56,13 @@ docs/handoff.md
 # API keys
 .env
 *.env
+*.p8
+AuthKey_*.p8
+fastlane/screenshots/
+fastlane/report.xml
+fastlane/Preview.html
+**/.gradle/
+local.properties
 
 # Claude Code local settings
 .claude/

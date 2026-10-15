@@ -154,7 +154,7 @@ final class OnboardingTests: XCTestCase {
     }
 
     func testOnboardingTotalPageCount() {
-        XCTAssertEqual(OnboardingViewModel.totalPages, 5, "Onboarding must have exactly 5 pages")
+        XCTAssertEqual(OnboardingViewModel.totalPages, 6, "Onboarding must have exactly 6 pages")
     }
 
     func testOnboardingIsOnLastPageFlag() {

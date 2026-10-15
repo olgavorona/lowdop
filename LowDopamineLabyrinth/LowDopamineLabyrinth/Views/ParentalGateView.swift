@@ -94,7 +94,7 @@ struct ParentalGateView: View {
                 .font(.system(size: isCompact ? 22 : 24, weight: .bold, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
 
-            Text(purpose.subtitle)
+            Text(LocalizedStringKey(purpose.subtitle))
                 .font(.system(size: isCompact ? 15 : 16, weight: .medium, design: .rounded))
                 .foregroundColor(AppColor.textSecondary)
 
@@ -103,7 +103,10 @@ struct ParentalGateView: View {
                 .foregroundColor(AppColor.textTertiary)
                 .multilineTextAlignment(.center)
 
-            Text("What is \(a) + \(b)?")
+            Text(AppLocalization.text(
+                #"What is \(a) + \(b)?"#,
+                replacing: [#"\(a)"#: String(a), #"\(b)"#: String(b)]
+            ))
                 .font(.system(size: isCompact ? 28 : 32, weight: .bold, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
                 .padding(.top, isCompact ? 2 : 8)
