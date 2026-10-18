@@ -300,7 +300,7 @@ const articleSchema = editorialArticleSchema({
                       target={app.url.startsWith("http") ? "_blank" : undefined}
                       rel={app.url.startsWith("http") ? "noopener" : undefined}
                     >
-                      <img src={app.icon} alt="" width="34" height="34" loading="lazy" />
+                      <img src={app.icon} alt={`${app.name} app icon`} width="34" height="34" loading="lazy" />
                       <strong>{app.name}</strong>
                     </a>
                     <span class="methodology-badge">Methodology tested</span>
@@ -334,7 +334,7 @@ const articleSchema = editorialArticleSchema({
                   target={app.url.startsWith("http") ? "_blank" : undefined}
                   rel={app.url.startsWith("http") ? "noopener" : undefined}
                 >
-                  <img src={app.icon} alt="" width="40" height="40" loading="lazy" />
+                  <img src={app.icon} alt={`${app.name} app icon`} width="40" height="40" loading="lazy" />
                   <h3>{app.name}</h3>
                 </a>
                 <span class="methodology-badge">Methodology tested</span>

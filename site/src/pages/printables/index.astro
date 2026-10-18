@@ -79,7 +79,7 @@ const pageSchema = {
       <div class="printables-article-list">
         {printableArticles.map((article) => (
           <a class="printables-article-link" href={article.href}>
-            <img src={article.image} alt="" loading="lazy" width="900" height="900" />
+            <img src={article.image} alt={`${article.title} preview`} loading="lazy" width="900" height="900" />
             <span>
               <strong>{article.title}</strong>
               <small>{article.description}</small>

@@ -262,7 +262,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                         target={app.url.startsWith("http") ? "_blank" : undefined}
                         rel={app.url.startsWith("http") ? "noopener" : undefined}
                       >
-                        <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
+                        <img class="app-icon" src={app.icon} alt={`${app.name} app icon`} width="40" height="40" loading="lazy" />
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
                           <span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span>
@@ -271,7 +271,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                       </a>
                     ) : (
                       <span class="app-name-link">
-                        <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
+                        <img class="app-icon" src={app.icon} alt={`${app.name} app icon`} width="40" height="40" loading="lazy" />
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
                           <span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span>
@@ -324,12 +324,12 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                     target={app.url.startsWith("http") ? "_blank" : undefined}
                     rel={app.url.startsWith("http") ? "noopener" : undefined}
                   >
-                    <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
+                    <img class="card-icon" src={app.icon} alt={`${app.name} app icon`} width="48" height="48" loading="lazy" />
                     <span class="card-app-name">{app.name}<span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span></span>
                   </a>
                 ) : (
                   <span class="card-app-link">
-                    <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
+                    <img class="card-icon" src={app.icon} alt={`${app.name} app icon`} width="48" height="48" loading="lazy" />
                     <span class="card-app-name">{app.name}<span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span></span>
                   </span>
                 )}
