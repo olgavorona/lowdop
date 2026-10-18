@@ -209,26 +209,6 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
     tags={["toddlers", "low stimulation", "no ads", "parent guide"]}
   />
 
-  <section class="intro-section">
-    <div class="shell narrow prose">
-      <p class="author-byline">By <a href="/about/">Olga Vorona</a></p>
-      <p><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
-      <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
-    </div>
-  </section>
-
-  <section class="intro-section">
-    <div class="shell narrow prose">
-      <p>
-        The table below scores real apps — and one non-digital benchmark —
-        across sounds, animation, rewards, and brightness. Apps completed in our
-        testing lab use the newer methodology v0.1 Calmness score, calculated from
-        recorded visual, audio, reward, and interruption data. Untested entries retain
-        the original four-part editorial estimate. Higher always means calmer.
-      </p>
-    </div>
-  </section>
-
   <section class="comparison-section">
     <div class="shell">
       <p class="table-label eyebrow">Sensory load comparison</p>
@@ -366,7 +346,21 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
         })}
       </ul>
 
-      <p class="table-note">Tested apps use methodology v0.1 Calmness · Other entries retain the original editorial estimate · 10 = calmest · Higher is better · Open a tested app for its complete calculation</p>
+      <div class="post-table-copy narrow prose">
+        <p class="author-byline">By <a href="/about/">Olga Vorona</a></p>
+        <p><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
+        <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
+        <p>
+          Each row shows scores for four areas: Sounds, Animations, Rewards, and
+          Brightness. For rows marked <strong>Methodology tested</strong>, the
+          Calm Score is calculated from recorded gameplay using methodology v0.1,
+          which measures visual and audio activity, rewards, and prompts. For rows
+          marked <strong>Editorial estimate</strong>, the Calm Score is the average
+          of the four displayed scores; these entries have not gone through our
+          lab testing process. Paper is included as a non-app reference point.
+          Higher Calm Scores indicate a calmer experience.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -428,18 +422,12 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
 </BaseLayout>
 
 <style>
-  /* ── Section spacing ── */
-  .intro-section {
-    padding: 1.5rem 0 1rem;
-  }
-
   .comparison-section {
-    padding: 1rem 0 2rem;
+    padding: 0 0 2rem;
   }
 
-  .table-label {
-    margin-bottom: 0.75rem;
-  }
+  .table-label { margin-bottom: 0.75rem; }
+  .post-table-copy { margin-top: 1.5rem; }
 
   /* ── Responsive visibility handled below in each component's rule ── */
 
