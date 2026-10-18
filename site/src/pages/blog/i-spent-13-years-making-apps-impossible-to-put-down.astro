@@ -8,6 +8,7 @@ import { getLastUpdated } from "../../lib/freshness";
 const slug = "i-spent-13-years-making-apps-impossible-to-put-down";
 const title =
   "I Spent 13 Years Making Apps Impossible to Put Down. Now I'm Building the Opposite, for My Son.";
+const pageTitle = "Why I Left Retention-Driven Apps to Build Calm Ones for Kids";
 const description =
   "An iOS developer with 13 years of building retention-driven apps explains why she's now building the opposite — for her three-year-old son.";
 const date = "2026-06-10";
@@ -15,7 +16,7 @@ const author = "Olga Vorona";
 const lastUpdated = getLastUpdated("site/src/pages/blog/i-spent-13-years-making-apps-impossible-to-put-down.astro");
 
 const meta = buildMeta({
-  title,
+  title: pageTitle,
   description,
   pathname: `/blog/${slug}/`,
   type: "article"
@@ -24,6 +25,7 @@ const meta = buildMeta({
 
 <BaseLayout
   {...meta}
+  ogTitle={title}
   schemas={[
     organizationSchema(),
     blogPostingSchema({
