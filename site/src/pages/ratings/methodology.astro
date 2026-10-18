@@ -5,7 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { buildMeta, editorialArticleSchema, organizationSchema } from "../../lib/seo";
 import { formatLastUpdated, getLastUpdated } from "../../lib/freshness";
 const lastUpdated = getLastUpdated("site/src/pages/ratings/methodology.astro");
-// TODO: Add datePublished once the original publication date is confirmed.
+const datePublished = "2026-09-20";
 const meta = buildMeta({ title: "How We Test Kids Apps | Harmless Apps", description: "The versioned Harmless Apps methodology for measuring calmness, travel use, content value, learning value, and commercial experience.", pathname: "/ratings/methodology/", type: "article" });
 const dimensions = [
   ["Calmness", "Gameplay recordings measure motion, visual change, brightness variation, audio intensity and frequency. We also record reward activity and attention prompts. The public score reverses attention intensity: 10 means calmer."],
@@ -36,6 +36,7 @@ const rubricRows = [
   description: meta.description,
   pathname: "/ratings/methodology/",
   dateModified: lastUpdated,
+  datePublished,
   image: meta.image
 })]} breadcrumbLabel="How we test kids apps">
   <PageHeader eyebrow="Ratings · Methodology v0.1" title="How we test kids apps" intro="A repeatable framework built from recorded gameplay, a structured review, automated measurements, and human confirmation. Every public score runs from 0 to 10; higher is better." tags={["versioned", "evidence-based", "five scores"]} />

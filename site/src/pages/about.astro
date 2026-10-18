@@ -1,16 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { buildMeta, organizationSchema } from "../lib/seo";
+import { authorSchema, buildMeta, organizationSchema } from "../lib/seo";
 
 const title = "About Olga Vorona | Harmless Apps";
 const description = "Olga Vorona is an iOS developer with 13 years of experience, the creator of Harmless Apps and Denny’s Maze, and a mother.";
 const meta = buildMeta({ title, description, pathname: "/about/" });
 
-// TODO: Add Olga's LinkedIn profile URL when supplied by the owner.
-// TODO: Add any other verified public profile URLs when supplied by the owner.
+const personSchema = { "@context": "https://schema.org", ...authorSchema() };
 ---
 
-<BaseLayout {...meta} schemas={[organizationSchema()]}>
+<BaseLayout {...meta} schemas={[organizationSchema(), personSchema]}>
   <header class="page-header">
     <div class="shell narrow">
       <p class="eyebrow">About</p>

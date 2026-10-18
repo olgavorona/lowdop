@@ -63,7 +63,8 @@ export function authorSchema(authorName = "Olga Vorona") {
   return {
     "@type": "Person",
     name: authorName,
-    url: absoluteUrl("/about/")
+    url: absoluteUrl("/about/"),
+    sameAs: ["https://www.linkedin.com/in/ovorona/"]
   };
 }
 
