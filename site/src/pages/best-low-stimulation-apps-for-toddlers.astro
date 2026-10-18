@@ -201,6 +201,12 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
 
   <section class="intro-section">
     <div class="shell narrow prose">
+      <p><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <div class="shell narrow prose">
       <p>
         The table below scores real apps — and one non-digital benchmark —
         across sounds, animation, rewards, and brightness. Apps completed in our
@@ -248,7 +254,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                         <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
-                          {methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}
+                          <span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span>
                           <span class="app-desc">{app.description}</span>
                         </span>
                       </a>
@@ -257,7 +263,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                         <img class="app-icon" src={app.icon} alt={`${app.name} icon`} width="40" height="40" loading="lazy" />
                         <span class="app-text">
                           <span class="app-name">{app.name}</span>
-                          {methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}
+                          <span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span>
                           <span class="app-desc">{app.description}</span>
                         </span>
                       </span>
@@ -308,12 +314,12 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
                     rel={app.url.startsWith("http") ? "noopener" : undefined}
                   >
                     <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
-                    <span class="card-app-name">{app.name}{methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}</span>
+                    <span class="card-app-name">{app.name}<span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span></span>
                   </a>
                 ) : (
                   <span class="card-app-link">
                     <img class="card-icon" src={app.icon} alt={`${app.name} icon`} width="48" height="48" loading="lazy" />
-                    <span class="card-app-name">{app.name}{methodologyReview(app) && <span class="methodology-badge">Methodology tested</span>}</span>
+                    <span class="card-app-name">{app.name}<span class="methodology-badge">{methodologyReview(app) ? "Methodology tested" : "Editorial estimate"}</span></span>
                   </span>
                 )}
                 <span class="card-load" style={`color: ${barColor(cs)}`}>

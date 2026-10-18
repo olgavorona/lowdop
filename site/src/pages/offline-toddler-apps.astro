@@ -229,6 +229,7 @@ const articleSchema = blogPostingSchema({
     <header class="article-hero">
       <div class="shell narrow">
         <h1>{h1}</h1>
+        <p class="byline"><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
         <p class="lead">
           "Works offline" sounds simple until you're already on a plane and
           discover that the app needed an account, a subscription, or ten
@@ -297,7 +298,7 @@ const articleSchema = blogPostingSchema({
                       <img src={app.icon} alt="" width="34" height="34" loading="lazy" />
                       <strong>{app.name}</strong>
                     </a>
-                    {app.url.startsWith("/ratings/apps/") && <span class="methodology-badge">Methodology tested</span>}
+                    <span class="methodology-badge">Methodology tested</span>
                     {app.label && <span class="small-label">{app.label}</span>}
                     {app.badge && <span class="pick-badge">{app.badge}</span>}
                   </td>
@@ -331,7 +332,7 @@ const articleSchema = blogPostingSchema({
                   <img src={app.icon} alt="" width="40" height="40" loading="lazy" />
                   <h3>{app.name}</h3>
                 </a>
-                {app.url.startsWith("/ratings/apps/") && <span class="methodology-badge">Methodology tested</span>}
+                <span class="methodology-badge">Methodology tested</span>
                 {app.label && <span class="small-label">{app.label}</span>}
               </div>
               {app.badge && <span class="pick-badge">{app.badge}</span>}
