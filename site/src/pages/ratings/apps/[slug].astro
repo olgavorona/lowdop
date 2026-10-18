@@ -20,7 +20,7 @@ const weightedScores = [
 ] as const;
 const pathname = `/ratings/apps/${review.slug}/`;
 const lastUpdated = getLastUpdated("site/src/data/appReviews.ts");
-// TODO: Add datePublished once each review's original publication date is confirmed.
+const datePublished = "2026-09-20";
 const meta = buildMeta({ title: `${review.name} App Review | Harmless Apps`, description: `${review.name} review using recorded gameplay: Calmness ${review.scores.calmness.toFixed(1)}, Travel ${review.scores.travel.toFixed(1)}, and Learning Value ${review.scores.learningValue.toFixed(1)} out of 10. See every component and scoring detail.`, pathname, type: "article" });
 const calmAnswer = `${review.name} received a Calmness score of ${review.scores.calmness.toFixed(1)}/10. Higher scores indicate lower measured attention intensity. The score combines visual motion and change, brightness variation, audio intensity and frequency, rewards, and interruptions.`;
 const travelAnswer = `${review.name} received a Travel score of ${review.scores.travel.toFixed(1)}/10. This combines offline functionality and reliability, preparation burden, audio independence, commercial interruptions, and accessible content breadth.`;
@@ -30,7 +30,7 @@ const faqs = [
   { question: `Does ${review.name} work well for travel and offline use?`, answer: travelAnswer },
   { question: `What is the educational value of ${review.name}?`, answer: learningAnswer }
 ];
-const articleSchema = { "@context": "https://schema.org", "@type": "Article", headline: `${review.name} app review and ratings`, description: meta.description, url: absoluteUrl(pathname), image: absoluteUrl(icons[review.slug]), datePublished: "2026-09-20", dateModified: lastUpdated, about: { "@type": "SoftwareApplication", name: review.name, applicationCategory: "EducationalApplication" }, author: { "@type": "Person", name: "Olga Vorona", url: absoluteUrl("/about/"), sameAs: ["https://www.linkedin.com/in/ovorona/"] }, publisher: { "@type": "Organization", name: "Harmless Apps", url: absoluteUrl("/") }, isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: absoluteUrl("/") } };
+const articleSchema = { "@context": "https://schema.org", "@type": "Article", headline: `${review.name} app review and ratings`, description: meta.description, url: absoluteUrl(pathname), image: absoluteUrl(icons[review.slug]), datePublished, dateModified: lastUpdated, about: { "@type": "SoftwareApplication", name: review.name, applicationCategory: "EducationalApplication" }, author: { "@type": "Person", name: "Olga Vorona", url: absoluteUrl("/about/"), sameAs: ["https://www.linkedin.com/in/ovorona/"] }, publisher: { "@type": "Organization", name: "Harmless Apps", url: absoluteUrl("/") }, isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: absoluteUrl("/") } };
 const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Ratings", item: absoluteUrl("/ratings/apps/") }, { "@type": "ListItem", position: 2, name: "App Reviews", item: absoluteUrl("/ratings/apps/") }, { "@type": "ListItem", position: 3, name: review.name, item: absoluteUrl(pathname) }] };
 ---
 <BaseLayout {...meta} schemas={[organizationSchema(), articleSchema, breadcrumbSchema, faqSchema(faqs)]}>
