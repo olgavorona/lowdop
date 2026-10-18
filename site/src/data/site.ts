@@ -11,7 +11,8 @@ export const siteConfig = {
     name: "Harmless Apps",
     url: "https://www.harmlessapp.com",
     logo: "https://www.harmlessapp.com/og-default.png",
-    sameAs: []
+    sameAs: ["https://x.com/harmlessapps"]
+    // TODO: Add verified LinkedIn and other public profile URLs when provided.
   },
   social: {
     twitterHandle: "@harmlessapps"

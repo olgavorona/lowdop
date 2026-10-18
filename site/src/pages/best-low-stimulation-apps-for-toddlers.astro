@@ -3,13 +3,14 @@ import CtaBlock from "../components/CtaBlock.astro";
 import PageHeader from "../components/PageHeader.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { buildMeta, organizationSchema } from "../lib/seo";
+import { buildMeta, editorialArticleSchema, organizationSchema } from "../lib/seo";
 import { appReviews } from "../data/appReviews";
 import { appStoreUrl } from "../lib/analytics";
 import { formatLastUpdated, getLastUpdated } from "../lib/freshness";
 
 const dennyCampaign = "website_low_stim_guide";
 const lastUpdated = getLastUpdated("site/src/pages/best-low-stimulation-apps-for-toddlers.astro");
+// TODO: Add datePublished once the original publication date is confirmed.
 
 const meta = buildMeta({
   title: "Best Low-Stimulation Apps for Toddlers: 14 Apps Compared",
@@ -193,7 +194,13 @@ function barColor(score: number): string {
 const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
 ---
 
-<BaseLayout {...meta} schemas={[organizationSchema()]}>
+<BaseLayout {...meta} schemas={[organizationSchema(), editorialArticleSchema({
+  title: meta.title,
+  description: meta.description,
+  pathname: "/best-low-stimulation-apps-for-toddlers/",
+  dateModified: lastUpdated,
+  image: meta.image
+})]}>
   <PageHeader
     eyebrow="Guide"
     title="Best Low-Stimulation Apps for Toddlers"

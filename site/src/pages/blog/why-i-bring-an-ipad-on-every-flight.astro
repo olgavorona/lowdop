@@ -4,6 +4,7 @@ import RelatedLinks from "../../components/RelatedLinks.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { buildMeta, blogPostingSchema, organizationSchema } from "../../lib/seo";
 import { formatDate } from "../../data/blog";
+import { getLastUpdated } from "../../lib/freshness";
 
 const slug = "why-i-bring-an-ipad-on-every-flight";
 const title = "Why I Bring an iPad on Every Flight (Even Though I Limit Screen Time)";
@@ -11,6 +12,7 @@ const description =
   "A parent explains why an iPad can still belong in a toddler travel bag when screen time is limited, and which calm activities feel different on flights.";
 const date = "2026-07-30";
 const author = "Olga Vorona";
+const lastUpdated = getLastUpdated("site/src/pages/blog/why-i-bring-an-ipad-on-every-flight.astro");
 
 const meta = buildMeta({
   title,
@@ -28,6 +30,8 @@ const meta = buildMeta({
       title,
       description,
       datePublished: date,
+      dateModified: lastUpdated,
+      image: meta.image,
       pathname: `/blog/${slug}/`,
       authorName: author
     })

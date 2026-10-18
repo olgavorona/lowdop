@@ -9,6 +9,7 @@ import {
   organizationSchema
 } from "../../lib/seo";
 import { formatDate } from "../../data/blog";
+import { getLastUpdated } from "../../lib/freshness";
 
 const slug = "what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights";
 const title = "What Actually Works on a Plane With a 3-Year-Old After 10+ Flights";
@@ -16,6 +17,7 @@ const description =
   "After ten-plus flights with a three-year-old, these airplane activities lasted longer than standard busy-bag toys because each one gives the child a simple job.";
 const date = "2026-08-02";
 const author = "Olga Vorona";
+const lastUpdated = getLastUpdated("site/src/pages/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights.astro");
 const imageBase = "/images/blog/airplane-activities";
 
 const faqItems = [
@@ -53,6 +55,8 @@ const meta = buildMeta({
       title,
       description,
       datePublished: date,
+      dateModified: lastUpdated,
+      image: meta.image,
       pathname: `/blog/${slug}/`,
       authorName: author
     }),

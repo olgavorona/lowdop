@@ -3,7 +3,7 @@ import RelatedLinks from "../components/RelatedLinks.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
   buildMeta,
-  blogPostingSchema,
+  editorialArticleSchema,
   organizationSchema
 } from "../lib/seo";
 import { appStoreUrl } from "../lib/analytics";
@@ -212,12 +212,13 @@ const apps: AppResult[] = [
   }
 ];
 
-const articleSchema = blogPostingSchema({
+const articleSchema = editorialArticleSchema({
   title,
   description,
-  datePublished: date,
   pathname,
-  authorName: author
+  datePublished: date,
+  dateModified: lastUpdated,
+  image: meta.image
 });
 ---
 

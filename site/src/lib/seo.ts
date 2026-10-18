@@ -50,13 +50,75 @@ export function organizationSchema() {
   };
 }
 
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.siteName,
+    url: siteConfig.siteUrl
+  };
+}
+
+export function authorSchema(authorName = "Olga Vorona") {
+  return {
+    "@type": "Person",
+    name: authorName,
+    url: absoluteUrl("/about/")
+  };
+}
+
+export function breadcrumbListSchema(canonical: string, label: string) {
+  if (new URL(canonical).pathname === "/") return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: label, item: canonical }
+    ]
+  };
+}
+
+export function editorialArticleSchema({
+  title,
+  description,
+  pathname,
+  dateModified,
+  datePublished,
+  image
+}: {
+  title: string;
+  description: string;
+  pathname: string;
+  dateModified: string;
+  datePublished?: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    url: absoluteUrl(pathname),
+    ...(image ? { image } : {}),
+    ...(datePublished ? { datePublished } : {}),
+    dateModified,
+    author: authorSchema(),
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.organization.name,
+      url: siteConfig.organization.url
+    }
+  };
+}
+
 export function softwareApplicationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: siteConfig.productName,
     applicationCategory: "GameApplication",
-    operatingSystem: "iOS",
+    operatingSystem: "iOS or iPadOS",
     isFamilyFriendly: true,
     offers: {
       "@type": "Offer",
@@ -79,13 +141,17 @@ export function blogPostingSchema({
   description,
   datePublished,
   pathname,
-  authorName
+  authorName,
+  dateModified,
+  image
 }: {
   title: string;
   description: string;
   datePublished: string;
   pathname: string;
   authorName: string;
+  dateModified: string;
+  image: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -93,11 +159,10 @@ export function blogPostingSchema({
     headline: title,
     description,
     datePublished,
+    dateModified,
+    image,
     url: absoluteUrl(pathname),
-    author: {
-      "@type": "Person",
-      name: authorName
-    },
+    author: authorSchema(authorName),
     publisher: {
       "@type": "Organization",
       name: siteConfig.organization.name,

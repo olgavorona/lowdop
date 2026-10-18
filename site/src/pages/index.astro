@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteConfig } from "../data/site";
-import { buildMeta, organizationSchema } from "../lib/seo";
+import { buildMeta, organizationSchema, websiteSchema } from "../lib/seo";
 import { appStoreUrl } from "../lib/analytics";
 
 const meta = buildMeta({
@@ -12,7 +12,7 @@ const meta = buildMeta({
 });
 ---
 
-<BaseLayout {...meta} schemas={[organizationSchema()]}>
+<BaseLayout {...meta} schemas={[organizationSchema(), websiteSchema()]}>
   <section class="mission-hero">
     <div class="shell mission-grid">
       <div class="mission-copy">

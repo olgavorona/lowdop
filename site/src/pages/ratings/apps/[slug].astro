@@ -5,6 +5,7 @@ import { appReviews, scoreDimensions } from "../../../data/appReviews";
 import scoreDetails from "../../../data/appScoreDetails.json";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
+import { getLastUpdated } from "../../../lib/freshness";
 export function getStaticPaths() { return appReviews.map((review) => ({ params: { slug: review.slug }, props: { review } })); }
 const { review } = Astro.props;
 const icons: Record<string, string> = { "khan-academy-kids": "/images/app-icons/khan-academy-kids.jpg", "pok-pok": "/images/app-icons/pok-pok.jpg", "montessori-preschool": "/images/app-icons/montessori-preschool.svg", thinkrolls: "/images/app-icons/thinkrolls.jpg", lingo: "/images/app-icons/lingokids.jpg", "sago-mini-school": "/images/app-icons/sago-mini.jpg", "sago-mini-world": "/images/app-icons/sago-mini.jpg", "abc-mouse": "/images/app-icons/abc-mouse.svg" };
@@ -18,6 +19,8 @@ const weightedScores = [
   { key: "commercialExperience", label: "Commercial experience", formula: "Σ(component value × weight)", detail: details.commercialExperience }
 ] as const;
 const pathname = `/ratings/apps/${review.slug}/`;
+const lastUpdated = getLastUpdated("site/src/data/appReviews.ts");
+// TODO: Add datePublished once each review's original publication date is confirmed.
 const meta = buildMeta({ title: `${review.name} Review: Calmness, Offline & Learning Scores`, description: `${review.name} review using recorded gameplay: Calmness ${review.scores.calmness.toFixed(1)}, Travel ${review.scores.travel.toFixed(1)}, and Learning Value ${review.scores.learningValue.toFixed(1)} out of 10. See every component.`, pathname, type: "article" });
 const calmAnswer = `${review.name} received a Calmness score of ${review.scores.calmness.toFixed(1)}/10. Higher scores indicate lower measured attention intensity. The score combines visual motion and change, brightness variation, audio intensity and frequency, rewards, and interruptions.`;
 const travelAnswer = `${review.name} received a Travel score of ${review.scores.travel.toFixed(1)}/10. This combines offline functionality and reliability, preparation burden, audio independence, commercial interruptions, and accessible content breadth.`;
@@ -27,12 +30,13 @@ const faqs = [
   { question: `Does ${review.name} work well for travel and offline use?`, answer: travelAnswer },
   { question: `What is the educational value of ${review.name}?`, answer: learningAnswer }
 ];
-const articleSchema = { "@context": "https://schema.org", "@type": "Article", headline: `${review.name} app review and ratings`, description: meta.description, url: absoluteUrl(pathname), image: absoluteUrl(icons[review.slug]), about: { "@type": "SoftwareApplication", name: review.name, applicationCategory: "EducationalApplication" }, author: { "@type": "Person", name: "Olga Vorona" }, publisher: { "@type": "Organization", name: "Harmless Apps", url: absoluteUrl("/") }, isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: absoluteUrl("/") } };
+const articleSchema = { "@context": "https://schema.org", "@type": "Article", headline: `${review.name} app review and ratings`, description: meta.description, url: absoluteUrl(pathname), image: absoluteUrl(icons[review.slug]), dateModified: lastUpdated, about: { "@type": "SoftwareApplication", name: review.name, applicationCategory: "EducationalApplication" }, author: { "@type": "Person", name: "Olga Vorona", url: absoluteUrl("/about/") }, publisher: { "@type": "Organization", name: "Harmless Apps", url: absoluteUrl("/") }, isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: absoluteUrl("/") } };
 const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Ratings", item: absoluteUrl("/ratings/apps/") }, { "@type": "ListItem", position: 2, name: "App Reviews", item: absoluteUrl("/ratings/apps/") }, { "@type": "ListItem", position: 3, name: review.name, item: absoluteUrl(pathname) }] };
 ---
 <BaseLayout {...meta} schemas={[organizationSchema(), articleSchema, breadcrumbSchema, faqSchema(faqs)]}>
   <nav class="breadcrumbs shell narrow" aria-label="Breadcrumb"><a href="/ratings/apps/">App reviews</a><span aria-hidden="true">/</span><span>{review.name}</span></nav>
   <PageHeader eyebrow="Independent app scorecard · Methodology v0.1" title={`${review.name} review`} intro={review.summary} tags={[review.learningMode, "higher scores are better"]} icon={icons[review.slug]} iconAlt={`${review.name} icon`} />
+  <p class="shell narrow author-byline">By <a href="/about/">Olga Vorona</a></p>
   {reviewVideo && <section class="video-section"><div class="shell narrow"><p class="eyebrow">Video review</p><h2>Watch the Sago Mini School review</h2><div class="video-player"><iframe src={`https://www.youtube-nocookie.com/embed/${reviewVideo.id}`} title={reviewVideo.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div></section>}
   <section class="review-section"><div class="shell review-grid"><article class="panel"><p class="eyebrow">Five-dimension scorecard</p><AppScorecard review={review} /></article><aside class="panel context"><h2>How to read this review</h2><p>These dimensions are intentionally separate. A large content library can score well for value while being intense, difficult to use offline, or commercially distracting.</p><p>The scores describe the tested version and sampled experience—not every screen, every child, or future app update.</p></aside></div></section>
   <section class="review-section tinted"><div class="shell"><p class="eyebrow">Score definitions</p><div class="definitions">{scoreDimensions.map((dimension) => <article><h2>{dimension.label}</h2><p>{dimension.short}. <strong>{review.scores[dimension.key].toFixed(1)}/10</strong></p></article>)}</div></div></section>

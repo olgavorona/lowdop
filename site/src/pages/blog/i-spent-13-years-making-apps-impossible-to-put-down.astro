@@ -3,6 +3,7 @@ import CtaBlock from "../../components/CtaBlock.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { buildMeta, blogPostingSchema, organizationSchema } from "../../lib/seo";
 import { formatDate } from "../../data/blog";
+import { getLastUpdated } from "../../lib/freshness";
 
 const slug = "i-spent-13-years-making-apps-impossible-to-put-down";
 const title =
@@ -11,6 +12,7 @@ const description =
   "An iOS developer with 13 years of building retention-driven apps explains why she's now building the opposite — for her three-year-old son.";
 const date = "2026-06-10";
 const author = "Olga Vorona";
+const lastUpdated = getLastUpdated("site/src/pages/blog/i-spent-13-years-making-apps-impossible-to-put-down.astro");
 
 const meta = buildMeta({
   title,
@@ -28,6 +30,8 @@ const meta = buildMeta({
       title,
       description,
       datePublished: date,
+      dateModified: lastUpdated,
+      image: meta.image,
       pathname: `/blog/${slug}/`,
       authorName: author
     })

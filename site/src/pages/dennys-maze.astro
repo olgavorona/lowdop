@@ -116,12 +116,12 @@ const faqs = [
 
 const appSchema = {
   "@context": "https://schema.org",
-  "@type": ["SoftwareApplication", "MobileApplication"],
+  "@type": "SoftwareApplication",
   name: "Denny's Maze",
-  applicationCategory: "EducationalApplication",
-  operatingSystem: "iPadOS 16.0 or later",
+  applicationCategory: "GameApplication",
+  operatingSystem: "iOS or iPadOS",
   isFamilyFriendly: true,
-  url: absoluteUrl(siteConfig.productPath),
+  url: appUrl,
   downloadUrl: appUrl,
   description:
     "A quiet, offline, paper-like maze activity for toddlers and preschoolers.",
