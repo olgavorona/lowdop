@@ -7,7 +7,8 @@ import { formatDate } from "../../data/blog";
 import { getLastUpdated } from "../../lib/freshness";
 
 const slug = "why-i-bring-an-ipad-on-every-flight";
-const title = "Why I Bring an iPad on Every Flight (Even Though I Limit Screen Time)";
+const title = "Why I Bring an iPad on Every Flight";
+const headline = "Why I Bring an iPad on Every Flight (Even Though I Limit Screen Time)";
 const description =
   "A parent explains why an iPad can still belong in a toddler travel bag when screen time is limited, and which calm activities feel different on flights.";
 const date = "2026-07-30";
@@ -24,10 +25,11 @@ const meta = buildMeta({
 
 <BaseLayout
   {...meta}
+  ogTitle={headline}
   schemas={[
     organizationSchema(),
     blogPostingSchema({
-      title,
+      title: headline,
       description,
       datePublished: date,
       dateModified: lastUpdated,
@@ -41,7 +43,7 @@ const meta = buildMeta({
     <header class="page-header article-header">
       <div class="shell narrow">
         <a href="/blog/" class="back-link eyebrow">← Blog</a>
-        <h1>{title}</h1>
+        <h1>{headline}</h1>
         <div class="byline">
           <span class="author">{author}</span>
           <span class="byline-sep" aria-hidden="true">·</span>

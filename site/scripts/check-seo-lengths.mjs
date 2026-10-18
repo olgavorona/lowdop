@@ -24,6 +24,7 @@ async function visit(directory) {
     if (!entry.isFile() || !entry.name.endsWith(".html")) continue;
 
     const html = await readFile(path, "utf8");
+    if (!html.includes("<html")) continue;
     const title = html.match(/<title>(.*?)<\/title>/is)?.[1]?.trim();
     const description = html.match(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/i)?.[1];
     const page = `/${relative(root, path)}`;
