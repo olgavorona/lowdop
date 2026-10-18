@@ -8,6 +8,7 @@ import { buildMeta, editorialArticleSchema, organizationSchema } from "../../../
 import { formatLastUpdated, getLastUpdated } from "../../../lib/freshness";
 const meta = buildMeta({ title: "Kids App Reviews and Ratings | Harmless Apps", description: "Browse tested kids apps scored for calmness, travel, content value, learning value, and commercial experience, with recorded evidence and score details.", pathname: "/ratings/apps/" });
 const lastUpdated = getLastUpdated("site/src/pages/ratings/apps/index.astro");
+// TODO: Add datePublished once the original publication date is confirmed.
 const icons: Record<string, string> = { "khan-academy-kids": "/images/app-icons/khan-academy-kids.jpg", "pok-pok": "/images/app-icons/pok-pok.jpg", "montessori-preschool": "/images/app-icons/montessori-preschool.svg", thinkrolls: "/images/app-icons/thinkrolls.jpg", lingo: "/images/app-icons/lingokids.jpg", "sago-mini-school": "/images/app-icons/sago-mini.jpg", "sago-mini-world": "/images/app-icons/sago-mini.jpg", "abc-mouse": "/images/app-icons/abc-mouse.svg" };
 ---
 <BaseLayout {...meta} schemas={[organizationSchema(), editorialArticleSchema({ title: meta.title, description: meta.description, pathname: "/ratings/apps/", dateModified: lastUpdated, image: meta.image })]}>
