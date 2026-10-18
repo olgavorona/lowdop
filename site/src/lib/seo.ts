@@ -5,6 +5,9 @@ export type MetaProps = {
   description: string;
   pathname: string;
   image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   type?: "website" | "article";
 };
 
@@ -17,6 +20,11 @@ export function buildMeta({
   description,
   pathname,
   image = siteConfig.defaults.ogImage,
+  imageAlt = image === siteConfig.defaults.ogImage
+    ? "Harmless Apps logo and description on a warm cream background"
+    : `Illustration for ${title}`,
+  imageWidth = image === siteConfig.defaults.ogImage ? 1200 : undefined,
+  imageHeight = image === siteConfig.defaults.ogImage ? 630 : undefined,
   type = "website"
 }: MetaProps) {
   return {
@@ -24,6 +32,9 @@ export function buildMeta({
     description,
     canonical: absoluteUrl(pathname),
     image: absoluteUrl(image),
+    imageAlt,
+    imageWidth,
+    imageHeight,
     type
   };
 }

@@ -10,7 +10,7 @@ export const siteConfig = {
   organization: {
     name: "Harmless Apps",
     url: "https://www.harmlessapp.com",
-    logo: "https://www.harmlessapp.com/og-default.svg",
+    logo: "https://www.harmlessapp.com/og-default.png",
     sameAs: []
   },
   social: {
@@ -21,7 +21,7 @@ export const siteConfig = {
       "Harmless Apps | Calmer kids apps for screen time that feels less chaotic",
     description:
       "Harmless Apps makes calmer kids apps designed to feel less noisy, less rushed, and easier for parents to say yes to.",
-    ogImage: "/og-default.svg"
+    ogImage: "/og-default.png"
   }
 } as const;
 
