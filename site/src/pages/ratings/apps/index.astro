@@ -13,10 +13,10 @@ const icons: Record<string, string> = { "khan-academy-kids": "/images/app-icons/
 ---
 <BaseLayout {...meta} breadcrumbLabel="Kids app reviews" schemas={[organizationSchema(), editorialArticleSchema({ title: "Kids app reviews", description: meta.description, pathname: "/ratings/apps/", datePublished, dateModified: lastUpdated, image: meta.image })]}>
   <PageHeader eyebrow="Ratings · Tested apps" title="Kids app reviews" intro="One score cannot answer every family’s question. Compare five separate dimensions, then open an app to see what each score means." tags={[`${appReviews.length} apps tested`, "0–10 scores", "higher is better"]} />
-  <p class="shell narrow author-byline">By <a href="/about/">Olga Vorona</a></p>
   <p class="shell narrow last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
   <section class="apps-section"><div class="shell"><div class="method-note"><span>All reviews use methodology v0.1.</span><a href="/ratings/methodology/">Read how testing works →</a></div><div class="app-grid">{appReviews.map((review) => <article class="app-card"><a class="app-heading" href={`/ratings/apps/${review.slug}/`} style="display:flex;align-items:center;gap:1rem;text-decoration:none"><img src={icons[review.slug]} alt={`${review.name} icon`} width="64" height="64" loading="lazy" style="width:64px;height:64px;flex:0 0 64px;border-radius:16px;clip-path:inset(0 round 16px);object-fit:cover" /><span class="app-name-copy"><span class="tested-badge">Methodology tested</span><h2>{review.name}</h2></span></a><p>{review.summary}</p><AppScorecard review={review} compact /><a class="review-link" href={`/ratings/apps/${review.slug}/`}>Read the scorecard →</a></article>)}</div></div></section>
   <CtaBlock title="The app I built around these priorities" text="I built Denny's Maze to be optimized for calmness, reliable offline play, and educational value through focused maze-solving. It is my practical attempt to bring those priorities together in one simple app." />
+  <p class="shell narrow author-byline">By <a href="/about/">Olga Vorona</a></p>
 </BaseLayout>
 <style>
   .apps-section { padding: 2.5rem 0 4rem; } .method-note { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--line); color: var(--muted); }

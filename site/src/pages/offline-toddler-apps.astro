@@ -233,22 +233,13 @@ const articleSchema = editorialArticleSchema({
     <header class="article-hero">
       <div class="shell narrow">
         <h1>{h1}</h1>
-        <p class="author-byline">By <a href="/about/">Olga Vorona</a></p>
-        <p class="byline"><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
-        <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
-        <p class="lead">
-          "Works offline" sounds simple until you're already on a plane and
-          discover that the app needed an account, a subscription, or ten
-          individual downloads before takeoff.
-        </p>
       </div>
     </header>
 
     <section class="intro-section">
-      <div class="shell narrow prose">
-        <p>
-          So we tested nine popular toddler apps ourselves.
-        </p>
+      <div class="shell narrow prose offline-intro">
+        <p>“Works offline” sounds simple until you're already on a plane and discover that the app needed an account, a subscription, or ten individual downloads before takeoff.</p>
+        <p>So we tested nine popular toddler apps ourselves.</p>
         <p>
           First, we downloaded each app and opened it with no internet at all.
           Then we gave it one normal online setup, disconnected again,
@@ -264,6 +255,11 @@ const articleSchema = editorialArticleSchema({
           If you're loading an iPad before a flight, this is the part that
           actually matters.
         </p>
+        <div class="intro-meta">
+          <p class="author-byline">By <a href="/about/">Olga Vorona</a></p>
+          <p><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
+          <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
+        </div>
       </div>
     </section>
 
@@ -696,11 +692,6 @@ const articleSchema = editorialArticleSchema({
           <a href={planeLink}>what actually works on a plane with a
           3-year-old</a>.
         </p>
-        <p class="disclosure">
-          <strong>Denny's Maze is our own app</strong>, so we've clearly
-          labelled it throughout the comparison and used the same testing
-          process for it as every other app.
-        </p>
         <div class="inline-cta final-cta">
           <div>
             <h3>Try Denny's Maze</h3>
@@ -752,13 +743,22 @@ const articleSchema = editorialArticleSchema({
     line-height: 1.02;
   }
 
-  .lead {
+  .offline-intro > p {
     max-width: 46rem;
-    margin: 0.9rem 0 0;
-    color: var(--muted);
-    font-size: clamp(1.08rem, 1.6vw, 1.26rem);
-    line-height: 1.5;
+    font-size: 1.05rem;
+    line-height: 1.7;
   }
+
+  .intro-meta {
+    max-width: 46rem;
+    margin-top: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .intro-meta p { margin: 0 0 0.4rem; }
 
   .intro-section,
   .comparison-section,
