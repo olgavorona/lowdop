@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { absoluteUrl, buildMeta, organizationSchema } from "../../lib/seo";
+import { formatLastUpdated, getLastUpdated } from "../../lib/freshness";
 
 const title = "Free Printables for Kids | Denny's Maze";
 const description =
   "Free printable maze activities from Denny's Maze, including Halloween and fall collections in easy, medium and hard versions.";
 const pathname = "/printables/";
+const lastUpdated = getLastUpdated("site/src/pages/printables/index.astro");
 
 const meta = buildMeta({
   title,
@@ -23,11 +25,11 @@ const printableArticles = [
     image: "/printables/halloween-mazes/color/svg/pumpkin-patch-easy.svg"
   },
   {
-    href: "/printables/halloween-1/",
-    title: "5 Free Halloween Story Maze Printables",
+    href: "/printables/halloween/",
+    title: "Free Halloween Maze Printables",
     description:
-      "Follow one friendly Halloween story through a ghost, black cat, pumpkin, cauldron and haunted house maze.",
-    image: "/printables/halloween-adventure/03-pumpkin-maze.png"
+      "Explore friendly seasonal maze printables with pumpkins, ghosts, cats and other Halloween themes.",
+    image: "/printables/halloween-mazes/color/svg/pumpkin-patch-easy.svg"
   },
   {
     href: "/printables/fall/",
@@ -69,6 +71,7 @@ const pageSchema = {
     <div class="shell narrow">
       <p class="eyebrow">Printables</p>
       <h1>Free printables for kids</h1>
+      <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
       <p class="section-intro">
         A growing library of quiet paper activities from Denny's Maze.
       </p>
@@ -99,6 +102,7 @@ const pageSchema = {
     margin-top: 2rem;
     border-top: 1px solid var(--line);
   }
+  .last-updated { color: var(--muted); font-size: .85rem; }
 
   .printables-article-link {
     display: grid;

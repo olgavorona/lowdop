@@ -7,6 +7,7 @@ import {
   organizationSchema
 } from "../lib/seo";
 import { appStoreUrl } from "../lib/analytics";
+import { formatLastUpdated, getLastUpdated } from "../lib/freshness";
 
 const title = "Best Offline Apps for Kids: 9 Toddler Apps Tested for Flights";
 const h1 = "Best Offline Apps for Toddlers: 9 Tested in Airplane Mode";
@@ -15,6 +16,7 @@ const description =
 const date = "2026-08-21";
 const author = "Olga Vorona";
 const pathname = "/offline-toddler-apps/";
+const lastUpdated = getLastUpdated("site/src/pages/offline-toddler-apps.astro");
 
 const meta = buildMeta({
   title,
@@ -230,6 +232,7 @@ const articleSchema = blogPostingSchema({
       <div class="shell narrow">
         <h1>{h1}</h1>
         <p class="byline"><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
+        <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
         <p class="lead">
           "Works offline" sounds simple until you're already on a plane and
           discover that the app needed an account, a subscription, or ten

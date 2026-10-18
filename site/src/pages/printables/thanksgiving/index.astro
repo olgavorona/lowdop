@@ -2,6 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { appStoreUrl } from "../../../lib/analytics";
 import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
+import { formatLastUpdated, getLastUpdated } from "../../../lib/freshness";
 
 const amazonBookUrl = "https://www.amazon.ca/dp/B0HLXD554F?ref_=pe_125682630_104560520";
 const campaign = "website_thanksgiving_printables";
@@ -25,6 +26,7 @@ const faqs = [
 const title = "7 Free Printable Thanksgiving Mazes for Kids | Denny’s Maze Adventure";
 const description = "Download seven free Thanksgiving maze printables for kids. Follow Denny and Tilly the turkey through an autumn story with history, counting and seek-and-find activities.";
 const pathname = "/printables/thanksgiving/";
+const lastUpdated = getLastUpdated("site/src/pages/printables/thanksgiving/index.astro");
 const meta = buildMeta({ title, description, pathname, image: printables[0].image });
 const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name: title, description, url: absoluteUrl(pathname), isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: "https://www.harmlessapp.com" } };
 ---
@@ -36,6 +38,7 @@ const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name:
         <div class="hero-copy">
           <p class="eyebrow">Free 7-page printable story</p>
           <h1>Denny’s Thanksgiving Maze Adventure</h1>
+          <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
           <p class="hero-lead">Join Denny and Tilly the turkey for a colorful maze adventure through an autumn leaf, the Mayflower, a wetu, a corn cob, a harvest feast and more. Each page adds a short story fact and a little counting or seek-and-find activity.</p>
           <div class="hero-actions">
             <a class="button thanks-primary" href="#free-printables">Get the free printables</a>

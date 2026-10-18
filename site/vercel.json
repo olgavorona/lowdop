@@ -3,12 +3,22 @@
     {
       "source": "/apps/dennys-maze",
       "destination": "/dennys-maze/",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/apps/dennys-maze/",
       "destination": "/dennys-maze/",
-      "permanent": true
+      "statusCode": 301
+    },
+    {
+      "source": "/printables/halloween-1",
+      "destination": "/printables/halloween/",
+      "statusCode": 301
+    },
+    {
+      "source": "/printables/halloween-1/",
+      "destination": "/printables/halloween/",
+      "statusCode": 301
     }
   ]
 }

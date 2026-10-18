@@ -3,11 +3,13 @@ import PrintablesPage from "../../../components/PrintablesPage.astro";
 import { fallMazePrintables } from "../../../data/printables/fallMazes";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
+import { getLastUpdated } from "../../../lib/freshness";
 
 const title = "6 Free Printable Fall Mazes for Kids | Color & Black-and-White";
 const description =
   "Download 6 free fall maze PDFs for kids ages 2-6 in color or black-and-white. Choose Easy, Medium or Hard leaf, apple, corn, pumpkin, acorn and rainy-day mazes.";
 const pathname = "/printables/fall/";
+const lastUpdated = getLastUpdated("site/src/pages/printables/fall/index.astro");
 const faqItems = [
   {
     question: "Are these fall mazes free to print?",
@@ -56,5 +58,5 @@ const pageSchema = {
   ogDescription="Download free full-color and black-and-white fall maze PDFs for kids ages 2-6, with Easy, Medium and Hard difficulty levels."
   schemas={[organizationSchema(), pageSchema, faqSchema(faqItems)]}
 >
-  <PrintablesPage {...fallMazePrintables} />
+  <PrintablesPage {...fallMazePrintables} lastUpdated={lastUpdated} />
 </BaseLayout>

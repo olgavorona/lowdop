@@ -6,8 +6,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { buildMeta, organizationSchema } from "../lib/seo";
 import { appReviews } from "../data/appReviews";
 import { appStoreUrl } from "../lib/analytics";
+import { formatLastUpdated, getLastUpdated } from "../lib/freshness";
 
 const dennyCampaign = "website_low_stim_guide";
+const lastUpdated = getLastUpdated("site/src/pages/best-low-stimulation-apps-for-toddlers.astro");
 
 const meta = buildMeta({
   title: "Best Low-Stimulation Apps for Toddlers: 14 Apps Compared",
@@ -202,6 +204,7 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
   <section class="intro-section">
     <div class="shell narrow prose">
       <p><strong>Disclosure:</strong> I make Denny’s Maze, which appears in this comparison.</p>
+      <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
     </div>
   </section>
 
