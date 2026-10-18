@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { appStoreUrl } from "../../../lib/analytics";
+import { absoluteUrl, buildMeta, organizationSchema } from "../../../lib/seo";
+import { formatLastUpdated, getLastUpdated } from "../../../lib/freshness";
+
+const title = "5 Free Halloween Maze Printables | Denny’s Maze";
+const description = "Download Denny’s five-page Halloween maze adventure as a free ZIP, with friendly ghost, black cat, pumpkin, cauldron, and haunted house mazes.";
+const pathname = "/printables/halloween-1/";
+const assetBase = "/printables/halloween-adventure";
+const lastUpdated = getLastUpdated("site/src/pages/printables/halloween-1/index.astro");
+const campaign = "website_halloween_adventure";
+const amazonBookUrl = "https://www.amazon.ca/dp/B0HLXD554F?ref_=pe_125682630_104560520";
+const pages = [
+  ["01", "Friendly Ghost Maze", "01-friendly-ghost-maze.png", "Denny’s Halloween maze with a friendly ghost, bats, and a spooky mist"],
+  ["02", "Black Cat Maze", "02-black-cat-maze.png", "Denny’s Halloween maze with a black cat"],
+  ["03", "Pumpkin Maze", "03-pumpkin-maze.png", "Denny’s Halloween pumpkin maze"],
+  ["04", "Cauldron Maze", "04-cauldron-maze.png", "Denny’s Halloween cauldron maze"],
+  ["05", "Haunted House Maze", "05-haunted-house-maze.png", "Denny’s friendly haunted house maze"]
+].map(([number, name, file, alt]) => ({ number, name, image: `${assetBase}/${file}`, alt }));
+const meta = buildMeta({ title, description, pathname });
+const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name: "Denny’s Halloween Maze Adventure", description, url: absoluteUrl(pathname), isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: "https://www.harmlessapp.com" } };
+---
+
+<BaseLayout {...meta} breadcrumbLabel="Denny’s Halloween Maze Adventure" schemas={[organizationSchema(), pageSchema]}>
+  <main class="adventure-page">
+    <section class="adventure-hero">
+      <div class="shell narrow">
+        <p class="eyebrow">Free 5-page Halloween printable</p>
+        <h1>Denny’s Halloween Maze Adventure</h1>
+        <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
+        <p class="lede">Join Denny on Halloween night and follow five friendly maze adventures, from a ghost in the spooky mist to a haunted house.</p>
+        <a class="button" href={`${assetBase}/dennys-halloween-maze-adventure.zip`} download>Download all 5 mazes</a>
+        <p class="download-note">Free PNG printables in one ZIP file.</p>
+      </div>
+    </section>
+
+    <section class="maze-list shell">
+      {pages.map((page) => <article class="maze-card">
+        <a class="maze-image" href={page.image} download aria-label={`Download ${page.name}`}><img src={page.image} alt={page.alt} loading="lazy" /></a>
+        <div><p class="eyebrow">Part {page.number} of 5</p><h2>{page.name}</h2><a href={page.image} download>Download this maze ↓</a></div>
+      </article>)}
+    </section>
+
+    <section class="cta-block shell">
+      <div class="offer"><div><p class="eyebrow">More paper mazes</p><h2>Keep going with Denny’s activity book</h2><p>Find more mazes and tracing activities in Denny’s Preschool Mazes and Tracing.</p><a class="button" href={amazonBookUrl} target="_blank" rel="sponsored noopener" data-amazon-cta="halloween-adventure-book">See the activity book on Amazon</a></div><div><p class="eyebrow">More maze fun</p><h2>Try Denny’s Maze on iPad</h2><p>Take Denny’s maze play with you in the app.</p><a class="button" href={appStoreUrl(campaign)} data-app-store-cta="halloween-adventure" data-app-store-campaign={campaign}>Download on the App Store</a></div></div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .adventure-page { --adventure-ink:#171d38; --adventure-orange:#ef523d; }
+  .adventure-hero { padding:clamp(3rem,8vw,6rem) 0; background:#f6f0e4; border-bottom:1px solid var(--line); }
+  .adventure-hero h1 { max-width:14ch; color:var(--adventure-ink); font-size:clamp(2.8rem,7vw,5.5rem); }
+  .adventure-hero .lede { max-width:42rem; margin:1.5rem 0; color:var(--muted); font-size:1.2rem; }
+  .adventure-hero .button,.cta-block .button { background:var(--adventure-orange); border-color:var(--adventure-orange); color:#fff; }
+  .download-note { margin:.75rem 0 0; color:var(--muted); font-size:.9rem; }
+  .maze-list { padding-block:2rem 4rem; }
+  .maze-card { display:grid; grid-template-columns:minmax(14rem,24rem) minmax(0,1fr); gap:clamp(1.5rem,5vw,4rem); align-items:center; padding:2rem 0; border-bottom:1px solid var(--line); }
+  .maze-image { display:block; background:#fff; box-shadow:0 12px 26px rgba(35,24,61,.12); }
+  .maze-image img { display:block; width:100%; height:auto; }
+  .maze-card h2 { color:var(--adventure-ink); }
+  .maze-card a:not(.maze-image) { font-weight:700; }
+  .cta-block { margin-bottom:4rem; padding:clamp(2rem,6vw,4rem); background:#dff36f; }
+  .offer { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem; }
+  .cta-block h2 { max-width:17ch; }
+  @media (max-width:700px) { .offer { grid-template-columns:1fr; } }
+  @media (max-width:600px) { .maze-card { grid-template-columns:1fr; } .maze-image { max-width:25rem; } }
+</style>
