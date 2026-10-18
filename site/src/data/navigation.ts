@@ -38,6 +38,7 @@ export const footerNav = [
   { href: "/ratings/apps/", label: "App Reviews" },
   { href: "/ratings/methodology/", label: "Ratings Methodology" },
   { href: "/blog/", label: "Blog" },
+  { href: "/about/", label: "About Olga" },
   { href: "/privacy/", label: "Privacy" },
   { href: "/terms/", label: "Terms" }
 ];

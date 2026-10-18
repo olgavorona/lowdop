@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buildMeta, organizationSchema } from "../lib/seo";
+
+const title = "About Olga Vorona | Harmless Apps";
+const description = "Olga Vorona is an iOS developer with 13 years of experience, the creator of Harmless Apps and Denny’s Maze, and a mother.";
+const meta = buildMeta({ title, description, pathname: "/about/" });
+
+// TODO: Add Olga's LinkedIn profile URL when supplied by the owner.
+// TODO: Add any other verified public profile URLs when supplied by the owner.
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema()]}>
+  <header class="page-header">
+    <div class="shell narrow">
+      <p class="eyebrow">About</p>
+      <h1>Olga Vorona</h1>
+      <p class="lead">I’m an iOS developer with 13 years of experience, the creator of Harmless Apps and Denny’s Maze, and a mother.</p>
+    </div>
+  </header>
+  <section class="content-block">
+    <div class="shell narrow prose">
+      <p>I created Harmless Apps to review and build children’s digital products with attention to calm design, learning value, offline use, and parent trust.</p>
+      <p>Denny’s Maze is the app I made around those priorities: a quiet maze activity for children, shaped by my experience as a developer and a parent.</p>
+    </div>
+  </section>
+</BaseLayout>

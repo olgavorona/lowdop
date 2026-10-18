@@ -20,6 +20,7 @@ const pages = [
   ["/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights/", "site/src/pages/blog/what-actually-works-on-a-plane-with-a-3-year-old-after-10-flights.astro"],
   ["/blog/why-i-bring-an-ipad-on-every-flight/", "site/src/pages/blog/why-i-bring-an-ipad-on-every-flight.astro"],
   ["/blog/i-spent-13-years-making-apps-impossible-to-put-down/", "site/src/pages/blog/i-spent-13-years-making-apps-impossible-to-put-down.astro"],
+  ["/about/", "site/src/pages/about.astro"],
   ["/privacy/", "site/src/pages/privacy.astro"],
   ["/terms/", "site/src/pages/terms.astro"]
 ] as const;
