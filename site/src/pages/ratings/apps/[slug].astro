@@ -5,7 +5,7 @@ import { appReviews, scoreDimensions } from "../../../data/appReviews";
 import scoreDetails from "../../../data/appScoreDetails.json";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
-import { getLastUpdated } from "../../../lib/freshness";
+import { formatLastUpdated, getLastUpdated } from "../../../lib/freshness";
 export function getStaticPaths() { return appReviews.map((review) => ({ params: { slug: review.slug }, props: { review } })); }
 const { review } = Astro.props;
 const icons: Record<string, string> = { "khan-academy-kids": "/images/app-icons/khan-academy-kids.jpg", "pok-pok": "/images/app-icons/pok-pok.jpg", "montessori-preschool": "/images/app-icons/montessori-preschool.svg", thinkrolls: "/images/app-icons/thinkrolls.jpg", lingo: "/images/app-icons/lingokids.jpg", "sago-mini-school": "/images/app-icons/sago-mini.jpg", "sago-mini-world": "/images/app-icons/sago-mini.jpg", "abc-mouse": "/images/app-icons/abc-mouse.svg" };
@@ -37,6 +37,7 @@ const breadcrumbSchema = { "@context": "https://schema.org", "@type": "Breadcrum
   <nav class="breadcrumbs shell narrow" aria-label="Breadcrumb"><a href="/ratings/apps/">App reviews</a><span aria-hidden="true">/</span><span>{review.name}</span></nav>
   <PageHeader eyebrow="Independent app scorecard · Methodology v0.1" title={`${review.name} review`} intro={review.summary} tags={[review.learningMode, "higher scores are better"]} icon={icons[review.slug]} iconAlt={`${review.name} icon`} />
   <p class="shell narrow author-byline">By <a href="/about/">Olga Vorona</a></p>
+  <p class="shell narrow last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
   {reviewVideo && <section class="video-section"><div class="shell narrow"><p class="eyebrow">Video review</p><h2>Watch the Sago Mini School review</h2><div class="video-player"><iframe src={`https://www.youtube-nocookie.com/embed/${reviewVideo.id}`} title={reviewVideo.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div></section>}
   <section class="review-section"><div class="shell review-grid"><article class="panel"><p class="eyebrow">Five-dimension scorecard</p><AppScorecard review={review} /></article><aside class="panel context"><h2>How to read this review</h2><p>These dimensions are intentionally separate. A large content library can score well for value while being intense, difficult to use offline, or commercially distracting.</p><p>The scores describe the tested version and sampled experience—not every screen, every child, or future app update.</p></aside></div></section>
   <section class="review-section tinted"><div class="shell"><p class="eyebrow">Score definitions</p><div class="definitions">{scoreDimensions.map((dimension) => <article><h2>{dimension.label}</h2><p>{dimension.short}. <strong>{review.scores[dimension.key].toFixed(1)}/10</strong></p></article>)}</div></div></section>
