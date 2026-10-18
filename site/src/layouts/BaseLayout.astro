@@ -20,6 +20,7 @@ type Props = {
   type?: "website" | "article";
   ogTitle?: string;
   ogDescription?: string;
+  breadcrumbLabel?: string;
   schemas?: Schema[];
 };
 
@@ -34,11 +35,12 @@ const {
   type = "website",
   ogTitle = title,
   ogDescription = description,
+  breadcrumbLabel = title,
   schemas = []
 } = Astro.props as Props;
 const breadcrumb = schemas.some((schema) => schema["@type"] === "BreadcrumbList")
   ? null
-  : breadcrumbListSchema(canonical, title);
+  : breadcrumbListSchema(canonical, breadcrumbLabel);
 const pageSchemas = breadcrumb ? [...schemas, breadcrumb] : schemas;
 ---
 

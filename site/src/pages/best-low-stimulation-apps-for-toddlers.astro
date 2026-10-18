@@ -195,12 +195,12 @@ const sorted = [...apps].sort((a, b) => calmScore(b) - calmScore(a));
 ---
 
 <BaseLayout {...meta} schemas={[organizationSchema(), editorialArticleSchema({
-  title: meta.title,
+  title: "Best Low-Stimulation Apps for Toddlers",
   description: meta.description,
   pathname: "/best-low-stimulation-apps-for-toddlers/",
   dateModified: lastUpdated,
   image: meta.image
-})]}>
+})]} breadcrumbLabel="Best Low-Stimulation Apps for Toddlers">
   <PageHeader
     eyebrow="Guide"
     title="Best Low-Stimulation Apps for Toddlers"

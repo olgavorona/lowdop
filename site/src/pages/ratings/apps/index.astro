@@ -11,7 +11,7 @@ const lastUpdated = getLastUpdated("site/src/pages/ratings/apps/index.astro");
 // TODO: Add datePublished once the original publication date is confirmed.
 const icons: Record<string, string> = { "khan-academy-kids": "/images/app-icons/khan-academy-kids.jpg", "pok-pok": "/images/app-icons/pok-pok.jpg", "montessori-preschool": "/images/app-icons/montessori-preschool.svg", thinkrolls: "/images/app-icons/thinkrolls.jpg", lingo: "/images/app-icons/lingokids.jpg", "sago-mini-school": "/images/app-icons/sago-mini.jpg", "sago-mini-world": "/images/app-icons/sago-mini.jpg", "abc-mouse": "/images/app-icons/abc-mouse.svg" };
 ---
-<BaseLayout {...meta} schemas={[organizationSchema(), editorialArticleSchema({ title: meta.title, description: meta.description, pathname: "/ratings/apps/", dateModified: lastUpdated, image: meta.image })]}>
+<BaseLayout {...meta} breadcrumbLabel="Kids app reviews" schemas={[organizationSchema(), editorialArticleSchema({ title: "Kids app reviews", description: meta.description, pathname: "/ratings/apps/", dateModified: lastUpdated, image: meta.image })]}>
   <PageHeader eyebrow="Ratings · Tested apps" title="Kids app reviews" intro="One score cannot answer every family’s question. Compare five separate dimensions, then open an app to see what each score means." tags={[`${appReviews.length} apps tested`, "0–10 scores", "higher is better"]} />
   <p class="shell narrow author-byline">By <a href="/about/">Olga Vorona</a></p>
   <p class="shell narrow last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
