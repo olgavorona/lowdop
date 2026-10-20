@@ -30,15 +30,15 @@ const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name:
         <h1>Denny’s Halloween Maze Adventure</h1>
         <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
         <p class="lede">Join Denny on Halloween night and follow five friendly maze adventures, from a ghost in the spooky mist to a haunted house.</p>
-        <a class="button" href={`${assetBase}/dennys-halloween-maze-adventure.zip`} download>Download all 5 mazes</a>
+        <a class="button" href={`${assetBase}/dennys-halloween-maze-adventure.zip`} download data-download-placement="hero">Download all 5 mazes</a>
         <p class="download-note">Free PNG printables in one ZIP file.</p>
       </div>
     </section>
 
     <section class="maze-list shell">
       {pages.map((page) => <article class="maze-card">
-        <a class="maze-image" href={page.image} download aria-label={`Download ${page.name}`}><img src={page.image} alt={page.alt} loading="lazy" /></a>
-        <div><p class="eyebrow">Part {page.number} of 5</p><h2>{page.name}</h2><a href={page.image} download>Download this maze ↓</a></div>
+        <a class="maze-image" href={page.image} download data-download-placement="image" aria-label={`Download ${page.name}`}><img src={page.image} alt={page.alt} loading="lazy" /></a>
+        <div><p class="eyebrow">Part {page.number} of 5</p><h2>{page.name}</h2><a href={page.image} download data-download-placement="list">Download this maze ↓</a></div>
       </article>)}
     </section>
 

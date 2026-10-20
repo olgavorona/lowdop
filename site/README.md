@@ -33,7 +33,7 @@ npm run check
 Сайт использует три совместимых источника аналитики:
 
 - Vercel Web Analytics — просмотры страниц и базовые рефереры.
-- TelemetryDeck Web — просмотры, UTM-параметры и клики по ссылкам App Store и Amazon.
+- TelemetryDeck Web — просмотры, UTM-параметры, клики по ссылкам App Store и Amazon, а также по ссылкам скачивания лабиринтов.
 - App Store Connect — просмотры карточки, загрузки, продажи и удержание по Apple campaign link.
 
 Создайте в TelemetryDeck отдельное приложение для сайта. Затем добавьте в локальный
@@ -55,9 +55,11 @@ Apple provider token берется из campaign link, созданного в 
 Если переменная не задана, сайт продолжает работать безопасно: TelemetryDeck Web не
 загружается, а ссылки App Store остаются обычными ссылками без campaign attribution.
 
-Сигналы кликов в TelemetryDeck: `website.appStoreClicked` и `website.amazonClicked`.
-Оба содержат поля `path`, `utm_source`, `utm_medium`, `utm_campaign`; также App Store
-передает `placement` и `campaign`, а Amazon — `placement`.
+Сигналы кликов в TelemetryDeck: `website.appStoreClicked`, `website.amazonClicked`
+и `website.printableDownloadClicked`. Все содержат поля `path`, `utm_source`,
+`utm_medium`, `utm_campaign`; также App Store передает `placement` и `campaign`,
+Amazon — `placement`, а скачивания — `file`, `format`, `kind` (`archive` или `maze`)
+и `placement`. Сигнал скачивания фиксирует клик, а не завершение загрузки.
 
 ## Где редактировать SEO-метаданные
 

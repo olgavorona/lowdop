@@ -42,7 +42,7 @@ const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name:
           <p class="hero-lead">Join Denny and Tilly the turkey for a colorful maze adventure through an autumn leaf, the Mayflower, a wetu, a corn cob, a harvest feast and more. Each page adds a short story fact and a little counting or seek-and-find activity.</p>
           <div class="hero-actions">
             <a class="button thanks-primary" href="#free-printables">Get the free printables</a>
-            <a class="text-link" href={`${assetBase}/thanksgiving-mazes.zip`} download>Download all 7 as a ZIP <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href={`${assetBase}/thanksgiving-mazes.zip`} download data-download-placement="hero">Download all 7 as a ZIP <span aria-hidden="true">↓</span></a>
           </div>
           <p class="hero-note">Free · Full color · No email required</p>
         </div>
@@ -70,12 +70,12 @@ const pageSchema = { "@context": "https://schema.org", "@type": "WebPage", name:
         <div class="printable-grid">
           {printables.map((item) => (
             <article class="printable-card">
-              <a class="printable-image" href={item.image} download aria-label={`Download ${item.title}`}><img src={item.image} alt={item.alt} width="2000" height="3000" loading="lazy" /></a>
-              <div class="printable-card-copy"><span class="printable-number">Part {item.number}</span><h3>{item.title}</h3><p>{item.description}</p><a class="download-link" href={item.image} download>Download printable PNG <span aria-hidden="true">↓</span></a></div>
+              <a class="printable-image" href={item.image} download data-download-placement="image" aria-label={`Download ${item.title}`}><img src={item.image} alt={item.alt} width="2000" height="3000" loading="lazy" /></a>
+              <div class="printable-card-copy"><span class="printable-number">Part {item.number}</span><h3>{item.title}</h3><p>{item.description}</p><a class="download-link" href={item.image} download data-download-placement="list">Download printable PNG <span aria-hidden="true">↓</span></a></div>
             </article>
           ))}
         </div>
-        <div class="all-download"><div><p class="eyebrow">Ready to print</p><h2>Get all seven free maze pages</h2><p>Download the full-resolution Thanksgiving printables together.</p></div><a class="button thanks-primary" href={`${assetBase}/thanksgiving-mazes.zip`} download>Download all 7 free printables</a></div>
+        <div class="all-download"><div><p class="eyebrow">Ready to print</p><h2>Get all seven free maze pages</h2><p>Download the full-resolution Thanksgiving printables together.</p></div><a class="button thanks-primary" href={`${assetBase}/thanksgiving-mazes.zip`} download data-download-placement="pack">Download all 7 free printables</a></div>
       </div>
     </section>
 

@@ -58,5 +58,18 @@ if (appID && namespace) {
         placement: amazonLink.dataset.amazonCta || "unknown"
       });
     }
+
+    const downloadLink = target.closest<HTMLAnchorElement>("a[download]");
+    if (downloadLink) {
+      const file = new URL(downloadLink.href).pathname;
+      const format = file.split(".").pop()?.toLowerCase() || "unknown";
+      void telemetry.signal("website.printableDownloadClicked", {
+        ...attribution,
+        file,
+        format,
+        kind: format === "zip" ? "archive" : "maze",
+        placement: downloadLink.dataset.downloadPlacement || "unknown"
+      });
+    }
   });
 }

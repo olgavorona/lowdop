@@ -178,7 +178,7 @@ const faqItems = [
               <button type="button" class="difficulty-button active" data-format-button data-format-choice="color" aria-pressed="true">Full color</button>
             </div>
 
-            <a class="button printable-download" href={maze.difficulties[0].colorHref} download data-dynamic-download>
+            <a class="button printable-download" href={maze.difficulties[0].colorHref} download data-dynamic-download data-download-placement="list">
               Download Easy Color
             </a>
           </div>
@@ -239,7 +239,7 @@ const faqItems = [
           </div>
         </div>
         <div class="pack-download-actions">
-          <a class="button" href={colorDownloadPacks[2]?.href ?? colorDownloadPacks[0]?.href} download data-pack-download>Download Hard Color ZIP</a>
+          <a class="button" href={colorDownloadPacks[2]?.href ?? colorDownloadPacks[0]?.href} download data-pack-download data-download-placement="pack">Download Hard Color ZIP</a>
         </div>
       </div>
     </div>
@@ -325,7 +325,7 @@ const faqItems = [
           <button type="button" class="difficulty-button" data-format-button data-format-choice="bw" aria-pressed="false">Black &amp; white</button>
           <button type="button" class="difficulty-button active" data-format-button data-format-choice="color" aria-pressed="true">Full color</button>
         </div>
-        <a class="button" href="#" download data-preview-download>Download Easy</a>
+        <a class="button" href="#" download data-preview-download data-download-placement="preview">Download Easy</a>
       </div>
     </section>
   </div>
@@ -349,25 +349,6 @@ const faqItems = [
   let activeMazeIndex = 0;
   let activeDifficultyIndex = 0;
   let activeFormat = "color";
-
-  document.querySelectorAll("[data-dynamic-download], [data-preview-download], [data-pack-download]").forEach((link) => {
-    if (!(link instanceof HTMLAnchorElement)) return;
-    link.addEventListener("click", () => {
-      // Read the current URL so changes to difficulty and preview maze are reflected.
-      const file = new URL(link.href).pathname;
-      const match = file.match(/\/([^/]+)-(easy|medium|hard)\.(pdf|zip)$/);
-      if (!match) return;
-
-      const [, maze, difficulty, format] = match;
-      const location = link.hasAttribute("data-pack-download")
-        ? "pack"
-        : link.hasAttribute("data-preview-download") ? "preview" : "list";
-
-      window.dispatchEvent(new CustomEvent("printable_maze_download", {
-        detail: { maze: format === "zip" ? "all" : maze, difficulty, format, location, file }
-      }));
-    });
-  });
 
   function setButtonGroupActive(buttons: Element[], index: number, dataAttribute: "difficultyIndex" | "previewDifficulty") {
     buttons.forEach((button) => {
