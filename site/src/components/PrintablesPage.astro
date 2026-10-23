@@ -216,8 +216,7 @@ const faqItems = [
           <h2>Download All {printableCount} Free {themeName} Mazes</h2>
           <p>
             Get the complete set of printable {themeLower} mazes in your chosen
-            difficulty. The set includes the leaf, apple, corn, pumpkin, acorn
-            and rainy puddle mazes.
+            difficulty. The set includes all {printableCount} designs listed above.
           </p>
           <div class="difficulty-control pack-difficulty-control" aria-label="Choose pack difficulty">
             {downloadPacks.map((pack, index) => (
@@ -346,6 +345,12 @@ const faqItems = [
   const rowDifficultyButtons = Array.from(document.querySelectorAll("[data-difficulty-button]"));
   const packDifficultyButtons = Array.from(document.querySelectorAll("[data-pack-difficulty]"));
   const packDownload = document.querySelector("[data-pack-download]");
+  const isGerman = document.documentElement.lang === "de";
+  const colorName = () => activeFormat === "color" ? (isGerman ? "Farbe" : "Color") : (isGerman ? "Schwarz-Weiß" : "B&W");
+  const imageColorName = () => activeFormat === "color" ? (isGerman ? "in Farbe" : "full color") : (isGerman ? "in Schwarz-Weiß" : "black and white");
+  const downloadName = (difficulty: string) => isGerman
+    ? `Labyrinth (${difficulty}, ${colorName()}) herunterladen`
+    : `Download ${difficulty} ${colorName()}`;
   let activeMazeIndex = 0;
   let activeDifficultyIndex = 0;
   let activeFormat = "color";
@@ -370,13 +375,13 @@ const faqItems = [
       const previewImage = row.querySelector("[data-printable-preview-image]");
       if (previewImage instanceof HTMLImageElement) {
         previewImage.src = activeFormat === "color" ? difficulty.colorPreview : difficulty.preview;
-        previewImage.alt = `${maze.alt} - ${difficulty.label} - ${activeFormat === "color" ? "full color" : "black and white"}`;
+        previewImage.alt = `${maze.alt} - ${difficulty.label} - ${imageColorName()}`;
       }
 
       const download = row.querySelector("[data-dynamic-download]");
       if (download instanceof HTMLAnchorElement) {
         download.href = activeFormat === "color" ? difficulty.colorHref : difficulty.href;
-        download.textContent = `Download ${difficulty.label} ${activeFormat === "color" ? "Color" : "B&W"}`;
+        download.textContent = downloadName(difficulty.label);
       }
 
       row.querySelectorAll("[data-difficulty-button]").forEach((button) => {
@@ -417,11 +422,11 @@ const faqItems = [
     if (modalTitle) modalTitle.textContent = maze.title;
     if (modalImage instanceof HTMLImageElement) {
       modalImage.src = activeFormat === "color" ? difficulty.colorPreview : difficulty.preview;
-      modalImage.alt = `${maze.alt} - ${difficulty.label} - ${activeFormat === "color" ? "full color" : "black and white"}`;
+      modalImage.alt = `${maze.alt} - ${difficulty.label} - ${imageColorName()}`;
     }
     if (modalDownload instanceof HTMLAnchorElement) {
       modalDownload.href = activeFormat === "color" ? difficulty.colorHref : difficulty.href;
-      modalDownload.textContent = `Download ${difficulty.label} ${activeFormat === "color" ? "Color" : "B&W"}`;
+      modalDownload.textContent = downloadName(difficulty.label);
     }
 
     modalDifficultyButtons.forEach((button) => {
@@ -527,10 +532,12 @@ const faqItems = [
   function updatePackDownload() {
     const selected = packDifficultyButtons.find((button) => button.classList.contains("active"));
     if (!(selected instanceof HTMLButtonElement) || !(packDownload instanceof HTMLAnchorElement)) return;
-    const label = selected.textContent?.trim() ?? "Selected";
+    const label = selected.textContent?.trim() ?? (isGerman ? "Ausgewählt" : "Selected");
     const href = activeFormat === "color" ? selected.dataset.colorPackHref : selected.dataset.packHref;
     if (href) packDownload.href = href;
-    packDownload.textContent = `Download ${label} ${activeFormat === "color" ? "Color" : "B&W"} ZIP`;
+    packDownload.textContent = isGerman
+      ? `Set (${label}, ${colorName()}) als ZIP herunterladen`
+      : `Download ${label} ${colorName()} ZIP`;
   }
 </script>
 

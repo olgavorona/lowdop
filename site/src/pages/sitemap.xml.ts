@@ -3,10 +3,13 @@ import { siteConfig } from "../data/site";
 import { absoluteUrl } from "../lib/seo";
 import { appReviews } from "../data/appReviews";
 import { getLastUpdated } from "../lib/freshness";
+import locales from "../data/locales.json";
 
 const pages = [
   ["/", "site/src/pages/index.astro"],
   ["/dennys-maze/", "site/src/pages/dennys-maze.astro"],
+  ["/go/book-intro/", "site/src/pages/go/book-intro.astro"],
+  ["/go/book-finished/", "site/src/pages/go/book-finished.astro"],
   ["/printables/", "site/src/pages/printables/index.astro"],
   ["/printables/fall/", "site/src/pages/printables/fall/index.astro"],
   ["/printables/halloween/", "site/src/pages/printables/halloween/index.astro"],
@@ -28,9 +31,11 @@ const pages = [
 
 export const GET: APIRoute = () => {
   const urls = pages
-    .map(([path, sourcePath]) => {
+    .flatMap(([path, sourcePath]) => {
       const lastmod = getLastUpdated(sourcePath);
-      return `<url><loc>${absoluteUrl(path)}</loc><lastmod>${lastmod}</lastmod></url>`;
+      return locales.map(({ code }) => code === "en" ? path : `/${code}${path}`).map((localizedPath) =>
+        `<url><loc>${absoluteUrl(localizedPath)}</loc><lastmod>${lastmod}</lastmod></url>`
+      );
     })
     .join("");
 
