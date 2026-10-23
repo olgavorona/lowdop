@@ -21,6 +21,7 @@ const missing = new Map(translatedLocales.map(({ code }) => [code, new Set()]));
 const textAttributes = new Set(["alt", "aria-label", "title", "placeholder"]);
 const jsonTextKeys = new Set(["name", "headline", "description", "text", "title", "alt", "label"]);
 const metaTextKeys = new Set(["description", "og:title", "og:description", "og:image:alt", "twitter:title", "twitter:description", "twitter:image:alt"]);
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 async function htmlFiles(directory) {
   const files = [];
@@ -45,14 +46,26 @@ function translatable(value) {
 function translate(value, locale) {
   if (!translatable(value)) return value;
   const key = normalized(value);
-  strings.add(key);
+  const updated = /^Last updated: ([A-Za-z]+) (\d{1,2}), (\d{4})$/.exec(key);
+  const translationKey = updated ? "Last updated:" : key;
+  strings.add(translationKey);
   if (extracting) return value;
-  const translated = translations.get(locale.code)?.[key];
+  const translated = translations.get(locale.code)?.[translationKey];
   if (typeof translated !== "string" || !translated.trim()) {
-    missing.get(locale.code).add(key);
+    missing.get(locale.code).add(translationKey);
     return value;
   }
-  return `${value.match(/^\s*/)?.[0] ?? ""}${translated}${value.match(/\s*$/)?.[0] ?? ""}`;
+  let result = translated;
+  if (updated) {
+    const month = months.indexOf(updated[1]);
+    if (month < 0) throw new Error(`Unknown month in last-updated date: ${key}`);
+    const date = new Date(Date.UTC(Number(updated[3]), month, Number(updated[2])));
+    if (date.getUTCMonth() !== month || date.getUTCDate() !== Number(updated[2])) {
+      throw new Error(`Invalid last-updated date: ${key}`);
+    }
+    result += ` ${new Intl.DateTimeFormat(locale.code, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(date)}`;
+  }
+  return `${value.match(/^\s*/)?.[0] ?? ""}${result}${value.match(/\s*$/)?.[0] ?? ""}`;
 }
 
 function attr(node, name) {
