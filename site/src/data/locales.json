@@ -8,5 +8,10 @@
     "code": "de",
     "nativeName": "Deutsch",
     "ogLocale": "de_DE"
+  },
+  {
+    "code": "ja",
+    "nativeName": "日本語",
+    "ogLocale": "ja_JP"
   }
 ]

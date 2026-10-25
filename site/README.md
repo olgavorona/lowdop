@@ -25,7 +25,7 @@ The generated site is in `site/dist/`.
 ## Languages
 
 `npm run build` creates English pages and static copies for the languages listed in
-`src/data/locales.json`. German is currently available under `/de/`. The language
+`src/data/locales.json`. German is available under `/de/` and Japanese under `/ja/`. The language
 picker keeps visitors on the same page when they switch languages. Text and metadata
 translations live in `translations/<code>.json`; PDF, PNG, and ZIP assets are shared
 across languages. The build fails if a listed language is missing a translation.
@@ -44,7 +44,7 @@ npm exec astro build
 node scripts/localize.mjs --extract > /tmp/site-english-strings.json
 ```
 
-Add new translations to `translations/de.json` and run `npm run build` again. To add
+Add new translations to the relevant `translations/<code>.json` and run `npm run build` again. To add
 another language, add its code, native name, and Open Graph locale to
 `src/data/locales.json`, create `translations/<code>.json`, and build the site.
 The picker, alternate links, and sitemap use the same language list.

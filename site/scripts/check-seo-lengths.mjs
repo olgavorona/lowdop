@@ -27,6 +27,8 @@ async function visit(directory) {
     if (!html.includes("<html")) continue;
     const title = html.match(/<title>(.*?)<\/title>/is)?.[1]?.trim();
     const description = html.match(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/i)?.[1];
+    const language = html.match(/<html\s+lang="([^"]+)"/i)?.[1] ?? "en";
+    const descriptionRange = language === "ja" ? [50, 110] : [120, 160];
     const page = `/${relative(root, path)}`;
 
     if (title) {
@@ -40,8 +42,8 @@ async function visit(directory) {
       warnings.push(`${page}: missing meta description`);
     } else {
       const length = decode(description).length;
-      if (length < 120 || length > 160) {
-        warnings.push(`${page}: description is ${length} characters (expected 120–160)`);
+      if (length < descriptionRange[0] || length > descriptionRange[1]) {
+        warnings.push(`${page}: description is ${length} characters (expected ${descriptionRange[0]}–${descriptionRange[1]})`);
       }
     }
   }

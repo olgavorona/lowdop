@@ -345,12 +345,18 @@ const faqItems = [
   const rowDifficultyButtons = Array.from(document.querySelectorAll("[data-difficulty-button]"));
   const packDifficultyButtons = Array.from(document.querySelectorAll("[data-pack-difficulty]"));
   const packDownload = document.querySelector("[data-pack-download]");
-  const isGerman = document.documentElement.lang === "de";
-  const colorName = () => activeFormat === "color" ? (isGerman ? "Farbe" : "Color") : (isGerman ? "Schwarz-Weiß" : "B&W");
-  const imageColorName = () => activeFormat === "color" ? (isGerman ? "in Farbe" : "full color") : (isGerman ? "in Schwarz-Weiß" : "black and white");
-  const downloadName = (difficulty: string) => isGerman
+  const pageLanguage = document.documentElement.lang;
+  const colorName = () => activeFormat === "color"
+    ? (pageLanguage === "de" ? "Farbe" : pageLanguage === "ja" ? "カラー" : "Color")
+    : (pageLanguage === "de" ? "Schwarz-Weiß" : pageLanguage === "ja" ? "白黒" : "B&W");
+  const imageColorName = () => activeFormat === "color"
+    ? (pageLanguage === "de" ? "in Farbe" : pageLanguage === "ja" ? "フルカラー" : "full color")
+    : (pageLanguage === "de" ? "in Schwarz-Weiß" : pageLanguage === "ja" ? "白黒" : "black and white");
+  const downloadName = (difficulty: string) => pageLanguage === "de"
     ? `Labyrinth (${difficulty}, ${colorName()}) herunterladen`
-    : `Download ${difficulty} ${colorName()}`;
+    : pageLanguage === "ja"
+      ? `迷路をダウンロード（${difficulty}・${colorName()}）`
+      : `Download ${difficulty} ${colorName()}`;
   let activeMazeIndex = 0;
   let activeDifficultyIndex = 0;
   let activeFormat = "color";
@@ -532,12 +538,14 @@ const faqItems = [
   function updatePackDownload() {
     const selected = packDifficultyButtons.find((button) => button.classList.contains("active"));
     if (!(selected instanceof HTMLButtonElement) || !(packDownload instanceof HTMLAnchorElement)) return;
-    const label = selected.textContent?.trim() ?? (isGerman ? "Ausgewählt" : "Selected");
+    const label = selected.textContent?.trim() ?? (pageLanguage === "de" ? "Ausgewählt" : pageLanguage === "ja" ? "選択済み" : "Selected");
     const href = activeFormat === "color" ? selected.dataset.colorPackHref : selected.dataset.packHref;
     if (href) packDownload.href = href;
-    packDownload.textContent = isGerman
+    packDownload.textContent = pageLanguage === "de"
       ? `Set (${label}, ${colorName()}) als ZIP herunterladen`
-      : `Download ${label} ${colorName()} ZIP`;
+      : pageLanguage === "ja"
+        ? `セットをZIPでダウンロード（${label}・${colorName()}）`
+        : `Download ${label} ${colorName()} ZIP`;
   }
 </script>
 
