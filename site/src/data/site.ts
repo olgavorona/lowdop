@@ -5,7 +5,7 @@ export const siteConfig = {
   appStoreUrl: "https://apps.apple.com/app/id6760107138",
   productName: "Denny's Maze",
   productPath: "/dennys-maze/",
-  productTagline: "A calmer maze-book feeling on an iPad.",
+  productTagline: "A calmer maze-book feeling on iPhone and iPad.",
   language: "en",
   organization: {
     name: "Harmless Apps",
