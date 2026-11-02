@@ -37,6 +37,7 @@ struct BookshelfView: View {
 
         enum PackIcon {
             case system(String, Color)
+            case character(String)
             case emoji(String)
         }
 
@@ -75,6 +76,26 @@ struct BookshelfView: View {
             progressBarColor: AppColor.accentGreen,
             unlockText: "",
             icon: .system("character.book.closed.fill", .white.opacity(0.95)),
+            decoration: .waves,
+            alwaysShow: true
+        ),
+        PackConfig(
+            id: "number_tracing",
+            title: "Trace Numbers",
+            gradientColors: [Color(hex: "#164E63") ?? .blue, Color(hex: "#0F766E") ?? .green, Color(hex: "#15803D") ?? .green],
+            progressBarColor: AppColor.accentGreen,
+            unlockText: "",
+            icon: .system("number", .white.opacity(0.95)),
+            decoration: .waves,
+            alwaysShow: true
+        ),
+        PackConfig(
+            id: "hiragana_tracing",
+            title: "Trace Hiragana",
+            gradientColors: [Color(hex: "#164E63") ?? .blue, Color(hex: "#0F766E") ?? .green, Color(hex: "#15803D") ?? .green],
+            progressBarColor: AppColor.accentGreen,
+            unlockText: "",
+            icon: .character("あ"),
             decoration: .waves,
             alwaysShow: true
         ),
@@ -178,6 +199,7 @@ struct BookshelfView: View {
 
     private func refreshLocalizedStories() {
         for config in Self.packs {
+            guard TracingCollection(rawValue: config.id) == nil else { continue }
             storiesByPack[config.id] = LabyrinthLoader.shared.loadStories(packId: config.id)
         }
     }
@@ -219,53 +241,48 @@ struct BookshelfView: View {
 
     private var packCardsArea: some View {
         let visiblePacks = Self.packs.filter { config in
-            config.alwaysShow || !(storiesByPack[config.id]?.isEmpty ?? true)
+            let isAvailable = TracingCollection(rawValue: config.id)?.isAvailable(in: preferences.appLanguage) ?? true
+            return isAvailable && (config.alwaysShow || !(storiesByPack[config.id]?.isEmpty ?? true))
         }
-        let freePackIDs = Set(["ocean_adventures", "fall_adventures", "letter_tracing"])
-        let freePacks = visiblePacks.filter { freePackIDs.contains($0.id) }
-        let premiumPacks = visiblePacks.filter { !freePackIDs.contains($0.id) }
+        let mazePacks = visiblePacks.filter { TracingCollection(rawValue: $0.id) == nil }
+        let tracingOrder: [TracingCollection] = [.letters, .hiragana, .numbers]
+        let tracingPacks = tracingOrder.compactMap { collection in
+            visiblePacks.first { $0.id == collection.rawValue }
+        }
         let allEmpty = storiesByPack.isEmpty || storiesByPack.values.allSatisfy { $0.isEmpty }
 
         return Group {
             if allEmpty {
                 emptyState
-            } else if isPhone {
-                ScrollView(.vertical, showsIndicators: true) {
-                    LazyVGrid(
-                        columns: [GridItem(.adaptive(minimum: 150, maximum: 220), spacing: 12)],
-                        spacing: 12
-                    ) {
-                        ForEach(visiblePacks) { config in
-                            packCard(
-                                config: config,
-                                stories: storiesByPack[config.id] ?? [],
-                                isCompact: true
-                            )
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 4)
-                    .padding(.bottom, 24)
-                }
             } else {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        HStack(spacing: 24) {
-                            ForEach(freePacks) { config in
-                                packCard(config: config, stories: storiesByPack[config.id] ?? [])
-                            }
-                        }
-                        HStack(spacing: 24) {
-                            ForEach(premiumPacks) { config in
-                                packCard(config: config, stories: storiesByPack[config.id] ?? [])
-                            }
-                        }
+                ScrollView(.vertical, showsIndicators: isPhone) {
+                    VStack(alignment: .leading, spacing: isPhone ? 12 : 20) {
+                        packRow(mazePacks)
+                        packRow(tracingPacks)
                     }
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 8)
+                    .padding(.top, isPhone ? 4 : 0)
+                    .padding(.bottom, isPhone ? 24 : 8)
                 }
             }
         }
+    }
+
+    private func packRow(_ packs: [PackConfig]) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: isPhone ? 12 : 24) {
+                ForEach(packs) { config in
+                    packCard(
+                        config: config,
+                        stories: storiesByPack[config.id] ?? [],
+                        isCompact: isPhone
+                    )
+                    .frame(width: isPhone ? 170 : 280)
+                }
+            }
+            .padding(.horizontal, isPhone ? 16 : 40)
+            .padding(.vertical, 8)
+        }
+        .frame(height: isPhone ? 210 : 310)
     }
 
     private var emptyState: some View {
@@ -284,10 +301,10 @@ struct BookshelfView: View {
 
     private func packCard(config: PackConfig, stories: [StoryInfo], isCompact: Bool = false) -> some View {
         let completedCount = progressTracker.completedStoryCount(in: stories)
-        let isLetterTracing = config.id == "letter_tracing"
-        let totalCount = isLetterTracing ? 26 : stories.count
+        let tracingCollection = TracingCollection(rawValue: config.id)
+        let totalCount = tracingCollection?.characters.count ?? stories.count
         let freeStoryCount = stories.filter(\.isFree).count
-        let isLocked = !isLetterTracing && freeStoryCount == 0 && !subscriptionManager.isPremium
+        let isLocked = tracingCollection == nil && freeStoryCount == 0 && !subscriptionManager.isPremium
 
         return Button(action: {
             if isLocked {
@@ -308,7 +325,6 @@ struct BookshelfView: View {
                     completedCount: completedCount,
                     totalCount: totalCount,
                     isLocked: isLocked,
-                    isLetterTracing: isLetterTracing,
                     isCompact: isCompact
                 )
             }
@@ -319,6 +335,7 @@ struct BookshelfView: View {
             .opacity(isLocked ? 0.85 : 1.0)
         }
         .buttonStyle(PlainButtonStyle())
+        .accessibilityIdentifier("bookshelf.pack.\(config.id)")
     }
 
     private func packCover(config: PackConfig, totalCount: Int, isLocked: Bool, isCompact: Bool) -> some View {
@@ -332,7 +349,11 @@ struct BookshelfView: View {
             }
 
             VStack(spacing: isCompact ? 3 : 8) {
-                packIconView(config.icon, isCompact: isCompact)
+                packIconView(
+                    config.id == TracingCollection.letters.rawValue && preferences.appLanguage == .japanese
+                        ? .character("A") : config.icon,
+                    isCompact: isCompact
+                )
                 Text(AppLocalization.text(config.title))
                     .font(.system(
                         size: isCompact ? (config.title.count > 16 ? 15 : 17) : (config.title.count > 16 ? 22 : 24),
@@ -343,17 +364,18 @@ struct BookshelfView: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.85)
-                Text(AppLocalization.text(#"\(totalCount) stories"#, replacing: [#"\(totalCount)"#: String(totalCount)]))
+                Text(TracingCollection(rawValue: config.id).map { AppLocalization.text($0.countLabel) }
+                    ?? AppLocalization.text(#"\(totalCount) stories"#, replacing: [#"\(totalCount)"#: String(totalCount)]))
                     .font(.system(size: isCompact ? 11 : 14, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.8))
             }
         }
     }
 
-    private func packBottom(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isLetterTracing: Bool = false, isCompact: Bool = false) -> some View {
+    private func packBottom(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isCompact: Bool = false) -> some View {
         VStack(spacing: isCompact ? 7 : 10) {
             HStack {
-                Text(packBottomStatus(config: config, completedCount: completedCount, totalCount: totalCount, isLocked: isLocked, isLetterTracing: isLetterTracing, isCompact: isCompact))
+                Text(packBottomStatus(config: config, completedCount: completedCount, totalCount: totalCount, isLocked: isLocked, isCompact: isCompact))
                     .font(.system(size: isCompact ? 10 : 14, weight: .medium, design: .rounded))
                     .foregroundColor(AppColor.textSecondary)
                     .lineLimit(isCompact ? 2 : 1)
@@ -392,9 +414,9 @@ struct BookshelfView: View {
         .background(Color.white)
     }
 
-    private func packBottomStatus(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isLetterTracing: Bool, isCompact: Bool) -> String {
+    private func packBottomStatus(config: PackConfig, completedCount: Int, totalCount: Int, isLocked: Bool, isCompact: Bool) -> String {
         if isLocked { return AppLocalization.text(config.unlockText) }
-        if isLetterTracing { return AppLocalization.text("Free · 26 letters") }
+        if let collection = TracingCollection(rawValue: config.id) { return AppLocalization.text(collection.freeLabel) }
         if isCompact {
             return AppLocalization.text(
                 #"\(completedCount) / \(totalCount) completed"#,
@@ -449,6 +471,10 @@ struct BookshelfView: View {
             Image(systemName: name)
                 .font(.system(size: isCompact ? 24 : 40))
                 .foregroundColor(color)
+        case .character(let character):
+            Text(verbatim: character)
+                .font(.system(size: isCompact ? 28 : 44, weight: .heavy))
+                .foregroundColor(.white.opacity(0.95))
         case .emoji(let char):
             Text(char)
                 .font(.system(size: isCompact ? 24 : 40))

@@ -24,21 +24,26 @@ enum PaywallSource: String {
 }
 
 enum Analytics {
+    private static let disabledForUITests = ProcessInfo.processInfo.arguments.contains("-uiTestDisableAnalytics")
+
     static var currentLocale: String {
         UserDefaults.standard.string(forKey: "appLanguage") ?? "en"
     }
 
     static func configure() {
+        guard !disabledForUITests else { return }
         let config = TelemetryDeck.Config(appID: "738FCE64-D2AE-483A-B5FB-CCCB26BD5E01")
         TelemetryDeck.initialize(config: config)
         CrashDiagnosticsReporter.shared.start()
     }
 
-    static func send(_ event: String, with params: [String: String] = [:]) {
-        TelemetryDeck.signal(event, parameters: params)
+    static func send(_ event: String, with params: [String: String] = [:], floatValue: Double? = nil) {
+        guard !disabledForUITests else { return }
+        TelemetryDeck.signal(event, parameters: params, floatValue: floatValue)
     }
 
     static func error(_ id: String, message: String? = nil, parameters: [String: String] = [:]) {
+        guard !disabledForUITests else { return }
         var context = parameters
         context["app_locale"] = context["app_locale"] ?? currentLocale
         TelemetryDeck.errorOccurred(

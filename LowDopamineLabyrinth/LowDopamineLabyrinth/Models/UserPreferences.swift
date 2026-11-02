@@ -62,6 +62,8 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     case english = "en"
     case german = "de"
     case spanish = "es"
+    case japanese = "ja"
+    case simplifiedChinese = "zh-Hans"
 
     var id: String { rawValue }
     var locale: Locale { Locale(identifier: rawValue) }
@@ -70,6 +72,8 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         case .english: nil
         case .german: "audio-de"
         case .spanish: "audio-es"
+        case .japanese: "audio-ja"
+        case .simplifiedChinese: "audio-zh-Hans"
         }
     }
 
@@ -78,13 +82,22 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         case .english: "English"
         case .german: "Deutsch"
         case .spanish: "Español"
+        case .japanese: "日本語"
+        case .simplifiedChinese: "简体中文"
         }
     }
 
     static func fromPreferredLanguages(_ languages: [String]) -> AppLanguage {
         for language in languages {
-            let code = String(language.prefix { $0.isLetter }).lowercased()
-            if let supportedLanguage = AppLanguage(rawValue: code) {
+            let normalized = language.replacingOccurrences(of: "_", with: "-").lowercased()
+            if normalized == "zh"
+                || normalized.hasPrefix("zh-hans")
+                || normalized.hasPrefix("zh-cn")
+                || normalized.hasPrefix("zh-sg") {
+                return .simplifiedChinese
+            }
+            let code = normalized.split(separator: "-").first.map(String.init) ?? normalized
+            if code != "zh", let supportedLanguage = AppLanguage(rawValue: code) {
                 return supportedLanguage
             }
         }

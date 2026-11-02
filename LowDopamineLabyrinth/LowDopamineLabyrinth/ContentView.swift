@@ -18,6 +18,7 @@ enum AppDeepLink {
 }
 
 struct ContentView: View {
+    @EnvironmentObject var preferences: UserPreferences
     /// Tracks which pack the user selected from the bookshelf.
     /// `nil` means no pack is selected (show bookshelf).
     /// Non-nil means show the grid for that pack.
@@ -35,11 +36,14 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if selectedPack == "letter_tracing" {
-                LetterGridView(onBackToBookshelf: {
+            if let packID = selectedPack,
+               let collection = TracingCollection(rawValue: packID),
+               collection.isAvailable(in: preferences.appLanguage) {
+                LetterGridView(collection: collection, onBackToBookshelf: {
                     selectedPack = nil
                 })
-            } else if let packId = selectedPack {
+                .id(collection)
+            } else if let packId = selectedPack, TracingCollection(rawValue: packId) == nil {
                 LabyrinthGridView(packId: packId, onBackToBookshelf: {
                     selectedPack = nil
                 })

@@ -19,6 +19,18 @@
             "state" : "translated",
             "value" : "[LabyrinthLoader] No se pudo decodificar \\(id).json: \\(error)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[LabyrinthLoader] \\(id).json のデコードに失敗：\\(error)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[LabyrinthLoader] 无法解码 \\(id).json：\\(error)"
+          }
         }
       }
     },
@@ -35,6 +47,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "[LabyrinthLoader] Falta el recurso: \\(id).json"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[LabyrinthLoader] リソースが見つかりません：\\(id).json"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[LabyrinthLoader] 缺少资源：\\(id).json"
           }
         }
       }
@@ -53,6 +77,18 @@
             "state" : "translated",
             "value" : "[TTSService] No se pudo reproducir \\(url.lastPathComponent): \\(error)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[TTSService] \\(url.lastPathComponent) を再生できません：\\(error)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[TTSService] 无法播放 \\(url.lastPathComponent)：\\(error)"
+          }
         }
       }
     },
@@ -69,6 +105,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "\\(completedCount) / \\(totalCount) completados"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(completedCount) / \\(totalCount) 完了"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已完成 \\(completedCount) / \\(totalCount)"
           }
         }
       }
@@ -87,6 +135,18 @@
             "state" : "translated",
             "value" : "\\(completedCount) de \\(totalCount) historias completadas"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全\\(totalCount)話中\\(completedCount)話をクリア"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已完成 \\(totalCount) 个故事中的 \\(completedCount) 个"
+          }
         }
       }
     },
@@ -100,6 +160,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(cue.order)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(cue.order)"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "\\(cue.order)"
@@ -121,6 +193,18 @@
             "state" : "translated",
             "value" : "\\(currentIndex + 1) / \\(total)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(currentIndex + 1) / \\(total)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(currentIndex + 1) / \\(total)"
+          }
         }
       }
     },
@@ -134,6 +218,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(emoji) \\(collectedItemIndices.count)/\\(totalItemCount)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(emoji) \\(collectedItemIndices.count)/\\(totalItemCount)"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "\\(emoji) \\(collectedItemIndices.count)/\\(totalItemCount)"
@@ -155,6 +251,18 @@
             "state" : "translated",
             "value" : "\\(index). \\(labyrinth.title)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(index). \\(labyrinth.title)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(index). \\(labyrinth.title)"
+          }
         }
       }
     },
@@ -171,6 +279,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "\\(progressTracker.completedCount(in: gameViewModel.labyrinths)) de \\(gameViewModel.labyrinths.count) completados"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(gameViewModel.labyrinths.count)個中\\(progressTracker.completedCount(in: gameViewModel.labyrinths))個クリア"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已完成 \\(progressTracker.completedCount(in: gameViewModel.labyrinths)) / \\(gameViewModel.labyrinths.count)"
           }
         }
       }
@@ -189,6 +309,18 @@
             "state" : "translated",
             "value" : "\\(totalCount) historias"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(totalCount) 件のお話"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(totalCount) 个故事"
+          }
         }
       }
     },
@@ -202,6 +334,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\u{2022}"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\u{2022}"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "\\u{2022}"
@@ -267,6 +411,18 @@
             "state" : "translated",
             "value" : "🚫"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚫"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚫"
+          }
         }
       }
     },
@@ -280,6 +436,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚫 \\(emoji)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚫 \\(emoji)"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "🚫 \\(emoji)"
@@ -301,6 +469,18 @@
             "state" : "translated",
             "value" : "3 niveles de dificultad para cada niño"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お子さまに合わせた3つの難易度"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 种难度，适合不同的孩子"
+          }
         }
       }
     },
@@ -314,6 +494,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100+"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100+"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "100+"
@@ -335,6 +527,18 @@
             "state" : "translated",
             "value" : "A"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A"
+          }
         }
       }
     },
@@ -348,6 +552,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -369,6 +585,18 @@
             "state" : "translated",
             "value" : "Cuenta"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウント"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "账户"
+          }
         }
       }
     },
@@ -385,6 +613,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todo el contenido de la aplicación, incluidos personajes, historias, ilustraciones, narraciones de audio y diseños de laberintos, pertenece a Low Dopamine Labyrinth y está protegido por derechos de autor. No puedes reproducir, distribuir ni crear obras derivadas de su contenido."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャラクター、物語、イラスト、音声ナレーション、迷路のデザインを含む本アプリのすべてのコンテンツはLow Dopamine Labyrinthに帰属し、著作権で保護されています。コンテンツの複製、配布、二次的著作物の作成は禁止されています。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用中的所有内容，包括角色、故事、插图、语音旁白和迷宫设计，均归 Low Dopamine Labyrinth 所有，并受版权保护。未经许可，您不得复制、传播或基于应用内容创作衍生作品。"
           }
         }
       }
@@ -403,6 +643,18 @@
             "state" : "translated",
             "value" : "Todos los niveles de dificultad"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての難易度"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有难度"
+          }
         }
       }
     },
@@ -419,6 +671,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todos los laberintos y niveles de dificultad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての迷路と難易度"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有迷宫和难度"
           }
         }
       }
@@ -437,6 +701,18 @@
             "state" : "translated",
             "value" : "Análisis de uso"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用状況の分析"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用情况分析"
+          }
         }
       }
     },
@@ -453,6 +729,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Respuesta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "答え"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "答案"
           }
         }
       }
@@ -471,6 +759,18 @@
             "state" : "translated",
             "value" : "Idioma de la aplicación"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリの言語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用语言"
+          }
         }
       }
     },
@@ -487,6 +787,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "cesta de manzanas"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リンゴのかご"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "苹果篮"
           }
         }
       }
@@ -505,6 +817,18 @@
             "state" : "translated",
             "value" : "App Store / StoreKit de Apple para compras opcionales y su restauración"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AppleのApp Store／StoreKit：任意の購入と購入の復元"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple App Store / StoreKit：用于可选购买和恢复购买"
+          }
         }
       }
     },
@@ -521,6 +845,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contenido de audio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音声コンテンツ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音频内容"
           }
         }
       }
@@ -539,6 +875,18 @@
             "state" : "translated",
             "value" : "La narración de audio utilizada por la aplicación viene incluida en ella. La aplicación no graba tu voz ni recopila audio de tu dispositivo."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリの音声ナレーションはアプリに同梱されています。音声を録音したり、端末から音声データを収集したりしません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用使用的语音旁白随应用提供。应用不会录制您的声音，也不会收集设备上的音频。"
+          }
         }
       }
     },
@@ -556,6 +904,18 @@
             "state" : "translated",
             "value" : "No se pueden descargar paquetes de audio en el simulador."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シミュレータでは音声パックをダウンロードできません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模拟器中无法下载音频包。"
+          }
         }
       }
     },
@@ -569,6 +929,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "B"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "B"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "B"
@@ -590,6 +962,18 @@
             "state" : "translated",
             "value" : "Atrás"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "戻る"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "返回"
+          }
         }
       }
     },
@@ -606,6 +990,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Volver a la biblioteca"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本棚に戻る"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "返回书架"
           }
         }
       }
@@ -624,6 +1020,18 @@
             "state" : "translated",
             "value" : "calabaza grande"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大きなカボチャ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大南瓜"
+          }
         }
       }
     },
@@ -637,6 +1045,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "C"
@@ -658,6 +1078,18 @@
             "state" : "translated",
             "value" : "Calma y concentración"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "落ち着いて集中"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平静又专注"
+          }
         }
       }
     },
@@ -674,6 +1106,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
           }
         }
       }
@@ -692,6 +1136,18 @@
             "state" : "translated",
             "value" : "cubo de caramelos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お菓子のバケツ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糖果桶"
+          }
         }
       }
     },
@@ -708,6 +1164,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cambiar dificultad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "難易度を変更"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改难度"
           }
         }
       }
@@ -726,6 +1194,18 @@
             "state" : "translated",
             "value" : "Cambios en estas Condiciones"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "規約の変更"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "条款变更"
+          }
         }
       }
     },
@@ -742,6 +1222,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cambios en esta política"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本ポリシーの変更"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本政策的变更"
           }
         }
       }
@@ -760,6 +1252,18 @@
             "state" : "translated",
             "value" : "Privacidad infantil (COPPA)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "子どものプライバシー（COPPA）"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儿童隐私（COPPA）"
+          }
         }
       }
     },
@@ -776,6 +1280,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige el idioma de los menús, las historias y la narración. Puedes cambiarlo cuando quieras en Ajustes."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メニュー、ストーリー、ナレーションに使用する言語を選択してください。設定からいつでも変更できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择菜单、故事和旁白使用的语言。你可以随时在“设置”中更改。"
           }
         }
       }
@@ -794,6 +1310,18 @@
             "state" : "translated",
             "value" : "Elige lo más adecuado para tu peque"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お子さまに合った難易度を選んでください"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择适合孩子的难度"
+          }
         }
       }
     },
@@ -810,6 +1338,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige el idioma de la aplicación"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリの言語を選ぼう"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择应用语言"
           }
         }
       }
@@ -828,6 +1368,18 @@
             "state" : "translated",
             "value" : "Elige tu idioma"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語を選択してください"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请选择语言"
+          }
         }
       }
     },
@@ -844,6 +1396,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cerrar"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭"
           }
         }
       }
@@ -862,6 +1426,18 @@
             "state" : "translated",
             "value" : "Progreso en los laberintos completados"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "迷路の達成状況"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已完成的迷宫进度"
+          }
         }
       }
     },
@@ -878,6 +1454,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contacto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お問い合わせ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "联系我们"
           }
         }
       }
@@ -896,6 +1484,18 @@
             "state" : "translated",
             "value" : "Continuar"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "続ける"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
+          }
         }
       }
     },
@@ -912,6 +1512,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "salida del laberinto de maíz"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トウモロコシ迷路の出口"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "玉米迷宫出口"
           }
         }
       }
@@ -930,6 +1542,18 @@
             "state" : "translated",
             "value" : "No se pudo descargar el paquete de audio. Inténtalo de nuevo."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音声パックをダウンロードできませんでした。もう一度お試しください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法下载此语音包，请重试。"
+          }
         }
       }
     },
@@ -947,6 +1571,18 @@
             "state" : "translated",
             "value" : "No se pudo eliminar el paquete de audio. Inténtalo de nuevo."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音声パックを削除できませんでした。もう一度お試しください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法移除此语音包，请重试。"
+          }
         }
       }
     },
@@ -960,6 +1596,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "D"
@@ -981,6 +1629,18 @@
             "state" : "translated",
             "value" : "Conservación de datos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データの保持"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据保留"
+          }
         }
       }
     },
@@ -997,6 +1657,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intercambio de datos"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "データの共有"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据共享"
           }
         }
       }
@@ -1015,6 +1687,18 @@
             "state" : "translated",
             "value" : "Datos que recopilamos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "収集するデータ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们收集的数据"
+          }
         }
       }
     },
@@ -1031,6 +1715,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Denny en el espacio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デニーの宇宙冒険"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "丹尼的太空冒险"
           }
         }
       }
@@ -1049,6 +1745,18 @@
             "state" : "translated",
             "value" : "Denny en el bosque"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デニーの森の冒険"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "丹尼的森林冒险"
+          }
         }
       }
     },
@@ -1065,6 +1773,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Denny te enseñará cómo trazar el camino."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デニーが線のなぞり方を教えてくれるよ。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "丹尼要教你如何描线。"
           }
         }
       }
@@ -1083,6 +1803,18 @@
             "state" : "translated",
             "value" : "Denny el cangrejo en la salida"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スタートにいるカニのデニー"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "起点处的小螃蟹丹尼"
+          }
         }
       }
     },
@@ -1099,6 +1831,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Denny te invita a elegir un idioma"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デニーが言語選択を歓迎しています"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "丹尼欢迎你选择语言"
           }
         }
       }
@@ -1117,6 +1861,18 @@
             "state" : "translated",
             "value" : "Descripción del servicio"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サービスの説明"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务说明"
+          }
         }
       }
     },
@@ -1133,6 +1889,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alemán"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ドイツ語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "德语"
           }
         }
       }
@@ -1151,6 +1919,18 @@
             "state" : "translated",
             "value" : "Desarrolla habilidades previas a la escritura"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字を書く前の力を育てる"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "培养书写前技能"
+          }
         }
       }
     },
@@ -1167,6 +1947,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exclusión de garantías"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保証の否認"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免责声明"
           }
         }
       }
@@ -1185,6 +1977,18 @@
             "state" : "translated",
             "value" : "Listo"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完了"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
         }
       }
     },
@@ -1202,6 +2006,18 @@
             "state" : "translated",
             "value" : "Descargar narración en \\(language.displayName)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(language.displayName)のナレーションをダウンロード"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下载\\(language.displayName)旁白"
+          }
         }
       }
     },
@@ -1218,6 +2034,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descargar narración en \\(preferences.appLanguage.displayName)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(preferences.appLanguage.displayName)のナレーションをダウンロード"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下载\\(preferences.appLanguage.displayName)旁白"
           }
         }
       }
@@ -1240,6 +2068,18 @@
             "state" : "translated",
             "value" : "Descargando narración…"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ナレーションをダウンロード中…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在下载旁白…"
+          }
         }
       }
     },
@@ -1256,6 +2096,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dibuja el camino"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "道をなぞろう"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画出路线"
           }
         }
       }
@@ -1274,6 +2126,18 @@
             "state" : "translated",
             "value" : "Traza el camino con el dedo o con el Apple Pencil."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指かApple Pencilで道をなぞってね。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用手指或 Apple Pencil 描出路线。"
+          }
         }
       }
     },
@@ -1291,6 +2155,18 @@
             "state" : "translated",
             "value" : "Traza el camino con el dedo o con el Apple Pencil. Empieza en la marca verde."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指かApple Pencilで道をなぞってね。緑のスタート印から始めよう。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用手指或 Apple Pencil 描出路线。从绿色起点开始。"
+          }
         }
       }
     },
@@ -1304,6 +2180,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "E"
@@ -1325,6 +2213,18 @@
             "state" : "translated",
             "value" : "Fácil"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "簡単"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "简单"
+          }
         }
       }
     },
@@ -1341,6 +2241,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activar sonido"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音を出す"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启声音"
           }
         }
       }
@@ -1359,6 +2271,18 @@
             "state" : "translated",
             "value" : "Inglés"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "英語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "英语"
+          }
         }
       }
     },
@@ -1375,6 +2299,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La narración en inglés viene incluida en la aplicación."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "英語のナレーションはアプリに含まれています。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用已包含英语旁白。"
           }
         }
       }
@@ -1393,6 +2329,18 @@
             "state" : "translated",
             "value" : "Español"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スペイン語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西班牙语"
+          }
         }
       }
     },
@@ -1406,6 +2354,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "F"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "F"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "F"
@@ -1426,6 +2386,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No se pudieron cargar los productos: \\(error)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "商品を読み込めませんでした：\\(error)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法加载商品：\\(error)"
           }
         }
       }
@@ -1461,6 +2433,18 @@
             "state" : "translated",
             "value" : "¡Encuentra primero todos los \\(remaining) \\(emoji)!"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まず残りの\\(emoji)を\\(remaining)個見つけよう！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请先找到剩下的 \\(remaining) 个\\(emoji)！"
+          }
         }
       }
     },
@@ -1477,6 +2461,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finn"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フィン"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "芬恩"
           }
         }
       }
@@ -1495,6 +2491,18 @@
             "state" : "translated",
             "value" : "Finn anima en la meta"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ゴールで応援するフィン"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在终点欢呼的芬恩"
+          }
         }
       }
     },
@@ -1511,6 +2519,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Los primeros 6 laberintos son gratis.\nDesbloquea todo para tu peque."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最初の6つの迷路は無料。すべてをアンロックしよう。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前 6 个迷宫免费。为孩子解锁全部内容。"
           }
         }
       }
@@ -1529,6 +2549,18 @@
             "state" : "translated",
             "value" : "Gratis · 26 letras"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料・アルファベット26文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免费 · 26 个字母"
+          }
         }
       }
     },
@@ -1545,6 +2577,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Acceso gratuito y prémium"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料版とプレミアム版"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免费和高级版访问"
           }
         }
       }
@@ -1563,6 +2607,18 @@
             "state" : "translated",
             "value" : "Acceso completo desbloqueado"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてのコンテンツをアンロックしました"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已解锁全部内容"
+          }
         }
       }
     },
@@ -1576,6 +2632,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "G"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "G"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "G"
@@ -1597,6 +2665,18 @@
             "state" : "translated",
             "value" : "Consigue todos los laberintos y niveles de dificultad con una sola compra."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一度の購入ですべての迷路と難易度を楽しめます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次购买，即可畅玩所有迷宫和难度。"
+          }
         }
       }
     },
@@ -1613,6 +2693,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Obtener acceso completo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてをアンロック"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁全部内容"
           }
         }
       }
@@ -1631,6 +2723,18 @@
             "state" : "translated",
             "value" : "Volver"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "戻る"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "返回"
+          }
         }
       }
     },
@@ -1648,6 +2752,18 @@
             "state" : "translated",
             "value" : "Verificación para adultos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おとなの確認"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大人验证"
+          }
         }
       }
     },
@@ -1661,6 +2777,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "H"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "H"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "H"
@@ -1682,6 +2810,18 @@
             "state" : "translated",
             "value" : "Difícil"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "難しい"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "困难"
+          }
         }
       }
     },
@@ -1695,6 +2835,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "I"
@@ -1716,6 +2868,18 @@
             "state" : "translated",
             "value" : "Si modificamos esta política, actualizaremos la fecha indicada arriba e informaremos a los usuarios mediante una actualización de la aplicación."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本ポリシーを変更する場合は、冒頭の日付を更新し、アプリのアップデートを通じてお知らせします。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果本政策有变更，我们会更新顶部的日期，并通过应用更新通知用户。"
+          }
         }
       }
     },
@@ -1732,6 +2896,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Si tienes preguntas sobre estas Condiciones, escríbenos a:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本規約に関するご質問は、以下までお問い合わせください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果您对本条款有疑问，请通过以下方式联系我们："
           }
         }
       }
@@ -1750,6 +2926,18 @@
             "state" : "translated",
             "value" : "Si tienes preguntas sobre esta política de privacidad o nuestras prácticas, escríbenos a:"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本プライバシーポリシーや当社の取り組みに関するご質問は、以下までお問い合わせください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果您对本隐私政策或我们的做法有疑问，请通过以下方式联系我们："
+          }
         }
       }
     },
@@ -1766,6 +2954,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compra dentro de la aplicación"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ内課金"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用内购买"
           }
         }
       }
@@ -1784,6 +2984,18 @@
             "state" : "translated",
             "value" : "Compras dentro de la aplicación"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ内課金"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用内购买"
+          }
         }
       }
     },
@@ -1801,6 +3013,18 @@
             "state" : "translated",
             "value" : "Propiedad intelectual"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "知的財産権"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "知识产权"
+          }
         }
       }
     },
@@ -1814,6 +3038,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "J"
@@ -1835,6 +3071,18 @@
             "state" : "translated",
             "value" : "K"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K"
+          }
         }
       }
     },
@@ -1852,6 +3100,18 @@
             "state" : "translated",
             "value" : "Sigue explorando con Denny"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デニーともっと探検しよう"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续和丹尼一起探险"
+          }
         }
       }
     },
@@ -1865,6 +3125,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "L"
@@ -1886,6 +3158,18 @@
             "state" : "translated",
             "value" : "Laberintos por descubrir"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "迷路を探検しよう"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "探索迷宫"
+          }
         }
       }
     },
@@ -1902,6 +3186,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idioma"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语言"
           }
         }
       }
@@ -1920,6 +3216,18 @@
             "state" : "translated",
             "value" : "Última actualización: 14 de abril de 2026"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最終更新日：2026年4月14日"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最后更新：2026年4月14日"
+          }
         }
       }
     },
@@ -1936,6 +3244,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Última actualización: 24 de febrero de 2026"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最終更新日：2026年2月24日"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最后更新：2026年2月24日"
           }
         }
       }
@@ -1954,6 +3274,18 @@
             "state" : "translated",
             "value" : "montón de hojas"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "落ち葉の山"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "落叶堆"
+          }
         }
       }
     },
@@ -1971,6 +3303,18 @@
             "state" : "translated",
             "value" : "Información legal"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "法的情報"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "法律信息"
+          }
         }
       }
     },
@@ -1987,6 +3331,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Letra \\(String(letters[index]))"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字 \\(String(letters[index]))"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字母 \\(String(letters[index]))"
           }
         }
       }
@@ -2009,6 +3365,18 @@
             "state" : "translated",
             "value" : "Letras"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字母"
+          }
         }
       }
     },
@@ -2025,6 +3393,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Limitación de responsabilidad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "責任の制限"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "责任限制"
           }
         }
       }
@@ -2043,6 +3423,18 @@
             "state" : "translated",
             "value" : "Los datos locales de la aplicación permanecen en tu dispositivo hasta que elimines la aplicación o borres los datos del dispositivo. TelemetryDeck conserva los datos analíticos conforme a sus prácticas de servicio. Apple conserva los registros de compra según las políticas del App Store."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "端末内のアプリデータは、本アプリを削除するか端末のデータを消去するまで保存されます。解析データはTelemetryDeckの運用方針に従って、購入記録はApp Storeのポリシーに従ってAppleが保持します。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本地应用数据会保留在您的设备上，直到您卸载应用或清除设备数据。分析数据由 TelemetryDeck 按其服务惯例保留。购买记录由 Apple 按 App Store 政策保留。"
+          }
         }
       }
     },
@@ -2059,6 +3451,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Almacenamiento local"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ローカルストレージ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本地存储"
           }
         }
       }
@@ -2077,6 +3481,18 @@
             "state" : "translated",
             "value" : "Low Dopamine Labyrinth («la aplicación») está diseñada para niños de 3 a 6 años. Nos tomamos muy en serio la privacidad de tu peque. Esta política explica cómo tratamos la información en nuestra aplicación."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Low Dopamine Labyrinth」（以下「本アプリ」）は3〜6歳のお子さま向けです。お子さまのプライバシーを大切にし、本ポリシーで情報の取り扱いを説明します。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "《低刺激迷宫》（以下简称“本应用”）专为3至6岁儿童设计。我们高度重视您孩子的隐私。本政策介绍我们如何处理应用中的信息。"
+          }
         }
       }
     },
@@ -2094,6 +3510,18 @@
             "state" : "translated",
             "value" : "Low Dopamine Labyrinth es un juego educativo de laberintos para niños de 3 a 6 años. La aplicación ofrece laberintos interactivos con historias ambientadas en el océano y narración."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「Low Dopamine Labyrinth」は3〜6歳の子ども向け教育迷路ゲームです。海をテーマにした物語とナレーション付きのインタラクティブな迷路を提供します。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "《低刺激迷宫》是一款面向3至6岁儿童的教育迷宫游戏。本应用提供以海洋故事和语音讲述为主题的互动迷宫谜题。"
+          }
         }
       }
     },
@@ -2107,6 +3535,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "M"
@@ -2128,6 +3568,18 @@
             "state" : "translated",
             "value" : "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 320 L 160 320 M 20 180 L 20 320 M 160 180 L 300 180 M 300 180 L 300 320 M 300 180 L 440 180 M 300 180 L 300 320 M 580 180 L 580 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 440 320 L 440 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460 M 440 320 L 440 460"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 320 L 160 320 M 20 180 L 20 320 M 160 180 L 300 180 M 300 180 L 300 320 M 300 180 L 440 180 M 300 180 L 300 320 M 580 180 L 580 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 440 320 L 440 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460 M 440 320 L 440 460"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M 20 40 L 160 40 M 20 40 L 20 180 M 160 40 L 300 40 M 160 180 L 300 180 M 300 40 L 440 40 M 300 180 L 440 180 M 440 40 L 580 40 M 580 40 L 580 180 M 20 320 L 160 320 M 20 180 L 20 320 M 160 180 L 300 180 M 300 180 L 300 320 M 300 180 L 440 180 M 300 180 L 300 320 M 580 180 L 580 320 M 20 320 L 160 320 M 20 460 L 160 460 M 20 320 L 20 460 M 160 460 L 300 460 M 440 320 L 440 460 M 300 460 L 440 460 M 580 320 L 580 460 M 440 460 L 580 460 M 440 320 L 440 460"
+          }
         }
       }
     },
@@ -2141,6 +3593,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M 90 390 L 230 390 L 370 390 L 370 250 L 510 250 L 510 110"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M 90 390 L 230 390 L 370 390 L 370 250 L 510 250 L 510 110"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "M 90 390 L 230 390 L 370 390 L 370 250 L 510 250 L 510 110"
@@ -2162,6 +3626,18 @@
             "state" : "translated",
             "value" : "Medio"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ふつう"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中等"
+          }
         }
       }
     },
@@ -2178,6 +3654,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "colina iluminada por la luna"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月明かりの丘"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月光山丘"
           }
         }
       }
@@ -2196,6 +3684,18 @@
             "state" : "translated",
             "value" : "Silenciar sonido"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音を消す"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "静音"
+          }
         }
       }
     },
@@ -2209,6 +3709,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "N"
@@ -2230,6 +3742,18 @@
             "state" : "translated",
             "value" : "Narración descargada"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ナレーションをダウンロードしました"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旁白已下载"
+          }
         }
       }
     },
@@ -2246,6 +3770,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Narración descargada para usar sin conexión"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ナレーションをダウンロードしました。オフラインで利用できます"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旁白已下载，可离线使用"
           }
         }
       }
@@ -2264,6 +3800,18 @@
             "state" : "translated",
             "value" : "Preferencia de narración (activada/desactivada)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ナレーションの設定（オン／オフ）"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旁白偏好（开/关）"
+          }
         }
       }
     },
@@ -2281,6 +3829,18 @@
             "state" : "translated",
             "value" : "Contenido nuevo con frecuencia"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新しいコンテンツを定期的に追加"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "定期添加新内容"
+          }
         }
       }
     },
@@ -2297,6 +3857,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siguiente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次へ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一个"
           }
         }
       }
@@ -2319,6 +3891,18 @@
             "state" : "translated",
             "value" : "Siguiente laberinto"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次の迷路"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一个迷宫"
+          }
         }
       }
     },
@@ -2335,6 +3919,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Muy bien!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "よくできたね！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "做得好！"
           }
         }
       }
@@ -2353,6 +3949,18 @@
             "state" : "translated",
             "value" : "Sin anuncios"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "広告なし"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无广告"
+          }
         }
       }
     },
@@ -2369,6 +3977,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sin anuncios, nunca"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "広告は一切なし"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "永远没有广告"
           }
         }
       }
@@ -2387,6 +4007,18 @@
             "state" : "translated",
             "value" : "No hay aventuras disponibles"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遊べる冒険がありません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂无可玩的冒险"
+          }
         }
       }
     },
@@ -2403,6 +4035,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay laberintos disponibles"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遊べる迷路がありません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂无可用迷宫"
           }
         }
       }
@@ -2421,6 +4065,18 @@
             "state" : "translated",
             "value" : "No se encontró ninguna compra"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入履歴が見つかりません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未找到购买记录"
+          }
         }
       }
     },
@@ -2437,6 +4093,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sin suscripción"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サブスクリプションなし"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无需订阅"
           }
         }
       }
@@ -2455,6 +4123,18 @@
             "state" : "translated",
             "value" : "Sin temporizadores ni presión"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時間制限もプレッシャーもなし"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有计时，也没有压力"
+          }
         }
       }
     },
@@ -2472,6 +4152,18 @@
             "state" : "translated",
             "value" : "Ahora no"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今はしない"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂时不要"
+          }
         }
       }
     },
@@ -2485,6 +4177,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "O"
@@ -2506,6 +4210,18 @@
             "state" : "translated",
             "value" : "Aventuras en el océano"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "海の冒険"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "海洋冒险"
+          }
         }
       }
     },
@@ -2522,6 +4238,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pago único"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "買い切り"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性购买"
           }
         }
       }
@@ -2540,6 +4268,18 @@
             "state" : "translated",
             "value" : "Pago único. Sin cargos recurrentes."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "買い切り。継続課金なし。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性购买，无重复收费。"
+          }
         }
       }
     },
@@ -2557,6 +4297,18 @@
             "state" : "translated",
             "value" : "Un solo pago. Para siempre."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一度買えばずっと遊べる。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次购买，永久拥有。"
+          }
         }
       }
     },
@@ -2570,6 +4322,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "P"
@@ -2591,6 +4355,18 @@
             "state" : "translated",
             "value" : "Responsabilidad parental"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保護者の責任"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "家长责任"
+          }
         }
       }
     },
@@ -2607,6 +4383,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El pago se carga a tu cuenta de Apple ID al confirmar la compra."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入の確定時にApple IDアカウントに課金されます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确认购买时，费用将从您的 Apple ID 账户扣除。"
           }
         }
       }
@@ -2625,6 +4413,18 @@
             "state" : "translated",
             "value" : "Pide a una persona adulta que responda a esta pregunta:"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おとなの人にこの問題に答えてもらってね："
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请让大人回答这个问题："
+          }
         }
       }
     },
@@ -2641,6 +4441,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prémium"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プレミアム"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高级版"
           }
         }
       }
@@ -2659,6 +4471,18 @@
             "state" : "translated",
             "value" : "Anterior"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前へ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上一个"
+          }
         }
       }
     },
@@ -2675,6 +4499,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Laberinto anterior"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前の迷路"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上一个迷宫"
           }
         }
       }
@@ -2693,6 +4529,18 @@
             "state" : "translated",
             "value" : "Privacidad"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシー"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私"
+          }
         }
       }
     },
@@ -2710,6 +4558,18 @@
             "state" : "translated",
             "value" : "Política de privacidad"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシーポリシー"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私政策"
+          }
         }
       }
     },
@@ -2723,6 +4583,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "privacy@lowdopamine.com"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "privacy@lowdopamine.com"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "privacy@lowdopamine.com"
@@ -2744,6 +4616,18 @@
             "state" : "translated",
             "value" : "Compra"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "购买"
+          }
         }
       }
     },
@@ -2761,6 +4645,18 @@
             "state" : "translated",
             "value" : "La compra ha fallado: \\(error)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入に失敗しました：\\(error)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "购买失败：\\(error)"
+          }
         }
       }
     },
@@ -2774,6 +4670,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Q"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Q"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Q"
@@ -2795,6 +4703,18 @@
             "state" : "translated",
             "value" : "R"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "R"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "R"
+          }
         }
       }
     },
@@ -2811,6 +4731,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valorar la aplicación"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリを評価"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "给应用评分"
           }
         }
       }
@@ -2829,6 +4761,18 @@
             "state" : "translated",
             "value" : "Leer la respuesta en voz alta"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "答えを読み上げる"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "朗读答案"
+          }
         }
       }
     },
@@ -2845,6 +4789,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Listos para explorar?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "探検の準備はできた？"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "准备好探索了吗？"
           }
         }
       }
@@ -2863,6 +4819,18 @@
             "state" : "translated",
             "value" : "Eliminar"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除"
+          }
         }
       }
     },
@@ -2879,6 +4847,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Borrar trazado"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描いた線を消す"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除画线"
           }
         }
       }
@@ -2897,6 +4877,18 @@
             "state" : "translated",
             "value" : "Reiniciar"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最初から"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新开始"
+          }
         }
       }
     },
@@ -2914,6 +4906,18 @@
             "state" : "translated",
             "value" : "Restaurar compras"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入を復元"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复购买"
+          }
         }
       }
     },
@@ -2927,6 +4931,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "S"
@@ -2948,6 +4964,18 @@
             "state" : "translated",
             "value" : "Nivel de dificultad seleccionado"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択した難易度"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择的难度"
+          }
         }
       }
     },
@@ -2964,6 +4992,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige la dificultad"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "難易度を選ぼう"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置难度"
           }
         }
       }
@@ -2982,6 +5022,18 @@
             "state" : "translated",
             "value" : "Omitir por ahora"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今はスキップ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂时跳过"
+          }
         }
       }
     },
@@ -2998,6 +5050,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Precio especial de desbloqueo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "特別アンロック価格"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "特别解锁价格"
           }
         }
       }
@@ -3016,6 +5080,18 @@
             "state" : "translated",
             "value" : "casa embrujada"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おばけ屋敷"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鬼屋"
+          }
         }
       }
     },
@@ -3032,6 +5108,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empezar gratis →"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料で始める →"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免费开始 →"
           }
         }
       }
@@ -3050,6 +5138,18 @@
             "state" : "translated",
             "value" : "Empieza aquí"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ここからスタート"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从这里开始"
+          }
         }
       }
     },
@@ -3066,6 +5166,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Historia completada!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お話クリア！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "故事完成！"
           }
         }
       }
@@ -3084,6 +5196,18 @@
             "state" : "translated",
             "value" : "Ayuda"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サポート"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支持"
+          }
         }
       }
     },
@@ -3097,6 +5221,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "T"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "T"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "T"
@@ -3118,6 +5254,18 @@
             "state" : "translated",
             "value" : "Toca para jugar"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タップして遊ぶ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击开始"
+          }
         }
       }
     },
@@ -3134,6 +5282,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toca para desbloquear"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タップしてアンロック"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击解锁"
           }
         }
       }
@@ -3152,6 +5312,18 @@
             "state" : "translated",
             "value" : "TelemetryDeck para análisis anónimos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TelemetryDeckによる匿名分析"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TelemetryDeck 匿名分析"
+          }
         }
       }
     },
@@ -3168,6 +5340,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Condiciones"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用規約"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "条款"
           }
         }
       }
@@ -3186,6 +5370,18 @@
             "state" : "translated",
             "value" : "Condiciones de uso"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用規約"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用条款"
+          }
         }
       }
     },
@@ -3202,6 +5398,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No es correcto. ¡Inténtalo otra vez!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ちがうよ。もう一度！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "答错了，再试一次！"
           }
         }
       }
@@ -3220,6 +5428,18 @@
             "state" : "translated",
             "value" : "La aplicación no contiene anuncios. Utiliza:"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリに広告はありません。本アプリでは次のサービスを使用します。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用不含广告。本应用使用："
+          }
         }
       }
     },
@@ -3236,6 +5456,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La aplicación se proporciona «tal cual», sin garantías de ningún tipo. No garantizamos que funcione sin errores ni interrupciones."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリは現状有姿で提供され、いかなる保証もありません。エラーや中断が発生しないことを保証するものではありません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用按“现状”提供，不附带任何形式的保证。我们不保证本应用始终无错误或不中断。"
           }
         }
       }
@@ -3254,6 +5486,18 @@
             "state" : "translated",
             "value" : "La aplicación ofrece una compra única opcional, procesada a través del App Store de Apple. No recibimos ni almacenamos tus datos de pago completos. Las compras están protegidas mediante una verificación para adultos."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリには、AppleのApp Store経由で処理される任意の買い切り購入があります。当社は完全な決済情報を受け取ったり保存したりしません。購入には保護者向けの確認があります。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用提供可选的一次性购买，由 Apple App Store 处理。我们不会接收或存储您的完整支付信息。购买操作设有家长验证。"
+          }
         }
       }
     },
@@ -3270,6 +5514,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La aplicación ofrece acceso gratuito limitado (3 laberintos al principio y después 1 al día). El acceso prémium desbloquea todo el contenido y está disponible mediante una compra única en el App Store de Apple."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリには一部無料コンテンツがあります（最初に迷路3つ、その後は1日1つ）。AppleのApp Storeで買い切り購入すると、すべてのコンテンツを利用できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用提供有限的免费使用权限（最初可玩3个迷宫，之后每天可玩1个）。通过 Apple App Store 一次性购买高级权限，即可解锁所有内容。"
           }
         }
       }
@@ -3288,6 +5544,18 @@
             "state" : "translated",
             "value" : "La aplicación guarda únicamente en tu dispositivo una pequeña cantidad de datos no personales (que nunca se transmiten):"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリは、少量の個人を特定しないデータを端末内にのみ保存します（送信されません）。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用仅在您的设备上保存少量非个人数据（不会传输）："
+          }
         }
       }
     },
@@ -3304,6 +5572,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La compra única se cobra a tu cuenta de Apple ID. Al comprar, aceptas lo siguiente:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "買い切り購入の料金はApple IDアカウントに請求されます。購入により、以下に同意したものとみなされます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次性购买的费用通过您的 Apple ID 账户收取。购买即表示您同意："
           }
         }
       }
@@ -3322,6 +5602,18 @@
             "state" : "translated",
             "value" : "La compra desbloquea el acceso prémium para la cuenta actual del App Store."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入すると、現在のApp Storeアカウントでプレミアムコンテンツが利用できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "购买后，当前 App Store 账户将获得高级使用权限。"
+          }
         }
       }
     },
@@ -3338,6 +5630,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estas condiciones de uso («Condiciones») rigen el uso de la aplicación Low Dopamine Labyrinth («la aplicación»). Al descargar o utilizar la aplicación, aceptas estas Condiciones."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本利用規約（以下「規約」）は「Low Dopamine Labyrinth」（以下「本アプリ」）の利用に適用されます。本アプリのダウンロードまたは利用により、本規約に同意したものとみなされます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本使用条款（以下简称“条款”）适用于您使用《低刺激迷宫》应用（以下简称“本应用”）。下载或使用本应用即表示您同意本条款。"
           }
         }
       }
@@ -3356,6 +5660,18 @@
             "state" : "translated",
             "value" : "Servicios de terceros"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第三者サービス"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第三方服务"
+          }
         }
       }
     },
@@ -3372,6 +5688,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Esta aplicación cumple la Ley de Protección de la Privacidad Infantil en Internet (COPPA). No recopilamos deliberadamente información personal de menores de 13 años. Como no recopilamos información personal, no es necesario el consentimiento parental para recopilar datos."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリは米国児童オンラインプライバシー保護法（COPPA）を遵守しています。13歳未満の子どもの個人情報を意図的に収集することはありません。個人情報を一切収集しないため、データ収集に関する保護者の同意は不要です。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用遵守《儿童在线隐私保护法》（COPPA）。我们不会有意收集13岁以下儿童的个人信息。由于我们完全不收集个人信息，因此无需就数据收集获得家长同意。"
           }
         }
       }
@@ -3390,6 +5718,18 @@
             "state" : "translated",
             "value" : "Esta aplicación está destinada a niños bajo supervisión parental. Las compras dentro de la aplicación están protegidas mediante una verificación para adultos. Los padres y tutores son responsables de supervisar el uso de la aplicación por parte de sus hijos y las compras realizadas."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本アプリは保護者の監督のもとで子どもが使用することを想定しています。アプリ内購入には保護者向けの確認があります。保護者はお子さまのアプリ利用と購入を管理する責任を負います。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本应用供儿童在家长监督下使用。应用内购买设有家长验证。家长和监护人有责任管理孩子对本应用的使用及任何购买行为。"
+          }
         }
       }
     },
@@ -3406,6 +5746,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estos datos se guardan localmente en tu dispositivo. No los utilizamos para identificarte."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このデータは端末内のローカルストレージに保存され、個人の特定には使用しません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这些数据保存在您设备的本地存储中。我们不会使用这些数据识别您的身份。"
           }
         }
       }
@@ -3424,6 +5776,18 @@
             "state" : "translated",
             "value" : "En la medida máxima permitida por la ley, no seremos responsables de daños indirectos, incidentales o consecuentes derivados del uso de la aplicación."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "法令で許容される最大限の範囲において、本アプリの利用に起因する間接的、付随的、結果的な損害について責任を負いません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在法律允许的最大范围内，对于因使用本应用而产生的任何间接、附带或后果性损害，我们概不负责。"
+          }
         }
       }
     },
@@ -3440,6 +5804,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Repasar letras"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字のなぞり書き"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字母描摹"
           }
         }
       }
@@ -3458,6 +5834,18 @@
             "state" : "translated",
             "value" : "Intentar de nuevo"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "もう一度"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再试一次"
+          }
         }
       }
     },
@@ -3475,6 +5863,18 @@
             "state" : "translated",
             "value" : "Arrecife de práctica"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "練習のサンゴ礁"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "教学礁石"
+          }
         }
       }
     },
@@ -3488,6 +5888,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "U"
@@ -3509,6 +5921,18 @@
             "state" : "translated",
             "value" : "Desbloquear todos los laberintos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての迷路をアンロック"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁所有迷宫"
+          }
         }
       }
     },
@@ -3525,6 +5949,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desbloquea todos los laberintos de Denny"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デニーの迷路をすべてアンロック"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁丹尼迷宫的全部内容"
           }
         }
       }
@@ -3543,6 +5979,18 @@
             "state" : "translated",
             "value" : "Desbloquea todos los laberintos con una sola compra."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一度の購入ですべての迷路をアンロック。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次购买，解锁所有迷宫。"
+          }
         }
       }
     },
@@ -3559,6 +6007,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Desbloquear todo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてをアンロック"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁全部内容"
           }
         }
       }
@@ -3577,6 +6037,18 @@
             "state" : "translated",
             "value" : "¡Desbloquéalo para explorar el espacio!"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アンロックして宇宙を探検しよう！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁并探索太空！"
+          }
         }
       }
     },
@@ -3593,6 +6065,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡Desbloquéalo para explorar el bosque!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アンロックして森を探検しよう！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解锁并探索森林！"
           }
         }
       }
@@ -3611,6 +6095,18 @@
             "state" : "translated",
             "value" : "Traza el camino con el dedo o con el Apple Pencil."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指かApple Pencilで道をなぞってね。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用手指或 Apple Pencil 描出路线。"
+          }
         }
       }
     },
@@ -3624,6 +6120,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "V"
@@ -3645,6 +6153,18 @@
             "state" : "translated",
             "value" : "W"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W"
+          }
         }
       }
     },
@@ -3661,6 +6181,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No recopilamos información personal de niños ni adultos. En concreto:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当社は子どもや大人の個人情報を一切収集しません。具体的には、"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不收集儿童或成人的任何个人信息。具体来说："
           }
         }
       }
@@ -3679,6 +6211,18 @@
             "state" : "translated",
             "value" : "No recopilamos datos de ubicación."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置情報は収集しません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不收集位置信息"
+          }
         }
       }
     },
@@ -3695,6 +6239,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No recopilamos nombres, direcciones de correo electrónico, números de teléfono ni direcciones postales."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "氏名、メールアドレス、電話番号、住所は収集しません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不收集姓名、电子邮箱、电话号码或住址。"
           }
         }
       }
@@ -3713,6 +6269,18 @@
             "state" : "translated",
             "value" : "No recopilamos fotos, vídeos ni grabaciones de audio."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "写真、動画、音声録音は収集しません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不收集照片、视频或录音"
+          }
         }
       }
     },
@@ -3729,6 +6297,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No vendemos datos personales ni compartimos información personal con fines publicitarios. Enviamos datos limitados de actividad de la aplicación a TelemetryDeck para análisis anónimos, y Apple procesa la información relacionada con las compras cuando utilizas compras dentro de la aplicación."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人データを販売したり、広告目的で個人情報を共有したりしません。限定的なアプリ利用データは匿名解析のためTelemetryDeckに送信され、アプリ内購入に関する情報はAppleが処理します。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不会出售个人数据，也不会为广告目的共享个人信息。有限的应用使用数据会发送至 TelemetryDeck 进行匿名分析；使用应用内购买时，购买相关信息由 Apple 处理。"
           }
         }
       }
@@ -3747,6 +6327,18 @@
             "state" : "translated",
             "value" : "No enviamos nombres, correos electrónicos, fotos, grabaciones, contactos ni ubicaciones precisas mediante los análisis. Más información en telemetrydeck.com."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解析サービスを通じて氏名、メールアドレス、写真、録音、連絡先、正確な位置情報を送信することはありません。詳しくは telemetrydeck.com をご覧ください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不会通过分析服务发送姓名、邮箱、照片、录音、联系人或精确位置。详情请访问 telemetrydeck.com。"
+          }
         }
       }
     },
@@ -3763,6 +6355,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No usamos cookies ni tecnologías similares."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cookieや類似技術は使用しません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们不使用 Cookie 或类似技术"
           }
         }
       }
@@ -3781,6 +6385,18 @@
             "state" : "translated",
             "value" : "No utilizamos identificadores del dispositivo para el seguimiento."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "追跡のためにデバイス識別子を使用しません"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设备标识符不会用于跟踪"
+          }
         }
       }
     },
@@ -3797,6 +6413,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Podemos actualizar estas Condiciones ocasionalmente. El uso continuado de la aplicación después de los cambios implica la aceptación de las Condiciones actualizadas."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本規約は随時更新される場合があります。変更後も本アプリを利用し続けることで、更新後の規約に同意したものとみなされます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们可能不时更新本条款。条款变更后继续使用本应用，即表示您接受更新后的条款。"
           }
         }
       }
@@ -3815,6 +6443,18 @@
             "state" : "translated",
             "value" : "Utilizamos TelemetryDeck para recopilar estadísticas de uso anónimas, como los pasos de introducción, los eventos del juego, la selección de dificultad y el punto desde el que se accedió a la pantalla de compra. Esta información nos ayuda a saber qué partes de la aplicación son útiles y cuáles necesitan mejoras."
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TelemetryDeckを使用し、初期設定の手順、プレイ中の操作、難易度の選択、購入画面へのアクセス経路などの匿名利用統計を収集します。これらの情報は、アプリの有用性や改善点の把握に使用します。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们使用 TelemetryDeck 收集匿名使用统计信息，例如初始设置步骤、游戏操作、难度选择，以及用户从哪个入口进入付费页面。我们利用这些信息了解应用的哪些功能有帮助，以及哪些方面需要改进。"
+          }
         }
       }
     },
@@ -3831,6 +6471,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Cuánto es \\(a) + \\(b)?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(a) + \\(b) はいくつ？"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(a) + \\(b) 等于多少？"
           }
         }
       }
@@ -3849,6 +6501,18 @@
             "state" : "translated",
             "value" : "Si se ha completado la introducción"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "初期設定を完了したかどうか"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "是否完成初始引导"
+          }
         }
       }
     },
@@ -3865,6 +6529,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Funciona completamente sin conexión"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完全オフライン対応"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完全支持离线使用"
           }
         }
       }
@@ -3883,6 +6559,18 @@
             "state" : "translated",
             "value" : "Funciona sin conexión"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オフラインで遊べる"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支持离线使用"
+          }
         }
       }
     },
@@ -3896,6 +6584,18 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "X"
@@ -3917,6 +6617,18 @@
             "state" : "translated",
             "value" : "Y"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y"
+          }
         }
       }
     },
@@ -3933,6 +6645,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Has esquivado \\(avoided) de \\(totalAvoidCount) \\(emoji)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(totalAvoidCount)個の\\(emoji)のうち\\(avoided)個をよけたよ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你避开了 \\(totalAvoidCount) 个\\(emoji)中的 \\(avoided) 个"
           }
         }
       }
@@ -3951,6 +6675,18 @@
             "state" : "translated",
             "value" : "¡Has esquivado todos los \\(emoji)! ¡Genial!"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(emoji)を全部よけたね！すごい！"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你避开了所有\\(emoji)！太棒了！"
+          }
         }
       }
     },
@@ -3967,6 +6703,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Puedes restaurar tus compras con el botón «Restaurar compras» de la aplicación."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ内の「購入を復元」ボタンで購入内容を復元できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以使用应用内的“恢复购买”按钮恢复已购内容。"
           }
         }
       }
@@ -3985,6 +6733,18 @@
             "state" : "translated",
             "value" : "Has recogido \\(collectedCount)/\\(totalItemCount) \\(emoji)"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\\(emoji)を\\(collectedCount)/\\(totalItemCount)個集めたよ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你收集了 \\(collectedCount)/\\(totalItemCount) 个\\(emoji)"
+          }
         }
       }
     },
@@ -4001,6 +6761,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estás a punto de abrir tu cuenta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウントを開こうとしています"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即将打开账户"
           }
         }
       }
@@ -4019,6 +6791,18 @@
             "state" : "translated",
             "value" : "Estás a punto de abrir la información de privacidad"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシー情報を開こうとしています"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即将打开隐私信息"
+          }
         }
       }
     },
@@ -4035,6 +6819,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estás a punto de abrir los ajustes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定を開こうとしています"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即将打开设置"
           }
         }
       }
@@ -4053,6 +6849,18 @@
             "state" : "translated",
             "value" : "Estás a punto de abrir la tienda"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ストアを開こうとしています"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即将打开商店"
+          }
         }
       }
     },
@@ -4069,6 +6877,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tus aventuras"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あなたの冒険"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的冒险"
           }
         }
       }
@@ -4087,6 +6907,18 @@
             "state" : "translated",
             "value" : "Tus laberintos"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "あなたの迷路"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的迷宫"
+          }
         }
       }
     },
@@ -4103,6 +6935,279 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Z"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z"
+          }
+        }
+      }
+    },
+    "10 numbers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Zahlen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 números"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字10文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 个数字"
+          }
+        }
+      }
+    },
+    "26 letters" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "26 Buchstaben"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "26 letras"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アルファベット26文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "26 个字母"
+          }
+        }
+      }
+    },
+    "46 hiragana" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "46 Hiragana"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "46 hiragana"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ひらがな46文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "46 个平假名"
+          }
+        }
+      }
+    },
+    "Free · 10 numbers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kostenlos · 10 Zahlen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis · 10 números"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料・数字10文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免费 · 10 个数字"
+          }
+        }
+      }
+    },
+    "Free · 46 hiragana" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kostenlos · 46 Hiragana"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis · 46 hiragana"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料・ひらがな46文字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免费 · 46 个平假名"
+          }
+        }
+      }
+    },
+    "Hiragana" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiragana"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiragana"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ひらがな"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平假名"
+          }
+        }
+      }
+    },
+    "Numbers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Números"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字"
+          }
+        }
+      }
+    },
+    "Trace Hiragana" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiragana nachspuren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repasar hiragana"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ひらがなのなぞり書き"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平假名描摹"
+          }
+        }
+      }
+    },
+    "Trace Numbers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen nachspuren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repasar números"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字のなぞり書き"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字描摹"
           }
         }
       }
