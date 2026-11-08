@@ -154,6 +154,17 @@ const pageSchemas = breadcrumb ? [...schemas, breadcrumb] : schemas;
     font-size: 0.85rem;
   }
 
+  html[dir="rtl"] code {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline-block;
+  }
+
+  html[lang="ko"] body {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
   .author-byline {
     margin: 1.25rem 0;
     color: var(--muted);
@@ -404,7 +415,7 @@ const pageSchemas = breadcrumb ? [...schemas, breadcrumb] : schemas;
     position: absolute;
     z-index: 30;
     top: calc(100% + 0.35rem);
-    right: 0;
+    inset-inline-end: 0;
     display: grid;
     min-width: 10rem;
     max-height: min(20rem, 60vh);
@@ -457,7 +468,7 @@ const pageSchemas = breadcrumb ? [...schemas, breadcrumb] : schemas;
 
   .nav-menu summary::after {
     content: "▾";
-    margin-left: 0.35rem;
+    margin-inline-start: 0.35rem;
     color: var(--faint);
     font-size: 0.68rem;
     line-height: 1;
@@ -466,7 +477,7 @@ const pageSchemas = breadcrumb ? [...schemas, breadcrumb] : schemas;
   .nav-menu-list {
     position: absolute;
     top: calc(100% + 0.55rem);
-    right: 0;
+    inset-inline-end: 0;
     display: grid;
     gap: 0.25rem;
     min-width: 12rem;
@@ -651,7 +662,7 @@ const pageSchemas = breadcrumb ? [...schemas, breadcrumb] : schemas;
   th,
   td {
     padding: 1rem;
-    text-align: left;
+    text-align: start;
     vertical-align: top;
     border-bottom: 1px solid var(--line);
   }

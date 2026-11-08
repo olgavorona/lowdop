@@ -555,7 +555,7 @@ const relatedLinks = [
     position: absolute;
     width: clamp(4.5rem, 10vw, 7rem);
     height: auto;
-    right: -0.8rem;
+    inset-inline-end: -0.8rem;
     bottom: -1rem;
     filter: drop-shadow(0 14px 22px rgba(40, 32, 14, 0.14));
   }
@@ -573,11 +573,11 @@ const relatedLinks = [
 
   .dm-trust-item {
     padding: 1.2rem 1rem 1.25rem;
-    border-right: 1px dashed var(--line);
+    border-inline-end: 1px dashed var(--line);
   }
 
   .dm-trust-item:first-child {
-    border-left: 1px dashed var(--line);
+    border-inline-start: 1px dashed var(--line);
   }
 
   .dm-trust-item h2 {
@@ -848,7 +848,7 @@ const relatedLinks = [
     }
 
     .dm-trust-item:nth-child(odd) {
-      border-left: 1px dashed var(--line);
+      border-inline-start: 1px dashed var(--line);
     }
   }
 
@@ -867,7 +867,7 @@ const relatedLinks = [
     .dm-trust-item,
     .dm-trust-item:first-child,
     .dm-trust-item:nth-child(odd) {
-      border-left: 1px dashed var(--line);
+      border-inline-start: 1px dashed var(--line);
     }
 
     .dm-sequence-steps {
@@ -876,7 +876,7 @@ const relatedLinks = [
 
     .dm-denny {
       width: 4.2rem;
-      right: 0.2rem;
+      inset-inline-end: 0.2rem;
       bottom: -0.8rem;
     }
   }

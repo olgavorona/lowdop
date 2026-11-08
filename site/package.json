@@ -8,6 +8,7 @@
     "build": "astro build && node scripts/localize.mjs",
     "preview": "astro preview",
     "check": "astro check",
+    "check:localization": "node scripts/check-localization.mjs",
     "check:seo-lengths": "node scripts/check-seo-lengths.mjs"
   },
   "dependencies": {

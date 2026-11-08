@@ -2,13 +2,17 @@ import { readFile, readdir, mkdir, writeFile } from "node:fs/promises";
 import { join, relative, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as parse5 from "parse5";
+import { supportsPath } from "../src/lib/locales.mjs";
 
 const siteRoot = fileURLToPath(new URL("../", import.meta.url));
 const distRoot = join(siteRoot, "dist");
 const siteUrl = "https://www.harmlessapp.com";
 const extracting = process.argv.includes("--extract");
+const extractCode = process.argv.find((value) => value.startsWith("--locale="))?.split("=")[1];
 const locales = JSON.parse(await readFile(join(siteRoot, "src/data/locales.json"), "utf8"));
 const translatedLocales = locales.filter(({ code }) => code !== "en");
+const extractLocale = extractCode && locales.find(({ code }) => code === extractCode);
+if (extractCode && !extractLocale) throw new Error(`Unknown extraction locale: ${extractCode}`);
 const localeCodes = new Set(translatedLocales.map(({ code }) => code));
 const translations = new Map();
 if (!extracting) {
@@ -100,6 +104,7 @@ function localizeUrl(value, locale) {
   if (!value.startsWith(`${siteUrl}/`)) return value;
   const url = new URL(value);
   if (!paths.has(url.pathname)) return value;
+  if (!supportsPath(locale, url.pathname)) return value;
   url.pathname = localizedPath(locale.code, url.pathname);
   return url.toString();
 }
@@ -145,14 +150,15 @@ function visit(node, path, locale) {
   if (locale && node.tagName === "a") {
     const language = attr(node, "data-language-switch")?.value;
     if (language) {
-      setAttr(node, "href", localizedPath(language, path));
+      const targetLocale = locales.find(({ code }) => code === language);
+      setAttr(node, "href", localizedPath(language, supportsPath(targetLocale, path) ? path : "/"));
       if (language === locale.code) setAttr(node, "aria-current", "page");
       else removeAttr(node, "aria-current");
     } else {
       const href = attr(node, "href");
       if (href?.value.startsWith("/") && !href.value.startsWith("//")) {
         const url = new URL(href.value, siteUrl);
-        if (paths.has(url.pathname)) href.value = `${localizedPath(locale.code, url.pathname)}${url.search}${url.hash}`;
+        if (paths.has(url.pathname) && supportsPath(locale, url.pathname)) href.value = `${localizedPath(locale.code, url.pathname)}${url.search}${url.hash}`;
       }
     }
   }
@@ -166,7 +172,7 @@ function visit(node, path, locale) {
 function addAlternates(document, path) {
   const head = find(document, "head");
   for (const [language, href] of [
-    ...locales.map(({ code }) => [code, `${siteUrl}${localizedPath(code, path)}`]),
+    ...locales.filter((locale) => supportsPath(locale, path)).map(({ code }) => [code, `${siteUrl}${localizedPath(code, path)}`]),
     ["x-default", `${siteUrl}${path}`]
   ]) {
     const link = parse5.parseFragment(`<link rel="alternate" hreflang="${language}" href="${href}">`).childNodes[0];
@@ -183,6 +189,7 @@ for (const file of files) {
   const source = await readFile(file, "utf8");
   const document = parse5.parse(source);
   if (extracting) {
+    if (extractLocale && !supportsPath(extractLocale, path)) continue;
     visit(document, path, null);
     continue;
   }
@@ -191,8 +198,10 @@ for (const file of files) {
   await writeFile(file, parse5.serialize(document));
 
   for (const locale of translatedLocales) {
+    if (!supportsPath(locale, path)) continue;
     const localizedDocument = parse5.parse(source);
     setAttr(find(localizedDocument, "html"), "lang", locale.code);
+    setAttr(find(localizedDocument, "html"), "dir", locale.direction ?? "ltr");
     visit(localizedDocument, path, locale);
     addAlternates(localizedDocument, path);
     const destination = join(distRoot, locale.code, relative(distRoot, file));
@@ -209,7 +218,7 @@ if (extracting) {
       console.error(`Missing ${keys.size} ${code} translations:\n${[...keys].sort().join("\n")}`);
       process.exitCode = 1;
     } else {
-      console.log(`Localized ${files.length} pages in ${code}.`);
+      console.log(`Localized ${[...paths].filter((path) => supportsPath(locales.find((locale) => locale.code === code), path)).length} pages in ${code}.`);
     }
   }
 }

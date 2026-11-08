@@ -2,6 +2,7 @@
 import { primaryNav } from "../data/navigation";
 import { siteConfig } from "../data/site";
 import locales from "../data/locales.json";
+import { supportsPath, localizedPath } from "../lib/locales.mjs";
 
 const pathname = Astro.url.pathname;
 ---
@@ -46,13 +47,13 @@ const pathname = Astro.url.pathname;
       <div class="language-picker-options">
         {locales.map((locale) => (
           <a
-            href={locale.code === "en" ? pathname : `/${locale.code}${pathname}`}
+            href={localizedPath(locale, supportsPath(locale, pathname) ? pathname : "/")}
             hreflang={locale.code}
             lang={locale.code}
             aria-current={locale.code === "en" ? "page" : undefined}
             data-language-switch={locale.code}
           >
-            <span translate="no">{locale.nativeName}</span>
+            <span translate="no" dir="auto">{locale.nativeName}</span>
           </a>
         ))}
       </div>

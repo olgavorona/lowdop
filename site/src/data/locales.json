@@ -13,5 +13,18 @@
     "code": "ja",
     "nativeName": "日本語",
     "ogLocale": "ja_JP"
+  },
+  {
+    "code": "ar",
+    "nativeName": "العربية",
+    "ogLocale": "ar_SA",
+    "direction": "rtl",
+    "paths": ["/", "/dennys-maze/", "/best-low-stimulation-apps-for-toddlers/", "/offline-toddler-apps/", "/ratings/*"]
+  },
+  {
+    "code": "ko",
+    "nativeName": "한국어",
+    "ogLocale": "ko_KR",
+    "paths": ["/", "/dennys-maze/", "/best-low-stimulation-apps-for-toddlers/", "/offline-toddler-apps/", "/ratings/*"]
   }
 ]

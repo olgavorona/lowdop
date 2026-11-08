@@ -28,7 +28,7 @@ async function visit(directory) {
     const title = html.match(/<title>(.*?)<\/title>/is)?.[1]?.trim();
     const description = html.match(/<meta\s+name="description"\s+content="([^"]*)"\s*\/?\s*>/i)?.[1];
     const language = html.match(/<html\s+lang="([^"]+)"/i)?.[1] ?? "en";
-    const descriptionRange = language === "ja" ? [50, 110] : [120, 160];
+    const descriptionRange = ["ja", "ko"].includes(language) ? [50, 110] : [120, 160];
     const page = `/${relative(root, path)}`;
 
     if (title) {
