@@ -1,0 +1,82 @@
+{
+  "version": "1.5.4",
+  "build_number": "6",
+  "new_localizations": {
+    "sv": {
+      "name": "Preschool Maze & ABC Tracing",
+      "subtitle": "Lugn lek och lärande offline",
+      "description": "Lugna labyrinter och spårningsövningar för barn i åldern 3–6 år.\n\nFölj med den lilla krabban Denny på 67 berättelser i havet, i rymden, i skogen och under Thanksgiving. Barn ritar vägen genom labyrinterna med fingret eller Apple Pencil och upptäcker nya platser i sin egen takt.\n\nÖva på att följa linjer, samordna hand och öga och förbereda handen för att skriva. Spåra 26 bokstäver från A till Z och 10 siffror från 0 till 9. Välj mellan tre svårighetsgrader för labyrinterna.\n\nEn lugn stund utan reklam eller prenumerationer. Inga tidtagningar, poängjakter eller oändliga belöningar. Utformningen påminner om en aktivitetsbok på papper och passar hemma, på resan, i väntrummet eller på restaurangen.\n\nMENYER, BERÄTTELSER OCH BERÄTTARRÖST PÅ 10 SPRÅK\nEngelska, tyska, spanska, japanska, förenklad kinesiska, koreanska, arabiska, svenska, finska och nederländska. Hämta berättarrösten på ditt valda språk och använd den sedan offline.\n\nFÖR SMÅ UPPTÄCKARE\n• Labyrinter med berättelser och olika teman\n• Bokstäver och siffror att spåra\n• Övning för finmotorik och problemlösning\n• Tre svårighetsgrader\n• Aktiviteter med säsongsteman\n• Vuxenkontroll för skyddade delar av appen\n• Ingen reklam eller prenumeration\n\nProva de första labyrinterna gratis och utforska säsongsaktiviteterna. Lås upp hela samlingen med ett engångsköp.",
+      "keywords": "barn,förskola,labyrint,bokstäver,siffror,rita,skriva,finmotorik,lärande,offline"
+    },
+    "fi": {
+      "name": "Preschool Maze & ABC Tracing",
+      "subtitle": "Rauhallisia oppimispelejä",
+      "description": "Rauhallisia sokkeloita ja jäljennysharjoituksia 3–6-vuotiaille lapsille.\n\nLähde pienen Denny-ravun mukaan 67 tarinaan merelle, avaruuteen, metsään ja kiitospäivän juhlaan. Lapset piirtävät reitin sokkeloiden läpi sormella tai Apple Pencilillä ja tutkivat uusia paikkoja omaan tahtiinsa.\n\nHarjoittele viivojen seuraamista, silmän ja käden yhteistyötä sekä kirjoittamisen esivalmiuksia. Jäljennä 26 kirjainta A:sta Z:aan ja 10 numeroa 0:sta 9:ään. Valitse sokkeloihin sopiva taso kolmesta vaikeustasosta.\n\nRauhallinen hetki ilman mainoksia tai jatkuvaa tilausta. Ei aikarajoja, pisteiden jahtaamista eikä loputtomia palkintoja. Paperista puuhakirjaa muistuttava ilme sopii kotiin, matkalle, odotushuoneeseen tai ravintolaan.\n\nVALIKOT, TARINAT JA ÄÄNIKERRONTA 10 KIELELLÄ\nEnglanti, saksa, espanja, japani, yksinkertaistettu kiina, korea, arabia, ruotsi, suomi ja hollanti. Lataa äänikerronta valitsemallasi kielellä ja käytä sitä sen jälkeen ilman verkkoyhteyttä.\n\nPIENILLE TUTKIMUSMATKAILIJOILLE\n• Tarinallisia sokkeloita ja erilaisia teemoja\n• Kirjainten ja numeroiden jäljennystä\n• Hienomotoriikan ja ongelmanratkaisun harjoittelua\n• Kolme vaikeustasoa\n• Vuodenaikoihin liittyvää puuhaa\n• Aikuisen tarkistus suojatuissa näkymissä\n• Ei mainoksia eikä jatkuvaa tilausta\n\nKokeile ensimmäisiä sokkeloita ilmaiseksi ja tutustu kausipuuhiin. Avaa koko kokoelma kertaostoksella.",
+      "keywords": "lapset,esikoulu,sokkelo,kirjaimet,numerot,piirtäminen,kirjoitus,oppiminen,offline"
+    },
+    "nl-NL": {
+      "name": "Preschool Maze & ABC Tracing",
+      "subtitle": "Rustig leren voor peuters",
+      "description": "Rustige doolhoven en overtrekoefeningen voor kinderen van 3 tot 6 jaar.\n\nGa met het kleine krabbetje Denny op ontdekking in 67 verhalen over de oceaan, de ruimte, het bos en Thanksgiving. Kinderen tekenen met hun vinger of Apple Pencil een pad door de doolhoven en ontdekken nieuwe plekken in hun eigen tempo.\n\nOefen het volgen van lijnen, de oog-handcoördinatie en de eerste vaardigheden voor het leren schrijven. Trek 26 letters van A tot Z en 10 cijfers van 0 tot 9 over. Kies uit drie moeilijkheidsniveaus voor de doolhoven.\n\nEen rustig moment zonder advertenties of abonnement. Geen tijdslimieten, puntenjacht of eindeloze beloningen. De vormgeving doet denken aan een papieren activiteitenboek en past bij rustig spelen thuis, op reis, in de wachtkamer of in een restaurant.\n\nMENU'S, VERHALEN EN GESPROKEN TEKST IN 10 TALEN\nEngels, Duits, Spaans, Japans, vereenvoudigd Chinees, Koreaans, Arabisch, Zweeds, Fins en Nederlands. Download de gesproken tekst in de taal van je keuze en gebruik deze daarna offline.\n\nVOOR KLEINE ONTDEKKERS\n• Doolhoven met verhalen en verschillende thema's\n• Letters en cijfers overtrekken\n• Oefenen met fijne motoriek en problemen oplossen\n• Drie moeilijkheidsniveaus\n• Activiteiten met seizoensthema's\n• Een controle voor volwassenen bij beschermde onderdelen\n• Geen advertenties of abonnement\n\nProbeer de eerste doolhoven gratis en ontdek de seizoensactiviteiten. Ontgrendel de volledige verzameling met een eenmalige aankoop.",
+      "keywords": "kinderen,peuters,kleuters,doolhof,letters,cijfers,schrijven,tekenen,leren,offline"
+    }
+  },
+  "localizations": {
+    "en-US": {
+      "whatsNew": "What's new:\n- Added Swedish, Finnish, and Dutch for menus, stories, and narration.\n- Denny now speaks 10 languages.\n- Download narration in your chosen language to listen offline.\n\nThanks for exploring with Denny!",
+      "promotionalText": "Denny now speaks 10 languages! Explore 67 calm maze stories and trace letters and numbers. For ages 3–6, with no ads or subscriptions."
+    },
+    "en-GB": {
+      "whatsNew": "What's new:\n- Added Swedish, Finnish and Dutch for menus, stories and narration.\n- Denny now speaks 10 languages.\n- Download narration in your chosen language to listen offline.\n\nThanks for exploring with Denny!",
+      "promotionalText": "Denny now speaks 10 languages! Explore 67 calm maze stories and trace letters and numbers. For ages 3–6, with no ads or subscriptions."
+    },
+    "en-AU": {
+      "whatsNew": "What's new:\n- Added Swedish, Finnish and Dutch for menus, stories and narration.\n- Denny now speaks 10 languages.\n- Download narration in your chosen language to listen offline.\n\nThanks for exploring with Denny!",
+      "promotionalText": "Denny now speaks 10 languages! Explore 67 calm maze stories and trace letters and numbers. For ages 3–6, with no ads or subscriptions."
+    },
+    "de-DE": {
+      "whatsNew": "Neu in dieser Version:\n- Menüs, Geschichten und Erzählungen sind jetzt auch auf Schwedisch, Finnisch und Niederländisch verfügbar.\n- Denny spricht jetzt 10 Sprachen.\n- Lade Erzählungen in deiner gewählten Sprache herunter, um sie offline anzuhören.\n\nDanke, dass du mit Denny auf Entdeckungsreise gehst!",
+      "promotionalText": "Denny spricht jetzt 10 Sprachen! 67 ruhige Labyrinthgeschichten, Buchstaben und Zahlen zum Nachspuren. Für Kinder von 3–6. Ohne Werbung oder Abos."
+    },
+    "es-ES": {
+      "whatsNew": "Novedades:\n- Añadimos sueco, finés y neerlandés para los menús, las historias y la narración.\n- Denny ya habla 10 idiomas.\n- Descarga la narración en el idioma que elijas para escucharla sin conexión.\n\n¡Gracias por explorar con Denny!",
+      "promotionalText": "¡Denny ya habla 10 idiomas! Explora 67 historias de laberintos y traza letras y números. Para niños de 3 a 6 años. Sin anuncios ni suscripciones."
+    },
+    "es-MX": {
+      "whatsNew": "Novedades:\n- Agregamos sueco, finés y neerlandés para los menús, las historias y la narración.\n- Denny ya habla 10 idiomas.\n- Descarga la narración en el idioma que elijas para escucharla sin conexión.\n\n¡Gracias por explorar con Denny!",
+      "promotionalText": "¡Denny ya habla 10 idiomas! Explora 67 historias de laberintos y traza letras y números. Para niños de 3 a 6 años. Sin anuncios ni suscripciones."
+    },
+    "fr-CA": {
+      "whatsNew": "Nouveautés :\n- Ajout du suédois, du finnois et du néerlandais pour les menus, les histoires et la narration.\n- Denny parle maintenant 10 langues.\n- Téléchargez la narration dans la langue de votre choix pour l'écouter hors ligne.\n\nMerci d'explorer avec Denny!",
+      "promotionalText": "Denny parle maintenant 10 langues! 67 histoires de labyrinthes, lettres et chiffres à tracer pour les 3 à 6 ans. Sans publicité ni abonnement."
+    },
+    "ja": {
+      "whatsNew": "アップデート内容：\n- メニュー、お話、読み上げがスウェーデン語・フィンランド語・オランダ語に対応しました。\n- デニーを10言語で楽しめるようになりました。\n- 選んだ言語の音声をダウンロードして、オフラインでも聞けます。\n\nデニーと一緒に冒険してくれてありがとうございます！",
+      "promotionalText": "デニーが10言語に対応！67の迷路のお話と、アルファベット・ひらがな・数字のなぞり書きを楽しもう。3〜6歳向けの落ち着いた遊び。広告・サブスクリプションなし。"
+    },
+    "zh-Hans": {
+      "whatsNew": "更新内容：\n- 菜单、故事和旁白新增瑞典语、芬兰语和荷兰语支持。\n- 丹尼现已支持10种语言。\n- 下载所选语言的旁白后，即可离线收听。\n\n感谢和丹尼一起探索！",
+      "promotionalText": "丹尼现在支持10种语言！探索67个轻松的迷宫故事，练习字母和数字描红。适合3–6岁儿童，无广告、无订阅。"
+    },
+    "ko": {
+      "whatsNew": "업데이트 내용:\n- 메뉴, 이야기, 음성에 스웨덴어, 핀란드어, 네덜란드어를 추가했어요.\n- 이제 데니를 10개 언어로 만날 수 있어요.\n- 원하는 언어의 음성을 다운로드하면 오프라인에서도 들을 수 있어요.\n\n데니와 함께 탐험해 주셔서 감사해요!",
+      "promotionalText": "이제 데니를 10개 언어로 만나요! 67개의 차분한 미로 이야기와 알파벳·숫자 따라 쓰기. 3~6세를 위한 놀이, 광고와 구독 없이 즐겨요."
+    },
+    "ar-SA": {
+      "whatsNew": "الجديد في هذا الإصدار:\n- أضفنا السويدية والفنلندية والهولندية للقوائم والقصص والسرد الصوتي.\n- ديني يتحدث الآن 10 لغات.\n- نزّل السرد الصوتي باللغة التي تختارها للاستماع دون اتصال بالإنترنت.\n\nشكرًا للاستكشاف مع ديني!",
+      "promotionalText": "ديني يتحدث الآن 10 لغات! استكشف 67 قصة متاهة هادئة وتتبع الحروف والأرقام. للأطفال من 3 إلى 6 سنوات، بلا إعلانات أو اشتراكات."
+    },
+    "sv": {
+      "whatsNew": "Nytt i den här versionen:\n- Menyer, berättelser och berättarröst finns nu även på svenska, finska och nederländska.\n- Denny talar nu 10 språk.\n- Hämta berättarrösten på ditt valda språk och lyssna offline.\n\nTack för att du utforskar med Denny!",
+      "promotionalText": "Denny talar nu 10 språk! Utforska 67 lugna labyrintberättelser och spåra bokstäver och siffror. För 3–6 år. Ingen reklam eller prenumeration."
+    },
+    "fi": {
+      "whatsNew": "Uutta tässä versiossa:\n- Valikot, tarinat ja äänikerronta ovat nyt saatavilla myös ruotsiksi, suomeksi ja hollanniksi.\n- Denny puhuu nyt 10 kieltä.\n- Lataa äänikerronta valitsemallasi kielellä ja kuuntele ilman verkkoyhteyttä.\n\nKiitos, että tutkit maailmaa Dennyn kanssa!",
+      "promotionalText": "Denny puhuu nyt 10 kieltä! Tutki 67 rauhallista sokkelotarinaa ja jäljennä kirjaimia ja numeroita. 3–6-vuotiaille. Ei mainoksia eikä jatkuvaa tilausta."
+    },
+    "nl-NL": {
+      "whatsNew": "Nieuw in deze versie:\n- Menu's, verhalen en gesproken tekst zijn nu ook beschikbaar in het Zweeds, Fins en Nederlands.\n- Denny spreekt nu 10 talen.\n- Download de gesproken tekst in de taal van je keuze en luister offline.\n\nBedankt dat je samen met Denny op ontdekking gaat!",
+      "promotionalText": "Denny spreekt nu 10 talen! Ontdek 67 rustige doolhofverhalen en trek letters en cijfers over. Voor 3–6 jaar. Zonder advertenties of abonnement."
+    }
+  }
+}
