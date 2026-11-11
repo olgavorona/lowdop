@@ -149,7 +149,7 @@ class AppStoreConnect:
         )
         return response["data"]["id"]
 
-    def upload_archive(self, app_id: str, identifier: str, archive: Path) -> str:
+    def upload_archive(self, app_id: str, identifier: str, archive: Path, expected_version: int | None = None) -> str:
         asset_id = self.asset_id(app_id, identifier)
         version = self.request(
             "POST",
@@ -163,6 +163,11 @@ class AppStoreConnect:
         )["data"]
         version_id = version["id"]
         version_number = version.get("attributes", {}).get("version", "pending")
+        if expected_version is not None and str(version_number) != str(expected_version):
+            raise RuntimeError(
+                f"Apple created {identifier} version {version_number}, expected {expected_version}; "
+                "no archive was uploaded to the unexpected version"
+            )
 
         reservation = self.request(
             "POST",
@@ -216,6 +221,7 @@ def main() -> int:
     load_local_env()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("archive", type=Path, nargs="+", help="One or more .aar files")
+    parser.add_argument("--expected-version", type=int, help="Require Apple's assigned version number to match this version.")
     args = parser.parse_args()
 
     key_id = os.environ.get("ASC_KEY_ID")
@@ -230,9 +236,9 @@ def main() -> int:
     archives: list[tuple[str, Path]] = []
     for path_value in args.archive:
         path = path_value.expanduser().resolve()
-        match = re.fullmatch(r"audio-(de|es)\.aar", path.name)
+        match = re.fullmatch(r"audio-(de|es|ja|zh-Hans|ko|ar|sv|fi|nl)\.aar", path.name)
         if not match or not path.is_file():
-            parser.error(f"Expected an existing audio-de.aar or audio-es.aar archive, got: {path}")
+            parser.error(f"Expected an existing supported audio locale archive, got: {path}")
         archives.append((f"audio-{match.group(1)}", path))
 
     try:
@@ -240,7 +246,7 @@ def main() -> int:
         app_id = client.app_id()
         for identifier, archive in archives:
             print(f"Uploading {identifier} from {archive}…")
-            version = client.upload_archive(app_id, identifier, archive)
+            version = client.upload_archive(app_id, identifier, archive, expected_version=args.expected_version)
             print(f"Submitted {identifier} version {version} for Apple processing.")
     except (OSError, ValueError, KeyError, RuntimeError, subprocess.SubprocessError) as error:
         print(f"Upload failed: {error}", file=sys.stderr)

@@ -1,0 +1,60 @@
+name: Publish narration packs
+
+on:
+  push:
+    branches: ['ci/narration-*']
+    paths: ['.github/workflows/publish-narration.yml']
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Draft release containing the archives and narration-plan.json
+        type: string
+        required: true
+
+permissions:
+  # Draft release assets require push access; archives remain unpublished on GitHub.
+  contents: write
+
+concurrency:
+  group: narration-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Check publication safeguards
+        run: python3 -m unittest discover -s scripts/tests -p test_publish_narration_packs.py
+      - name: Download approved archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_TAG: ${{ inputs.release_tag }}
+        run: |
+          release_tag="${REQUESTED_TAG:-${GITHUB_REF_NAME#ci/}}"
+          gh release download "$release_tag" --dir build/appstore --pattern 'audio-*.aar' --pattern narration-plan.json
+      - name: Publish and wait for Apple processing
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          path = Path(os.environ['RUNNER_TEMP']) / 'narration-appstore-key.p8'
+          path.touch(mode=0o600)
+          path.write_text(os.environ['ASC_PRIVATE_KEY'])
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              stream.write(f'ASC_PRIVATE_KEY_PATH={path}\n')
+          PY
+          export ASC_PRIVATE_KEY_PATH="$RUNNER_TEMP/narration-appstore-key.p8"
+          python3 -u scripts/publish_narration_packs.py --plan build/appstore/narration-plan.json --archives-dir build/appstore --receipt build/appstore/publish-receipt.json
+      - name: Save publication receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: narration-publication-receipt
+          path: build/appstore/publish-receipt.json
+          if-no-files-found: warn
