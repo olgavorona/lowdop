@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import publish_narration_packs as publisher
+import submit_narration_review as reviewer
 
 
 class FakeApple:
@@ -85,6 +86,75 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "Apple rejected"):
             self.run_publisher(FakeApple(final_state="FAILED"))
         self.assertEqual(json.loads(self.receipt.read_text())["packs"][0]["attributes"]["state"], "FAILED")
+
+
+class FakeReviewApple:
+    def __init__(self, foreign=False, unexpected_binary=False):
+        self.foreign = foreign
+        self.unexpected_binary = unexpected_binary
+        self.writes = []
+        self.items = []
+
+    def app_id(self):
+        return "app"
+
+    def request(self, method, path, body=None):
+        if method != "GET":
+            self.writes.append((method, path))
+        if path.startswith("/apps/"):
+            return {"data": [{"id": "asset-sv", "attributes": {"assetPackIdentifier": "audio-sv"}}]}
+        if path.startswith("/backgroundAssetVersions/"):
+            return {"data": {"attributes": {"state": "COMPLETE", "version": "1"},
+                             "relationships": {"backgroundAsset": {"data": {"id": "wrong" if self.foreign else "asset-sv"}}}}}
+        if method == "POST" and path == "/reviewSubmissions":
+            return {"data": {"id": "review", "attributes": {"state": "READY_FOR_REVIEW"}}}
+        if method == "POST" and path == "/reviewSubmissionItems":
+            item = {"id": "item", "relationships": body["data"]["relationships"]}
+            self.items.append(item)
+            return {"data": item}
+        if method == "GET" and path.startswith("/reviewSubmissions/review/items"):
+            if self.unexpected_binary:
+                return {"data": self.items + [{"id": "binary", "relationships": {"appStoreVersion": {"data": {"id": "unrelated"}}}}]}
+            return {"data": self.items}
+        if method == "PATCH" and path == "/reviewSubmissions/review":
+            return {"data": {"id": "review", "attributes": {"state": "WAITING_FOR_REVIEW"}}}
+        raise AssertionError((method, path))
+
+
+class ReviewSubmissionTests(unittest.TestCase):
+    def run_review(self, apple, root):
+        publication = root / "publication.json"
+        publication.write_text(json.dumps({"app_id": "app", "packs": [
+            {"identifier": "audio-sv", "version": 1, "version_id": "version-sv", "asset_id": "asset-sv"}]}))
+        output = root / "review.json"
+        with patch.object(sys, "argv", ["review", "--publication-receipt", str(publication), "--receipt", str(output)]), \
+                patch.dict("os.environ", {"ASC_KEY_ID": "test", "ASC_ISSUER_ID": "test", "ASC_PRIVATE_KEY_PATH": "/unused"}), \
+                patch.object(reviewer, "make_token", return_value="fake-token"), \
+                patch.object(reviewer, "AppStoreConnect", return_value=apple):
+            reviewer.main()
+        return json.loads(output.read_text())
+
+    def test_foreign_asset_is_rejected_before_remote_mutation(self):
+        apple = FakeReviewApple(foreign=True)
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(ValueError, "does not belong"):
+                self.run_review(apple, Path(directory))
+        self.assertEqual(apple.writes, [])
+
+    def test_unexpected_app_binary_prevents_submission(self):
+        apple = FakeReviewApple(unexpected_binary=True)
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(ValueError, "do not exactly match"):
+                self.run_review(apple, Path(directory))
+        self.assertFalse(any(method == "PATCH" for method, path in apple.writes))
+
+    def test_only_approved_versions_are_submitted(self):
+        apple = FakeReviewApple()
+        with tempfile.TemporaryDirectory() as directory:
+            result = self.run_review(apple, Path(directory))
+        self.assertEqual(result["submission"]["attributes"]["state"], "WAITING_FOR_REVIEW")
+        self.assertEqual(apple.writes[-1], ("PATCH", "/reviewSubmissions/review"))
+        self.assertEqual(result["items"][0]["relationships"]["backgroundAssetVersion"]["data"]["id"], "version-sv")
 
 
 if __name__ == "__main__":

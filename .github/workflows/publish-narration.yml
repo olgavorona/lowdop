@@ -10,6 +10,11 @@ on:
         description: Draft release containing the archives and narration-plan.json
         type: string
         required: true
+      stage:
+        description: Upload archives or submit processed versions for App Store review
+        type: choice
+        options: [upload, review]
+        default: upload
 
 permissions:
   # Draft release assets require push access; archives remain unpublished on GitHub.
@@ -23,6 +28,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      PUBLICATION_STAGE: ${{ contains(github.ref_name, 'ci/narration-review-') && 'review' || inputs.stage || 'upload' }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Check publication safeguards
@@ -33,8 +40,13 @@ jobs:
           REQUESTED_TAG: ${{ inputs.release_tag }}
         run: |
           release_tag="${REQUESTED_TAG:-${GITHUB_REF_NAME#ci/}}"
-          gh release download "$release_tag" --dir build/appstore --pattern 'audio-*.aar' --pattern narration-plan.json
-      - name: Publish and wait for Apple processing
+          if [ "$PUBLICATION_STAGE" = review ]; then
+            release_tag="${REQUESTED_TAG:-narration-${GITHUB_REF_NAME#ci/narration-review-}}"
+            gh release download "$release_tag" --dir build/appstore --pattern publish-receipt.json
+          else
+            gh release download "$release_tag" --dir build/appstore --pattern 'audio-*.aar' --pattern narration-plan.json
+          fi
+      - name: Authenticate with App Store Connect
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
@@ -49,12 +61,24 @@ jobs:
           with open(os.environ['GITHUB_ENV'], 'a') as stream:
               stream.write(f'ASC_PRIVATE_KEY_PATH={path}\n')
           PY
-          export ASC_PRIVATE_KEY_PATH="$RUNNER_TEMP/narration-appstore-key.p8"
+      - name: Publish and wait for Apple processing
+        if: env.PUBLICATION_STAGE == 'upload'
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
           python3 -u scripts/publish_narration_packs.py --plan build/appstore/narration-plan.json --archives-dir build/appstore --receipt build/appstore/publish-receipt.json
+      - name: Submit processed narration for App Store review
+        if: env.PUBLICATION_STAGE == 'review'
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          python3 -u scripts/submit_narration_review.py --publication-receipt build/appstore/publish-receipt.json --receipt build/appstore/review-submission-receipt.json
       - name: Save publication receipt
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: narration-publication-receipt
-          path: build/appstore/publish-receipt.json
+          path: build/appstore/*receipt.json
           if-no-files-found: warn
