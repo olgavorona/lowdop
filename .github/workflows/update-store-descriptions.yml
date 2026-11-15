@@ -1,0 +1,51 @@
+name: Update only Swedish, Finnish, and Dutch descriptions
+
+on:
+  push:
+    branches: ['ci/store-descriptions-1.5.4']
+    paths: ['.github/workflows/update-store-descriptions.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: appstore-build-upload
+  cancel-in-progress: false
+
+jobs:
+  descriptions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Validate the approved description translations
+        run: python3 scripts/update_store_descriptions.py --plan fastlane/description-update-1.5.4.json --output build/description-receipt --validate-only
+      - name: Configure App Store authentication
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          folder = Path(os.environ['RUNNER_TEMP']) / 'description-upload-keys'
+          folder.mkdir(mode=0o700)
+          key = folder / f"AuthKey_{os.environ['ASC_KEY_ID']}.p8"
+          key.touch(mode=0o600)
+          key.write_text(os.environ['ASC_PRIVATE_KEY'])
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              stream.write(f'ASC_PRIVATE_KEY_PATH={key}\n')
+          PY
+      - name: Upload descriptions and verify all keywords are unchanged
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: python3 -u scripts/update_store_descriptions.py --plan fastlane/description-update-1.5.4.json --output build/description-receipt
+      - name: Save listing snapshots and verification receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: appstore-description-receipt
+          path: build/description-receipt/*.json
+          if-no-files-found: warn
