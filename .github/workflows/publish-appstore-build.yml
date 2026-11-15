@@ -1,0 +1,63 @@
+name: Upload App Store build and release text
+
+on:
+  push:
+    branches: ['ci/appstore-*']
+    paths: ['.github/workflows/publish-appstore-build.yml']
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Private staging release containing the IPA, plan, and localized metadata
+        type: string
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: appstore-build-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Download prepared release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_TAG: ${{ inputs.release_tag }}
+        run: |
+          release_tag="${REQUESTED_TAG:-${GITHUB_REF_NAME#ci/}}"
+          gh release download "$release_tag" --dir build/release --pattern '*.ipa' --pattern release-plan.json --pattern 'release-*.json'
+      - name: Validate release version, checksums, and localized text
+        run: python3 scripts/publish_app_store_build.py --package build/release --output build/receipt --validate-only
+      - name: Configure App Store authentication
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          folder = Path(os.environ['RUNNER_TEMP']) / 'appstore-upload-keys'
+          folder.mkdir(mode=0o700)
+          key = folder / f"AuthKey_{os.environ['ASC_KEY_ID']}.p8"
+          key.touch(mode=0o600)
+          key.write_text(os.environ['ASC_PRIVATE_KEY'])
+          with open(os.environ['GITHUB_ENV'], 'a') as stream:
+              stream.write(f'API_PRIVATE_KEYS_DIR={folder}\nASC_PRIVATE_KEY_PATH={key}\n')
+          PY
+      - name: Upload build and all localized release text
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: python3 -u scripts/publish_app_store_build.py --package build/release --output build/receipt
+      - name: Save verified release receipt and metadata snapshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: appstore-release-receipt
+          path: build/receipt/*.json
+          if-no-files-found: warn
