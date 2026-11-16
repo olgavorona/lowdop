@@ -1,0 +1,62 @@
+{
+  "version": "1.5.5",
+  "build_number": "8",
+  "localizations": {
+    "en-US": {
+      "whatsNew": "New in this version:\n- A simpler introduction to Denny’s mazes.\n- A refreshed unlock screen with clearer lifetime access details.\n- Improved layouts on iPad and iPhone.",
+      "promotionalText": "100+ mazes, letter and number tracing, and seasonal adventures for ages 3–6. Play offline, with no ads or subscriptions."
+    },
+    "en-GB": {
+      "whatsNew": "New in this version:\n- A simpler introduction to Denny’s mazes.\n- A refreshed unlock screen with clearer lifetime access details.\n- Improved layouts on iPad and iPhone.",
+      "promotionalText": "100+ mazes, letter and number tracing, and seasonal adventures for ages 3–6. Play offline, with no ads or subscriptions."
+    },
+    "en-AU": {
+      "whatsNew": "New in this version:\n- A simpler introduction to Denny’s mazes.\n- A refreshed unlock screen with clearer lifetime access details.\n- Improved layouts on iPad and iPhone.",
+      "promotionalText": "100+ mazes, letter and number tracing, and seasonal adventures for ages 3–6. Play offline, with no ads or subscriptions."
+    },
+    "de-DE": {
+      "whatsNew": "Neu in dieser Version:\n- Ein einfacherer Einstieg in Dennys Labyrinthe.\n- Ein überarbeiteter Freischaltbildschirm mit klareren Angaben zum dauerhaften Zugriff.\n- Verbesserte Layouts auf iPad und iPhone.",
+      "promotionalText": "Über 100 Labyrinthe, Buchstaben und Zahlen zum Nachspuren und saisonale Abenteuer für 3–6-Jährige. Offline spielen, ohne Werbung oder Abonnements."
+    },
+    "es-ES": {
+      "whatsNew": "Novedades:\n- Una introducción más sencilla a los laberintos de Denny.\n- Una pantalla de desbloqueo renovada con información más clara sobre el acceso para siempre.\n- Diseños mejorados en iPad y iPhone.",
+      "promotionalText": "Más de 100 laberintos, letras y números para trazar y aventuras de temporada para niños de 3 a 6 años. Juega sin conexión, sin anuncios ni suscripciones."
+    },
+    "es-MX": {
+      "whatsNew": "Novedades:\n- Una introducción más sencilla a los laberintos de Denny.\n- Una pantalla de desbloqueo renovada con información más clara sobre el acceso para siempre.\n- Diseños mejorados en iPad y iPhone.",
+      "promotionalText": "Más de 100 laberintos, letras y números para trazar y aventuras de temporada para niños de 3 a 6 años. Juega sin conexión, sin anuncios ni suscripciones."
+    },
+    "fr-CA": {
+      "whatsNew": "Nouveautés :\n- Une introduction simplifiée aux labyrinthes de Denny.\n- Un écran de déverrouillage repensé avec des renseignements plus clairs sur l’accès à vie.\n- Une mise en page améliorée sur iPad et iPhone.",
+      "promotionalText": "100+ labyrinthes, lettres et chiffres à tracer et aventures saisonnières pour les 3 à 6 ans. Jouez hors ligne, sans publicité ni abonnement."
+    },
+    "ja": {
+      "whatsNew": "アップデート内容：\n- デニーの迷路の紹介がよりシンプルになりました。\n- ずっと使えることがよりわかりやすい購入画面になりました。\n- iPadとiPhoneのレイアウトを改善しました。",
+      "promotionalText": "100以上の迷路、文字や数字のなぞり書き、季節の冒険を3〜6歳のお子さまに。オフラインで遊べて、広告やサブスクリプションはありません。"
+    },
+    "zh-Hans": {
+      "whatsNew": "更新内容：\n- 更简洁的丹尼迷宫入门介绍。\n- 焕新的解锁页面，更清楚地介绍永久使用权益。\n- 改进了iPad和iPhone上的布局。",
+      "promotionalText": "100多个迷宫、字母和数字描红，以及适合3–6岁儿童的季节冒险。可离线游玩，无广告、无订阅。"
+    },
+    "ko": {
+      "whatsNew": "업데이트 내용:\n- 데니의 미로를 더 간단하게 소개해요.\n- 평생 이용 안내가 더 명확해진 구매 화면을 만나 보세요.\n- iPad와 iPhone의 레이아웃을 개선했어요.",
+      "promotionalText": "3~6세를 위한 100개 이상의 미로, 글자와 숫자 따라 쓰기, 계절 모험. 광고나 구독 없이 오프라인으로 즐겨요."
+    },
+    "ar-SA": {
+      "whatsNew": "الجديد في هذا الإصدار:\n- مقدمة أبسط لمتاهات ديني.\n- شاشة فتح محتوى بتصميم جديد وتفاصيل أوضح عن الوصول مدى الحياة.\n- تحسين تنسيق العرض على iPad وiPhone.",
+      "promotionalText": "أكثر من 100 متاهة وتتبع الحروف والأرقام ومغامرات موسمية للأطفال من 3 إلى 6 سنوات. العب دون إنترنت، بلا إعلانات أو اشتراكات."
+    },
+    "sv": {
+      "whatsNew": "Nytt i den här versionen:\n- En enklare introduktion till Dennys labyrinter.\n- En förnyad upplåsningsskärm med tydligare information om tillgång för alltid.\n- Förbättrade layouter på iPad och iPhone.",
+      "promotionalText": "Över 100 labyrinter, bokstäver och siffror att spåra och säsongsäventyr för 3–6 år. Spela offline, utan reklam eller prenumerationer."
+    },
+    "fi": {
+      "whatsNew": "Uutta tässä versiossa:\n- Selkeämpi johdanto Dennyn sokkeloihin.\n- Uudistettu avaamisnäkymä, jossa on selkeämmät tiedot pysyvästä käyttöoikeudesta.\n- Parannetut asettelut iPadilla ja iPhonella.",
+      "promotionalText": "Yli 100 sokkeloa, kirjainten ja numeroiden jäljennystä sekä kausiseikkailuja 3–6-vuotiaille. Pelaa offline, ilman mainoksia tai jatkuvaa tilausta."
+    },
+    "nl-NL": {
+      "whatsNew": "Nieuw in deze versie:\n- Een eenvoudigere kennismaking met Denny’s doolhoven.\n- Een vernieuwd ontgrendelscherm met duidelijkere informatie over toegang voor altijd.\n- Verbeterde indelingen op iPad en iPhone.",
+      "promotionalText": "100+ doolhoven, letters en cijfers overtrekken en seizoensavonturen voor 3–6 jaar. Speel offline, zonder advertenties of abonnementen."
+    }
+  }
+}
