@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { appStoreUrl } from "../../../lib/analytics";
+import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
+import { formatLastUpdated, getLastUpdated } from "../../../lib/freshness";
+
+const campaign = "website_christmas_printables";
+const appUrl = appStoreUrl(campaign);
+const assetBase = "/printables/christmas-mazes";
+const pdf = `${assetBase}/Denny-Christmas-Mazes-Printable-Letter.pdf`;
+const zip = `${assetBase}/dennys-christmas-maze-adventure.zip`;
+const printables = [
+  { title: "The Christmas Stocking Maze", description: "Help Denny reach Twinkle through the stocking. Count the red holly berries." },
+  { title: "The Christmas Ornament Maze", description: "Collect all three jingle bells inside the ornament, then count the snowflakes." },
+  { title: "Twinkle’s Cozy Scarf Maze", description: "Follow the striped scarf through the snow. Count the big snowflakes in the sky." },
+  { title: "The Frozen Pond Maze", description: "Find a path across the pond that avoids the cracks. Look for the little fish under the ice." },
+  { title: "The Candy Cane Maze", description: "Collect all five peppermints through the candy cane. Color the gumdrops your favorite colors." },
+  { title: "The Gingerbread House Maze", description: "Go from the chimney to the front door without touching the pink icing. Count the gumdrops on the roof." },
+  { title: "The Glowing Christmas Light Maze", description: "Collect all six lights for Twinkle. Can you find the owl hiding in the forest?" },
+  { title: "The Christmas Tree Maze", description: "Help Denny climb the tree to put Twinkle on top. Count the presents under the tree." }
+].map((item, index) => ({ ...item, part: `Part ${String(index + 1).padStart(2, "0")}`, image: `${assetBase}/Denny-Christmas-Maze-Part-${index + 1}-of-8.png` }));
+const faqs = [
+  { question: "Are these Christmas mazes free?", answer: "Yes. Download all eight pages as a PDF or ZIP, or choose individual PNG pages. No email is required." },
+  { question: "What language are the worksheets in?", answer: "The downloadable worksheets are in English. This page explains each activity in your selected website language." },
+  { question: "How do I print the Christmas mazes?", answer: "Print the eight-page US Letter PDF, or open a 2000 × 3000 pixel PNG. Choose Fit to page for your paper size." }
+];
+const title = "8 Free Printable Christmas Mazes for Kids";
+const description = "Download eight free Christmas mazes for kids as a PDF, PNGs or ZIP. Join Denny and Twinkle for a festive story with counting and hidden-picture activities.";
+const pathname = "/printables/christmas/";
+const lastUpdated = getLastUpdated("site/src/pages/printables/christmas/index.astro", "2026-11-17");
+const meta = buildMeta({ title, description, pathname, image: printables[0].image, imageAlt: printables[0].title, imageWidth: 2000, imageHeight: 3000 });
+const pageSchema = { "@context": "https://schema.org", "@type": "CollectionPage", name: title, description, url: absoluteUrl(pathname), isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: "https://www.harmlessapp.com" } };
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema(), pageSchema, faqSchema(faqs)]}>
+  <article class="christmas-page">
+    <section class="christmas-hero">
+      <div class="christmas-shell christmas-hero-grid">
+        <div>
+          <p class="eyebrow">Free 8-page Christmas adventure</p>
+          <h1>Denny’s Christmas Maze Adventure</h1>
+          <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
+          <p class="hero-lead">Twinkle dreams of being the star on the town’s Christmas tree. Help Denny take her there through eight colorful mazes, with counting, coloring and hidden-picture activities along the way.</p>
+          <div class="christmas-actions">
+            <a class="button christmas-primary" href={appUrl} data-app-store-cta="christmas-hero" data-app-store-campaign={campaign}>Try Denny’s Maze free <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href={pdf} download data-download-placement="christmas-hero">Download all 8 as a PDF <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-note">Free · Full color · English worksheets · No email required</p>
+          <a class="text-link" href="#free-printables">Explore all eight mazes</a>
+        </div>
+        <figure class="hero-preview"><img src={printables[0].image} alt={printables[0].title} width="2000" height="3000" fetchpriority="high" /></figure>
+      </div>
+    </section>
+
+    <section class="printables-section" id="free-printables" aria-labelledby="printables-heading">
+      <div class="christmas-shell">
+        <div class="section-heading"><p class="eyebrow">The complete adventure</p><h2 id="printables-heading">Eight Christmas mazes, one little star</h2><p>Follow Parts 1–8 for the full story, or choose a favorite page to print. The story and instructions on the worksheets are in English.</p></div>
+        <div class="printable-grid">
+          {printables.map((item) => (
+            <article class="printable-card">
+              <a class="printable-image" href={item.image} download data-download-placement="christmas-image" aria-label="Download printable PNG"><img src={item.image} alt={item.title} width="2000" height="3000" loading="lazy" /></a>
+              <div class="printable-copy"><span class="printable-number">{item.part}</span><h3>{item.title}</h3><p>{item.description}</p><a class="text-link" href={item.image} download data-download-placement="christmas-list">Download printable PNG <span aria-hidden="true">↓</span></a></div>
+            </article>
+          ))}
+        </div>
+        <div class="all-download"><div><h2>Print the whole Christmas adventure</h2><p>Eight full-color pages, ready for a quiet afternoon with pencils and crayons.</p></div><div class="download-actions"><a class="button christmas-primary" href={pdf} download data-download-placement="christmas-pack">Download all 8 as a PDF</a><a class="text-link" href={zip} download data-download-placement="christmas-pack">Download all 8 as a ZIP <span aria-hidden="true">↓</span></a></div></div>
+      </div>
+    </section>
+
+    <section class="app-offer" aria-labelledby="app-heading"><div class="christmas-shell app-grid"><img src="/images/denny.png" alt="Denny the red crab" width="320" height="320" loading="lazy" /><div><p class="eyebrow">More mazes, less noise</p><h2 id="app-heading">Take Denny’s mazes with you</h2><p>Denny’s Maze brings the same calm, paper-like play to iPhone and iPad. Try three mazes free, with no ads, no subscription and no Wi-Fi needed.</p><a class="button christmas-primary" href={appUrl} data-app-store-cta="christmas-printables" data-app-store-campaign={campaign}>Try Denny’s Maze free <span aria-hidden="true">↗</span></a></div></div></section>
+
+    <section class="info-section"><div class="christmas-shell info-grid"><div><p class="eyebrow">Print at home</p><h2>How to use the printables</h2><ol><li>Download the PDF, individual PNGs or the ZIP of all eight PNGs.</li><li>Choose “Fit to page” in your print settings.</li><li>Use a pencil or crayon to follow each maze from the arrow to the star.</li><li>Enjoy the extra counting, coloring and seek-and-find activities.</li></ol><a class="text-link" href="/printables/">Browse all free printables</a></div><div><h2>FAQ</h2><div class="christmas-faq">{faqs.map((item) => (<details><summary>{item.question}</summary><p>{item.answer}</p></details>))}</div></div></div></section>
+  </article>
+</BaseLayout>
+
+<style>
+  .christmas-page { --christmas-green:#205a43; --christmas-red:#bb303b; --christmas-cream:#fffaf2; }
+  .christmas-shell { width:min(calc(100% - 2rem),70rem); margin:0 auto; }
+  .christmas-hero { padding:clamp(3rem,7vw,6rem) 0; background:#e6eee7; border-bottom:1px solid var(--line); }
+  .christmas-hero-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(16rem,.7fr); gap:clamp(2rem,7vw,6rem); align-items:center; }
+  h1 { color:var(--christmas-green); font-size:clamp(2.7rem,6vw,5.5rem); overflow-wrap:anywhere; }
+  .hero-lead { max-width:42rem; color:var(--muted); font-size:1.15rem; }
+  .christmas-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.5rem; }
+  .christmas-primary { background:var(--christmas-red); border-color:var(--christmas-red); color:white; }
+  .christmas-primary:hover { background:var(--christmas-green); border-color:var(--christmas-green); color:white; }
+  .text-link { color:var(--christmas-green); font-weight:750; }
+  .hero-note { color:var(--muted); font-size:.85rem; }
+  .hero-preview { width:min(100%,22rem); margin:0; justify-self:center; padding:.5rem; background:white; box-shadow:0 16px 40px #203d3026; transform:rotate(2deg); }
+  .hero-preview img,.printable-image img { width:100%; height:auto; }
+  .printables-section,.app-offer,.info-section { padding:clamp(3rem,7vw,6rem) 0; }
+  .printables-section { background:var(--christmas-cream); scroll-margin-top:8rem; }
+  .section-heading { max-width:46rem; margin-bottom:2rem; }
+  .section-heading p,.printable-copy p,.all-download p,.info-section li,.christmas-faq p,.app-grid p:not(.eyebrow) { color:var(--muted); }
+  .printable-card { display:grid; grid-template-columns:minmax(14rem,22rem) minmax(0,1fr); gap:clamp(1.5rem,5vw,4rem); align-items:center; padding:2rem 0; border-top:1px solid var(--line); }
+  .printable-image { display:block; background:white; box-shadow:0 8px 24px #203d301a; }
+  .printable-number { display:block; margin-bottom:.6rem; color:var(--christmas-red); font-family:var(--font-mono); font-size:.8rem; font-weight:700; }
+  .printable-copy h3 { color:var(--christmas-green); font-size:clamp(1.4rem,3vw,2rem); }
+  .all-download { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,auto); align-items:center; gap:2rem; margin-top:2rem; padding:clamp(1.5rem,4vw,2.5rem); background:#e6eee7; }
+  .download-actions { display:grid; gap:1rem; justify-items:start; }
+  .app-offer { background:var(--christmas-green); color:white; }
+  .app-grid { display:grid; grid-template-columns:minmax(8rem,15rem) minmax(0,1fr); align-items:center; gap:clamp(2rem,7vw,5rem); }
+  .app-grid>img { width:100%; height:auto; }
+  .app-grid p:not(.eyebrow),.app-grid .eyebrow { color:#e1eee5; }
+  .app-grid .christmas-primary { background:#fffaf2; border-color:#fffaf2; color:var(--christmas-green); }
+  .app-grid .christmas-primary:hover { background:#fae5b2; border-color:#fae5b2; }
+  .info-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(2rem,7vw,5rem); }
+  .info-grid ol { padding-inline-start:1.25rem; }
+  .christmas-faq { display:grid; gap:1rem; }
+  .christmas-faq p { margin-bottom:0; }
+  a:focus-visible,summary:focus-visible { outline:3px solid var(--christmas-red); outline-offset:4px; }
+  @media(max-width:760px) { .christmas-hero-grid,.app-grid,.info-grid,.all-download { grid-template-columns:1fr; } .hero-preview { width:min(75%,20rem); } .app-grid>img { width:min(55%,12rem); justify-self:center; } }
+  @media(max-width:560px) { .printable-card { grid-template-columns:1fr; } .printable-image { width:min(100%,24rem); } .christmas-actions .button,.download-actions,.download-actions .button { width:100%; } }
+</style>

@@ -6,9 +6,13 @@ accessibility labels, metadata, and text within structured data. App names,
 numeric ratings, and machine-readable formulas retain their identities.
 
 English, German, and Japanese cover the entire website. Arabic and Korean
-currently cover 14 pages each: the homepage, Denny's Maze, the low-stimulation
-and offline comparison guides, the ratings methodology, the ratings index,
-and all eight individual app reviews.
+cover the homepage, Denny's Maze, the low-stimulation and offline comparison
+guides, the ratings methodology, the ratings index, all eight individual app
+reviews, the printables index, and the Christmas maze page.
+
+The Christmas landing page is translated into every website language. Its eight
+PNG worksheets and the print-ready PDF retain the supplied English text; each
+localized page discloses this before the downloads. The ZIP contains all eight PNGs.
 
 Route coverage is declared in `src/data/locales.json`. A missing `paths` field
 means full coverage; `*` at the end of a pattern matches a route prefix.

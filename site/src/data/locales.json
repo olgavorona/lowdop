@@ -19,12 +19,28 @@
     "nativeName": "العربية",
     "ogLocale": "ar_SA",
     "direction": "rtl",
-    "paths": ["/", "/dennys-maze/", "/best-low-stimulation-apps-for-toddlers/", "/offline-toddler-apps/", "/ratings/*"]
+    "paths": [
+      "/",
+      "/dennys-maze/",
+      "/best-low-stimulation-apps-for-toddlers/",
+      "/offline-toddler-apps/",
+      "/ratings/*",
+      "/printables/",
+      "/printables/christmas/"
+    ]
   },
   {
     "code": "ko",
     "nativeName": "한국어",
     "ogLocale": "ko_KR",
-    "paths": ["/", "/dennys-maze/", "/best-low-stimulation-apps-for-toddlers/", "/offline-toddler-apps/", "/ratings/*"]
+    "paths": [
+      "/",
+      "/dennys-maze/",
+      "/best-low-stimulation-apps-for-toddlers/",
+      "/offline-toddler-apps/",
+      "/ratings/*",
+      "/printables/",
+      "/printables/christmas/"
+    ]
   }
 ]
