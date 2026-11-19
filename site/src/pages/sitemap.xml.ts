@@ -15,6 +15,7 @@ const pages = [
   ["/printables/fall/", "site/src/pages/printables/fall/index.astro"],
   ["/printables/halloween/", "site/src/pages/printables/halloween/index.astro"],
   ["/printables/halloween-1/", "site/public/printables/halloween-adventure/dennys-halloween-maze-adventure.zip"],
+  ["/printables/winter/", "site/src/pages/printables/winter/index.astro", "2026-11-19"],
   ["/printables/christmas/", "site/src/pages/printables/christmas/index.astro", "2026-11-17"],
   ["/printables/thanksgiving/", "site/src/pages/printables/thanksgiving/index.astro"],
   ["/best-low-stimulation-apps-for-toddlers/", "site/src/pages/best-low-stimulation-apps-for-toddlers.astro"],

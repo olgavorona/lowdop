@@ -35,7 +35,7 @@ ${pages.map(([label, path, description]) => `- [${label}](${siteConfig.siteUrl}$
 
 **What does the offline app guide test?** It checks apps on a fresh install without internet and again after online setup, including what content remains available offline.
 
-**Are there free printable mazes?** Yes. The printables collection includes free seasonal maze activities, including fall, Halloween, Thanksgiving, and Christmas pages.
+**Are there free printable mazes?** Yes. The printables collection includes free seasonal maze activities, including fall, Halloween, Thanksgiving, Christmas, and winter pages.
 
 **How does Harmless Apps handle its Denny’s Maze conflict of interest?** The site discloses that Olga makes the app and says the conflict is mitigated with standard testing metrology, recorded evidence, consistent scoring, and human confirmation.
 

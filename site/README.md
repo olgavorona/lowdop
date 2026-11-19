@@ -25,8 +25,11 @@ The generated site is in `site/dist/`.
 ## Languages
 
 `npm run build` creates English pages and static copies for the languages listed in
-`src/data/locales.json`. German is available under `/de/` and Japanese under `/ja/`. The language
-picker keeps visitors on the same page when they switch languages. Text and metadata
+`src/data/locales.json`. Full translations are available in German (`/de/`),
+Japanese (`/ja/`), Swedish (`/sv/`), Danish (`/da/`), and Finnish (`/fi/`). Arabic
+(`/ar/`) and Korean (`/ko/`) cover the routes declared in the language registry.
+The language picker keeps visitors on the same page when that language is available.
+The sitemap and reciprocal language alternates use the same registry. Text and metadata
 translations live in `translations/<code>.json`; PDF, PNG, and ZIP assets are shared
 across languages. The build fails if a listed language is missing a translation.
 

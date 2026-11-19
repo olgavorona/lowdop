@@ -26,7 +26,8 @@
       "/offline-toddler-apps/",
       "/ratings/*",
       "/printables/",
-      "/printables/christmas/"
+      "/printables/christmas/",
+      "/printables/winter/"
     ]
   },
   {
@@ -40,7 +41,23 @@
       "/offline-toddler-apps/",
       "/ratings/*",
       "/printables/",
-      "/printables/christmas/"
+      "/printables/christmas/",
+      "/printables/winter/"
     ]
+  },
+  {
+    "code": "sv",
+    "nativeName": "Svenska",
+    "ogLocale": "sv_SE"
+  },
+  {
+    "code": "da",
+    "nativeName": "Dansk",
+    "ogLocale": "da_DK"
+  },
+  {
+    "code": "fi",
+    "nativeName": "Suomi",
+    "ogLocale": "fi_FI"
   }
 ]

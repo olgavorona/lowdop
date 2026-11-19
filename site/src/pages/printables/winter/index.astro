@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { appStoreUrl } from "../../../lib/analytics";
+import { absoluteUrl, buildMeta, faqSchema, organizationSchema } from "../../../lib/seo";
+import { formatLastUpdated, getLastUpdated } from "../../../lib/freshness";
+
+const campaign = "website_winter_printables";
+const appUrl = appStoreUrl(campaign);
+const assetBase = "/printables/winter-mazes";
+const zip = `${assetBase}/Dennys-Winter-Maze-Adventure.zip`;
+const printables = [
+  { title: "The Cozy Mitten Maze", description: "Help Denny find the star through a warm mitten. Find the little mitten that matches the big one." },
+  { title: "The Sled Maze", description: "Follow the sled maze to the star, then count the snowballs around it." },
+  { title: "The Ski Slope Maze", description: "Guide Denny down the mountain without bumping into the pine trees. Count the red flags." },
+  { title: "The Ice Skate Maze", description: "Collect all three coal buttons for the snowman. Look for the little bird beside the skate." },
+  { title: "The Giant Snowflake Maze", description: "Find the star in the middle of the giant snowflake, then count its arms." },
+  { title: "The Snowboard Maze", description: "Collect all four sticks for the snowman’s arms as you trace the snowboard. Count the mountains." },
+  { title: "The Snow Globe Maze", description: "Collect all five sparkly snowflakes inside the snow globe. Find the moon in the night sky." },
+  { title: "The Igloo Maze", description: "Pick up the carrot for the snowman’s nose and avoid the icicles. Find the white hare hiding in the snow." },
+  { title: "The Hot Cocoa Maze", description: "Help Denny reach the star through a mug of cocoa without touching the marshmallows. Count the cookies on the plate." },
+  { title: "The Snowman Maze", description: "Climb all the way to the snowman’s top hat, then color his scarf to finish the adventure." }
+].map((item, index) => ({ ...item, part: `Part ${String(index + 1).padStart(2, "0")}`, image: `${assetBase}/Denny-Winter-Maze-Part-${index + 1}-of-10.png` }));
+const faqs = [
+  { question: "Are these winter mazes free?", answer: "Yes. Download all ten pages in one ZIP, or choose individual PNG pages. No email is required." },
+  { question: "What language are the worksheets in?", answer: "The downloadable worksheets are in English. This page explains each activity in your selected website language." },
+  { question: "How do I print the winter mazes?", answer: "Download and unzip the collection, or open an individual 2000 × 3000 pixel PNG. Choose Fit to page for your paper size." }
+];
+const title = "10 Free Printable Winter Mazes for Kids";
+const description = "Download ten free winter mazes for kids as PNGs or one ZIP. Join Denny and Twinkle for a snowy story with counting, matching and hidden-picture activities.";
+const pathname = "/printables/winter/";
+const lastUpdated = getLastUpdated("site/src/pages/printables/winter/index.astro", "2026-11-19");
+const meta = buildMeta({ title, description, pathname, image: printables[0].image, imageAlt: printables[0].title, imageWidth: 2000, imageHeight: 3000 });
+const pageSchema = { "@context": "https://schema.org", "@type": "CollectionPage", name: title, description, url: absoluteUrl(pathname), isPartOf: { "@type": "WebSite", name: "Harmless Apps", url: "https://www.harmlessapp.com" } };
+---
+
+<BaseLayout {...meta} schemas={[organizationSchema(), pageSchema, faqSchema(faqs)]}>
+  <article class="winter-page">
+    <section class="winter-hero">
+      <div class="winter-shell winter-hero-grid">
+        <div>
+          <p class="eyebrow">Free 10-page winter adventure</p>
+          <h1>Denny’s Winter Maze Adventure</h1>
+          <p class="last-updated">Last updated: {formatLastUpdated(lastUpdated)}</p>
+          <p class="hero-lead">Join Denny and Twinkle on their way to Snowy Hill to build a snowman. Trace ten colorful mazes, collect its buttons, sticks and carrot, and enjoy extra counting, matching and coloring activities.</p>
+          <div class="winter-actions">
+            <a class="button winter-primary" href={appUrl} data-app-store-cta="winter-hero" data-app-store-campaign={campaign}>Try Denny’s Maze free <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href={zip} download data-download-placement="winter-hero">Download all 10 as a ZIP <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-note">Free · Full color · English worksheets · No email required</p>
+          <a class="text-link" href="#free-printables">Explore all ten mazes</a>
+        </div>
+        <figure class="hero-preview"><img src={printables[0].image} alt={printables[0].title} width="2000" height="3000" fetchpriority="high" /></figure>
+      </div>
+    </section>
+    <section class="printables-section" id="free-printables" aria-labelledby="printables-heading">
+      <div class="winter-shell">
+        <div class="section-heading"><p class="eyebrow">The complete adventure</p><h2 id="printables-heading">Ten winter mazes, one snowy adventure</h2><p>Follow Parts 1–10 for the full story, or choose a favorite page to print. The story and instructions on the worksheets are in English.</p></div>
+        <div class="printable-grid">
+          {printables.map((item) => (
+            <article class="printable-card">
+              <a class="printable-image" href={item.image} download data-download-placement="winter-image"><img src={item.image} alt={item.title} width="2000" height="3000" loading="lazy" /></a>
+              <div class="printable-copy"><span class="printable-number">{item.part}</span><h3>{item.title}</h3><p>{item.description}</p><a class="text-link" href={item.image} download data-download-placement="winter-list">Download printable PNG <span aria-hidden="true">↓</span></a></div>
+            </article>
+          ))}
+        </div>
+        <div class="all-download"><div><h2>Print the whole winter adventure</h2><p>Ten full-color pages, ready for a quiet afternoon with pencils and crayons.</p></div><a class="button winter-primary" href={zip} download data-download-placement="winter-pack">Download all 10 as a ZIP <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+    <section class="app-offer" aria-labelledby="app-heading"><div class="winter-shell app-grid"><img src="/images/denny.png" alt="Denny the red crab" width="320" height="320" loading="lazy" /><div><p class="eyebrow">More mazes, less noise</p><h2 id="app-heading">Take Denny’s mazes with you</h2><p>Denny’s Maze brings the same calm, paper-like play to iPhone and iPad. Try three mazes free, with no ads, no subscription and no Wi-Fi needed.</p><a class="button winter-primary" href={appUrl} data-app-store-cta="winter-printables" data-app-store-campaign={campaign}>Try Denny’s Maze free <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="info-section"><div class="winter-shell info-grid"><div><p class="eyebrow">Print at home</p><h2>How to use the printables</h2><ol><li>Download an individual PNG or the ZIP of all ten pages.</li><li>Choose “Fit to page” in your print settings.</li><li>Use a pencil or crayon to follow each maze from the arrow to the star.</li><li>Enjoy the extra counting, coloring and seek-and-find activities.</li></ol><a class="text-link" href="/printables/">Browse all free printables</a></div><div><h2>FAQ</h2><div class="winter-faq">{faqs.map((item) => (<details><summary>{item.question}</summary><p>{item.answer}</p></details>))}</div></div></div></section>
+  </article>
+</BaseLayout>
+
+<style>
+  .winter-page { --winter-ink:#24537a; --winter-accent:#275e96; --winter-paper:#f8fbff; }
+  .winter-shell { width:min(calc(100% - 2rem),70rem); margin:0 auto; }
+  .winter-hero { padding:clamp(3rem,7vw,6rem) 0; background:#e4eff9; border-bottom:1px solid var(--line); }
+  .winter-hero-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(16rem,.7fr); gap:clamp(2rem,7vw,6rem); align-items:center; }
+  h1 { color:var(--winter-ink); font-size:clamp(2.7rem,6vw,5.5rem); overflow-wrap:anywhere; }
+  .hero-lead { max-width:42rem; color:var(--muted); font-size:1.15rem; }
+  .winter-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1rem 1.5rem; }
+  .winter-primary { background:var(--winter-accent); border-color:var(--winter-accent); color:white; }
+  .winter-primary:hover { background:var(--winter-ink); border-color:var(--winter-ink); color:white; }
+  .text-link { color:var(--winter-ink); font-weight:750; }
+  .hero-note { color:var(--muted); font-size:.85rem; }
+  .hero-preview { width:min(100%,22rem); margin:0; justify-self:center; padding:.5rem; background:white; box-shadow:0 16px 40px #243d5926; transform:rotate(2deg); }
+  .hero-preview img,.printable-image img { width:100%; height:auto; }
+  .printables-section,.app-offer,.info-section { padding:clamp(3rem,7vw,6rem) 0; }
+  .printables-section { background:var(--winter-paper); scroll-margin-top:8rem; }
+  .section-heading { max-width:46rem; margin-bottom:2rem; }
+  .section-heading p,.printable-copy p,.all-download p,.info-section li,.winter-faq p,.app-grid p:not(.eyebrow) { color:var(--muted); }
+  .printable-card { display:grid; grid-template-columns:minmax(14rem,22rem) minmax(0,1fr); gap:clamp(1.5rem,5vw,4rem); align-items:center; padding:2rem 0; border-top:1px solid var(--line); }
+  .printable-image { display:block; background:white; box-shadow:0 8px 24px #243d591a; }
+  .printable-number { display:block; margin-bottom:.6rem; color:var(--winter-accent); font-family:var(--font-mono); font-size:.8rem; font-weight:700; }
+  .printable-copy h3 { color:var(--winter-ink); font-size:clamp(1.4rem,3vw,2rem); }
+  .all-download { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,auto); align-items:center; gap:2rem; margin-top:2rem; padding:clamp(1.5rem,4vw,2.5rem); background:#e4eff9; }
+  .download-actions { display:grid; gap:1rem; justify-items:start; }
+  .app-offer { background:var(--winter-ink); color:white; }
+  .app-grid { display:grid; grid-template-columns:minmax(8rem,15rem) minmax(0,1fr); align-items:center; gap:clamp(2rem,7vw,5rem); }
+  .app-grid>img { width:100%; height:auto; }
+  .app-grid p:not(.eyebrow),.app-grid .eyebrow { color:#e0edf9; }
+  .app-grid .winter-primary { background:#f8fbff; border-color:#f8fbff; color:var(--winter-ink); }
+  .app-grid .winter-primary:hover { background:#fae5b2; border-color:#fae5b2; }
+  .info-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(2rem,7vw,5rem); }
+  .info-grid ol { padding-inline-start:1.25rem; }
+  .winter-faq { display:grid; gap:1rem; }
+  .winter-faq p { margin-bottom:0; }
+  a:focus-visible,summary:focus-visible { outline:3px solid var(--winter-accent); outline-offset:4px; }
+  @media(max-width:760px) { .winter-hero-grid,.app-grid,.info-grid,.all-download { grid-template-columns:1fr; } .hero-preview { width:min(75%,20rem); } .app-grid>img { width:min(55%,12rem); justify-self:center; } }
+  @media(max-width:560px) { .printable-card { grid-template-columns:1fr; } .printable-image { width:min(100%,24rem); } .winter-actions .button,.download-actions,.download-actions .button { width:100%; } }
+</style>
