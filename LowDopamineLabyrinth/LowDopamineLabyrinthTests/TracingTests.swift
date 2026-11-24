@@ -3,12 +3,12 @@ import SwiftUI
 @testable import LowDopamineLabyrinth
 
 final class TracingTests: XCTestCase {
-    func testABCIsDefaultAndOriginalAndHiraganaIconsAreBundled() throws {
+    func testABCIsDefaultAndOriginalHiraganaAndArabicIconsAreBundled() throws {
         let icons = try XCTUnwrap(Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any])
         let primary = try XCTUnwrap(icons["CFBundlePrimaryIcon"] as? [String: Any])
         XCTAssertEqual(primary["CFBundleIconName"] as? String, "AppIconABC")
         let alternatives = try XCTUnwrap(icons["CFBundleAlternateIcons"] as? [String: Any])
-        XCTAssertEqual(Set(alternatives.keys), Set(["AppIcon", "AppIconHiragana"]))
+        XCTAssertEqual(Set(alternatives.keys), Set(["AppIcon", "AppIconHiragana", "AppIconArabic"]))
         XCTAssertNil(alternatives["AppIconD"])
     }
 

@@ -1,6 +1,6 @@
 {
   "version": "1.5.6",
-  "build_number": "9",
+  "build_number": "10",
   "localizations": {
     "ko": {
       "whatsNew": "아랍어 글자 따라 쓰기와 획순 안내를 추가했어요. 앱 언어를 아랍어로 설정한 경우에만 이용할 수 있어요.",
