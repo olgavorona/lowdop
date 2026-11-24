@@ -88,8 +88,10 @@ struct NavigationControls: View {
                     .clipShape(Circle())
             }
             .accessibilityLabel("Reset drawing")
+            .accessibilityIdentifier("maze.reset")
         }
         .padding(.horizontal, isCompact ? 6 : 12)
         .padding(.vertical, isCompact ? 2 : 8)
+        .environment(\.layoutDirection, .leftToRight)
     }
 }

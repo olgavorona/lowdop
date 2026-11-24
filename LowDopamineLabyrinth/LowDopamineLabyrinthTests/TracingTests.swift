@@ -17,7 +17,53 @@ final class TracingTests: XCTestCase {
             XCTAssertTrue(TracingCollection.letters.isAvailable(in: language))
             XCTAssertTrue(TracingCollection.numbers.isAvailable(in: language))
             XCTAssertEqual(TracingCollection.hiragana.isAvailable(in: language), language == .japanese)
+            XCTAssertEqual(TracingCollection.arabic.isAvailable(in: language), language == .arabic)
         }
+    }
+
+    func testArabicAlphabetHasAll28FormsAndBodyBeforeDots() throws {
+        let collection = TracingCollection.arabic
+        XCTAssertEqual(String(collection.characters), "ابتثجحخدذرزسشصضطظعغفقكلمنهوي")
+        XCTAssertEqual(Set(collection.characters).count, 28)
+        XCTAssertEqual(collection.writingDirection, .rightToLeft)
+        let dotCounts = ["ب": 1, "ت": 2, "ث": 3, "ج": 1, "خ": 1, "ذ": 1,
+                         "ز": 1, "ش": 3, "ض": 1, "ظ": 1, "غ": 1, "ف": 1,
+                         "ق": 2, "ن": 1, "ي": 2]
+        for character in collection.characters {
+            let symbol = String(character)
+            let strokes = collection.strokes(for: symbol)
+            verifyPaths(strokes)
+            let count = dotCounts[symbol, default: 0]
+            XCTAssertEqual(strokes.filter(\.isDot).count, count, symbol)
+            XCTAssertFalse(try XCTUnwrap(strokes.first).isDot, symbol)
+            if count > 0 { XCTAssertTrue(strokes.suffix(count).allSatisfy(\.isDot), symbol) }
+            for stroke in strokes {
+                XCTAssertTrue((5...104).contains(stroke.numberPosition.x), symbol)
+                XCTAssertTrue((5...104).contains(stroke.numberPosition.y), symbol)
+            }
+        }
+        XCTAssertTrue(collection.strokes(for: "A").isEmpty)
+        XCTAssertEqual(collection.strokes(for: "ك").count, 2)
+        XCTAssertEqual(collection.strokes(for: "ط").count, 2)
+    }
+
+    func testArabicPenDirectionAndDotPlacement() throws {
+        let collection = TracingCollection.arabic
+        let alif = try XCTUnwrap(collection.strokes(for: "ا").first)
+        XCTAssertGreaterThan(try XCTUnwrap(alif.curves.last).end.y, alif.start.y)
+        let ba = try XCTUnwrap(collection.strokes(for: "ب").first)
+        XCTAssertLessThan(try XCTUnwrap(ba.curves.last).end.x, ba.start.x)
+        XCTAssertGreaterThan(try XCTUnwrap(collection.strokes(for: "ب").last).start.y, 79)
+        for symbol in ["ت", "ق", "ي"] {
+            let dots = collection.strokes(for: symbol).filter(\.isDot)
+            XCTAssertGreaterThan(dots[0].start.x, dots[1].start.x)
+        }
+        for symbol in ["ث", "ش"] {
+            let dots = collection.strokes(for: symbol).filter(\.isDot)
+            XCTAssertLessThan(dots[2].start.y, dots[0].start.y)
+        }
+        XCTAssertEqual(TracingCollection.letters.writingDirection, .leftToRight)
+        XCTAssertEqual(TracingCollection.numbers.writingDirection, .leftToRight)
     }
 
     func testEveryDigitHasACompleteVisiblePathAndDirection() {

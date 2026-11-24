@@ -239,30 +239,20 @@
 		D30000000000000000000005 /* ui-localizations.json in Resources */ = {isa = PBXBuildFile; fileRef = D30000000000000000000006 /* ui-localizations.json */; };
 		D30000000000000000000007 /* AppLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30000000000000000000008 /* AppLocalization.swift */; };
 		E00000000000000000000001 /* LetterTracingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00000000000000000000001 /* LetterTracingView.swift */; };
-		E000000000000000000611 /* denny_061_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000611 /* denny_061_easy.json */; };
-		E000000000000000000612 /* denny_061_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000612 /* denny_061_medium.json */; };
-		E000000000000000000613 /* denny_061_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000613 /* denny_061_hard.json */; };
-		E000000000000000000621 /* denny_062_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000621 /* denny_062_easy.json */; };
-		E000000000000000000622 /* denny_062_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000622 /* denny_062_medium.json */; };
-		E000000000000000000623 /* denny_062_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000623 /* denny_062_hard.json */; };
-		E000000000000000000631 /* denny_063_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000631 /* denny_063_easy.json */; };
-		E000000000000000000632 /* denny_063_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000632 /* denny_063_medium.json */; };
-		E000000000000000000633 /* denny_063_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000633 /* denny_063_hard.json */; };
-		E000000000000000000641 /* denny_064_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000641 /* denny_064_easy.json */; };
-		E000000000000000000642 /* denny_064_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000642 /* denny_064_medium.json */; };
-		E000000000000000000643 /* denny_064_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000643 /* denny_064_hard.json */; };
-		E000000000000000000651 /* denny_065_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000651 /* denny_065_easy.json */; };
-		E000000000000000000652 /* denny_065_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000652 /* denny_065_medium.json */; };
-		E000000000000000000653 /* denny_065_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000653 /* denny_065_hard.json */; };
-		E000000000000000000661 /* denny_066_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000661 /* denny_066_easy.json */; };
-		E000000000000000000662 /* denny_066_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000662 /* denny_066_medium.json */; };
-		E000000000000000000663 /* denny_066_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F000000000000000000663 /* denny_066_hard.json */; };
+		E0000000000000000000671 /* denny_067_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000671 /* denny_067_easy.json */; };
+		E0000000000000000000681 /* denny_068_easy.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000681 /* denny_068_easy.json */; };
+		E0000000000000000000692 /* denny_069_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000692 /* denny_069_medium.json */; };
+		E0000000000000000000702 /* denny_070_medium.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000702 /* denny_070_medium.json */; };
+		E0000000000000000000713 /* denny_071_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000713 /* denny_071_hard.json */; };
+		E0000000000000000000723 /* denny_072_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000723 /* denny_072_hard.json */; };
+		E0000000000000000000733 /* denny_073_hard.json in Resources */ = {isa = PBXBuildFile; fileRef = F0000000000000000000733 /* denny_073_hard.json */; };
 		E41000000000000000000001 /* TracingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000001 /* TracingContent.swift */; };
 		E41000000000000000000002 /* StrokeTracingGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000002 /* StrokeTracingGlyph.swift */; };
 		E41000000000000000000003 /* hiragana-strokes.json in Resources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000003 /* hiragana-strokes.json */; };
 		E41000000000000000000004 /* KanjiVG-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000004 /* KanjiVG-LICENSE.txt */; };
 		E41000000000000000000005 /* TracingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000005 /* TracingTests.swift */; };
 		E41000000000000000000006 /* latin-strokes.json in Resources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000006 /* latin-strokes.json */; };
+		E41000000000000000000009 /* arabic-strokes.json in Resources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000009 /* arabic-strokes.json */; };
 		E41000000000000000000007 /* TracingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000007 /* TracingAnalytics.swift */; };
 		E41000000000000000000008 /* TracingAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41000000000000000000008 /* TracingAnalyticsTests.swift */; };
 /* End PBXBuildFile section */
@@ -543,30 +533,20 @@
 		D30000000000000000000006 /* ui-localizations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ui-localizations.json"; sourceTree = "<group>"; };
 		D30000000000000000000008 /* AppLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalization.swift; sourceTree = "<group>"; };
 		F00000000000000000000001 /* LetterTracingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterTracingView.swift; sourceTree = "<group>"; };
-		F000000000000000000611 /* denny_061_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_061_easy.json; sourceTree = "<group>"; };
-		F000000000000000000612 /* denny_061_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_061_medium.json; sourceTree = "<group>"; };
-		F000000000000000000613 /* denny_061_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_061_hard.json; sourceTree = "<group>"; };
-		F000000000000000000621 /* denny_062_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_062_easy.json; sourceTree = "<group>"; };
-		F000000000000000000622 /* denny_062_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_062_medium.json; sourceTree = "<group>"; };
-		F000000000000000000623 /* denny_062_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_062_hard.json; sourceTree = "<group>"; };
-		F000000000000000000631 /* denny_063_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_063_easy.json; sourceTree = "<group>"; };
-		F000000000000000000632 /* denny_063_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_063_medium.json; sourceTree = "<group>"; };
-		F000000000000000000633 /* denny_063_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_063_hard.json; sourceTree = "<group>"; };
-		F000000000000000000641 /* denny_064_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_064_easy.json; sourceTree = "<group>"; };
-		F000000000000000000642 /* denny_064_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_064_medium.json; sourceTree = "<group>"; };
-		F000000000000000000643 /* denny_064_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_064_hard.json; sourceTree = "<group>"; };
-		F000000000000000000651 /* denny_065_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_065_easy.json; sourceTree = "<group>"; };
-		F000000000000000000652 /* denny_065_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_065_medium.json; sourceTree = "<group>"; };
-		F000000000000000000653 /* denny_065_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_065_hard.json; sourceTree = "<group>"; };
-		F000000000000000000661 /* denny_066_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_066_easy.json; sourceTree = "<group>"; };
-		F000000000000000000662 /* denny_066_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_066_medium.json; sourceTree = "<group>"; };
-		F000000000000000000663 /* denny_066_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_066_hard.json; sourceTree = "<group>"; };
+		F0000000000000000000671 /* denny_067_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_067_easy.json; sourceTree = "<group>"; };
+		F0000000000000000000681 /* denny_068_easy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_068_easy.json; sourceTree = "<group>"; };
+		F0000000000000000000692 /* denny_069_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_069_medium.json; sourceTree = "<group>"; };
+		F0000000000000000000702 /* denny_070_medium.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_070_medium.json; sourceTree = "<group>"; };
+		F0000000000000000000713 /* denny_071_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_071_hard.json; sourceTree = "<group>"; };
+		F0000000000000000000723 /* denny_072_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_072_hard.json; sourceTree = "<group>"; };
+		F0000000000000000000733 /* denny_073_hard.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = denny_073_hard.json; sourceTree = "<group>"; };
 		F41000000000000000000001 /* TracingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingContent.swift; sourceTree = "<group>"; };
 		F41000000000000000000002 /* StrokeTracingGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeTracingGlyph.swift; sourceTree = "<group>"; };
 		F41000000000000000000003 /* hiragana-strokes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hiragana-strokes.json"; sourceTree = "<group>"; };
 		F41000000000000000000004 /* KanjiVG-LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "KanjiVG-LICENSE.txt"; sourceTree = "<group>"; };
 		F41000000000000000000005 /* TracingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingTests.swift; sourceTree = "<group>"; };
 		F41000000000000000000006 /* latin-strokes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "latin-strokes.json"; sourceTree = "<group>"; };
+		F41000000000000000000009 /* arabic-strokes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "arabic-strokes.json"; sourceTree = "<group>"; };
 		F41000000000000000000007 /* TracingAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingAnalytics.swift; sourceTree = "<group>"; };
 		F41000000000000000000008 /* TracingAnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracingAnalyticsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -706,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				F41000000000000000000006 /* latin-strokes.json */,
+				F41000000000000000000009 /* arabic-strokes.json */,
 				F41000000000000000000004 /* KanjiVG-LICENSE.txt */,
 				F41000000000000000000003 /* hiragana-strokes.json */,
 				AE000008 /* Labyrinths */,
@@ -901,24 +882,13 @@
 				AC206001 /* denny_060_medium.json */,
 				AC206011 /* denny_060_easy.json */,
 				AC206012 /* denny_060_hard.json */,
-				F000000000000000000611 /* denny_061_easy.json */,
-				F000000000000000000612 /* denny_061_medium.json */,
-				F000000000000000000613 /* denny_061_hard.json */,
-				F000000000000000000621 /* denny_062_easy.json */,
-				F000000000000000000622 /* denny_062_medium.json */,
-				F000000000000000000623 /* denny_062_hard.json */,
-				F000000000000000000631 /* denny_063_easy.json */,
-				F000000000000000000632 /* denny_063_medium.json */,
-				F000000000000000000633 /* denny_063_hard.json */,
-				F000000000000000000641 /* denny_064_easy.json */,
-				F000000000000000000642 /* denny_064_medium.json */,
-				F000000000000000000643 /* denny_064_hard.json */,
-				F000000000000000000651 /* denny_065_easy.json */,
-				F000000000000000000652 /* denny_065_medium.json */,
-				F000000000000000000653 /* denny_065_hard.json */,
-				F000000000000000000661 /* denny_066_easy.json */,
-				F000000000000000000662 /* denny_066_medium.json */,
-				F000000000000000000663 /* denny_066_hard.json */,
+				F0000000000000000000671 /* denny_067_easy.json */,
+				F0000000000000000000681 /* denny_068_easy.json */,
+				F0000000000000000000692 /* denny_069_medium.json */,
+				F0000000000000000000702 /* denny_070_medium.json */,
+				F0000000000000000000713 /* denny_071_hard.json */,
+				F0000000000000000000723 /* denny_072_hard.json */,
+				F0000000000000000000733 /* denny_073_hard.json */,
 				AC201100 /* difficulty_samples.json */,
 				AC100031 /* manifest.json */,
 			);
@@ -1089,6 +1059,13 @@
 				en,
 				de,
 				es,
+				ja,
+				"zh-Hans",
+				ko,
+				ar,
+				sv,
+				fi,
+				nl,
 				Base,
 			);
 			mainGroup = AE000000;
@@ -1113,6 +1090,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E41000000000000000000006 /* latin-strokes.json in Resources */,
+				E41000000000000000000009 /* arabic-strokes.json in Resources */,
 				E41000000000000000000004 /* KanjiVG-LICENSE.txt in Resources */,
 				E41000000000000000000003 /* hiragana-strokes.json in Resources */,
 				AA000003 /* Assets.xcassets in Resources */,
@@ -1296,24 +1274,13 @@
 				AA206001 /* denny_060_medium.json in Resources */,
 				AA206011 /* denny_060_easy.json in Resources */,
 				AA206012 /* denny_060_hard.json in Resources */,
-				E000000000000000000611 /* denny_061_easy.json in Resources */,
-				E000000000000000000612 /* denny_061_medium.json in Resources */,
-				E000000000000000000613 /* denny_061_hard.json in Resources */,
-				E000000000000000000621 /* denny_062_easy.json in Resources */,
-				E000000000000000000622 /* denny_062_medium.json in Resources */,
-				E000000000000000000623 /* denny_062_hard.json in Resources */,
-				E000000000000000000631 /* denny_063_easy.json in Resources */,
-				E000000000000000000632 /* denny_063_medium.json in Resources */,
-				E000000000000000000633 /* denny_063_hard.json in Resources */,
-				E000000000000000000641 /* denny_064_easy.json in Resources */,
-				E000000000000000000642 /* denny_064_medium.json in Resources */,
-				E000000000000000000643 /* denny_064_hard.json in Resources */,
-				E000000000000000000651 /* denny_065_easy.json in Resources */,
-				E000000000000000000652 /* denny_065_medium.json in Resources */,
-				E000000000000000000653 /* denny_065_hard.json in Resources */,
-				E000000000000000000661 /* denny_066_easy.json in Resources */,
-				E000000000000000000662 /* denny_066_medium.json in Resources */,
-				E000000000000000000663 /* denny_066_hard.json in Resources */,
+				E0000000000000000000671 /* denny_067_easy.json in Resources */,
+				E0000000000000000000681 /* denny_068_easy.json in Resources */,
+				E0000000000000000000692 /* denny_069_medium.json in Resources */,
+				E0000000000000000000702 /* denny_070_medium.json in Resources */,
+				E0000000000000000000713 /* denny_071_hard.json in Resources */,
+				E0000000000000000000723 /* denny_072_hard.json in Resources */,
+				E0000000000000000000733 /* denny_073_hard.json in Resources */,
 				AA201100 /* difficulty_samples.json in Resources */,
 				AA100031 /* manifest.json in Resources */,
 				038B80AD2F5990EB00FD9E1C /* StoreKitConfig.storekit in Resources */,
@@ -1440,7 +1407,7 @@
 				CODE_SIGN_ENTITLEMENTS = LowDopamineLabyrinth/LowDopamineLabyrinth.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SC8JJ92TL6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LowDopamineLabyrinth/Info.plist;
@@ -1456,7 +1423,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1476,7 +1443,7 @@
 				CODE_SIGN_ENTITLEMENTS = LowDopamineLabyrinth/LowDopamineLabyrinth.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SC8JJ92TL6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LowDopamineLabyrinth/Info.plist;
@@ -1492,7 +1459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1711,12 +1678,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = BackgroundAssetsExtension/BackgroundAssetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SC8JJ92TL6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BackgroundAssetsExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth.BackgroundAssetsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1731,12 +1698,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = BackgroundAssetsExtension/BackgroundAssetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = SC8JJ92TL6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BackgroundAssetsExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lowdopamine.labyrinth.BackgroundAssetsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

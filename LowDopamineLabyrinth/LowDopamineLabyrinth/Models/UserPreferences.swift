@@ -1,7 +1,61 @@
 import Foundation
 
+enum OnboardingExperimentVariant: String, CaseIterable {
+    case a = "A"
+    case b = "B"
+
+    var omittedPage: Int { self == .a ? 2 : 3 }
+    var omittedScreen: String { self == .a ? "labyrinths" : "calm" }
+    var paywallMessages: [String] {
+        switch self {
+        case .a: ["100+ mazes", "Seasonal content every month", "Forever access"]
+        case .b: ["No ads", "100+ levels work offline", "Forever access"]
+        }
+    }
+
+    var analyticsParameters: [String: String] {
+        ["experiment_id": OnboardingExperiment.id, "experiment_variant": rawValue,
+         "omitted_screen": omittedScreen]
+    }
+}
+
+enum OnboardingExperiment {
+    static let id = "onboarding_benefits_v1"
+    static let assignmentKey = "onboardingExperiment.\(id).variant"
+
+    static func assignedVariant(defaults: UserDefaults = .standard,
+                                arguments: [String] = ProcessInfo.processInfo.arguments,
+                                randomVariant: () -> OnboardingExperimentVariant = { Bool.random() ? .a : .b }) -> OnboardingExperimentVariant {
+        if let forced = forcedVariant(arguments: arguments) { return forced }
+        if let saved = defaults.string(forKey: assignmentKey).flatMap(OnboardingExperimentVariant.init(rawValue:)) {
+            return saved
+        }
+        let variant = randomVariant()
+        defaults.set(variant.rawValue, forKey: assignmentKey)
+        return variant
+    }
+
+    static func analyticsParameters(defaults: UserDefaults = .standard,
+                                    arguments: [String] = ProcessInfo.processInfo.arguments) -> [String: String] {
+        let variant = forcedVariant(arguments: arguments)
+            ?? defaults.string(forKey: assignmentKey).flatMap(OnboardingExperimentVariant.init(rawValue:))
+        return variant?.analyticsParameters ?? [:]
+    }
+
+    private static func forcedVariant(arguments: [String]) -> OnboardingExperimentVariant? {
+#if DEBUG
+        if arguments.contains("-uiTestDisableAnalytics"),
+           let index = arguments.firstIndex(of: "-uiTestOnboardingVariant"),
+           arguments.indices.contains(index + 1) {
+            return OnboardingExperimentVariant(rawValue: arguments[index + 1])
+        }
+#endif
+        return nil
+    }
+}
+
 class UserPreferences: ObservableObject {
-    private let defaults = UserDefaults.standard
+    private let defaults: UserDefaults
 
     @Published var difficultyLevel: DifficultyLevel {
         didSet { defaults.set(difficultyLevel.rawValue, forKey: "difficultyLevel") }
@@ -26,10 +80,11 @@ class UserPreferences: ObservableObject {
         difficultyLevel.pathTolerance
     }
 
-    init() {
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
         let arguments = ProcessInfo.processInfo.arguments
         let isUITestCompletionFlow = arguments.contains("-uiTestShowCompletionForLastLevel")
-        let savedLevel = defaults.string(forKey: "difficultyLevel") ?? DifficultyLevel.easy.rawValue
+        let savedLevel = defaults.string(forKey: "difficultyLevel") ?? DifficultyLevel.medium.rawValue
         self.difficultyLevel = isUITestCompletionFlow
             ? .easy
             : (DifficultyLevel(rawValue: savedLevel) ?? .easy)
@@ -64,9 +119,15 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     case spanish = "es"
     case japanese = "ja"
     case simplifiedChinese = "zh-Hans"
+    case korean = "ko"
+    case arabic = "ar"
+    case swedish = "sv"
+    case finnish = "fi"
+    case dutch = "nl"
 
     var id: String { rawValue }
     var locale: Locale { Locale(identifier: rawValue) }
+    var isRightToLeft: Bool { self == .arabic }
     var audioPackID: String? {
         switch self {
         case .english: nil
@@ -74,6 +135,26 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         case .spanish: "audio-es"
         case .japanese: "audio-ja"
         case .simplifiedChinese: "audio-zh-Hans"
+        case .korean: "audio-ko"
+        case .arabic: "audio-ar"
+        case .swedish: "audio-sv"
+        case .finnish: "audio-fi"
+        case .dutch: "audio-nl"
+        }
+    }
+
+    var speechLanguageIdentifier: String {
+        switch self {
+        case .english: "en-US"
+        case .german: "de-DE"
+        case .spanish: "es-ES"
+        case .japanese: "ja-JP"
+        case .simplifiedChinese: "zh-CN"
+        case .korean: "ko-KR"
+        case .arabic: "ar-SA"
+        case .swedish: "sv-SE"
+        case .finnish: "fi-FI"
+        case .dutch: "nl-NL"
         }
     }
 
@@ -84,6 +165,11 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         case .spanish: "Español"
         case .japanese: "日本語"
         case .simplifiedChinese: "简体中文"
+        case .korean: "한국어"
+        case .arabic: "العربية"
+        case .swedish: "Svenska"
+        case .finnish: "Suomi"
+        case .dutch: "Nederlands"
         }
     }
 

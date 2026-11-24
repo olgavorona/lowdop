@@ -1,0 +1,1 @@
+Added Arabic letter tracing with stroke order guides. Available only when the app language is set to Arabic.

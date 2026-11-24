@@ -9,6 +9,7 @@ struct LabyrinthGameView: View {
 
     /// iPhone landscape = compact, iPad = regular
     private var isCompact: Bool { verticalSizeClass == .compact }
+    private var isPrintable: Bool { viewModel.labyrinth.pathData.mazeType == "printable" }
     private var avoidEmoji: String { viewModel.labyrinth.itemEmoji ?? "🦉" }
     private var showsStartArrow: Bool {
         !viewModel.isAvoidType && !(viewModel.labyrinth.theme == "forest" && viewModel.labyrinth.storyNumber == 60)
@@ -22,6 +23,40 @@ struct LabyrinthGameView: View {
 
             VStack(spacing: 0) {
                 // Top bar — title + instruction + optional item HUD
+                if isPrintable {
+                    VStack(alignment: .leading, spacing: isCompact ? 2 : 5) {
+                        HStack(spacing: 8) {
+                            Image("denny_thanksgiving")
+                                .resizable().scaledToFit()
+                                .frame(width: isCompact ? 28 : 38, height: isCompact ? 28 : 38)
+                            Text(viewModel.labyrinth.title)
+                                .font(.system(size: isCompact ? 13 : 19, weight: .bold, design: .rounded))
+                            Text(LocalizedStringKey(viewModel.labyrinth.difficulty.capitalized))
+                                .font(.system(size: isCompact ? 10 : 12, weight: .bold))
+                                .padding(.horizontal, 6).padding(.vertical, 3)
+                                .background(.white.opacity(0.2)).clipShape(Capsule())
+                            Spacer()
+                            if viewModel.isAvoidType {
+                                Text("🚫 \(avoidEmoji)")
+                                    .font(.system(size: isCompact ? 12 : 16, weight: .bold))
+                            } else {
+                                Text(viewModel.itemHUDText)
+                                    .font(.system(size: isCompact ? 12 : 16, weight: .bold))
+                            }
+                            Image("tilly_thanksgiving")
+                                .resizable().scaledToFit()
+                                .frame(width: isCompact ? 28 : 38, height: isCompact ? 28 : 38)
+                        }
+                        Text(viewModel.labyrinth.instruction)
+                            .font(.system(size: isCompact ? 11 : 14, weight: .semibold))
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, isCompact ? 10 : 16)
+                    .padding(.vertical, isCompact ? 4 : 8)
+                    .background(Color.black.opacity(0.34))
+                } else {
                 HStack(spacing: 6) {
                     Text(viewModel.labyrinth.title)
                         .font(.system(size: isCompact ? 11 : 15, weight: .bold, design: .rounded))
@@ -61,6 +96,7 @@ struct LabyrinthGameView: View {
                 .padding(.horizontal, isCompact ? 8 : 12)
                 .padding(.vertical, isCompact ? 1 : 8)
                 .background(Color.black.opacity(0.25))
+                }
 
                 // Full-width maze
                 GeometryReader { mazeGeo in
@@ -83,13 +119,16 @@ struct LabyrinthGameView: View {
                         // Background pattern — theme-aware
                         if viewModel.labyrinth.pathData.backgroundImage != nil {
                             EmptyView()
+                        } else if viewModel.labyrinth.theme == "thanksgiving" && viewModel.labyrinth.storyNumber == 68 {
+                            OceanPatternView()
+                                .opacity(0.12)
                         } else if viewModel.labyrinth.theme == "space" {
                             SpacePatternView()
                                 .opacity(viewModel.hasItems ? 0.55 : 0.18)
                         } else if viewModel.labyrinth.theme == "forest" {
                             ForestPatternView()
                                 .opacity(0.18)
-                        } else if viewModel.labyrinth.theme == "fall" {
+                        } else if viewModel.labyrinth.theme == "fall" || viewModel.labyrinth.theme == "thanksgiving" {
                             FallPatternView()
                                 .opacity(0.16)
                         } else {
@@ -97,8 +136,31 @@ struct LabyrinthGameView: View {
                                 .opacity(0.15)
                         }
 
-                        // Maze path
-                        if viewModel.labyrinth.pathData.mazeType == "organic" {
+                        // Original maze artwork is clipped to its own silhouette.
+                        if let artwork = viewModel.labyrinth.pathData.artwork {
+                            Canvas { context, _ in
+                                context.clip(to: SVGPathParser.parse(
+                                    artwork.clipPath, scale: viewModel.scale, offset: viewModel.offset
+                                ))
+                                let frame = artwork.frame
+                                context.draw(Image(artwork.image), in: CGRect(
+                                    x: CGFloat(frame.x) * viewModel.scale + viewModel.offset.x,
+                                    y: CGFloat(frame.y) * viewModel.scale + viewModel.offset.y,
+                                    width: CGFloat(frame.width) * viewModel.scale,
+                                    height: CGFloat(frame.height) * viewModel.scale
+                                ))
+                                for patch in artwork.patches {
+                                    context.fill(
+                                        SVGPathParser.parse(patch.path, scale: viewModel.scale, offset: viewModel.offset),
+                                        with: .color(Color(hex: patch.color) ?? .clear)
+                                    )
+                                }
+                            }
+                            .allowsHitTesting(false)
+                        } else if isPrintable {
+                            viewModel.mazePath
+                                .fill(Color.white, style: FillStyle(eoFill: true))
+                        } else if viewModel.labyrinth.pathData.mazeType == "organic" {
                             viewModel.mazePath
                                 .stroke(Color.white, style: StrokeStyle(
                                     lineWidth: CGFloat(viewModel.labyrinth.pathData.width) * viewModel.scale,
@@ -196,6 +258,8 @@ struct LabyrinthGameView: View {
                         viewModel.setupValidator(tolerance: preferences.pathTolerance)
                     }
                 }
+                // Maze artwork, markers, and touch coordinates retain their source orientation.
+                .environment(\.layoutDirection, .leftToRight)
             }
         }
         .onChange(of: viewModel.isCompleted) { completed in

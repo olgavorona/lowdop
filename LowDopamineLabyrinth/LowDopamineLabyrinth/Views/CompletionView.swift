@@ -86,7 +86,7 @@ struct CompletionView: View {
 
                     HStack(spacing: 8) {
                         Button {
-                            ttsService.playAudio(labyrinth.answerAudioFilename)
+                            ttsService.playAudio(labyrinth.answerAudioFilename, localizedText: labyrinth.funFact)
                         } label: {
                             Image(systemName: "speaker.wave.2.fill")
                                 .font(.system(size: isCompact ? 16 : 20, weight: .semibold))
@@ -154,7 +154,7 @@ struct CompletionView: View {
             // Play completion narration after a brief pause
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    ttsService.playAudio(labyrinth.audioCompletion)
+                    ttsService.playAudio(labyrinth.audioCompletion, localizedText: labyrinth.completionMessage)
                 }
             }
         }

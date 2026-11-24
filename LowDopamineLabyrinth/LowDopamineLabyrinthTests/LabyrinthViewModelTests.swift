@@ -1,4 +1,5 @@
 import XCTest
+import AVFoundation
 @testable import LowDopamineLabyrinth
 
 final class LabyrinthViewModelTests: XCTestCase {
@@ -204,5 +205,145 @@ final class LabyrinthViewModelTests: XCTestCase {
         XCTAssertEqual(vm.startPoint.y, 10, accuracy: 1)
         XCTAssertEqual(vm.endPoint.x, 290, accuracy: 1)
         XCTAssertEqual(vm.endPoint.y, 290, accuracy: 1)
+    }
+}
+
+final class ThanksgivingPackTests: IsolatedPreferencesTestCase {
+    private let packID = "thanksgiving_adventures"
+
+    func testSevenFixedDifficultyLevelsWithOnlyThreeFree() {
+        let expectedStories = Array(67...73)
+        for difficulty in [DifficultyLevel.easy, .medium, .hard] {
+            let levels = LabyrinthLoader.shared.loadForDifficulty(difficulty, packId: packID)
+            XCTAssertEqual(levels.map(\.storyNumber), expectedStories)
+            XCTAssertEqual(levels.map(\.difficulty), ["easy", "easy", "medium", "medium", "hard", "hard", "hard"])
+        }
+        let stories = LabyrinthLoader.shared.loadStories(packId: packID)
+        XCTAssertEqual(stories.map(\.isFree), [true, true, true, false, false, false, false])
+
+        let subscription = SubscriptionManager()
+        subscription.isPremium = false
+        let game = GameViewModel(
+            preferences: UserPreferences(defaults: defaults),
+            subscriptionManager: subscription,
+            progressTracker: ProgressTracker(defaults: defaults)
+        )
+        game.loadLabyrinths(packId: packID)
+        for index in 0..<7 {
+            XCTAssertEqual(game.isLabyrinthLocked(at: index), index >= 3)
+            XCTAssertEqual(game.isStoryLocked(index + 67), index >= 3)
+        }
+    }
+
+    func testSeasonalLevelsUseTheExistingDrawingAndCompletionRules() {
+        let levels = LabyrinthLoader.shared.loadForDifficulty(.easy, packId: packID)
+        XCTAssertEqual(levels.count, 7)
+        for level in levels {
+            let vm = LabyrinthViewModel(labyrinth: level)
+            vm.canvasSize = CGSize(width: level.pathData.canvasWidth, height: level.pathData.canvasHeight)
+            vm.setupValidator(tolerance: 20)
+
+            // As in the existing app, drawing can begin anywhere and reaching
+            // the goal completes a maze without route or collection gates.
+            vm.handleDragPoint(CGPoint(x: 1, y: 1))
+            XCTAssertTrue(vm.hasStartedDrawing, level.id)
+            XCTAssertEqual(vm.currentStroke.count, 1, level.id)
+            vm.handleDragPoint(vm.endPoint)
+            XCTAssertTrue(vm.isCompleted, level.id)
+            if vm.isCollectType { XCTAssertFalse(vm.allItemsCollected, level.id) }
+            XCTAssertFalse(vm.showItemHint, level.id)
+        }
+    }
+
+    func testSeasonalArtworkAndYoungChildCopy() throws {
+        let levels = LabyrinthLoader.shared.loadForDifficulty(.easy, packId: packID)
+        XCTAssertEqual(levels.count, 7)
+        XCTAssertEqual(levels.map(\.itemRule), ["collect", "collect", "avoid", "collect", "collect", "avoid", "collect"])
+        XCTAssertEqual(Set(levels.map { $0.visualTheme.backgroundColor }).count, 7)
+        for level in levels {
+            XCTAssertNil(level.pathData.backgroundImage, level.id)
+            let artwork = try XCTUnwrap(level.pathData.artwork, level.id)
+            XCTAssertFalse(artwork.clipPath.isEmpty, level.id)
+            XCTAssertFalse(level.pathData.solutionPath.isEmpty, level.id)
+            XCTAssertLessThanOrEqual(level.funFact.split(separator: " ").count, 35, level.id)
+            if level.itemRule == "avoid" {
+                XCTAssertNil(level.pathData.items)
+                XCTAssertEqual(level.pathData.avoidItems?.count, 2)
+            }
+        }
+        let turkey = try XCTUnwrap(levels.last)
+        let artwork = try XCTUnwrap(turkey.pathData.artwork)
+        XCTAssertEqual(turkey.characterEnd.name, "Tilly")
+        XCTAssertEqual((turkey.pathData.endPoint.x - artwork.frame.x) / artwork.frame.width * 2000, 1000, accuracy: 5)
+        XCTAssertEqual((turkey.pathData.endPoint.y - artwork.frame.y) / artwork.frame.height * 3000, 1996, accuracy: 5)
+    }
+
+    func testNextLevelUntilTheFinalSeasonalMaze() {
+        let progress = ProgressTracker(defaults: defaults)
+        let game = GameViewModel(
+            preferences: UserPreferences(defaults: defaults), subscriptionManager: SubscriptionManager(),
+            progressTracker: progress
+        )
+        game.loadLabyrinths(packId: packID)
+        for index in 0..<7 {
+            game.currentIndex = index
+            progress.completedIds.insert(game.currentLabyrinth!.id)
+            XCTAssertTrue(game.isStoryComplete)
+            XCTAssertEqual(game.shouldReturnToBookshelfAfterCompletion, index == 6)
+        }
+    }
+
+    func testSeasonalNarrationIsBundledAndDecodable() throws {
+        let levels = LabyrinthLoader.shared.loadForDifficulty(.easy, packId: packID)
+        XCTAssertEqual(levels.count, 7)
+        for level in levels {
+            let tracks = [("instruction", level.audioInstruction), ("completion", level.audioCompletion), ("answer", level.audioAnswer)]
+            for (track, reference) in tracks {
+                let filename = try XCTUnwrap(reference, level.id)
+                XCTAssertEqual(filename, String(format: "denny_%03d_%@.mp3", level.storyNumber, track))
+                let url = try XCTUnwrap(Bundle.main.url(forResource: filename, withExtension: nil, subdirectory: "audio"), filename)
+                let player = try AVAudioPlayer(contentsOf: url)
+                XCTAssertGreaterThan(player.duration, 1, filename)
+            }
+        }
+    }
+
+    func testThanksgivingCopyIsAvailableInEverySupportedLanguage() {
+        let loader = LabyrinthLoader.shared
+        loader.setLanguage(.english)
+        let english = loader.loadForDifficulty(.easy, packId: packID)
+        defer { loader.setLanguage(.english) }
+        for language in AppLanguage.allCases where language != .english {
+            loader.setLanguage(language)
+            let translated = loader.loadForDifficulty(.easy, packId: packID)
+            XCTAssertEqual(translated.count, 7, language.rawValue)
+            for (original, localized) in zip(english, translated) {
+                XCTAssertNotEqual(localized.title, original.title, localized.id)
+                XCTAssertNotEqual(localized.instruction, original.instruction, localized.id)
+                XCTAssertEqual(localized.storySetup, localized.instruction, localized.id)
+                XCTAssertEqual(localized.ttsInstruction, localized.instruction, localized.id)
+                XCTAssertNotEqual(localized.educationalQuestion, original.educationalQuestion, localized.id)
+                XCTAssertNotEqual(localized.funFact, original.funFact, localized.id)
+                XCTAssertNotEqual(localized.completionMessage, original.completionMessage, localized.id)
+                XCTAssertNotEqual(localized.location, original.location, localized.id)
+                XCTAssertEqual(localized.audioInstruction, original.audioInstruction)
+                XCTAssertEqual(localized.audioCompletion, original.audioCompletion)
+                XCTAssertEqual(localized.audioAnswer, original.audioAnswer)
+            }
+        }
+    }
+
+    func testArchivedFallContentIsExcludedFromTheApp() throws {
+        let manifest = try XCTUnwrap(LabyrinthLoader.shared.loadManifest())
+        XCTAssertNil(LabyrinthLoader.shared.packInfo(packId: "fall_adventures"))
+        XCTAssertFalse(manifest.labyrinths.contains { (61...66).contains($0.story ?? 0) })
+        for story in 61...66 {
+            for difficulty in ["easy", "medium", "hard"] {
+                XCTAssertNil(Bundle.main.url(forResource: String(format: "denny_%03d_%@", story, difficulty), withExtension: "json"))
+            }
+            for track in ["instruction", "completion", "answer"] {
+                XCTAssertNil(Bundle.main.url(forResource: String(format: "denny_%03d_%@", story, track), withExtension: "mp3", subdirectory: "audio"))
+            }
+        }
     }
 }

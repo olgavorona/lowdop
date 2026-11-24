@@ -1,17 +1,7 @@
 import XCTest
 @testable import LowDopamineLabyrinth
 
-final class GameViewModelTests: XCTestCase {
-
-    override func tearDown() {
-        super.tearDown()
-        // Clean up UserDefaults keys used by UserPreferences to isolate tests
-        let keys = ["difficultyLevel", "ttsEnabled", "hasCompletedOnboarding",
-                     "ttsDefaultSet", "completedLabyrinths"]
-        for key in keys {
-            UserDefaults.standard.removeObject(forKey: key)
-        }
-    }
+final class GameViewModelTests: IsolatedPreferencesTestCase {
 
     private func makeStoryLabyrinth(id: String) -> Labyrinth {
         Labyrinth(
@@ -96,10 +86,10 @@ final class GameViewModelTests: XCTestCase {
     // MARK: - Navigation Tests
 
     func testNextLabyrinthIncrementsIndex() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
         vm.currentIndex = 0
@@ -110,10 +100,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testNextLabyrinthDoesNotExceedBounds() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 3)
         vm.currentIndex = 2
@@ -124,9 +114,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testPreviousLabyrinthDecrementsIndex() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
         vm.currentIndex = 3
@@ -137,9 +127,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testPreviousLabyrinthDoesNotGoBelowZero() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
         vm.currentIndex = 0
@@ -150,9 +140,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testSelectLabyrinthSetsIndexAndPlaying() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
@@ -163,9 +153,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testCloseGameStopsPlaying() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
         vm.selectLabyrinth(vm.labyrinths[0])
@@ -176,10 +166,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testNextLabyrinthDoesNotDismissFullScreenCover() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
         vm.selectLabyrinth(vm.labyrinths[0])
@@ -193,9 +183,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testPreviousLabyrinthDoesNotDismissFullScreenCover() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
         vm.selectLabyrinth(vm.labyrinths[2])
@@ -208,10 +198,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testCurrentLabyrinthReflectsIndex() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
@@ -223,9 +213,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testCompleteCurrentLabyrinthTracksProgress() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 3)
         vm.currentIndex = 1
@@ -237,10 +227,10 @@ final class GameViewModelTests: XCTestCase {
 
     func testNavigationSequenceCompletionThenNext() {
         // Simulate: complete maze -> tap "Next Labyrinth" in CompletionView
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 5)
 
@@ -263,9 +253,9 @@ final class GameViewModelTests: XCTestCase {
     // MARK: - Premium / Story Locking Tests
 
     func testIsPremiumReflectsSubscriptionManager() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         XCTAssertFalse(vm.isPremium, "Should not be premium by default")
@@ -275,9 +265,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testStoryNumberExtraction() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         let lab1 = makeStoryLabyrinth(id: "denny_001_easy")
@@ -291,10 +281,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsStoryLockedFreeUser() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = false
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         // The first 3 ocean stories in manifest order are free: 1, 11, 2.
@@ -310,10 +300,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsStoryLockedPremiumUser() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         // All stories unlocked for premium
@@ -323,10 +313,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsStoryLockedAfterPurchase() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = false
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         // Initially locked
@@ -340,10 +330,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsLabyrinthLockedUsesCentralizedFreeStoryThreshold() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = false
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         XCTAssertFalse(vm.isLabyrinthLocked(at: 0))
@@ -352,10 +342,10 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsLabyrinthLockedPremiumUser() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
         sub.isPremium = true
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         XCTAssertFalse(vm.isLabyrinthLocked(at: 3))
@@ -363,9 +353,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsStoryCompleteAllDifficulties() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         // Set up labyrinth list and current index to story 5
@@ -382,9 +372,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsStoryCompletePartialDifficulties() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
 
         // Set up labyrinth list and current index to story 5
@@ -400,9 +390,9 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testIsLastLabyrinthInPackTracksFinalIndex() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 3)
 
@@ -416,7 +406,7 @@ final class GameViewModelTests: XCTestCase {
     // MARK: - Sequential Unlock / Progress Tests
 
     func testSequentialUnlockLogic() {
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let labyrinths = makeSampleLabyrinths(count: 5)
 
         // First labyrinth is always unlocked
@@ -439,7 +429,7 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testCompletedCountReflectsProgress() {
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let labyrinths = makeSampleLabyrinths(count: 5)
 
         XCTAssertEqual(progress.completedCount(in: labyrinths), 0)
@@ -451,7 +441,7 @@ final class GameViewModelTests: XCTestCase {
     }
 
     func testCompletedStoryCountCountsStoryOnceWhenAnyDifficultyCompleted() {
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let stories = [
             StoryInfo(
                 number: 1,
@@ -481,9 +471,9 @@ final class GameViewModelTests: XCTestCase {
     // MARK: - selectLabyrinth safety
 
     func testSelectLabyrinthDoesNotSetPlayingWhenNotFound() {
-        let prefs = UserPreferences()
+        let prefs = UserPreferences(defaults: defaults)
         let sub = SubscriptionManager()
-        let progress = ProgressTracker()
+        let progress = ProgressTracker(defaults: defaults)
         let vm = GameViewModel(preferences: prefs, subscriptionManager: sub, progressTracker: progress)
         vm.labyrinths = makeSampleLabyrinths(count: 3)
 

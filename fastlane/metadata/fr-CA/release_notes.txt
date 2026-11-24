@@ -1,0 +1,1 @@
+Ajout du traçage des lettres arabes avec des guides indiquant l’ordre des traits. Disponible uniquement lorsque la langue de l’app est réglée sur l’arabe.

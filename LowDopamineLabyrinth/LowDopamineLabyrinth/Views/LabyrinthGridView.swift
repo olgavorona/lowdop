@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LabyrinthGridView: View {
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @EnvironmentObject var gameViewModel: GameViewModel
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var progressTracker: ProgressTracker
@@ -25,12 +26,11 @@ struct LabyrinthGridView: View {
         case paywall
     }
 
-    private let columns = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
-    ]
+    private var columns: [GridItem] {
+        let isPortraitPhone = UIDevice.current.userInterfaceIdiom == .phone
+            && verticalSizeClass != .compact
+        return Array(repeating: GridItem(.flexible(), spacing: 16), count: isPortraitPhone ? 2 : 4)
+    }
 
     var body: some View {
         NavigationStack {
@@ -71,6 +71,7 @@ struct LabyrinthGridView: View {
                         }
                         Spacer()
                         // Difficulty badge — tappable to change (behind parental gate)
+                        if !gameViewModel.currentPackUsesFixedDifficulty {
                         Button(action: {
                             parentalGateAction = .difficultyPicker
                             showParentalGate = true
@@ -86,6 +87,7 @@ struct LabyrinthGridView: View {
                             .padding(.vertical, 6)
                             .background(AppColor.accentGreen)
                             .cornerRadius(12)
+                        }
                         }
                         // For Parents button
                         Button(action: {
@@ -124,7 +126,7 @@ struct LabyrinthGridView: View {
                             .padding(.horizontal, 20)
                     }
 
-                    // Grid — 4 columns for landscape
+                    // Two columns on portrait iPhones; four in the other layouts.
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(Array(gameViewModel.labyrinths.enumerated()), id: \.element.id) { index, labyrinth in
                             let isLocked = gameViewModel.isLabyrinthLocked(at: index)
@@ -233,15 +235,21 @@ struct LabyrinthGridView: View {
     }
 
     private func autoOpenUITestLabyrinthIfNeeded() {
-        guard !didAutoOpenUITestLabyrinth,
-              ProcessInfo.processInfo.arguments.contains("-uiTestShowCompletionForLastLevel"),
-              let lastLabyrinth = gameViewModel.labyrinths.last else {
-            return
+        guard !didAutoOpenUITestLabyrinth else { return }
+        let arguments = ProcessInfo.processInfo.arguments
+        var selected = (arguments.contains("-uiTestShowCompletionForLastLevel")
+            || arguments.contains("-uiTestOpenLastLevel")) ? gameViewModel.labyrinths.last : nil
+        #if DEBUG
+        if let flag = arguments.firstIndex(of: "-uiTestOpenLevel"), flag + 1 < arguments.count,
+           let number = Int(arguments[flag + 1]), gameViewModel.labyrinths.indices.contains(number - 1) {
+            selected = gameViewModel.labyrinths[number - 1]
         }
+        #endif
+        guard let selected else { return }
 
         didAutoOpenUITestLabyrinth = true
         DispatchQueue.main.async {
-            gameViewModel.selectLabyrinth(lastLabyrinth)
+            gameViewModel.selectLabyrinth(selected)
         }
     }
 }
@@ -265,6 +273,12 @@ struct LabyrinthCard: View {
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 28, weight: .medium))
                                 .foregroundColor(.white.opacity(0.5))
+                        } else if let backgroundImage = labyrinth.pathData.backgroundImage {
+                            Image(backgroundImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geo.size.width, height: geo.size.height)
+                                .clipped()
                         } else {
                             CharacterMarkerView(
                                 character: labyrinth.characterEnd,
@@ -281,6 +295,23 @@ struct LabyrinthCard: View {
                 )
                 .aspectRatio(1.1, contentMode: .fit)
                 .frame(minHeight: 80)
+
+                if labyrinth.pathData.mazeType == "printable" {
+                    VStack {
+                        HStack {
+                            Text(LocalizedStringKey(labyrinth.difficulty.capitalized))
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 7)
+                                .padding(.vertical, 4)
+                                .background(Color.black.opacity(0.65))
+                                .clipShape(Capsule())
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                    .padding(6)
+                }
 
                 // Completion star badge (top-right corner)
                 if isCompleted {
@@ -334,6 +365,7 @@ struct LabyrinthCard: View {
 struct DifficultyPickerSheet: View {
     let onSelect: (DifficultyLevel) -> Void
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var preferences: UserPreferences
 
     private let levelColors: [DifficultyLevel: [Color]] = [
         .easy: [Color(hex: "#4FC3F7") ?? .blue, Color(hex: "#29B6F6") ?? .blue],
@@ -370,6 +402,8 @@ struct DifficultyPickerSheet: View {
         }
         .padding()
         .background(AppColor.background)
+        .environment(\.locale, preferences.appLanguage.locale)
+        .environment(\.layoutDirection, preferences.appLanguage.isRightToLeft ? .rightToLeft : .leftToRight)
     }
 
     private func loadSamplePath(for level: DifficultyLevel) -> String {

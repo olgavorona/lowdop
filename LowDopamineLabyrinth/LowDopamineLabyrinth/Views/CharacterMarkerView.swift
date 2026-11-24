@@ -46,7 +46,7 @@ struct CharacterMarkerView: View {
 
             // Name label for end character only
             if !isStart, let name = character.name {
-                Text(name)
+                Text(AppLocalization.text(name))
                     .font(.system(size: max(10, 13 * scale), weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .padding(.horizontal, 4 * scale)
@@ -152,7 +152,13 @@ struct CharacterMarkerView: View {
             "corn maze exit": "🌾",
             "big pumpkin": "🎃",
             "umbrella": "☂️",
-            "squirrel": "🐿️"
+            "squirrel": "🐿️",
+            "turkey": "🦃",
+            "ship lookout": "⛵",
+            "mailbox": "📮",
+            "house": "🏠",
+            "feast plate": "🍽️",
+            "letter delivery": "✉️"
         ]
         return typeEmoji[character.type] ?? ""
     }

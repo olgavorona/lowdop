@@ -1,6 +1,6 @@
 # Tracing analytics in TelemetryDeck
 
-The same events cover the alphabet, numbers, and Japanese hiragana. They are
+The same events cover the Latin alphabet, numbers, Japanese hiragana, and Arabic letters. They are
 emitted by `Services/TracingAnalytics.swift` through the existing `Analytics`
 wrapper. New production data starts with a released build containing this change.
 
@@ -8,7 +8,7 @@ wrapper. New production data starts with a released build containing this change
 
 | Parameter | Values / meaning |
 | --- | --- |
-| `collection` | `letter_tracing`, `number_tracing`, or `hiragana_tracing` |
+| `collection` | `letter_tracing`, `number_tracing`, `hiragana_tracing`, or `arabic_tracing` |
 | `app_locale` | Selected app language: `en`, `de`, `es`, `ja`, or `zh-Hans` |
 
 Character events also include `character` and the zero-based `character_index`.

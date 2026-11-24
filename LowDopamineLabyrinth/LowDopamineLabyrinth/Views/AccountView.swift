@@ -16,12 +16,50 @@ struct AccountView: View {
                 SectionHeader(title: "Language")
 
                 VStack(alignment: .leading, spacing: 14) {
-                    Picker("App language", selection: $preferences.appLanguage) {
+                    Menu {
                         ForEach(AppLanguage.allCases) { language in
-                            Text(AppLocalization.text(language.displayName)).tag(language)
+                            Button {
+                                preferences.appLanguage = language
+                            } label: {
+                                if preferences.appLanguage == language {
+                                    Label {
+                                        Text(verbatim: language.displayName)
+                                    } icon: {
+                                        Image(systemName: "checkmark")
+                                    }
+                                } else {
+                                    Text(verbatim: language.displayName)
+                                }
+                            }
                         }
+                    } label: {
+                        HStack(spacing: 14) {
+                            Image(systemName: "globe")
+                                .font(.system(size: 22, weight: .semibold))
+                                .foregroundColor(AppColor.accentBlue)
+                                .frame(width: 34)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(AppLocalization.text("App language"))
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .foregroundColor(AppColor.textSecondary)
+                                Text(verbatim: preferences.appLanguage.displayName)
+                                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                    .foregroundColor(AppColor.textPrimary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.down")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(AppColor.textSecondary)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
                     }
-                    .pickerStyle(.segmented)
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(Text(AppLocalization.text("App language") + ": " + preferences.appLanguage.displayName))
+                    .accessibilityIdentifier("account.languagePicker")
 
                     if preferences.appLanguage == .english {
                         Text("English narration is included with the app.")
@@ -80,6 +118,14 @@ struct AccountView: View {
                 .background(Color.white)
                 .cornerRadius(16)
 
+                // MARK: - Paper Books
+                Link(destination: URL(string: "https://www.amazon.ca/dp/B0HLXD554F")!) {
+                    AccountRow(title: "Get More Denny on Paper", icon: "book.closed.fill")
+                }
+                .background(Color.white)
+                .cornerRadius(16)
+                .accessibilityIdentifier("account.paperBooks")
+
                 // MARK: - Legal
                 SectionHeader(title: "Legal")
 
@@ -104,12 +150,15 @@ struct AccountView: View {
             .padding(20)
         }
         .background(AppColor.background.ignoresSafeArea())
+        .environment(\.locale, preferences.appLanguage.locale)
+        .environment(\.layoutDirection, preferences.appLanguage.isRightToLeft ? .rightToLeft : .leftToRight)
         .navigationTitle("Account")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") { dismiss() }
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .accessibilityIdentifier("account.done")
             }
         }
         .sheet(isPresented: $showPaywall) {
@@ -152,9 +201,16 @@ struct AccountView: View {
                     if let progress = languageAudioPackManager.progress[language] {
                         ProgressView(value: progress)
                             .tint(.white)
-                        Text("Downloading narration…")
+                        Text(verbatim: AppLocalization.text("Downloading narration…"))
                     } else {
-                        Label("Download \(language.displayName) narration", systemImage: "arrow.down.circle")
+                        Label {
+                            Text(verbatim: AppLocalization.text(
+                                #"Download \(language.displayName) narration"#,
+                                replacing: [#"\(language.displayName)"#: language.displayName]
+                            ))
+                        } icon: {
+                            Image(systemName: "arrow.down.circle")
+                        }
                     }
                 }
                 .font(.system(size: 14, weight: .semibold, design: .rounded))

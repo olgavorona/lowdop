@@ -8,6 +8,7 @@ class GameViewModel: ObservableObject {
 
     private(set) var currentPackId: String = "ocean_adventures"
     private(set) var currentPackFreeStories: Int = 3
+    private(set) var currentPackUsesFixedDifficulty = false
 
     let preferences: UserPreferences
     let subscriptionManager: SubscriptionManager
@@ -20,6 +21,10 @@ class GameViewModel: ObservableObject {
 
     var isLastLabyrinthInPack: Bool {
         !labyrinths.isEmpty && currentIndex >= labyrinths.count - 1
+    }
+
+    var shouldReturnToBookshelfAfterCompletion: Bool {
+        isLastLabyrinthInPack || (!currentPackUsesFixedDifficulty && isStoryComplete)
     }
 
     var isPremium: Bool {
@@ -36,7 +41,9 @@ class GameViewModel: ObservableObject {
 
     func loadLabyrinths(packId: String = "ocean_adventures") {
         currentPackId = packId
-        currentPackFreeStories = LabyrinthLoader.shared.packInfo(packId: packId)?.freeStories ?? 0
+        let pack = LabyrinthLoader.shared.packInfo(packId: packId)
+        currentPackFreeStories = pack?.freeStories ?? 0
+        currentPackUsesFixedDifficulty = pack?.usesFixedDifficulty ?? false
         labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel, packId: packId)
         currentIndex = 0
         isPlaying = false
@@ -44,7 +51,9 @@ class GameViewModel: ObservableObject {
 
     func reloadForLanguageChange() {
         let selectedID = currentLabyrinth?.id
-        currentPackFreeStories = LabyrinthLoader.shared.packInfo(packId: currentPackId)?.freeStories ?? 0
+        let pack = LabyrinthLoader.shared.packInfo(packId: currentPackId)
+        currentPackFreeStories = pack?.freeStories ?? 0
+        currentPackUsesFixedDifficulty = pack?.usesFixedDifficulty ?? false
         labyrinths = LabyrinthLoader.shared.loadForDifficulty(preferences.difficultyLevel, packId: currentPackId)
         if let selectedID, let newIndex = labyrinths.firstIndex(where: { $0.id == selectedID }) {
             currentIndex = newIndex
@@ -111,6 +120,9 @@ class GameViewModel: ObservableObject {
     var isStoryComplete: Bool {
         guard let lab = currentLabyrinth,
               let story = storyNumber(for: lab) else { return false }
+        if currentPackUsesFixedDifficulty {
+            return progressTracker.completedIds.contains(lab.id)
+        }
         let paddedStory = String(format: "%03d", story)
         let easyId = "denny_\(paddedStory)_easy"
         let mediumId = "denny_\(paddedStory)_medium"

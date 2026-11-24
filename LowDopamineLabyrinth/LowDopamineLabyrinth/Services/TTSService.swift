@@ -11,7 +11,7 @@ class TTSService: ObservableObject {
     }
 
     @discardableResult
-    func playAudio(_ filename: String?) -> Bool {
+    func playAudio(_ filename: String?, localizedText: String? = nil) -> Bool {
         guard let filename = filename, !filename.isEmpty else { return false }
 
         let name = (filename as NSString).deletingPathExtension
@@ -20,6 +20,12 @@ class TTSService: ObservableObject {
         if language != .english,
            let localizedURL = LanguageAudioPackManager.shared.audioURL(for: filename, language: language) {
             if playURL(localizedURL) { return true }
+        }
+        if language != .english,
+           language.audioPackID == nil,
+           let localizedText = localizedText?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !localizedText.isEmpty {
+            return speak(localizedText)
         }
         if playBundledAudio(named: name, ext: ext, subdirectory: "audio") { return true }
 
@@ -73,7 +79,7 @@ class TTSService: ObservableObject {
             return false
         }
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: language.rawValue)
+        utterance.voice = AVSpeechSynthesisVoice(language: language.speechLanguageIdentifier)
         speechSynthesizer.speak(utterance)
         return true
     }

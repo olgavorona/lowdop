@@ -11,7 +11,7 @@ enum AppDeepLink {
         guard url.scheme?.lowercased() == "dennysmazes" else { return nil }
 
         switch url.host?.lowercased() {
-        case "fall": return "fall_adventures"
+        case "thanksgiving": return "thanksgiving_adventures"
         default: return nil
         }
     }

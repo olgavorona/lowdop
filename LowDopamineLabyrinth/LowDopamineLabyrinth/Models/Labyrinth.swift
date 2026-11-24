@@ -83,6 +83,7 @@ struct PathData: Codable {
     let svgPath: String
     let solutionPath: String
     var backgroundImage: String? = nil
+    var artwork: MazeArtwork? = nil
     let width: Double
     let complexity: String
     let mazeType: String
@@ -99,6 +100,7 @@ struct PathData: Codable {
         case svgPath = "svg_path"
         case solutionPath = "solution_path"
         case backgroundImage = "background_image"
+        case artwork
         case width, complexity
         case mazeType = "maze_type"
         case startPoint = "start_point"
@@ -110,6 +112,30 @@ struct PathData: Codable {
         case items
         case avoidItems = "avoid_items"
     }
+}
+
+struct MazeArtwork: Codable {
+    let image: String
+    let frame: ArtworkFrame
+    let clipPath: String
+    let patches: [ArtworkPatch]
+
+    enum CodingKeys: String, CodingKey {
+        case image, frame, patches
+        case clipPath = "clip_path"
+    }
+}
+
+struct ArtworkFrame: Codable {
+    let x: Double
+    let y: Double
+    let width: Double
+    let height: Double
+}
+
+struct ArtworkPatch: Codable {
+    let path: String
+    let color: String
 }
 
 struct PointData: Codable {
@@ -168,11 +194,15 @@ struct PackInfo: Codable, Identifiable {
     let title: String
     let freeStories: Int
     let stories: [Int]
+    var fixedDifficulty: Bool? = nil
+
+    var usesFixedDifficulty: Bool { fixedDifficulty == true }
 
     enum CodingKeys: String, CodingKey {
         case id, title
         case freeStories = "free_stories"
         case stories
+        case fixedDifficulty = "fixed_difficulty"
     }
 }
 

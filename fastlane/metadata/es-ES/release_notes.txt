@@ -1,0 +1,1 @@
+Ahora puedes trazar letras árabes con guías del orden de los trazos. Disponible solo cuando el idioma de la app está configurado en árabe.

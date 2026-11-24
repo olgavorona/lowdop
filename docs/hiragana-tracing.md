@@ -5,12 +5,16 @@ collection appears only when the selected app language is Japanese. It contains
 the 46 basic modern hiragana in gojūon order (including を and ん). Dakuten,
 handakuten, small kana, and combinations are outside this initial collection.
 
+The free [Arabic collection](arabic-tracing.md) contains 28 isolated letters and
+appears only in Arabic. Its grid and writing samples read from right to left.
+
 The bookshelf puts all visible maze packs in its first row. The second row
-contains letters, hiragana (Japanese only), and numbers, in that order. Each
+contains Arabic letters (Arabic only), Latin letters, hiragana (Japanese only),
+and numbers, in that order. Each
 row scrolls horizontally; short screens can also scroll vertically to reach
 both rows.
 
-All three collections use the shared tracing screen and existing free drawing
+All four collections use the shared tracing screen and existing free drawing
 controls. The upper panel starts with numbered strokes and local direction arrows,
 followed by red-dotted copies. On narrow screens the ordered example can also
 carry the dots to keep letter pairs readable. The lower panel contains only

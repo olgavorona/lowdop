@@ -24,6 +24,7 @@ struct LowDopamineLabyrinthApp: App {
                 reviewRequestManager: reviewRequestManager
             )
             .environment(\.locale, preferences.appLanguage.locale)
+            .environment(\.layoutDirection, preferences.appLanguage.isRightToLeft ? .rightToLeft : .leftToRight)
         }
     }
 }
@@ -67,6 +68,11 @@ struct RootView: View {
             .environmentObject(languageAudioPackManager)
             .environmentObject(reviewRequestManager)
             .environmentObject(gameViewModel)
+            .task(id: preferences.appLanguage) {
+                let language = preferences.appLanguage
+                guard language.audioPackID != nil else { return }
+                await languageAudioPackManager.refreshStatus(for: language)
+            }
             .onAppear {
                 ttsService.setLanguage(preferences.appLanguage)
                 configureUITestEnvironmentIfNeeded()

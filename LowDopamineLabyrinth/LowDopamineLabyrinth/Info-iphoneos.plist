@@ -13,6 +13,13 @@
 		<string>en</string>
 		<string>de</string>
 		<string>es</string>
+		<string>ja</string>
+		<string>zh-Hans</string>
+		<string>ko</string>
+		<string>ar</string>
+		<string>sv</string>
+		<string>fi</string>
+		<string>nl</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

@@ -1,0 +1,62 @@
+{
+  "version": "1.5.6",
+  "build_number": "9",
+  "localizations": {
+    "ko": {
+      "whatsNew": "아랍어 글자 따라 쓰기와 획순 안내를 추가했어요. 앱 언어를 아랍어로 설정한 경우에만 이용할 수 있어요.",
+      "promotionalText": "3~6세를 위한 200개 이상의 레벨, 글자와 숫자 따라 쓰기, 계절 모험. 광고나 구독 없이 오프라인으로 즐겨요."
+    },
+    "sv": {
+      "whatsNew": "Lagt till spårning av arabiska bokstäver med vägledning för streckordningen. Endast tillgängligt när appens språk är inställt på arabiska.",
+      "promotionalText": "Över 200 nivåer, bokstäver och siffror att spåra och säsongsäventyr för 3–6 år. Spela offline, utan reklam eller prenumerationer."
+    },
+    "en-US": {
+      "whatsNew": "Added Arabic letter tracing with stroke order guides. Available only when the app language is set to Arabic.",
+      "promotionalText": "200+ levels, letter and number tracing, and seasonal adventures for ages 3–6. Play offline, with no ads or subscriptions."
+    },
+    "en-AU": {
+      "whatsNew": "Added Arabic letter tracing with stroke order guides. Available only when the app language is set to Arabic.",
+      "promotionalText": "200+ levels, letter and number tracing, and seasonal adventures for ages 3–6. Play offline, with no ads or subscriptions."
+    },
+    "en-GB": {
+      "whatsNew": "Added Arabic letter tracing with stroke order guides. Available only when the app language is set to Arabic.",
+      "promotionalText": "200+ levels, letter and number tracing, and seasonal adventures for ages 3–6. Play offline, with no ads or subscriptions."
+    },
+    "de-DE": {
+      "whatsNew": "Neu: Arabische Buchstaben mit Anleitungen zur Strichfolge nachspuren. Nur verfügbar, wenn die App-Sprache auf Arabisch eingestellt ist.",
+      "promotionalText": "Über 200 Level, Buchstaben und Zahlen zum Nachspuren und saisonale Abenteuer für 3–6-Jährige. Offline spielen, ohne Werbung oder Abonnements."
+    },
+    "fi": {
+      "whatsNew": "Lisätty arabialaisten kirjainten jäljennys ja piirtojärjestyksen ohjeet. Saatavilla vain, kun sovelluksen kieleksi on asetettu arabia.",
+      "promotionalText": "Yli 200 tasoa, kirjainten ja numeroiden jäljennystä sekä kausiseikkailuja 3–6-vuotiaille. Pelaa offline, ilman mainoksia tai jatkuvaa tilausta."
+    },
+    "nl-NL": {
+      "whatsNew": "Arabische letters overtrekken met uitleg over de volgorde van de pennenstreken toegevoegd. Alleen beschikbaar wanneer de apptaal is ingesteld op Arabisch.",
+      "promotionalText": "200+ levels, letters en cijfers overtrekken en seizoensavonturen voor 3–6 jaar. Speel offline, zonder advertenties of abonnementen."
+    },
+    "es-MX": {
+      "whatsNew": "Ahora puedes trazar letras árabes con guías del orden de los trazos. Disponible solo cuando el idioma de la app está configurado en árabe.",
+      "promotionalText": "Más de 200 niveles, letras y números para trazar y aventuras de temporada para niños de 3 a 6 años. Juega sin conexión, sin anuncios ni suscripciones."
+    },
+    "es-ES": {
+      "whatsNew": "Ahora puedes trazar letras árabes con guías del orden de los trazos. Disponible solo cuando el idioma de la app está configurado en árabe.",
+      "promotionalText": "Más de 200 niveles, letras y números para trazar y aventuras de temporada para niños de 3 a 6 años. Juega sin conexión, sin anuncios ni suscripciones."
+    },
+    "ja": {
+      "whatsNew": "アラビア文字のなぞり書きと書き順ガイドを追加しました。アプリの言語をアラビア語に設定している場合のみ利用できます。",
+      "promotionalText": "200以上のステージ、文字や数字のなぞり書き、季節の冒険を3〜6歳のお子さまに。オフラインで遊べて、広告やサブスクリプションはありません。"
+    },
+    "fr-CA": {
+      "whatsNew": "Ajout du traçage des lettres arabes avec des guides indiquant l’ordre des traits. Disponible uniquement lorsque la langue de l’app est réglée sur l’arabe.",
+      "promotionalText": "200+ niveaux, lettres et chiffres à tracer et aventures saisonnières pour les 3 à 6 ans. Jouez hors ligne, sans publicité ni abonnement."
+    },
+    "zh-Hans": {
+      "whatsNew": "新增带笔顺指引的阿拉伯字母描红。仅在将应用语言设置为阿拉伯语时提供。",
+      "promotionalText": "200多个关卡、字母和数字描红，以及适合3–6岁儿童的季节冒险。可离线游玩，无广告、无订阅。"
+    },
+    "ar-SA": {
+      "whatsNew": "أضفنا تتبّع الحروف العربية مع إرشادات توضّح ترتيب كتابتها. تتوفر هذه الميزة فقط عند ضبط لغة التطبيق على العربية.",
+      "promotionalText": "أكثر من 200 مستوى وتتبع الحروف والأرقام ومغامرات موسمية للأطفال من 3 إلى 6 سنوات. العب دون إنترنت، بلا إعلانات أو اشتراكات."
+    }
+  }
+}

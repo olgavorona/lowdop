@@ -111,11 +111,13 @@ struct LetterGridView: View {
                 .accessibilityIdentifier("tracing.glyph.\(String(letters[index]))")
             }
         }
+        .environment(\.layoutDirection, collection.writingDirection)
     }
 }
 
 struct LetterTracingSessionView: View {
     @Environment(\.scenePhase) private var scenePhase
+    @EnvironmentObject private var preferences: UserPreferences
     @StateObject private var viewModel: LetterTracingViewModel
     let onClose: () -> Void
 
@@ -129,6 +131,8 @@ struct LetterTracingSessionView: View {
             viewModel.endSession(reason: "close")
             onClose()
         })
+            .environment(\.locale, preferences.appLanguage.locale)
+            .environment(\.layoutDirection, .leftToRight)
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("tracing.screen")
             .onAppear { viewModel.startSession(isActive: scenePhase == .active) }
@@ -344,6 +348,7 @@ private struct LetterTracingScreen: View {
                             }
                         }
                     }
+                    .environment(\.layoutDirection, viewModel.collection.writingDirection)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .allowsHitTesting(false)

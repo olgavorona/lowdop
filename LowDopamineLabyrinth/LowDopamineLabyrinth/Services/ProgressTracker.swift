@@ -1,12 +1,13 @@
 import Foundation
 
 class ProgressTracker: ObservableObject {
-    private let defaults = UserDefaults.standard
+    private let defaults: UserDefaults
     private let completedKey = "completedLabyrinths"
 
     @Published var completedIds: Set<String>
 
-    init() {
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
         let saved = defaults.stringArray(forKey: completedKey) ?? []
         self.completedIds = Set(saved)
     }

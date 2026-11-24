@@ -1,0 +1,356 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="960" viewBox="0 0 1400 960">
+<rect width="1400" height="960" fill="#faf5e3"/>
+<text x="28" y="30" font-family="sans-serif" font-size="20">Arabic isolated letters · numbered pen strokes · body before dots · read rows from right to left</text>
+<text x="1300" y="72" text-anchor="middle" font-size="24">ا</text>
+<g transform="translate(1246,78) scale(.85)">
+<path d="M59,19 C59.0,39.333333 59.0,59.666667 59,80" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="72" cy="17" r="5" fill="#147a5c"/>
+<text x="72" y="19" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(1246,174) scale(.85)">
+<path d="M59,19 C59.0,39.333333 59.0,59.666667 59,80" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1100" y="72" text-anchor="middle" font-size="24">ب</text>
+<g transform="translate(1046,78) scale(.85)">
+<path d="M88,49 C94,72 78,79 52,79 C27,79 17,72 22,55" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M53,94 C53.0,94.266667 53.0,94.533333 53,94.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="99" cy="44" r="5" fill="#147a5c"/>
+<text x="99" y="46" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="68" cy="96" r="5" fill="#126e9e"/>
+<text x="68" y="98" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(1046,174) scale(.85)">
+<path d="M88,49 C94,72 78,79 52,79 C27,79 17,72 22,55" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M53,94 C53.0,94.266667 53.0,94.533333 53,94.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="900" y="72" text-anchor="middle" font-size="24">ت</text>
+<g transform="translate(846,78) scale(.85)">
+<path d="M88,49 C94,72 78,79 52,79 C27,79 17,72 22,55" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M62,37 C62.0,37.266667 62.0,37.533333 62,37.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M46,37 C46.0,37.266667 46.0,37.533333 46,37.8" fill="none" stroke="#bf522e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="99" cy="44" r="5" fill="#147a5c"/>
+<text x="99" y="46" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="72" cy="28" r="5" fill="#126e9e"/>
+<text x="72" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+<circle cx="36" cy="28" r="5" fill="#bf522e"/>
+<text x="36" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">3</text>
+</g>
+<g transform="translate(846,174) scale(.85)">
+<path d="M88,49 C94,72 78,79 52,79 C27,79 17,72 22,55" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M62,37 C62.0,37.266667 62.0,37.533333 62,37.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M46,37 C46.0,37.266667 46.0,37.533333 46,37.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="700" y="72" text-anchor="middle" font-size="24">ث</text>
+<g transform="translate(646,78) scale(.85)">
+<path d="M88,49 C94,72 78,79 52,79 C27,79 17,72 22,55" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M62,38 C62.0,38.266667 62.0,38.533333 62,38.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M46,38 C46.0,38.266667 46.0,38.533333 46,38.8" fill="none" stroke="#bf522e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54,24 C54.0,24.266667 54.0,24.533333 54,24.8" fill="none" stroke="#8042a8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="99" cy="44" r="5" fill="#147a5c"/>
+<text x="99" y="46" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="77" cy="36" r="5" fill="#126e9e"/>
+<text x="77" y="38" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+<circle cx="31" cy="36" r="5" fill="#bf522e"/>
+<text x="31" y="38" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">3</text>
+<circle cx="54" cy="12" r="5" fill="#8042a8"/>
+<text x="54" y="14" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">4</text>
+</g>
+<g transform="translate(646,174) scale(.85)">
+<path d="M88,49 C94,72 78,79 52,79 C27,79 17,72 22,55" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M62,38 C62.0,38.266667 62.0,38.533333 62,38.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M46,38 C46.0,38.266667 46.0,38.533333 46,38.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54,24 C54.0,24.266667 54.0,24.533333 54,24.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="500" y="72" text-anchor="middle" font-size="24">ج</text>
+<g transform="translate(446,78) scale(.85)">
+<path d="M31,34 C46,26 63,34 79,40 C53,46 26,54 26,72 C24,94 57,101 81,86" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M53,72 C53.0,72.266667 53.0,72.533333 53,72.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="23" cy="26" r="5" fill="#147a5c"/>
+<text x="23" y="28" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="67" cy="74" r="5" fill="#126e9e"/>
+<text x="67" y="76" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(446,174) scale(.85)">
+<path d="M31,34 C46,26 63,34 79,40 C53,46 26,54 26,72 C24,94 57,101 81,86" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M53,72 C53.0,72.266667 53.0,72.533333 53,72.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="300" y="72" text-anchor="middle" font-size="24">ح</text>
+<g transform="translate(246,78) scale(.85)">
+<path d="M31,34 C46,26 63,34 79,40 C53,46 26,54 26,72 C24,94 57,101 81,86" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="23" cy="26" r="5" fill="#147a5c"/>
+<text x="23" y="28" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(246,174) scale(.85)">
+<path d="M31,34 C46,26 63,34 79,40 C53,46 26,54 26,72 C24,94 57,101 81,86" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="100" y="72" text-anchor="middle" font-size="24">خ</text>
+<g transform="translate(46,78) scale(.85)">
+<path d="M31,34 C46,26 63,34 79,40 C53,46 26,54 26,72 C24,94 57,101 81,86" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55,19 C55.0,19.266667 55.0,19.533333 55,19.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="23" cy="26" r="5" fill="#147a5c"/>
+<text x="23" y="28" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="69" cy="15" r="5" fill="#126e9e"/>
+<text x="69" y="17" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(46,174) scale(.85)">
+<path d="M31,34 C46,26 63,34 79,40 C53,46 26,54 26,72 C24,94 57,101 81,86" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55,19 C55.0,19.266667 55.0,19.533333 55,19.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1300" y="297" text-anchor="middle" font-size="24">د</text>
+<g transform="translate(1246,303) scale(.85)">
+<path d="M57,38 C65,43 78,58 78,66 C68,76 46,77 34,73" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="48" cy="30" r="5" fill="#147a5c"/>
+<text x="48" y="32" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(1246,399) scale(.85)">
+<path d="M57,38 C65,43 78,58 78,66 C68,76 46,77 34,73" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1100" y="297" text-anchor="middle" font-size="24">ذ</text>
+<g transform="translate(1046,303) scale(.85)">
+<path d="M57,38 C65,43 78,58 78,66 C68,76 46,77 34,73" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58,23 C58.0,23.266667 58.0,23.533333 58,23.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="48" cy="30" r="5" fill="#147a5c"/>
+<text x="48" y="32" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="72" cy="20" r="5" fill="#126e9e"/>
+<text x="72" y="22" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(1046,399) scale(.85)">
+<path d="M57,38 C65,43 78,58 78,66 C68,76 46,77 34,73" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58,23 C58.0,23.266667 58.0,23.533333 58,23.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="900" y="297" text-anchor="middle" font-size="24">ر</text>
+<g transform="translate(846,303) scale(.85)">
+<path d="M73,48 C79,67 68,87 37,93" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="84" cy="43" r="5" fill="#147a5c"/>
+<text x="84" y="45" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(846,399) scale(.85)">
+<path d="M73,48 C79,67 68,87 37,93" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="700" y="297" text-anchor="middle" font-size="24">ز</text>
+<g transform="translate(646,303) scale(.85)">
+<path d="M73,48 C79,67 68,87 37,93" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M67,30 C67.0,30.266667 67.0,30.533333 67,30.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="84" cy="43" r="5" fill="#147a5c"/>
+<text x="84" y="45" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="81" cy="25" r="5" fill="#126e9e"/>
+<text x="81" y="27" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(646,399) scale(.85)">
+<path d="M73,48 C79,67 68,87 37,93" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M67,30 C67.0,30.266667 67.0,30.533333 67,30.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="500" y="297" text-anchor="middle" font-size="24">س</text>
+<g transform="translate(446,303) scale(.85)">
+<path d="M94,45 C97,69 80,70 81,49 C84,71 66,72 67,51 C70,68 60,74 54,68 C59,100 17,103 18,73 C18,67 20,62 22,58" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="101" cy="34" r="5" fill="#147a5c"/>
+<text x="101" y="36" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(446,399) scale(.85)">
+<path d="M94,45 C97,69 80,70 81,49 C84,71 66,72 67,51 C70,68 60,74 54,68 C59,100 17,103 18,73 C18,67 20,62 22,58" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="300" y="297" text-anchor="middle" font-size="24">ش</text>
+<g transform="translate(246,303) scale(.85)">
+<path d="M94,45 C97,69 80,70 81,49 C84,71 66,72 67,51 C70,68 60,74 54,68 C59,100 17,103 18,73 C18,67 20,62 22,58" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M82,30 C82.0,30.266667 82.0,30.533333 82,30.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M66,30 C66.0,30.266667 66.0,30.533333 66,30.8" fill="none" stroke="#bf522e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74,17 C74.0,17.266667 74.0,17.533333 74,17.8" fill="none" stroke="#8042a8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="101" cy="34" r="5" fill="#147a5c"/>
+<text x="101" y="36" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="96" cy="24" r="5" fill="#126e9e"/>
+<text x="96" y="26" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+<circle cx="52" cy="24" r="5" fill="#bf522e"/>
+<text x="52" y="26" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">3</text>
+<circle cx="74" cy="7" r="5" fill="#8042a8"/>
+<text x="74" y="9" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">4</text>
+</g>
+<g transform="translate(246,399) scale(.85)">
+<path d="M94,45 C97,69 80,70 81,49 C84,71 66,72 67,51 C70,68 60,74 54,68 C59,100 17,103 18,73 C18,67 20,62 22,58" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M82,30 C82.0,30.266667 82.0,30.533333 82,30.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M66,30 C66.0,30.266667 66.0,30.533333 66,30.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74,17 C74.0,17.266667 74.0,17.533333 74,17.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="100" y="297" text-anchor="middle" font-size="24">ص</text>
+<g transform="translate(46,303) scale(.85)">
+<path d="M51,65 C61,48 77,38 88,45 C104,60 83,73 51,65 C55,98 17,102 18,72 C19.0,67.333333 20.0,62.666667 21,58" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="39" cy="58" r="5" fill="#147a5c"/>
+<text x="39" y="60" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(46,399) scale(.85)">
+<path d="M51,65 C61,48 77,38 88,45 C104,60 83,73 51,65 C55,98 17,102 18,72 C19.0,67.333333 20.0,62.666667 21,58" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1300" y="522" text-anchor="middle" font-size="24">ض</text>
+<g transform="translate(1246,528) scale(.85)">
+<path d="M51,65 C61,48 77,38 88,45 C104,60 83,73 51,65 C55,98 17,102 18,72 C19.0,67.333333 20.0,62.666667 21,58" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74,29 C74.0,29.266667 74.0,29.533333 74,29.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="39" cy="58" r="5" fill="#147a5c"/>
+<text x="39" y="60" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="87" cy="23" r="5" fill="#126e9e"/>
+<text x="87" y="25" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(1246,624) scale(.85)">
+<path d="M51,65 C61,48 77,38 88,45 C104,60 83,73 51,65 C55,98 17,102 18,72 C19.0,67.333333 20.0,62.666667 21,58" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74,29 C74.0,29.266667 74.0,29.533333 74,29.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1100" y="522" text-anchor="middle" font-size="24">ط</text>
+<g transform="translate(1046,528) scale(.85)">
+<path d="M37,73 C48,49 69,40 81,47 C100,66 77,77 37,73" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43,20 C43.0,34.333333 43.0,48.666667 43,63" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="26" cy="80" r="5" fill="#147a5c"/>
+<text x="26" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="30" cy="18" r="5" fill="#126e9e"/>
+<text x="30" y="20" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(1046,624) scale(.85)">
+<path d="M37,73 C48,49 69,40 81,47 C100,66 77,77 37,73" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43,20 C43.0,34.333333 43.0,48.666667 43,63" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="900" y="522" text-anchor="middle" font-size="24">ظ</text>
+<g transform="translate(846,528) scale(.85)">
+<path d="M37,73 C48,49 69,40 81,47 C100,66 77,77 37,73" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43,20 C43.0,34.333333 43.0,48.666667 43,63" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M71,31 C71.0,31.266667 71.0,31.533333 71,31.8" fill="none" stroke="#bf522e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="26" cy="80" r="5" fill="#147a5c"/>
+<text x="26" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="30" cy="18" r="5" fill="#126e9e"/>
+<text x="30" y="20" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+<circle cx="85" cy="25" r="5" fill="#bf522e"/>
+<text x="85" y="27" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">3</text>
+</g>
+<g transform="translate(846,624) scale(.85)">
+<path d="M37,73 C48,49 69,40 81,47 C100,66 77,77 37,73" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43,20 C43.0,34.333333 43.0,48.666667 43,63" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M71,31 C71.0,31.266667 71.0,31.533333 71,31.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="700" y="522" text-anchor="middle" font-size="24">ع</text>
+<g transform="translate(646,528) scale(.85)">
+<path d="M73,36 C60,24 40,33 42,45 C44,55 60,53 73,48 C48,53 26,66 29,82 C31,99 63,102 82,89" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="82" cy="27" r="5" fill="#147a5c"/>
+<text x="82" y="29" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(646,624) scale(.85)">
+<path d="M73,36 C60,24 40,33 42,45 C44,55 60,53 73,48 C48,53 26,66 29,82 C31,99 63,102 82,89" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="500" y="522" text-anchor="middle" font-size="24">غ</text>
+<g transform="translate(446,528) scale(.85)">
+<path d="M73,36 C60,24 40,33 42,45 C44,55 60,53 73,48 C48,53 26,66 29,82 C31,99 63,102 82,89" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58,17 C58.0,17.266667 58.0,17.533333 58,17.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="82" cy="27" r="5" fill="#147a5c"/>
+<text x="82" y="29" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="44" cy="10" r="5" fill="#126e9e"/>
+<text x="44" y="12" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(446,624) scale(.85)">
+<path d="M73,36 C60,24 40,33 42,45 C44,55 60,53 73,48 C48,53 26,66 29,82 C31,99 63,102 82,89" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58,17 C58.0,17.266667 58.0,17.533333 58,17.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="300" y="522" text-anchor="middle" font-size="24">ف</text>
+<g transform="translate(246,528) scale(.85)">
+<path d="M74,61 C52,46 65,30 77,38 C91,45 85,63 74,61 C93,75 65,83 42,80 C23,79 18,71 22,58" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M73,22 C73.0,22.266667 73.0,22.533333 73,22.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="62" cy="51" r="5" fill="#147a5c"/>
+<text x="62" y="53" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="87" cy="16" r="5" fill="#126e9e"/>
+<text x="87" y="18" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(246,624) scale(.85)">
+<path d="M74,61 C52,46 65,30 77,38 C91,45 85,63 74,61 C93,75 65,83 42,80 C23,79 18,71 22,58" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M73,22 C73.0,22.266667 73.0,22.533333 73,22.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="100" y="522" text-anchor="middle" font-size="24">ق</text>
+<g transform="translate(46,528) scale(.85)">
+<path d="M74,59 C54,44 66,30 78,38 C91,46 84,63 74,59 C88,94 57,102 35,92 C19,85 19,68 26,57" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M81,22 C81.0,22.266667 81.0,22.533333 81,22.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M65,22 C65.0,22.266667 65.0,22.533333 65,22.8" fill="none" stroke="#bf522e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="60" cy="49" r="5" fill="#147a5c"/>
+<text x="60" y="51" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="96" cy="17" r="5" fill="#126e9e"/>
+<text x="96" y="19" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+<circle cx="51" cy="17" r="5" fill="#bf522e"/>
+<text x="51" y="19" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">3</text>
+</g>
+<g transform="translate(46,624) scale(.85)">
+<path d="M74,59 C54,44 66,30 78,38 C91,46 84,63 74,59 C88,94 57,102 35,92 C19,85 19,68 26,57" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M81,22 C81.0,22.266667 81.0,22.533333 81,22.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M65,22 C65.0,22.266667 65.0,22.533333 65,22.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1300" y="747" text-anchor="middle" font-size="24">ك</text>
+<g transform="translate(1246,753) scale(.85)">
+<path d="M82,20 C82.0,36.0 82.0,52.0 82,68 C83,83 39,85 25,77 C20,74 20,68 22,62" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M57,39 C53.0,42.333333 49.0,45.666667 45,49 C66,48 62,62 43,61" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="95" cy="18" r="5" fill="#147a5c"/>
+<text x="95" y="20" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="68" cy="33" r="5" fill="#126e9e"/>
+<text x="68" y="35" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(1246,849) scale(.85)">
+<path d="M82,20 C82.0,36.0 82.0,52.0 82,68 C83,83 39,85 25,77 C20,74 20,68 22,62" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M57,39 C53.0,42.333333 49.0,45.666667 45,49 C66,48 62,62 43,61" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1100" y="747" text-anchor="middle" font-size="24">ل</text>
+<g transform="translate(1046,753) scale(.85)">
+<path d="M75,19 C75.0,36.0 75.0,53.0 75,70 C77,101 27,102 27,76 C27.666667,72.0 28.333333,68.0 29,64" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="88" cy="16" r="5" fill="#147a5c"/>
+<text x="88" y="18" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(1046,849) scale(.85)">
+<path d="M75,19 C75.0,36.0 75.0,53.0 75,70 C77,101 27,102 27,76 C27.666667,72.0 28.333333,68.0 29,64" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="900" y="747" text-anchor="middle" font-size="24">م</text>
+<g transform="translate(846,753) scale(.85)">
+<path d="M56,56 C62,29 86,39 79,55 C75,67 58,62 56,56 C34,58 46,81 45,99" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="43" cy="43" r="5" fill="#147a5c"/>
+<text x="43" y="45" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(846,849) scale(.85)">
+<path d="M56,56 C62,29 86,39 79,55 C75,67 58,62 56,56 C34,58 46,81 45,99" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="700" y="747" text-anchor="middle" font-size="24">ن</text>
+<g transform="translate(646,753) scale(.85)">
+<path d="M81,48 C91,98 23,104 26,62 C26.666667,59.0 27.333333,56.0 28,53" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55,43 C55.0,43.266667 55.0,43.533333 55,43.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="94" cy="42" r="5" fill="#147a5c"/>
+<text x="94" y="44" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="55" cy="30" r="5" fill="#126e9e"/>
+<text x="55" y="32" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+</g>
+<g transform="translate(646,849) scale(.85)">
+<path d="M81,48 C91,98 23,104 26,62 C26.666667,59.0 27.333333,56.0 28,53" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55,43 C55.0,43.266667 55.0,43.533333 55,43.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="500" y="747" text-anchor="middle" font-size="24">ه</text>
+<g transform="translate(446,753) scale(.85)">
+<path d="M62,38 C77,45 87,60 79,73 C67,90 38,88 32,73 C26,57 45,45 62,38" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="29" r="5" fill="#147a5c"/>
+<text x="74" y="31" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(446,849) scale(.85)">
+<path d="M62,38 C77,45 87,60 79,73 C67,90 38,88 32,73 C26,57 45,45 62,38" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="300" y="747" text-anchor="middle" font-size="24">و</text>
+<g transform="translate(246,753) scale(.85)">
+<path d="M73,62 C52,47 64,29 77,38 C92,50 83,66 73,62 C81,82 60,97 35,95" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="60" cy="51" r="5" fill="#147a5c"/>
+<text x="60" y="53" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+</g>
+<g transform="translate(246,849) scale(.85)">
+<path d="M73,62 C52,47 64,29 77,38 C92,50 83,66 73,62 C81,82 60,97 35,95" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="100" y="747" text-anchor="middle" font-size="24">ي</text>
+<g transform="translate(46,753) scale(.85)">
+<path d="M82,44 C67,33 52,41 54,53 C55,61 76,59 75,72 C72,91 22,92 23,68 C23.666667,64.666667 24.333333,61.333333 25,58" fill="none" stroke="#147a5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59,99 C59.0,99.266667 59.0,99.533333 59,99.8" fill="none" stroke="#126e9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43,99 C43.0,99.266667 43.0,99.533333 43,99.8" fill="none" stroke="#bf522e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="94" cy="37" r="5" fill="#147a5c"/>
+<text x="94" y="39" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">1</text>
+<circle cx="73" cy="101" r="5" fill="#126e9e"/>
+<text x="73" y="103" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">2</text>
+<circle cx="29" cy="101" r="5" fill="#bf522e"/>
+<text x="29" y="103" text-anchor="middle" font-family="sans-serif" font-size="7" fill="white">3</text>
+</g>
+<g transform="translate(46,849) scale(.85)">
+<path d="M82,44 C67,33 52,41 54,53 C55,61 76,59 75,72 C72,91 22,92 23,68 C23.666667,64.666667 24.333333,61.333333 25,58" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M59,99 C59.0,99.266667 59.0,99.533333 59,99.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43,99 C43.0,99.266667 43.0,99.533333 43,99.8" fill="none" stroke="#d9d7d0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

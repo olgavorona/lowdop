@@ -14,8 +14,8 @@ enum AppLocalization {
         UserDefaults.standard.string(forKey: "appLanguage") ?? "en"
     }
 
-    static func text(_ source: String, replacing values: [String: String] = [:]) -> String {
-        var result = copy[languageCode]?[source] ?? source
+    static func text(_ source: String, language: AppLanguage? = nil, replacing values: [String: String] = [:]) -> String {
+        var result = copy[language?.rawValue ?? languageCode]?[source] ?? source
         for (placeholder, value) in values {
             result = result.replacingOccurrences(of: placeholder, with: value)
         }

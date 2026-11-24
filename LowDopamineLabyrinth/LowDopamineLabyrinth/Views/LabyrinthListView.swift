@@ -15,7 +15,7 @@ struct LabyrinthListView: View {
     @State private var didInjectUITestCompletion = false
 
     private var shouldReturnToBookshelfAfterCompletion: Bool {
-        isStoryComplete || gameViewModel.isLastLabyrinthInPack
+        gameViewModel.shouldReturnToBookshelfAfterCompletion
     }
 
     var body: some View {
@@ -135,6 +135,8 @@ struct LabyrinthListView: View {
                 }
             }
         }
+        .environment(\.locale, preferences.appLanguage.locale)
+        .environment(\.layoutDirection, preferences.appLanguage.isRightToLeft ? .rightToLeft : .leftToRight)
         .onAppear {
             updateVM()
             presentUITestCompletionIfNeeded()
@@ -209,7 +211,7 @@ struct LabyrinthListView: View {
             ttsService.prepareAudio(for: lab)
             if preferences.ttsEnabled {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    ttsService.playAudio(lab.audioInstruction)
+                    ttsService.playAudio(lab.audioInstruction, localizedText: lab.ttsInstruction)
                 }
             }
         }

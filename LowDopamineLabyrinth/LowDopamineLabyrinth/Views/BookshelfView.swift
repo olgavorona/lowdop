@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct BookshelfView: View {
+    @Environment(\.layoutDirection) private var layoutDirection
     @EnvironmentObject var preferences: UserPreferences
     @EnvironmentObject var progressTracker: ProgressTracker
     @EnvironmentObject var subscriptionManager: SubscriptionManager
@@ -39,6 +40,7 @@ struct BookshelfView: View {
             case system(String, Color)
             case character(String)
             case emoji(String)
+            case image(String)
         }
 
         enum PackDecoration {
@@ -60,12 +62,12 @@ struct BookshelfView: View {
             alwaysShow: true
         ),
         PackConfig(
-            id: "fall_adventures",
-            title: "Fall Adventures",
-            gradientColors: [Color(hex: "#5B321D") ?? .brown, Color(hex: "#8D4D2A") ?? .orange, Color(hex: "#C87835") ?? .orange],
-            progressBarColor: Color(hex: "#C87835") ?? .orange,
+            id: "thanksgiving_adventures",
+            title: "Denny's Thanksgiving",
+            gradientColors: [Color(hex: "#60432F") ?? .brown, Color(hex: "#A76439") ?? .orange, Color(hex: "#D39454") ?? .orange],
+            progressBarColor: Color(hex: "#A76439") ?? .orange,
             unlockText: "",
-            icon: .emoji("🍂"),
+            icon: .image("denny_tilly_thanksgiving"),
             decoration: .leaves,
             alwaysShow: true
         ),
@@ -96,6 +98,16 @@ struct BookshelfView: View {
             progressBarColor: AppColor.accentGreen,
             unlockText: "",
             icon: .character("あ"),
+            decoration: .waves,
+            alwaysShow: true
+        ),
+        PackConfig(
+            id: "arabic_tracing",
+            title: "Trace Arabic Letters",
+            gradientColors: [Color(hex: "#164E63") ?? .blue, Color(hex: "#0F766E") ?? .green, Color(hex: "#15803D") ?? .green],
+            progressBarColor: AppColor.accentGreen,
+            unlockText: "",
+            icon: .character("أ"),
             decoration: .waves,
             alwaysShow: true
         ),
@@ -234,6 +246,7 @@ struct BookshelfView: View {
                     .foregroundColor(AppColor.textPrimary.opacity(0.5))
                     .frame(width: 32, height: 32)
             }
+            .accessibilityIdentifier("bookshelf.account")
         }
     }
 
@@ -245,7 +258,7 @@ struct BookshelfView: View {
             return isAvailable && (config.alwaysShow || !(storiesByPack[config.id]?.isEmpty ?? true))
         }
         let mazePacks = visiblePacks.filter { TracingCollection(rawValue: $0.id) == nil }
-        let tracingOrder: [TracingCollection] = [.letters, .hiragana, .numbers]
+        let tracingOrder: [TracingCollection] = [.arabic, .letters, .hiragana, .numbers]
         let tracingPacks = tracingOrder.compactMap { collection in
             visiblePacks.first { $0.id == collection.rawValue }
         }
@@ -282,6 +295,8 @@ struct BookshelfView: View {
             .padding(.horizontal, isPhone ? 16 : 40)
             .padding(.vertical, 8)
         }
+        // A direction change needs a fresh scroll offset at the new leading edge.
+        .id(layoutDirection)
         .frame(height: isPhone ? 210 : 310)
     }
 
@@ -350,7 +365,7 @@ struct BookshelfView: View {
 
             VStack(spacing: isCompact ? 3 : 8) {
                 packIconView(
-                    config.id == TracingCollection.letters.rawValue && preferences.appLanguage == .japanese
+                    config.id == TracingCollection.letters.rawValue && [.japanese, .arabic].contains(preferences.appLanguage)
                         ? .character("A") : config.icon,
                     isCompact: isCompact
                 )
@@ -478,6 +493,11 @@ struct BookshelfView: View {
         case .emoji(let char):
             Text(char)
                 .font(.system(size: isCompact ? 24 : 40))
+        case .image(let asset):
+            Image(asset)
+                .resizable()
+                .scaledToFit()
+                .frame(width: isCompact ? 46 : 80, height: isCompact ? 42 : 72)
         }
     }
 

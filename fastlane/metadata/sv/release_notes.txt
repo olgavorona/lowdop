@@ -1,0 +1,1 @@
+Lagt till spårning av arabiska bokstäver med vägledning för streckordningen. Endast tillgängligt när appens språk är inställt på arabiska.

@@ -80,6 +80,13 @@ class LabyrinthLoader {
         let storySet = Set(pack.stories)
         let packLabyrinths = all.filter { storySet.contains($0.storyNumber) }
 
+        // This chapter uses seven distinct printables, one difficulty per story.
+        if pack.usesFixedDifficulty {
+            return packLabyrinths.sorted {
+                (storyOrder[$0.storyNumber] ?? Int.max) < (storyOrder[$1.storyNumber] ?? Int.max)
+            }
+        }
+
         // Prefer exact difficulty match; fall back to closest available if the pack
         // doesn't have variants for the selected difficulty (e.g. a test pack with medium only).
         let difficultyOrder: [DifficultyLevel] = [.medium, .easy, .hard]

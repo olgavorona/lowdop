@@ -4,12 +4,14 @@ enum TracingCollection: String, CaseIterable {
     case letters = "letter_tracing"
     case numbers = "number_tracing"
     case hiragana = "hiragana_tracing"
+    case arabic = "arabic_tracing"
 
     var characters: [Character] {
         switch self {
         case .letters: return Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         case .numbers: return Array("0123456789")
         case .hiragana: return Array("あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん")
+        case .arabic: return Array("ابتثجحخدذرزسشصضطظعغفقكلمنهوي")
         }
     }
 
@@ -18,6 +20,7 @@ enum TracingCollection: String, CaseIterable {
         case .letters: return "Letters"
         case .numbers: return "Numbers"
         case .hiragana: return "Hiragana"
+        case .arabic: return "Arabic Letters"
         }
     }
 
@@ -26,6 +29,7 @@ enum TracingCollection: String, CaseIterable {
         case .letters: return "26 letters"
         case .numbers: return "10 numbers"
         case .hiragana: return "46 hiragana"
+        case .arabic: return "28 letters"
         }
     }
 
@@ -34,18 +38,26 @@ enum TracingCollection: String, CaseIterable {
         case .letters: return "Free · 26 letters"
         case .numbers: return "Free · 10 numbers"
         case .hiragana: return "Free · 46 hiragana"
+        case .arabic: return "Free · 28 letters"
         }
     }
 
     func isAvailable(in language: AppLanguage) -> Bool {
-        self != .hiragana || language == .japanese
+        switch self {
+        case .hiragana: return language == .japanese
+        case .arabic: return language == .arabic
+        case .letters, .numbers: return true
+        }
     }
+
+    var writingDirection: LayoutDirection { self == .arabic ? .rightToLeft : .leftToRight }
 
     func strokes(for character: String) -> [TracingStroke] {
         switch self {
         case .letters: return Self.latinStrokes[character] ?? []
         case .numbers: return Self.numberStrokes[character] ?? []
         case .hiragana: return Self.hiraganaStrokes[character] ?? []
+        case .arabic: return Self.arabicStrokes[character] ?? []
         }
     }
 
@@ -55,6 +67,7 @@ enum TracingCollection: String, CaseIterable {
 
     private static let latinStrokes = loadStrokes(named: "latin-strokes")
     private static let hiraganaStrokes = loadStrokes(named: "hiragana-strokes")
+    private static let arabicStrokes = loadStrokes(named: "arabic-strokes")
 
     private static func loadStrokes(named name: String) -> [String: [TracingStroke]] {
         guard let url = Bundle.main.url(forResource: name, withExtension: "json"),
@@ -285,7 +298,7 @@ struct TracingRowLayout {
         let innerSpacing = CGFloat(max(0, glyphs.count - 1)) * glyphSpacing
         let preferredHeight = min(collection == .numbers ? 250 : 320, availableHeight)
         let preferredWidth = preferredHeight * totalAspect + innerSpacing
-        let maximumCopies = collection == .hiragana ? 2 : 12
+        let maximumCopies = collection == .hiragana || collection == .arabic ? 2 : 12
         copies = max(1, min(maximumCopies, max(minimumCopies, Int((availableWidth + copySpacing) / (preferredWidth + copySpacing)))))
         let widthForInk = availableWidth - CGFloat(copies - 1) * copySpacing - CGFloat(copies) * innerSpacing
         let height = max(1, min(380, availableHeight, widthForInk / (CGFloat(copies) * totalAspect)))

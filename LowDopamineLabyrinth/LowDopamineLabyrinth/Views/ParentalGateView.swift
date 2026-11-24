@@ -5,6 +5,7 @@ import SwiftUI
 /// external links, IAP, and settings areas.
 struct ParentalGateView: View {
     @EnvironmentObject var ttsService: TTSService
+    @EnvironmentObject var preferences: UserPreferences
 
     enum Purpose {
         case paywall
@@ -68,12 +69,17 @@ struct ParentalGateView: View {
             }
         }
         .background(AppColor.background)
+        .environment(\.locale, preferences.appLanguage.locale)
+        .environment(\.layoutDirection, preferences.appLanguage.isRightToLeft ? .rightToLeft : .leftToRight)
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .onAppear {
             ttsService.stop()
-            _ = ttsService.playAudio("parental_gate.mp3")
+            _ = ttsService.playAudio(
+                "parental_gate.mp3",
+                localizedText: AppLocalization.text("Please ask a grown-up to answer this question:")
+            )
         }
         .onDisappear {
             ttsService.stop()
@@ -107,11 +113,13 @@ struct ParentalGateView: View {
                 #"What is \(a) + \(b)?"#,
                 replacing: [#"\(a)"#: String(a), #"\(b)"#: String(b)]
             ))
+                .accessibilityIdentifier("parentalGate.question")
                 .font(.system(size: isCompact ? 28 : 32, weight: .bold, design: .rounded))
                 .foregroundColor(AppColor.textPrimary)
                 .padding(.top, isCompact ? 2 : 8)
 
             TextField("Answer", text: $answer)
+                .accessibilityIdentifier("parentalGate.answer")
                 .keyboardType(.numberPad)
                 .font(.system(size: 24, weight: .medium, design: .rounded))
                 .multilineTextAlignment(.center)
@@ -135,6 +143,7 @@ struct ParentalGateView: View {
                     .cornerRadius(14)
             }
             .padding(.horizontal, isCompact ? 16 : 40)
+            .accessibilityIdentifier("parentalGate.continue")
 
             Button(action: {
                 ttsService.stop()
